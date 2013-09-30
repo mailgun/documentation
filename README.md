@@ -5,7 +5,8 @@ This Github repository represents Mailgun's documentation site, located at http:
 is based on the [Sphinx](http://sphinx-doc.org/) documentation generator for Python.
 
 
-To suggest changes to the documentation, please submit an Issue or Pull Request.
+To suggest changes to the documentation, please submit an [Issue](https://github.com/mailgun/documentation/issues/new) 
+or [Pull Request](https://github.com/mailgun/documentation/compare/).
 
 reStructuredText
 ----------------
