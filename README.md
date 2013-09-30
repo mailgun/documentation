@@ -1,0 +1,4 @@
+mailgun-docs
+============
+
+Mailgun Documentation
