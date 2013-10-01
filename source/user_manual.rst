@@ -1441,6 +1441,17 @@ Regardless of which delivery method you choose, Mailgun will transcode the origi
 UTF-8 encoding, even for raw MIME. We do this because we love our users: most MIME parsers are
 not good at dealing with all of the various broken MIME messages that exist in the wild.
 
+For Route POSTs, Mailgun listens for the following codes from your server and reacts accordingly:
+
+* If Mailgun receives a ``200 (Success)`` code it will determine the webhook POST is successful and not retry.
+* If Mailgun receives a ``406 (Not Acceptable)`` code, Mailgun will determine the POST is rejected and not retry.
+* For any other code, Mailgun will retry POSTing according to the schedule below for Webhooks other than the 
+delivery notification.
+
+If your application is unable to process the webhook request but you do not return a 406 error code, Mailgun will 
+retry (other than for delivery notification) during 8 hours at the following intervals before stop trying: 
+10 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour and 4 hours.
+
 Below are two tables of HTTP parameters that you can expect to be posted into your application through a forward() action.
 
 .. note:: In addition to these parameters Mailgun will post `all` MIME headers.
