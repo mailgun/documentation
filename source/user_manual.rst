@@ -478,6 +478,8 @@ using the ``o:deliverytime`` parameter if sending via the API, or
 While messages are not guaranteed to arrive at exactly the requested time due to
 the dynamic nature of the queue, Mailgun will do it's best.
 
+.. note:: Messages can be scheduled for a maximum of 3 days in the future.
+
 **Scheduling Delivery API Example**
 
 Supply :rfc:`2822#section-3.3` or `Unix epoch <http://en.wikipedia.org/wiki/Unix_time>`_

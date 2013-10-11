@@ -54,7 +54,9 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
                     :ref:`um-campaign-analytics` for details.
  o\:dkim            Enables/disables DKIM signatures on per-message basis.
                     Pass ``yes`` or ``no``
- o\:deliverytime    Desired time of delivery. See :ref:`date-format`.
+ o\:deliverytime    Desired time of delivery. See :ref:`date-format`. Note:
+                    Messages can be scheduled for a maximum of 3 days in the
+                    future.
  o\:testmode        Enables sending in test mode. Pass ``yes`` if needed.
                     See :ref:`manual-testmode`
  o\:tracking        Toggles tracking on a per-message basis, see
@@ -96,7 +98,9 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
  o\:tag             Tag string. See :ref:`tagging` for more information.
  o\:campaign        Id of the campaign the message belongs to. See
                     :ref:`um-campaign-analytics` for details.
- o\:deliverytime    Desired time of delivery. See :ref:`date-format`.
+ o\:deliverytime    Desired time of delivery. See :ref:`date-format`. Note:
+                    Messages can be scheduled for a maximum of 3 days in the
+                    future.
  o\:dkim            Enables/disabled DKIM signatures on per-message basis.
                     Pass ``yes`` or ``no``
  o\:testmode        Enables sending in test mode. Pass ``yes`` if needed.
