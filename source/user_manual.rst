@@ -313,6 +313,17 @@ Mailgun supports the ability send to a group of recipients through a single API 
 
 Recipient Variables are custom variables that you define, which you can then reference in the message body. They give you the ability to send a custom message to each recipient while still using a single API Call (or SMTP session).
 
+To access a recipient variable within your email, simply reference %recipient.yourkey%. For example, consider the following JSON: 
+
+.. code-block:: javascript
+
+ {
+   "user1@example.com" : {"unique_id": "ABC123456789"},
+   "user2@example.com" : {"unique_id": "ZXY987654321"}
+ }
+
+To reference the above variables within your email, use %recipient.unique_id%.
+
 Recipient Variables allow you to:
 
 * Submit a message template;

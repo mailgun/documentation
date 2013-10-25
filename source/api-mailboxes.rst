@@ -9,7 +9,7 @@ There is no HTTP API to fetch the contents of the mailboxes: you
 need to use POP3 or IMAP protocols for that.
 
 .. warning:: Mailboxes is a legacy feature of Mailgun that is no longer 
-   offered to new customers.  Contact support@mailgun.com with questions.
+   offered to new customers.  Please utilize the Store() endpoint instead.
 
 .. warning:: Currently Mailgun stores mailbox passwords in plain text.
    This is not acceptable for some applications. We are considering

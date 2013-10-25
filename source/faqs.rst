@@ -258,7 +258,7 @@ Does the content of my email matter for deliverability?
 Absolutely.  Ideally, you send email that people want.  That's over half the battle.  In addition, you should make your
 content interesting and relevant to the recipient.
 
-There are a few things to keep in mind about your email content. First, we suggest that you set up a test mailbox at Mailgun and enable our spam filters to receive a “spamicity” score to test how your content is being judged by spam filters. Here are some other things to consider:
+There are a few things to keep in mind about your email content. First, we suggest setting up a test mailbox at http://mail-tester.com. Mail-Tester will provide you with a full analysis of your email for free. Here are some other things to consider:
 
 - Personalize your emails.  Make sure to include the recipient's address in the "To:" field and include his/her name in the greeting.
 - It is best to send multi-part emails using both text and HTML or text only. Sending HTML only email is not well received by ESPs. Also, remember that ESPs generally block images by default so HTML only will not look very good unless users are proactive about enabling images.
