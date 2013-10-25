@@ -20,6 +20,8 @@ Verifying your domain is easy.  Start by adding a domain or subdomain you own in
 
 Inside your Control Panel, you'll find your DNS records when you click on a domain under the ``Domains`` tab. There are two types of DNS records, ``Sending`` and ``Receiving`` records. 
 
+Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
+
 **Sending DNS Records**
 
 - SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.

@@ -47,6 +47,9 @@ Create a new domain. See examples below.
 
 Delete a domain from your account.
 
+.. note:: Mailgun imposes a rate limit for the Domains API endpoint. Users may 
+		  issue no more than 300 requests per minute, per account. See the resultant
+		  rate limit response below. 
 
 Example
 ~~~~~~
@@ -145,3 +148,10 @@ Sample response:
 	  "message": "Domain has been deleted"
 	}
 
+Rate Limit Response:
+
+.. code-block:: javascript
+
+	{
+        "retry-seconds": 60,
+	}

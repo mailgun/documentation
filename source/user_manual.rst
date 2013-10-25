@@ -72,6 +72,8 @@ When you sign up for an account, you will need to pick a domain name. You have t
 
 You can also add multiple domain names for your account. Each domain can be thought of as its own mail server.  The mail queues for each domain are separate.
 
+Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
+
 **DNS Records**
 
 For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we give you at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and prove that you are an authorized sender for the domain.  Verifying your domain has some concrete benefits that you'll likely want to take advantage of.

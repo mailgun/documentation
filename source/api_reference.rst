@@ -7,6 +7,7 @@ API Reference
 
    api-intro
    api-sending
+   api-domains
    api-unsubscribes
    api-complaints
    api-bounces
