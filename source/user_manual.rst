@@ -455,7 +455,7 @@ your own variables in addition to these pre-defined variables by using the ``var
     %unsubscribe_url%                 A generated URL which allows users to unsubscribe from messages.
     %mailing_list_unsubscribe_url%    A generated URL which allows users to unsubscribe from mailing lists.
     %unsubscribe_email%               An email address which can be used for automatic unsubscription by adding it to List-Unsubscribe MIME header.
-    %recipient.yourvar%               See attaching custom data. 
+    %recipient.yourvar%               Accessing a custom datavalue. (see :ref:`manual-customdata`)
     ==============================    =============================================================================================================
 
 **Unsubscribing**

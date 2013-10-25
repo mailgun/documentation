@@ -159,5 +159,5 @@ Rate Limit Response:
 .. code-block:: javascript
 
 	{
-		"retry-seconds": 60,
+	  "retry-seconds": 60,
 	}
