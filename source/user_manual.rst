@@ -322,7 +322,7 @@ To access a recipient variable within your email, simply reference %recipient.yo
    "user2@example.com" : {"unique_id": "ZXY987654321"}
  }
 
-To reference the above variables within your email, use %recipient.unique_id%.
+To reference the above variables within your email, use %recipient.unique_id%. 
 
 Recipient Variables allow you to:
 
@@ -455,6 +455,7 @@ your own variables in addition to these pre-defined variables by using the ``var
     %unsubscribe_url%                 A generated URL which allows users to unsubscribe from messages.
     %mailing_list_unsubscribe_url%    A generated URL which allows users to unsubscribe from mailing lists.
     %unsubscribe_email%               An email address which can be used for automatic unsubscription by adding it to List-Unsubscribe MIME header.
+    %recipient.yourvar%               See attaching custom data. 
     ==============================    =============================================================================================================
 
 **Unsubscribing**
@@ -1913,3 +1914,36 @@ Settings for sending mail::
 
 .. Note:: Use a full mailbox name like "user@mymailgundomain.com" as a login for
           POP, IMAP and SMTP. SSL or TLS are supported for all protocols.
+
+Integrations
+************
+
+Mailgun's API allows users to provision resources on demand. The available APIs are:
+
+- Domains
+- Webhooks 
+
+Domains
+=======
+
+Mailgun recommends configuring a custom domain for maximum deliverability. The 
+Domains API endpoint allows users to programmatically provision custom domains 
+directly from the API.
+
+DNS records are made available from the API endpoint. In addition, Mailgun
+validates the DNS records and provides the consumer with domain verfication results. 
+
+See the :ref:`api-domains` endpoint for more information.
+
+Webhooks
+========
+
+The Webhooks API endpoint allows you to programmatically manipulate the webhook 
+URLs defined for a specific domain. 
+
+Webhooks are the best way to receive realtime information from Mailgun, allowing 
+users to action based on events triggered within Mailgun. 
+
+See the `webhooks`_ section of the User Guide for more information. Or head over 
+to the :ref:`api-webhooks` API endpoint documentation.
+
