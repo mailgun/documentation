@@ -52,7 +52,7 @@ Delete a domain from your account.
 		  rate limit response below. 
 
 Example
-~~~~~~
+~~~~~~~
 
 Get a list of all domains.
 
@@ -111,6 +111,12 @@ Sample response:
 	      "value": "v=spf1 include:mailgun.org ~all"
 	    },
 	    {
+	      "record_type": "TXT",
+	      "valid": "unknown",
+	      "name": "domain.com",
+	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCWG9VOR2u+oawmNVH/aD8EaXGNhOSq21wD/VNTYxYC1uFw+Ucm97j6hv8Ikh2ySh9rczxj4AgCVN9t1VbC7foneKasdQgmJEr3wBTfj9i199EJQRN7x6V2Uc5F7P+K3X3jY5dl7fxq+2etwZRQ5Qy2xH/qtUpxnliJ8WdLvM++HwIDAQAB"
+	    },
+	    {
 	      "record_type": "CNAME",
 	      "valid": "unknown",
 	      "name": "email.domain.com",
@@ -153,5 +159,5 @@ Rate Limit Response:
 .. code-block:: javascript
 
 	{
-		"retry-seconds": 60,
+	  "retry-seconds": 60,
 	}

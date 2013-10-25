@@ -71,6 +71,10 @@ Deletes an existing webhook.
 
 .. note:: Deleting an Open or Click webhook will enable Open or Click tracking. 
 
+.. note:: Mailgun imposes a rate limit for the Webhook API endpoint. Users may 
+		  issue no more than 300 requests per minute, per account. See the resultant
+		  rate limit response below. 
+
 Examples
 ~~~~~~~~
 
@@ -150,4 +154,12 @@ Sample response:
 	  "webhook": {
 	    "url": "http://postbin.heroku.com/860bcd65"
 	  }
+	}
+
+Rate Limit Response:
+
+.. code-block:: javascript
+
+	{
+		"retry-seconds": 60,
 	}
