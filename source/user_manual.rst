@@ -1120,7 +1120,7 @@ recipient, we will POST the following parameters to your URL:
  recipient             Intended recipient.
  domain                Domain that sent the message.
  message-headers       String list of all MIME headers dumped to a JSON string (order of headers preserved).
- Messsage-Id           String id of the original message delivered to the recipient.
+ Message-Id            String id of the original message delivered to the recipient.
  "custom variables"    Your own custom JSON object included in the header of the original message (see :ref:`manual-customdata`).
  timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
