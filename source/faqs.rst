@@ -25,19 +25,19 @@ Here's a classic post, `So You'd Like to Send Some Email (Through Code)`_, from 
 What are the differences between free and paid accounts?
 **************************************************************************************************************
 
-First of all, for both free and paid accounts, you get 10,000 free messages per month. However, there are some limitations if you don't give us your payment information:
+First of all, for both free and paid accounts, you get 10,000 free messages per month. However, there are some limitations if you don't provide payment information:
 
-* You can not send more than 10,000 messages per month 
+* You will not be able to send more than 10,000 messages per month 
 * Data retention for logs and the Events API is 2 days.
 * The limit for number of domains is 5.
 
-If you do give us your payment information:
+If you do provide payment information:
 
 * There is no limit on the number of emails sent or received.
 * Data retention for Logs and the Events API is 30 days.
 * You can create up to 1,000 domains.
 
-If these limits are not enough for you or if you need to talk to us about a custom contract, you can reach us at sales@mailgun.com.
+If these limits are not enough for you, or if you need to talk to us about a custom contract, you can reach us at sales@mailgun.com.
 
 You can find a full list of features on our `pricing page`_.
 
@@ -46,16 +46,16 @@ You can find a full list of features on our `pricing page`_.
 Can I get multiple Domains and IP Addresses?
 **************************************************************************************************************
 
-By default we give you a shared IP address. If you want a dedicated IP address, you can get one by clicking on the link in the My Account tab of the control panel. If you want multiple IPs, you can contact support@mailgun.com.  
+By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Upgrade" link in the My Account tab of the control panel. If you want multiple IPs, you can contact support@mailgun.com.  
 
 You can create multiple domains in the control panel or through the Domains API (limit of 5 for free accounts and 1,000 for paid accounts).
 
 Do I need a dedicated IP address?
 **************************************************************************************************************
 
-It depends.
+It depends on various factors. 
 
-If you are sending a lot of email (greater than 50k per week), it is a good idea to have a dedicated IP in order to isolate your reputation.  If you are sharing your IP, you are sharing your reputation with those other senders.  In addition, ESPs rate limit your emails based on the IP.  So if you are a high volume sender you should consider getting a pool of IPs.  However, your reputation can also be hurt if you are not sending enough volume consistently from an IP - so it's a tricky balance.
+If you are sending a lot of email (greater than 50k per week), it is a good idea to have a dedicated IP in order to isolate your reputation.  If you are sharing your IP, you are sharing your reputation with those other senders.  In addition, ESPs limit the total volume per IP, per hour.  If you are a high volume sender you should consider a pool of IPs.  However, you will have trouble establishing your reputation if you are not sending enough volume consistently from an IP - in this case, a shared IP is preferred.
 
 If your email sending is volatile with large spikes of volume, ESPs may assume those large spikes are spam.  Also, if you overall volume is too low, they won't acknowledge your reputation.  Generally, if you are sending less than 5,000 emails per day, a shared IP may be the right solution.
 
@@ -64,12 +64,12 @@ The other thing to consider is using separate IPs for your bulk and transactiona
 - Delivery of time-sensitive transactional emails may get queued behind a large batch of bulk/marketing emails.
 - Your transactional mail will be affected by the reputation created by your bulk/marketing mail.
 
-Mailgun's infrastructure mitigates some of the argument's for a dedicated IP address.  First of all, we are constantly monitoring our shared IP addresses for any reputation issues.  We also allow you to schedule deliver of your emails by using the ``o:deliverytime`` parameter.  This allows you to delay the delivery by using a time in the future and also allows you to jump other messages in your queue (say from a large bulk mailing) by using a delivery time of now().
+Mailgun's infrastructure mitigates some of the argument's for a dedicated IP address.  First of all, we are constantly monitoring our shared IP addresses for any reputation issues.  We also allow you to schedule delivery of your emails by using the ``o:deliverytime`` parameter.  This allows you to delay the delivery by using a time in the future and also allows you to jump other messages in your queue (say from a large bulk mailing) by using a delivery time of now.
 
 How do I pick a domain name for my Mailgun account?
 **************************************************************************************************************
 
-Mailgun allows our paid plans to create multiple domains so don't be shy.
+Mailgun allows multiple domains per account, and you can change any time.
 
 The name of an email domain matters most for receiving messages:
 If your domain name is ``mycompany.com`` it means you can receive messages sent
@@ -227,7 +227,12 @@ of the parameters in the URI.
 I just submitted a lot of messages. Why is delivery happening so slowly?
 **************************************************************************************************************
 
-You probably have a new account and we are in the process of establishing a sending reputation for your IP for all major ESPs. By delivering slowly and gradually increasing sending rates, Mailgun protects and improves your sending reputation. See our section on Deliverability below for more information.
+There are many factors that can affect the speed of delivery. 
+1. Your established reputation for the domain and IPs on your account.
+2. The total number of IPs allocated to your account. 
+3. The content quality for the emails being sent.
+
+For newly allocated IPs, Mailgun protects and improves the reputation by gradually increasing sending rates. This means, as time passes, with high quality traffic, being sent from your IPs, your sending rates will increase automatically. If you're seeing slow delivery, please contact us... We'll evaluate your account configuration to ensure it is configured for handling the volume you require.
 
 Deliverability / Reputation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
