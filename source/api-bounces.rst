@@ -1,6 +1,6 @@
 .. _api-bounces:
 
-Bo unces
+Bounces
 =======
 
 Mailgun automatically handles bounced emails. The bounced addresses,
