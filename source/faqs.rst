@@ -80,10 +80,11 @@ sales@mycompany.com even if your domain name is called mycompanymail.com or
 mycompany.mailgun.org.  Although, it is best for deliverability if you are using the
 same domain in the From field that the actual sender is using.
 
-There are two types of domains you can register with Mailgun:
+There are two types of domains you can configure with Mailgun:
 
-* A subdomain of mailgun.org. Example: ``mycompany.mailgun.org``. This option is very easy to set up: it requires no DNS changes on your part. However, it should only be used for testing purposes.
-* Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We give you those records and instructions in your control panel.
+* A sandbox subdomain of mailgun.org. Example: ``sandboxXX.mailgun.org``. This option allows for quick testing, without having to setup DNS entries. This domain is provisioned automatically with every new account.
+
+* Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We provide you with those records and instructions in your control panel.
 
 If your company's primary domain is ``mycompany.com``, we recommend the following
 domain names for mailgun:
@@ -245,7 +246,7 @@ The way to think about your email reputation is much like your credit score.  Wh
 Some of the factors that help you build a good reputation faster and increase deliverability are:
 
 - Limited spam complaints and bounces.
-- Including the ability for recipients to unsubscribe.
+- Including the ability for recipients to unsubscribe. 
 - Recipients interacting with your emails in a good way: reading, replying, forwarding and adding your addresses to their contacts.
 - Following ESPs' guidelines on sending rates.
 - Paying attention to ESPs' feedback to slow or stop sending for a period of time.

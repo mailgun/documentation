@@ -142,7 +142,7 @@ These are the parameters of the JSON returned from a GET request to a stored mes
            ==================    =========    ============================================================================================================
            Parameter             Type         Description
            ==================    =========    ============================================================================================================
-           recipient             string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
+           recipients             string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
            sender                string       sender of the message as reported by ``MAIL FROM`` during SMTP chat. Note: this value may differ
                                               from ``From`` MIME header.
            from                  string       sender of the message as reported by ``From`` message header, for example "Bob Lee <blee@mailgun.net>".
