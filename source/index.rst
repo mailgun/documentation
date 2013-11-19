@@ -1,7 +1,6 @@
 Documentation
 #############
 
-.. Note:: Legacy API documentation is accessible via this link: http://olddocs.mailgun.net
 
 
 Introduction
