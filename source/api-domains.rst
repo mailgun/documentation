@@ -75,8 +75,8 @@ Sample response:
 	      "smtp_login": "postmaster@samples.mailgun.org",
 	      "name": "samples.mailgun.org",
 	      "smtp_password": "4rtqo4p6rrx9",
-		  "wildcard": true, 
-		  "spam_action": "disabled"
+	      "wildcard": true, 
+	      "spam_action": "disabled"
 	    }
 	  ]
 	}
