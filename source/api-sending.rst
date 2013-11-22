@@ -189,7 +189,7 @@ These are the parameters when the ``Accept`` header is set to ``message/rfc2822`
 
 
 Deleting Stored Messages
-==============
+========================
 
 To delete an inbound message that has been stored via the ``store()`` action, use the URL found in the stored event, or in the notify webhook.
 
@@ -201,7 +201,7 @@ You don't have to construct this URL on your own. You can just use the URL provi
 
 
 Examples
-================
+========
 
 .. warning:: Some samples are using curl utility for API examples.
   UNIX shells require that some characters must be escaped,

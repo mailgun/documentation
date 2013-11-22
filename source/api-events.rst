@@ -94,6 +94,9 @@ Log records can be filtered by the following fields:
                event pertains to only one
                recipient.
  tags          User defined tags.
+ severity      Temporary or Permanent. Used to
+               filter events based on severity, if 
+               exists. (Currently failed events only)
  ============= ==================================
 
 Filter Expression
@@ -136,7 +139,7 @@ the events that you can filter by.
  delivered         Mailgun sent the email and it was accepted by the recipient
                    email server.
  failed            Mailgun could not deliver the email to the recipient email server.
- opened            The email recipient opened the email and enabled image  
+ opened            The email recipient opened the email and enabled image
                    viewing. Open tracking must be enabled in the Mailgun control
                    panel, and the CNAME record must be pointing to mailgun.org.
  clicked           The email recipient clicked on a link in the email.  

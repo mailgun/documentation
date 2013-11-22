@@ -1761,6 +1761,8 @@ Sample response:
    "spec": "alice@samples.mailgun.org"
  }
 
+.. _um-spam-filter:
+
 Spam Filter
 ===========
 

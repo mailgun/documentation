@@ -39,6 +39,11 @@ Create a new domain. See examples below.
  ================= ========================================================
  name              Name of the domain (ex. domain.com)
  smtp_password     Password for SMTP authentication
+ spam_action       *disabled* or *tag* Disable, no spam filtering will occur
+                   for inbound messages. Tag, messages will be tagged wtih a
+                   spam header. See :ref:`um-spam-filter`.
+ wildcard          *true* or *false* Determines whether the domain will
+                   accept email for sub-domains.
  ================= ========================================================
 
 .. code-block:: url
@@ -69,7 +74,9 @@ Sample response:
 	      "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
 	      "smtp_login": "postmaster@samples.mailgun.org",
 	      "name": "samples.mailgun.org",
-	      "smtp_password": "4rtqo4p6rrx9"
+	      "smtp_password": "4rtqo4p6rrx9",
+		  "wildcard": true, 
+		  "spam_action": "disabled"
 	    }
 	  ]
 	}
@@ -87,38 +94,40 @@ Sample response:
 	    "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
 	    "smtp_login": "postmaster@domain.com",
 	    "name": "domain.com",
-	    "smtp_password": "4rtqo4p6rrx9"
+	    "smtp_password": "4rtqo4p6rrx9",
+	    "wildcard": false, 
+	    "spam_action": "tag"
 	  },
 	  "receiving_dns_records": [
 	    {
 	      "priority": "10",
 	      "record_type": "MX",
-	      "valid": "unknown",
+	      "valid": "valid",
 	      "value": "mxa.mailgun.org"
 	    },
 	    {
 	      "priority": "10",
 	      "record_type": "MX",
-	      "valid": "unknown",
+	      "valid": "valid",
 	      "value": "mxb.mailgun.org"
 	    }
 	  ],
 	  "sending_dns_records": [
 	    {
 	      "record_type": "TXT",
-	      "valid": "unknown",
+	      "valid": "valid",
 	      "name": "domain.com",
 	      "value": "v=spf1 include:mailgun.org ~all"
 	    },
 	    {
 	      "record_type": "TXT",
-	      "valid": "unknown",
+	      "valid": "valid",
 	      "name": "domain.com",
-	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCWG9VOR2u+oawmNVH/aD8EaXGNhOSq21wD/VNTYxYC1uFw+Ucm97j6hv8Ikh2ySh9rczxj4AgCVN9t1VbC7foneKasdQgmJEr3wBTfj9i199EJQRN7x6V2Uc5F7P+K3X3jY5dl7fxq+2etwZRQ5Qy2xH/qtUpxnliJ8WdLvM++HwIDAQAB"
+	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUA...."
 	    },
 	    {
 	      "record_type": "CNAME",
-	      "valid": "unknown",
+	      "valid": "valid",
 	      "name": "email.domain.com",
 	      "value": "mailgun.org"
 	    }
@@ -134,12 +143,48 @@ Sample response:
 
 	{
 	  "domain": {
-	    "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
-	    "smtp_login": "postmaster@samples.mailgun.org",
-	    "name": "samples.mailgun.org",
-	    "smtp_password": "4rtqo4p6rrx9"
-	  },
-	  "message": "Domain has been created"
+	    "name": "example.com", 
+	    "created_at": "Fri, 22 Nov 2013 18:42:33 GMT", 
+	    "wildcard": false, 
+	    "spam_action": "disabled", 
+	    "smtp_login": "postmaster@example.com", 
+	    "smtp_password": "thiswontwork"
+	  }, 
+	  "receiving_dns_records": [
+	    {
+	      "priority": "10", 
+	      "record_type": "MX", 
+	      "valid": "valid", 
+	      "value": "mxa.mailgun.org"
+	    }, 
+	    {
+	      "priority": "10", 
+	      "record_type": "MX", 
+	      "valid": "valid", 
+	      "value": "mxb.mailgun.org"
+	    }
+	  ], 
+	  "message": "Domain has been created", 
+	  "sending_dns_records": [
+	    {
+	      "record_type": "TXT", 
+	      "valid": "valid", 
+	      "name": "example.com", 
+	      "value": "v=spf1 include:mailgun.org ~all"
+	    }, 
+	    {
+	      "record_type": "TXT", 
+	      "valid": "valid", 
+	      "name": "k1._domainkey.example.com", 
+	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4G...."
+	    }, 
+	    {
+	      "record_type": "CNAME", 
+	      "valid": "valid", 
+	      "name": "email.example.com", 
+	      "value": "mailgun.org"
+	    }
+	  ]
 	}
 	
 Deleting a domain.
