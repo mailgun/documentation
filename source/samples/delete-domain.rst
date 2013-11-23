@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X DELETE \
-     https://api.mailgun.net/v2/domains/samples.mailgun.org
+     https://api.mailgun.net/v2/domains/example.mailgun.org
 
 .. code-block:: java
 
@@ -12,7 +12,7 @@
  			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2" +
- 				"/domains/samples.mailgun.org");
+ 				"/domains/example.mailgun.org");
  	return webResource.delete(ClientResponse.class);
  }
 
@@ -24,7 +24,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $domain = 'example.mailgun.org';
 
   # Issue the call to the client.
   $result = $mgClient->delete("domains/$domain");
@@ -33,14 +33,14 @@
 
  def delete_domain():
      return requests.delete(
-         "https://api.mailgun.net/v2/domains/samples.mailgun.org",
+         "https://api.mailgun.net/v2/domains/example.mailgun.org",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
 
 .. code-block:: rb
 
  def delete_domain
    RestClient.delete "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/domains/samples.mailgun.org"
+   "@api.mailgun.net/v2/domains/example.mailgun.org"
  end
 
 .. code-block:: csharp
@@ -53,7 +53,7 @@
  		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
  	RestRequest request = new RestRequest();
  	request.Resource = "/domains/{name}";
- 	request.AddUrlSegment("name", "samples.mailgun.org");
+ 	request.AddUrlSegment("name", "example.mailgun.org");
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
