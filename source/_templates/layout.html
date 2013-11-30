@@ -35,6 +35,7 @@
     <link rel="icon" type="image/png" href="_static/img/favicon.png" />
 
     <link rel="stylesheet" href="_static/docs.css" />
+    <link rel="stylesheet" href="http://localhost:5000/static/css/main.css" />
 
 {%- endblock %}
 {%- block extrahead %}
@@ -73,16 +74,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="content">
 
-    <div id="small-header">
-        <a href="http://mailgun.com" class="logo" title="Mailgun Home"></a>
-
-        <ul>
-          <li><a href="http://mailgun.com/pricing">Pricing</a>|</li>
-          <li><span>Documentation</span>|</li>
-          <li><a href="http://blog.mailgun.com">The Blog</a>|</li>
-          <li><a href="https://mailgun.com/cp">Login</a></li>
-        </ul>
-    </div> <!-- /header -->
+    <header>
+        <div class="container">
+            <a href="/" class="logo">Mailgun - Email Automation by Rackspace</a>
+            <nav class="header-nav" id="js-header-nav">
+                <a href="/pricing" class="pricing-link"><b>Pricing</b></a>
+                <a href="http://documentation.mailgun.com" class="active"><b>Documentation</b></a>
+                <a href="/sessions/new" class="login-link"><b>Log in</b></a>
+            </nav>
+            <button id="js-show-nav"><i class="icon-reorder"></i></button>
+        </div>
+    </header>
 
     <div id="body" class="paper cells">
 
