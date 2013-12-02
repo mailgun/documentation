@@ -8,6 +8,7 @@ Verifying Your Domain
 
 For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we give you at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and prove that you are an authorized sender for the domain.  
 
+
 Benefits of verifying your domain:
 
 - Complete white labeling of your emails so you won't see "sent by Mailgun.org on behalf of" message in your emails.
