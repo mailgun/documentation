@@ -644,7 +644,7 @@ Webhooks
 
 Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the respective tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector. 
 
-You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Bounces`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/d3076d6c>`_ for creating temporary URLs to test and debug your webhooks.
+You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Bounces`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
 
 For Webhook POSTs, Mailgun listens for the following codes from your server and reacts accordingly:
 
