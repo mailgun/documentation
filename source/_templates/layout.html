@@ -1,7 +1,10 @@
 {% extends "basic/layout.html" %}
 {%- block doctype -%}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 documentation"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8 documentation"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9 documentation"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="documentation"> <!--<![endif]-->
 {%- endblock %}
 
 {%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
@@ -32,10 +35,12 @@
     {%- endif %}
     <link media="only screen and (max-device-width: 480px)" href="{{ pathto('_static/mobile.css', 1) }}" type="text/css" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="_static/img/favicon.png" />
+    <link rel="icon" type="image/png" href="http://localhost:5000/static/img/favicon.png" />
 
     <link rel="stylesheet" href="_static/docs.css" />
-    <link rel="stylesheet" href="http://localhost:5000/static/css/main.css" />
+    <link rel="stylesheet" href="http://localhost:5000/static/css/main.css" />     
+
+    <meta name="viewport" content="width=device-width">
 
 {%- endblock %}
 {%- block extrahead %}
@@ -70,75 +75,79 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="text/javascript" src="{{ pathto('_static/google_tag_manager.js', 1) }}"></script>
 
-<div class="body container docs">
+<header>
+  <div class="container">
+      <a href="/" class="logo">Mailgun - Email Automation by Rackspace</a>
+      <nav class="header-nav" id="js-header-nav">
+          <a href="/pricing" class="pricing-link"><b>Pricing</b></a>
+          <a href="http://documentation.mailgun.com" class="active"><b>Documentation</b></a>
+          <a href="/sessions/new" class="login-link"><b>Log in</b></a>
+      </nav>
+      <button id="js-show-nav"><i class="icon-reorder"></i></button>
+  </div>
+</header>
+
+<div class="subnav">
+  <div class="container">
+    <ul id="headerButtons" class="nav nav-pills">
+      <li class="lang">
+        <a href="" id="bash" >curl</a>
+      </li>
+      <li class="lang">
+        <a href="" id="rb" >Ruby</a>
+      </li>
+      <li class="lang">
+        <a href="" id="py" >Python</a>
+      </li>
+      <li class="lang">
+        <a href="" id="php" >PHP</a>
+      </li>
+      <li class="lang">
+        <a href="" id="java" >Java</a>
+      </li>
+      <li class="lang">
+        <a href="" id="csharp" >C#</a>
+      </li>
+
+      {%- block sidebarsearch %}
+      {%- if pagename != "search" %}
+      <div id="searchbox" style="display: none" class="search-box">
+        {# <h3>{{ _('Quick search') }}</h3> #}
+        <form>
+          <input type="search" id="st-search-input" class="prettysearch search-input" autofocus />
+        <!--<form class="search" action="{{ pathto('search') }}" method="get">-->
+          <!--<div class="search-wrapper">
+            <span class="search-left"></span>
+            <input class="prettysearch" type="text" name="q" size="18"/>
+            <span class="search-right">&nbsp;</span>
+          </div>
+          <input type="submit" value="{{ _('Search') }}" class="searchbutton" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />-->
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+      {%- endif %}
+      {%- endblock %}
+
+      <!--
+      <li id="page_buttons">
+        {%- for rellink in rellinks %}
+        <div class="headerButton"><a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}" {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a></div>
+        {%- endfor %}
+      </li>
+      -->
+    </ul>
+  </div>
+</div>
+
+<div class="body container docs">   
 
   <div class="content">
 
-    <header>
-        <div class="container">
-            <a href="/" class="logo">Mailgun - Email Automation by Rackspace</a>
-            <nav class="header-nav" id="js-header-nav">
-                <a href="/pricing" class="pricing-link"><b>Pricing</b></a>
-                <a href="http://documentation.mailgun.com" class="active"><b>Documentation</b></a>
-                <a href="/sessions/new" class="login-link"><b>Log in</b></a>
-            </nav>
-            <button id="js-show-nav"><i class="icon-reorder"></i></button>
-        </div>
-    </header>
-
     <div id="body" class="paper cells">
 
-      <div class="subnav">
-        <ul id="headerButtons" class="nav nav-pills">
-          <li class="lang">
-            <a href="" id="bash" >curl</a>
-          </li>
-          <li class="lang">
-            <a href="" id="rb" >Ruby</a>
-          </li>
-          <li class="lang">
-            <a href="" id="py" >Python</a>
-          </li>
-          <li class="lang">
-            <a href="" id="php" >PHP</a>
-          </li>
-          <li class="lang">
-            <a href="" id="java" >Java</a>
-          </li>
-          <li class="lang">
-            <a href="" id="csharp" >C#</a>
-          </li>
-
-          {%- block sidebarsearch %}
-          {%- if pagename != "search" %}
-          <div id="searchbox" style="display: none">
-            {# <h3>{{ _('Quick search') }}</h3> #}
-            <form>
-              <input type="text" id="st-search-input" class="prettysearch" />
-            <!--<form class="search" action="{{ pathto('search') }}" method="get">-->
-              <!--<div class="search-wrapper">
-                <span class="search-left"></span>
-                <input class="prettysearch" type="text" name="q" size="18"/>
-                <span class="search-right">&nbsp;</span>
-              </div>
-              <input type="submit" value="{{ _('Search') }}" class="searchbutton" />
-              <input type="hidden" name="check_keywords" value="yes" />
-              <input type="hidden" name="area" value="default" />-->
-            </form>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
-          {%- endif %}
-          {%- endblock %}
-
-          <!--
-          <li id="page_buttons">
-            {%- for rellink in rellinks %}
-            <div class="headerButton"><a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}" {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a></div>
-            {%- endfor %}
-          </li>
-          -->
-        </ul>
-      </div>
+      
 {% endblock %}
 
 {%- block sidebar1 %}
@@ -253,9 +262,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     timer = setInterval(waitForSwiftype, 500);
   })();
   
-   $('input[type=\"text\"]').wrap('<span style=\"position:relative;\"></span>').after('<img src=\"{{ pathto('_static/x.png', 1) }}\" heigh=\"17px\" width=\"17px\" style=\"position:absolute; right:5px;top:1px;\" alt=\"\" />');
-   $('img').click(function(){$(this).parent().find('input').val('');});
-   $("input").focusout(function() {this.value = "";});
+   $('input[type=\"search\"]').wrap('<span style=\"position:relative;\"></span>').after('<i id="clear-search" class="icon-remove-sign" style=\"position:absolute; right:5px;line-height:26px;\"></i><i class="icon-search" style=\"position:absolute; left:5px;line-height:26px;\"></i>');
+   $('#clear-search').click(function(){
+    $(this).parent().find('input').val('');
+    $(this).parent().find('input').focus();
+   });
+   // $("input").focusout(function() {this.value = "";});
 </script>
 
 {%- endblock %}
