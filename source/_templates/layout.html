@@ -48,7 +48,7 @@
 
 <!-- i2a tracking code-->
 <script type="text/javascript"
-  src="{{ pathto('_static/i2a.js', 1) }}">
+  src="{{ pathto('_static/i2a.js', 1) }}"> 
 </script>
 
 <!-- Olark chat -->
@@ -144,15 +144,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="body container docs">   
 
   <div class="content">
-
-    <div id="body" class="paper cells">
+ 
+    <div id="body" class="">
 
       
 {% endblock %}
 
 {%- block sidebar1 %}
 {%- if not embedded %}{% if not theme_nosidebar|tobool %}
-<div id="sphinxsidebar">
+<aside id="sphinxsidebar" class="docs-sidebar">
   <div class="sphinxsidebarwrapper">
     {%- block sidebarlogo %}
     {%- if logo %}
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {% include customsidebar %}
     {%- endif %}
   </div>
-</div>
+</aside>
 {%- endif %}{% endif %}
 
 {% endblock %}
