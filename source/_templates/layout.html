@@ -87,137 +87,136 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-<div class="subnav">
-  <div class="container">
-    <ul id="headerButtons" class="nav nav-pills">
-      <li class="lang">
-        <a href="" id="bash" >curl</a>
-      </li>
-      <li class="lang">
-        <a href="" id="rb" >Ruby</a>
-      </li>
-      <li class="lang">
-        <a href="" id="py" >Python</a>
-      </li>
-      <li class="lang">
-        <a href="" id="php" >PHP</a>
-      </li>
-      <li class="lang">
-        <a href="" id="java" >Java</a>
-      </li>
-      <li class="lang">
-        <a href="" id="csharp" >C#</a>
-      </li>
+<div id="body">
+  <section class="subnav">
+    <div class="container">
+      <ul id="headerButtons" class="nav nav-pills">
+        <li class="lang">
+          <a href="" id="bash" >curl</a>
+        </li>
+        <li class="lang">
+          <a href="" id="rb" >Ruby</a>
+        </li>
+        <li class="lang">
+          <a href="" id="py" >Python</a>
+        </li>
+        <li class="lang">
+          <a href="" id="php" >PHP</a>
+        </li>
+        <li class="lang">
+          <a href="" id="java" >Java</a>
+        </li>
+        <li class="lang">
+          <a href="" id="csharp" >C#</a>
+        </li>
 
-      {%- block sidebarsearch %}
-      {%- if pagename != "search" %}
-      <div id="searchbox" style="display: none" class="search-box">
-        {# <h3>{{ _('Quick search') }}</h3> #}
-        <form>
-          <input type="search" id="st-search-input" class="prettysearch search-input" autofocus />
-        <!--<form class="search" action="{{ pathto('search') }}" method="get">-->
-          <!--<div class="search-wrapper">
-            <span class="search-left"></span>
-            <input class="prettysearch" type="text" name="q" size="18"/>
-            <span class="search-right">&nbsp;</span>
-          </div>
-          <input type="submit" value="{{ _('Search') }}" class="searchbutton" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />-->
-        </form>
-      </div>
-      <script type="text/javascript">$('#searchbox').show(0);</script>
+        {%- block sidebarsearch %}
+        {%- if pagename != "search" %}
+        <div id="searchbox" style="display: none" class="search-box">
+          {# <h3>{{ _('Quick search') }}</h3> #}
+          <form>
+            <input type="search" id="st-search-input" class="prettysearch search-input" autofocus />
+          <!--<form class="search" action="{{ pathto('search') }}" method="get">-->
+            <!--<div class="search-wrapper">
+              <span class="search-left"></span>
+              <input class="prettysearch" type="text" name="q" size="18"/>
+              <span class="search-right">&nbsp;</span>
+            </div>
+            <input type="submit" value="{{ _('Search') }}" class="searchbutton" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />-->
+          </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script> 
+        {%- endif %}
+        {%- endblock %}
+
+        <!--
+        <li id="page_buttons">
+          {%- for rellink in rellinks %}
+          <div class="headerButton"><a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}" {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a></div>
+          {%- endfor %}
+        </li>
+        -->
+      </ul>
+    </div>
+  </section>
+
+  <section class="main">   
+
+    <div class="container">
+
+        
+  {% endblock %}
+
+  {%- block sidebar1 %}
+  {%- if not embedded %}{% if not theme_nosidebar|tobool %}
+  <aside id="sphinxsidebar" class="docs-sidebar">
+    <div class="sphinxsidebarwrapper">
+      {%- block sidebarlogo %}
+      {%- if logo %}
+        <p class="logo"><a href="{{ pathto(master_doc) }}">
+          <img class="logo" src="{{ pathto('_static/' + logo, 1) }}" alt="Logo"/>
+        </a></p>
       {%- endif %}
       {%- endblock %}
-
-      <!--
-      <li id="page_buttons">
-        {%- for rellink in rellinks %}
-        <div class="headerButton"><a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}" {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a></div>
-        {%- endfor %}
-      </li>
-      -->
-    </ul>
-  </div>
-</div>
-
-<div class="body container docs">   
-
-  <div class="content">
- 
-    <div id="body" class="">
-
-      
-{% endblock %}
-
-{%- block sidebar1 %}
-{%- if not embedded %}{% if not theme_nosidebar|tobool %}
-<aside id="sphinxsidebar" class="docs-sidebar">
-  <div class="sphinxsidebarwrapper">
-    {%- block sidebarlogo %}
-    {%- if logo %}
-      <p class="logo"><a href="{{ pathto(master_doc) }}">
-        <img class="logo" src="{{ pathto('_static/' + logo, 1) }}" alt="Logo"/>
-      </a></p>
-    {%- endif %}
-    {%- endblock %}
-    {%- block sidebartoc %}
-    <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul>
-        {%- if "FAQ" in title %}
-            {{ toctree(maxdepth=1) }}
-        {% elif "Reference" in title %}
-            {{ toctree(maxdepth=2) }}
-        {% else %}
-            {{ toctree(maxdepth=3) }}
-        {%- endif %}
-    {%- endblock %}
-    {%- block sidebarrel %}
-    {%- endblock %}
-    {%- block sidebarsourcelink %}
-    {%- endblock %}
-    {%- if customsidebar %}
-    {% include customsidebar %}
-    {%- endif %}
-  </div>
-</aside>
-{%- endif %}{% endif %}
-
-{% endblock %}
-{%- block document %}
-<div id="st-results-container"></div>
-      <div class="documentwrapper">
-      {%- if not embedded %}{% if not theme_nosidebar|tobool %}
-        <div class="bodywrapper">
-      {%- endif %}{% endif %}
-          <div class="body">
-            {% block body %} {% endblock %}
-          </div>
-      {%- if not embedded %}{% if not theme_nosidebar|tobool %}
-        </div>
-      {%- endif %}{% endif %}
-      </div>
-    <div class="footer">
-    <p>
-    {% trans copyright=copyright|e %}&copy; 2010-13, Mailgun Inc.{% endtrans %}
-    {%- if last_updated %}
-      {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
-    {%- endif %}
-    {%- if show_sphinx %}
-      {% trans sphinx_version=sphinx_version|e %}
-           <br>
-           Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.
-      {% endtrans %}
-    {%- endif %}
-    </p>
+      {%- block sidebartoc %}
+      <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul>
+          {%- if "FAQ" in title %}
+              {{ toctree(maxdepth=1) }}
+          {% elif "Reference" in title %}
+              {{ toctree(maxdepth=2) }}
+          {% else %}
+              {{ toctree(maxdepth=3) }}
+          {%- endif %}
+      {%- endblock %}
+      {%- block sidebarrel %}
+      {%- endblock %}
+      {%- block sidebarsourcelink %}
+      {%- endblock %}
+      {%- if customsidebar %}
+      {% include customsidebar %}
+      {%- endif %}
     </div>
-{%- endblock %}
-{%- block sidebar2 %}{% endblock %}
-{%- block relbar2 %}{% endblock %}
-{%- block footer %}
+  </aside>
+  {%- endif %}{% endif %}
 
-    </div> <!-- papper cells -->
-  </div> <!-- /content -->
-</div> <!-- /container -->
+  {% endblock %}
+  {%- block document %}
+  <div id="st-results-container"></div>
+        <div class="documentwrapper">
+        {%- if not embedded %}{% if not theme_nosidebar|tobool %}
+          <div class="bodywrapper">
+        {%- endif %}{% endif %}
+            <div class="body">
+              {% block body %} {% endblock %}
+            </div>
+        {%- if not embedded %}{% if not theme_nosidebar|tobool %}
+          </div>
+        {%- endif %}{% endif %}
+        </div>
+      <div class="footer">
+      <p>
+      {% trans copyright=copyright|e %}&copy; 2010-13, Mailgun Inc.{% endtrans %}
+      {%- if last_updated %}
+        {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
+      {%- endif %}
+      {%- if show_sphinx %}
+        {% trans sphinx_version=sphinx_version|e %}
+             <br>
+             Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.
+        {% endtrans %}
+      {%- endif %}
+      </p>
+      </div>
+  {%- endblock %}
+  {%- block sidebar2 %}{% endblock %}
+  {%- block relbar2 %}{% endblock %}
+  {%- block footer %}
+
+    </div> <!-- /content -->
+  </section> <!-- /container -->
+</div> <!-- /body -->      
 
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.js', 1) }}"></script>
@@ -226,6 +225,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script type="text/javascript">
         window.underscore = _.noConflict();
     </script>
+
+    <!-- Prettify is used to highlight code example syntax -->
+    <script src="http://localhost:5000/static/js/google-code-prettify/run_prettify.js"></script>
        
 <script type="text/javascript">
   var Swiftype = window.Swiftype || {};
