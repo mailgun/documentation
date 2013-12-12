@@ -77,11 +77,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header>
   <div class="container">
-      <a href="/" class="logo">Mailgun - Email Automation by Rackspace</a>
+      <a href="http://www.mailgun.com/" class="logo">Mailgun - Email Automation by Rackspace</a>
       <nav class="header-nav" id="js-header-nav">
-          <a href="/pricing" class="pricing-link"><b>Pricing</b></a>
+          <a href="http://www.mailgun.com/pricing" class="pricing-link"><b>Pricing</b></a>
           <a href="http://documentation.mailgun.com" class="active"><b>Documentation</b></a>
-          <a href="/sessions/new" class="login-link"><b>Log in</b></a>
+          <a href="https://www.mailgun.com/sessions/new" class="login-link"><b>Log in</b></a>
       </nav>
       <button id="js-show-nav"><i class="icon-reorder"></i></button>
   </div>
@@ -196,18 +196,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {%- endif %}{% endif %}
         </div>
       <div class="footer">
-      <p>
-      {% trans copyright=copyright|e %}&copy; 2010-13, Mailgun Inc.{% endtrans %}
+        <p><a href="https://www.mailgun.com/signup" class="btn-primary">Try Mailgun now</a></p>
       {%- if last_updated %}
         {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
       {%- endif %}
       {%- if show_sphinx %}
         {% trans sphinx_version=sphinx_version|e %}
-             <br>
-             Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.
+             <P>Docs created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.</P>
         {% endtrans %}
       {%- endif %}
-      </p>
       </div>
   {%- endblock %}
   {%- block sidebar2 %}{% endblock %}
@@ -216,7 +213,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div> <!-- /content -->
   </section> <!-- /container -->
-</div> <!-- /body -->      
+</div> <!-- /body --> 
+
+<footer>
+    <div class="container">
+        <nav class="footer-nav">
+            <a href="http://www.mailgun.com/team">Team</a>
+            <a href="http://www.mailgun.com/terms">Terms of service</a>
+            <a href="http://www.mailgun.com/privacy">Privacy policy</a>
+            <a href="http://twitter.com/Mail_Gun">Twitter</a>
+            <a href="${config['cp_url']}/support">Contact</a>
+            <a href="http://documentation.mailgun.com/faqs.html">FAQ</a>
+            <a href="http://blog.mailgun.com">Blog</a>
+        </nav>
+        <p>Made in San Francisco. Powered by <span class="img-rs"></span></p>
+        <span class="img-map"></span>
+    </div>
+</footer>     
 
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.js', 1) }}"></script>
@@ -225,7 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script type="text/javascript">
         window.underscore = _.noConflict();
     </script>
-    
+
        
 <script type="text/javascript">
   var Swiftype = window.Swiftype || {};
