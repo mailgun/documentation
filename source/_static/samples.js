@@ -127,7 +127,7 @@ $(function () {
     // disable language buttons if there are no samples
     underscore.each(samples.langs(), function (lang) {
         if (!$('.highlight-' + lang).length) {
-            $('#' + lang).css({ 'color': '#ccc' });
+            // $('#' + lang).css({ 'color': '#ccc' });
         }
     });
 
