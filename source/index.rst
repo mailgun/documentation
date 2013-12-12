@@ -33,9 +33,3 @@ Contents
 
 .. toctree
    :maxdepth: 1
-
-
-Feel free to contact us at support@mailgunhq.com with any questions
-or feedback.
-
--- Mailgunners

@@ -21,9 +21,11 @@ $(function () {
     // make header fixed on scrolling
     $(window).scroll(function () {
         if ($(this).scrollTop() >= $('#body').offset().top) {
-            $('div.subnav').addClass('subnav-fixed');
+            $('section.subnav').addClass('subnav-fixed');
+            $('section.main').addClass('main-with-subnav');
         } else {
-            $('div.subnav').removeClass('subnav-fixed');
+            $('section.subnav').removeClass('subnav-fixed');
+            $('section.main').removeClass('main-with-subnav');
         }
     });
 
