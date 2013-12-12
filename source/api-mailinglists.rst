@@ -159,12 +159,6 @@ Adds multiple members, up to 1,000 per call, to a Mailing List.
 
 Delete a mailing list member.
 
-.. code-block:: url
-
-     GET /lists/<address>/stats
-
-Fetches mailing list stats. (See example at the bottom).
-
 Examples
 --------
 
@@ -270,33 +264,6 @@ Sample response:
     "total_count": 1
   }
 
-Getting stats:
-
-.. include:: samples/get-list-stats.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "total": {
-        "complained": 0,
-        "delivered": 0,
-        "clicked": 0,
-        "opened": 0,
-        "unsubscribed": 0,
-        "bounced": 0
-    },
-    "unique": {
-        "clicked": {
-            "link": 0,
-            "recipient": 0
-        },
-        "opened": {
-            "recipient": 0
-        }
-    }
-  }
 
 Remove a member:
 
