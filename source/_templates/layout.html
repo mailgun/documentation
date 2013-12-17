@@ -10,7 +10,6 @@
 {%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
 {%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
 {%- block linktags %}
-    <script src="//cdn.optimizely.com/js/32694127.js"></script>
     {%- if hasdoc('about') %}
     <link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}" />
     {%- endif %}
@@ -37,7 +36,7 @@
 
     <link rel="icon" type="image/png" href="_static/img/favicon.png" />
 
-    <link rel="stylesheet" href="_static/docs.css" />
+    <!-- <link rel="stylesheet" href="_static/docs.css" /> -->
     <link rel="stylesheet" href="_static/main.css" />
 
     <meta name="viewport" content="width=device-width">
@@ -91,6 +90,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="subnav">
     <div class="container">
       <ul id="headerButtons" class="nav nav-pills">
+        <li class="lang-label">
+          Code sample preference:
+        </li>
         <li class="lang">
           <a href="" id="bash" >curl</a>
         </li>
@@ -222,7 +224,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="http://www.mailgun.com/terms">Terms of service</a>
             <a href="http://www.mailgun.com/privacy">Privacy policy</a>
             <a href="http://twitter.com/Mail_Gun">Twitter</a>
-            <a href="${config['cp_url']}/support">Contact</a>
+            <a href="http://www.mailgun.com/contact">Contact</a>
             <a href="http://documentation.mailgun.com/faqs.html">FAQ</a>
             <a href="http://blog.mailgun.com">Blog</a>
         </nav>
@@ -232,8 +234,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>     
 
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
-    <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.js', 1) }}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.min.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/samples.js', 1) }}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/scroll_hash.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/underscore-min.js', 1) }}"></script>
     <script type="text/javascript">
         window.underscore = _.noConflict();
