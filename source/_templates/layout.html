@@ -1,4 +1,8 @@
 {% extends "basic/layout.html" %}
+{% if corpsite_hostname == ""  %}
+  {% set corpsite_hostname = "localhost:5000" %}
+{% endif %}
+{% set css_url = "http://" + corpsite_hostname + "/static/css/main.css" %}
 {%- block doctype -%}
 <!doctype html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 documentation"> <![endif]-->
@@ -37,8 +41,7 @@
     <link rel="icon" type="image/png" href="_static/img/favicon.png" />
 
     <!-- <link rel="stylesheet" href="_static/docs.css" /> -->
-    <link rel="stylesheet" href="{{corpsite_url}}_static/main.css" />
-
+    <link rel="stylesheet" href="{{css_url}}" />
     <meta name="viewport" content="width=device-width">
 
 {%- endblock %}
