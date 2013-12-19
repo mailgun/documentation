@@ -38,24 +38,19 @@ var samples = {
     change: function (to, from) {
         from = from || this.current;
 
-        // detect sample on screen and set marker to save the position
-        var detected_sample = this.detectSample();
-        if (detected_sample) {
-            var marker = $(detected_sample).prev();
-            var window_top = marker.offset().top - $(window).scrollTop();
-        }
+        // grab random element in body for scrolltop comparison
+        var some_elem = $('p:in-viewport')[0];
+        var old_top = $(some_elem).offset().top;
 
         this.hide();
         this.showSamples(to || 'bash');
 
-        // scroll to new sample (for better user experience)
-        if (detected_sample) {
-            var candidates = marker.parent().children('p:contains(' + marker.text() + ')');
-            var target_el = window.underscore.find(candidates, function (el) {
-                return $(el).css('display') == 'block';
-            });
-            $(window).scrollTop($(target_el).offset().top - window_top);
-        }
+        // calculate change in offset and scroll the difference
+        // (for better user experience)
+        var new_top = $(some_elem).offset().top;
+        var changed_top = new_top - old_top;
+        var current_top = $(window).scrollTop();
+        $(window).scrollTop(current_top + changed_top);
 
         var date = new Date();
         date.setDate(date.getDate() + 365);
