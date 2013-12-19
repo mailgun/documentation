@@ -40,6 +40,11 @@ var samples = {
 
         // grab random element in body for scrolltop comparison
         var some_elem = $('p:in-viewport')[0];
+        if (!some_elem) {
+            some_elem = document.elementFromPoint(
+            $('div.bodywrapper').offset().left + 20,
+            $('section.subnav').height() + 30);
+        }
         var old_top = $(some_elem).offset().top;
 
         this.hide();
