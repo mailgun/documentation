@@ -9,8 +9,8 @@ $(document).ready(function(){
               if (window.history && window.history.replaceState) {
                   history.replaceState({},document.title,href)
               }
-              $('.docs-sidebar ul li ul li a').css('font-weight', 'normal');
-              $('.docs-sidebar ul li ul li a[href="' + href + '"]').css('font-weight', 'bold');
+              $('.docs-sidebar li').removeClass('active');
+              $('.docs-sidebar a[href="' + href + '"]').parent().addClass('active');
               break;
             }
         }
