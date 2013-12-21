@@ -289,6 +289,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     $(this).parent().find('input').focus();
    });
    // $("input").focusout(function() {this.value = "";});
+
+    // Responsive navigation show/hide main nav
+	$("#js-show-nav").click(function(){
+		$("#js-header-nav").slideToggle();
+	});
 </script>
 
 {%- endblock %}
