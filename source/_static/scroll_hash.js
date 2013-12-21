@@ -1,6 +1,6 @@
 $(document).ready(function(){
     anchors = $('h2 a.headerlink, h3 a.headerlink');
-    $(document).scroll(function(e) {
+    $(window).scroll($.debounce( 250, function(){
         var current_top = $(window).scrollTop();
         for(var i=anchors.length-1;i>=0;i--) {
             var anchor_top = $(anchors[i]).parent()[0].offsetTop;
@@ -14,5 +14,5 @@ $(document).ready(function(){
               break;
             }
         }
-    });
+    }));
 });
