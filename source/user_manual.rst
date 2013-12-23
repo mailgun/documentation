@@ -44,9 +44,10 @@ Pricing & Features Overview
 **Pricing**
 
 Pricing is a usage-based, monthly subscription.
-Usage is based on messages sent and received and number of dedicated IP addresses
-used.  As your volume increases your price per message decreases according
-to the table on our `pricing page`_.
+Usage is based on outbound messages and number dedicated IP addresses
+used.  There is no charge for inbound messages.
+As your volume increases your price per message decreases according
+to the pricing calculator on our `pricing page`_.
 
 If you are a high volume sender or if you are interested in a custom contract,
 you can contact sales@mailgunhq.com for more details.
