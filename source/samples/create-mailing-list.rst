@@ -56,7 +56,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse CreateMailingList() {
+ public static IRestResponse CreateMailingList() {
 
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";

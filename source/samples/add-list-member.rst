@@ -72,7 +72,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse AddListMember() {
+ public static IRestResponse AddListMember() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

@@ -55,7 +55,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse AddDomain() {
+ public static IRestResponse AddDomain() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2/";
  	client.Authenticator =

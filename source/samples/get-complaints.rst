@@ -46,7 +46,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse GetComplaints() {
+ public static IRestResponse GetComplaints() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

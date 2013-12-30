@@ -45,7 +45,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse DeleteDomain() {
+ public static IRestResponse DeleteDomain() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

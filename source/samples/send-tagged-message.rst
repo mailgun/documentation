@@ -78,7 +78,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse SendTaggedMessage() {
+ public static IRestResponse SendTaggedMessage() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

@@ -77,7 +77,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse SendTemplateMessage() {
+ public static IRestResponse SendTemplateMessage() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

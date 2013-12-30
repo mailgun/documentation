@@ -73,7 +73,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse SendMessageNoTracking() {
+ public static IRestResponse SendMessageNoTracking() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
