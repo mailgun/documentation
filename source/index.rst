@@ -7,9 +7,8 @@ Introduction
 ~~~~~~~~~~~~
 
 Mailgun is a programmable email platform. It allows your application to
-become a fully featured email server. Send and receive messages, create
-mailboxes and email campaigns with ease using your favorite programming
-language.
+become a fully featured email server. Send, receive and track messages with ease 
+using your favorite programming language.
 
 Imagination is your limit. Email is not hard anymore.
 
