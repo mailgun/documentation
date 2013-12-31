@@ -72,7 +72,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse SendScheduledMessage() {
+ public static IRestResponse SendScheduledMessage() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

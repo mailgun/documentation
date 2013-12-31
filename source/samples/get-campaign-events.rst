@@ -49,7 +49,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse GetEventsHistory() {
+ public static IRestResponse GetEventsHistory() {
      RestClient client = new RestClient();
      client.BaseUrl = "https://api.mailgun.net/v2";
      client.Authenticator =

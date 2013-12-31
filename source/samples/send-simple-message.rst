@@ -69,7 +69,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse SendSimpleMessage() {
+ public static IRestResponse SendSimpleMessage() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
