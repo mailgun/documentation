@@ -40,7 +40,7 @@ jQuery.fn.highlightText = function () {
     // go to highlighted text if found
     var highlighted_text = $('.document .highlighted')[0];
     if (highlighted_text) {
-        var scrolling_pos = $(highlighted_text).offset().top - $('div.subnav').height() - 10;
+        var scrolling_pos = $(highlighted_text).offset().top - $('section.subnav').height() - 10;
         $(window).scrollTop(scrolling_pos);
     }
 }
