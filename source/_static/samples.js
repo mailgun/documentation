@@ -27,6 +27,7 @@ var samples = {
     hide: function () {
         for (var i = 0; i < this.langs().length; i++) {
             var id = this.langs()[i];
+            id = id.replace("lang_", "");
             this.hideSamples(id);
         }
     },
@@ -106,7 +107,7 @@ var samples = {
 
     showSamples: function (id) {
         this.setDisplay(id, 'block');
-        var elem = $("li.lang #" + id);
+        var elem = $("li.lang #lang_" + id);
         elem.attr('class', 'current');
         elem.parent().addClass('active');
         this.current = id;
@@ -114,7 +115,7 @@ var samples = {
 
     hideSamples: function (id) {
         this.setDisplay(id, 'none');
-        var elem = $("li.lang #" + id);
+        var elem = $("li.lang #lang_" + id);
         elem.removeClass('current');
         elem.parent().removeClass('active');
     },
@@ -133,6 +134,8 @@ $(function () {
 
     $("li.lang a").click(function(e){
         e.preventDefault();
-        samples.change($(this).attr("id"));
+        var to_lang = $(this).attr("id");
+        to_lang = to_lang.replace("lang_", "");
+        samples.change(to_lang);
     });
 });
