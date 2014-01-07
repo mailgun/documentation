@@ -1412,7 +1412,7 @@ Route Actions
 ~~~~~~~~~~~~~
 
 If a route expression evaluates to true, Mailgun executes the corresponding action.
-Currently you can use the folowing three actions in your routes: ``forward()``, ``store()`` and ``stop()``.
+Currently you can use the following three actions in your routes: ``forward()``, ``store()`` and ``stop()``.
 
 **forward(destination)**
 
