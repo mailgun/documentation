@@ -1075,7 +1075,7 @@ these events occur we will POST the following parameters to your URL:
  recipient             Intended recipient.
  domain                Domain that sent the message.
  message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
- reason                Reason for failure. Can be one of ["hardfail", "maxfails", "old"]. See below.
+ reason                Reason for failure. Can be one of ["bounce", "espblock", "old", etc]. See below.
  code                  ESP response code, e.g. if the message was blocked as a spam (optional).
  description           Detailed explanation of why the messages was dropped
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
@@ -1087,9 +1087,14 @@ these events occur we will POST the following parameters to your URL:
                        handled as file uploads, encoded as multipart/form-data.                         
  ==================    ==================================================================================
 
-- ``Hardfail`` indicates a hard bounce or recipient has previously bounced, unsubscribed or complained of spam. 
-- ``Maxfails`` indicates a soft bounce and the maximum number of attempts was reached. 
+- ``Bounce`` indicates a hard or soft bounce.
+- ``ESPBlock`` indicates a soft bounce and the maximum number of attempts was reached. 
 - ``Old`` indicates that Mailgun tried to deliver the message unsuccessfully for more than 8 hours. 
+- ``Suppress-Bounce`` indicates that Mailgun stopped delivery to a previously bounced address.
+- ``Suppress-Unsubscribe`` indicates that Mailgun stopped delivery to an unsubscribed address.
+- ``Suppress-Complaint`` indicates that Mailgun stopped delivery to a recipient who reported messages as spam through their ESP.
+- ``Generic`` indicates, we're not able to classify the error. Check the description of the failure for more information.
+
 
 .. _um-tracking-deliveries:
 
