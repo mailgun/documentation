@@ -1539,7 +1539,7 @@ MIME Messages Parameters
 .. note:: To receive raw MIME messages and perform your own parsing you must configure a route with a
           URL ending with "mime", like http://myhost/post_mime.
 
-.. note:: Consider using `<http://postbin.ryanbigg.com>`_ to debug and play with your routes. This tool allows you to forward
+.. note:: Consider using `<http://bin.mailgun.net>`_ to debug and play with your routes. This tool allows you to forward
           incoming messages to a temporary URL and inspecting the posted data. No programming required.
 
 

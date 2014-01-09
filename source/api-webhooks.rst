@@ -122,7 +122,7 @@ Sample response:
 	{
 	  "message": "Webhook has been created",
 	  "webhook": {
-	    "url": "http://postbin.ryanbigg.com/8de4a9c4"
+	    "url": "http://bin.mailgun.net/8de4a9c4"
 	  }
 	}
 	
