@@ -51,7 +51,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse GetStats() {
+ public static IRestResponse GetStats() {
      RestClient client = new RestClient();
      client.BaseUrl = "https://api.mailgun.net/v2";
      client.Authenticator =

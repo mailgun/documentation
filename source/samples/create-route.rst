@@ -74,7 +74,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse CreateRoute() {
+ public static IRestResponse CreateRoute() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =

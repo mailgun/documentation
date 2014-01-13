@@ -56,7 +56,7 @@
 
 .. code-block:: csharp
 
- public static RestResponse CreateCampaign() {
+ public static IRestResponse CreateCampaign() {
  	RestClient client = new RestClient();
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
