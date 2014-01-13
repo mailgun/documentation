@@ -294,6 +294,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	$("#js-show-nav").click(function(){
 		$("#js-header-nav").slideToggle();
 	});
+
+    // highlight nav on load
+    $(document).ready(function(){
+        $('.docs-sidebar li').removeClass('active');
+        $('.docs-sidebar ul.current li.current a.current').parent().addClass('active');
+    });
 </script>
 
 {%- endblock %}
