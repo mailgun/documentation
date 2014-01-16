@@ -22,7 +22,7 @@
   queryParams.add("ascending", "yes");
   queryParams.add("limit", 1);
   queryParams.add("pretty", "yes");
-  queryParams.add("f:recipient", "joe@example.com");
+  queryParams.add("recipient", "joe@example.com");
   return webResource.queryParams(queryParams).get(ClientResponse.class);
  }
 
@@ -55,7 +55,7 @@
                  "ascending"   : "yes",
                  "limit"       :  25,
                  "pretty"      : "yes",
-                 "f:recipient" : "joe@example.com"})
+                 "recipient" : "joe@example.com"})
 
 .. code-block:: rb
 
@@ -67,7 +67,7 @@
      :'ascending'   => 'yes',
      :'limit'       =>  25,
      :'pretty'      => 'yes',
-     :'f:recipient' => 'joe@example.com'
+     :'recipient' => 'joe@example.com'
     }
  end
 
@@ -87,6 +87,6 @@
     request.AddParameter("ascending", "yes");
     request.AddParameter("limit", 25);
     request.AddParameter("pretty", "yes");
-    request.AddParameter("f:recipient", "joe@example.com");
+    request.AddParameter("recipient", "joe@example.com");
     return client.Execute(request);
   }

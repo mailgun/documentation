@@ -14,7 +14,7 @@
  		client.resource("
         https://api.mailgun.net/v2/samples.mailgun.org/events");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
- 	queryParams.add("f:event", "rejected OR failed");
+ 	queryParams.add("event", "rejected OR failed");
  	return webResource.queryParams(queryParams).get(ClientResponse.class);
  }
 
@@ -38,7 +38,7 @@
      return requests.get(
          "https://api.mailgun.net/v2/samples.mailgun.org/events",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         params={"f:event" : "rejected OR failed"})
+         params={"event" : "rejected OR failed"})
 
 .. code-block:: rb
 
@@ -46,7 +46,7 @@
    RestClient.get "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
    "@api.mailgun.net/v2/samples.mailgun.org/events", 
    :params => {
-     :"f:event" => 'rejected OR failed'
+     :"event" => 'rejected OR failed'
    }
  end
 
@@ -62,6 +62,6 @@
  	request.AddParameter("domain",
  	                     "samples.mailgun.org", ParameterType.UrlSegment);
  	request.Resource = "{domain}/events";
- 	request.AddParameter("f:event", "rejected OR failed");
+ 	request.AddParameter("event", "rejected OR failed");
  	return client.Execute(request);
  }
