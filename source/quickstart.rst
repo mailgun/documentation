@@ -8,14 +8,16 @@ Verifying Your Domain
 
 For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we provide at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and **prove that you are an authorized sender for the domain**.  
 
-**Benefits of verifying your domain:**
+Benefits of verifying your domain
+*********************************
 
 - Complete white labeling of your emails so you won't see "sent via Mailgun.org" message in your emails.
 - Establishing a positive email reputation for your own domain. 
 - The Mailgun reputation system is less suspicious of traffic that is being sent on verified domains and so using one reduces the likelihood of being disabled. 
 - Verified domains are not subject to a sending limit of 300 emails per day.
 
-**How to verify your domain:**
+How to verify your domain
+*************************
 
 1. Add a domain or subdomain you own in the Domains tab of your control panel.  
 2. Next, add the two TXT DNS records found in your control panel at your DNS provider. You'll find these DNS records when you click on a domain under the ``Domains`` tab on the Mailgun control panel. There are two types of DNS records, ``Sending`` and ``Receiving`` records.   The two TXT records needed to verify your domain are listed under the ``Sending`` section.
@@ -27,7 +29,8 @@ Once you've added the two TXT records and they've propagated, your domain will b
 
 If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
 
-**Sending DNS Records**
+Sending DNS Records
+*******************
 
 - SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
 - DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_ 
@@ -44,7 +47,8 @@ CNAME     "mailgun.org"                                               Tracking (
 .. _SPF Information: http://www.openspf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
 
-**Receiving DNS Records**
+Receiving DNS Records
+*********************
 
 .. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
 		     mail delivery.
@@ -60,7 +64,8 @@ MX        mxb.mailgun.org											  Receiving (Optional)
 
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
 
-**Common DNS Provider Documentation**
+Common DNS Provider Documentation
+*********************************
 
 Common providers are listed below. If yours is not listed, contact your DNS provider for assistance.
 
