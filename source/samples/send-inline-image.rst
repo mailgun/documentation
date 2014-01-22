@@ -59,7 +59,7 @@
      return requests.post(
          "https://api.mailgun.net/v2/samples.mailgun.org/messages",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         files=MultiDict([("inline", open("files/test.jpg"))]),
+         files=[("inline", open("files/test.jpg"))],
          data={"from": "Excited User <me@samples.mailgun.org>",
                "to": "bar@example.com",
                "subject": "Hello",

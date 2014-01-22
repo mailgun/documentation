@@ -66,14 +66,12 @@
 
 .. code-block:: py
 
- from paste.util import MultiDict
-
  def send_complex_message():
      return requests.post(
          "https://api.mailgun.net/v2/samples.mailgun.org/messages",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         files=MultiDict([("attachment", open("files/test.jpg")),
-                          ("attachment", open("files/test.txt"))]),
+         files=[("attachment", open("files/test.jpg")),
+                ("attachment", open("files/test.txt"))],
          data={"from": "Excited User <me@samples.mailgun.org>",
                "to": "foo@example.com",
                "cc": "baz@example.com",
