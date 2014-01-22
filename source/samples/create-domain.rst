@@ -41,8 +41,8 @@
      return requests.post(
          "https://api.mailgun.net/v2/domains",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         data=MultiDict([("name", "samples.mailgun.org"),
-                         ("smtp_password", "supasecret")]))
+         data={"name": "samples.mailgun.org",
+               "smtp_password": "supasecret"})
 
 .. code-block:: rb
 
