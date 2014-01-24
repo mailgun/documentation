@@ -924,7 +924,7 @@ When a user unsubscribes, Mailgun will invoke the webhook with the following par
  ==================    ==================================================================================
  event                 Event name ("unsubscribed").
  recipient             Recipient who unsubscribed.
- domain                Domain that sent the unsubscribe request.
+ domain                Domain that sent the original message.
  ip                    IP address the event originated from.
  country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
                        'unknown' if it couldn't be determined.
@@ -983,7 +983,7 @@ webhook with the following parameters:
  ==================    ==================================================================================
  event                 Event name ("complained").
  recipient             Recipient who clicked spam.
- domain                The domain that sent the complaint.
+ domain                Domain that sent the original message.
  message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
  campaign-id           The id of campaign triggering the event.
  campaign-name         The name of campaign triggering the event.
@@ -1030,7 +1030,7 @@ If you do, every time a message experiences a hard bounce, your URL will be invo
  ======================    ===========================================================================
  event                     Event name ("bounced").
  recipient                 Recipient who could not be reached.
- domain                    Domain of the recipient who could not be reached.
+ domain                    Domain that sent the original message.
  message-headers           String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
  code                      SMTP bounce error code in form (X.X.X).
  error                     SMTP bounce error string.
@@ -1073,7 +1073,7 @@ these events occur we will POST the following parameters to your URL:
  ==================    ==================================================================================
  event                 Event name ("dropped").
  recipient             Intended recipient.
- domain                Domain that sent the message.
+ domain                Domain that sent the original message.
  message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
  reason                Reason for failure. Can be one of ["bounce", "espblock", "old", etc]. See below.
  code                  ESP response code, e.g. if the message was blocked as a spam (optional).
@@ -1118,7 +1118,7 @@ recipient, we will POST the following parameters to your URL:
  ==================    ==================================================================================
  event                 Event name ("delivered").
  recipient             Intended recipient.
- domain                Domain that sent the message.
+ domain                Domain that sent the original message.
  message-headers       String list of all MIME headers dumped to a JSON string (order of headers preserved).
  Message-Id            String id of the original message delivered to the recipient.
  "custom variables"    Your own custom JSON object included in the header of the original message (see :ref:`manual-customdata`).
