@@ -105,14 +105,13 @@ install composer and the Mailgun library.
  # Install Composer
  curl -sS https://getcomposer.org/installer | php
 
- # Add Mailgun as a dependency (x.x is the version number)
+ # Add Mailgun as a dependency (x.x is the SDK version, see Github README below)
  php composer.phar require mailgun/mailgun-php:~x.x
-	
+
 
 Next, just include Composer's autoloader in your application to automatically 
 load the Mailgun library in your project.
 ::
-
  require 'vendor/autoload.php';
  use Mailgun\Mailgun;
 
