@@ -15,7 +15,7 @@ Will I still be able to send and receive email with Mailgun once POP3/IMAP mailb
 Yes.  Sending email through Mailgun is not affected at all by this change.  For receiving emails, you 
 can still set up a Route to forward inbound emails to a different email address or POST the data to a URL.  
 The only change is that you will no longer be able to store your emails on Mailgun and access them via POP3/IMAP.  
-To learn more about Routes, check out the :ref:`um-routes` section of the :ref:`user-manual`.
+To learn more about Routes, check out the `Routes`_ section of our `User Manual`_.
 
 What will happen to my data stored in POP3/IMAP mailboxes after Feb 23, 2014?
 ******************************************************************************
@@ -26,8 +26,8 @@ Is there anyway to store inbound emails at Mailgun for processing without POP3/I
 ************************************************************************************
 Yes!  We released `temporary storage`_ for all your incoming emails as part of Mailgun Routes. 
 Unlike POP3/IMAP storage, Routes storage provides access to emails as fully-parsed, structured data, 
-making integration into your application much easier. To learn more about Routes, check out 
-the :ref:`um-routes` section of the :ref:`user-manual`.
+making integration into your application much easier. To learn more about Routes, check out the 
+`Routes`_ section of our `User Manual`_.
 
 .. _temporary storage: http://blog.mailgun.com/post/store-a-temporary-mailbox-for-all-your-incoming-email/
 
@@ -44,11 +44,14 @@ I want to be able to give my users their own email address to receive emails...H
 ********************************************************************************************************************
 We get this question a lot. In 99% of cases, the answer is Mailgun Routes, not Mailgun Mailboxes. Routes let you create 
 unlimited custom email addresses and use these address for email forwarding and routing. To learn more about Routes, 
-check out the :ref:`um-routes` section of the :ref:`user-manual`.
+check out the `Routes`_ section of our `User Manual`_.
 
 I need to store a copy of each email I send. How can I do that without Mailboxes?
 **********************************************************************************
 Routes is the answer again. You can set up an email address through Routes that you can cc or bcc on your outbound 
 emails. Routes can either (i) store the incoming email for up to three days, (ii) forward the email to a different 
-email address or (iii) POST the entire MIME message or the parsed message to a URL. To learn more about Routes, 
-check out the :ref:`um-routes` section of the :ref:`user-manual`.
+email address or (iii) POST the entire MIME message or the parsed message to a URL. To learn more about Routes, check out 
+the `Routes`_ section of our `User Manual`_.
+
+.. _Routes: http://documentation.mailgun.com/user_manual.html#routes
+.. _User Manual: http://documentation.mailgun.com/user_manual.html
