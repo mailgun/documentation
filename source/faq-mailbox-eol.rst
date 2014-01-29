@@ -1,9 +1,9 @@
 Discontinuing POP3/IMAP Mailboxes
-#################################
+=================================
 
 As we've previously communicated over the last 12 months, Mailgun is discontinuing our POP3/IMAP 
 Mailbox service at 11:59 PM PT on February 23, 2014. If you still need POP3/IMAP access to your email, 
-we suggest migrating to `Rackspace Email`_ which a a great product, relied on by over 3 million users.
+we suggest migrating to `Rackspace Email`_ which is a great product, relied on by over 3 million users.
 
 Below you will find answers to some frequently asked questions about removal of POP/IMAP mailboxes.  
 If something is not covered in this FAQ, please let us know by submitting a ticket through your Mailgun control panel.
@@ -43,7 +43,7 @@ the emails you receive to another mailbox or your application.
 I want to be able to give my users their own email address to receive emails...How can I do this without Mailboxes?
 ********************************************************************************************************************
 We get this question a lot. In 99% of cases, the answer is Mailgun Routes, not Mailgun Mailboxes. Routes let you create 
-unlimited custom email addresses and use these address for email forwarding and routing. To learn more about Routes, 
+unlimited custom email addresses and use these addresses for email forwarding and routing. To learn more about Routes, 
 check out the `Routes`_ section of our `User Manual`_.
 
 I need to store a copy of each email I send. How can I do that without Mailboxes?
