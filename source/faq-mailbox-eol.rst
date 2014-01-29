@@ -10,6 +10,9 @@ If something is not covered in this FAQ, please let us know by submitting a tick
 
 .. _Rackspace Email: http://www.rackspace.com/email-hosting/
 
+Frequently Asked Questions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Will I still be able to send and receive email with Mailgun once POP3/IMAP mailboxes are removed?
 *************************************************************************************************
 Yes.  Sending email through Mailgun is not affected at all by this change.  For receiving emails, you 
