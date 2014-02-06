@@ -47,7 +47,7 @@ Parses a delimiter separated list of email addresses into two lists: parsed addr
  Parameter         Description
  ================= ========================================================
  addresses         A delimiter separated list of addresses. 
-                   (Maximum: 524288 characters)
+                   (Maximum: 8000 characters)
  syntax_only       Perform only syntax checks or DNS and ESP specific
                    validation as well. (true by default)
  api_key           If you can not use HTTP Basic Authentication (preferred),

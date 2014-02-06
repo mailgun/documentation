@@ -62,8 +62,8 @@
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
  	                     "samples.mailgun.org", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/mailboxes/{login}";
- 	request.AddUrlSegment("login", "alice");
+ 	request.Resource = "{domain}/mailboxes/{username}";
+ 	request.AddUrlSegment("username", "alice");
  	request.AddParameter("password", "supersecret");
  	request.Method = Method.PUT;
  	return client.Execute(request);
