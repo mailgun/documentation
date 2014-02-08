@@ -97,7 +97,7 @@ Sample response:
 	  }
 	}
 
-Retun a webhook for a specific event for the defined domain.
+Return a webhook for a specific event for the defined domain.
 
 .. include:: samples/get-webhook.rst
 
