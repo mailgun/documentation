@@ -52,6 +52,56 @@ Create a new domain. See examples below.
 
 Delete a domain from your account.
 
+.. code-block:: url
+
+     GET /domains/<domain>/credentials
+
+Returns a list of SMTP credentials for the defined domain. 
+
+.. container:: ptable
+
+ ================= ========================================================
+ Parameter         Description
+ ================= ========================================================
+ limit             Maximum number of records to return. (100 by default)
+ skip              Number of records to skip. (0 by default)
+ ================= ========================================================
+
+.. code-block:: url
+
+     POST /domains/<domain>/credentials
+
+Creates a new set of SMTP credentials for the defined domain.
+
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ login             The user name, for example ``bob.bar``
+ password          A password for the SMTP credentials. (Length Min 5, Max 32)
+ ================= ==========================================================
+
+.. code-block:: url
+
+     PUT /domains/<domain>/credentials/<login>
+
+Updates the specified SMTP credentials. Currently only the password can be changed.
+
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ password          A password for the SMTP credentials. (Length Min 5, Max 32)
+ ================= ==========================================================
+
+.. code-block:: url
+
+     DELETE /domains/<domain>/credentials/<login>
+
+Deletes the defined SMTP credentials.
+
 .. note:: Mailgun imposes a rate limit for the Domains API endpoint. Users may 
 		  issue no more than 300 requests per minute, per account. See the resultant
 		  rate limit response below. 
@@ -206,3 +256,67 @@ Rate Limit Response:
 	{
 	  "retry-seconds": 60,
 	}
+
+
+Listing all SMTP credentials:
+
+.. include:: samples/get-credentials.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+ {
+   "total_count": 2,
+   "items": [
+     {
+       "size_bytes": 0,
+       "created_at": "Tue, 27 Sep 2011 20:24:22 GMT",
+       "mailbox": "user@samples.mailgun.org"
+       "login": "user@samples.mailgun.org"
+     },
+     {
+       "size_bytes": 0,
+       "created_at": "Thu, 06 Oct 2011 10:22:36 GMT",
+       "mailbox": "user@samples.mailgun.org"
+       "login": "user@samples.mailgun.org"
+     }
+   ]
+ }
+
+Creating new SMTP credentials:
+
+.. include:: samples/create-credentials.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "message": "Created 1 credentials pair(s)"
+  }
+
+Updating the password for a given credential pair:
+
+.. include:: samples/change-pwd-credentials.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "message": "Password changed"
+  }
+
+Deleting a given credentail pair:
+
+.. include:: samples/delete-credentials.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+ {
+   "message": "Credentials have been deleted",
+   "spec": "alice@samples.mailgun.org"
+ }
