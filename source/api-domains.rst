@@ -272,7 +272,7 @@ Sample response:
      {
        "size_bytes": 0,
        "created_at": "Tue, 27 Sep 2011 20:24:22 GMT",
-       "mailbox": "postmaster@samples.mailgun.org"
+       "mailbox": "user@samples.mailgun.org"
        "login": "user@samples.mailgun.org"
      },
      {
