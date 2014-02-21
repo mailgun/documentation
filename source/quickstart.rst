@@ -127,8 +127,7 @@ You can find more information in the :ref:`um-sending-messages` section of the :
 
 **Sending Emails via SMTP**
 
-All mainstream programming languages have SMTP support. The examples below assume you
-have already assembed a proper MIME body of your message.
+All mainstream programming languages have SMTP support. The examples below assume you have already assembed a proper MIME body of your message.
 
 Send an email using Python standard SMTP library:
 
