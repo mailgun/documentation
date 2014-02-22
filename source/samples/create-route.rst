@@ -1,4 +1,3 @@
-
 .. code-block:: bash
 
     curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
@@ -6,7 +5,7 @@
 	-F priority=1 \
 	-F description='Sample route' \
 	-F expression='match_recipient(".*@samples.mailgun.org")' \
-	-F action='forward("http://myhost.com/messages/")'\
+	-F action='forward("http://myhost.com/messages/")' \
 	-F action='stop()'
 
 .. code-block:: java
