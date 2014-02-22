@@ -1,10 +1,9 @@
-
 .. code-block:: bash
 
     curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
 	https://api.mailgun.net/v2/samples.mailgun.org/messages \
 	-F from='Excited User <me@samples.mailgun.org>' \
-	-F to=baz@example.com\
+	-F to=baz@example.com \
 	-F to=bar@example.com \
 	-F subject='Hello' \
 	-F text='Testing some Mailgun awesomness!'
