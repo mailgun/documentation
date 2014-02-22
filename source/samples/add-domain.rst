@@ -1,9 +1,8 @@
-
 .. code-block:: bash
 
     curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
 	https://api.mailgun.net/v2/domains \
-	-F name='samples.mailgun.org'
+	-F name='samples.mailgun.org' \
 	-F smtp_password='supersecretpassword'
 
 .. code-block:: java
