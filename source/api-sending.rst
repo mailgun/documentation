@@ -93,6 +93,8 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
  to                 Email address of the recipient(s).
                     Example: ``"Bob <bob@host.com>"``. You can use commas to
                     separate multiple recipients.
+                    Make sure to include all ``To``, ``Cc`` and ``Bcc`` 
+                    recipients of the message.
  message            MIME string of the message. Make sure to use
                     ``multipart/form-data`` to send this as a file upload.
  o\:tag             Tag string. See :ref:`tagging` for more information.
