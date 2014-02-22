@@ -14,7 +14,6 @@ API Reference
    api-stats
    api-events
    api-routes
-   api-mailboxes
    api-campaigns
    api-webhooks
    api-mailinglists
