@@ -444,6 +444,7 @@ your own variables in addition to these pre-defined variables by using the ``var
     ==============================    =============================================================================================================
     %recipient%                       Full recipient spec, like "Bob <bob@example.com>" (for using as value for "To" MIME header).
     %recipient_email%                 Recipient's email address, like bob@example.com.
+    %recipient_name%                  Recipient's full name, like "John Q. Public".
     %recipient_fname%                 Recipient's first name.
     %recipient_lname%                 Recipient's last name.
     %unsubscribe_url%                 A generated URL which allows users to unsubscribe from messages.
