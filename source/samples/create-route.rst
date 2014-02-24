@@ -54,8 +54,7 @@
          data={"priority": 1,
                "description": "Sample route",
                "expression": "match_recipient('.*@samples.mailgun.org')",
-               "action": "forward('http://myhost.com/messages/')",
-               "action": "stop()"})
+               "action": ["forward('http://myhost.com/messages/')", "stop()"]})
 
 .. code-block:: rb
 
