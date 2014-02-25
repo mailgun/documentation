@@ -708,7 +708,7 @@ Also a sample in PHP:
     function verify($apiKey, $timestamp, $token, $signature)
     {
         $value = $timestamp . $token;
-        $mac = hash_hmac('sha256', $value, $appKey);
+        $mac = hash_hmac('sha256', $value, $apiKey);
         return $signature == $mac;
     }
 
