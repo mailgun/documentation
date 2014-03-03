@@ -7,7 +7,7 @@ Mailgun Routes are a powerful way to handle the incoming traffic.
 See :ref:`um-routes` section in the User Manual to learn more
 about how they work. This API allows you to work with routes programmatically.
 
-Routes are compromised of the following arguments:
+Routes are comprised of the following arguments:
 
 * A filter (when to do something).
 * A priority (in what order).
