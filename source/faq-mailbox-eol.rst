@@ -1,8 +1,8 @@
 Discontinuing POP3/IMAP Mailboxes
 =================================
 
-As we've previously communicated over the last 12 months, Mailgun is discontinuing our POP3/IMAP 
-Mailbox service at 11:59 PM PT on February 23, 2014. If you still need POP3/IMAP access to your email, 
+As of February 23, 2014, Mailgun has discontinued our POP3/IMAP 
+Mailbox service. If you still need POP3/IMAP access to your email, 
 we suggest migrating to `Rackspace Email`_ which is a great product, relied on by over 3 million users.
 
 Below you will find answers to some frequently asked questions about removal of POP/IMAP mailboxes.  
