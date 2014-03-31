@@ -59,8 +59,7 @@
                "to": "bar@example.com",
                "subject": "Hello",
                "text": "Testing some Mailgun awesomness!",
-               "o:tag": "September newsletter",
-               "o:tag": "newsletters"})
+               "o:tag": ["September newsletter", "newsletters"]})
 
 .. code-block:: rb
 
