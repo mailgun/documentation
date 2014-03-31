@@ -1433,7 +1433,7 @@ Stores the message temporarily (for up to 3 days) on Mailgun's servers so that y
 
 You can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message::
 
-    store(notify="http:mydomain.com/callback")
+    store(notify="http://mydomain.com/callback")
 
 If you don't specify a URL with the notify parameter, the message will still be stored and you can get the message later through the :ref:`Messages API <api-sending-messages>`. You can see a full list of parameters we will post/return to you below.
 
@@ -1543,7 +1543,7 @@ Storing and Retrieving Messages
 
 When storing an email through a ``store()`` action in a Route, you can chose to be notified when the message is stored by including a URL with the notify parameter when setting up the store action or you can retrieve the message later by searching for the message through the :ref:`Events API <api-events>` and retrieving it through the :ref:`Messages API <api-sending-messages>`.
 
-If you set a URL to be posted when the message is received (``store(notify="http:mydomain.com/callback")``), or retrieve the message later through a GET request to the :ref:`Messages API <api-sending-messages>`, the following parameters are posted/returned in JSON.
+If you set a URL to be posted when the message is received (``store(notify="http://mydomain.com/callback")``), or retrieve the message later through a GET request to the :ref:`Messages API <api-sending-messages>`, the following parameters are posted/returned in JSON.
 
           .. container:: ptable
 
@@ -1585,7 +1585,7 @@ The attachments JSON contains the following items.
            content-type          string       the content type of the attachment
            ==================    =========    ============================================================================================================
 
-Alternatively, you can chose the following parameters when the ``Accept`` header is set to ``message/rfc2822``
+Alternatively, you can choose the following parameters when the ``Accept`` header is set to ``message/rfc2822``
 
             ===========    ======    ============================================================================================================
             Parameter      Type      Description
