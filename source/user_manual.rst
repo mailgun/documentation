@@ -1433,7 +1433,7 @@ Stores the message temporarily (for up to 3 days) on Mailgun's servers so that y
 
 You can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message::
 
-    store(notify="http:mydomain.com/callback")
+    store(notify="http://mydomain.com/callback")
 
 If you don't specify a URL with the notify parameter, the message will still be stored and you can get the message later through the :ref:`Messages API <api-sending-messages>`. You can see a full list of parameters we will post/return to you below.
 
