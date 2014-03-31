@@ -1460,8 +1460,7 @@ For Route POSTs, Mailgun listens for the following codes from your server and re
 
 * If Mailgun receives a ``200 (Success)`` code it will determine the webhook POST is successful and not retry.
 * If Mailgun receives a ``406 (Not Acceptable)`` code, Mailgun will determine the POST is rejected and not retry.
-* For any other code, Mailgun will retry POSTing according to the schedule below for Webhooks other than the 
-delivery notification.
+* For any other code, Mailgun will retry POSTing according to the schedule below for Webhooks other than the delivery notification.
 
 If your application is unable to process the webhook request but you do not return a 406 error code, Mailgun will 
 retry (other than for delivery notification) during 8 hours at the following intervals before stop trying: 
