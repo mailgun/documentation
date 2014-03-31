@@ -184,7 +184,7 @@ Where do I specify BCC recipients?
 **************************************************************************************************************
 
 BCC functionality works like this: specify a BCC recipient in the recipients list when sending,
-but do not include his address into "To" or "CC" fields.  You could also use the API, which has a
+but do not include their address in the "To" or "CC" fields.  You could also use the API, which has a
 specific BCC parameter.
 
 How do I send the same message to multiple users using Mailgun?
