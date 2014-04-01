@@ -287,7 +287,7 @@ There are a few things to keep in mind about your email content. First, we sugge
 Should I use my primary corporate domain name to send email?
 **************************************************************************************************************
 
-You can, but remember that your reputation is tied to your domain name as well as the IP address.  If you are in danger of being classified as a 'bad' sender of email, you will be affecting your domain reputation, which is very hard to recover from. It may be safer to use a separate domain for sending marketing or even transactional email.
+You can, but remember that your reputation is tied to your domain name as well as the IP address.  If you are in danger of being classified as a 'bad' sender of email, you will be affecting your domain reputation, which is very hard to recover from. It may be safer to use a completely separate domain (not a subdomain of your primary corporate domain) for sending marketing or even transactional email if you are worried about issues with domain reputation.
 
 Why does the amount of email I send matter?
 **************************************************************************************************************
