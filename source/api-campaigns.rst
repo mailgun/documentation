@@ -86,7 +86,7 @@ Events
 Campaign events include clicks, opens, unsubscribes, bounces and complaints for
 all receipients of the messages along with their region, country, etc.
 
-The Campaign Events API allows you to retreive the raw list of all message events
+The Campaign Events API allows you to retrieve the raw list of all message events
 for a given campaign to generate custom reports.
 
 .. code-block:: url
@@ -124,7 +124,7 @@ Fetches the list of recently happened events for a given campaign.
 Stats
 -----
 
-Campaign Stats API allows you to retreive a campaign performance reports
+Campaign Stats API allows you to retrieve a campaign performance reports
 similar to what you can see in the control panel.
 
 .. code-block:: url
