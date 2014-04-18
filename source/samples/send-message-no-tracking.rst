@@ -40,12 +40,13 @@
   $domain = "samples.mailgun.org";
 
   # Make the call to the client.
-  $result = $mgClient->sendMessage("$domain",
-                  array('from'       => 'Excited User <me@samples.mailgun.org>',
-                        'to'         => 'foo@example.com',
-                        'subject'    => 'Hello',
-                        'text'       => 'Testing some Mailgun awesomness!',
-                        'o:tracking' => false));
+  $result = $mgClient->sendMessage($domain, array(
+      'from'       => 'Excited User <me@samples.mailgun.org>',
+      'to'         => 'foo@example.com',
+      'subject'    => 'Hello',
+      'text'       => 'Testing some Mailgun awesomness!',
+      'o:tracking' => false
+  ));
 
 .. code-block:: py
 

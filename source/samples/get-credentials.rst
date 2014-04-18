@@ -27,9 +27,11 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->get("domains/$domain/credentials", 
-                           array('limit' => 5, 'skip'  => 10));
-                                                 
+  $result = $mgClient->get("domains/$domain/credentials", array(
+      'limit' => 5,
+      'skip'  => 10
+  ));
+
 .. code-block:: py
 
  def get_credentials():

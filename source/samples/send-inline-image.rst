@@ -43,15 +43,17 @@
   $domain = "samples.mailgun.org";
 
   # Make the call to the client.
-  $result = $mgClient->sendMessage("$domain",
-             array('from'    => 'Excited User <me@samples.mailgun.org>',
-                   'to'      => 'foo@example.com',
-                   'cc'      => 'baz@example.com',
-                   'bcc'     => 'bar@example.com',
-                   'subject' => 'Hello',
-                   'text'    => 'Testing some Mailgun awesomness!',
-                   'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>'),
-             array('inline' => '@/path/to/test.jpg'));
+  $result = $mgClient->sendMessage($domain, array(
+      'from'    => 'Excited User <me@samples.mailgun.org>',
+      'to'      => 'foo@example.com',
+      'cc'      => 'baz@example.com',
+      'bcc'     => 'bar@example.com',
+      'subject' => 'Hello',
+      'text'    => 'Testing some Mailgun awesomness!',
+      'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>'
+  ), array(
+      'inline' => '@/path/to/test.jpg'
+  ));
 
 .. code-block:: py
 

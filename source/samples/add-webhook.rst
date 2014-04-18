@@ -32,9 +32,10 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->post("domains/$domain/webhooks", 
-                      array('id'  => 'click', 
-                            'url' => 'http://bin.mailgun.net/8de4a9c4'));
+  $result = $mgClient->post("domains/$domain/webhooks", array(
+      'id'  => 'click',
+      'url' => 'http://bin.mailgun.net/8de4a9c4'
+  ));
 
 .. code-block:: py
 

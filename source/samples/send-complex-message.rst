@@ -53,16 +53,17 @@
   $domain = "samples.mailgun.org";
 
   # Make the call to the client.
-  $result = $mgClient->sendMessage("$domain",
-                        array('from'    => 'Excited User <me@samples.mailgun.org>',
-                              'to'      => 'foo@example.com',
-                              'cc'      => 'baz@example.com',
-                              'bcc'     => 'bar@example.com',
-                              'subject' => 'Hello',
-                              'text'    => 'Testing some Mailgun awesomness!',
-                              'html'    => '<html>HTML version of the body</html>'),
-                        array('attachment' => array('@/path/to/file.txt', 
-                                                    '@/path/to/file.txt')));
+  $result = $mgClient->sendMessage($domain, array(
+      'from'    => 'Excited User <me@samples.mailgun.org>',
+      'to'      => 'foo@example.com',
+      'cc'      => 'baz@example.com',
+      'bcc'     => 'bar@example.com',
+      'subject' => 'Hello',
+      'text'    => 'Testing some Mailgun awesomness!',
+      'html'    => '<html>HTML version of the body</html>'
+  ), array(
+      'attachment' => array('@/path/to/file.txt', '@/path/to/file.txt')
+  ));
 
 .. code-block:: py
 

@@ -33,12 +33,10 @@
   $listAddress = 'dev@samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->post("lists/$listAddress/members.json",
-        array('members' => '[{"address": "Alice <alice@example.com>",
-                              "vars": {"age": 26}},
-                              {"name": "Alice", "address": "alice@example.com",
-                              "vars": {"age": 34}}]',
-                              'subscribed' => true));
+  $result = $mgClient->post("lists/$listAddress/members.json", array(
+      'members'    => '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}}, {"name": "Alice", "address": "alice@example.com", "vars": {"age": 34}}]',
+      'subscribed' => true
+  ));
 
 .. code-block:: py
 

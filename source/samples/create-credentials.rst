@@ -31,11 +31,12 @@
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
   $domain = 'samples.mailgun.org';
- 
+
   # Issue the call to the client.
-  $result = $mgClient->post("domains/$domain/credentials", 
-                      array('login'  => 'alice@samples.mailgun.org',
-                            'password' => 'secret'));
+  $result = $mgClient->post("domains/$domain/credentials", array(
+      'login'    => 'alice@samples.mailgun.org',
+      'password' => 'secret'
+  ));
 
 .. code-block:: py
 

@@ -41,14 +41,15 @@
   $domain = "samples.mailgun.org";
 
   # Make the call to the client.
-  $result = $mgClient->sendMessage("$domain", 
-        array('from'    => 'Excited User <me@samples.mailgun.org>',
-              'to'      => 'bob@example.com, alice@example.com',
-              'subject' => 'Hello',
-              'text'    => 'If you wish to unsubscribe, 
+  $result = $mgClient->sendMessage($domain, array(
+      'from'    => 'Excited User <me@samples.mailgun.org>',
+      'to'      => 'bob@example.com, alice@example.com',
+      'subject' => 'Hello',
+      'text'    => 'If you wish to unsubscribe,
                             click http://mailgun/unsubscribe/%recipient.id%',
-              'recipient-variables' => '{"bob@example.com": {"first":"Bob", "id":1}, 
-                                         "alice@example.com": {"first":"Alice", "id": 2}}'));
+              'recipient-variables' => '{"bob@example.com": {"first":"Bob", "id":1},
+                                         "alice@example.com": {"first":"Alice", "id": 2}}'
+  ));
 
 .. code-block:: py
 

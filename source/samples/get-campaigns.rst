@@ -28,8 +28,7 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/campaigns", 
-                     array('limit' => 5, 'skip' => 5));
+  $result = $mgClient->get("$domain/campaigns", array('limit' => 5, 'skip' => 5));
 
 .. code-block:: py
 

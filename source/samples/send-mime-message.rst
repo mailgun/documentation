@@ -37,10 +37,13 @@
   $domain = "samples.mailgun.org";
 
   # Make the call to the client.
-  $result = $mgClient->sendMessage("$domain",
-                    array('from' => 'Excited User <me@samples.mailgun.org>',
-                          'to'   => 'foo@example.com'),
-                    '<Pass fully formed MIME string here>');
+  $result = $mgClient->sendMessage(
+      $domain, array(
+          'from' => 'Excited User <me@samples.mailgun.org>',
+          'to'   => 'foo@example.com'
+      ),
+      '<Pass fully formed MIME string here>'
+  );
 
 .. code-block:: py
 

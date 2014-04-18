@@ -27,10 +27,11 @@
   $listAddress = 'dev@samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->get("lists/$listAddress/members", 
-                                   array('subscribed' => 'yes', 
-                                         'limit'      =>  5, 
-                                         'skip'       =>  10));
+  $result = $mgClient->get("lists/$listAddress/members", array(
+      'subscribed' => 'yes',
+      'limit'      =>  5,
+      'skip'       =>  10
+  ));
 
 .. code-block:: py
 

@@ -33,8 +33,9 @@
   $memberAddress = 'bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/webhooks/click",
-                     array('url' => 'http://google.com'));
+  $result = $mgClient->put("$domain/webhooks/click", array(
+      'url' => 'http://google.com'
+  ));
 
 .. code-block:: py
 

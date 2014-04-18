@@ -35,15 +35,14 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->post("routes", 
-             array('priority'    => 1,
-                   'expression'  => 'match_recipient(".*@samples.mailgun.org")',
-                   'action'      => array('forward("http://host.com/messages")',
-                                          'stop()'),
-                   'description' => 'Sample route'));
+  $result = $mgClient->post("routes", array(
+      'priority'    => 1,
+      'expression'  => 'match_recipient(".*@samples.mailgun.org")',
+      'action'      => array('forward("http://host.com/messages")', 'stop()'),
+      'description' => 'Sample route'
+  ));
 
 .. code-block:: py
  

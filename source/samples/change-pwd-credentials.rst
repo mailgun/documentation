@@ -32,8 +32,9 @@
   $login= 'alice';
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/credentials/$login", 
-                     array('password' => 'supersecret'));
+  $result = $mgClient->put("$domain/credentials/$login", array(
+      'password' => 'supersecret'
+  ));
 
 .. code-block:: py
 

@@ -30,11 +30,12 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  
+
   # Issue the call to the client.
-  $result = $mgClient->post("lists", 
-                array('address'     => 'dev@samples.mailgun.org',
-                      'description' => 'Mailgun Dev List'));
+  $result = $mgClient->post("lists", array(
+      'address'     => 'dev@samples.mailgun.org',
+      'description' => 'Mailgun Dev List'
+  ));
 
 .. code-block:: py
 

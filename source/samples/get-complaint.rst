@@ -26,7 +26,7 @@
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
   $domain = 'samples.mailgun.org';
   $complaint = 'user@example.com';
-  
+
   # Issue the call to the client.
   $result = $mgClient->get("$domain/complaints/$complaint");
 
