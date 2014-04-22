@@ -82,6 +82,8 @@ Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center
 
 Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`__
 
+Digital Ocean: `Mailgun on Digitial Ocean Guide <http://www.arcweb.ro/blog/2013/12/18/mailgun-on-digitalocean-dns-settings/>`__
+
 
 Authentication
 ---------------
