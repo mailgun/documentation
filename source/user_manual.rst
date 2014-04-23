@@ -22,9 +22,7 @@ Be sure to check out the additional capabilities provided by using our libraries
 You can also access many Mailgun features through your Mailgun Control
 Panel using your browser and logging in at https://mailgun.com/cp.
 
-In addition to the API, Mailgun supports standard email protocols
-(SMTP, POP3 and IMAP).  We have included some :ref:`instructions <smtp>`
-on how to use Mailgun with these protocols at the end of the User Manual.
+In addition to the API, Mailgun supports the standard SMTP protocol.  We have included some :ref:`instructions <smtp>` on how to use Mailgun, via SMTP, at the end of the User Manual.
 
 If you are anxious to get started right away, feel free to check
 out the :ref:`quickstart` or :ref:`api-reference`.  There are
@@ -231,9 +229,9 @@ Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (
 
 Use "plain text" SMTP authentication and the credentials from the domain details
 page in your Control Panel which can be found by clicking on a domain in the Domains
-Tab. Mailbox credentials will work as well. For enhanced security, use TLS encryption.
+Tab. For enhanced security, use TLS encryption.
 
-.. note:: See `SMTP, POP3 and IMAP`_ to learn how to configure the most popular SMTP software and email clients to work with Mailgun
+.. note:: See `SMTP`_ to learn how to configure the most popular SMTP software and email clients to work with Mailgun
 
 
 .. _passing_sending_options:
@@ -445,6 +443,7 @@ your own variables in addition to these pre-defined variables by using the ``var
     Variable                          Description
     ==============================    =============================================================================================================
     %recipient%                       Full recipient spec, like "Bob <bob@example.com>" (for using as value for "To" MIME header).
+    %recipient_email%                 Recipient's email address, like bob@example.com.
     %recipient_fname%                 Recipient's first name.
     %recipient_lname%                 Recipient's last name.
     %unsubscribe_url%                 A generated URL which allows users to unsubscribe from messages.
@@ -465,13 +464,10 @@ for example). You can also manually unsubscribe the customer without using any
 links via the API or in the Control Panel. Read more in the :ref:`api-mailinglists`
 API section.
 
-**Mailing Lists, Routes and Mailboxes**
+**Mailing Lists and Routes**
 
-Mailing Lists work independently from Routes and Mailboxes.
-If there is a Mailing List, Route or a
-Mailbox with the same address, incoming message will hit the Route, Mailing List
-and the Mailbox simultaneously. This can be pretty convenient for
-processing replies to the Mailing List and integrating into things like forums
+Mailing Lists work independently from Routes.
+If there is a Mailing List or Route with the same address, the incoming message will hit the Route and Mailing List simultaneously. This can be pretty convenient for processing replies to the Mailing List and integrating into things like forums
 or commenting systems.
 
 
@@ -924,7 +920,7 @@ When a user unsubscribes, Mailgun will invoke the webhook with the following par
  ==================    ==================================================================================
  event                 Event name ("unsubscribed").
  recipient             Recipient who unsubscribed.
- domain                Domain that sent the unsubscribe request.
+ domain                Domain that sent the original message.
  ip                    IP address the event originated from.
  country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
                        'unknown' if it couldn't be determined.
@@ -983,7 +979,7 @@ webhook with the following parameters:
  ==================    ==================================================================================
  event                 Event name ("complained").
  recipient             Recipient who clicked spam.
- domain                The domain that sent the complaint.
+ domain                Domain that sent the original message.
  message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
  campaign-id           The id of campaign triggering the event.
  campaign-name         The name of campaign triggering the event.
@@ -1030,7 +1026,7 @@ If you do, every time a message experiences a hard bounce, your URL will be invo
  ======================    ===========================================================================
  event                     Event name ("bounced").
  recipient                 Recipient who could not be reached.
- domain                    Domain of the recipient who could not be reached.
+ domain                    Domain that sent the original message.
  message-headers           String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
  code                      SMTP bounce error code in form (X.X.X).
  error                     SMTP bounce error string.
@@ -1073,7 +1069,7 @@ these events occur we will POST the following parameters to your URL:
  ==================    ==================================================================================
  event                 Event name ("dropped").
  recipient             Intended recipient.
- domain                Domain that sent the message.
+ domain                Domain that sent the original message.
  message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
  reason                Reason for failure. Can be one of ["bounce", "espblock", "old", etc]. See below.
  code                  ESP response code, e.g. if the message was blocked as a spam (optional).
@@ -1118,7 +1114,7 @@ recipient, we will POST the following parameters to your URL:
  ==================    ==================================================================================
  event                 Event name ("delivered").
  recipient             Intended recipient.
- domain                Domain that sent the message.
+ domain                Domain that sent the original message.
  message-headers       String list of all MIME headers dumped to a JSON string (order of headers preserved).
  Message-Id            String id of the original message delivered to the recipient.
  "custom variables"    Your own custom JSON object included in the header of the original message (see :ref:`manual-customdata`).
@@ -1437,7 +1433,7 @@ Stores the message temporarily (for up to 3 days) on Mailgun's servers so that y
 
 You can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message::
 
-    store(notify="http:mydomain.com/callback")
+    store(notify="http://mydomain.com/callback")
 
 If you don't specify a URL with the notify parameter, the message will still be stored and you can get the message later through the :ref:`Messages API <api-sending-messages>`. You can see a full list of parameters we will post/return to you below.
 
@@ -1464,8 +1460,7 @@ For Route POSTs, Mailgun listens for the following codes from your server and re
 
 * If Mailgun receives a ``200 (Success)`` code it will determine the webhook POST is successful and not retry.
 * If Mailgun receives a ``406 (Not Acceptable)`` code, Mailgun will determine the POST is rejected and not retry.
-* For any other code, Mailgun will retry POSTing according to the schedule below for Webhooks other than the 
-delivery notification.
+* For any other code, Mailgun will retry POSTing according to the schedule below for Webhooks other than the delivery notification.
 
 If your application is unable to process the webhook request but you do not return a 406 error code, Mailgun will 
 retry (other than for delivery notification) during 8 hours at the following intervals before stop trying: 
@@ -1548,7 +1543,7 @@ Storing and Retrieving Messages
 
 When storing an email through a ``store()`` action in a Route, you can chose to be notified when the message is stored by including a URL with the notify parameter when setting up the store action or you can retrieve the message later by searching for the message through the :ref:`Events API <api-events>` and retrieving it through the :ref:`Messages API <api-sending-messages>`.
 
-If you set a URL to be posted when the message is received (``store(notify="http:mydomain.com/callback")``), or retrieve the message later through a GET request to the :ref:`Messages API <api-sending-messages>`, the following parameters are posted/returned in JSON.
+If you set a URL to be posted when the message is received (``store(notify="http://mydomain.com/callback")``), or retrieve the message later through a GET request to the :ref:`Messages API <api-sending-messages>`, the following parameters are posted/returned in JSON.
 
           .. container:: ptable
 
@@ -1590,7 +1585,7 @@ The attachments JSON contains the following items.
            content-type          string       the content type of the attachment
            ==================    =========    ============================================================================================================
 
-Alternatively, you can chose the following parameters when the ``Accept`` header is set to ``message/rfc2822``
+Alternatively, you can choose the following parameters when the ``Accept`` header is set to ``message/rfc2822``
 
             ===========    ======    ============================================================================================================
             Parameter      Type      Description
@@ -1679,30 +1674,18 @@ Sample response:
     }
   }
 
-.. _um-mailboxes:
 
-Mailboxes
-=========
+Credentials
+===========
 
-.. warning:: Mailboxes is a legacy feature of Mailgun that is no longer
-   offered to new customers.  Contact support@mailgun.com with questions.
+Mailgun gives you the ability to programmatically create SMTP credentials which can be used to send mail. SMTP credentials can be used to relay email, through Mailgun, using the SMTP protocol. 
 
-Mailgun gives you the ability to programmatically create mailboxes which can be used
-to receive and store mail. Mailboxes are accessible via POP3 or IMAP so you could
-connect to them with a typical email client. We charge per aggregate storage used,
-not per mailbox.
+SMTP Credentials API Examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We don't have an HTTP API to access data in Mailboxes, but `context.io`_ has some
-great APIs for this.
+Listing all credentials:
 
-.. _context.io: http://context.io/
-
-Mailbox API Examples
-~~~~~~~~~~~~~~~~~~~~
-
-Listing all mailboxes:
-
-.. include:: samples/get-mailboxes.rst
+.. include:: samples/get-credentials.rst
 
 Sample response:
 
@@ -1714,31 +1697,31 @@ Sample response:
      {
        "size_bytes": 0,
        "created_at": "Tue, 27 Sep 2011 20:24:22 GMT",
-       "mailbox": "postmaster@samples.mailgun.org"
+       "mailbox": "user@samples.mailgun.org"
+       "login": "user@samples.mailgun.org"
      },
      {
        "size_bytes": 0,
        "created_at": "Thu, 06 Oct 2011 10:22:36 GMT",
        "mailbox": "user@samples.mailgun.org"
+       "login": "user@samples.mailgun.org"
      }
    ]
  }
 
-Creating a new mailbox:
+Creating a new SMTP credential:
 
-.. include:: samples/create-mailbox.rst
-
-Sample response:
+.. include:: samples/create-credentials.rst
 
 .. code-block:: javascript
 
   {
-    "message": "Created 1 mailboxes"
+    "message": "Created 1 credentials pair(s)"
   }
 
-Updating the password for a given mailbox:
+Updating the password for a given credential:
 
-.. include:: samples/change-mailbox-password.rst
+.. include:: samples/change-pwd-credentials.rst
 
 Sample response:
 
@@ -1748,16 +1731,16 @@ Sample response:
     "message": "Password changed"
   }
 
-Deleting a given mailbox:
+Deleting a given credential:
 
-.. include:: samples/delete-mailbox.rst
+.. include:: samples/delete-credentials.rst
 
 Sample response:
 
 .. code-block:: javascript
 
  {
-   "message": "Mailbox has been deleted",
+   "message": "Credentials have been deleted",
    "spec": "alice@samples.mailgun.org"
  }
 
@@ -1800,31 +1783,23 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
 
 .. _smtp:
 
-SMTP, POP3 and IMAP
-*******************
+SMTP Protocol
+*************
 
-In addition to our HTTP API, Mailgun servers support all standard email protocols:
+In addition to our HTTP API, Mailgun servers supports the standard SMTP protocol... You can send using SMTP with or without TLS.
 
-- You can send using SMTP with or without TLS.
-- You can receive mail using POP3 or IMAP.
+Please consult a standard library documentation for language of your choice to learn how to use the SMTP protocol. Below are some helpful links for a few popular languages:
 
-Please consult a standard library documentation for language of your choice to learn how to
-use these protocols. Below are some helpful links for a few popular languages:
-
-- `Ruby SMTP`_, `Ruby POP3`_, `Ruby IMAP`_
-- `Python SMTP`_, `Python POP3`_, `Python IMAP`_
+- `Ruby SMTP`_
+- `Python SMTP`_
 - `JavaMail API`_
 
 .. _Ruby SMTP: http://ruby-doc.org/stdlib/libdoc/net/smtp/rdoc/classes/Net/SMTP.html
-.. _Ruby POP3: http://ruby-doc.org/stdlib/libdoc/net/pop/rdoc/classes/Net/POP3.html
-.. _Ruby IMAP: http://ruby-doc.org/stdlib/libdoc/net/imap/rdoc/classes/Net/IMAP.html
 .. _Python SMTP: http://docs.python.org/library/smtplib.html
-.. _Python POP3: http://docs.python.org/library/poplib.html
-.. _Python IMAP: http://docs.python.org/library/imaplib.html
 .. _JavaMail API: http://java.sun.com/products/javamail/javadocs/index.html
 
 SMTP Relay
-=====================
+==========
 
 You can also configure your own mailserver to relay mail via Mailgun as shown below. All of them require these three variables which you can look up in the Control Panel:
 
@@ -1857,8 +1832,7 @@ When using TLS encryption, make sure Postfix knows where to locate the CA databa
     smtpd_tls_cert_file = /etc/ssl/certs/smtpd.crt
     smtpd_tls_CApath = /etc/ssl/certs
 
-.. Note:: You can use SMTP username/password or credentials for any mailbox on your
-          mailgun domain, but not your Control Panel password.
+.. Note:: You can use SMTP Credentials, but not your Control Panel password.
 
 **Exim Instructions**
 
@@ -1906,17 +1880,11 @@ Don't forget to run the following command and then restart sendmail::
 Using Standard Email Clients
 ==============================
 
-Standard email clients like Thunderbird or Outlook can also be used to send and fetch mail.
-
-Settings for fetching mail::
-
-	POP3 server: pop.mailgun.org
-	IMAP server: imap.mailgun.org
+Standard email clients like Thunderbird or Outlook can also be used to send mail.
 
 Settings for sending mail::
 
 	SMTP server: smtp.mailgun.org
 
-.. Note:: Use a full mailbox name like "user@mymailgundomain.com" as a login for
-          POP, IMAP and SMTP. SSL or TLS are supported for all protocols.
+.. Note:: Use a full address like "user@mymailgundomain.com" as a login for SMTP. SSL or TLS are supported.
 

@@ -47,7 +47,7 @@ Parses a delimiter separated list of email addresses into two lists: parsed addr
  Parameter         Description
  ================= ========================================================
  addresses         A delimiter separated list of addresses. 
-                   (Maximum: 524288 characters)
+                   (Maximum: 8000 characters)
  syntax_only       Perform only syntax checks or DNS and ESP specific
                    validation as well. (true by default)
  api_key           If you can not use HTTP Basic Authentication (preferred),
@@ -93,3 +93,23 @@ Sample response:
             "example.com"
         ]
     }
+
+jQuery Plugin
+~~~~~~~~~~~~~
+
+We also have a `jQuery plugin`_ you can use for front-end email validation.
+
+Just remember to use your public Mailgun API key.
+
+.. _jQuery plugin: https://github.com/mailgun/validator-demo
+
+Attaching to a form:
+
+.. code-block:: javascript
+
+   $('jquery_selector').mailgun_validator({
+       api_key: 'api-key',
+       in_progress: in_progress_callback, // called when request is made to validator
+       success: success_callback,         // called when validator has returned
+       error: validation_error,           // called when an error reaching the validator has occured
+   });

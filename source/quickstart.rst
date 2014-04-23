@@ -82,6 +82,8 @@ Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center
 
 Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`__
 
+Digital Ocean: `Mailgun on Digital Ocean Guide <http://www.arcweb.ro/blog/2013/12/18/mailgun-on-digitalocean-dns-settings/>`__
+
 
 Authentication
 ---------------
@@ -127,8 +129,7 @@ You can find more information in the :ref:`um-sending-messages` section of the :
 
 **Sending Emails via SMTP**
 
-All mainstream programming languages have SMTP support. The examples below assume you
-have already assembed a proper MIME body of your message.
+All mainstream programming languages have SMTP support. The examples below assume you have already assembed a proper MIME body of your message.
 
 Send an email using Python standard SMTP library:
 

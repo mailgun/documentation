@@ -47,17 +47,15 @@
 
 .. code-block:: py
  
- from paste.util import MultiDict
-
  def create_route():
      return requests.post(
          "https://api.mailgun.net/v2/routes",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         data=MultiDict([("priority", 1),
-                         ("description", "Sample route"),
-                         ("expression", "match_recipient('.*@samples.mailgun.org')"),
-                         ("action", "forward('http://myhost.com/messages/')"),
-                         ("action", "stop()")]))
+         data={"priority": 1,
+               "description": "Sample route",
+               "expression": "match_recipient('.*@samples.mailgun.org')",
+               "action": "forward('http://myhost.com/messages/')",
+               "action": "stop()"})
 
 .. code-block:: rb
 
