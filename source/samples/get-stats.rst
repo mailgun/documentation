@@ -1,9 +1,8 @@
-
 .. code-block:: bash
 
     curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
 	https://api.mailgun.net/v2/samples.mailgun.org/stats \
-	-d event='sent'\
+	-d event='sent' \
 	-d event='opened' \
 	-d skip=1 \
 	-d limit=2
