@@ -1193,12 +1193,6 @@ Creating a campaign with supplied ``id``:
           a particular domain. Campaign name and campaign ID should not exceed the
           maximum length of 64 characters.
 
-.. note:: There are limits on campaigns number for an account: 1 for Free Plans,
-          20 for Standard Plans and 1,000 for Express Plans. Once the limit is reached,
-          you will need to delete campaigns in order to create new ones. All of
-          the data associated with a campaign is deleted when you delete
-          a campaign. High Volume Plans can have unlimited number of campaigns.
-
 **Sending a Campaign**
 
 Including a message in a campaign can be done by setting ``o:campaign`` option with your campaign's
