@@ -9,7 +9,7 @@
 <!--[if IE 7]> <html class="lt-ie9 lt-ie8 documentation"> <![endif]-->
 <!--[if IE 8]> <html class="lt-ie9 documentation"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" class="documentation"> <!--<![endif]-->
-{%- endblock %}  
+{%- endblock %}
 
 {%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
 {%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
@@ -43,6 +43,9 @@
     <!-- <link rel="stylesheet" href="_static/docs.css" /> -->
     <link rel="stylesheet" href="{{css_url}}" />
     <meta name="viewport" content="width=device-width">
+    {% if corpsite_hostname == "www.website.ninomail.com" %}
+    <meta name="robots" content="noindex">
+    {% endif %}
 
 {%- endblock %}
 {%- block extrahead %}
@@ -50,7 +53,7 @@
 
 <!-- i2a tracking code-->
 <script type="text/javascript"
-  src="{{ pathto('_static/i2a.js', 1) }}"> 
+  src="{{ pathto('_static/i2a.js', 1) }}">
 </script>
 
 <!-- Olark chat -->
@@ -134,7 +137,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="hidden" name="area" value="default" />-->
           </form>
         </div>
-        <script type="text/javascript">$('#searchbox').show(0);</script> 
+        <script type="text/javascript">$('#searchbox').show(0);</script>
         {%- endif %}
         {%- endblock %}
 
@@ -149,11 +152,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="main">   
+  <section class="main">
 
     <div class="container">
 
-        
+
   {% endblock %}
 
   {%- block sidebar1 %}
@@ -220,7 +223,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div> <!-- /content -->
   </section> <!-- /container -->
-</div> <!-- /body --> 
+</div> <!-- /body -->
 
 <footer>
     <div class="container">
@@ -236,7 +239,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Made in San Francisco. Powered by <span class="img-rs"></span></p>
         <span class="img-map"></span>
     </div>
-</footer>     
+</footer>
 
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.debounce.min.js', 1) }}"></script>
@@ -249,7 +252,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         window.underscore = _.noConflict();
     </script>
 
-       
+
 <script type="text/javascript">
   var Swiftype = window.Swiftype || {};
   (function() {
@@ -258,7 +261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     Swiftype.resultContainingElement = '#st-results-container';
     Swiftype.attachElement = '#st-search-input';
     Swiftype.renderStyle = "overlay";
-    
+
 
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -284,7 +287,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     timer = setInterval(waitForSwiftype, 500);
   })();
-  
+
    $('input[type=\"search\"]').wrap('<span style=\"position:relative;\"></span>').after('<i id="clear-search" class="icon-remove-sign" style=\"position:absolute; right:5px;line-height:26px;\"></i><i class="icon-search" style=\"position:absolute; left:5px;line-height:26px;\"></i>');
    $('#clear-search').click(function(){
     $(this).parent().find('input').val('');
@@ -305,4 +308,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 {%- endblock %}
-
