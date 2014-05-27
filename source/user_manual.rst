@@ -701,6 +701,17 @@ And here's a sample in Ruby:
       signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
     end
 
+Also a sample in PHP:
+
+.. code-block:: php
+
+    function verify($apiKey, $timestamp, $token, $signature)
+    {
+        $value = $timestamp . $token;
+        $mac = hash_hmac('sha256', $value, $apiKey);
+        return $signature == $mac;
+    }
+
 .. _manual-customdata:
 
 Attaching Data to Messages
