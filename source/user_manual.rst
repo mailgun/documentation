@@ -696,10 +696,9 @@ And here's a sample in Ruby:
     require 'openssl'
 
     def verify(api_key, token, timestamp, signature)
-        return signature == OpenSSL::HMAC.hexdigest(
-                                OpenSSL::Digest::Digest.new('sha256'),
-                                api_key,
-                                '%s%s' % [timestamp, token])
+      digest = OpenSSL::Digest::SHA256.new
+      data = [timestamp, token].join
+      signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
     end
 
 .. _manual-customdata:
