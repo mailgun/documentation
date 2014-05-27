@@ -141,6 +141,7 @@ You don't have to construct this URL on your own. You can just use the URL provi
 
 These are the parameters of the JSON returned from a GET request to a stored message url.
 
+
            ==================    =========    ============================================================================================================
            Parameter             Type         Description
            ==================    =========    ============================================================================================================
@@ -162,6 +163,10 @@ These are the parameters of the JSON returned from a GET request to a stored mes
            message-headers       string       list of all MIME headers dumped to a json string (order of headers preserved).
            content-id-map        string       JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding ``attachment-x`` parameter. This allows you to map posted attachments to tags like ``<img src='cid'>`` in the message body.
            ==================    =========    ============================================================================================================
+
+.. note:: Do not rely on the ``body-plain``, ``stripped-text``, and ``stripped-signature`` fields for HTML sanitization. These fields
+          merely provide content from the text/plain portion of an incoming message. This content may contain unescaped HTML.
+
 
 The attachments JSON contains the following items.
 
