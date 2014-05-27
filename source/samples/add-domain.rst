@@ -32,8 +32,10 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-   $result = $mgClient->post("domains", array('name'    => 'anothersample.mailgun.org', 
-                                        'smtp_password' => 'supersecretpassword'));
+  $result = $mgClient->post("domains", array(
+      'name'          => 'anothersample.mailgun.org',
+      'smtp_password' => 'supersecretpassword'
+  ));
 
 .. code-block:: py
 

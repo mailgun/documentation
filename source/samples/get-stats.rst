@@ -35,8 +35,9 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/stats", 
-                    array('event' => array('sent', 'opened')));
+  $result = $mgClient->get("$domain/stats", array(
+      'event' => array('sent', 'opened')
+  ));
 
 .. code-block:: py
 

@@ -32,8 +32,9 @@
   $mailbox = 'alice';
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/mailboxes/$mailbox", 
-                     array('password' => 'supersecret'));
+  $result = $mgClient->put("$domain/mailboxes/$mailbox", array(
+      'password' => 'supersecret'
+  ));
 
 .. code-block:: py
 

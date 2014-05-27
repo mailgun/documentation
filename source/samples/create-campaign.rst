@@ -32,8 +32,10 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/campaigns", 
-                      array('name' => 'Newsletter', 'id' => 'my_campaign_id'));
+  $result = $mgClient->post("$domain/campaigns", array(
+      'name' => 'Newsletter',
+      'id'   => 'my_campaign_id'
+  ));
 .. code-block:: py
 
  def create_campaign():

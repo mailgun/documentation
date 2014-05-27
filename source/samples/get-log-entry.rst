@@ -31,8 +31,10 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/log", 
-                           array('limit' => 5, 'skip'  => 10));
+  $result = $mgClient->get("$domain/log", array(
+      'limit' => 5,
+      'skip'  => 10
+  ));
 
 .. code-block:: py
 

@@ -35,9 +35,10 @@
   $memberAddress = 'bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->put("lists/$listAddress/members/$memberAddress",
-                     array('subscribed' => false,
-                           'name'       => 'Foo Bar'));
+  $result = $mgClient->put("lists/$listAddress/members/$memberAddress", array(
+      'subscribed' => false,
+      'name'       => 'Foo Bar'
+  ));
 
 .. code-block:: py
 

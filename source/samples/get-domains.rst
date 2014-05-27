@@ -28,7 +28,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  
+
   # Issue the call to the client.
   $result = $mgClient->get("domains", array('limit' => 5, 'skip' => 10));
 

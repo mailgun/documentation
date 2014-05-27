@@ -25,7 +25,7 @@
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
   $routeId = '4e97c1b2ba8a48567f007fb6';
-  
+
   # Issue the call to the client.
   $result = $mgClient->get("routes/$routeId");
 

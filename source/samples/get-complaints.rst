@@ -25,10 +25,12 @@
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
   $domain = 'samples.mailgun.org';
-  
+
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/complaints", 
-                     array('limit' => 10, 'skip' => 5));
+  $result = $mgClient->get("$domain/complaints", array(
+      'limit' => 10,
+      'skip'  => 5
+  ));
 
 .. code-block:: py
 

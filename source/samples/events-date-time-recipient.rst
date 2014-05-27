@@ -36,11 +36,13 @@
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
   $domain = 'samples.mailgun.org';
-  $queryString = array('begin'        => 'Fri, 3 May 2013 09:00:00 -0000',
-                       'ascending'    => 'yes',
-                       'limit'        =>  25,
-                       'pretty'       => 'yes',
-                       'subject'      => 'test');
+  $queryString = array(
+      'begin'        => 'Fri, 3 May 2013 09:00:00 -0000',
+      'ascending'    => 'yes',
+      'limit'        =>  25,
+      'pretty'       => 'yes',
+      'subject'      => 'test'
+  );
 
   # Make the call to the client.
   $result = $mgClient->get("$domain/events", $queryString);

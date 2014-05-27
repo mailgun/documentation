@@ -31,8 +31,10 @@
   $campaignId = 'myexamplecampaign';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/campaigns/$campaignId/events", 
-                     array('recipient' => 'user@example.com', 'limit' => 2));
+  $result = $mgClient->get("$domain/campaigns/$campaignId/events", array(
+      'recipient' => 'user@example.com',
+      'limit' => 2
+  ));
 
 .. code-block:: py
 

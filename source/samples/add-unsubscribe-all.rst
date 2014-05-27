@@ -33,8 +33,10 @@
   $domain = 'samples.mailgun.org';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/unsubscribes", 
-                            array('address' => 'bob@example.com', 'tag' => '*'));
+  $result = $mgClient->post("$domain/unsubscribes", array(
+      'address' => 'bob@example.com',
+      'tag'     => '*'
+  ));
 
 .. code-block:: py
 
