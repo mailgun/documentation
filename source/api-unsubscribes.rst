@@ -43,9 +43,9 @@ a given address is present in the list of unsubscribed users.
 Removes an address from the unsubscribes table. Address defines
 which events to delete. can be one of two things:
 
- - an email address: all unsubscribe events for that email
+* an email address: all unsubscribe events for that email
    address will be removed.
- - id string: deletes a specific event.
+* id string: deletes a specific event.
 
 .. code-block:: url
 

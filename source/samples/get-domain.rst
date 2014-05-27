@@ -24,15 +24,15 @@
   # Instantiate the client.
   $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
   $domain = 'samples.mailgun.org';
-  
+
   # Issue the call to the client.
-  $result = $mgClient->get("$domain");
+  $result = $mgClient->get("domains/$domain");
 
 .. code-block:: py
 
  def get_domain():
      return requests.get(
-         "https://api.mailgun.net/v2/domains",
+         "https://api.mailgun.net/v2/domains/samples.mailgun.org",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
 
 .. code-block:: rb

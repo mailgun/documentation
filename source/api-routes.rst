@@ -28,7 +28,7 @@ For example this will match all messages coming to any recipient at @bar.com::
 **match_header(header, pattern)**
 
 Similar to ``match_recipient`` but instead of looking at a message recipient, it applies
-the pattern to an arbitrary MIME header of the message. For this will match any message 
+the pattern to an arbitrary MIME header of the message. For this will match any message
 with a word "support" in its subject::
 
     match_header("subject", ".*support")
@@ -157,7 +157,7 @@ Sample response:
             "forward(\"http://myhost.com/messages/\")",
             "stop()"
         ],
-        "priority": 1,
+        "priority": 0,
         "expression": "match_recipient(\".*@samples.mailgun.org\")",
         "id": "4f3bad2335335426750048c6"
     }
@@ -181,7 +181,7 @@ Sample response:
                 "forward(\"http://myhost.com/messages/\")",
                 "stop()"
             ],
-            "priority": 1,
+            "priority": 0,
             "expression": "match_recipient(\".*@samples.mailgun.org\")",
             "id": "4f3babe4ba8a481c6400476a"
         }
@@ -204,7 +204,7 @@ Sample response:
             "forward(\"http://myhost.com/messages/\")",
             "stop()"
         ],
-        "priority": 1,
+        "priority": 0,
         "expression": "match_recipient(\".*@samples.mailgun.org\")",
         "id": "4f3bad2335335426750048c6"
     }

@@ -16,7 +16,7 @@ organized around the three major features that Mailgun provides:
 
 At the heart of Mailgun is the API.  Most of the Mailgun service can be
 accessed through the RESTful HTTP API without the need to install any
-libraries. However, we have written :ref:`libraries` for many popular languages. 
+libraries. However, we have written :ref:`libraries` for many popular languages.
 Be sure to check out the additional capabilities provided by using our libraries.
 
 You can also access many Mailgun features through your Mailgun Control
@@ -67,55 +67,55 @@ sent and/or received and data retention for Logs and the Events API is at least 
 Verifying Your Domain
 =====================
 
-For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we provide at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and prove that you are an authorized sender for the domain.  
+For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we provide at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and prove that you are an authorized sender for the domain.
 
 Benefits of verifying your domain:
 
 - Complete white labeling of your emails so you won't see "sent via Mailgun.org" message in your emails.
-- Establishing a positive email reputation for your own domain. 
+- Establishing a positive email reputation for your own domain.
 - The Mailgun reputation system is less suspicious of traffic that is being sent on verified domains and so using one reduces the likelihood of being disabled. Additionally, verified domains are not subject to a sending limit of 300 emails per day.
 
 How to verify your domain:
 
 Verifying your domain is easy.  Start by adding a domain or subdomain you own in the Domains tab of your control panel.  Once you have added your domain, simply add the two TXT DNS records found in your control panel at your DNS provider. You'll find these DNS records when you click on a domain under the ``Domains`` tab on the Mailgun control panel. There are two types of DNS records, ``Sending`` and ``Receiving`` records.   The two TXT records needed to verify your domain are listed under the ``Sending`` section.
 
-Though not required to verify your domain, if you want Mailgun to track clicks and opens you can also add the CNAME record. MX records should also be added unless you already have MX records for your domain pointed at another email service provider.  
+Though not required to verify your domain, if you want Mailgun to track clicks and opens you can also add the CNAME record. MX records should also be added unless you already have MX records for your domain pointed at another email service provider.
 
 Once you've added the two TXT records and they've propagated, your domain will be verified.  In some instances, we may need additional information to verify your domain.  If this is the case, we will contact you to resolve the issue.
 
-If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information. 
+If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
 
 **Sending DNS Records**
 
 - SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
-- DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_ 
+- DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_
 - CNAME: Used for tracking opens and clicks, when enabled. :ref:`tracking-messages`
 
-========= =========================================================== ==================== 
-Type      Value                                                       Purpose    
-========= =========================================================== ==================== 
+========= =========================================================== ====================
+Type      Value                                                       Purpose
+========= =========================================================== ====================
 TXT       "v=spf1 include:mailgun.org ~all"                           SPF (Required)
 TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Required)
 CNAME     "mailgun.org"                                               Tracking (Optional)
-========= =========================================================== ==================== 
+========= =========================================================== ====================
 
 .. _SPF Information: http://www.openspf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
 
 **Receiving DNS Records**
 
-.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
+.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound
 		     mail delivery. If you do not have MX records pointing to another mail server, then you should
 		     point them to Mailgun to optimize deliverability.
 
 Mail server for handling inbound messages.  `MX Information`_
 
-========= ========= =========================================================== ==================== 
+========= ========= =========================================================== ====================
 Type      Priority  Value														Purpose
-========= ========= =========================================================== ==================== 
+========= ========= =========================================================== ====================
 MX        10        mxa.mailgun.org     										Receiving (Optional)
 MX        10        mxb.mailgun.org 											Receiving (Optional)
-========= ========= =========================================================== ==================== 
+========= ========= =========================================================== ====================
 
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
 
@@ -124,11 +124,11 @@ MX        10        mxb.mailgun.org 											Receiving (Optional)
 Common providers are listed below. If yours is not listed, contact your DNS provider for assistance.
 
 
-GoDaddy: `MX <http://support.godaddy.com/help/article/7924/adding-or-editing-mx-records?locale=en>`__ - `CNAME <http://support.godaddy.com/help/article/7921/adding-or-editing-cname-records?locale=en>`__ - `TXT <http://support.godaddy.com/help/article/7925/adding-or-editing-txt-records?locale=en>`__                       
+GoDaddy: `MX <http://support.godaddy.com/help/article/7924/adding-or-editing-mx-records?locale=en>`__ - `CNAME <http://support.godaddy.com/help/article/7921/adding-or-editing-cname-records?locale=en>`__ - `TXT <http://support.godaddy.com/help/article/7925/adding-or-editing-txt-records?locale=en>`__
 
 NameCheap: `All Records <http://www.namecheap.com/support/knowledgebase/article.aspx/473/2/demo-changing-host-record-settings>`__
 
-Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`__ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`__       
+Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`__ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`__
 
 Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`__
 
@@ -306,7 +306,7 @@ Mailgun supports the ability send to a group of recipients through a single API 
 
 Recipient Variables are custom variables that you define, which you can then reference in the message body. They give you the ability to send a custom message to each recipient while still using a single API Call (or SMTP session).
 
-To access a recipient variable within your email, simply reference %recipient.yourkey%. For example, consider the following JSON: 
+To access a recipient variable within your email, simply reference %recipient.yourkey%. For example, consider the following JSON:
 
 .. code-block:: javascript
 
@@ -315,7 +315,7 @@ To access a recipient variable within your email, simply reference %recipient.yo
    "user2@example.com" : {"unique_id": "ZXY987654321"}
  }
 
-To reference the above variables within your email, use %recipient.unique_id%. 
+To reference the above variables within your email, use %recipient.unique_id%.
 
 Recipient Variables allow you to:
 
@@ -500,7 +500,7 @@ Sending in Test Mode
 
 You can send messages in test mode by setting ``o:testmode`` parameter to ``true``.
 When you do this, Mailgun will accept the message but will not send it.
-This is useful for testing purposes. 
+This is useful for testing purposes.
 
 .. note:: You are charged for messages sent in test mode.
 
@@ -509,7 +509,7 @@ This is useful for testing purposes.
 Tracking Messages
 *****************
 
-Once you start sending and receiving messages, it's important to track what's happening with them. We try to make tracking your messages as easy as possible through Events, Stats and Campaigns. 
+Once you start sending and receiving messages, it's important to track what's happening with them. We try to make tracking your messages as easy as possible through Events, Stats and Campaigns.
 
 In addition, Mailgun permanently stores when a message can not be delivered due to a hard bounce (permanent failure) or when a recipient unsubscribes or complains of spam. In these cases, Mailgun will not attempt to deliver to these recipients in the future, in order to protect your sending reputation.
 
@@ -539,7 +539,7 @@ You can enable Opens & Clicks tracking on two levels: per sending domain and per
 Events
 ======
 
-Mailgun keeps track of every event that happens to every message (both inbound and outbound) and stores this data for at least 30 days for paid accounts and 2 days for free accounts. 
+Mailgun keeps track of every event that happens to every message (both inbound and outbound) and stores this data for at least 30 days for paid accounts and 2 days for free accounts.
 
 Below is the table of events that Mailgun tracks.
 
@@ -554,17 +554,17 @@ rejected          Mailgun rejected the request to send/forward the email.
 delivered         Mailgun sent the email and it was accepted by the recipient
                   email server.
 failed            Mailgun could not deliver the email to the recipient email server.
-opened            The email recipient opened the email and enabled image  
+opened            The email recipient opened the email and enabled image
                   viewing. Open tracking must be enabled in the Mailgun control
                   panel, and the CNAME record must be pointing to mailgun.org.
-clicked           The email recipient clicked on a link in the email.  
+clicked           The email recipient clicked on a link in the email.
                   Click tracking must be enabled in the Mailgun control
                   panel, and the CNAME record must be pointing to mailgun.org.
 unsubscribed      The email recipient clicked on the unsubscribe link.
                   Unsubscribe tracking must be enabled in the Mailgun control
                   panel.
 complained        The email recipient clicked on the spam complaint button within
-                  their email client. Feedback loops enable the notification to 
+                  their email client. Feedback loops enable the notification to
                   be received by Mailgun.
 
 stored            Mailgun has stored an incoming message
@@ -572,13 +572,13 @@ stored            Mailgun has stored an incoming message
 
 You can access Events through a few interfaces:
 
-* Webhooks (we POST data to your URL). 
+* Webhooks (we POST data to your URL).
 * The Events API (you GET data through the API).
 * The Logs Tab of the Control Panel (GUI).
 
 .. _manual-events-api:
 
-**Events API**  
+**Events API**
 
 You can programmatically query and download events through the :ref:`Events API <api-events>`.
 
@@ -591,40 +591,40 @@ Sample response:
   {
     "items": [
       {
-        "tags": [], 
-        "timestamp": 1376325780.160809, 
+        "tags": [],
+        "timestamp": 1376325780.160809,
         "envelope": {
-          "sender": "me@samples.mailgun.org", 
+          "sender": "me@samples.mailgun.org",
           "transport": ""
-        }, 
-        "event": "accepted", 
-        "campaigns": [], 
-        "user-variables": {}, 
+        },
+        "event": "accepted",
+        "campaigns": [],
+        "user-variables": {},
         "flags": {
-          "is-authenticated": true, 
+          "is-authenticated": true,
           "is-test-mode": false
-        }, 
+        },
         "message": {
           "headers": {
-            "to": "user@example.com", 
-            "message-id": "20130812164300.28108.52546@samples.mailgun.org", 
-            "from": "Excited User <me@samples.mailgun.org>", 
+            "to": "user@example.com",
+            "message-id": "20130812164300.28108.52546@samples.mailgun.org",
+            "from": "Excited User <me@samples.mailgun.org>",
             "subject": "Hello"
-          }, 
-          "attachments": [], 
+          },
+          "attachments": [],
           "recipients": [
             "user@example.com"
-          ], 
+          ],
           "size": 69
-        }, 
-        "recipient": "user@example.com", 
+        },
+        "recipient": "user@example.com",
         "method": "http"
       }
-    ], 
+    ],
     "paging": {
-      "next": 
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...", 
-      "previous": 
+      "next":
+          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...",
+      "previous":
           "https://api.mailgun.net/v2/samples.mailgun.org/events/Lkawm..."
     }
   }
@@ -634,7 +634,7 @@ Sample response:
 Webhooks
 ========
 
-Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the respective tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector. 
+Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the respective tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
 
 You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Bounces`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
 
@@ -646,7 +646,7 @@ For Webhook POSTs, Mailgun listens for the following codes from your server and 
 
 If your application is unable to process the webhook request but you do not return a 406 error code, Mailgun will retry (other than for delivery notification) during 8 hours at the following intervals before stop trying: 10 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour and 4 hours.
 
-The Webhooks API endpoint allows you to programmatically manipulate the webhook 
+The Webhooks API endpoint allows you to programmatically manipulate the webhook
 URLs defined for a specific domain. Head over to the :ref:`api-webhooks` API endpoint documentation.
 
 .. _securing webhooks:
@@ -706,8 +706,8 @@ And here's a sample in Ruby:
 Attaching Data to Messages
 ==========================
 
-When sending, you can attach data to your messages by passing custom data to the API or SMTP endpoints. 
-The data will be represented as a header within the email, ``X-Mailgun-Variables``. The data 
+When sending, you can attach data to your messages by passing custom data to the API or SMTP endpoints.
+The data will be represented as a header within the email, ``X-Mailgun-Variables``. The data
 is formatted in JSON and included in any webhook events related to the email containing the custom data. Several
 such headers may be included and their values will be combined.
 
@@ -716,11 +716,11 @@ Example::
     X-Mailgun-Variables: {"first_name": "John", "last_name": "Smith"}
     X-Mailgun-Variables: {"my_message_id": 123}
 
-To add this header to your message:  
+To add this header to your message:
 
-API: Pass the following parameter, "v:my-custom-data" => "{"my_message_id": 123}".  
+API: Pass the following parameter, "v:my-custom-data" => "{"my_message_id": 123}".
 
-SMTP: Add the following header to your email, "X-Mailgun-Variables: {"my_message_id": 123}".  
+SMTP: Add the following header to your email, "X-Mailgun-Variables: {"my_message_id": 123}".
 
 .. note:: The value of the "X-Mailgun-Variables" header should be valid JSON string,
           otherwise Mailgun won't be able to parse it.
@@ -949,7 +949,7 @@ Tracking Spam Complaints
 ========================
 
 Mailgun automatically keeps track of every time a recipient complains that a
-message is spam.  
+message is spam.
 
 You can see when complaints happen in the Logs tab or see aggregate counters of complaints in the Tracking tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Complaints API <api-complaints>`.
 
@@ -989,9 +989,9 @@ webhook with the following parameters:
  timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are 
-                       included if the recipient ESP includes them in the bounce message. They are 
-                       handled as file uploads, encoded as multipart/form-data.                           
+ attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
+                       included if the recipient ESP includes them in the bounce message. They are
+                       handled as file uploads, encoded as multipart/form-data.
  ==================    ==================================================================================
 
 .. _um-tracking-bounces:
@@ -1040,9 +1040,9 @@ If you do, every time a message experiences a hard bounce, your URL will be invo
  token                     Randomly generated string with length 50 (see `securing webhooks`_).
  signature                 String with hexadecimal digits generate by HMAC algorithm
                            (see `securing webhooks`_).
- attachment-x              attached file (‘x’ stands for number of the attachment). Attachments are 
-                           included if the recipient ESP includes them in the bounce message. They are 
-                           handled as file uploads, encoded as multipart/form-data.                         
+ attachment-x              attached file (‘x’ stands for number of the attachment). Attachments are
+                           included if the recipient ESP includes them in the bounce message. They are
+                           handled as file uploads, encoded as multipart/form-data.
  ======================    ===========================================================================
 
 .. _um-tracking-failures:
@@ -1078,14 +1078,14 @@ these events occur we will POST the following parameters to your URL:
  timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are 
-                       included if the recipient ESP includes them in the bounce message. They are 
-                       handled as file uploads, encoded as multipart/form-data.                         
+ attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
+                       included if the recipient ESP includes them in the bounce message. They are
+                       handled as file uploads, encoded as multipart/form-data.
  ==================    ==================================================================================
 
 - ``Bounce`` indicates a hard or soft bounce.
-- ``ESPBlock`` indicates a soft bounce and the maximum number of attempts was reached. 
-- ``Old`` indicates that Mailgun tried to deliver the message unsuccessfully for more than 8 hours. 
+- ``ESPBlock`` indicates a soft bounce and the maximum number of attempts was reached.
+- ``Old`` indicates that Mailgun tried to deliver the message unsuccessfully for more than 8 hours.
 - ``Suppress-Bounce`` indicates that Mailgun stopped delivery to a previously bounced address.
 - ``Suppress-Unsubscribe`` indicates that Mailgun stopped delivery to an unsubscribed address.
 - ``Suppress-Complaint`` indicates that Mailgun stopped delivery to a recipient who reported messages as spam through their ESP.
@@ -1303,7 +1303,7 @@ Receiving, Forwarding and Storing Messages
 
 Mailgun allows you to receive emails through Routes. Routes will accept emails and then perform an action which can include:
 
-* Forwarding the email to a different email address. 
+* Forwarding the email to a different email address.
 * POSTing the data in the email to a URL.
 * Storing the email temporarily for subsequent retrieval through a GET request.
 
@@ -1376,12 +1376,12 @@ You can use named captures as well::
 **match_header(header, pattern)**
 
 Similar to ``match_recipient`` but instead of looking at a message recipient, it applies
-the pattern to an arbitrary MIME header of the message. 
+the pattern to an arbitrary MIME header of the message.
 
 The example below matches any message with a word "support" in its subject::
 
     match_header("subject", ".*support")
-    
+
 The example below matches any message against several keywords::
 
 	match_header('subject', '(.*)(urgent|help|asap)(.*)')
@@ -1394,7 +1394,7 @@ The example below will match any messages deemed spam (if spam filtering is enab
 
 The example below will match any recipient for a domain, then match if the message is in English::
 
-	match_recipient('^(.*)@example.com$') and 
+	match_recipient('^(.*)@example.com$') and
 	match_header("Content-Language", "^(.*)en-US(.*)$")
 
 **catch_all()**
@@ -1456,8 +1456,8 @@ For Route POSTs, Mailgun listens for the following codes from your server and re
 * If Mailgun receives a ``406 (Not Acceptable)`` code, Mailgun will determine the POST is rejected and not retry.
 * For any other code, Mailgun will retry POSTing according to the schedule below for Webhooks other than the delivery notification.
 
-If your application is unable to process the webhook request but you do not return a 406 error code, Mailgun will 
-retry (other than for delivery notification) during 8 hours at the following intervals before stop trying: 
+If your application is unable to process the webhook request but you do not return a 406 error code, Mailgun will
+retry (other than for delivery notification) during 8 hours at the following intervals before stop trying:
 10 minutes, 10 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour and 4 hours.
 
 Below are two tables of HTTP parameters that you can expect to be posted into your application through a forward() action.
@@ -1618,11 +1618,15 @@ Sample response:
             "forward(\"http://myhost.com/messages/\")",
             "stop()"
         ],
-        "priority": 1,
+        "priority": 0,
         "expression": "match_recipient(\".*@samples.mailgun.org\")",
         "id": "4f3bad2335335426750048c6"
     }
   }
+
+.. note:: Higher priority routes are handled first. Smaller numbers indicate
+          higher priority. Default is 0.
+
 
 Listing routes:
 
@@ -1642,7 +1646,7 @@ Sample response:
                 "forward(\"http://myhost.com/messages/\")",
                 "stop()"
             ],
-            "priority": 1,
+            "priority": 0,
             "expression": "match_recipient(\".*@samples.mailgun.org\")",
             "id": "4f3babe4ba8a481c6400476a"
         }
@@ -1665,7 +1669,7 @@ Sample response:
             "forward(\"http://myhost.com/messages/\")",
             "stop()"
         ],
-        "priority": 1,
+        "priority": 0,
         "expression": "match_recipient(\".*@samples.mailgun.org\")",
         "id": "4f3bad2335335426750048c6"
     }
@@ -1675,7 +1679,7 @@ Sample response:
 Credentials
 ===========
 
-Mailgun gives you the ability to programmatically create SMTP credentials which can be used to send mail. SMTP credentials can be used to relay email, through Mailgun, using the SMTP protocol. 
+Mailgun gives you the ability to programmatically create SMTP credentials which can be used to send mail. SMTP credentials can be used to relay email, through Mailgun, using the SMTP protocol.
 
 SMTP Credentials API Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1768,10 +1772,10 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
 
 	At the time of writing this, we are filtering spam at a score of around 5.0 but we are
 	constantly calibrating this.
-	
+
 ``X-Mailgun-Dkim-Check-Result``
-	If DKIM is used to sign an inbound message, Mailgun will attempt DKIM validation, 
-	the results will be stored in this header. 
+	If DKIM is used to sign an inbound message, Mailgun will attempt DKIM validation,
+	the results will be stored in this header.
 	Possible values are: 'Pass' or 'Fail'
 
 ``X-Mailgun-Spf``
