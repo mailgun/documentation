@@ -2,7 +2,7 @@
 
     curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
 	https://api.mailgun.net/v2/routes \
-	-F priority=1 \
+	-F priority=0 \
 	-F description='Sample route' \
 	-F expression='match_recipient(".*@samples.mailgun.org")' \
 	-F action='forward("http://myhost.com/messages/")' \
@@ -17,7 +17,7 @@
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/routes");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("priority", 1);
+ 	formData.add("priority", 0);
  	formData.add("description", "Sample route");
  	formData.add("expression", "match_recipient('.*@samples.mailgun.org')");
  	formData.add("action", "forward('http://myhost.com/messages/')");
@@ -37,19 +37,19 @@
 
   # Issue the call to the client.
   $result = $mgClient->post("routes", array(
-      'priority'    => 1,
+      'priority'    => 0,
       'expression'  => 'match_recipient(".*@samples.mailgun.org")',
       'action'      => array('forward("http://host.com/messages")', 'stop()'),
       'description' => 'Sample route'
   ));
 
 .. code-block:: py
- 
+
  def create_route():
      return requests.post(
          "https://api.mailgun.net/v2/routes",
          auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         data={"priority": 1,
+         data={"priority": 0,
                "description": "Sample route",
                "expression": "match_recipient('.*@samples.mailgun.org')",
                "action": ["forward('http://myhost.com/messages/')", "stop()"]})
@@ -58,7 +58,7 @@
 
  def create_route
    data = Multimap.new
-   data[:priority] = 1
+   data[:priority] = 0
    data[:description] = "Sample route"
    data[:expression] = "match_recipient('.*@samples.mailgun.org')"
    data[:action] = "forward('http://myhost.com/messages/')"
@@ -77,7 +77,7 @@
  		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
  	RestRequest request = new RestRequest();
  	request.Resource = "routes";
- 	request.AddParameter("priority", 1);
+ 	request.AddParameter("priority", 0);
  	request.AddParameter("description", "Sample route");
  	request.AddParameter("expression",
  	                     "match_recipient('.*@samples.mailgun.org')");

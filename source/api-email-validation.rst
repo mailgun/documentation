@@ -17,7 +17,7 @@ Mailgun's email validation service is available for free to all Mailgun customer
 
 .. note:: No addresses submitted to this service are ever stored on any Mailgun servers. The parser runs completely in memory and no address is persisted after the request is complete.
 
-.. warning:: Do not use your Mailgun private API key. Instead, use your Mailgun public key, available in the My Account tab of the Control Panel. 
+.. warning:: Do not use your Mailgun private API key. Instead, use your Mailgun public key, available in the My Account tab of the Control Panel.
 
 .. code-block:: url
 
@@ -46,7 +46,7 @@ Parses a delimiter separated list of email addresses into two lists: parsed addr
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
- addresses         A delimiter separated list of addresses. 
+ addresses         A delimiter separated list of addresses.
                    (Maximum: 8000 characters)
  syntax_only       Perform only syntax checks or DNS and ESP specific
                    validation as well. (true by default)
@@ -69,7 +69,7 @@ Sample response:
 	    "is_valid": true,
 	    "address": "foo@mailgun.net",
 	    "parts": {
-	        "display_name": ""
+	        "display_name": null //Deprecated Field, will always be null
 	        "local_part": "foo",
 	        "domain": "mailgun.net",
 	    },

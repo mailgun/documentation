@@ -63,9 +63,9 @@ Fetch the full list of all recipients who have pressed their "Spam" buttons:
 
 Sample JSON response is shown below. Notice the following:
 
-    - There was only one user who clicked "Spam" button.
-    - According to ``count`` value, he clicked twice.
-    - ``created_at`` indicates the time when it happend.
+* There was only one user who clicked "Spam" button.
+* According to ``count`` value, he clicked twice.
+* ``created_at`` indicates the time when it happend.
 
 .. code-block:: javascript
 

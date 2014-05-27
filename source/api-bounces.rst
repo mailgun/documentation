@@ -66,8 +66,8 @@ Fetch the full list of all recipient addresses that bounced:
 
 Sample JSON response is shown below. Notice the following:
 
-    - There was only one bounce
-    - Both SMTP error code and SMTP error message are preserved
+* There was only one bounce
+* Both SMTP error code and SMTP error message are preserved
 
 .. code-block:: javascript
 
