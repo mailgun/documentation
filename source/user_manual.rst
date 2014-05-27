@@ -1464,6 +1464,9 @@ Below are two tables of HTTP parameters that you can expect to be posted into yo
 
 .. note:: In addition to these parameters Mailgun will post `all` MIME headers.
 
+.. note:: Do not rely on the ``body-plain``, ``stripped-text``, and ``stripped-signature`` fields for HTML sanitization. These fields
+          merely provide content from the text/plain portion of an incoming message. This content may contain unescaped HTML.
+
 Parsed Messages Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
