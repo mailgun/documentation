@@ -71,8 +71,8 @@ If your email sending is volatile with large spikes of volume, ESPs may assume t
 
 The other thing to consider is using separate IPs for your bulk and transactional mail if you are sending high volumes of email.  There are a couple reasons for this:
 
- * Delivery of time-sensitive transactional emails may get queued behind a large batch of bulk/marketing emails.
- * Your transactional mail will be affected by the reputation created by your bulk/marketing mail.
+* Delivery of time-sensitive transactional emails may get queued behind a large batch of bulk/marketing emails.
+* Your transactional mail will be affected by the reputation created by your bulk/marketing mail.
 
 Even if you have a clean IP address, you need to warm up the IP gradually.  This means sending emails at a low rate initially and then gradually increasing that rate, taking into account ESP feedback.  If you send a ton of emails right away, they will get filtered or dropped by the ESPs.  In some cases, they won't even tell you they are dropping them.
 
@@ -98,10 +98,10 @@ It is very important that you are using the appropriate authentication methods w
 
 The common types of authentication are:
 
- * SPF_
- * DKIM_
- * DomainKeys_
- * SenderID_
+* SPF_
+* DKIM_
+* DomainKeys_
+* SenderID_
 
 .. _SPF: http://www.openspf.org
 .. _DKIM: http://www.dkim.org
