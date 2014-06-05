@@ -1056,10 +1056,10 @@ You can see when failures happen in the Logs tab.  In addition, you can be notif
 
 **Drop Event Webhook**
 
-In the Logs tab, you can specify a webhook URL to be notified every time a messages is dropped.
+In the Logs tab, you can specify a webhook URL to be notified every time a message is dropped.
 There are a few reasons why Mailgun needs to stop attempting to deliver messages and drop them.
 The most common reason is that Mailgun received a Hard bounce or repeatedly received Soft bounces and continuing attempting to deliver may hurt your reputation with the receiving ESP.  Also, if the address is on one of the 'do not send lists' because that recipient
-had previously bounced, unsubscribed or complained of spam, we will not attempt delivery and drop the message.  If one of
+had previously bounced, unsubscribed, or complained of spam, we will not attempt delivery and drop the message.  If one of
 these events occur we will POST the following parameters to your URL:
 
 .. container:: ptable
