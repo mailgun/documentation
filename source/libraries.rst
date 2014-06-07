@@ -14,7 +14,7 @@ Mailgun has published libraries for various languages. You may use our
 libraries, or your favorite/suggested HTTP/REST library available for your programming 
 language, to make HTTP calls to Mailgun. 
 
-Most code samples in our docs can be viewed in several programming langauges
+Most code samples in our docs can be viewed in several programming languages
 by using the language bar at the top. Below are the language-specific notes
 we feel are useful.
 
