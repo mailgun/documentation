@@ -25,7 +25,7 @@ Fetches the list of unsubscribes.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- limit             Number of records to return. (100 maximum)
+ limit             Number of records to return. (Maximum of 100)
  skip              Number of records to skip. (0 by default)
  ================= ==========================================================
 
