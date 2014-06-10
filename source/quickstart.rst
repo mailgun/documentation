@@ -1,7 +1,44 @@
 .. _quickstart:
 
-Quickstart Guide
-=================
+Quickstart
+==========
+
+.. figure::  _static/img/quickstart/sending.png
+   :align: left
+   :width: 1000 px
+
+SMTP or API?
+---------------------
+
+.. figure::  _static/img/quickstart/smtpapi.png
+   :align: left
+   :width: 700 px
+
+   In short, SMTP is an open and established protocol with large ecosystem, while Mailgun API is better long term performance and maintenance wise.
+
+Send via API
+------------
+
+Run this:
+
+.. include:: samples/send-simple-message.rst
+
+What's actually happening:
+
+* Mailgun assembled a MIME message
+* Added the log entries to our full text search index
+* Delivered the email
+
+That was good for a start, but in order to become a good email citizen, you'd need to add DNS records and verify your domain.
+
+
+Send via SMTP
+-------------
+
+Run this:
+
+.. include:: samples/smtp-send-simple-message.rst
+
 
 Verifying Your Domain
 -----------------------
