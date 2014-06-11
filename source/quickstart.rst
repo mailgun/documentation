@@ -5,16 +5,42 @@ Quickstart
 
 .. figure::  _static/img/quickstart/sending.png
    :align: left
-   :width: 1000 px
+   :width: 700 px
 
 SMTP or API?
 ---------------------
 
-.. figure::  _static/img/quickstart/smtpapi.png
-   :align: left
-   :width: 700 px
+It’s really up to you. Whatever you find easier is fine with us. Here's something to consider:
+
+.. raw:: html
+
+  <table border="1" class="docutils">
+  <thead valign="bottom">
+    <tr class="row-odd">
+      <th class="head">SMTP</th>
+      <th class="head">API</th>
+    </tr>
+  </thead>
+  <tbody valign="top">
+    <tr class="row-even">
+      <td><i class="icon-ok"></i>Flexible with existing apps</td>
+      <td><i class="icon-ok"></i>Faster (x3)</td>
+    </tr>
+    <tr class="row-odd">
+      <td><i class="icon-ok"></i>Open protocol</td>
+      <td><i class="icon-ok"></i>Assembly (don't worry about MIME)</td>
+    </tr>
+    <tr class="row-even">
+      <td></td>
+      <td><i class="icon-ok"></i>Scales better (Batch sending)</td>
+    </tr>
+  </tbody>
+  </table>
 
    In short, SMTP is an open and established protocol with large ecosystem, while Mailgun API is better long term performance and maintenance wise.
+
+* `Send via API`_
+* `Send via SMTP`_
 
 Send via API
 ------------
@@ -29,7 +55,7 @@ What's actually happening:
 * Added the log entries to our full text search index
 * Delivered the email
 
-That was good for a start, but in order to become a good email citizen, you'd need to add DNS records and verify your domain.
+What's next? Aad DNS records to `Verify Your Domain`_.
 
 
 Send via SMTP
@@ -39,19 +65,26 @@ Run this:
 
 .. include:: samples/smtp-send-simple-message.rst
 
+What's next? Aad DNS records to `Verify Your Domain`_.
 
-Verifying Your Domain
------------------------
 
-For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we provide at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and **prove that you are an authorized sender for the domain**.  
+Verify Your Domain
+------------------
 
-Benefits of verifying your domain
-*********************************
+Add a domain you own and verify it by setting up the SPF and DKIM records we provide at your DNS provider.
 
-- Complete white labeling of your emails so you won't see "sent via Mailgun.org" message in your emails.
-- Establishing a positive email reputation for your own domain. 
-- The Mailgun reputation system is less suspicious of traffic that is being sent on verified domains and so using one reduces the likelihood of being disabled. 
-- Verified domains are not subject to a sending limit of 300 emails per day.
+.. figure::  _static/img/quickstart/verify.png
+   :align: left
+   :width: 700 px
+
+.. note:: Here's why you **absolutely** need to verify your domain:
+
+* You prove that you are an authorized sender for the domain.
+* Verified domains are not subject to a sending limit of 300 emails per day.
+* No more "sent via Mailgun.org" message in your emails.
+* Establishing a positive email reputation for your own domain. 
+* Mailgun is less suspicious of traffic that is being sent on verified domains and so using one reduces the likelihood of being disabled. 
+
 
 How to verify your domain
 *************************
@@ -62,16 +95,20 @@ How to verify your domain
 
 Once you've added the two TXT records and they've propagated, your domain will be verified.  In some instances, we may need additional information to verify your domain.  If this is the case, we will contact you to resolve the issue.
 
-.. note::  It can take 24-48 hours for DNS changes to propagate.
+.. note:: It can take 24-48 hours for DNS changes to propagate.
 
 If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
 
 Sending DNS Records
 *******************
 
-- SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
-- DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_ 
-- CNAME: Used for tracking opens and clicks, when enabled. :ref:`tracking-messages`
+.. figure::  _static/img/quickstart/spf.png
+   :align: left
+   :width: 700 px
+
+* SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
+* DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_ 
+* CNAME: Used for tracking opens and clicks, when enabled. :ref:`tracking-messages`
 
 ========= =========================================================== ==================== 
 Type      Value                                                       Purpose    
@@ -86,6 +123,10 @@ CNAME     "mailgun.org"                                               Tracking (
 
 Receiving DNS Records
 *********************
+
+.. figure::  _static/img/quickstart/mx.png
+   :align: left
+   :width: 700 px
 
 .. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
 		     mail delivery.
@@ -122,85 +163,7 @@ Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/Dev
 Digital Ocean: `Mailgun on Digital Ocean Guide <http://www.arcweb.ro/blog/2013/12/18/mailgun-on-digitalocean-dns-settings/>`__
 
 
-Authentication
----------------
-
-Mailgun uses `HTTP Basic Auth`_ for API authentication.
-Use ``api`` as the user name and your API key is the password.
-You can manage your API key in the 'My Account' tab of the Control Panel.
-
-For example::
-
-    curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'
-
-.. _HTTP Basic Auth: http://en.wikipedia.org/wiki/Basic_access_authentication
-
-Sending Messages
------------------
-
-You can send messages via SMTP or via Mailgun HTTP API.
-
-**Sending Messages using Mailgun HTTP API**
-
-This method is preferred because it doesn't require any prior knowledge of
-email-specific protocols and data formats like MIME. It is also much faster
-and guarantees that your messages will be properly formatted.
-
-The HTTP API uses familiar terms like from, to, cc, bcc, subject, body, attachments and so on.
-The API is RESTful so sending is as easy as making an HTTP POST request to Mailgun.
-
-.. include:: samples/send-simple-message.rst
-
-This will send a simple text message to two recipients. Notice how POST parameters
-mimic what you would typically see in your email client.
-
-Lets send a more complicated message, with HTML body, two attachments and "cc" and "bcc" recipients:
-
-.. include:: samples/send-complex-message.rst
-
-HTTP allows you to specify multiple pairs of each parameter, hence by repeating
-"cc" or "to" or "attachment" parameters you specify multiple recipients,
-attached files and so on.
-
-You can find more information in the :ref:`um-sending-messages` section of the :ref:`user-manual`.
-
-**Sending Emails via SMTP**
-
-All mainstream programming languages have SMTP support. The examples below assume you have already assembed a proper MIME body of your message.
-
-Send an email using Python standard SMTP library:
-
-.. code-block:: python
-
-   def send_message_via_smtp():
-       smtp = SMTP("smtp.mailgun.org", 587)
-       smtp.login(login, password)
-       smtp.sendmail("sender@host", "recipient@host", mime_message_body)
-       smtp.quit()
-
-Using Ruby on Rails Action Mailer configuration:
-
-.. code-block:: ruby
-
-   config.action_mailer.delivery_method = :smtp
-   config.action_mailer.perform_deliveries = true
-   config.action_mailer.raise_delivery_errors = true
-   config.action_mailer.smtp_settings = {
-    	:authentication => :plain,
-    	:address => "smtp.mailgun.org",
-    	:port => 587,
-    	:domain => "my-mailgun-domain.com",
-    	:user_name => "postmaster@my-mailgun-domain.com",
-    	:password => "my-password"
-   }
-
-.. note:: Your SMTP login and password can be found by clicking on your
- domain in the Domains tab of your Control Panel.
-
-.. warning:: Avoid sending your
- SMTP password unencrypted: make sure to use SSL or STARTTLS SMTP
- facilities available for your framework/language.
-
+You are all set! Read more about `Receiving and Parsing Email`_, `Tracking Messages`_, or `Other Goodies`_.
 
 Receiving and Parsing Email
 ---------------------------
