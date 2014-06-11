@@ -1,6 +1,6 @@
 {% extends "basic/layout.html" %}
 {% if corpsite_hostname == ""  %}
-  {% set corpsite_hostname = "www.mailgun.com" %}
+  {% set corpsite_hostname = "127.0.0.1:5000" %}
 {% endif %}
 {% set css_url = "http://" + corpsite_hostname + "/static/css/main.css" %}
 {%- block doctype -%}
@@ -168,9 +168,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {%- endif %}
       {%- endblock %}
       {%- block sidebartoc %}
-      <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul>
+      <!-- <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul> -->
           {%- if "FAQ" in title %}
               {{ toctree(maxdepth=1) }}
+          {%- elif "Quickstart" in title %}
+              {{ toctree(maxdepth=2) }}
           {% elif "Reference" in title %}
               {{ toctree(maxdepth=2) }}
           {% else %}
@@ -203,13 +205,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {%- endif %}{% endif %}
         </div>
       <div class="footer">
-        <p><a href="https://www.mailgun.com/signup" class="btn-primary">Try Mailgun now</a></p>
+        <p><a href="https://www.mailgun.com/signup" class="btn-primary">Start sending email from your app</a></p>
       {%- if last_updated %}
         {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
       {%- endif %}
       {%- if show_sphinx %}
         {% trans sphinx_version=sphinx_version|e %}
-             <P>Docs created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.</P>
+             <!-- <P>Docs created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.</P> -->
         {% endtrans %}
       {%- endif %}
       </div>
@@ -220,23 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div> <!-- /content -->
   </section> <!-- /container -->
-</div> <!-- /body -->
-
-<footer>
-    <div class="container">
-        <nav class="footer-nav">
-            <a href="http://www.mailgun.com/team">Team</a>
-            <a href="http://www.mailgun.com/terms">Terms of service</a>
-            <a href="http://www.mailgun.com/privacy">Privacy policy</a>
-            <a href="http://twitter.com/Mail_Gun">Twitter</a>
-            <a href="http://www.mailgun.com/contact">Contact</a>
-            <a href="http://documentation.mailgun.com/faqs.html">FAQ</a>
-            <a href="http://blog.mailgun.com">Blog</a>
-        </nav>
-        <p>Made in San Francisco. Powered by <span class="img-rs"></span></p>
-        <span class="img-map"></span>
-    </div>
-</footer>
+</div> <!-- /body --> 
 
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.debounce.min.js', 1) }}"></script>
