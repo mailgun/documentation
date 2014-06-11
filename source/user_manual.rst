@@ -1086,7 +1086,7 @@ these events occur we will POST the following parameters to your URL:
 - ``Bounce`` indicates a hard or soft bounce.
 - ``ESPBlock`` indicates a soft bounce and the maximum number of attempts was reached.
 - ``Old`` indicates that Mailgun tried to deliver the message unsuccessfully for more than 8 hours.
-- ``Suppress-Bounce`` indicates that Mailgun stopped delivery to a previously bounced address.
+- ``Hardfail`` indicates that Mailgun stopped delivery to a previously bounced address.
 - ``Suppress-Unsubscribe`` indicates that Mailgun stopped delivery to an unsubscribed address.
 - ``Suppress-Complaint`` indicates that Mailgun stopped delivery to a recipient who reported messages as spam through their ESP.
 - ``Generic`` indicates, we're not able to classify the error. Check the description of the failure for more information.
