@@ -277,6 +277,61 @@ starting from the most recent:
     }
   }
 
+Fetches first page of dropped messages starting with the most recent. 
+
+.. include:: samples/events-failure-severity-temp.rst
+
+.. code-block:: javascript
+
+  {
+    "items": [
+      {
+        "severity": "temporary", 
+        "tags": [], 
+        "envelope": {
+          "sender": "me@samples.mailgun.org", 
+          "transport": ""
+        }, 
+        "delivery-status": {
+          "code": 498, 
+          "message": "No MX for [example.com]",
+          "retry-seconds": 900, 
+          "description": "No MX for [example.com]"
+        }, 
+        "campaigns": [], 
+        "reason": "generic", 
+        "user-variables": {}, 
+        "flags": {
+          "is-authenticated": true, 
+          "is-test-mode": false
+        }, 
+        "timestamp": 1376435471.10744, 
+        "message": {
+          "headers": {
+            "to": "baz@example.com, bar@example.com", 
+            "message-id": "20130813230036.10303.40433@samples.mailgun.org", 
+            "from": "Excited User <me@samples.mailgun.org>", 
+            "subject": "Hello"
+          }, 
+          "attachments": [], 
+          "recipients": [
+            "baz@example.com", 
+            "bar@example.com"
+          ], 
+          "size": 370
+        }, 
+        "recipient": "bar@example.com", 
+        "event": "failed"
+      }
+    ], 
+    "paging": {
+      "next": 
+          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...", 
+      "previous": 
+          "https://api.mailgun.net/v2/samples.mailgun.org/events/Lkawm..."
+    }
+  }
+
 Fetches the first page of log records written so far. Traversal is performed
 starting from the most recent records to the oldest:
 
