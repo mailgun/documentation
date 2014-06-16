@@ -1,7 +1,7 @@
 .. _quickstart-events:
 
-Quickstart - Events
-===================
+How to start tracking email events
+====================
 
 Once you start sending and receiving messages, it's important to track what's happening with them. Mailgun provides a variety of methods to access data about your emails, which you can read more about in the :ref:`tracking-messages` section of the :ref:`user-manual`. Below is a brief summary of Events, the Events API and Events Webhooks.
 

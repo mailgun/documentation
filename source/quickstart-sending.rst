@@ -1,13 +1,13 @@
 .. _quickstart-sending:
 
-Quickstart - Sending
+How to start sending email
 ====================
 
 .. figure::  _static/img/quickstart/sending.png
    :align: center
    :width: 800 px
 
-SMTP or API?
+Send with SMTP or API?
 ---------------------
 
 It’s up to you, whatever you find easier is fine with us. Here's something to consider:
@@ -43,7 +43,7 @@ In short, SMTP is an open and established protocol with large ecosystem, while M
 * `Send via SMTP`_
 
 Send via API
-------------
+^^^^^^^^^^^^^
 
 Run this:
 
@@ -59,7 +59,7 @@ What's next? Add DNS records to `verify your domain`_.
 
 
 Send via SMTP
--------------
+^^^^^^^^^^^^^
 
 Run this:
 
@@ -87,7 +87,7 @@ Why you **need to verify** your domain:
 
 
 How to verify your domain
-*************************
+^^^^^^^^^^^^^
 
 1. Add your domain or subdomain.
 2. Add the **two TXT DNS records** provided at your DNS provider.
@@ -101,7 +101,7 @@ Once you've added the records and they've propagated, your domain will be verifi
 If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
 
 Sending & Tracking DNS Records
-*******************
+^^^^^^^^^^^^^
 
 .. figure::  _static/img/quickstart/spf.png
    :align: left
@@ -123,11 +123,7 @@ CNAME     "mailgun.org"                                               Tracking (
 .. _DKIM Information: http://www.dkim.org/#introduction
 
 Receiving DNS Records
-*********************
-
-.. figure::  _static/img/quickstart/mx.png
-   :align: left
-   :width: 400 px
+^^^^^^^^^^^^^
 
 .. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
 		     mail delivery (e.g. Gmail).
@@ -143,8 +139,8 @@ MX        mxb.mailgun.org											  Receiving (Optional)
 
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
 
-Common DNS Provider Documentation
-*********************************
+Common DNS Providers
+---------------------
 
 Common providers are listed below. If yours is not listed, contact your DNS provider for assistance.
 

@@ -1,10 +1,10 @@
 .. _quickstart-receiving:
 
-Quickstart - Receiving
+How to start receiving inbound email
 ======================
 
 Receiving DNS Records
-*********************
+---------------------------
 
 .. figure::  _static/img/quickstart/mx.png
    :align: left
