@@ -52,7 +52,7 @@
       'text'    => 'Testing some Mailgun awesomness!',
       'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>'
   ), array(
-      'inline' => '@/path/to/test.jpg'
+      'inline' => array('@/path/to/test.jpg')
   ));
 
 .. code-block:: py
