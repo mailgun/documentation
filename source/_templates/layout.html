@@ -1,6 +1,6 @@
 {% extends "basic/layout.html" %}
 {% if corpsite_hostname == ""  %}
-  {% set corpsite_hostname = "192.168.19.2:6002" %}
+  {% set corpsite_hostname = "" %}
 {% endif %}
 {% set css_url = "http://" + corpsite_hostname + "/static/css/main.css" %}
 {%- block doctype -%}
@@ -55,9 +55,6 @@
 <script type="text/javascript"
   src="{{ pathto('_static/i2a.js', 1) }}">
 </script>
-
-<!-- Olark chat -->
-<script type='text/javascript'>/*<![CDATA[*/ window.olark||(function(k){var g=window,j=document,a=g.location.protocol=="https:"?"https:":"http:",i=k.name,b="load",h="addEventListener";(function(){g[i]=function(){(c.s=c.s||[]).push(arguments)};var c=g[i]._={},f=k.methods.length;while(f--){(function(l){g[i][l]=function(){g[i]("call",l,arguments)}})(k.methods[f])}c.l=k.loader;c.i=arguments.callee;c.p={0:+new Date};c.P=function(l){c.p[l]=new Date-c.p[0]};function e(){c.P(b);g[i](b)}g[h]?g[h](b,e,false):g.attachEvent("on"+b,e);c.P(1);var d=j.createElement("script"),m=document.getElementsByTagName("script")[0];d.type="text/javascript";d.async=true;d.src=a+"//"+c.l;m.parentNode.insertBefore(d,m);c.P(2)})()})({loader:(function(a){return "static.olark.com/jsclient/loader1.js?ts="+(a?a[1]:(+new Date))})(document.cookie.match(/olarkld=([0-9]+)/)),name:"olark",methods:["configure","extend","declare","identify"]}); olark.identify('8160-428-10-5523');/*]]>*/</script>
 
 <!-- GA pageLoadVars -->
 <script type="text/javascript">
@@ -171,9 +168,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {%- endif %}
       {%- endblock %}
       {%- block sidebartoc %}
-      <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul>
+      <!-- <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul> -->
           {%- if "FAQ" in title %}
               {{ toctree(maxdepth=1) }}
+          {%- elif "Quickstart" in title %}
+              {{ toctree(maxdepth=2) }}
           {% elif "Reference" in title %}
               {{ toctree(maxdepth=2) }}
           {% else %}
@@ -204,18 +203,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {%- if not embedded %}{% if not theme_nosidebar|tobool %}
           </div>
         {%- endif %}{% endif %}
-        </div>
-      <div class="footer">
-        <p><a href="https://www.mailgun.com/signup" class="btn-primary">Try Mailgun now</a></p>
+        <div class="footer">
+        <p><a href="https://www.mailgun.com/signup" class="btn-primary">Start sending email from your app</a></p>
       {%- if last_updated %}
         {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
       {%- endif %}
       {%- if show_sphinx %}
         {% trans sphinx_version=sphinx_version|e %}
-             <P>Docs created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.</P>
+             <!-- <P>Docs created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.</P> -->
         {% endtrans %}
       {%- endif %}
       </div>
+    </div>
   {%- endblock %}
   {%- block sidebar2 %}{% endblock %}
   {%- block relbar2 %}{% endblock %}
@@ -223,23 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div> <!-- /content -->
   </section> <!-- /container -->
-</div> <!-- /body -->
-
-<footer>
-    <div class="container">
-        <nav class="footer-nav">
-            <a href="http://www.mailgun.com/team">Team</a>
-            <a href="http://www.mailgun.com/terms">Terms of service</a>
-            <a href="http://www.mailgun.com/privacy">Privacy policy</a>
-            <a href="http://twitter.com/Mail_Gun">Twitter</a>
-            <a href="http://www.mailgun.com/contact">Contact</a>
-            <a href="http://documentation.mailgun.com/faqs.html">FAQ</a>
-            <a href="http://blog.mailgun.com">Blog</a>
-        </nav>
-        <p>Made in San Francisco. Powered by <span class="img-rs"></span></p>
-        <span class="img-map"></span>
-    </div>
-</footer>
+</div> <!-- /body --> 
 
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.debounce.min.js', 1) }}"></script>

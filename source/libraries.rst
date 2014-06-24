@@ -154,6 +154,12 @@ Ubuntu installation when we started and secondly, once the library is
 installed, making HTTP requests becomes no more difficult than
 in any other language.
 
+
+Node.js
+=======
+
+Check out the available `node modules <https://www.npmjs.org/search?q=mailgun>`_ from the community.
+
 cURL
 ====
 `curl <http://linux.die.net/man/1/curl>`_ is a popular command line tool to send HTTP requests.

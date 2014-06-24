@@ -1,34 +1,15 @@
-Documentation
-#############
+Mailgun Documentation
+#####################
 
-
-
-Introduction
-~~~~~~~~~~~~
-
-Mailgun is a programmable email platform. It allows your application to
-become a fully featured email server. Send, receive and track messages with ease 
-using your favorite programming language.
-
-Imagination is your limit. Email is not hard anymore.
-
-The best document to get a full description of Mailgun is the :ref:`user-manual`.
-However, if you are anxious to get started right away, feel free to check out
-the :ref:`quickstart`.
-
-
-Contents
-~~~~~~~~
+Learn how to send email from your app, SMTP vs API, verifying your domain, email reputation; we'll explain it all here.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   quickstart
+   Quickstart Guide <quickstart>
    user_manual
    libraries
    api_reference
    faqs
    best_practices
 
-.. toctree
-   :maxdepth: 1
