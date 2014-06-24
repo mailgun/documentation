@@ -7,7 +7,7 @@ How to start sending email
    :align: center
    :width: 800 px
 
-Send with SMTP or API?
+Send with SMTP or API
 ---------------------
 
 It’s up to you, whatever you find easier is fine with us. Here's something to consider:
