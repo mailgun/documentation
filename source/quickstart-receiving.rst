@@ -6,10 +6,6 @@ How to start receiving inbound email
 Receiving DNS Records
 ---------------------------
 
-.. figure::  _static/img/quickstart/mx.png
-   :align: left
-   :width: 400 px
-
 .. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
 		     mail delivery (e.g. Gmail).
 
