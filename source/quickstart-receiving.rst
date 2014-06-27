@@ -3,11 +3,8 @@
 How to start receiving inbound email
 ======================
 
-Receiving DNS Records
+Add Receiving DNS Records
 ---------------------------
-
-.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
-		     mail delivery (e.g. Gmail).
 
 Mail server for handling inbound messages.  `MX Information`_
 
@@ -18,6 +15,9 @@ MX        mxa.mailgun.org 											  Receiving (Optional)
 MX        mxb.mailgun.org											  Receiving (Optional)
 ========= =========================================================== ==================== 
 
+.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
+		     mail delivery for your domain (e.g. Gmail). Instead we recommend using a subdomain on Mailgun (e.g. mg.yourdomain.com)
+		     
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
 
 Receiving and Parsing Email
