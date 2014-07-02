@@ -3,6 +3,10 @@
 How to start receiving inbound email
 ======================
 
+.. figure::  _static/img/quickstart/mx.png
+   :align: center
+   :width: 700 px
+
 Add Receiving DNS Records
 ---------------------------
 
@@ -29,7 +33,10 @@ When a message is received, Mailgun evaluates the filter expression against it, 
 if the expression is true, the action is executed.
 
 Regular expressions can be used to match against message recipients or
-arbitrary headers such as subject. Below are some examples of filter expressions:
+arbitrary headers such as subject. 
+
+Examples of filter expressions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ================================ ===========================================================
 Expression                       Description
@@ -42,7 +49,8 @@ catch_all()                      Returns true if no other route matched, to impl
                                  behaviour.
 ================================ ===========================================================
 
-Supported actions:
+Supported actions
+^^^^^^^^^^^^^^^^^
 
 ================================= ===========================================================
 Action                            Description
