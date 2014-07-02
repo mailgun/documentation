@@ -45,8 +45,8 @@ URL parameters allow you to manipulate the results of your query:
                    effectively defining traversal direction from **begin**, to the 
                    past, until the end of time.
 
- limit             The maximum number of log entries to return. The default and
-                   maximum value is 100.
+ limit             Number of entries to return. (100 max)
+                   
 
  pretty            Can be either ``yes`` or ``no``. This defines whether the results
                    should be returned in human-readable (indented) or compact
