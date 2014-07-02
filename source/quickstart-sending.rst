@@ -100,7 +100,7 @@ Once you've added the records and they've propagated, your domain will be verifi
 
 If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
 
-Sending & Tracking DNS Records
+Add Sending & Tracking DNS Records
 ^^^^^^^^^^^^^
 
 .. figure::  _static/img/quickstart/spf.png
