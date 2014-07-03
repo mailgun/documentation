@@ -203,17 +203,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {%- if not embedded %}{% if not theme_nosidebar|tobool %}
           </div>
         {%- endif %}{% endif %}
-        <div class="footer">
-        <p><a href="https://www.mailgun.com/signup" class="btn-primary">Start sending email from your app</a></p>
-      {%- if last_updated %}
-        {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
-      {%- endif %}
-      {%- if show_sphinx %}
-        {% trans sphinx_version=sphinx_version|e %}
-             <!-- <P>Docs created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.</P> -->
-        {% endtrans %}
-      {%- endif %}
-      </div>
     </div>
   {%- endblock %}
   {%- block sidebar2 %}{% endblock %}
