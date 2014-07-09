@@ -7,10 +7,10 @@ How to start receiving inbound email
    :align: center
    :width: 700 px
 
-Add Receiving DNS Records
+Add Receiving MX Records
 ---------------------------
 
-Mail server for handling inbound messages.  `MX Information`_
+Your domain needs Mailgun MX records to handle inbound messages. Open up your domain provider and add these.  `MX Information`_
 
 ========= =========================================================== ==================== 
 Type      Value														  Purpose
@@ -24,13 +24,15 @@ MX        mxb.mailgun.org											  Receiving (Optional)
 		     
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
 
-Receiving Email: Inbound Routes and Parsing
+Inbound Routes and Parsing
 ---------------------------
 
-You can define a list of routes to handle incoming emails and prioritize the sequence
-of their execution. Each route consists of a filter expression and an action.
-When a message is received, Mailgun evaluates the filter expression against it, and
-if the expression is true, the action is executed.
+You can define a list of **routes to handle incoming emails** and prioritize the sequence
+of their execution.
+
+* Each **route consists of a filter expression and an action**.
+* When a message is received, Mailgun evaluates the filter expression against it.
+* If the expression is true, the action is executed.
 
 Regular expressions can be used to match against message recipients or
 arbitrary headers such as subject. 
