@@ -39,8 +39,6 @@ It’s up to you, whatever you find easier is fine with us. Here's something to 
 
 In short, SMTP is an open and established protocol with large ecosystem, while Mailgun API is better long term performance and maintenance wise.
 
-* `Send via API`_
-* `Send via SMTP`_
 
 Send via API
 ^^^^^^^^^^^^^
