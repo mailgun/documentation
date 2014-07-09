@@ -10,7 +10,7 @@ How to start receiving inbound email
 Add Receiving MX Records
 ---------------------------
 
-Your domain needs Mailgun MX records to handle inbound messages. Open up your domain provider and add these.  `MX Information`_
+Your domain needs Mailgun MX records to handle inbound messages. Open up your DNS provider and add these.  `MX Information`_
 
 ========= =========================================================== ==================== 
 Type      Value														  Purpose
