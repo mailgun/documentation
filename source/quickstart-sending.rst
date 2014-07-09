@@ -55,8 +55,6 @@ What's actually happening:
 * Added the log entries to our full text search index.
 * Delivered the email.
 
-What's next? Add DNS records to `verify your domain`_.
-
 
 Send via SMTP
 ^^^^^^^^^^^^^
@@ -64,8 +62,6 @@ Send via SMTP
 Run this:
 
 .. include:: samples/smtp-send-simple-message.rst
-
-What's next? Add DNS records to `verify your domain`_.
 
 
 Verify Your Domain
@@ -90,7 +86,7 @@ How to verify your domain
 ^^^^^^^^^^^^^
 
 1. Add your domain or subdomain.
-2. Add the **two TXT DNS records** provided at your DNS provider.
+2. Open your DNS provider and add the **two TXT DNS records** provided.
 3. If you want Mailgun to **track clicks and opens** you can also add the **CNAME** record.
 4. MX records should also be added, **unless you already have MX records** for your domain pointed at another email service provider (e.g. Gmail).
 
@@ -102,10 +98,6 @@ If you will be creating a lot of domains, Mailgun offers an API endpoint for add
 
 Add Sending & Tracking DNS Records
 ^^^^^^^^^^^^^
-
-.. figure::  _static/img/quickstart/spf.png
-   :align: left
-   :width: 600 px
 
 * **SPF**: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
 * **DKIM**: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_ 
@@ -122,11 +114,8 @@ CNAME     "mailgun.org"                                               Tracking (
 .. _SPF Information: http://www.openspf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
 
-Receiving DNS Records
+Add Receiving MX Records
 ^^^^^^^^^^^^^
-
-.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
-		     mail delivery (e.g. Gmail).
 
 Mail server for handling inbound messages.  `MX Information`_
 
@@ -138,6 +127,9 @@ MX        mxb.mailgun.org											  Receiving (Optional)
 ========= =========================================================== ==================== 
 
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
+
+.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound 
+		     mail delivery (e.g. Gmail).
 
 Common DNS Providers
 ---------------------
