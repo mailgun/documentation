@@ -24,7 +24,7 @@ MX        mxb.mailgun.org											  Receiving (Optional)
 		     
 .. _MX Information: http://en.wikipedia.org/wiki/MX_record
 
-Receiving and Parsing Email
+Receiving Email: Inbound Routes and Parsing
 ---------------------------
 
 You can define a list of routes to handle incoming emails and prioritize the sequence
@@ -35,7 +35,7 @@ if the expression is true, the action is executed.
 Regular expressions can be used to match against message recipients or
 arbitrary headers such as subject. 
 
-Examples of filter expressions
+Examples of filter expressions for routes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ================================ ===========================================================
@@ -49,7 +49,7 @@ catch_all()                      Returns true if no other route matched, to impl
                                  behaviour.
 ================================ ===========================================================
 
-Supported actions
+Supported actions for routes
 ^^^^^^^^^^^^^^^^^
 
 ================================= ===========================================================
