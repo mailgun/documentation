@@ -158,7 +158,9 @@ in any other language.
 Node.js
 =======
 
-Check out the available `node modules <https://www.npmjs.org/search?q=mailgun>`_ from the community.
+Check out the available `node modules <https://www.npmjs.org/search?q=mailgun>`_ from the community. 
+
+We also have a step by step tutorial post on `sending email with Node.js <http://blog.mailgun.com/how-to-send-transactional-emails-in-a-nodejs-app-using-the-mailgun-api/>`_.
 
 cURL
 ====
