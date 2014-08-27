@@ -92,4 +92,4 @@ Mailgun returns standard HTTP response codes.
 Webhooks
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Mailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes.  You can read more about :ref:`manual-webhooks` and :ref:`um-routes` in the :ref:`user-manual`.
+Mailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes.  You can read more about :ref:`webhooks` and :ref:`um-routes` in the :ref:`user-manual`.
