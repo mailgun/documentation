@@ -90,3 +90,15 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func AddListMember(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   memberJoe := mailgun.Member{
+     Address:    "joe@example.com",
+     Name:       "Joe Example",
+     Subscribed: mailgun.Subscribed,
+   }
+   return mg.CreateMember(true, "mailingList@example.com", memberJoe)
+ }

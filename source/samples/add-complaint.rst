@@ -65,3 +65,10 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func CreateComplaint(domain, apiKey, emailAddress string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateComplaint("bob@example.com")
+ }

@@ -69,3 +69,7 @@
  	request.Method = Method.PUT;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // coming soon

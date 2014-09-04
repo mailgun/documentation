@@ -56,3 +56,7 @@
  	request.Resource = "{domain}/events";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // coming soon

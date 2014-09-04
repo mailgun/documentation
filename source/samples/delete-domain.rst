@@ -57,3 +57,10 @@
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func DeleteDomain(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.DeleteDomain("subdomain.example.com")
+ }

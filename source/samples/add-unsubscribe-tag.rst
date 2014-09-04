@@ -72,3 +72,10 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func CreateUnsubscriptionWithTag(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.Unsubscribe("bob@example.com", "tag1")
+ }
