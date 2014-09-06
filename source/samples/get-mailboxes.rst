@@ -61,3 +61,7 @@
  	request.Resource = "{domain}/mailboxes";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // Not supported

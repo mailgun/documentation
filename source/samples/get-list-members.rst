@@ -60,3 +60,10 @@
  	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetMembers(domain, apiKey string) (int, []mailgun.Member, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetMembers(-1, -1, mailgun.All, "dev@samples.mailgun.org")
+ }

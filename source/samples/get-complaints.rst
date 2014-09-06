@@ -60,3 +60,10 @@
  	request.Resource = "{domain}/complaints";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetComplaints(domain, apiKey string) (int, []mailgun.Complaint, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetComplaints()
+ }

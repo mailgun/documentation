@@ -81,3 +81,10 @@
  	request.AddParameter("limit", 2);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetStats(domain, apiKey string) (int, []mailgun.Stat, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetStats(-1, -1, nil, "sent", "opened")
+ }

@@ -64,3 +64,10 @@
  	request.AddParameter("address", "foo@mailgun.net");
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func ValidateEmail(domain, publicApiKey string) (mailgun.EmailVerification, error) {
+   mg := mailgun.NewMailgun(domain, "", publicApiKey)
+   return mg.ValidateEmail("foo@mailgun.net")
+ }

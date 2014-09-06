@@ -60,3 +60,10 @@
  	request.Resource = "{domain}/unsubscribes";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetUnsubscribes(domain, apiKey string) (int, []mailgun.Unsubscribe, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetUnsubscribes(-1, -1)
+ }

@@ -58,3 +58,7 @@
  	                     "samples.mailgun.org", ParameterType.UrlSegment);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // Not supported

@@ -65,3 +65,10 @@
  	request.AddParameter("limit", 3);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetDomains(domain, apiKey string) (int, []mailgun.Domain, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetDomains(-1, -1)
+ }

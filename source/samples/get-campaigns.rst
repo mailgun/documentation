@@ -59,3 +59,12 @@
      request.AddParameter("limit", 2);
      return client.Execute(request);
  }
+
+
+.. code-block:: go
+
+ // No longer supported
+ func GetCampaigns(domain, apiKey string) (int, []mailgun.Campaign, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetCampaigns()
+ }

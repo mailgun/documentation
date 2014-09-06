@@ -59,3 +59,7 @@
  	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // Coming soon

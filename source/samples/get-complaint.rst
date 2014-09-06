@@ -59,3 +59,10 @@
  	request.Resource = "{domain}/complaints/baz@example.com";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetComplaints(domain, apiKey string) (mailgun.Complaint, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetSingleComplaint("baz@example.com")
+ }

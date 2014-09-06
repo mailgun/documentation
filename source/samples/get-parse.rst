@@ -65,3 +65,15 @@
  	request.AddParameter("addresses", "Alice <alice@example.com>,bob@example.com,example.com");
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func ParseAddress(domain, publicApiKey string) ([]string, []string, error) {
+   mg := mailgun.NewMailgun(domain, "", publicApiKey)
+   return mg.ParseAddress(
+     "Alice <alice@example.com>",
+     "bob@example.com",
+     "example.com",
+     // ...
+   )
+ }
