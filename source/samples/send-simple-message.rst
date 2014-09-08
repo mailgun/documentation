@@ -87,3 +87,17 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func SendSimpleMessage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
+   m := mg.NewMessage(
+     "Excited User <me@samples.mailgun.org>", 
+     "Hello", 
+     "Testing some Mailgun awesomeness!", 
+     "bar@example.com",
+   )
+   _, id, err := mg.Send(m)
+   return id, err
+ }

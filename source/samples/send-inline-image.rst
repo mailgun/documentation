@@ -103,3 +103,22 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func SendInlineImage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   m := mg.NewMessage(
+     "Excited User <me@samples.mailgun.org>",
+     "Hello",
+     "Testing some Mailgun awesomeness!",
+     "foo@example.com",
+   )
+   m.AddCC("baz@example.com")
+   m.AddBCC("bar@example.com")
+   m.SetHtml("<html>HTML version of the body</html>")
+   m.AddInline("files/test.jpg")
+   m.AddInline("files/test.txt")
+   _, id, err := mg.Send(m)
+   return id, err
+  }

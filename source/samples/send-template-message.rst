@@ -97,3 +97,33 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ var recipients = []struct {
+   Id          int
+   Name, Email string
+ }{
+   {1, "Bob", bob@example.com"},
+   {2, "Alice", alice@example.com"},
+ }
+
+ func SendTemplateMessage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   m := mg.NewMessage(
+     "Excited User <me@samples.mailgun.org>",
+     "Hey %recipient.first%",
+     "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%",
+   ) // IMPORTANT: No To:-field recipients!
+   for _, recipient := range recipients {
+     err := m.AddRecipientAndVariables(recipient.Email, map[string]interface{}{
+       "name": recipient.Name,
+       "id":   recipient.Id,
+     })
+     if err != nil {
+       return "", err
+     }
+   }
+   _, id, err = mg.Send(m)
+   return id, err
+ }

@@ -91,3 +91,18 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func SendScheduledMessage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
+   m := mg.NewMessage(
+     "Excited User <me@samples.mailgun.org>", 
+     "Hello", 
+     "Testing some Mailgun awesomeness!", 
+     "bar@example.com",
+   )
+   m.SetDeliveryTime(time.Now().Add(5 * time.Minute))
+   _, id, err := mg.Send(m)
+   return id, err
+ }

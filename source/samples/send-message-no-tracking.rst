@@ -93,3 +93,18 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func SendMessageNoTracking(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   m := mg.NewMessage(
+     "Excited User <me@samples.mailgun.org>",
+     "Hello",
+     "Testing some Mailgun awesomeness!",
+     "foo@example.com",
+   )
+   m.SetTracking(false)
+   _, id, err := mg.Send(m)
+   return id, err
+ }

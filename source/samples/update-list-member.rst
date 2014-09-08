@@ -77,3 +77,14 @@
  	request.Method = Method.PUT;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func UpdateMember(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   _, err = mg.UpdateMember("bar@example.com", "dev@samples.mailgun.org", mailgun.Member{
+     Name: "Foo Bar",
+     Subscribed: mailgun.Unsubscribed,
+   })
+   return err
+ }

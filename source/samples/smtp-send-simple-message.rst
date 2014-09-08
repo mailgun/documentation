@@ -144,3 +144,6 @@
     client.Send(mail);
   }
 
+.. code-block:: go
+
+ // Not supported.
