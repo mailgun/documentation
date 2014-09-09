@@ -65,3 +65,10 @@
  	request.AddParameter("limit", 1);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetRoutes(domain, apiKey string) (int, []mailgun.Route, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetRoutes(-1, -1)
+ }

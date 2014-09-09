@@ -73,3 +73,10 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func CreateCredential(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateCredential("alice@samples.mailgun.org", "secret")
+ }

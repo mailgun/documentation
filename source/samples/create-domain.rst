@@ -70,3 +70,10 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+ 
+.. code-block:: go
+
+ func CreateDomain(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateDomain("samples.mailgun.org", "supersecretpw", mailgun.Tag, false)
+ }

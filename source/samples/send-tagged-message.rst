@@ -96,3 +96,20 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func SendTaggedMessage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   m := mg.NewMessage(
+     "Excited User <me@samples.mailgun.org>", 
+     "Hello", 
+     "Testing some Mailgun awesomeness!", 
+     "bar@example.com",
+   )
+   m.AddTag("FooTag")
+   m.AddTag("BarTag")
+   m.AddTag("BlortTag")
+   _, id, err := mg.Send(m)
+   return id, err
+ }

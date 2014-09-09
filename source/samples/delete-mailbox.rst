@@ -60,3 +60,7 @@
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // coming soon

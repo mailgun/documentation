@@ -80,3 +80,16 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func SendMimeMessage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mimeMsgReader, err := os.Open("files/message.mime")
+   if err != nil {
+     return "", err
+   }
+   m := mg.NewMIMEMessage(mimeMsgReader, "bar@example.com")
+   _, id, err := mg.Send(m)
+   return id, err
+ }

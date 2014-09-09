@@ -68,3 +68,10 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func CreateWebhook(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateWebhook("deliver", "http://www.example.com")
+ }

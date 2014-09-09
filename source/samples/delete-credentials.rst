@@ -60,3 +60,10 @@
   request.Method = Method.DELETE;
   return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func DeleteCredential(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.DeleteCredential("alice")
+ }

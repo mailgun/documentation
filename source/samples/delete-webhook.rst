@@ -57,3 +57,11 @@
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func DeleteWebhook(t *testing.T) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.DeleteWebhook("deliver")
+ }
+

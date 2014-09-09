@@ -58,3 +58,10 @@
  	request.AddUrlSegment("id", "4e97c1b2ba8a48567f007fb6");
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetRouteByID(domain, apiKey string) (Route, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetRouteByID("4e97c1b2ba8a48567f007fb6")
+ }

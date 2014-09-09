@@ -72,3 +72,29 @@
   	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func AddListMembers(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateMemberList(nil, "dev@samples.mailgun.org", []interface{}{
+     mailgun.Member{
+       Address:    "alice@example.com",
+       Name:       "Alice's debugging account",
+       Subscribed: mailgun.Unsubscribed,
+     },
+     mailgun.Member{
+       Address:    "Bob Cool <bob@example.com>",
+       Name:       "Bob's Cool Account",
+       Subscribed: mailgun.Subscribed,
+     },
+     mailgun.Member{
+       Address: "joe.hamradio@example.com",
+       // Charlette is a ham radio packet BBS user.
+       // We attach her packet BBS e-mail address as an arbitrary var here.
+       Vars: map[string]interface{}{
+         "packet-email": "KW9ABC @ BOGUS-4.#NCA.CA.USA.NOAM",
+       },
+     },
+   })
+ }

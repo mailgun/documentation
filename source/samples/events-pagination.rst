@@ -57,3 +57,28 @@
  	request.Resource = "{domain}/events/W3siYSI6IGZhbHNlLC";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetLog2(domain, apiKey string) ([]mailgun.Event, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   ei := mg.NewEventIterator()
+   err := ei.GetFirstPage(mailgun.GetEventsOptions{
+     Filter:         map[string]string{
+       "event": "rejected OR failed",
+     }
+   })
+   if err != nil {
+     return nil, err
+   }
+   // ...
+   err = ei.GetNext()
+   if err != nil {
+     return nil, err
+   }
+   events := ei.Events()
+   if len(events) == 0 {
+     return nil, fmt.Errorf("No more events")
+   }
+   return events, nil
+ }

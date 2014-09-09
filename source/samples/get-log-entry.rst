@@ -71,3 +71,7 @@
  	request.AddParameter("limit", 1);
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // Not supported.

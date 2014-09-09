@@ -65,3 +65,19 @@
  	request.AddParameter("event", "rejected OR failed");
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetLog2(domain, apiKey string) ([]mailgun.Event, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   ei := mg.NewEventIterator()
+   err := ei.GetFirstPage(mailgun.GetEventsOptions{
+     Filter:         map[string]string{
+       "event": "rejected OR failed",
+     }
+   })
+   if err != nil {
+     return nil, err
+   }
+   return ei.Events(), nil
+ }

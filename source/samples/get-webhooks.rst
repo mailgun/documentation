@@ -57,3 +57,10 @@
  	request.Resource = "{domain}/bounces/webhooks";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetWebhooks(domain, apiKey string) (map[string]string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetWebhooks()
+ }

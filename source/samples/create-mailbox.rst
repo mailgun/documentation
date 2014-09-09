@@ -73,3 +73,7 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ // Not supported

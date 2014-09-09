@@ -57,3 +57,10 @@
        request.Resource = "/domains/{domain}";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetSingleDomain(domain, apiKey string) (mailgun.Domain, []mailgun.DNSRecord, []mailgun.DNSRecord, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetSingleDomain(domains[0].Name)
+ }

@@ -59,3 +59,11 @@
   request.Resource = "{domain}/bounces";
   return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetBounces(domain, apiKey string) (int, []mailgun.Bounce, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   total, bounces, err := mg.GetBounces(-1, -1)
+   return total, bounces, err
+ }

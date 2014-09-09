@@ -87,3 +87,18 @@
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func CreateRoute(domain, apiKey string) (mailgun.Route, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateRoute(mailgun.Route{
+     Priority:    1,
+     Description: "Sample Route",
+     Expression:  "match_recipient(\".*@samples.mailgun.org\")",
+     Actions: []string{
+       "forward(\"http://example.com/messages/\")",
+       "stop()",
+     },
+   })
+ }

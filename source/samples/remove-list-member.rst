@@ -61,3 +61,10 @@
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func DeleteListMember(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.DeleteMember("joe@example.com", "dev@samples.mailgun.org")
+ }

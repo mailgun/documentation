@@ -92,3 +92,22 @@
     request.AddParameter("recipient", "joe@example.com");
     return client.Execute(request);
   }
+
+.. code-block:: go
+
+ func GetLog(domain, apiKey string) ([]mailgun.Event, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   ei := mg.NewEventIterator()
+   err := ei.GetFirstPage(mailgun.GetEventsOptions{
+     Begin:          time.Now().Add(-50 * Time.Minute),
+     ForceAscending: true,
+     Limit:          1,
+     Filter:         map[string]string{
+       "recipient": "joe@example.com",
+     }
+   })
+   if err != nil {
+     return nil, err
+   }
+   return ei.Events(), nil
+ }

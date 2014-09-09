@@ -59,3 +59,10 @@
  	request.Resource = "{domain}/bounces/foo@bar.com";
  	return client.Execute(request);
  }
+
+.. code-block:: go
+
+ func GetBounce(domain, apiKey string) (mailgun.Bounce, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.GetSingleBounce("foo@bar.com")
+ }
