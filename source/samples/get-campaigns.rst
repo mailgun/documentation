@@ -63,8 +63,5 @@
 
 .. code-block:: go
 
- // No longer supported
- func GetCampaigns(domain, apiKey string) (int, []mailgun.Campaign, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.GetCampaigns()
- }
+ // Not supported
+

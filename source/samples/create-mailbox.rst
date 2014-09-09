@@ -76,4 +76,4 @@
 
 .. code-block:: go
 
- // coming soon
+ // Not supported
