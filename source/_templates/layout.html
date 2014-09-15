@@ -77,6 +77,17 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="text/javascript" src="{{ pathto('_static/google_tag_manager.js', 1) }}"></script>
 
+<!-- SVG Icons -->
+<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="517" height="32" viewBox="0 0 517 32">
+<defs>
+<g id="icon-search">
+  <path class="path1" d="M0 14.857q0-2.554 0.991-4.884t2.679-4.018 4.018-2.679 4.884-0.991 4.884 0.991 4.018 2.679 2.679 4.018 0.991 4.884q0 3.929-2.214 7.125l6.125 6.125q0.661 0.661 0.661 1.607 0 0.929-0.679 1.607t-1.607 0.679q-0.964 0-1.607-0.679l-6.125-6.107q-3.196 2.214-7.125 2.214-2.554 0-4.884-0.991t-4.018-2.679-2.679-4.018-0.991-4.884zM4.571 14.857q0 3.304 2.348 5.652t5.652 2.348 5.652-2.348 2.348-5.652-2.348-5.652-5.652-2.348-5.652 2.348-2.348 5.652z"></path>
+</g>
+<g id="icon-menu">
+  <path class="path1" d="M0 26.286v-2.286q0-0.464 0.339-0.804t0.804-0.339h25.143q0.464 0 0.804 0.339t0.339 0.804v2.286q0 0.464-0.339 0.804t-0.804 0.339h-25.143q-0.464 0-0.804-0.339t-0.339-0.804zM0 17.143v-2.286q0-0.464 0.339-0.804t0.804-0.339h25.143q0.464 0 0.804 0.339t0.339 0.804v2.286q0 0.464-0.339 0.804t-0.804 0.339h-25.143q-0.464 0-0.804-0.339t-0.339-0.804zM0 8v-2.286q0-0.464 0.339-0.804t0.804-0.339h25.143q0.464 0 0.804 0.339t0.339 0.804v2.286q0 0.464-0.339 0.804t-0.804 0.339h-25.143q-0.464 0-0.804-0.339t-0.339-0.804z"></path>
+</g>
+</defs></svg>
+
 <header>
   <div class="container">
       <a href="http://www.mailgun.com/" class="logo">Mailgun - Email Automation by Rackspace</a>
@@ -86,7 +97,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="https://www.mailgun.com/signup"><b>Sign Up</b></a>
           <a href="https://www.mailgun.com/sessions/new" class="login-link"><b>Log in</b></a>
       </nav>
-      <button id="js-show-nav"><i class="icon-reorder"></i></button>
+      <button id="js-show-nav"><svg class="icon icon-menu" viewBox="0 0 30 32"><use xlink:href="#icon-menu"></use></svg></button>
   </div>
 </header>
 
@@ -114,10 +125,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="" id="lang_java" >Java</a>
         </li>
         <li class="lang">
-          <a href="" id="csharp" >C#</a>
+          <a href="" id="lang_csharp" >C#</a>
         </li>
         <li class="lang">
-          <a href="" id="go" >Go</a>
+          <a href="" id="lang_go" >Go</a>
         </li>
 
         {%- block sidebarsearch %}
@@ -125,6 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="searchbox" style="display: none" class="search-box">
           {# <h3>{{ _('Quick search') }}</h3> #}
           <form>
+            <svg class="icon icon-search" viewBox="0 0 32 32"><use xlink:href="#icon-search"></use></svg>
             <input type="search" id="st-search-input" class="prettysearch search-input" autofocus />
           <!--<form class="search" action="{{ pathto('search') }}" method="get">-->
             <!--<div class="search-wrapper">
