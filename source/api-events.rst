@@ -114,13 +114,15 @@ Possible filtering expressions are listed below:
  foo OR bar        Matches field values that contain either term ``foo`` or
                    term ``bar``.
  "foo bar"         Matches field values that literally contain ``foo bar``.
- foo -bar          Matches field values that contain term ``foo`` but do
-                   **not** contain term ``bar``.
+ NOT foo           Matches field values that do not contain term ``foo``.
  >10000            Matches values that greater then ``10000``. This filter can
                    be applied to numeric fields only.
  >10000 <20000     Matches values that are greater then ``10000`` and less then
                    ``20000``. This filter can be applied to numeric fields only.
  ================= ============================================================
+ 
+Note that more then one expression can be used as a filter value and parenthesis
+can be used to specify groupping. E.g.: ``(Hello AND NOT Rachel) OR (Farewell AND Monica)``.
 
 Filter Event
 ------------
