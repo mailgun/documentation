@@ -126,7 +126,8 @@ Sample response:
 	      "name": "samples.mailgun.org",
 	      "smtp_password": "4rtqo4p6rrx9",
 	      "wildcard": true, 
-	      "spam_action": "disabled"
+	      "spam_action": "disabled",
+	      "state": "active"
 	    }
 	  ]
 	}
@@ -146,7 +147,8 @@ Sample response:
 	    "name": "domain.com",
 	    "smtp_password": "4rtqo4p6rrx9",
 	    "wildcard": false, 
-	    "spam_action": "tag"
+	    "spam_action": "tag",
+	    "state": "active"
 	  },
 	  "receiving_dns_records": [
 	    {
@@ -198,7 +200,8 @@ Sample response:
 	    "wildcard": false, 
 	    "spam_action": "disabled", 
 	    "smtp_login": "postmaster@example.com", 
-	    "smtp_password": "thiswontwork"
+	    "smtp_password": "thiswontwork",
+	    "state": "active"
 	  }, 
 	  "receiving_dns_records": [
 	    {
