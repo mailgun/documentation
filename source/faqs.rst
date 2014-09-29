@@ -57,7 +57,7 @@ It depends on various factors.
 
 If you are sending a lot of email (greater than 50k per week), it is a good idea to have a dedicated IP in order to isolate your reputation.  If you are sharing your IP, you are sharing your reputation with those other senders.  In addition, ESPs limit the total volume per IP, per hour.  If you are a high volume sender you should consider a pool of IPs.  However, you will have trouble establishing your reputation if you are not sending enough volume consistently from an IP - in this case, a shared IP is preferred.
 
-If your email sending is volatile with large spikes of volume, ESPs may assume those large spikes are spam.  Also, if you overall volume is too low, they won't acknowledge your reputation.  Generally, if you are sending less than 5,000 emails per day, a shared IP may be the right solution.
+If your email sending is volatile with large spikes of volume, ESPs may assume those large spikes are spam.  Also, if your overall volume is too low, they won't acknowledge your reputation.  Generally, if you are sending less than 5,000 emails per day, a shared IP may be the right solution.
 
 The other thing to consider is using separate IPs for your bulk and transactional mail.  There are a couple reasons for this:
 
