@@ -44,7 +44,7 @@
           msg.setSentDate(new Date());
           SMTPTransport t =
               (SMTPTransport)session.getTransport("smtps");
-          t.connect("smtp.gmail.com", "postmaster@samples.mailgun.org", "3kh9umujora5");
+          t.connect("smtp.mailgun.com", "postmaster@samples.mailgun.org", "3kh9umujora5");
           t.sendMessage(msg, msg.getAllRecipients());
           System.out.println("Response: " + t.getLastServerResponse());
           t.close();
