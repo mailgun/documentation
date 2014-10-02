@@ -225,7 +225,7 @@ Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (
 
 .. note:: Some ISPs are blocking or throttling SMTP port 25. We recommend using #587 instead.
 
-.. note:: If you need to configure your firewall, our SMTP/API IP is: ``198.61.253.48``. This is subject to change without notice!
+.. note:: If you need to configure your firewall, our SMTP/API IP is: ``50.56.21.178``. This is subject to change without notice!
 
 Use "plain text" SMTP authentication and the credentials from the domain details
 page in your Control Panel which can be found by clicking on a domain in the Domains
