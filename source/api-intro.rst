@@ -49,7 +49,7 @@ name and your API key is the password. Here is how you use basic HTTP auth with 
 
     curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'
 
-Or you can try the following API call right your browser::
+Or you can try the following API call right from your browser::
 
     https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v2/samples.mailgun.org/log
 
