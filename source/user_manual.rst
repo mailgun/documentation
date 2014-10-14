@@ -221,9 +221,11 @@ Example of sending inline image. Note how image is referenced in HTML part simpl
 Sending via SMTP
 ================
 
-Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (SSL/TLS) and ``587`` (STARTTLS).
+Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (SSL/TLS), ``587`` (STARTTLS), and ``2525``.
 
 .. note:: Some ISPs are blocking or throttling SMTP port 25. We recommend using #587 instead.
+
+.. note:: Google Compute Engine allows port ``2525`` for SMTP submission.
 
 .. note:: If you need to configure your firewall, our SMTP/API IP is: ``50.56.21.178``. This is subject to change without notice!
 

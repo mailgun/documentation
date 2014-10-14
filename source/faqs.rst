@@ -27,7 +27,7 @@ What are the differences between free and paid accounts?
 
 First of all, for both free and paid accounts, you get 10,000 free messages per month. However, there are some limitations if you don't provide payment information:
 
-* You will not be able to send more than 10,000 messages per month 
+* You will not be able to send more than 10,000 messages per month
 * Data retention for logs and the Events API is 2 days.
 * The limit for number of domains is 5.
 
@@ -53,7 +53,7 @@ You can create multiple domains in the control panel or through the Domains API 
 Do I need a dedicated IP address?
 **************************************************************************************************************
 
-It depends on various factors. 
+It depends on various factors.
 
 If you are sending a lot of email (greater than 50k per week), it is a good idea to have a dedicated IP in order to isolate your reputation.  If you are sharing your IP, you are sharing your reputation with those other senders.  In addition, ESPs limit the total volume per IP, per hour.  If you are a high volume sender you should consider a pool of IPs.  However, you will have trouble establishing your reputation if you are not sending enough volume consistently from an IP - in this case, a shared IP is preferred.
 
@@ -164,9 +164,9 @@ Email clients says "sent via mailgun.us" with messages I send.  How do I get rid
 
 Check the following:
 
-* You have a custom domain defined in the "Domains" tab of the Control Panel. 
-* You've setup the DKIM DNS record (provided in the Control Panel, "Domains" tab). 
-* You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v2/youcustomdomain.com/messages) 
+* You have a custom domain defined in the "Domains" tab of the Control Panel.
+* You've setup the DKIM DNS record (provided in the Control Panel, "Domains" tab).
+* You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v2/youcustomdomain.com/messages)
 
 If you're still seeing "via mailgun.org", please `contact our Support Team <https://mailgun.com/cp/support>`_ and we'll investigate.
 
@@ -193,7 +193,7 @@ How do I send the same message to multiple users using Mailgun?
 Mailgun supports the ability send to a group of recipients through a single API call or SMTP session. This is achieved by either:
 
 * Using Batch Sending by specifying multiple recipient email addresses as to parameters and using Recipient Variables.
-* Using Mailing Lists with Template Variables. 
+* Using Mailing Lists with Template Variables.
 
 See the :ref:`batch-sending` section of the :ref:`user-manual` for more information.
 
@@ -216,7 +216,7 @@ If port 25 is not blocked, you should see something like this::
 
 If you don't see this, then you are being blocked.  There are a couple workarounds:
   * Send using our HTTP API
-  * Send using port #587
+  * Try using port #587 or #2525
 
 I have multiple domains at Mailgun.  How do I tell Mailgun which domain to send mail from?
 **************************************************************************************************************
@@ -228,9 +228,9 @@ of the parameters in the URI.
 I just submitted a lot of messages. Why is delivery happening so slowly?
 **************************************************************************************************************
 
-There are many factors that can affect the speed of delivery. 
+There are many factors that can affect the speed of delivery.
 1. Your established reputation for the domain and IPs on your account.
-2. The total number of IPs allocated to your account. 
+2. The total number of IPs allocated to your account.
 3. The content quality for the emails being sent.
 
 For newly allocated IPs, Mailgun protects and improves the reputation by gradually increasing sending rates. This means, as time passes, with high quality traffic, being sent from your IPs, your sending rates will increase automatically. If you're seeing slow delivery, please contact us... We'll evaluate your account configuration to ensure it is configured for handling the volume you require.
@@ -246,7 +246,7 @@ The way to think about your email reputation is much like your credit score.  Wh
 Some of the factors that help you build a good reputation faster and increase deliverability are:
 
 - Limited spam complaints and bounces.
-- Including the ability for recipients to unsubscribe. 
+- Including the ability for recipients to unsubscribe.
 - Recipients interacting with your emails in a good way: reading, replying, forwarding and adding your addresses to their contacts.
 - Following ESPs' guidelines on sending rates.
 - Paying attention to ESPs' feedback to slow or stop sending for a period of time.
