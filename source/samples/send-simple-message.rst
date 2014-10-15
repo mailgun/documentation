@@ -10,7 +10,14 @@
 
 .. code-block:: java
 
- public static ClientResponse SendSimpleMessage() {
+ import com.sun.jersey.api.client.Client;
+ import com.sun.jersey.api.client.ClientResponse;
+ import com.sun.jersey.api.client.WebResource;
+ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+ import com.sun.jersey.core.util.MultivaluedMapImpl;
+ import javax.ws.rs.core.MediaType;
+
+ public static ClientResponse sendSimpleMessage() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
