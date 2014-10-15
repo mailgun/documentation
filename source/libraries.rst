@@ -31,7 +31,7 @@ powerful. To install it you would simply run:
  pip install requests
 
 You may also need a MultiDict class to represent HTTP requests with multiple
-values per key. We recommend WebOb's MultiDict_ but `Werkzeug/Flask <werkzeug.pocoo.org/docs/datastructures>`_ also offer MultiDict class.
+values per key. We recommend WebOb's MultiDict_ but `Werkzeug/Flask <http://werkzeug.pocoo.org/docs/datastructures>`_ also offer MultiDict class.
 
 .. note:: Our code samples use Requests version 0.7.5. Older versions of Requests don't take multi dictionaries. For post data and query params you could use lists to pass multi-valued keys. Unfortunately it won't work for files.
 
