@@ -93,7 +93,7 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
  to                 Email address of the recipient(s).
                     Example: ``"Bob <bob@host.com>"``. You can use commas to
                     separate multiple recipients.
-                    Make sure to include all ``To``, ``Cc`` and ``Bcc`` 
+                    Make sure to include all ``To``, ``Cc`` and ``Bcc``
                     recipients of the message.
  message            MIME string of the message. Make sure to use
                     ``multipart/form-data`` to send this as a file upload.
@@ -157,7 +157,7 @@ These are the parameters of the JSON returned from a GET request to a stored mes
            body-html             string       HTML version of the message, if message was multipart. Note that all parts of the message will be posted,
                                               not just text/html. For instance if a message arrives with "foo" part it will be posted as "body-foo".
            stripped-html         string       HTML version of the message, without quoted parts.
-           attachments           string       constains a json list of metadata objects, one for each attachment, see below.
+           attachments           string       contains a json list of metadata objects, one for each attachment, see below.
            message-url           string       a URL that you can use to get and/or delete the message.
            content-id-map        string       contains mappings from content ids to attachment urls.
            message-headers       string       list of all MIME headers dumped to a json string (order of headers preserved).
