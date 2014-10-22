@@ -1439,14 +1439,10 @@ Receiving Messages via HTTP through a forward() action
 When you specify a URL of your application as a route destination through a forward() action, Mailgun will perform an
 HTTP POST request into it using one of two following formats:
 
-- Fully parsed: Mailgun will parse the message, process attachments, attempt to separate quoted
-  parts from the actual message. This is the preferred option.
+- Fully parsed: Mailgun will parse the message, transcode it into UTF-8 encoding, process attachments,
+  and attempt to separate quoted parts from the actual message. This is the preferred option.
 - Raw MIME: message is posted as-is. In this case you are responsible for parsing MIME.
   To receive raw MIME messages, the destination URL must end with ``mime``.
-
-Regardless of which delivery method you choose, Mailgun will transcode the original message into
-UTF-8 encoding, even for raw MIME. We do this because we love our users: most MIME parsers are
-not good at dealing with all of the various broken MIME messages that exist in the wild.
 
 For Route POSTs, Mailgun listens for the following codes from your server and reacts accordingly:
 
