@@ -64,7 +64,7 @@
   $mail->SMTPAuth = true;                               // Enable SMTP authentication
   $mail->Username = 'postmaster@samples.mailgun.org';   // SMTP username
   $mail->Password = 'secret';                           // SMTP password
-  $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+  $mail->SMTPSecure = 'tls';                            // Enable encryption, only 'tls' is accepted
 
   $mail->From = 'me@samples.mailgun.org';
   $mail->FromName = 'Mailer';
