@@ -3,7 +3,7 @@
 
     curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
 	https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/members.json \
-	-F subscribed=True \
+	-F upsert=true \
 	-F members='[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]'
 
 .. code-block:: java
@@ -17,7 +17,7 @@
  				"dev@samples.mailgun.org/members.json");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("members", "[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]");
- 	formData.add("subscribed", true);
+ 	formData.add("upsert", true);
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
  		post(ClientResponse.class, formData);
  }
@@ -35,7 +35,7 @@
   # Issue the call to the client.
   $result = $mgClient->post("lists/$listAddress/members.json", array(
       'members'    => '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}}, {"name": "Alice", "address": "alice@example.com", "vars": {"age": 34}}]',
-      'subscribed' => true
+      'upsert' => true
   ));
 
 .. code-block:: py
@@ -44,7 +44,7 @@
      return requests.post(
          "https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/members.json",
          auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'),
-         data={'subscribed': True,
+         data={'upsert': True,
                'members': '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]')
 
 .. code-block:: rb
@@ -52,7 +52,7 @@
  def add_list_member
    RestClient.post("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0" \
                    "@api.mailgun.net/v2/lists/dev@samples.mailgun.org/members.json",
-                   :subscribed => true,
+                   :upsert => true,
                    :members => '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]')
  end
 
@@ -68,7 +68,7 @@
  	request.Resource = "lists/{list}/members.json";
  	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
  	request.AddParameter("members", "[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]");
- 	request.AddParameter("subscribed", true);
+ 	request.AddParameter("upsert", true);
   	request.Method = Method.POST;
  	return client.Execute(request);
  }
