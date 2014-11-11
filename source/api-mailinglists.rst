@@ -150,7 +150,7 @@ Adds multiple members, up to 1,000 per call, to a Mailing List.
  Parameter          Description
  ================== =======================================================
  members            JSON-encoded array. Elements can be either addresses, e.g. ``["bob@example.com", "alice@example.com"]``,
-                    or JSON objects, e.g. ``[{"address": "bob@example.com", "name": "Bob", "subscribed": false}, {"address": "alice@example.com", "name": "Alice"}] . Custom variables can be provided, see examples.
+                    or JSON objects, e.g. ``[{"address": "bob@example.com", "name": "Bob", "subscribed": false}, {"address": "alice@example.com", "name": "Alice"}]`` . Custom variables can be provided, see examples.
  upsert             ``yes`` to update existing members, ``no`` (default) to ignore duplicates
  ================== =======================================================
  
