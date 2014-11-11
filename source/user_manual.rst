@@ -636,7 +636,7 @@ Sample response:
 Webhooks
 ========
 
-Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the respective tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
+Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the Webhooks tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
 
 You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Bounces`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
 
@@ -766,7 +766,7 @@ show up if the recipient clicks on display images button in his/her email.
 
 **Opens Webhook**
 
-You can specify a webhook URL in the 'Tracking' tab of your Control Panel. When a user opens
+You can specify a webhook URL in the 'Webhooks' tab of your Control Panel. When a user opens
 one of your emails, your URL will be called with the following parameters.
 
 .. container:: ptable
@@ -816,7 +816,7 @@ You can enable click tracking by clicking on the checkbox in the Tracking tab of
 
 **Clicks Webhook**
 
-You can specify a webhook URL in the 'Tracking' tab of your Control Panel. Every time
+You can specify a webhook URL in the 'Webhooks' tab of your Control Panel. Every time
 a user clicks on a link inside of your messages, your URL will be called with
 the following parameters:
 
@@ -913,7 +913,7 @@ to learn how to programmatically manage lists of unsubscribed users.
 
 **Unsubscribes Webhook**
 
-You can specify a webhook URL in the 'Unsubscribes' tab of your Control Panel.
+You can specify a webhook URL in the 'Webhooks' tab of your Control Panel.
 When a user unsubscribes, Mailgun will invoke the webhook with the following parameters:
 
 .. container:: ptable
@@ -971,7 +971,7 @@ manage the lists of users who have complained.
 
 **Spam Complaints Webhook**
 
-You can specify a webhook URL in the 'Complaints' tab in the control panel.
+You can specify a webhook URL in the 'Webhooks' tab in the control panel.
 When a user reports one of your emails as spam, Mailgun will invoke the
 webhook with the following parameters:
 
@@ -1019,7 +1019,7 @@ manage the lists of hard bounces.
 
 **Bounce Event Webhook**
 
-You can specify a webhook URL in the 'Bounces' tab of your Control Panel.
+You can specify a webhook URL in the 'Webhooks' tab of your Control Panel.
 If you do, every time a message experiences a hard bounce, your URL will be invoked with the following parameters:
 
 .. container:: ptable
@@ -1059,7 +1059,7 @@ You can see when failures happen in the Logs tab.  In addition, you can be notif
 
 **Drop Event Webhook**
 
-In the Logs tab, you can specify a webhook URL to be notified every time a message is dropped.
+In the Webhooks tab, you can specify a URL to be notified every time a message is dropped.
 There are a few reasons why Mailgun needs to stop attempting to deliver messages and drop them.
 The most common reason is that Mailgun received a Hard bounce or repeatedly received Soft bounces and continuing attempting to deliver may hurt your reputation with the receiving ESP.  Also, if the address is on one of the 'do not send lists' because that recipient
 had previously bounced, unsubscribed, or complained of spam, we will not attempt delivery and drop the message.  If one of
@@ -1101,7 +1101,7 @@ You can see when deliveries happen in the Logs tab.  In addition, you can be not
 
 **Delivered Event Webhook**
 
-In the Logs tab, you can specify a webhook URL to be notified every time a
+In the Webhooks tab, you can specify a URL to be notified every time a
 message is delivered. If the message is successfully delivered to the intended
 recipient, we will POST the following parameters to your URL:
 
