@@ -673,7 +673,7 @@ To verify the webhook is originating from Mailgun you need to:
 - Concatenate timestamp and token values.
 - Encode the resulting string with the HMAC algorithm (using your API Key as a key and SHA256 digest mode).
 - Compare the resulting hexdigest to the signature.
-- Optionally, you can cache the token value locally and not honor any subsequent request with the same token. This will prevent reply attacks.
+- Optionally, you can cache the token value locally and not honor any subsequent request with the same token. This will prevent replay attacks.
 - Optionally, you can check if the timestamp is not too far from the current time.
 
 .. note:: Due to potentially large size of posted data, Mailgun computes an authentication
