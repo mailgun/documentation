@@ -109,6 +109,8 @@ TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Requ
 CNAME     "mailgun.org"                                               Tracking (Optional)
 ========= =========================================================== ==================== 
 
+.. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links. 
+
 .. _SPF Information: http://www.openspf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
 

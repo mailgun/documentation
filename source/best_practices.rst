@@ -14,7 +14,7 @@ In this guide, we will not focus a lot on the content of email messages. That ca
 
 
 .. _Word to the Wise: http://blog.wordtothewise.com/
-.. _Y Combinator's: http://ycombinator.com/
+.. _Y Combinator's: http://www.ycombinator.com/
 
 
 Reputation
@@ -24,15 +24,15 @@ One of the most important assets you have in the email world (much like the real
 
 A good analogy for your email reputation is your personal credit score. Obviously, a bad reputation will hurt you. However, not having a reputation will also hurt you. If ESPs don’t know you (or more specifically your IP and domain) they will assume the worst and filter you, at least initially. It’s tough to blame them given all the spam out there. Due to the importance of reputation, a significant portion of our discussion on best practices revolves around building and maintaining your email reputation.
 
-Our goal with respect to your email reputation is to make sure that the infrastructure is optimized for emails reaching the inbox and doesn’t get in your way. We test all of our IPs’ reputation before we allocate them and we use the authentication methods that major ESPs require. 
+Our goal with respect to your email reputation is to make sure that the infrastructure is optimized for emails reaching the inbox and doesn’t get in your way. We test all of our IPs’ reputation before we allocate them and we use the authentication methods that major ESPs require.
 
-Beyond making sure that the infrastructure is properly set up, we also provide the tools to answer some important questions: 
+Beyond making sure that the infrastructure is properly set up, we also provide the tools to answer some important questions:
 
-* Are emails being delivered and if not, why? 
-* Is a recipient ESP is throttling your traffic and why? 
-* Are messages bouncing due to incorrect domains or stale addresses? 
-* Are recipients unsubscribing or complaining of spam? 
-* Are recipients engaging with your emails by opening them and/or clicking on links? 
+* Are emails being delivered and if not, why?
+* Is a recipient ESP is throttling your traffic and why?
+* Are messages bouncing due to incorrect domains or stale addresses?
+* Are recipients unsubscribing or complaining of spam?
+* Are recipients engaging with your emails by opening them and/or clicking on links?
 
 You should use all of this data to make sure that you are complying with ESPs guidelines and adjust your email sending to stay in their good graces.
 
@@ -57,7 +57,7 @@ A brief note on hosting since hosting technology is changing so quickly, it will
 
 We host Mailgun mostly on dedicated servers. We do use cloud servers for some of the infrastructure (where it makes sense), but for most of Mailgun we like large, robust, dedicated machines.
 
-We use dedicated IP addresses in large subnets and we do background checks and extensive testing on our IP addresses. Because they are in large continuous blocks, they are less likely to be affected by other, external IP addresses. ESPs and blacklists occasionally block entire subnets if any of the IPs have questionable reputations. So even if your IP is clean, it might be blocked because of surrounding IPs. Larger subnets mitigate this risk. 
+We use dedicated IP addresses in large subnets and we do background checks and extensive testing on our IP addresses. Because they are in large continuous blocks, they are less likely to be affected by other, external IP addresses. ESPs and blacklists occasionally block entire subnets if any of the IPs have questionable reputations. So even if your IP is clean, it might be blocked because of surrounding IPs. Larger subnets mitigate this risk.
 
 We dream of a day when IP reputation does not matter and we can rely on domain reputation, but unfortunately we are not there yet.
 
@@ -124,11 +124,11 @@ While we have to rely on you to be responsible about how you procure your mailin
 Bounce and ESP Feedback Handling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A big part of maintaining your email reputation is processing bounces properly.  While most major ESPs give bounce replies "on the wire" during the SMTP session, there are some that send bounce messages via email.  In order receive these emailed bounce messages, you must have the appropriate return path header included with your email so that recipients know where to reply with bounce information.  
+A big part of maintaining your email reputation is processing bounces properly.  While most major ESPs give bounce replies "on the wire" during the SMTP session, there are some that send bounce messages via email.  In order receive these emailed bounce messages, you must have the appropriate return path header included with your email so that recipients know where to reply with bounce information.
 
 You must also process this bounce data and act accordingly.  In addition, many ESPs will soft bounce your initial attempts at delivery.  This is also called grey-listing or throttling.  If you continue to send emails to bad addresses or you do not listen to ESPs feedback, you will get filtered and eventually your emails will just get dropped.
 
-Mailgun automatically processes bounce information and reacts accordingly.  A good portion of Mailgun's technology is devoted to the parsing of this feedback and adjusting your sending in accordance with this feedback so that you maintain a good reputation.  
+Mailgun automatically processes bounce information and reacts accordingly.  A good portion of Mailgun's technology is devoted to the parsing of this feedback and adjusting your sending in accordance with this feedback so that you maintain a good reputation.
 
 If we receive a hard bounce, we will stop sending to that address immediately and will not attempt future deliveries to that address.  We will stop sending to an address after multiple soft bounces, according to the ESPs' guidelines.  It is possible to remove addresses from the flagged list in your control panel or through the API, in case it was a temporary issue.
 
@@ -173,8 +173,8 @@ In addition to the whitelists provided by the ESPs, `Return Path`_ has a certifi
 For customers with dedicated IP addresses, we can register you for whitelists. Also, you can set up a test inbox and use our spam filtering technology to provide a "spamicity" score for your outgoing emails so you can see their propensity for being filtered.  Finally, all accounts with dedicated IP addresses are qualified for Return Path certification.  Our technology has already been pre-vetted so the only remaining step is for them to monitor your sending in order to certify you.
 
 .. _list of whitelists: http://wiki.wordtothewise.com/ISP_Summary_Information
-.. _Return Path: http://returnpath.net
-.. _Return Path's website: http://returnpath.net
+.. _Return Path: http://www.returnpath.com
+.. _Return Path's website: http://www.returnpath.com
 
 
 Email Content
@@ -192,7 +192,7 @@ There are a few tricks to remember about content besides the mantra of 'sending 
 * Links should include the domain that is sending the email.  Also, popular url shorteners can be a bad idea because they are frequently used by spammers.
 * A/B test your emails to optimize recipient engagement. Subject lines are particularly important.  You can use Mailgun's tagging and tracking statistics in order to measure A/B testing and improve your content.
 
-.. _Litmus: http://litmus.com/email-previews
+.. _Litmus: http://litmus.com/email-testing
 .. _Return Path: http://returnpath.net
 
 **Best of luck with your emailing...we hope we made it easier!**

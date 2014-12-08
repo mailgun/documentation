@@ -48,13 +48,6 @@ so to install it simply run:
 
  gem install rest-client
 
-In case you want to send data with keys that have multiple values you will most
-likely need some kind of multimap. And we recommend gem called multimap_.
-What a coincidence! To install it just type:
-
-::
-
- gem install multimap
 
 Java
 ====
@@ -170,5 +163,4 @@ consistent and elegant way. An exellent choice to study the API.
 .. _jersey: http://jersey.java.net
 .. _RestSharp: http://restsharp.org
 .. _MultiDict: http://docs.webob.org/en/latest/index.html
-.. _multimap: https://github.com/josh/multimap
 .. _mono: http://www.mono-project.com/Main_Page

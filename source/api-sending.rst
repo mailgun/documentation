@@ -127,7 +127,7 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
 Retrieving Stored Messages
 ===========================
 
-To retrieve an inbound message that has been stored via the ``store()`` action, use the URL found in the stored event (which you can find through the Events API, or in the notify webhook set when creating the store action (``store(notify="http:mydomain.com/callback")``).
+To retrieve an inbound message that has been stored via the ``store()`` action, use the URL found in the stored event (which you can find through the Events API, or in the notify webhook set when creating the store action (``store(notify="http://mydomain.com/callback")``).
 
 - By default the message will be returned in JSON form with parsed parts. Links to the attachments will be included.
 

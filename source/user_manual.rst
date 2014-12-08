@@ -99,6 +99,8 @@ TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Requ
 CNAME     "mailgun.org"                                               Tracking (Optional)
 ========= =========================================================== ====================
 
+.. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links. 
+
 .. _SPF Information: http://www.openspf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
 
@@ -876,6 +878,8 @@ Mailgun supports three types of unsubscribes: domain, :ref:`tag <tagging>` or :r
 You can enable Mailgun's Unsubscribe functionality by clicking on the checkbox in the Unsubscribes tab in your
 Control Panel. We will automatically prevent future emails being sent to recipients that have unsubscribed.
 You can edit the unsubscribed address list from your Control Panel or through the API.
+
+.. note:: Before enabling, you will need to configure the required DNS entries provided in your Control Panel.
 
 Mailgun provides you with several unsubscribe variables:
 

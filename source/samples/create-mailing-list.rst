@@ -74,13 +74,13 @@
 
 .. code-block:: go
 
-func CreateMailingList(domain, apiKey string) (mailgun.List, error) {
-  mg := mailgun.NewMailgun(domain, apiKey, "")
-  protoList := mailgun.List{
-    Address:     "dev@samples.mailgun.org",
-    Name:        "dev",
-    Description: "Mailgun developers list.",
-    AccessLevel: mailgun.Members,
+  func CreateMailingList(domain, apiKey string) (mailgun.List, error) {
+    mg := mailgun.NewMailgun(domain, apiKey, "")
+    protoList := mailgun.List{
+      Address:     "dev@samples.mailgun.org",
+      Name:        "dev",
+      Description: "Mailgun developers list.",
+      AccessLevel: mailgun.Members,
+    }
+    return mg.CreateList(protoList)
   }
-  return mg.CreateList(protoList)
-}
