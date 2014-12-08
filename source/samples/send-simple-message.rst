@@ -4,7 +4,6 @@
 	https://api.mailgun.net/v2/samples.mailgun.org/messages \
 	-F from='Excited User <me@samples.mailgun.org>' \
 	-F to=baz@example.com \
-	-F to=bar@example.com \
 	-F subject='Hello' \
 	-F text='Testing some Mailgun awesomness!'
 
@@ -20,7 +19,6 @@
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("from", "Excited User <me@samples.mailgun.org>");
  	formData.add("to", "bar@example.com");
- 	formData.add("to", "baz@example.com");
  	formData.add("subject", "Hello");
  	formData.add("text", "Testing some Mailgun awesomness!");
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
@@ -81,7 +79,6 @@
  	request.Resource = "{domain}/messages";
  	request.AddParameter("from", "Excited User <me@samples.mailgun.org>");
  	request.AddParameter("to", "bar@example.com");
- 	request.AddParameter("to", "baz@example.com");
  	request.AddParameter("subject", "Hello");
  	request.AddParameter("text", "Testing some Mailgun awesomness!");
  	request.Method = Method.POST;
