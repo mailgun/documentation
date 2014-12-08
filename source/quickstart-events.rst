@@ -1,11 +1,12 @@
 .. _quickstart-events:
 
 How to start tracking email events
-====================
+==================================
 
 Once you start sending and receiving messages, it's important to track what's happening with them. Mailgun provides a variety of methods to access data about your emails, which you can read more about in the :ref:`tracking-messages` section of the :ref:`user-manual`. Below is a brief summary of Events, the Events API and Events Webhooks.
 
-**Events**
+Events
+------
 
 Mailgun keeps track of every event that happens to every message (both inbound and outbound) and stores this data for at least 30 days for paid accounts and 2 days for free accounts. 
 

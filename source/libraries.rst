@@ -10,9 +10,9 @@ The Mailgun API is built on HTTP. Our API is RESTful_ and it:
 * Responds with standard HTTP response codes to indicate errors.
 * Returns JSON_.
 
-Mailgun has published libraries for various languages. You may use our 
-libraries, or your favorite/suggested HTTP/REST library available for your programming 
-language, to make HTTP calls to Mailgun. 
+Mailgun has published libraries for various languages. You may use our
+libraries, or your favorite/suggested HTTP/REST library available for your programming
+language, to make HTTP calls to Mailgun.
 
 Most code samples in our docs can be viewed in several programming languages
 by using the language bar at the top. Below are the language-specific notes
@@ -21,7 +21,7 @@ we feel are useful.
 Python
 ======
 
-**Standard HTTP Library:**  
+**Standard HTTP Library:**
 
 Python users love Requests_ HTTP library. It is simple, elegant and yet very
 powerful. To install it you would simply run:
@@ -38,7 +38,7 @@ values per key. We recommend WebOb's MultiDict_ but `Werkzeug/Flask <http://werk
 Ruby
 ====
 
-**Standard HTTP Library:**  
+**Standard HTTP Library:**
 
 Ruby folks recommend rest-client_ and not without a reason: it is one of the most
 beautiful REST HTTP libraries we have seen. The library is available as gem,
@@ -48,18 +48,11 @@ so to install it simply run:
 
  gem install rest-client
 
-In case you want to send data with keys that have multiple values you will most
-likely need some kind of multimap. And we recommend gem called multimap_.
-What a coincidence! To install it just type:
-
-::
-
- gem install multimap
 
 Java
 ====
 
-**Standard HTTP Library:**  
+**Standard HTTP Library:**
 
 Check out jersey_ REST client if Java is your weapon of choice.
 It took us 3 jars to get all we needed:
@@ -72,7 +65,7 @@ It took us 3 jars to get all we needed:
 C#
 ===
 
-**Standard HTTP Library:**  
+**Standard HTTP Library:**
 
 For C# developers there is RestSharp_. And that's it, nothing else is required.
 Standard .NET makes it easy to make HTTP requests.
@@ -85,20 +78,20 @@ by installing Mozilla certificates, like so:
 
  mozroots --import --sync
 
-PHP  
+PHP
 ===
-  
-**Mailgun Library:**  
+
+**Mailgun Library:**
 
 Our PHP library is robust and provides an excellent interface to easily interact
-with our API. 
+with our API.
 
-Github Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_     
+Github Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_
 
 Minimum PHP Version: 5.3.2
 
-To install the library, you will need to be using Composer in your project. 
-If you aren't using Composer yet, it's really simple! Here's how to 
+To install the library, you will need to be using Composer in your project.
+If you aren't using Composer yet, it's really simple! Here's how to
 install composer and the Mailgun library.
 
 ::
@@ -110,15 +103,15 @@ install composer and the Mailgun library.
  php composer.phar require mailgun/mailgun-php:~x.x
 
 
-Next, just include Composer's autoloader in your application to automatically 
+Next, just include Composer's autoloader in your application to automatically
 load the Mailgun library in your project.
 ::
  require 'vendor/autoload.php';
  use Mailgun\Mailgun;
 
-For additional information, see the Github Repository `README <https://github.com/mailgun/mailgun-php>`_ file. 
+For additional information, see the Github Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
 
-**Standard HTTP Library:**  
+**Standard HTTP Library:**
 
 PHP users can use `cURL <http://php.net/manual/ru/book.curl.php>`_ library.
 
@@ -159,7 +152,7 @@ in any other language.
 Node.js
 =======
 
-Check out the available `node modules <https://www.npmjs.org/search?q=mailgun>`_ from the community. 
+Check out the available `node modules <https://www.npmjs.org/search?q=mailgun>`_ from the community.
 
 We also have a step by step tutorial post on `sending email with Node.js <http://blog.mailgun.com/how-to-send-transactional-emails-in-a-nodejs-app-using-the-mailgun-api/>`_.
 
@@ -172,11 +165,10 @@ consistent and elegant way. An exellent choice to study the API.
 
 
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
-.. _JSON: http://en.wikipedia.org/wiki/Json objects
+.. _JSON: http://en.wikipedia.org/wiki/JSON
 .. _Requests: http://docs.python-requests.org/en/latest/index.html
 .. _rest-client: https://github.com/archiloque/rest-client
 .. _jersey: http://jersey.java.net
 .. _RestSharp: http://restsharp.org
 .. _MultiDict: http://docs.webob.org/en/latest/index.html
-.. _multimap: https://github.com/josh/multimap
-.. _mono: http://www.mono-project.com/Main_Page
+.. _mono: http://www.mono-project.com

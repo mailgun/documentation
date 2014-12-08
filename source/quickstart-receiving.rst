@@ -1,7 +1,7 @@
 .. _quickstart-receiving:
 
 How to start receiving inbound email
-======================
+====================================
 
 .. figure::  _static/img/quickstart/mx.png
    :align: center

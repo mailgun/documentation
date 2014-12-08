@@ -20,7 +20,7 @@ take care of backups, hardware failures, security patches and monitoring. Stop k
 
 Here's a classic post, `So You'd Like to Send Some Email (Through Code)`_, from Jeff Atwood about all of the hurdles in order to properly send email, and that's just sending.
 
-.. _So You'd Like to Send Some Email (Through Code): http://www.codinghorror.com/blog/2010/04/so-youd-like-to-send-some-email-through-code.html
+.. _So You'd Like to Send Some Email (Through Code): http://blog.codinghorror.com/so-youd-like-to-send-some-email-through-code/
 
 What are the differences between free and paid accounts?
 **************************************************************************************************************
@@ -258,7 +258,7 @@ Also, consider letting your users to reply to your emails. Having a meaningful e
 
 Finally, there are certification and white label services that can help (although, you still need some history of sending).  We have a partnership with `Return Path`_ and get help get you signed up for their `Email Certification Program`_.  They have already audited our infrastructure so we can get you a discount off of their list pricing.
 
-.. _Email Certification Program: http://www.returnpath.net/commercialsender/certification/
+.. _Email Certification Program: http://www.returnpath.com/solution-content/certification/
 
 Does the content of my email matter for deliverability?
 **************************************************************************************************************
@@ -266,7 +266,7 @@ Does the content of my email matter for deliverability?
 Absolutely.  Ideally, you send email that people want.  That's over half the battle.  In addition, you should make your
 content interesting and relevant to the recipient.
 
-There are a few things to keep in mind about your email content. First, we suggest setting up a test mailbox at http://mail-tester.com. Mail-Tester will provide you with a full analysis of your email for free. Here are some other things to consider:
+There are a few things to keep in mind about your email content. First, we suggest setting up a test mailbox at http://www.mail-tester.com. Mail-Tester will provide you with a full analysis of your email for free. Here are some other things to consider:
 
 - Personalize your emails.  Make sure to include the recipient's address in the "To:" field and include his/her name in the greeting.
 - It is best to send multi-part emails using both text and HTML or text only. Sending HTML only email is not well received by ESPs. Also, remember that ESPs generally block images by default so HTML only will not look very good unless users are proactive about enabling images.
@@ -284,7 +284,7 @@ There are a few things to keep in mind about your email content. First, we sugge
 
 .. _Movable Ink: http://movableink.com/
 .. _Litmus: http://litmus.com/
-.. _Return Path: http://www.returnpath.net
+.. _Return Path: http://www.returnpath.com
 
 Should I use my primary corporate domain name to send email?
 **************************************************************************************************************
@@ -316,9 +316,9 @@ One of the best resources is the blog `Word to the Wise`_.  Also, `Return Path`_
 
 .. _Word to the Wise: http://blog.wordtothewise.com/
 .. _AOL Best Practices: http://postmaster-us.info.aol.com/Postmaster.Guidelines.php
-.. _Yahoo Best Practices: http://help.yahoo.com/l/us/yahoo/mail/postmaster/basics/postmaster-15.html
+.. _Yahoo Best Practices: https://help.yahoo.com/kb/postmaster/practices-senders-sln3435.html
 .. _Hotmail Best Practices: http://mail.live.com/mail/policies.aspx
-.. _Gmail Best Practices: https://support.google.com/mail/bin/answer.py?hl=en&answer=81126
+.. _Gmail Best Practices: https://support.google.com/mail/answer/81126?hl=en
 
 Receiving
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -346,7 +346,7 @@ Why am I not receiving an email when sending via the route with the sending addr
 **************************************************************************************************************
 
 You're most likely using GMail for sending your message. From GMail's
-documentation (http://mail.google.com/support/bin/answer.py?answer=82454):
+documentation (https://support.google.com/mail/troubleshooter/2935079?rd=1):
 
 Finally, if you're sending mail to a mailing list that you subscribe to, those
 messages will only appear in 'Sent Mail.' This behavior also occurs when sending to
@@ -445,4 +445,4 @@ How do I track which email a recipient has replied to?
 
 This has been a popular question, so we wrote a `blog post`_ about it.  Basically, the Message-ID in the original email is included in the In-Reply-To header in the reply email.  So you can use that to track which specific email was replied to.  Mailgun will automatically include a unique Message-ID or you can set your own.
 
-.. _blog post: http://blog.mailgun.com/tracking-replies-in-mailgun-or-any-other-email
+.. _blog post: http://blog.mailgun.com/tracking-replies-in-mailgun-or-any-other-email/
