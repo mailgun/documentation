@@ -138,7 +138,9 @@ You could also use `dig`_ in your command line interface.
 Do you support SSL/TLS?
 **************************************************************************************************************
 
-Absolutely.
+Only TLS is supported. Support for SSL has been dropped due to the `POODLE security vulnerability`_.
+
+.. _POODLE security vulnerability: http://status.mailgun.com/incidents/9g4kmgh00y5x
 
 Ok, everything is set up, how do I start using Mailgun?
 **************************************************************************************************************
