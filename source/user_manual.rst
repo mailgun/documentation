@@ -479,7 +479,7 @@ or commenting systems.
 .. _scheduling-delivery:
 
 Scheduling Delivery
-====================
+===================
 
 Mailgun also allows you to request a specific time for your message delivery by
 using the ``o:deliverytime`` parameter if sending via the API, or
@@ -500,7 +500,7 @@ time to schedule your message:
 .. _manual-testmode:
 
 Sending in Test Mode
-=====================
+====================
 
 You can send messages in test mode by setting ``o:testmode`` parameter to ``true``.
 When you do this, Mailgun will accept the message but will not send it.
@@ -1006,16 +1006,44 @@ webhook with the following parameters:
 Tracking Bounces
 ================
 
-Mailgun automatically keeps track of every time a message permanently bounces (is not accepted by the recipient).
+An email message is said to "bounce" if it is rejected by the recipient SMTP
+server.
 
-You can see when bounces happen in the Logs tab or see aggregate counters of bounces in the Tracking tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
+With respect to failure persistence Mailgun classifies bounces into the
+following two groups:
 
-Mailgun classifies bounces into two groups:
+- Hard bounces (permanent failure): Recipient is not found and the recipient
+  email server specifies the recipient does not exist. Mailgun stops attempting
+  delivery to invalid recipients after one Hard Bounce. These addresses are
+  added to the table in the Bounces tab and Mailgun will not attempt delivery
+  in the future.
+- Soft bounces (temporary failure): Email is not delivered because the mailbox
+  is full or for other reasons. These addresses are not added to the table in
+  the Bounces tab.
 
-- Hard bounces (permanent failure): Recipient is not found and the recipient email server specifies the recipient does not exist. Mailgun stops attempting delivery to invalid recipients after one Hard Bounce. These addresses are added to the table in the Bounces tab and Mailgun will not attempt delivery in the future.
-- Soft bounces (temporary failure): Email is not delivered because the mailbox is full or for other reasons. Mailgun will attempt to deliver messages multiple times depending on feedback from the ESP but will eventually quit attempting delivery in order to maintain your sending reputation (a drop event). These addresses are not added to the table in the Bounces tab.
+With respect to when the recipient SMTP server rejected an incoming message
+Mailgun classifies bounces into the following two groups:
 
-Bounce tracking is always enabled.
+- Immediate bounce: An email message is rejected by the recipient SMTP server
+  during the SMTP session.
+- Delayed (asynchronous) bounce: The recipient SMTP server accepts an email
+  message during the SMTP session. After some time it will then send a
+  Non-Delivery Report email message to the message sender.
+
+.. note:: In the case of a bounce Mailgun will retry to deliver the message
+ only if the bounce was both Immediate and Soft. After several unsuccessful
+ attempts Mailgun will quit retrying in order to maintain your sending
+ reputation.
+
+.. warning:: Mailgun can track delayed bounces but only if the domain, that the
+ email message was sent from, has MX records pointing to Mailgun. Otherwise NDR
+ email messages won't reach Mailgun. Please refer to
+ :ref:`Verifying Your Domain <verifying-your-domain>` for details on how to do that.
+
+You can see when bounces happen in the Logs tab or see aggregate counters of
+bounces in the Tracking tab of the Control Panel. In addition, you can be
+notified through a webhook or get the data programmatically through the
+:ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
 
 Mailgun provides :ref:`Bounces API <api-bounces>` to programmatically
 manage the lists of hard bounces.
