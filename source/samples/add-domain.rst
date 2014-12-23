@@ -72,7 +72,7 @@
 
 .. code-block:: go
 
-func AddDomain(domain, apiKey string) error {
-  mg := mailgun.NewMailgun(domain, apiKey, "")
-  return mg.CreateDomain("samples.mailgun.org", "supersecretpassword", mailgun.Tag, false)
-}
+ func AddDomain(domain, apiKey string) error {
+   mg := mailgun.NewMailgun(domain, apiKey, "")
+   return mg.CreateDomain("samples.mailgun.org", "supersecretpassword", mailgun.Tag, false)
+ }
