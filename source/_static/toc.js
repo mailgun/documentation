@@ -44,3 +44,24 @@ jQuery.fn.highlightText = function () {
         $(window).scrollTop(scrolling_pos);
     }
 }
+
+
+
+
+
+// Main nav dropdown for features
+$(".js-dropdown-toggle").click(function(ev){
+    var dropdown = $(this).siblings('.dropdown-menu');
+    var dropdownToggle = $(this);
+    dropdown.toggleClass('is-visible');
+    // dropdown.toggle();
+    ev.stopPropagation();
+    return false;
+});
+// Hide dropdown if click outside
+$('body').click(function() {
+    $('.dropdown-menu').removeClass('is-visible');
+});
+$('.dropdown-menu').click(function(ev){
+    ev.stopPropagation();
+});
