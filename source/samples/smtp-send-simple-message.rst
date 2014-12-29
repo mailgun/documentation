@@ -9,7 +9,7 @@
     # now send!
     ./swaks --auth \
             --server smtp.mailgun.org \
-            --au postmaster@samples.mailgun.org \
+            --au postmaster@YOUR_DOMAIN_NAME \
             --ap 3kh9umujora5 \
             --to bar@example.com \
             --h-Subject: "Hello" \
@@ -36,7 +36,7 @@
           props.put("mail.smtps.auth","true");
           Session session = Session.getInstance(props, null);
           Message msg = new MimeMessage(session);
-          msg.setFrom(new InternetAddress("me@samples.mailgun.org"));
+          msg.setFrom(new InternetAddress("YOU@YOUR_DOMAIN_NAME"));
           msg.setRecipients(Message.RecipientType.TO,
           InternetAddress.parse("bar@example.com", false));
           msg.setSubject("Hello");
@@ -44,7 +44,7 @@
           msg.setSentDate(new Date());
           SMTPTransport t =
               (SMTPTransport)session.getTransport("smtps");
-          t.connect("smtp.mailgun.com", "postmaster@samples.mailgun.org", "3kh9umujora5");
+          t.connect("smtp.mailgun.com", "postmaster@YOUR_DOMAIN_NAME", "3kh9umujora5");
           t.sendMessage(msg, msg.getAllRecipients());
           System.out.println("Response: " + t.getLastServerResponse());
           t.close();
@@ -62,11 +62,11 @@
   $mail->isSMTP();                                      // Set mailer to use SMTP
   $mail->Host = 'smtp.mailgun.org';                     // Specify main and backup SMTP servers
   $mail->SMTPAuth = true;                               // Enable SMTP authentication
-  $mail->Username = 'postmaster@samples.mailgun.org';   // SMTP username
+  $mail->Username = 'postmaster@YOUR_DOMAIN_NAME';   // SMTP username
   $mail->Password = 'secret';                           // SMTP password
   $mail->SMTPSecure = 'tls';                            // Enable encryption, only 'tls' is accepted
 
-  $mail->From = 'me@samples.mailgun.org';
+  $mail->From = 'YOU@YOUR_DOMAIN_NAME';
   $mail->FromName = 'Mailer';
   $mail->addAddress('bar@example.com');                 // Add a recipient
 
@@ -90,12 +90,12 @@
 
   msg = MIMEText('Testing some Mailgun awesomness')
   msg['Subject'] = "Hello"
-  msg['From']    = "foo@samples.mailgun.org"
+  msg['From']    = "foo@YOUR_DOMAIN_NAME"
   msg['To']      = "bar@example.com"
 
   s = smtplib.SMTP('smtp.mailgun.org', 587)
 
-  s.login('postmaster@samples.mailgun.org', '3kh9umujora5')
+  s.login('postmaster@YOUR_DOMAIN_NAME', '3kh9umujora5')
   s.sendmail(msg['From'], msg['To'], msg.as_string())
   s.quit()
 
@@ -116,7 +116,7 @@
 
   mail = Mail.deliver do
     to      'bar@example.com'
-    from    'foo@samples.mailgun.org'
+    from    'foo@YOUR_DOMAIN_NAME'
     subject 'Hello'
 
     text_part do
@@ -128,7 +128,7 @@
 
   public static IRestResponse SendSimpleMessage() {
     // Compose a message
-    MailMessage mail = new MailMessage("foo@samples.mailgun.org", "bar@example.com");
+    MailMessage mail = new MailMessage("foo@YOUR_DOMAIN_NAME", "bar@example.com");
     mail.Subject = "Hello";
     mail.Body = "Testing some Mailgun awesomness";
 
@@ -137,7 +137,7 @@
     client.Port = 587;
     client.DeliveryMethod = SmtpDeliveryMethod.Network;
     client.UseDefaultCredentials = false;
-    client.Credentials = new System.Net.NetworkCredential("postmaster@samples.mailgun.org", "3kh9umujora5");
+    client.Credentials = new System.Net.NetworkCredential("postmaster@YOUR_DOMAIN_NAME", "3kh9umujora5");
     client.Host = "smtp.mailgun.org";
 
     client.Send(mail);

@@ -1,17 +1,17 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X DELETE \
-     https://api.mailgun.net/v2/samples.mailgun.org/mailboxes/alice
+ curl -s --user 'api:YOUR_API_KEY' -X DELETE \
+     https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice
 
 .. code-block:: java
 
  public static ClientResponse DeleteMailbox() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org" +
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
  				"/mailboxes/alice");
  	return webResource.delete(ClientResponse.class);
  }
@@ -23,8 +23,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
   $mailbox = 'alice';
 
   # Issue the call to the client.
@@ -34,14 +34,14 @@
 
  def delete_mailbox():
      return requests.delete(
-         "https://api.mailgun.net/v2/samples.mailgun.org/mailboxes/alice",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice",
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_mailbox
-   RestClient.delete "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/samples.mailgun.org/mailboxes/alice"
+   RestClient.delete "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice"
  end
 
 .. code-block:: csharp
@@ -51,10 +51,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Resource = "{domain}/mailboxes/{username}";
  	request.AddUrlSegment("username", "alice");
  	request.Method = Method.DELETE;

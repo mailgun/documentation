@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
-	https://api.mailgun.net/v2/samples.mailgun.org/bounces \
+    curl -s --user 'api:YOUR_API_KEY' \
+	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces \
 	-F address='bob@example.com'
 
 .. code-block:: java
@@ -10,9 +10,9 @@
  public static ClientResponse AddBounce() {
  	Client client = new Client();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org/" +
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/" +
  				"bounces");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("address", "bob@example.com");
@@ -26,8 +26,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->post("$domain/bounces", array('address' => 'bob@example.com'));
@@ -36,15 +36,15 @@
 
  def add_bounce():
      return requests.post(
-         "https://api.mailgun.net/v2/samples.mailgun.org/bounces",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces",
+         auth=("api", "YOUR_API_KEY"),
          data={'address':'bob@example.com'})
 
 .. code-block:: rb
 
  def add_bounce
-   RestClient.post("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-                   "@api.mailgun.net/v2/samples.mailgun.org/bounces",
+   RestClient.post("https://api:YOUR_API_KEY"\
+                   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces",
                    :address => 'bob@example.com')
  end
 
@@ -55,11 +55,11 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "{domain}/bounces";
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.AddParameter("address", "bob@example.com");
  	request.Method = Method.POST;
  	return client.Execute(request);

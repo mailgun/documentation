@@ -1,7 +1,7 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X DELETE \
+ curl -s --user 'api:YOUR_API_KEY' -X DELETE \
      https://api.mailgun.net/v2/domains/example.mailgun.org
 
 .. code-block:: java
@@ -9,7 +9,7 @@
  public static ClientResponse DeleteDomain() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2" +
  				"/domains/example.mailgun.org");
@@ -23,7 +23,7 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
+  $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'example.mailgun.org';
 
   # Issue the call to the client.
@@ -34,12 +34,12 @@
  def delete_domain():
      return requests.delete(
          "https://api.mailgun.net/v2/domains/example.mailgun.org",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_domain
-   RestClient.delete "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
+   RestClient.delete "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v2/domains/example.mailgun.org"
  end
 
@@ -50,7 +50,7 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "/domains/{name}";
  	request.AddUrlSegment("name", "example.mailgun.org");

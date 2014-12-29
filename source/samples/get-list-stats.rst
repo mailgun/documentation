@@ -1,18 +1,18 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
-	https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/stats
+    curl -s --user 'api:YOUR_API_KEY' -G \
+	https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/stats
 
 .. code-block:: java
 
  public static ClientResponse GetListStats() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@samples.mailgun.org/stats");
+ 				"dev@YOUR_DOMAIN_NAME/stats");
  	return webResource.get(ClientResponse.class);
  }
 
@@ -23,8 +23,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $listAddress = 'dev@samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $listAddress = 'dev@YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->get("lists/$listAddress/stats", array(
@@ -36,14 +36,14 @@
 
  def get_list_stats():
      return requests.get(
-         "https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/stats",
-         auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'))
+         "https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/stats",
+         auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def get_list_stats
-   RestClient.get("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0" \
-                  "@api.mailgun.net/v2/lists/dev@samples.mailgun.org/stats")
+   RestClient.get("https://api:YOUR_API_KEY" \
+                  "@api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/stats")
  end
 
 .. code-block:: csharp
@@ -53,10 +53,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}/stats";
- 	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
+ 	request.AddParameter("list", "dev@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	return client.Execute(request);
  }
 

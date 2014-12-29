@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X PUT \
-	https://api.mailgun.net/v2/domains/samples.mailgun.org/webhooks/click \
+    curl -s --user 'api:YOUR_API_KEY' -X PUT \
+	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click \
 	-F url='http://google.com'
 
 .. code-block:: java
@@ -10,10 +10,10 @@
  public static ClientResponse UpdateMember() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@samples.mailgun.org/members/bar@example.com");
+ 				"dev@YOUR_DOMAIN_NAME/members/bar@example.com");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("url", "http://google.com");
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
@@ -28,8 +28,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $listAddress = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $listAddress = 'YOUR_DOMAIN_NAME';
   $memberAddress = 'bob@example.com';
 
   # Issue the call to the client.
@@ -41,15 +41,15 @@
 
  def update_member():
      return requests.put(
-         ("https://api.mailgun.net/v2/domains/samples.mailgun.org/webhooks/click"),
-         auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'),
+         ("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click"),
+         auth=('api', 'YOUR_API_KEY'),
          data={'url': 'http://google.com'})
 
 .. code-block:: rb
 
  def update_member
-   RestClient.put("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0" \
-                  "@api.mailgun.net/v2/domains/samples.mailgun.org/webhooks/click" \
+   RestClient.put("https://api:YOUR_API_KEY" \
+                  "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click" \
                   "/bar@example.com",
                   :url => 'http://google.com')
  end
@@ -61,9 +61,9 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
- 	request.Resource = "/domains/samples.mailgun.org/webhooks/click";
+ 	request.Resource = "/domains/YOUR_DOMAIN_NAME/webhooks/click";
  	request.AddParameter("url", "http://google.com");
  	request.Method = Method.PUT;
  	return client.Execute(request);

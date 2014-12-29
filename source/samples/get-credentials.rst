@@ -1,17 +1,17 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
-	https://api.mailgun.net/v2/domains/samples.mailgun.org/credentials
+    curl -s --user 'api:YOUR_API_KEY' -G \
+	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials
 
 .. code-block:: java
 
  public static ClientResponse GetCredentials() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains/samples.mailgun.org" +
+ 		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME" +
  				"/credentials");
  	return webResource.get(ClientResponse.class);
  }
@@ -23,8 +23,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->get("domains/$domain/credentials", array(
@@ -36,14 +36,14 @@
 
  def get_credentials():
      return requests.get(
-         "https://api.mailgun.net/v2/domains/samples.mailgun.org/credentials",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
+         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials",
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_credentials
-   RestClient.get "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/domains/samples.mailgun.org/credentials"
+   RestClient.get "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials"
  end
 
 .. code-block:: csharp
@@ -53,10 +53,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org",
+ 	                     "YOUR_DOMAIN_NAME",
  	                     ParameterType.UrlSegment);
  	request.Resource = "domains/{domain}/credentials";
  	return client.Execute(request);

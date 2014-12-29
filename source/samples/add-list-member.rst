@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
-	https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/members \
+    curl -s --user 'api:YOUR_API_KEY' \
+	https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members \
 	-F subscribed=True \
 	-F address='bar@example.com' \
 	-F name='Bob Bar' \
@@ -14,10 +14,10 @@
  public static ClientResponse AddListMember() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@samples.mailgun.org/members");
+ 				"dev@YOUR_DOMAIN_NAME/members");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("address", "bar@example.com");
  	formData.add("subscribed", true);
@@ -35,8 +35,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $listAddress = 'dev@samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $listAddress = 'dev@YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->post("lists/$listAddress/members", array(
@@ -51,8 +51,8 @@
 
  def add_list_member():
      return requests.post(
-         "https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/members",
-         auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'),
+         "https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members",
+         auth=('api', 'YOUR_API_KEY'),
          data={'subscribed': True,
                'address': 'bar@example.com',
                'name': 'Bob Bar',
@@ -62,8 +62,8 @@
 .. code-block:: rb
 
  def add_list_member
-   RestClient.post("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0" \
-                   "@api.mailgun.net/v2/lists/dev@samples.mailgun.org/members",
+   RestClient.post("https://api:YOUR_API_KEY" \
+                   "@api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members",
                    :subscribed => true,
                    :address => 'bar@example.com',
                    :name => 'Bob Bar',
@@ -78,10 +78,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}/members";
- 	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
+ 	request.AddParameter("list", "dev@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.AddParameter("address", "bar@example.com");
  	request.AddParameter("subscribed", true);
  	request.AddParameter("name", "Bob Bar");

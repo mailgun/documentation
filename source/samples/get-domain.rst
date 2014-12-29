@@ -1,17 +1,17 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
-	https://api.mailgun.net/v2/domains/samples.mailgun.org
+    curl -s --user 'api:YOUR_API_KEY' -G \
+	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME
 
 .. code-block:: java
 
  public static ClientResponse GetDomain() {
  	Client client = new Client();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains/samples.mailgun.org);
+ 		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME);
  	return webResource.get(ClientResponse.class);
  }
 
@@ -22,8 +22,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->get("domains/$domain");
@@ -32,14 +32,14 @@
 
  def get_domain():
      return requests.get(
-         "https://api.mailgun.net/v2/domains/samples.mailgun.org",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
+         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME",
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_domain
-   RestClient.get("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-                  "@api.mailgun.net/v2/domains/samples.mailgun.org"\
+   RestClient.get("https://api:YOUR_API_KEY"\
+                  "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME"\
                   {|response, request, result| response }
  end
 
@@ -50,10 +50,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
-                            "samples.mailgun.org", ParameterType.UrlSegment);
+                            "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
        request.Resource = "/domains/{domain}";
  	return client.Execute(request);
  }

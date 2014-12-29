@@ -1,18 +1,18 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X DELETE \
-	https://api.mailgun.net/v2/lists/dev@samples.mailgun.org
+    curl -s --user 'api:YOUR_API_KEY' -X DELETE \
+	https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME
 
 .. code-block:: java
 
  public static ClientResponse RemoveMailingList() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@samples.mailgun.org");
+ 				"dev@YOUR_DOMAIN_NAME");
  	return webResource.delete(ClientResponse.class);
  }
 
@@ -23,8 +23,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $listAddress = 'dev@samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $listAddress = 'dev@YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->delete("lists/$listAddress");
@@ -33,14 +33,14 @@
 
  def remove_list():
      return requests.delete(
-         "https://api.mailgun.net/v2/lists/dev@samples.mailgun.org",
-         auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'))
+         "https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME",
+         auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def remove_list
-   RestClient.delete("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0" \
-                     "@api.mailgun.net/v2/lists/dev@samples.mailgun.org")
+   RestClient.delete("https://api:YOUR_API_KEY" \
+                     "@api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME")
  end
 
 .. code-block:: csharp
@@ -50,10 +50,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}";
- 	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
+ 	request.AddParameter("list", "dev@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
@@ -62,5 +62,5 @@
 
  func DeleteList(domain, apiKey string) error {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.DeleteList("dev@samples.mailgun.org")
+   return mg.DeleteList("dev@YOUR_DOMAIN_NAME")
  }

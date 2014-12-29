@@ -1,7 +1,7 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
+    curl -s --user 'api:YOUR_API_KEY' \
 	https://api.mailgun.net/v2/routes/4f3bad2335335426750048c6
 
 .. code-block:: java
@@ -9,7 +9,7 @@
  public static ClientResponse GetRoute() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/routes" +
  				"/4e97c1b2ba8a48567f007fb6");
@@ -23,7 +23,7 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
+  $mgClient = new Mailgun('YOUR_API_KEY');
   $routeId = '4e97c1b2ba8a48567f007fb6';
 
   # Issue the call to the client.
@@ -34,13 +34,13 @@
  def get_route():
      return requests.get(
          "https://api.mailgun.net/v2/routes/4e97c1b2ba8a48567f007fb6",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_route
    RestClient.
-     get("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
+     get("https://api:YOUR_API_KEY"\
          "@api.mailgun.net/v2/routes/"\
          "4e97c1b2ba8a48567f007fb6"){|response, request, result| response }
  end
@@ -52,7 +52,7 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "routes/{id}";
  	request.AddUrlSegment("id", "4e97c1b2ba8a48567f007fb6");

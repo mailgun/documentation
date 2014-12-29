@@ -1,7 +1,7 @@
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
-	https://api.mailgun.net/v2/samples.mailgun.org/stats \
+    curl -s --user 'api:YOUR_API_KEY' -G \
+	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/stats \
 	-d event='sent' \
 	-d event='opened' \
 	-d skip=1 \
@@ -12,9 +12,9 @@
  public static ClientResponse GetStats() {
  	Client client = new Client();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org" +
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
  				"/stats");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("event", "sent");
@@ -31,8 +31,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->get("$domain/stats", array(
@@ -43,8 +43,8 @@
 
  def get_stats():
      return requests.get(
-         "https://api.mailgun.net/v2/samples.mailgun.org/stats",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/stats",
+         auth=("api", "YOUR_API_KEY"),
          params={"event": ["sent", "opened"],
                  "skip": 1,
                  "limit": 2})
@@ -59,8 +59,8 @@
    url_params[:event] = "opened"
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
-   RestClient.get "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/samples.mailgun.org/stats?#{query_string}"
+   RestClient.get "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/stats?#{query_string}"
  end
 
 .. code-block:: csharp
@@ -70,10 +70,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Resource = "{domain}/stats";
  	request.AddParameter("event", "sent");
  	request.AddParameter("event", "opened");

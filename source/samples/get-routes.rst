@@ -1,7 +1,7 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
+    curl -s --user 'api:YOUR_API_KEY' -G \
 	https://api.mailgun.net/v2/routes \
 	-d skip=1 \
 	-d limit=1
@@ -11,7 +11,7 @@
  public static ClientResponse GetRoutes() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/routes");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
@@ -27,7 +27,7 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
+  $mgClient = new Mailgun('YOUR_API_KEY');
 
   # Issue the call to the client.
   $result = $mgClient->get("routes", array('skip' => 5, 'limit' => 10));
@@ -37,14 +37,14 @@
  def get_routes():
      return requests.get(
          "https://api.mailgun.net/v2/routes",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+         auth=("api", "YOUR_API_KEY"),
          params={"skip": 1,
                  "limit": 1})
 
 .. code-block:: rb
 
  def get_routes
-   RestClient.get "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
+   RestClient.get "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v2/routes", :params => {
      :skip => 1,
      :limit => 1
@@ -58,7 +58,7 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "routes";
  	request.AddParameter("skip", 1);
