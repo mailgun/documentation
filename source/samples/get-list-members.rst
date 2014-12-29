@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members
+	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members
 
 .. code-block:: java
 
@@ -12,7 +12,7 @@
  			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@YOUR_DOMAIN_NAME/members");
+ 				"LIST@YOUR_DOMAIN_NAME/members");
  	return webResource.get(ClientResponse.class);
  }
 
@@ -24,7 +24,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'dev@YOUR_DOMAIN_NAME';
+  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->get("lists/$listAddress/members", array(
@@ -37,14 +37,14 @@
 
  def list_members():
      return requests.get(
-         "https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members",
+         "https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members",
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def list_members
    RestClient.get("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members")
+                  "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members")
  end
 
 .. code-block:: csharp
@@ -57,7 +57,7 @@
  		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}/members";
- 	request.AddParameter("list", "dev@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+ 	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	return client.Execute(request);
  }
 
@@ -65,5 +65,5 @@
 
  func GetMembers(domain, apiKey string) (int, []mailgun.Member, error) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.GetMembers(-1, -1, mailgun.All, "dev@YOUR_DOMAIN_NAME")
+   return mg.GetMembers(-1, -1, mailgun.All, "LIST@YOUR_DOMAIN_NAME")
  }

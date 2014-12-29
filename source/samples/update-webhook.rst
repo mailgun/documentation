@@ -13,7 +13,7 @@
  			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@YOUR_DOMAIN_NAME/members/bar@example.com");
+ 				"LIST@YOUR_DOMAIN_NAME/members/bar@example.com");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("url", "http://google.com");
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).

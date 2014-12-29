@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members \
+	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members \
 	-F subscribed=True \
 	-F address='bar@example.com' \
 	-F name='Bob Bar' \
@@ -17,7 +17,7 @@
  			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@YOUR_DOMAIN_NAME/members");
+ 				"LIST@YOUR_DOMAIN_NAME/members");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("address", "bar@example.com");
  	formData.add("subscribed", true);
@@ -36,7 +36,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'dev@YOUR_DOMAIN_NAME';
+  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->post("lists/$listAddress/members", array(
@@ -51,7 +51,7 @@
 
  def add_list_member():
      return requests.post(
-         "https://api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members",
+         "https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members",
          auth=('api', 'YOUR_API_KEY'),
          data={'subscribed': True,
                'address': 'bar@example.com',
@@ -63,7 +63,7 @@
 
  def add_list_member
    RestClient.post("https://api:YOUR_API_KEY" \
-                   "@api.mailgun.net/v2/lists/dev@YOUR_DOMAIN_NAME/members",
+                   "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members",
                    :subscribed => true,
                    :address => 'bar@example.com',
                    :name => 'Bob Bar',
@@ -81,7 +81,7 @@
  		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}/members";
- 	request.AddParameter("list", "dev@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+ 	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.AddParameter("address", "bar@example.com");
  	request.AddParameter("subscribed", true);
  	request.AddParameter("name", "Bob Bar");
