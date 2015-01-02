@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X PUT \
-	https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/members/bar@example.com \
+    curl -s --user 'api:YOUR_API_KEY' -X PUT \
+	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com \
 	-F subscribed=False \
 	-F name='Foo Bar'
 
@@ -11,10 +11,10 @@
  public static ClientResponse UpdateMember() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/lists/" +
- 				"dev@samples.mailgun.org/members/bar@example.com");
+ 				"LIST@YOUR_DOMAIN_NAME/members/bar@example.com");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("subscribed", false);
  	formData.add("name", "Foo Bar");
@@ -30,8 +30,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $listAddress = 'dev@samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
   $memberAddress = 'bob@example.com';
 
   # Issue the call to the client.
@@ -44,17 +44,17 @@
 
  def update_member():
      return requests.put(
-         ("https://api.mailgun.net/v2/lists/dev@samples.mailgun.org/members"
+         ("https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members"
           "/bar@example.com"),
-         auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'),
+         auth=('api', 'YOUR_API_KEY'),
          data={'subscribed': False,
                'name': 'Foo Bar'})
 
 .. code-block:: rb
 
  def update_member
-   RestClient.put("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0" \
-                  "@api.mailgun.net/v2/lists/dev@samples.mailgun.org/members" \
+   RestClient.put("https://api:YOUR_API_KEY" \
+                  "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members" \
                   "/bar@example.com",
                   :subscribed => false,
                   :name => 'Foo Bar')
@@ -67,10 +67,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}/members/{member}";
- 	request.AddParameter("list", "dev@samples.mailgun.org", ParameterType.UrlSegment);
+ 	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.AddParameter("member", "bar@example.com", ParameterType.UrlSegment);
  	request.AddParameter("subscribed", false);
  	request.AddParameter("name", "Foo Bar");
@@ -82,7 +82,7 @@
 
  func UpdateMember(domain, apiKey string) error {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   _, err = mg.UpdateMember("bar@example.com", "dev@samples.mailgun.org", mailgun.Member{
+   _, err = mg.UpdateMember("bar@example.com", "LIST@YOUR_DOMAIN_NAME", mailgun.Member{
      Name: "Foo Bar",
      Subscribed: mailgun.Unsubscribed,
    })

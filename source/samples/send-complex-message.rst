@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
-	https://api.mailgun.net/v2/samples.mailgun.org/messages \
-	-F from='Excited User <me@samples.mailgun.org>' \
+    curl -s --user 'api:YOUR_API_KEY' \
+	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages \
+	-F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
 	-F to='foo@example.com' \
 	-F cc='bar@example.com' \
 	-F bcc='baz@example.com' \
@@ -18,12 +18,12 @@
  public static ClientResponse SendComplexMessage() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org/" +
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/" +
  				"messages");
  	FormDataMultiPart form = new FormDataMultiPart();
- 	form.field("from", "Excited User <me@samples.mailgun.org>");
+ 	form.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
  	form.field("to", "foo@example.com");
  	form.field("bcc", "bar@example.com");
  	form.field("cc", "baz@example.com");
@@ -49,12 +49,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = "samples.mailgun.org";
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = "YOUR_DOMAIN_NAME";
 
   # Make the call to the client.
   $result = $mgClient->sendMessage($domain, array(
-      'from'    => 'Excited User <me@samples.mailgun.org>',
+      'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
       'to'      => 'foo@example.com',
       'cc'      => 'baz@example.com',
       'bcc'     => 'bar@example.com',
@@ -69,11 +69,11 @@
 
  def send_complex_message():
      return requests.post(
-         "https://api.mailgun.net/v2/samples.mailgun.org/messages",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+         auth=("api", "YOUR_API_KEY"),
          files=[("attachment", open("files/test.jpg")),
                 ("attachment", open("files/test.txt"))],
-         data={"from": "Excited User <me@samples.mailgun.org>",
+         data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
                "to": "foo@example.com",
                "cc": "baz@example.com",
                "bcc": "bar@example.com",
@@ -85,7 +85,7 @@
 
  def send_complex_message
    data = Multimap.new
-   data[:from] = "Excited User <me@samples.mailgun.org>"
+   data[:from] = "Excited User <YOU@YOUR_DOMAIN_NAME>"
    data[:to] = "foo@example.com"
    data[:cc] = "baz@example.com"
    data[:bcc] = "bar@example.com"
@@ -94,8 +94,8 @@
    data[:html] = "<html>HTML version of the body</html>"
    data[:attachment] = File.new(File.join("files", "test.jpg"))
    data[:attachment] = File.new(File.join("files", "test.txt"))
-   RestClient.post "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/samples.mailgun.org/messages", data
+   RestClient.post "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages", data
  end
 
 .. code-block:: csharp
@@ -105,12 +105,12 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Resource = "{domain}/messages";
- 	request.AddParameter("from", "Excited User <me@samples.mailgun.org>");
+ 	request.AddParameter("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
  	request.AddParameter("to", "foo@example.com");
  	request.AddParameter("cc", "baz@example.com");
  	request.AddParameter("bcc", "bar@example.com");
@@ -128,7 +128,7 @@
  func SendComplexMessage(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
    m := mg.NewMessage(
-     "Excited User <me@samples.mailgun.org>",
+     "Excited User <YOU@YOUR_DOMAIN_NAME>",
      "Hello",
      "Testing some Mailgun awesomeness!",
      "foo@example.com",

@@ -1,18 +1,18 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
+    curl -s --user 'api:YOUR_API_KEY' -G \
 	-d "groupby=recipient&limit=2" \
-	https://api.mailgun.net/v2/samples.mailgun.org/campaigns/my_campaign_id/clicks
+	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/clicks
 
 .. code-block:: java
 
  public static ClientResponse GetClicks() {
  	Client client = new Client();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org/campaigns/my_campaign_id/clicks");
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/clicks");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
                 queryParams.add("groupby", "recipient");
  	queryParams.add("limit", 2);
@@ -26,8 +26,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
   $campaignId = 'myexamplecampaign';
 
   # Issue the call to the client.
@@ -40,14 +40,14 @@
 
  def get_clicks():
      return requests.get(
-         "https://api.mailgun.net/v2/samples.mailgun.org/campaigns/my_campaign_id/clicks?groupby=recipient&limit=2",
-         auth=('api', 'key-3ax6xnjp29jd6fds4gc373sgvjxteol0'))
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/clicks?groupby=recipient&limit=2",
+         auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def get_clicks
-   RestClient.get("https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-                  "@api.mailgun.net/v2/samples.mailgun.org/campaigns/"\
+   RestClient.get("https://api:YOUR_API_KEY"\
+                  "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/"\
                   "my_campaign_id/clicks?groupby=recipient&limit=2")
  end
 
@@ -58,10 +58,10 @@
      client.BaseUrl = "https://api.mailgun.net/v2";
      client.Authenticator =
 	new HttpBasicAuthenticator("api",
-	                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+	                           "YOUR_API_KEY");
      RestRequest request = new RestRequest();
      request.AddParameter("domain",
-                           "samples.mailgun.org", ParameterType.UrlSegment);
+                           "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
      request.Resource = "{domain}/campaigns/my_campaign_id/clicks";
      request.AddParameter("groupby", "recipient");
      request.AddParameter("limit", 2);

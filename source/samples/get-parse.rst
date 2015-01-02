@@ -27,7 +27,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7');
-  $domain = 'samples.mailgun.org';
+  $domain = 'YOUR_DOMAIN_NAME';
   $addressList = 'Alice <alice@example.com>,bob@example.com,example.com';
 
   # Issue the call to the client.

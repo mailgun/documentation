@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
-	https://api.mailgun.net/v2/domains/samples.mailgun.org/credentials \
-	-F login='alice@samples.mailgun.org' \
+    curl -s --user 'api:YOUR_API_KEY' \
+	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials \
+	-F login='alice@YOUR_DOMAIN_NAME' \
 	-F password='supasecret'
 
 .. code-block:: java
@@ -11,12 +11,12 @@
  public static ClientResponse CreateCredentials() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains/samples.mailgun.org" +
+ 		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME" +
  				"/credentials");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("login", "alice@samples.mailgun.org");
+ 	formData.add("login", "alice@YOUR_DOMAIN_NAME");
  	formData.add("password", "secret");
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
  		post(ClientResponse.class, formData);
@@ -29,12 +29,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->post("domains/$domain/credentials", array(
-      'login'    => 'alice@samples.mailgun.org',
+      'login'    => 'alice@YOUR_DOMAIN_NAME',
       'password' => 'secret'
   ));
 
@@ -42,17 +42,17 @@
 
  def create_credentials():
      return requests.post(
-         "https://api.mailgun.net/v2/domains/samples.mailgun.org/credentials",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         data={"login": "alice@samples.mailgun.org",
+         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials",
+         auth=("api", "YOUR_API_KEY"),
+         data={"login": "alice@YOUR_DOMAIN_NAME",
                "password": "secret"})
 
 .. code-block:: rb
 
  def create_credentials
-   RestClient.post "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/domains/samples.mailgun.org/credentials",
-   :login => "alice@samples.mailgun.org",
+   RestClient.post "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials",
+   :login => "alice@YOUR_DOMAIN_NAME",
    :password => "secret"
  end
 
@@ -63,12 +63,12 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Resource = "domains/{domain}/credentials";
- 	request.AddParameter("login", "alice@samples.mailgun.org");
+ 	request.AddParameter("login", "alice@YOUR_DOMAIN_NAME");
  	request.AddParameter("password", "secret");
  	request.Method = Method.POST;
  	return client.Execute(request);
@@ -78,5 +78,5 @@
 
  func CreateCredential(domain, apiKey string) error {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.CreateCredential("alice@samples.mailgun.org", "secret")
+   return mg.CreateCredential("alice@YOUR_DOMAIN_NAME", "secret")
  }

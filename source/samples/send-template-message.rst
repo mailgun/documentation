@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' \
-     https://api.mailgun.net/v2/samples.mailgun.org/messages \
-     -F from='Excited User <me@samples.mailgun.org>' \
+ curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages \
+     -F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
      -F to=alice@example.com \
      -F to=bob@example.com \
      -F recipient-variables='{"bob@example.com": {"first":"Bob", "id":1}, "alice@example.com": {"first":"Alice", "id": 2}}' \
@@ -15,12 +15,12 @@
  public static ClientResponse SendTemplateMessage() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org" +
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
  				"/messages");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("from", "Excited User <me@samples.mailgun.org>");
+ 	formData.add("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
  	formData.add("to", "alice@example.com");
  	formData.add("to", "bob@example.com");
  	formData.add("subject", "Hey, %recipient.first%");
@@ -37,12 +37,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = "samples.mailgun.org";
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = "YOUR_DOMAIN_NAME";
 
   # Make the call to the client.
   $result = $mgClient->sendMessage($domain, array(
-      'from'    => 'Excited User <me@samples.mailgun.org>',
+      'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
       'to'      => 'bob@example.com, alice@example.com',
       'subject' => 'Hello',
       'text'    => 'If you wish to unsubscribe,
@@ -55,9 +55,9 @@
 
  def send_template_message():
      return requests.post(
-         "https://api.mailgun.net/v2/samples.mailgun.org/messages",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
-         data={"from": "Excited User <me@samples.mailgun.org>",
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+         auth=("api", "YOUR_API_KEY"),
+         data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
                "to": ["alice@example.com, bob@example.com"],
                "subject": "Hey, %recipient.first%",
                "text": "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%'",
@@ -67,9 +67,9 @@
 .. code-block:: rb
 
  def send_template_message
-   RestClient.post "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/samples.mailgun.org/messages",
-   :from => "Excited User <me@samples.mailgun.org>",
+   RestClient.post "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+   :from => "Excited User <YOU@YOUR_DOMAIN_NAME>",
    :to => "alice@example.com, bob@example.com",
    :subject => "Hey, %recipient.first%",
    :text => "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%'",
@@ -83,12 +83,12 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Resource = "{domain}/messages";
- 	request.AddParameter("from", "Excited User <me@samples.mailgun.org>");
+ 	request.AddParameter("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
  	request.AddParameter("to", "alice@example.com");
  	request.AddParameter("to", "bob@example.com");
  	request.AddParameter("subject", "Hey, %recipient.first%");
@@ -111,7 +111,7 @@
  func SendTemplateMessage(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
    m := mg.NewMessage(
-     "Excited User <me@samples.mailgun.org>",
+     "Excited User <YOU@YOUR_DOMAIN_NAME>",
      "Hey %recipient.first%",
      "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%",
    ) // IMPORTANT: No To:-field recipients!

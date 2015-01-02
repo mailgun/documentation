@@ -1,7 +1,7 @@
 .. code-block:: bash
 
-  curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -G \
-        https://api.mailgun.net/v2/samples.mailgun.org/events \
+  curl -s --user 'api:YOUR_API_KEY' -G \
+        https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events \
         --data-urlencode begin='Fri, 3 May 2013 09:00:00 -0000' \
         --data-urlencode ascending=yes \
         --data-urlencode limit=25 \
@@ -13,10 +13,10 @@
  public static ClientResponse GetLogs() {
   Client client = new Client();
   client.addFilter(new HTTPBasicAuthFilter("api",
-      "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+      "YOUR_API_KEY"));
   WebResource webResource =
       client.resource("
-          https://api.mailgun.net/v2/samples.mailgun.org/events");
+          https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events");
   MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
   queryParams.add("begin", 50);
   queryParams.add("ascending", "yes");
@@ -34,8 +34,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
   $queryString = array(
       'begin'        => 'Fri, 3 May 2013 09:00:00 -0000',
       'ascending'    => 'yes',
@@ -51,8 +51,8 @@
 
  def get_logs():
      return requests.get(
-         "https://api.mailgun.net/v2/samples.mailgun.org/events",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events",
+         auth=("api", "YOUR_API_KEY"),
          params={"begin"       : "Fri, 3 May 2013 09:00:00 -0000",
                  "ascending"   : "yes",
                  "limit"       :  25,
@@ -62,8 +62,8 @@
 .. code-block:: rb
 
  def get_logs
-   RestClient.get "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/samples.mailgun.org/events", 
+   RestClient.get "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/events", 
     :params => {
      :'begin'       => 'Fri, 3 May 2013 09:00:00 -0000',
      :'ascending'   => 'yes',
@@ -80,10 +80,10 @@
     client.BaseUrl = "https://api.mailgun.net/v2";
     client.Authenticator =
         new HttpBasicAuthenticator("api",
-            "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+            "YOUR_API_KEY");
     RestRequest request = new RestRequest();
     request.AddParameter("domain",
-        "samples.mailgun.org", ParameterType.UrlSegment);
+        "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
     request.Resource = "{domain}/events";
     request.AddParameter("begin", "Fri, 3 May 2013 09:00:00 -0000");
     request.AddParameter("ascending", "yes");

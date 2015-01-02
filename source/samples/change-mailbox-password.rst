@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X PUT \
-	https://api.mailgun.net/v2/samples.mailgun.org/mailboxes/alice \
+    curl -s --user 'api:YOUR_API_KEY' -X PUT \
+	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice \
 	-F password='abc123'
 
 .. code-block:: java
@@ -10,9 +10,9 @@
  public static ClientResponse ChangeMailboxPassword() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/samples.mailgun.org" +
+ 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
  				"/mailboxes/alice");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("password", "supersecret");
@@ -27,8 +27,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
   $mailbox = 'alice';
 
   # Issue the call to the client.
@@ -40,15 +40,15 @@
 
  def change_mailbox_password():
      return requests.put(
-         "https://api.mailgun.net/v2/samples.mailgun.org/mailboxes/alice",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"),
+         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice",
+         auth=("api", "YOUR_API_KEY"),
          data={"password": "supersecret"})
 
 .. code-block:: rb
 
  def change_mailbox_password
-   RestClient.put "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/samples.mailgun.org/mailboxes/alice",
+   RestClient.put "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice",
    :password => "supersecret"
  end
 
@@ -59,10 +59,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
- 	                     "samples.mailgun.org", ParameterType.UrlSegment);
+ 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
  	request.Resource = "{domain}/mailboxes/{login}";
  	request.AddUrlSegment("login", "alice");
  	request.AddParameter("password", "supersecret");

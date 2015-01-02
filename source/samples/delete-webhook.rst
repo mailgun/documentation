@@ -1,18 +1,18 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0' -X DELETE \
-     https://api.mailgun.net/v2/domains/samples.mailgun.org/webhooks/click
+ curl -s --user 'api:YOUR_API_KEY' -X DELETE \
+     https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click
 
 .. code-block:: java
 
  public static ClientResponse DeleteDomain() {
  	Client client = Client.create();
  	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"key-3ax6xnjp29jd6fds4gc373sgvjxteol0"));
+ 			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2" +
- 				"/domains/samples.mailgun.org/webhooks/click");
+ 				"/domains/YOUR_DOMAIN_NAME/webhooks/click");
  	return webResource.delete(ClientResponse.class);
  }
 
@@ -23,8 +23,8 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('key-3ax6xnjp29jd6fds4gc373sgvjxteol0');
-  $domain = 'samples.mailgun.org';
+  $mgClient = new Mailgun('YOUR_API_KEY');
+  $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->delete("$domain/webhooks/click");
@@ -33,14 +33,14 @@
 
  def delete_domain():
      return requests.delete(
-         "https://api.mailgun.net/v2/domains/samples.mailgun.org/webhooks/click",
-         auth=("api", "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"))
+         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click",
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_domain
-   RestClient.delete "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
-   "@api.mailgun.net/v2/domains/samples.mailgun.org/webhooks/click"
+   RestClient.delete "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click"
  end
 
 .. code-block:: csharp
@@ -50,10 +50,10 @@
  	client.BaseUrl = "https://api.mailgun.net/v2";
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
- 		                           "key-3ax6xnjp29jd6fds4gc373sgvjxteol0");
+ 		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "/domains/{name}/webhooks/click";
- 	request.AddUrlSegment("name", "samples.mailgun.org");
+ 	request.AddUrlSegment("name", "YOUR_DOMAIN_NAME");
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
