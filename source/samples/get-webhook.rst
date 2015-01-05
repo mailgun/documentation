@@ -32,7 +32,7 @@
 
  def get_domain():
      return requests.get(
-         "https://api.mailgun.net/v2/domains/webhooks/click",
+         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
