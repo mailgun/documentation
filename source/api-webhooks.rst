@@ -69,7 +69,7 @@ Updates an existing webhook.
 
 Deletes an existing webhook. 
 
-.. note:: Deleting an Open or Click webhook will enable Open or Click tracking. 
+.. note:: Deleting an Open or Click webhook will disable Open or Click tracking. 
 
 .. note:: Mailgun imposes a rate limit for the Webhook API endpoint. Users may 
 		  issue no more than 300 requests per minute, per account. See the resultant
