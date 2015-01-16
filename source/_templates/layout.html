@@ -318,9 +318,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   // Make sample code snippets editable in the browser
-  $('.highlight pre').each(function(){
+  $('.highlight pre').click(function(){
     ace_activate(this);
-  })
+  });
 
   // Ace editor activation
   function ace_activate(container) {
@@ -332,7 +332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     editor.setHighlightActiveLine(false);
     editor.getSession().setUseWrapMode(true);
     editor.setBehavioursEnabled(false);
-    $(container).height(editor.getSession().getScreenLength() * 19);
+    $(container).height(editor.getSession().getScreenLength() * 20);
   }
 
 </script>
@@ -347,9 +347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .highlight pre{
   font-size:14px;
   padding:0;
-}
-.ace_content{
-  /*padding:20px;*/
+  cursor: pointer;
 }
 </style>
 
