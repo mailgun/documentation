@@ -332,19 +332,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     editor.setHighlightActiveLine(false);
     editor.getSession().setUseWrapMode(true);
     editor.setBehavioursEnabled(false);
-    $(container).height(editor.getSession().getDocument().getLength() * editor.renderer.lineHeight);
+    $(container).height(editor.getSession().getScreenLength() * 19);
   }
 
 </script>
 
 <style>
 .highlight{
-  padding:20px;
+  /*padding:20px;*/
   font-size:14px;
   background-color:#333;
+  margin-bottom:20px;
 }
 .highlight pre{
   font-size:14px;
+  padding:0;
+}
+.ace_content{
+  /*padding:20px;*/
 }
 </style>
 
