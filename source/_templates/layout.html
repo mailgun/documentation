@@ -274,6 +274,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }());
 </script>
 
+<!-- Ace editor for editable code -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
   (function() {
     var timer;
@@ -302,11 +305,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		$("#js-header-nav").slideToggle();
 	});
 
-    // highlight nav on load
-    $(document).ready(function(){
-        $('.docs-sidebar li').removeClass('active');
-        $('.docs-sidebar ul.current li.current a.current').parent().addClass('active');
-    });
+
+
+
+  // highlight nav on load
+  $(document).ready(function(){
+      $('.docs-sidebar li').removeClass('active');
+      $('.docs-sidebar ul.current li.current a.current').parent().addClass('active');
+  });
+
+
+
+
+  // Make sample code snippets editable in the browser
+  $('.highlight pre').click(function(){
+    ace_activate(this);
+  });
+
+  // Ace editor activation
+  function ace_activate(container) {
+    var editor = ace.edit(container);
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/sh");
+    editor.setShowPrintMargin(false);
+    editor.renderer.setShowGutter(false);
+    editor.setHighlightActiveLine(false);
+    editor.getSession().setUseWrapMode(true);
+    editor.setBehavioursEnabled(false);
+    $(container).height(editor.getSession().getScreenLength() * 20);
+  }
+
 </script>
 
 {%- endblock %}
