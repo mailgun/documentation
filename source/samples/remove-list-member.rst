@@ -57,7 +57,7 @@
  	RestRequest request = new RestRequest();
  	request.Resource = "lists/{list}/members/{member}";
  	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.AddParameter("member", "bar@example.com");
+ 	request.AddParameter("member", "bar@example.com", ParameterType.UrlSegment);
  	request.Method = Method.DELETE;
  	return client.Execute(request);
  }
