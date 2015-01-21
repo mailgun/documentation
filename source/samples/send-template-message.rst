@@ -80,7 +80,7 @@
 
  public static IRestResponse SendTemplateMessage() {
  	RestClient client = new RestClient();
- 	client.BaseUrl = "https://api.mailgun.net/v2";
+ 	client.BaseUrl = new Uri("https://api.mailgun.net/v2");
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
  		                           "YOUR_API_KEY");
