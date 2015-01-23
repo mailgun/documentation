@@ -311,7 +311,7 @@ Sample response:
     "message": "Password changed"
   }
 
-Deleting a given credentail pair:
+Deleting a given credential pair:
 
 .. include:: samples/delete-credentials.rst
 
