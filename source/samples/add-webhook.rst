@@ -3,7 +3,7 @@
     curl -s --user 'api:YOUR_API_KEY' \
 	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks \
 	-F id='click' \
-	-F url='http://bin.mailgun.net/8de4a9c4'
+	-F url='http://bin.example.com/8de4a9c4'
 
 .. code-block:: java
 
@@ -15,7 +15,7 @@
  		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("id", "click");
- 	formData.add("url", "http://bin.mailgun.net/8de4a9c4");
+ 	formData.add("url", "http://bin.example.com/8de4a9c4");
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
  		post(ClientResponse.class, formData);
  }
@@ -33,7 +33,7 @@
   # Issue the call to the client.
   $result = $mgClient->post("domains/$domain/webhooks", array(
       'id'  => 'click',
-      'url' => 'http://bin.mailgun.net/8de4a9c4'
+      'url' => 'http://bin.example.com/8de4a9c4'
   ));
 
 .. code-block:: py
@@ -42,7 +42,7 @@
      return requests.post(
          "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"),
-         data={'id':'click', 'url':'http://bin.mailgun.net/8de4a9c4'})
+         data={'id':'click', 'url':'http://bin.example.com/8de4a9c4'})
 
 .. code-block:: rb
 
@@ -50,7 +50,7 @@
    RestClient.post("https://api:YOUR_API_KEY"\
                    "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks",
                    :id => 'click',
-                   :url => 'http://bin.mailgun.net/8de4a9c4')
+                   :url => 'http://bin.example.com/8de4a9c4')
  end
 
 .. code-block:: csharp
@@ -64,7 +64,7 @@
  	RestRequest request = new RestRequest();
  	request.Resource = "domains/YOUR_DOMAIN_NAME/webhooks";
  	request.AddParameter("id", "click");
- 	request.AddParameter("url", "http://bin.mailgun.net/8de4a9c4");
+ 	request.AddParameter("url", "http://bin.example.com/8de4a9c4");
  	request.Method = Method.POST;
  	return client.Execute(request);
  }
