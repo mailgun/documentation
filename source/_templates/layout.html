@@ -2,7 +2,10 @@
 {% if corpsite_hostname == ""  %}
   {% set corpsite_hostname = "www.mailgun.com" %}
 {% endif %}
-{% set css_url = "http://" + corpsite_hostname + "/static/css/main.css" %}
+{% if cp_hostname == "" %}
+  {% set cp_hostname = "mailgun.com" %}
+{% endif %}
+{% set css_url = "https://" + corpsite_hostname + "/static/css/main.css" %}
 {%- block doctype -%}
 <!doctype html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 documentation"> <![endif]-->
@@ -215,7 +218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {%- if customsidebar %}
       {% include customsidebar %}
       {%- endif %}
-      <div class="admonition note">You can find your API Key in your <a href="https://mailgun.com/cp" target="_blank">Control Panel</a></div>
+      <div class="admonition note">You can find your API Key in your <a href="https://{{cp_hostname}}/cp" target="_blank">Control Panel</a></div>
     </div>
   </aside>
   {%- endif %}{% endif %}
@@ -336,5 +339,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
 </script>
+
+<!-- User information insertion code-->
+<script type="text/javascript">
+  var cp_hostname = "{{cp_hostname}}";
+</script>
+  
+<script type="text/javascript"
+  src="{{ pathto('_static/insert-api-key.js', 1) }}">
+</script>
+
 
 {%- endblock %}

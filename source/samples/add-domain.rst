@@ -3,7 +3,7 @@
     curl -s --user 'api:YOUR_API_KEY' \
 	-X POST \
 	https://api.mailgun.net/v2/domains \
-	-F name='YOUR_DOMAIN_NAME' \
+	-F name='YOUR_NEW_DOMAIN_NAME' \
 	-F smtp_password='supersecretpassword'
 
 .. code-block:: java
@@ -15,7 +15,7 @@
  	WebResource webResource =
  		client.resource("https://api.mailgun.net/v2/domains");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("name", "YOUR_DOMAIN_NAME");
+ 	formData.add("name", "YOUR_NEW_DOMAIN_NAME");
  	formData.add("smtp_password", "supersecretpassword");
  	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
  		post(ClientResponse.class, formData);
@@ -29,7 +29,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $domain = 'YOUR_NEW_DOMAIN_NAME';
 
   # Issue the call to the client.
   $result = $mgClient->post("domains", array(
@@ -43,14 +43,14 @@
      return requests.post(
          "https://api.mailgun.net/v2/domains",
          auth=("api", "YOUR_API_KEY"),
-         data={'name':'YOUR_DOMAIN_NAME', 'smtp_password':'supersecretpassword'})
+         data={'name':'YOUR_NEW_DOMAIN_NAME', 'smtp_password':'supersecretpassword'})
 
 .. code-block:: rb
 
  def add_domain
    RestClient.post("https://api:YOUR_API_KEY"\
                    "@api.mailgun.net/v2/domains",
-                   :name => 'YOUR_DOMAIN_NAME',
+                   :name => 'YOUR_NEW_DOMAIN_NAME',
                    :smtp_password => 'supersecretpassword')
  end
 
@@ -64,7 +64,7 @@
  		                           "YOUR_API_KEY");
  	RestRequest request = new RestRequest();
  	request.Resource = "domains";
- 	request.AddParameter("name", "YOUR_DOMAIN_NAME");
+ 	request.AddParameter("name", "YOUR_NEW_DOMAIN_NAME");
  	request.AddParameter("smtp_password", "supersecretpassword");
  	request.Method = Method.POST;
  	return client.Execute(request);
@@ -72,7 +72,7 @@
 
 .. code-block:: go
 
-func AddDomain(domain, apiKey string) error {
-  mg := mailgun.NewMailgun(domain, apiKey, "")
-  return mg.CreateDomain("YOUR_DOMAIN_NAME", "supersecretpassword", mailgun.Tag, false)
-}
+ func AddDomain(domain, apiKey string) error {
+        mg := mailgun.NewMailgun(domain, apiKey, "")
+        return mg.CreateDomain("YOUR_NEW_DOMAIN_NAME", "supersecretpassword", mailgun.Tag, false)
+ }
