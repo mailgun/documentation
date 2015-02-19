@@ -13,7 +13,7 @@ the data and traverse through the result pages as explained below.
      GET /<domain>/events
 
 .. note:: The Events API replaces the deprecated Logs API endpoint. You should
-use the Events API moving forward.
+ use the Events API moving forward.
 
 A request should define a time range and can specify a set of filters to apply.
 In response, a page of events is returned along with URLs that can be used to
@@ -40,18 +40,19 @@ in the descending order of their timestamps.
 
 If the end timestamp is not provided then depending on the range direction the
 result page traversal behaves differently:
- * If the range is descending then the end timestamp is determined by the user
-   tariff plan retention period.
- * If the range is ascending the it is extended all the time as the time goes on.
-   So after the most recent events have been retrieved and an empty result page
-   has been reached, then requesting next page URL returned with the last page
-   some time later will return events that occurred since then. And this can go
-   on indefinitely.
+
+* If the range is descending then the end timestamp is determined by the user
+ tariff plan retention period.
+* If the range is ascending the it is extended all the time as the time goes on.
+ So after the most recent events have been retrieved and an empty result page
+ has been reached, then requesting next page URL returned with the last page
+ some time later will return events that occurred since then. And this can go
+ on indefinitely.
 
 .. warning:: Even though it seems that real-time event polling can be
-implemented by traversing next URLs of an ascending time range that has no
-explicit end timestamp, it is not that simple! Please refer to `Event Polling`_
-for the proper way to do it.
+ implemented by traversing next URLs of an ascending time range that has no
+ explicit end timestamp, it is not that simple! Please refer to `Event Polling`_
+ for the proper way to do it.
 
 If both the end range date and the direction of the search are specified then
 they should agree with each other, otherwise the request will return an error.
