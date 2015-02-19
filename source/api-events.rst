@@ -95,29 +95,25 @@ URL parameters allow you to manipulate the results of your query:
  ================= ============================================================
  Parameter         Description
  ================= ============================================================
- begin             The beginning of the search time range provided as an RFC2822
-                   (:ref:`date-format`) time string or linux epoch seconds.
+ begin             The beginning of the search time range. It can be specified
+                   as a string (see :ref:`date-format`) or linux epoch seconds.
                    Refer to `Time Range`_ for details.
 
- end               The end of the search time range provided as an RFC2822
-                   (:ref:`date-format`) time string or epoch seconds.
+ end               The end of the search time range. It can be specified
+                   as a string (see :ref:`date-format`) or linux epoch seconds.
                    Refer to `Time Range`_ for details.
 
  ascending         Defines the direction of the search time range if the range
                    end time is not specified. Can be either ``yes`` or ``no``.
                    Refer to `Time Range`_ for details.
 
- limit             Number of entries to return. (100 max)
+ limit             Number of entries to return. (300 max)
 
- pretty            Can be either ``yes`` or ``no``. This defines whether the results
-                   should be returned in human-readable (indented) or compact
-                   form. It is ``yes`` by default.
-
- *<field>*         *<field>* is the name of the `Filter Field`_. The value of the
-                   parameter should be a valid `Filter Expression`_. The possible filtering
-                   expressions are listed below. There is no limit on the amount of
-                   parameters. If the same field is mentioned, more then once, then all
-                   filtering expressions combined via **AND** operator.
+ **<field>**       **<field>** is the name of the `Filter Field`_. The value of
+                   the parameter should be a valid `Filter Expression`_. Several
+                   field filters can be specified in one request. If the same
+                   field is mentioned, more then once, then all its filter
+                   expressions are combined with **AND** operator.
  ================= ============================================================
 
 Filter Field
@@ -126,38 +122,27 @@ Log records can be filtered by the following fields:
 
 .. container:: ptable
 
- ============= ==================================
+ ============= ================================================================
  Fields        Description
- ============= ==================================
- event         An event type. For a complete list
-               of all events writen to the log
+ ============= ================================================================
+ event         An event type. For a complete list of all events writen to the log
                see the `Event Types`_ table below.
- list          The email address of a mailing
-               list the message was originally
+ list          The email address of a mailing list the message was originally
                sent to.
  attachment    A name of an attached file.
- from          An email address mentioned in
-               the `from` MIME header.
- message-id    A Mailgun message id returned by
-               the messages API.
+ from          An email address mentioned in the `from` MIME header.
+ message-id    A Mailgun message id returned by the messages API.
  subject       A subject line.
- to            An email address mentioned in
-               the `to` MIME header.
- size          Message size. Mostly intended to
-               be used with range filtering
+ to            An email address mentioned in the `to` MIME header.
+ size          Message size. Mostly intended to be used with range filtering
                expressions (see below).
- recipient     An email address of a particular
-               recipient. Even though a message
-               may be addressed to several
-               recipients, delivery is tracked on
-               per recipient basis and every
-               event pertains to only one
-               recipient.
+ recipient     An email address of a particular recipient. Even though a message
+               may be addressed to several recipients, delivery is tracked on
+               per recipient basis and every event pertains to only one recipient.
  tags          User defined tags.
- severity      Temporary or Permanent. Used to
-               filter events based on severity, if
+ severity      Temporary or Permanent. Used to filter events based on severity, if
                exists. (Currently failed events only)
- ============= ==================================
+ ============= ================================================================
 
 Filter Expression
 -----------------
