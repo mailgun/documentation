@@ -41,13 +41,13 @@ in the descending order of their timestamps.
 If the end timestamp is not provided then depending on the range direction the
 result page traversal behaves differently:
 
-* If the range is descending then the end timestamp is determined by the user
- tariff plan retention period.
-* If the range is ascending the it is extended all the time as the time goes on.
- So after the most recent events have been retrieved and an empty result page
- has been reached, then requesting next page URL returned with the last page
- some time later will return events that occurred since then. And this can go
- on indefinitely.
+- If the range is descending then the end timestamp is determined by the user
+  tariff plan retention period.
+- If the range is ascending the it is extended all the time as the time goes on.
+  So after the most recent events have been retrieved and an empty result page
+  has been reached, then requesting next page URL returned with the last page
+  some time later will return events that occurred since then. And this can go
+  on indefinitely.
 
 .. warning:: Even though it seems that real-time event polling can be
  implemented by traversing next URLs of an ascending time range that has no
