@@ -71,6 +71,7 @@ implementation of event polling miss some events.
 
 To ensure that all your events are retrieved and accounted for please
 implement polling the following way:
+
 1. Make a request to the events API specifying an ascending time range that
    begins some time in the past (e.g. half an hour ago);
 2. Retrieve a result page;
