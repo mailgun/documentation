@@ -5,7 +5,7 @@ Unsubscribes
 
 Mailgun allows you to quickly add "Unsubscribe me" feature to your outgoing
 emails without any programming on your end. You can enable this in your
-Control Panel.
+Control Panel under your domain settings.
 
 Mailgun can :ref:`notify your application <manual-webhooks>` every time a
 user unsubscribes.
@@ -43,8 +43,7 @@ a given address is present in the list of unsubscribed users.
 Removes an address from the unsubscribes table. Address defines
 which events to delete. can be one of two things:
 
-* an email address: all unsubscribe events for that email
-   address will be removed.
+* an email address: all unsubscribe events for that email address will be removed.
 * id string: deletes a specific event.
 
 .. code-block:: url
