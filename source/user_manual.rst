@@ -521,7 +521,7 @@ Mailgun provides a variety of methods to access data on your emails:
 
 - View and search Events through the Logs tab in the Control Panel to see every event that has happened to every message. You can search by fields like recipient, subject line and even fields that don't show up in the Logs, like message-id. Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
 - Access data on Events programmatically through the :ref:`Events API <api-events>`.  Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
-- View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in each of their respective tabs in the Control Panel or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
+- View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in `Suppression Lists <https://mailgun.com/app/suppressions>`_ or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
 - Access statistics aggregated by tags in the Tracking tab of the Control Panel or the :ref:`Stats API <api-stats>`. Data is stored for at least 6 months.
 - Create Campaigns and access detailed analytics on those Campaigns through the Control Panel or the :ref:`Campaigns API <api-campaigns>`. Data is stored for at least 6 months other than the delivered event which is stored for 2 weeks.
 - Receive notifications of events through a Webhook each time an Event happens and store the data on your side.
@@ -530,7 +530,7 @@ Mailgun provides a variety of methods to access data on your emails:
 
 Event tracking is automatically enabled except for Unsubscribes, Opens and Clicks.
 
-You can enable Unsubscribes tracking in the "Unsubscribes" tab of the Control Panel.
+You can enable Unsubscribes tracking for your domain via the "Domains" tab of the Control Panel.
 You can also manage unsubscribes per message by using unsubscribe variables (see `Tracking Unsubscribes`_)
 
 You can enable Opens & Clicks tracking on two levels: per sending domain and per message.
@@ -875,8 +875,8 @@ Mailgun supports three types of unsubscribes: domain, :ref:`tag <tagging>` or :r
 
 **Auto-Handling**
 
-You can enable Mailgun's Unsubscribe functionality by clicking on the checkbox in the Unsubscribes tab in your
-Control Panel. We will automatically prevent future emails being sent to recipients that have unsubscribed.
+You can enable Mailgun's Unsubscribe functionality by turning it on in the settings area for your
+domain. We will automatically prevent future emails being sent to recipients that have unsubscribed.
 You can edit the unsubscribed address list from your Control Panel or through the API.
 
 .. note:: Before enabling, you will need to configure the required DNS entries provided in your Control Panel.
@@ -907,10 +907,11 @@ To enable/disable unsubscribes programmaticaly per message you can do the follow
 - Insert a variable in the html and text bodies of your email when you need unsubscribe links.
 - This variable will be replaced by the corresponding unsubscribe link.
 
-In the "Unsubscribes" tab of the Control Panel or through the API you can also:
+In the "Suppressions" tab of the Control Panel or through the API you can also:
 
 - View/get a list of unsubscribed addresses.
 - Remove an unsubscribed address from the list.
+- Add a new unsubscribed address.
 
 Take a look at :ref:`Unsubscribes section <api-unsubscribes>` of the API refrence
 to learn how to programmatically manage lists of unsubscribed users.
