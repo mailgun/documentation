@@ -2,9 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces \
-        -d skip=1 \
-        -d limit=1
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces
 
 .. code-block:: java
 
@@ -29,7 +27,7 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/bounces", array('skip' => 0, 'limit' => 50));
+  $result = $mgClient->get("$domain/bounces");
 
 .. code-block:: py
 

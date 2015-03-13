@@ -21,6 +21,7 @@
  }
 
 .. code-block:: php
+
   # Include the Autoloader (see "Libraries" for install instructions)
   require 'vendor/autoload.php';
   use Mailgun\Mailgun;
