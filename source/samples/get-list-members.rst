@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members
+	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/lists/" +
+ 		client.resource("https://api.mailgun.net/v3/lists/" +
  				"LIST@YOUR_DOMAIN_NAME/members");
  	return webResource.get(ClientResponse.class);
  }
@@ -37,14 +37,14 @@
 
  def list_members():
      return requests.get(
-         "https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members",
+         "https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members",
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def list_members
    RestClient.get("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members")
+                  "@api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members")
  end
 
 .. code-block:: csharp

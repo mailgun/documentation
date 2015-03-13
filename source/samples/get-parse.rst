@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -G --user 'api:pubkey-501jygdalut926-6mb1ozo8ay9crlc28' \
-	https://api.mailgun.net/v2/address/parse \
+	https://api.mailgun.net/v3/address/parse \
 	--data-urlencode addresses='Alice <alice@example.com>,bob@example.com,example.com'
 
 .. code-block:: java
@@ -37,7 +37,7 @@
 
  def get_parse():
      return requests.get(
-         "https://api.mailgun.net/v2/address/parse",
+         "https://api.mailgun.net/v3/address/parse",
          auth=("api", "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"),
          params={"addresses": "Alice <alice@example.com>,bob@example.com,example.com"})
 
@@ -49,7 +49,7 @@
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
    RestClient.get "https://api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"\
-   "@api.mailgun.net/v2/address/parse?#{query_string}"
+   "@api.mailgun.net/v3/address/parse?#{query_string}"
  end
 
 .. code-block:: csharp

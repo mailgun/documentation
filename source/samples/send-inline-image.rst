@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
 	-F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
 	-F to='alice@example.com' \
 	-F subject='Hello' \
@@ -17,7 +17,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/messages");
  	FormDataMultiPart form = new FormDataMultiPart();
  	form.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
@@ -59,7 +59,7 @@
 
  def send_inline_image():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
          auth=("api", "YOUR_API_KEY"),
          files=[("inline", open("files/test.jpg"))],
          data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
@@ -79,7 +79,7 @@
    data[:html] = '<html>Inline image here: <img src="cid:test.jpg"></html>'
    data[:inline] = File.new(File.join("files", "test.jpg"))
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages", data
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages", data
  end
 
 .. code-block:: csharp

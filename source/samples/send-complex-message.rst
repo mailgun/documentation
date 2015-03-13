@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
 	-F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
 	-F to='foo@example.com' \
 	-F cc='bar@example.com' \
@@ -20,7 +20,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/" +
  				"messages");
  	FormDataMultiPart form = new FormDataMultiPart();
  	form.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
@@ -69,7 +69,7 @@
 
  def send_complex_message():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
          auth=("api", "YOUR_API_KEY"),
          files=[("attachment", open("files/test.jpg")),
                 ("attachment", open("files/test.txt"))],
@@ -95,7 +95,7 @@
    data[:attachment] = File.new(File.join("files", "test.jpg"))
    data[:attachment] = File.new(File.join("files", "test.txt"))
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages", data
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages", data
  end
 
 .. code-block:: csharp

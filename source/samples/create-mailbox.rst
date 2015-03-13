@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes \
 	-F mailbox='alice@YOUR_DOMAIN_NAME' \
 	-F password='supasecret'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/mailboxes");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("mailbox", "alice@YOUR_DOMAIN_NAME");
@@ -42,7 +42,7 @@
 
  def create_mailbox():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes",
          auth=("api", "YOUR_API_KEY"),
          data={"mailbox": "alice@YOUR_DOMAIN_NAME",
                "password": "secret"})
@@ -51,7 +51,7 @@
 
  def create_mailbox
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes",
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes",
    :mailbox => "alice@YOUR_DOMAIN_NAME",
    :password => "secret"
  end

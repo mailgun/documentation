@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members.json \
+	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members.json \
 	-F upsert=true \
 	-F members='[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/lists/" +
+ 		client.resource("https://api.mailgun.net/v3/lists/" +
  				"LIST@YOUR_DOMAIN_NAME/members.json");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("members", "[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]");
@@ -42,7 +42,7 @@
 
  def add_list_member():
      return requests.post(
-         "https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members.json",
+         "https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members.json",
          auth=('api', 'YOUR_API_KEY'),
          data={'upsert': True,
                'members': '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]')
@@ -51,7 +51,7 @@
 
  def add_list_member
    RestClient.post("https://api:YOUR_API_KEY" \
-                   "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members.json",
+                   "@api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members.json",
                    :upsert => true,
                    :members => '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]')
  end

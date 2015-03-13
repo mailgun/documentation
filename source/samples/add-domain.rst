@@ -2,7 +2,7 @@
 
     curl -s --user 'api:YOUR_API_KEY' \
 	-X POST \
-	https://api.mailgun.net/v2/domains \
+	https://api.mailgun.net/v3/domains \
 	-F name='YOUR_NEW_DOMAIN_NAME' \
 	-F smtp_password='supersecretpassword'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains");
+ 		client.resource("https://api.mailgun.net/v3/domains");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("name", "YOUR_NEW_DOMAIN_NAME");
  	formData.add("smtp_password", "supersecretpassword");
@@ -41,7 +41,7 @@
 
  def add_domain():
      return requests.post(
-         "https://api.mailgun.net/v2/domains",
+         "https://api.mailgun.net/v3/domains",
          auth=("api", "YOUR_API_KEY"),
          data={'name':'YOUR_NEW_DOMAIN_NAME', 'smtp_password':'supersecretpassword'})
 
@@ -49,7 +49,7 @@
 
  def add_domain
    RestClient.post("https://api:YOUR_API_KEY"\
-                   "@api.mailgun.net/v2/domains",
+                   "@api.mailgun.net/v3/domains",
                    :name => 'YOUR_NEW_DOMAIN_NAME',
                    :smtp_password => 'supersecretpassword')
  end
@@ -58,7 +58,7 @@
 
  public static IRestResponse AddDomain() {
  	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v2/");
+ 	client.BaseUrl = new Uri("https://api.mailgun.net/v3/");
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
  		                           "YOUR_API_KEY");

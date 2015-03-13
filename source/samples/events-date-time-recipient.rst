@@ -1,7 +1,7 @@
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' -G \
-        https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events \
+        https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events \
         --data-urlencode begin='Fri, 3 May 2013 09:00:00 -0000' \
         --data-urlencode ascending=yes \
         --data-urlencode limit=25 \
@@ -16,7 +16,7 @@
       "YOUR_API_KEY"));
   WebResource webResource =
       client.resource("
-          https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events");
+          https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events");
   MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
   queryParams.add("begin", 50);
   queryParams.add("ascending", "yes");
@@ -51,7 +51,7 @@
 
  def get_logs():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events",
          auth=("api", "YOUR_API_KEY"),
          params={"begin"       : "Fri, 3 May 2013 09:00:00 -0000",
                  "ascending"   : "yes",
@@ -63,7 +63,7 @@
 
  def get_logs
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/events", 
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/events", 
     :params => {
      :'begin'       => 'Fri, 3 May 2013 09:00:00 -0000',
      :'ascending'   => 'yes',

@@ -8,9 +8,9 @@ The Mailgun API is built on HTTP. Our API is RESTful_ and it:
 * Responds with standard HTTP response codes to indicate errors.
 * Returns JSON_.
 
-Mailgun has published :ref:`libraries` for various languages. You may use our 
-libraries, or your favorite HTTP/REST library available for your programming 
-language, to make HTTP calls to Mailgun. Visit our :ref:`libraries` page to see 
+Mailgun has published :ref:`libraries` for various languages. You may use our
+libraries, or your favorite HTTP/REST library available for your programming
+language, to make HTTP calls to Mailgun. Visit our :ref:`libraries` page to see
 HTTP REST libraries we recommend.
 
 To give you an idea of how to use the API, we have annotated our documentation
@@ -29,13 +29,13 @@ Base URL
 All API URLs referenced in this documentation start with the following
 base part::
 
-    https://api.mailgun.net/v2
+    https://api.mailgun.net/v3
 
 Your Mailgun account may contain several email domains. To avoid passing
-the domain name as a query parameter, most API URLs must include the name of 
+the domain name as a query parameter, most API URLs must include the name of
 the domain you're interested in::
 
-    https://api.mailgun.net/v2/mydomain.com
+    https://api.mailgun.net/v3/mydomain.com
 
 .. index:: Authentication
 
@@ -44,14 +44,14 @@ Authentication
 
 When you sign up for an account, you are given an API key.  You authenticate to the Mailgun API by providing your API key in the request. You can manage your API key in the 'My Account' tab of the Control Panel.
 
-Authentication to the API occurs via `HTTP Basic Auth`_. Use ``api`` as the user 
+Authentication to the API occurs via `HTTP Basic Auth`_. Use ``api`` as the user
 name and your API key is the password. Here is how you use basic HTTP auth with curl::
 
     curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'
 
 Or you can try the following API call right from your browser::
 
-    https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v2/samples.mailgun.org/log
+    https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v3/samples.mailgun.org/log
 
 .. warning:: Keep your API key secret!
 
@@ -63,8 +63,8 @@ Date Format
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mailgun returns JSON for all API calls. JSON does not have a built-in date type, dates are
-passed as strings encoded according to :rfc:`2822#page-14`. This format is native to 
-JavaScript and is also supported by most programming languages out of the 
+passed as strings encoded according to :rfc:`2822#page-14`. This format is native to
+JavaScript and is also supported by most programming languages out of the
 box::
 
     'Thu, 13 Oct 2011 18:02:00 GMT'

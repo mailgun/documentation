@@ -1,7 +1,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-        https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events \
+        https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events \
         --data-urlencode event='rejected OR failed'
 
 .. code-block:: java
@@ -12,7 +12,7 @@
  			"YOUR_API_KEY"));
  	WebResource webResource =
  		client.resource("
-        https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events");
+        https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("event", "rejected OR failed");
  	return webResource.queryParams(queryParams).get(ClientResponse.class);
@@ -36,7 +36,7 @@
 
  def get_logs():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/events",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events",
          auth=("api", "YOUR_API_KEY"),
          params={"event" : "rejected OR failed"})
 
@@ -44,7 +44,7 @@
 
  def get_logs
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/events", 
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/events", 
    :params => {
      :"event" => 'rejected OR failed'
    }

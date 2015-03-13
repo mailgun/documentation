@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-      https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces \
         -d skip=1 \
         -d limit=1
 
@@ -13,7 +13,7 @@
   client.addFilter(new HTTPBasicAuthFilter("api",
       "YOUR_API_KEY"));
   WebResource webResource =
-    client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+    client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
         "/bounces");
   return webResource.get(ClientResponse.class);
  }
@@ -35,14 +35,14 @@
 
  def get_bounces():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_bounces
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces"
  end
 
 .. code-block:: csharp

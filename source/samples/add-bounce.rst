@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces \
 	-F address='bob@example.com'
 
 .. code-block:: java
@@ -12,7 +12,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/" +
  				"bounces");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("address", "bob@example.com");
@@ -36,7 +36,7 @@
 
  def add_bounce():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces",
          auth=("api", "YOUR_API_KEY"),
          data={'address':'bob@example.com'})
 
@@ -44,7 +44,7 @@
 
  def add_bounce
    RestClient.post("https://api:YOUR_API_KEY"\
-                   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces",
+                   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces",
                    :address => 'bob@example.com')
  end
 

@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click \
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click \
 	-F url='http://google.com'
 
 .. code-block:: java
@@ -12,7 +12,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/lists/" +
+ 		client.resource("https://api.mailgun.net/v3/lists/" +
  				"LIST@YOUR_DOMAIN_NAME/members/bar@example.com");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("url", "http://google.com");
@@ -41,7 +41,7 @@
 
  def update_member():
      return requests.put(
-         ("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click"),
+         ("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"),
          auth=('api', 'YOUR_API_KEY'),
          data={'url': 'http://google.com'})
 
@@ -49,7 +49,7 @@
 
  def update_member
    RestClient.put("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click" \
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click" \
                   "/bar@example.com",
                   :url => 'http://google.com')
  end

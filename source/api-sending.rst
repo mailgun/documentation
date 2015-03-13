@@ -137,7 +137,7 @@ To retrieve an inbound message that has been stored via the ``store()`` action, 
 
      GET domains/<domain>/messages
 
-You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v2/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
+You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v3/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
 
 These are the parameters of the JSON returned from a GET request to a stored message url.
 
@@ -204,7 +204,7 @@ To delete an inbound message that has been stored via the ``store()`` action, us
 
      DELETE domains/<domain>/messages/<message>
 
-You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v2/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
+You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v3/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
 
 
 Examples

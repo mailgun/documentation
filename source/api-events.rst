@@ -488,7 +488,7 @@ Below you can find sample events of various types:
        "event":"stored"
        "timestamp":1378335036.859382,
        "storage":{
-          "url":"https://api.mailgun.net/v2/domains/ninomail.com/messages/WyI3MDhjODgwZTZlIiwgIjF6",
+          "url":"https://api.mailgun.net/v3/domains/ninomail.com/messages/WyI3MDhjODgwZTZlIiwgIjF6",
           "key":"WyI3MDhjODgwZTZlIiwgIjF6"
        },
        "campaigns":[],
@@ -562,9 +562,9 @@ Sample response:
     ],
     "paging": {
       "next":
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...",
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/W3siY...",
       "previous":
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/Lkawm..."
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/Lkawm..."
     }
   }
 
@@ -618,9 +618,9 @@ starting from the most recent:
     ],
     "paging": {
       "next":
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...",
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/W3siY...",
       "previous":
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/Lkawm..."
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/Lkawm..."
     }
   }
 

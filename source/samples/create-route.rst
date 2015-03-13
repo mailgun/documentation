@@ -1,7 +1,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/routes \
+	https://api.mailgun.net/v3/routes \
 	-F priority=0 \
 	-F description='Sample route' \
 	-F expression='match_recipient(".*@YOUR_DOMAIN_NAME")' \
@@ -15,7 +15,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/routes");
+ 		client.resource("https://api.mailgun.net/v3/routes");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("priority", 0);
  	formData.add("description", "Sample route");
@@ -47,7 +47,7 @@
 
  def create_route():
      return requests.post(
-         "https://api.mailgun.net/v2/routes",
+         "https://api.mailgun.net/v3/routes",
          auth=("api", "YOUR_API_KEY"),
          data={"priority": 0,
                "description": "Sample route",
@@ -64,7 +64,7 @@
    data[:action] = "forward('http://myhost.com/messages/')"
    data[:action] = "stop()"
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/routes", data
+   "@api.mailgun.net/v3/routes", data
  end
 
 .. code-block:: csharp

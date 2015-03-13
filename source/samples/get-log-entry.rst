@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/log \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/log \
 	-d skip=50 \
 	-d limit=1
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/log");
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/log");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("skip", 50);
  	queryParams.add("limit", 1);
@@ -40,7 +40,7 @@
 
  def get_logs():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/log",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/log",
          auth=("api", "YOUR_API_KEY"),
          params={"skip": 50,
                  "limit": 1})
@@ -49,7 +49,7 @@
 
  def get_logs
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/log", :params => {
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/log", :params => {
      :skip => 50,
      :limit => 1
    }

@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns \
 	-F name='Newsletter' \
 	-F id='my_campaign_id'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns");
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("name", "Newsletter");
  	formData.add("id", "my_campaign_id");
@@ -40,7 +40,7 @@
 
  def create_campaign():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns",
          auth=('api', 'YOUR_API_KEY'),
          data={'name': 'Newsletter',
                'id': 'my_campaign_id'})
@@ -49,7 +49,7 @@
 
  def create_campaign
    RestClient.post("https://api:YOUR_API_KEY" \
-                   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns",
+                   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns",
                    :name => 'Newsletter',
                    :id => 'my_campaign_id') {
      |response, request, result| response

@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v2/domains/example.mailgun.org
+     https://api.mailgun.net/v3/domains/example.mailgun.org
 
 .. code-block:: java
 
@@ -33,14 +33,14 @@
 
  def delete_domain():
      return requests.delete(
-         "https://api.mailgun.net/v2/domains/example.mailgun.org",
+         "https://api.mailgun.net/v3/domains/example.mailgun.org",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_domain
    RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/domains/example.mailgun.org"
+   "@api.mailgun.net/v3/domains/example.mailgun.org"
  end
 
 .. code-block:: csharp

@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice \
 	-F password='abc123'
 
 .. code-block:: java
@@ -12,7 +12,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/mailboxes/alice");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("password", "supersecret");
@@ -40,7 +40,7 @@
 
  def change_mailbox_password():
      return requests.put(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice",
          auth=("api", "YOUR_API_KEY"),
          data={"password": "supersecret"})
 
@@ -48,7 +48,7 @@
 
  def change_mailbox_password
    RestClient.put "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice",
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice",
    :password => "supersecret"
  end
 

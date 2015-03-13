@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/events?limit=2
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/events?limit=2
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/events");
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/events");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("limit", 2);
  	return webResource.queryParams(queryParams).get(ClientResponse.class);
@@ -38,14 +38,14 @@
 
  def get_events_history():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/events?limit=2",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/events?limit=2",
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def get_events_history
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/"\
+                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/"\
                   "my_campaign_id/events?limit=2")
  end
 

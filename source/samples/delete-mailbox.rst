@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/mailboxes/alice");
  	return webResource.delete(ClientResponse.class);
  }
@@ -34,14 +34,14 @@
 
  def delete_mailbox():
      return requests.delete(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_mailbox
    RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/mailboxes/alice"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice"
  end
 
 .. code-block:: csharp

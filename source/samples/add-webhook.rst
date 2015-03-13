@@ -1,7 +1,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks \
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
 	-F id='click' \
 	-F url='http://bin.example.com/8de4a9c4'
 
@@ -12,7 +12,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks");
+ 		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("id", "click");
  	formData.add("url", "http://bin.example.com/8de4a9c4");
@@ -40,7 +40,7 @@
 
  def add_domain():
      return requests.post(
-         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"),
          data={'id':'click', 'url':'http://bin.example.com/8de4a9c4'})
 
@@ -48,7 +48,7 @@
 
  def add_domain
    RestClient.post("https://api:YOUR_API_KEY"\
-                   "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks",
+                   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
                    :id => 'click',
                    :url => 'http://bin.example.com/8de4a9c4')
  end
@@ -57,7 +57,7 @@
 
  public static IRestResponse AddDomain() {
  	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v2/");
+ 	client.BaseUrl = new Uri("https://api.mailgun.net/v3/");
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
  		                           "YOUR_API_KEY");

@@ -8,7 +8,7 @@ Once you start sending and receiving messages, it's important to track what's ha
 Events
 ------
 
-Mailgun keeps track of every event that happens to every message (both inbound and outbound) and stores this data for at least 30 days for paid accounts and 2 days for free accounts. 
+Mailgun keeps track of every event that happens to every message (both inbound and outbound) and stores this data for at least 30 days for paid accounts and 2 days for free accounts.
 
 Below is the table of events that Mailgun tracks.
 
@@ -23,17 +23,17 @@ rejected          Mailgun rejected the request to send/forward the email.
 delivered         Mailgun sent the email and it was accepted by the recipient
                   email server.
 failed            Mailgun could not deliver the email to the recipient email server.
-opened            The email recipient opened the email and enabled image  
+opened            The email recipient opened the email and enabled image
                   viewing. Open tracking must be enabled in the Mailgun control
                   panel, and the CNAME record must be pointing to mailgun.org.
-clicked           The email recipient clicked on a link in the email.  
+clicked           The email recipient clicked on a link in the email.
                   Click tracking must be enabled in the Mailgun control
                   panel, and the CNAME record must be pointing to mailgun.org.
 unsubscribed      The email recipient clicked on the unsubscribe link.
                   Unsubscribe tracking must be enabled in the Mailgun control
                   panel.
 complained        The email recipient clicked on the spam complaint button within
-                  their email client. Feedback loops enable the notification to 
+                  their email client. Feedback loops enable the notification to
                   be received by Mailgun.
 
 stored            Mailgun has stored an incoming message
@@ -41,11 +41,11 @@ stored            Mailgun has stored an incoming message
 
 You can access Events through a few interfaces:
 
-* Webhooks (we POST data to your URL). 
+* Webhooks (we POST data to your URL).
 * The Events API (you GET data through the API).
 * The Logs Tab of the Control Panel (GUI).
 
-**Events API**  
+**Events API**
 
 You can programmatically query and download events through the :ref:`Events API <api-events>`:
 
@@ -58,41 +58,41 @@ Sample response:
   {
     "items": [
       {
-        "tags": [], 
-        "timestamp": 1376325780.160809, 
+        "tags": [],
+        "timestamp": 1376325780.160809,
         "envelope": {
-          "sender": "me@samples.mailgun.org", 
+          "sender": "me@samples.mailgun.org",
           "transport": ""
-        }, 
-        "event": "accepted", 
-        "campaigns": [], 
-        "user-variables": {}, 
+        },
+        "event": "accepted",
+        "campaigns": [],
+        "user-variables": {},
         "flags": {
-          "is-authenticated": true, 
+          "is-authenticated": true,
           "is-test-mode": false
-        }, 
+        },
         "message": {
           "headers": {
-            "to": "user@example.com", 
-            "message-id": "20130812164300.28108.52546@samples.mailgun.org", 
-            "from": "Excited User <me@samples.mailgun.org>", 
+            "to": "user@example.com",
+            "message-id": "20130812164300.28108.52546@samples.mailgun.org",
+            "from": "Excited User <me@samples.mailgun.org>",
             "subject": "Hello"
-          }, 
-          "attachments": [], 
+          },
+          "attachments": [],
           "recipients": [
             "user@example.com"
-          ], 
+          ],
           "size": 69
-        }, 
-        "recipient": "user@example.com", 
+        },
+        "recipient": "user@example.com",
         "method": "http"
       }
-    ], 
+    ],
     "paging": {
-      "next": 
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...", 
-      "previous": 
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/Lkawm..."
+      "next":
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/W3siY...",
+      "previous":
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/Lkawm..."
     }
   }
 
@@ -100,7 +100,7 @@ Sample response:
 
 **Events Webhooks**
 
-Mailgun can also make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the respective tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector. 
+Mailgun can also make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the respective tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
 
 You can read more about the data that is posted in the :ref:`webhooks` section of the :ref:`user-manual`. We recommend using `<http://bin.mailgun.net>`_ for creating temporary URLs to test and debug your webhooks.
 
