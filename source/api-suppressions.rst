@@ -183,6 +183,9 @@ to 1000 bounce records in the following format.
 Fields within each individual bounce record are the same as for the "add
 a single bounce" API method, with the same defaults and optionality rules.
 
+.. note:: The current versions of our language wrappers do not support
+          adding multiple bounces yet.
+
 Expected response:
 
 .. code-block:: javascript
@@ -372,6 +375,9 @@ to 1000 unsubscribe records in the following format.
 Fields within each individual unsubscribe record are the same as for the "add
 a single unsubscribe" API method, with the same defaults and optionality rules.
 
+.. note:: The current versions of our language wrappers do not support
+          adding multiple unsubscribes yet.
+
 Expected response:
 
 .. code-block:: javascript
@@ -557,6 +563,9 @@ to 1000 complaint records in the following format.
 
 Fields within each individual complaint record are the same as for the "add
 a single unsubscribe" API method, with the same defaults and optionality rules.
+
+.. note:: The current versions of our language wrappers do not support
+          adding multiple complaints yet.
 
 Expected response:
 
