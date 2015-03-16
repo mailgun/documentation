@@ -124,7 +124,7 @@ For additional information, see the Github Repository `README <https://github.co
 
 PHP users can use `cURL <http://php.net/manual/ru/book.curl.php>`_ library.
 
-Bellow are all the steps needed to install this library having a fresh Ubuntu
+Below are all the steps needed to install this library from a fresh Ubuntu
 installation.
 
 Run:
