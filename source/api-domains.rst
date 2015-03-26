@@ -28,6 +28,14 @@ Returns a single domain, including credentials and DNS records. See examples bel
 
 .. code-block:: url
 
+     PUT /domains/<domain>/verify
+
+Verifies and returns a single domain, including credentials and DNS records.
+If the domain is successfully verified the message should be the following:
+*Domain DNS records have been updated*
+
+.. code-block:: url
+
      POST /domains
 
 Create a new domain. See examples below.
