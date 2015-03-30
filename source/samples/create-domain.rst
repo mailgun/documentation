@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v2/domains \
+    https://api.mailgun.net/v3/domains \
     -F name='YOUR_DOMAIN_NAME' \
     -F smtp_password='supasecret'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains");
+ 		client.resource("https://api.mailgun.net/v3/domains");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("name", "YOUR_DOMAIN_NAME");
  	formData.add("smtp_password", "supasecret");
@@ -40,7 +40,7 @@
 
  def create_domain():
      return requests.post(
-         "https://api.mailgun.net/v2/domains",
+         "https://api.mailgun.net/v3/domains",
          auth=("api", "YOUR_API_KEY"),
          data={"name": "YOUR_DOMAIN_NAME",
                "smtp_password": "supasecret"})
@@ -52,7 +52,7 @@
    data[:name] = "YOUR_DOMAIN_NAME"
    data[:smtp_password] = "supasecret"
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/domains", data
+   "@api.mailgun.net/v3/domains", data
  end
 
 .. code-block:: csharp

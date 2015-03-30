@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/lists \
+	https://api.mailgun.net/v3/lists \
 	-F address='LIST@YOUR_DOMAIN_NAME' \
 	-F description='Mailgun developers list'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/lists");
+ 		client.resource("https://api.mailgun.net/v3/lists");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("address", "LIST@YOUR_DOMAIN_NAME");
  	formData.add("description", "Mailgun developers list");
@@ -41,7 +41,7 @@
 
  def create_mailing_list():
      return requests.post(
-         "https://api.mailgun.net/v2/lists",
+         "https://api.mailgun.net/v3/lists",
          auth=('api', 'YOUR_API_KEY'),
          data={'address': 'LIST@YOUR_DOMAIN_NAME',
                'description': "Mailgun developers list"})
@@ -50,7 +50,7 @@
 
  def create_mailing_list
    RestClient.post("https://api:YOUR_API_KEY" \
-                   "@api.mailgun.net/v2/lists",
+                   "@api.mailgun.net/v3/lists",
                    :address => 'LIST@YOUR_DOMAIN_NAME',
                    :description => "Mailgun developers list")
  end

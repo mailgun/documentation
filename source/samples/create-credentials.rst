@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials \
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials \
 	-F login='alice@YOUR_DOMAIN_NAME' \
 	-F password='supasecret'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME" +
  				"/credentials");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("login", "alice@YOUR_DOMAIN_NAME");
@@ -42,7 +42,7 @@
 
  def create_credentials():
      return requests.post(
-         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials",
          auth=("api", "YOUR_API_KEY"),
          data={"login": "alice@YOUR_DOMAIN_NAME",
                "password": "secret"})
@@ -51,7 +51,7 @@
 
  def create_credentials
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/credentials",
+   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials",
    :login => "alice@YOUR_DOMAIN_NAME",
    :password => "secret"
  end

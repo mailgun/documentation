@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats");
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats");
  	return webResource.get(ClientResponse.class);
  }
 
@@ -33,14 +33,14 @@
 
  def get_campaign_stats():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats",
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def get_campaign_stats
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/"\
+                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/"\
                   "my_campaign_id/stats")
  end
 

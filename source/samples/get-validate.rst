@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -G --user 'api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7' -G \
-	https://api.mailgun.net/v2/address/validate \
+	https://api.mailgun.net/v3/address/validate \
 	--data-urlencode address='foo@mailgun.net'
 
 .. code-block:: java
@@ -36,7 +36,7 @@
 
  def get_validate():
      return requests.get(
-         "https://api.mailgun.net/v2/address/validate",
+         "https://api.mailgun.net/v3/address/validate",
          auth=("api", "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"),
          params={"address": "foo@mailgun.net"})
 
@@ -48,7 +48,7 @@
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
    RestClient.get "https://api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"\
-   "@api.mailgun.net/v2/address/validate?#{query_string}"
+   "@api.mailgun.net/v3/address/validate?#{query_string}"
  end
 
 .. code-block:: csharp

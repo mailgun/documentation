@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages.mime \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages.mime \
 	-F to='bob@example.com' \
 	-F message=@files/message.mime
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/messages.mime");
  	FormDataMultiPart form = new FormDataMultiPart();
  	form.field("to", "bar@example.com");
@@ -49,7 +49,7 @@
 
  def send_mime_message():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages.mime",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages.mime",
          auth=("api", "YOUR_API_KEY"),
          data={"to": "bar@example.com"},
          files={"message": open("files/message.mime")})
@@ -58,7 +58,7 @@
 
  def send_mime_message
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages.mime",
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages.mime",
    :to => "bar@example.com",
    :message => File.new(File.join("files", "message.mime"))
  end

@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/unsubscribes \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes \
 	-F address='bob@example.com' \
 	-F tag='*'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/unsubscribes");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("address", "bob@example.com");
@@ -42,7 +42,7 @@
 
  def unsubscribe_from_all():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/unsubscribes",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes",
          auth=("api", "YOUR_API_KEY"),
          data={'address':'bob@example.com', 'tag': '*'})
 
@@ -50,7 +50,7 @@
 
  def unsubscribe_from_all
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/unsubscribes",
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes",
    :address => 'bob@example.com',
    :tag => '*'
  end

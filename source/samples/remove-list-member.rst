@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com
+	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/lists/" +
+ 		client.resource("https://api.mailgun.net/v3/lists/" +
  				"LIST@YOUR_DOMAIN_NAME/members/bar@example.com");
  	return webResource.delete(ClientResponse.class);
  }
@@ -34,7 +34,7 @@
 
  def remove_member():
      return requests.delete(
-         ("https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members"
+         ("https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members"
           "/bar@example.com"),
          auth=('api', 'YOUR_API_KEY'))
 
@@ -42,7 +42,7 @@
 
  def remove_member
    RestClient.delete("https://api:YOUR_API_KEY" \
-                     "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members" \
+                     "@api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members" \
                      "/bar@example.com")
  end
 

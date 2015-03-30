@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' \
-     https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
      -F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
      -F to=alice@example.com \
      -F to=bob@example.com \
@@ -17,7 +17,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/messages");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
@@ -55,7 +55,7 @@
 
  def send_template_message():
      return requests.post(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
          auth=("api", "YOUR_API_KEY"),
          data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
                "to": ["alice@example.com, bob@example.com"],
@@ -68,7 +68,7 @@
 
  def send_template_message
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/messages",
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
    :from => "Excited User <YOU@YOUR_DOMAIN_NAME>",
    :to => "alice@example.com, bob@example.com",
    :subject => "Hey, %recipient.first%",

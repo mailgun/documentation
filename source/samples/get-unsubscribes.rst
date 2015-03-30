@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/unsubscribes
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/unsubscribes");
  	return webResource.get(ClientResponse.class);
  }
@@ -36,14 +36,14 @@
 
  def get_unsubscribes():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/unsubscribes",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_unsubscribes
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/unsubscribes"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes"
  end
 
 .. code-block:: csharp

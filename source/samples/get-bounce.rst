@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces/foo@bar.com
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/foo@bar.com
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/" +
  				"bounces/foo@bar.com");
  	return webResource.get(ClientResponse.class);
  }
@@ -34,14 +34,14 @@
 
  def get_bounce():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces/foo@bar.com",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/foo@bar.com",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_bounce
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/bounces"\
+                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces"\
                   "/foo@bar.com"){|response, request, result| response }
  end
 

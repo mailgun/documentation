@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click);
+ 		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click);
  	return webResource.get(ClientResponse.class);
  }
 
@@ -32,14 +32,14 @@
 
  def get_domain():
      return requests.get(
-         "https://api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_domain
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v2/domains/YOUR_DOMAIN_NAME/webhooks/click"\
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"\
                   {|response, request, result| response }
  end
 

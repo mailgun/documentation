@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com \
+	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com \
 	-F subscribed=False \
 	-F name='Foo Bar'
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/lists/" +
+ 		client.resource("https://api.mailgun.net/v3/lists/" +
  				"LIST@YOUR_DOMAIN_NAME/members/bar@example.com");
  	MultivaluedMapImpl formData = new MultivaluedMapImpl();
  	formData.add("subscribed", false);
@@ -44,7 +44,7 @@
 
  def update_member():
      return requests.put(
-         ("https://api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members"
+         ("https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members"
           "/bar@example.com"),
          auth=('api', 'YOUR_API_KEY'),
          data={'subscribed': False,
@@ -54,7 +54,7 @@
 
  def update_member
    RestClient.put("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v2/lists/LIST@YOUR_DOMAIN_NAME/members" \
+                  "@api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members" \
                   "/bar@example.com",
                   :subscribed => false,
                   :name => 'Foo Bar')

@@ -1,4 +1,4 @@
-.. _api-unsubscribes:
+.. _api-unsubscribes-old:
 
 Unsubscribes
 ============

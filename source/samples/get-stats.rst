@@ -1,7 +1,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/stats \
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/stats \
 	-d event='sent' \
 	-d event='opened' \
 	-d skip=1 \
@@ -14,7 +14,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
  				"/stats");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("event", "sent");
@@ -43,7 +43,7 @@
 
  def get_stats():
      return requests.get(
-         "https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/stats",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/stats",
          auth=("api", "YOUR_API_KEY"),
          params={"event": ["sent", "opened"],
                  "skip": 1,
@@ -60,7 +60,7 @@
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/stats?#{query_string}"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/stats?#{query_string}"
  end
 
 .. code-block:: csharp

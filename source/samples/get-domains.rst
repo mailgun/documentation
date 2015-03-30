@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v2/domains \
+	https://api.mailgun.net/v3/domains \
 	-d skip=0 \
 	-d limit=3
 
@@ -13,7 +13,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/domains");
+ 		client.resource("https://api.mailgun.net/v3/domains");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("skip", 0);
  	queryParams.add("limit", 3);
@@ -36,7 +36,7 @@
 
  def get_domains():
      return requests.get(
-         "https://api.mailgun.net/v2/domains",
+         "https://api.mailgun.net/v3/domains",
          auth=("api", "YOUR_API_KEY"),
          params={"skip": 0,
                  "limit": 3})
@@ -45,7 +45,7 @@
 
  def get_domains
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v2/domains", :params => {
+   "@api.mailgun.net/v3/domains", :params => {
      :skip => 0,
      :limit => 3
    }

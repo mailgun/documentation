@@ -3,7 +3,7 @@
 
     curl -s --user 'api:YOUR_API_KEY' -G \
 	-d "groupby=daily_hour&limit=2" \
-	https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats
+	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats
 
 .. code-block:: java
 
@@ -12,7 +12,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats");
+ 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/stats");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("groupby", "daily_hour");
  	queryParams.add("limit", 2);
@@ -40,7 +40,7 @@
 
  def get_campaign_stats():
      return requests.get(
-         ("https://api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns"
+         ("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns"
           "/my_campaign_id/stats?groupby=daily_hour&limit=2"),
          auth=('api', 'YOUR_API_KEY'))
 
@@ -48,7 +48,7 @@
 
  def get_campaign_stats
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v2/YOUR_DOMAIN_NAME/campaigns/"\
+                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/"\
                   "my_campaign_id/stats?groupby=daily_hour&limit=2")
  end
 

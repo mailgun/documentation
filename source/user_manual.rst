@@ -627,9 +627,9 @@ Sample response:
     ],
     "paging": {
       "next":
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/W3siY...",
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/W3siY...",
       "previous":
-          "https://api.mailgun.net/v2/samples.mailgun.org/events/Lkawm..."
+          "https://api.mailgun.net/v3/samples.mailgun.org/events/Lkawm..."
     }
   }
 

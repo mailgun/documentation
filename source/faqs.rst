@@ -168,7 +168,7 @@ Check the following:
 
 * You have a custom domain defined in the "Domains" tab of the Control Panel.
 * You've setup the DKIM DNS record (provided in the Control Panel, "Domains" tab).
-* You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v2/youcustomdomain.com/messages)
+* You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v3/youcustomdomain.com/messages)
 
 If you're still seeing "via mailgun.org", please `contact our Support Team <https://mailgun.com/cp/support>`_ and we'll investigate.
 

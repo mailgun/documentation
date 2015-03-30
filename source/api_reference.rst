@@ -8,11 +8,9 @@ API Reference
    api-intro
    api-sending
    api-domains
-   api-unsubscribes
-   api-complaints
-   api-bounces
    api-stats
    api-events
+   api-suppressions
    api-routes
    api-campaigns
    api-webhooks

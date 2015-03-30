@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v2/routes/4f3bad2335335426750048c6
+	https://api.mailgun.net/v3/routes/4f3bad2335335426750048c6
 
 .. code-block:: java
 
@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2/routes" +
+ 		client.resource("https://api.mailgun.net/v3/routes" +
  				"/4e97c1b2ba8a48567f007fb6");
  	return webResource.get(ClientResponse.class);
  }
@@ -33,7 +33,7 @@
 
  def get_route():
      return requests.get(
-         "https://api.mailgun.net/v2/routes/4e97c1b2ba8a48567f007fb6",
+         "https://api.mailgun.net/v3/routes/4e97c1b2ba8a48567f007fb6",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
@@ -41,7 +41,7 @@
  def get_route
    RestClient.
      get("https://api:YOUR_API_KEY"\
-         "@api.mailgun.net/v2/routes/"\
+         "@api.mailgun.net/v3/routes/"\
          "4e97c1b2ba8a48567f007fb6"){|response, request, result| response }
  end
 
