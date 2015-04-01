@@ -159,7 +159,7 @@ consistent and elegant way. An exellent choice to study the API.
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
 .. _JSON: http://en.wikipedia.org/wiki/Json objects
 .. _Requests: http://docs.python-requests.org/en/latest/index.html
-.. _rest-client: https://github.com/archiloque/rest-client
+.. _rest-client: https://github.com/rest-client/rest-client
 .. _jersey: http://jersey.java.net
 .. _RestSharp: http://restsharp.org
 .. _MultiDict: http://docs.webob.org/en/latest/index.html
