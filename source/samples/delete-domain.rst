@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2" +
+ 		client.resource("https://api.mailgun.net/v3" +
  				"/domains/example.mailgun.org");
  	return webResource.delete(ClientResponse.class);
  }
@@ -47,7 +47,7 @@
 
  public static IRestResponse DeleteDomain() {
  	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v2");
+ 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
  		                           "YOUR_API_KEY");

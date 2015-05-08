@@ -12,7 +12,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v2" +
+ 		client.resource("https://api.mailgun.net/v3" +
  				"/address/validate");
  	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
  	queryParams.add("address", "foo@mailgun.net");
@@ -55,7 +55,7 @@
 
  public static IRestResponse GetValidate() {
  	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v2");
+ 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
  		                           "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
