@@ -62,7 +62,7 @@
       'text'    => 'Testing some Mailgun awesomness!',
       'html'    => '<html>HTML version of the body</html>'
   ), array(
-      'attachment' => array('@/path/to/file.txt', '@/path/to/file.txt')
+      'attachment' => array('/path/to/file.txt', '/path/to/file.txt')
   ));
 
 .. code-block:: py
