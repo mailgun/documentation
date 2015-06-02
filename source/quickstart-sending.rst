@@ -53,6 +53,10 @@ What's actually happening:
 * Added the log entries to our full text search index.
 * Delivered the email.
 
+You can find your secret API key on your `dashboard`_.
+
+.. _dashboard: https://mailgun.com/app/dashboard
+
 
 Send via SMTP
 ^^^^^^^^^^^^^
@@ -61,6 +65,9 @@ Run this:
 
 .. include:: samples/smtp-send-simple-message.rst
 
+You can find your SMTP credentials for each domain on your `domains tab`_.
+
+.. _domains tab: https://mailgun.com/app/domains
 
 Verify Your Domain
 ------------------
