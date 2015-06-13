@@ -44,7 +44,7 @@
   $result = $mgClient->sendMessage($domain, array(
       'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
       'to'      => 'bob@example.com, alice@example.com',
-      'subject' => 'Hello',
+      'subject' => 'Hey, %recipient.first%',
       'text'    => 'If you wish to unsubscribe,
                             click http://mailgun/unsubscribe/%recipient.id%',
               'recipient-variables' => '{"bob@example.com": {"first":"Bob", "id":1},
