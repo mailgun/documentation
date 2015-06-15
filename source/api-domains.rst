@@ -106,6 +106,44 @@ Deletes the defined SMTP credentials.
 		  issue no more than 300 requests per minute, per account. See the resultant
 		  rate limit response below. 
 
+.. code-block:: url
+
+     GET /domains/<domain>/connection
+
+Returns delivery connection settings for the defined domain.
+
+.. code-block:: url
+
+     PUT /domains/<domain>/connection
+
+Updates the specified delivery connection settings for the defined domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ require_tls       If set to `True` this requires the message only be sent over
+                   a TLS connection. If a TLS connection can not be established,
+                   Mailgun will not deliver the message.
+
+                   If set to `False`, Mailgun will still try and upgrade the
+                   connection, but if Mailgun can not, the message will be
+                   delivered over a plaintext SMTP connection.
+
+                   The default is `False`.
+
+ skip_verification If set to `True`, the certificate and hostname will not be
+                   verified when trying to establish a TLS connection and Mailgun
+                   will accept any certificate during delivery.
+
+                   If set to `False`, Mailgun will verify the certificate and
+                   hostname. If either one can not be verified, a TLS connection
+                   will not be established.
+
+                   The default is `False`.
+ ================= =============================================================
+
 Example
 ~~~~~~~
 
@@ -322,4 +360,32 @@ Sample response:
  {
    "message": "Credentials have been deleted",
    "spec": "alice@samples.mailgun.org"
+ }
+
+Listing connection settings:
+
+.. include:: samples/get-connection.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+ {
+   "connection": {
+     "require_tls": false,
+     "skip_verification": false
+ }
+
+Update connection settings:
+
+.. include:: samples/update-connection.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+ {
+   "message": "Domain connection settings have been updated, may take 10 minutes to fully propagate",
+   "require-tls": true,
+   "skip-verification": false
  }

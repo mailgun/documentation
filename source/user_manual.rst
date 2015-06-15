@@ -208,6 +208,10 @@ An example of how to tag a message with the ``o:tag`` option:
 
 .. include:: samples/send-tagged-message.rst
 
+An example of how to send a message with custom connection settings:
+
+.. include:: samples/send-connection.rst
+
 .. _inline-image:
 
 Sending Inline Images
@@ -247,34 +251,38 @@ custom  MIME_ headers listed in the table below.
 
 .. container:: ptable
 
-    ======================= ==========================================================
-    Header                  Description
-    ======================= ==========================================================
-    X-Mailgun-Tag           Tag string used for aggregating stats. See :ref:`tagging`
-                            for more information. You can mark a message with several
-                            categories by setting multiple ``X-Mailgun-Tag`` headers.
-    X-Mailgun-Campaign-Id   Id of the campaign the message belongs to. See
-                            :ref:`um-campaign-analytics` for details.
-                            You can assign a message to several campaigns by setting
-                            multiple different ``X-Mailgun-Campaign-Id`` headers.
-    X-Mailgun-Dkim          Enables/disables DKIM signatures on per-message basis.
-                            Use ``yes`` or ``no``.
-    X-Mailgun-Deliver-By    Desired time of delivery. See `Scheduling Delivery`_ and
-                            :ref:`date-format`.
-    X-Mailgun-Drop-Message  Enables sending in test mode. Pass ``yes`` if needed.
-                            See :ref:`manual-testmode`.
-    X-Mailgun-Track         Toggles tracking on a per-message basis, see
-                            :ref:`tracking-messages` for details.
-                            Pass ``yes`` or ``no``.
-    X-Mailgun-Track-Clicks  Toggles clicks tracking on a per-message basis. Has higher
-                            priority than domain-level setting. Pass ``yes``, ``no``
-                            or ``htmlonly``.
-    X-Mailgun-Track-Opens   Toggles opens tracking on a per-message basis. Has higher
-                            priority than domain-level setting. Pass ``yes`` or ``no``.
+    =========================== ============================================================
+    Header                      Description
+    =========================== ============================================================
+    X-Mailgun-Tag               Tag string used for aggregating stats. See :ref:`tagging`
+                                for more information. You can mark a message with several
+                                categories by setting multiple ``X-Mailgun-Tag`` headers.
+    X-Mailgun-Campaign-Id       Id of the campaign the message belongs to. See
+                                :ref:`um-campaign-analytics` for details.
+                                You can assign a message to several campaigns by setting
+                                multiple different ``X-Mailgun-Campaign-Id`` headers.
+    X-Mailgun-Dkim              Enables/disables DKIM signatures on per-message basis.
+                                Use ``yes`` or ``no``.
+    X-Mailgun-Deliver-By        Desired time of delivery. See `Scheduling Delivery`_ and
+                                :ref:`date-format`.
+    X-Mailgun-Drop-Message      Enables sending in test mode. Pass ``yes`` if needed.
+                                See :ref:`manual-testmode`.
+    X-Mailgun-Track             Toggles tracking on a per-message basis, see
+                                :ref:`tracking-messages` for details.
+                                Pass ``yes`` or ``no``.
+    X-Mailgun-Track-Clicks      Toggles clicks tracking on a per-message basis. Has higher
+                                priority than domain-level setting. Pass ``yes``, ``no``
+                                or ``htmlonly``.
+    X-Mailgun-Track-Opens       Toggles opens tracking on a per-message basis. Has higher
+                                priority than domain-level setting. Pass ``yes`` or ``no``.
+    X-Mailgun-Require-TLS       Use this header to control TLS connection settings.
+                                See :ref:`tls-sending`
+    X-Mailgun-Skip-Verification Use this header to control TLS connection settings.
+                                See :ref:`tls-sending`
 
-    X-Mailgun-Variables     Use this header to attach a custom JSON data to the message.
-                            See :ref:`manual-customdata` for more information.
-    ======================= ==========================================================
+    X-Mailgun-Variables         Use this header to attach a custom JSON data to the message.
+                                See :ref:`manual-customdata` for more information.
+    =========================== ============================================================
 
 
 Message Queue
@@ -1916,3 +1924,46 @@ Settings for sending mail::
 
 .. Note:: Use a full address like "user@mymailgundomain.com" as a login for SMTP. SSL or TLS are supported.
 
+.. _tls-sending:
+
+TLS Sending Connection Settings
+*******************************
+
+For message delivery, Mailgun exposes two flags that will work at the domain level or message level
+(message level will override domain level) that allow you to control how messages are delivered. See
+documentation for sending messages and domains for examples on how these fields can be updated.
+
+**require tls**: If set to `True` this requires the message only be sent over
+a TLS connection. If a TLS connection can not be established,
+Mailgun will not deliver the message. If set to `False`, Mailgun will still
+try and upgrade the connection, but if Mailgun can not, the message will be
+delivered over a plaintext SMTP connection. The default is False.
+
+**skip verification**: If set to `True`, the certificate and hostname will not be
+verified when trying to establish a TLS connection and Mailgun will accept any
+certificate during delivery. If set to `False`, Mailgun will verify the certificate
+and hostname. If either one can not be verified, a TLS connection will not be
+established. The default is `False`.
+
+To help you better understand the configuration possibilities and potential issues, take a look at the
+following table. Take into account the type of threat you are concerned with when making your decision
+on how to configure sending settings. By default, `require-tls` and `skip-verification` are `false`.
+
+=========== ================= ======== ======================== ============================= ===========================
+require-tls skip-verification TLS      TLS Active Attack (MITM) TLS Passive Attack (Capture)  Passive Plaintext Capture
+=========== ================= ======== ======================== ============================= ===========================
+false       false             Attempt  Not Possible             Not Possible                  Possible via downgrade
+false       true              Attempt  Possible                 Not Possible                  If STARTTLS not offered
+true        false             Required Not Possible             Not Possible                  Not Possible
+true        true              Required Possible                 Not Possible                  Not Possible
+=========== ================= ======== ======================== ============================= ===========================
+
+Additionally the following fields are available in your logs under `delivery-status` to indicate how the message was delivered:
+
+===================== =============================================================================
+Field                 Description
+===================== =============================================================================
+tls                   Indicates if a TLS connection was used or not when delivering the message.
+certificate-verified  Indicates if we verified the certificate or not when delivering the message.
+mx-host               Tells you the MX server we connected to to deliver the message.
+===================== =============================================================================
