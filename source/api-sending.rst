@@ -31,49 +31,67 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
 
 .. container:: ptable
 
- ================== ==========================================================
- Parameter          Description
- ================== ==========================================================
- from               Email address for ``From`` header
- to                 Email address of the recipient(s).
-                    Example: ``"Bob <bob@host.com>"``. You can use commas to
-                    separate multiple recipients.
- cc                 Same as ``To`` but for ``Cc``
- bcc                Same as ``To`` but for ``Bcc``
- subject            Message subject
- text               Body of the message. (text version)
- html               Body of the message. (HTML version)
- attachment         File attachment. You can post multiple ``attachment``
-                    values. **Important:** You must use ``multipart/form-data``
-                    encoding when sending attachments.
- inline             Attachment with ``inline`` disposition. Can be used to
-                    send inline images (see :ref:`example <inline-image>`).
-                    You can post multiple ``inline`` values.
- o\:tag             Tag string. See :ref:`tagging` for more information.
- o\:campaign        Id of the campaign the message belongs to. See
-                    :ref:`um-campaign-analytics` for details.
- o\:dkim            Enables/disables DKIM signatures on per-message basis.
-                    Pass ``yes`` or ``no``
- o\:deliverytime    Desired time of delivery. See :ref:`date-format`. Note:
-                    Messages can be scheduled for a maximum of 3 days in the
-                    future.
- o\:testmode        Enables sending in test mode. Pass ``yes`` if needed.
-                    See :ref:`manual-testmode`
- o\:tracking        Toggles tracking on a per-message basis, see
-                    :ref:`tracking-messages` for details. Pass ``yes`` or ``no``.
- o\:tracking-clicks Toggles clicks tracking on a per-message basis. Has higher
-                    priority than domain-level setting. Pass ``yes``, ``no``
-                    or ``htmlonly``.
- o\:tracking-opens  Toggles opens tracking on a per-message basis. Has higher
-                    priority than domain-level setting. Pass ``yes`` or ``no``.
- h\:X-My-Header     ``h:`` prefix followed by an arbitrary value allows to append
-                    a custom MIME header to the message (``X-My-Header``
-                    in this case). For example, ``h:Reply-To`` to specify Reply-To
-                    address.
- v\:my-var          ``v:`` prefix followed by an arbitrary name allows to
-                    attach a custom JSON data to the message.
-                    See :ref:`manual-customdata` for more information.
- ================== ==========================================================
+ ===================== ==========================================================
+ Parameter             Description
+ ===================== ==========================================================
+ from                  Email address for ``From`` header
+ to                    Email address of the recipient(s).
+                       Example: ``"Bob <bob@host.com>"``. You can use commas to
+                       separate multiple recipients.
+ cc                    Same as ``To`` but for ``Cc``
+ bcc                   Same as ``To`` but for ``Bcc``
+ subject               Message subject
+ text                  Body of the message. (text version)
+ html                  Body of the message. (HTML version)
+ attachment            File attachment. You can post multiple ``attachment``
+                       values. **Important:** You must use ``multipart/form-data``
+                       encoding when sending attachments.
+ inline                Attachment with ``inline`` disposition. Can be used to
+                       send inline images (see :ref:`example <inline-image>`).
+                       You can post multiple ``inline`` values.
+ o\:tag                Tag string. See :ref:`tagging` for more information.
+ o\:campaign           Id of the campaign the message belongs to. See
+                       :ref:`um-campaign-analytics` for details.
+ o\:dkim               Enables/disables DKIM signatures on per-message basis.
+                       Pass ``yes`` or ``no``
+ o\:deliverytime       Desired time of delivery. See :ref:`date-format`. Note:
+                       Messages can be scheduled for a maximum of 3 days in the
+                       future.
+ o\:testmode           Enables sending in test mode. Pass ``yes`` if needed.
+                       See :ref:`manual-testmode`
+ o\:tracking           Toggles tracking on a per-message basis, see
+                       :ref:`tracking-messages` for details. Pass ``yes`` or ``no``.
+ o\:tracking-clicks    Toggles clicks tracking on a per-message basis. Has higher
+                       priority than domain-level setting. Pass ``yes``, ``no``
+                       or ``htmlonly``.
+ o\:tracking-opens     Toggles opens tracking on a per-message basis. Has higher
+                       priority than domain-level setting. Pass ``yes`` or ``no``.
+ o\:require-tls        If set to `True` this requires the message only be sent over
+                       a TLS connection. If a TLS connection can not be established,
+                       Mailgun will not deliver the message.
+
+                       If set to `False`, Mailgun will still try and upgrade the
+                       connection, but if Mailgun can not, the message will be
+                       delivered over a plaintext SMTP connection.
+
+                       The default is False.
+ o\:skip-verification  If set to `True`, the certificate and hostname will not be
+                       verified when trying to establish a TLS connection and Mailgun
+                       will accept any certificate during delivery.
+
+                       If set to `False`, Mailgun will verify the certificate and
+                       hostname. If either one can not be verified, a TLS connection
+                       will not be established.
+
+                       The default is `False`.
+ h\:X-My-Header        ``h:`` prefix followed by an arbitrary value allows to append
+                       a custom MIME header to the message (``X-My-Header``
+                       in this case). For example, ``h:Reply-To`` to specify Reply-To
+                       address.
+ v\:my-var             ``v:`` prefix followed by an arbitrary name allows to
+                       attach a custom JSON data to the message.
+                       See :ref:`manual-customdata` for more information.
+ ==================== ==========================================================
 
 .. code-block:: url
 
