@@ -59,7 +59,7 @@
 
  public static IRestResponse GetLogs() {
  	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v2");
+ 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
  	client.Authenticator =
  		new HttpBasicAuthenticator("api",
  		                           "YOUR_API_KEY");
