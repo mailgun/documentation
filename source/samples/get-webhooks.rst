@@ -27,20 +27,20 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/bounces/webhooks");
+  $result = $mgClient->get("$domain/webhooks");
 
 .. code-block:: py
 
  def get_bounces():
      return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/webhooks",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_bounces
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/webhooks"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/webhooks"
  end
 
 .. code-block:: csharp
@@ -54,7 +54,7 @@
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
  	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/bounces/webhooks";
+ 	request.Resource = "{domain}/webhooks";
  	return client.Execute(request);
  }
 
