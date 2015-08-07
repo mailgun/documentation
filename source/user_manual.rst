@@ -736,7 +736,9 @@ API: Pass the following parameter, "v:my-custom-data" => "{"my_message_id": 123}
 SMTP: Add the following header to your email, "X-Mailgun-Variables: {"my_message_id": 123}".
 
 .. note:: The value of the "X-Mailgun-Variables" header should be valid JSON string,
-          otherwise Mailgun won't be able to parse it.
+          otherwise Mailgun won't be able to parse it.  If your X-Mailgun-Variables header exceeds
+          998 characters, you should use `folding <https://tools.ietf.org/html/rfc2822#page-11>`_ to
+          spread the variables over multiple lines.
 
 .. _tagging:
 
