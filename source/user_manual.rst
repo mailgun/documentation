@@ -436,7 +436,7 @@ You can set the access level of Mailing Lists to:
 **Campaigns**
 
 Mailing lists are integrated with :ref:`um-campaign-analytics`. Each
-message sent to a lists with a Campaign ID will be tracked and
+message sent to a list with a Campaign ID will be tracked and
 reported. In this case, the mailing list will have detailed analytics for
 all recipients that can be retrieved via API or seen in the Campaign tab of
 the Control Panel.
