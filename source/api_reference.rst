@@ -12,7 +12,6 @@ API Reference
    api-events
    api-suppressions
    api-routes
-   api-campaigns
    api-webhooks
    api-mailinglists
    api-email-validation

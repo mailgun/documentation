@@ -1202,7 +1202,6 @@ Sample response:
     ]
   }
 
-.. _um-campaign-analytics:
 
 Campaign Analytics
 ===================
