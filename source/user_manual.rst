@@ -1202,10 +1202,8 @@ Sample response:
     ]
   }
 
-.. _um-campaign-analytics:
-
 Campaign Analytics
-===================
+~~~~~~~~~~~~~~~~~~
 
 Mailgun allows you to easily create Campaigns either using the API or the Campaigns Tab in the Control Panel.
 Campaigns are a tool to segment your email traffic for analysis. When you include messages in a Campaign, Mailgun tracks
