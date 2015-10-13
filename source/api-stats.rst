@@ -41,7 +41,7 @@ Returns total stats for a given domain.
 
       GET /<domain>/stats
 
-Returns a list of event stat items.
+Returns a list of event stats items.
 Each record represents counts for one event per one day.
 
 .. warning:: This is the legacy API that should not be used.
@@ -60,16 +60,10 @@ Each record represents counts for one event per one day.
                    have ISO8601 format (YYYY-MM-DD).
  ================= ==========================================================
 
-.. code-block:: url
-
-      DELETE /<domain>/tags/<tag>
-
-Deletes all counters for particular tag and the tag itself.
-
 Examples
 ~~~~~~~~
 
-Get stats for 'open' and 'sent' events sorted by date:
+Get stats for 'accepted' and 'delivered' and 'failed' events for the past month:
 
 .. include:: samples/get-stats.rst
 
@@ -109,15 +103,3 @@ Sample response:
        }
      ]
    }
-
-Delete tag:
-
-.. include:: samples/delete-tag.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "message": "Tag deleted"
-  }
