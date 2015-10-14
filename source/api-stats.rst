@@ -80,24 +80,24 @@ Sample response:
          "time": "Tue, 14 Feb 2012 00:00:00 UTC",
          "accepted": {
            "total": "15",
-           "outgoing": 10,
-           "incoming": 5
+           "outgoing": 10,  // authenticated
+           "incoming": 5    // unauthenticated
          },
          "delivered": {
              "total": 20,
-             "smtp": 15,
-             "http": 5
+             "smtp": 15,  // delivered over SMTP
+             "http": 5    // delivered over HTTP
          },
          "failed": {
            "permanent": {
-             "suppress-bounce": 1,
-             "suppress-unsubscribe": 2,
-             "suppress-complaint": 3,
+             "suppress-bounce": 1,       // recipients addresses previously bounced
+             "suppress-unsubscribe": 2,  // recipients previously unsubscribed
+             "suppress-complaint": 3,    // recipients previously complained
              "bounce": 7,
-             "total": 10
+             "total": 10                 // failed permanently and dropped
            },
            "temporary": {
-             "espblock": 1
+             "espblock": 1   // failed temporary due to ESP block, will be retried
            }
          },
        }
