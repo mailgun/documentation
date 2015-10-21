@@ -61,7 +61,7 @@ Each record represents counts for one event per one day.
  ================= ==========================================================
 
 Duration
-~~~~~~~~
+--------
 
 Duration is a string that represents a period of time with some resolution.
 It has a format ``[0-9]+[m,d,h]`` where
@@ -77,7 +77,7 @@ Examples:
 - `2m` - a period of 2 months with monthly resolution
 
 Event Types
-~~~~~~~~~~~
+-----------
 
 Mailgun tracks all of the events that occur throughout the system. Below are
 listed the events that you can retrieve using this API.
