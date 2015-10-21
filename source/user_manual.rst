@@ -752,12 +752,13 @@ When you access stats on you messages, they will be aggregated by these tags.
 
 **Tagging Code Samples**
 
-Supply one or more o:tag parameters to tag the message.
+Supply one or more ``o:tag`` parameters to tag the message.
 
 .. include:: samples/send-tagged-message.rst
 
-.. note:: A single message may be marked with up to 3 tags. Maximum tag name length
-          is 128 characters.
+.. note:: A single message may be marked with up to 3 tags.
+
+.. note:: Tags are case insensitive and should be ascii only. Maximum tag length is 128 characters.
 
 
 .. _um-tracking-opens:
