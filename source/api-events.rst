@@ -125,7 +125,7 @@ Log records can be filtered by the following fields:
  ============= ================================================================
  Fields        Description
  ============= ================================================================
- event         An event type. For a complete list of all events writen to the log
+ event         An event type. For a complete list of all events written to the log
                see the `Event Types`_ table below.
  list          The email address of a mailing list the message was originally
                sent to.

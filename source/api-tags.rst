@@ -53,7 +53,7 @@ Returns statistics for a given tag.
  ================= ============================================================
  Parameter         Description
  ================= ============================================================
- event             The type of the event. For a complete list of all events writen
+ event             The type of the event. For a complete list of all events written
                    to the log see the `Event Types`_ table below. (Required)
  start             The starting time. Should be in :rfc:`2822#page-14` or
                    unix epoch format. Default: 7 days from the current time.

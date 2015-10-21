@@ -7,13 +7,13 @@ Mailgun collects many different :ref:`events <manual-webhooks>` and
 generates event statistics which are available in your Control Panel.
 This data is also available via an API.
 
-The statistics is calculated in hourly, daily and monthly resolution in UTC timezone.
+The statistics are calculated in hourly, daily and monthly resolution in UTC timezone.
 
 The following retention policy is applied to the statistics:
 
 - Hourly stats are preserved for a month.
 - Daily stats are preserved for a year.
-- Montly stats are stored throughout entire domain lifespan.
+- Monthly stats are stored throughout the lifespan of the domain.
 
 .. code-block:: url
 
@@ -26,7 +26,7 @@ Returns total stats for a given domain.
  ================= ============================================================
  Parameter         Description
  ================= ============================================================
- event             The type of the event. For a complete list of all events writen
+ event             The type of the event. For a complete list of all events written
                    to the log see the `Event Types`_ table below. (Required)
  start             The starting time. Should be in :rfc:`2822#page-14` or
                    unix epoch format. Default: 7 days from the current time.
