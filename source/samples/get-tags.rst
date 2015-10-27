@@ -1,11 +1,8 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -G \
-    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/stats/total \
-    -d event='accepted' \
-    -d event='delivered' \
-    -d event='failed' \
-    -d duration='1m'
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/tags \
+    -d limit=10
 
 .. code-block:: java
 
@@ -14,12 +11,9 @@
     client.addFilter(new HTTPBasicAuthFilter("api", "YOUR_API_KEY"));
     WebResource webResource =
         client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
-            "/stats/total");
+            "/tags");
     MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
-    queryParams.add("event", "accepted");
-    queryParams.add("event", "delivered");
-    queryParams.add("event", "failed");
-    queryParams.add("duration", "1m");
+    queryParams.add("limit", 10);
     return webResource.queryParams(queryParams).get(ClientResponse.class);
  }
 
@@ -34,32 +28,27 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/stats/total", array(
-      'event' => array('accepted', 'delivered', 'failed'),
-      'duration' => '1m'
+  $result = $mgClient->get("$domain/tags", array(
+      'limit' => 10
   ));
 
 .. code-block:: py
 
  def get_stats():
      return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/stats/total",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/tags",
          auth=("api", "YOUR_API_KEY"),
-         params={"event": ["accepted", "delivered", "failed"],
-                 "duration": "1m"})
+         params={"limit": 10})
 
 .. code-block:: rb
 
  def get_stats
    url_params = Multimap.new
-   url_params[:duration] = "1m"
-   url_params[:event] = "accepted"
-   url_params[:event] = "delivered"
-   url_params[:event] = "failed"
+   url_params[:limit] = 10
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/stats/total?#{query_string}"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/tags?#{query_string}"
  end
 
 .. code-block:: csharp
@@ -71,11 +60,8 @@
     RestRequest request = new RestRequest();
     request.AddParameter("domain",
                          "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-    request.Resource = "{domain}/stats/total";
-    request.AddParameter("event", "accepted");
-    request.AddParameter("event", "delivered");
-    request.AddParameter("event", "failed");
-    request.AddParameter("duration", "1m");
+    request.Resource = "{domain}/tags";
+    request.AddParameter("limit", 10);
     return client.Execute(request);
  }
 
