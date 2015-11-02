@@ -99,7 +99,7 @@ TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Requ
 CNAME     "mailgun.org"                                               Tracking (Optional)
 ========= =========================================================== ====================
 
-.. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links. 
+.. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links.
 
 .. _SPF Information: http://www.openspf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
@@ -800,14 +800,14 @@ one of your emails, your URL will be called with the following parameters.
                        or 'unknown'.
  client-type           Type of software the email was opened in, e.g. 'browser', 'mobile browser',
                        'email client'.
- client-name           Name of the client sofware, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
- client-os             OS family running the client sofware, e.g. 'Linux', 'Windows', 'OSX'.
+ client-name           Name of the client software, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
+ client-os             OS family running the client software, e.g. 'Linux', 'Windows', 'OSX'.
  campaign-id           The id of campaign triggering the event.
  campaign-name         The name of campaign triggering the event.
  tag                   Message tag, if message was tagged. See :ref:`tagging`
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  ==================    ==================================================================================
@@ -851,15 +851,15 @@ the following parameters:
                        or 'unknown'.
  client-type           Type of software the link was opened in, e.g. 'browser', 'mobile browser',
                        'email client'.
- client-name           Name of the client sofware, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
- client-os             OS family running the client sofware, e.g. 'Linux', 'Windows', 'OSX'.
+ client-name           Name of the client software, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
+ client-os             OS family running the client software, e.g. 'Linux', 'Windows', 'OSX'.
  campaign-id           The id of campaign triggering the event.
  campaign-name         The name of campaign triggering the event.
  tag                   Message tag, if it was tagged. See :ref:`tagging`.
  url                   The URL that was clicked.
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  ==================    ==================================================================================
@@ -950,14 +950,14 @@ When a user unsubscribes, Mailgun will invoke the webhook with the following par
                        or 'unknown'.
  client-type           Type of software the unsubscribe link was clicked in, e.g. 'browser', 'mobile browser',
                        'email client'.
- client-name           Name of the client sofware, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
- client-os             OS family running the client sofware, e.g. 'Linux', 'Windows', 'OSX'.
+ client-name           Name of the client software, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
+ client-os             OS family running the client software, e.g. 'Linux', 'Windows', 'OSX'.
  campaign-id           The id of the campaign that recipient has unsubscribed from.
  campaign-name         The name of campaign triggering the event.
  tag                   Message tag, if it was tagged. See :ref:`tagging`.
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  ==================    ==================================================================================
@@ -1005,7 +1005,7 @@ webhook with the following parameters:
  tag                   Message tag, if it was tagged. See :ref:`tagging`.
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
@@ -1083,7 +1083,7 @@ If you do, every time a message experiences a hard bounce, your URL will be invo
  tag                       Message tag, if it was tagged. See :ref:`tagging`.
  mailing-list              The address of mailing list the original message was sent to.
  "custom variables"        Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp                 Number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp                 Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                     Randomly generated string with length 50 (see `securing webhooks`_).
  signature                 String with hexadecimal digits generate by HMAC algorithm
                            (see `securing webhooks`_).
@@ -1122,7 +1122,7 @@ these events occur we will POST the following parameters to your URL:
  code                  ESP response code, e.g. if the message was blocked as a spam (optional).
  description           Detailed explanation of why the messages was dropped
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 Randomly generated string with length 50 (see `securing webhooks`_).
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
@@ -1362,7 +1362,7 @@ Parsed Messages Parameters
  attachment-count      int          how many attachments the message has.
  attachment-x          string       attached file ('x' stands for number of the attachment). Attachments are handled as file uploads,
                                     encoded as ``multipart/form-data``.
- timestamp             int          number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp             int          number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token                 string       randomly generated string with length 50 (see `securing webhooks`_).
  signature             string       string with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  message-headers       string       list of all MIME headers dumped to a json string (order of headers preserved).
@@ -1395,7 +1395,7 @@ MIME Messages Parameters
  from           string    sender of the message as reported by ``From`` message header, for example "Bob <bob@example.com>".
  subject        string    subject string.
  body-mime      string    full MIME envelope. You will need a MIME parsing library to process this data.
- timestamp      int       number of second passed since January 1, 1970 (see `securing webhooks`_).
+ timestamp      int       number of seconds passed since January 1, 1970 (see `securing webhooks`_).
  token          string    randomly generated string with length 50 (see `securing webhooks`_).
  signature      string    string with hexadecimal digits generate by HMAC algorithm(see `securing webhooks`_).
  ===========    ======    ============================================================================================================
@@ -1434,7 +1434,7 @@ If you set a URL to be posted when the message is received (``store(notify="http
            attachments           string       contains a json list of metadata objects, one for each attachment, see below.
            message-url           string       a URL that you can use to get and/or delete the message.
            content-id-map        string       contains mappings from content ids to attachment urls.
-           timestamp             int          number of second passed since January 1, 1970 (see `securing webhooks`_).
+           timestamp             int          number of seconds passed since January 1, 1970 (see `securing webhooks`_).
            token                 string       randomly generated string with length 50 (see `securing webhooks`_).
            signature             string       string with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
            message-headers       string       list of all MIME headers dumped to a json string (order of headers preserved).
