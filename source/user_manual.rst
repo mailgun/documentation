@@ -420,7 +420,7 @@ Adding a member through the API:
           of the mailing list and reference that data in the message body using Template Variables (see ``vars`` parameter in the example above).
 
 .. note:: There are two modes available when adding a new member: strict and
-          upsert. Strict will raise an error in case if the member already
+          upsert. Strict will raise an error in case the member already
           exists, upsert will update an existing member if it's here or insert
           a new one. Learn how to toggle between the the modes and skip
           malformed addresses in the :ref:`api-mailinglists` API section.
