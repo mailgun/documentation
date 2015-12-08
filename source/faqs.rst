@@ -159,9 +159,9 @@ Sending
 Should I use SMTP or the HTTP API?
 **************************************************************************************************************
 
-It's really up to you.  Whatever you find easier is fine with us.  The HTTP API has some advantages, though.  First of all, it's faster.  Second, we think it's easier to use - you don't have to deal with MIME because we will assemble it on our side.  Just use a request library available for your language of choice.
+It's really up to you. Whatever you find easier is fine with us.  The HTTP API has some advantages, however.  First of all, it's faster.  Second, we think it's easier to use - you don't have to deal with MIME because we will assemble it on our side.  Just use a request library available for your language of choice.
 
-Email clients says "sent via mailgun.us" with messages I send.  How do I get rid of this?
+Email clients say "sent via mailgun.us" with messages I send.  How do I get rid of this?
 **************************************************************************************************************
 
 Check the following:

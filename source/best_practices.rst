@@ -10,7 +10,7 @@ Email Best Practices
 
 This guide is a brief summary of email best practices that we have learned from managing mail servers for thousands of customers and sending (and receiving) a lot of email.   The objective is to help outline what you need to do to have your emails delivered whether or not you use Mailgun.  Of course, if after reading the guide you decide that you have better things to do than maintaining email servers and managing email deliverability, we’d love to help!
 
-In this guide, we will not focus a lot on the content of email messages. That can be paraphrased with a few words: ‘send something people want’ (to paraphrase `Y Combinator's`_ motto). That’s probably the hardest part so apologies for that huge caveat.  Anyways, We will focus on the infrastructure and monitoring of email so that if you are sending something people want, they will get it, and if you are not, you will know about it and hopefully change that.
+In this guide, we will not focus much on the content of email messages. Content can be paraphrased with a few words: ‘send something people want’ (to paraphrase `Y Combinator's`_ motto). Creating good content is probably the hardest part, so apologies for the huge caveat.  Anyways, we focus on the infrastructure and monitoring of email so that if you are sending something people want, they will get it; and if you are not sending something people want, you will know about it and hopefully change that.
 
 
 .. _Word to the Wise: http://blog.wordtothewise.com/
