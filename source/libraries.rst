@@ -168,7 +168,7 @@ We also have a step by step tutorial post on `sending email with Node.js <http:/
 cURL
 ====
 `curl <http://linux.die.net/man/1/curl>`_ is a popular command line tool to send HTTP requests.
-It is very simple and yet quite powerfull. With it you could send data using any
+It is very simple and yet quite powerful. With it you could send data using any
 HTTP method. You could send post data and query params and files in a very
 consistent and elegant way. An exellent choice to study the API.
 
@@ -176,7 +176,7 @@ consistent and elegant way. An exellent choice to study the API.
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
 .. _JSON: http://en.wikipedia.org/wiki/JSON
 .. _Requests: http://docs.python-requests.org/en/latest/index.html
-.. _rest-client: https://github.com/archiloque/rest-client
+.. _rest-client: https://github.com/rest-client/rest-client
 .. _jersey: http://jersey.java.net
 .. _RestSharp: http://restsharp.org
 .. _MultiDict: http://docs.webob.org/en/latest/index.html
