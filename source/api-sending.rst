@@ -91,7 +91,7 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  v\:my-var             ``v:`` prefix followed by an arbitrary name allows to
                        attach a custom JSON data to the message.
                        See :ref:`manual-customdata` for more information.
- ==================== ==========================================================
+ ===================== ==========================================================
 
 .. code-block:: url
 
