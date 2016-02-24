@@ -31,7 +31,8 @@
 
   # Issue the call to the client.
   $result = $mgClient->get("address/validate", array('address' => $validateAddress));
-
+  # is_valid is 0 or 1
+  $isValid = $result->http_response_body->is_valid;
 .. code-block:: py
 
  def get_validate():
