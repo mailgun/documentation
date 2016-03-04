@@ -108,7 +108,7 @@
   Mail.defaults do
     delivery_method :smtp, {
       :port      => 587,
-      :address   => "smtp.mailgun.com",
+      :address   => "smtp.mailgun.org",
       :user_name => "",
       :password  => "",
     }
