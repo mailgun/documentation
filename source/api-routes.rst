@@ -78,7 +78,7 @@ account, not per domain as most of other API calls.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- limit             Maximum number of records to return. (100 by default)
+ limit             Maximum number of records to return. (100 by default, 1000 max)
  skip              Number of records to skip. (0 by default)
  ================= ==========================================================
 
