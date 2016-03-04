@@ -218,7 +218,29 @@ Expected response:
         "message": "Bounced address has been removed"
       }
 
+Delete an entire bounce list
+----------------------
+
+.. code-block:: url
+
+      DELETE /<domain>/bounces
+
+Clears all bounced email addresses for a domain. Delivery to the deleted email addresses will no
+longer be suppressed.
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "message": "Bounced addresses for this domain have been removed"
+      }
+
+
 .. _api-unsubscribes:
+
+
 
 Unsubscribes
 ============
