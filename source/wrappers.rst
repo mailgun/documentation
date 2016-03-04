@@ -87,7 +87,7 @@ with our API.
 
 Github Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_     
 
-Minimum PHP Version: 5.3.2
+Minimum PHP Version: 5.4
 
 To install the library, you will need to be using Composer in your project. 
 If you aren't using Composer yet, it's really simple! Here's how to 
