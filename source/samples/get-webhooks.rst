@@ -11,7 +11,7 @@
  	client.addFilter(new HTTPBasicAuthFilter("api",
  			"YOUR_API_KEY"));
  	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
+ 		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME" +
  				"/webhooks");
  	return webResource.get(ClientResponse.class);
  }
@@ -27,13 +27,13 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/webhooks");
+  $result = $mgClient->get("domains/$domain/webhooks");
 
 .. code-block:: py
 
  def get_bounces():
      return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/webhooks",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
@@ -54,7 +54,7 @@
  	RestRequest request = new RestRequest();
  	request.AddParameter("domain",
  	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/webhooks";
+ 	request.Resource = "domains/{domain}/webhooks";
  	return client.Execute(request);
  }
 
