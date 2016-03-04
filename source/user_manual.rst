@@ -713,6 +713,21 @@ And here's a sample in Ruby:
       data = [timestamp, token].join
       signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
     end
+    
+And here's a sample in PHP:
+
+.. code-block:: php
+
+    private function verify($apiKey, $token, $timestamp, $signature)
+    {
+        //check if the timestamp is fresh
+        if (time()-$timestamp>15) {
+            return false;
+        }
+
+        //returns true if signature is valid
+        return hash_hmac('sha256', $timestamp.$token, $apiKey) === $signature;
+    }
 
 .. _manual-customdata:
 
