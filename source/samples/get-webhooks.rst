@@ -38,9 +38,9 @@
 
 .. code-block:: rb
 
- def get_bounces
+ def get_webhooks
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/webhooks"
+   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks"
  end
 
 .. code-block:: csharp
