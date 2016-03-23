@@ -82,7 +82,7 @@ same domain in the From field that the actual sender is using.
 
 There are two types of domains you can configure with Mailgun:
 
-* A sandbox subdomain of mailgun.org. Example: ``sandboxXX.mailgun.org``. This option allows for quick testing, without having to setup DNS entries. This domain is provisioned automatically with every new account.
+* A sandbox subdomain of mailgun.org. Example: ``sandboxXX.mailgun.org``. This option allows for quick testing, without having to setup DNS entries. This domain is provisioned automatically with every new account. But you could send only to `authorized recipients <https://help.mailgun.com/hc/en-us/articles/217531258>`_.
 
 * Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We provide you with those records and instructions in your control panel.
 
