@@ -279,7 +279,9 @@ custom  MIME_ headers listed in the table below.
                                 See :ref:`tls-sending`
     X-Mailgun-Skip-Verification Use this header to control TLS connection settings.
                                 See :ref:`tls-sending`
-
+    X-Mailgun-Recipient-Variables
+                                Use this header to substitute recipient variables referenced
+                                in a batched mail message.  See :ref:`batch-sending`
     X-Mailgun-Variables         Use this header to attach a custom JSON data to the message.
                                 See :ref:`manual-customdata` for more information.
     =========================== ============================================================
@@ -343,7 +345,34 @@ Recipient Variables allow you to:
 
 In the example above, Alice and Bob both will get personalized subject lines "Hey, Alice" and "Hey, Bob" and unique unsubscribe links.
 
-When sent via SMTP, recipient variables can be also supplied through a special construct, called a variables container.
+When sent via SMTP, recipient variables can be included by adding the following header to your email, "X-Mailgun-Recipient-Variables: {"my_message_id": 123}".
+
+Example:
+
+.. code-block:: text
+ 
+ X-Mailgun-Recipient-Variables: {"bob@example.com": {"first":"Bob", "id":1}, "alice@example.com": {"first":"Alice", "id": 2}}
+ From: me@example.com
+ To: alice@example.com, bob@example.com
+ Date: 29 Mar 2016 00:23:35 -0700
+ Subject: Hello, %recipient.first%!
+ Message-Id: <20160329071939.35138.9413.6915422C@example.com>
+ Content-Type: text/plain; charset="us-ascii"
+ Content-Transfer-Encoding: quoted-printable
+ 
+ Hi, %recipient.first%,
+ =20
+ Please review your profile at example.com/orders/%recipient.id%.
+ =20
+ Thanks,
+ Example.com Team
+
+.. note:: The value of the "X-Mailgun-Recipient-Variables" header should be valid JSON string,
+          otherwise Mailgun won't be able to parse it.  If your X-Mailgun-Variables header exceeds
+          998 characters, you should use `folding <https://tools.ietf.org/html/rfc2822#page-11>`_ to
+          spread the variables over multiple lines.
+
+They can also supplied through a special construct, called a variables container.
 
 To contain variables you create the following MIME construct:
 
