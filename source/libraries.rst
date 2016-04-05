@@ -109,7 +109,7 @@ install composer and the Mailgun library.
  curl -sS https://getcomposer.org/installer | php
 
  # Add Mailgun as a dependency (x.x is the SDK version, see Github README below)
- php composer.phar require mailgun/mailgun-php:~x.x
+ php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter
 
 
 Next, just include Composer's autoloader in your application to automatically
@@ -117,6 +117,7 @@ load the Mailgun library in your project.
 ::
  require 'vendor/autoload.php';
  use Mailgun\Mailgun;
+ $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
 
 For additional information, see the Github Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
 
