@@ -138,6 +138,7 @@ Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center
 
 Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`__
 
+Digital Ocean: `Digital Ocean <https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean>`__ - `Alternate guide <http://code.krister.ee/mailgun-digitalocean/>`__
 
 .. _um-sending-messages:
 
