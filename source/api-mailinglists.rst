@@ -26,24 +26,6 @@ Paginate over mailing lists under your account
 
 .. code-block:: url
 
-     GET /lists
-
-Returns a list of mailing lists under your account.
-
-.. warning:: This is the legacy API that should not be used.
-
-.. container:: ptable
-
- ================== =======================================================
- Parameter          Description
- ================== =======================================================
- address            Find a mailing list by it's address *(optional)*
- limit              Maximum number of records to return *(100 by default)*
- skip               Records to skip *(0 by default)*. Max value is 10000
- ================== =======================================================
-
-.. code-block:: url
-
      GET /lists/<address>
 
 Returns a single mailing list by a given address.
@@ -103,25 +85,6 @@ Paginate over list members in the given mailing list
  subscribed         ``yes`` to lists subsribed, ``no`` for unsubscribed.
                     list all if not set
  limit              Maximum number of records to return *(optional: 100 by default)*
- ================== =======================================================
-
-.. code-block:: url
-
-     GET /lists/<address>/members
-
-Fetches the list of mailing list members.
-
-.. warning:: This is the legacy API that should not be used.
-
-.. container:: ptable
-
- ================== =======================================================
- Parameter          Description
- ================== =======================================================
- subscribed         ``yes`` to list subscribed, ``no`` for unsubscribed,
-                    list all if not set
- limit              Maximum number of records to return *(100 by default)*
- skip               Records to skip *(0 by default)* Max value is 10000
  ================== =======================================================
 
 .. code-block:: url
