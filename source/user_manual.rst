@@ -725,10 +725,10 @@ Below is a Python code sample used to verify the signature:
     import hashlib, hmac
 
     def verify(api_key, token, timestamp, signature):
-        return signature == hmac.new(
-                                 key=api_key,
-                                 msg='{}{}'.format(timestamp, token),
-                                 digestmod=hashlib.sha256).hexdigest()
+        hmac_digest = hmac.new(key=api_key,
+                               msg='{}{}'.format(timestamp, token),
+                               digestmod=hashlib.sha256).hexdigest()
+        return hmac.compare_digest(unicode(signature), unicode(hmac_digest))
 
 
 And here's a sample in Ruby:
