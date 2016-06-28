@@ -216,14 +216,13 @@ These are the parameters when the ``Accept`` header is set to ``message/rfc2822`
 Deleting Stored Messages
 ========================
 
-To delete an inbound message that has been stored via the ``store()`` action, use the URL found in the stored event, or in the notify webhook.
+Stored messages are retained in the system for 3 days and automatically purged
+after this retention period, therefore there is no need to delete messages
+explicitly.
 
-.. code-block:: url
-
-     DELETE domains/<domain>/messages/<message>
-
-You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v3/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
-
+.. note:: Mailgun reserves the right to impose a limit on the size and number
+          of stored messages. In the event this is necessary, you will be
+          notified in advance.
 
 Examples
 ========
