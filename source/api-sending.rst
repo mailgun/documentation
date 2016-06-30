@@ -151,19 +151,13 @@ To retrieve an inbound message that has been stored via the ``store()`` action, 
 
 - You can also retrieve the full raw mime message (attachments and all) if you make the request to the URL with the ``Accept`` header set to ``message/rfc2822``.
 
-.. code-block:: url
-
-     GET domains/<domain>/messages
-
-You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v3/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
-
 These are the parameters of the JSON returned from a GET request to a stored message url.
 
 
            ==================    =========    ============================================================================================================
            Parameter             Type         Description
            ==================    =========    ============================================================================================================
-           recipients             string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
+           recipients            string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
            sender                string       sender of the message as reported by ``MAIL FROM`` during SMTP chat. Note: this value may differ
                                               from ``From`` MIME header.
            from                  string       sender of the message as reported by ``From`` message header, for example "Bob Lee <blee@mailgun.net>".
