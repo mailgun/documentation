@@ -58,11 +58,11 @@ Stores the message temporarily (for up to 3 days) on Mailgun's servers so that y
 
 You can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message::
 
-    store(notify="http:mydomain.com/callback")
+    store(notify="http://mydomain.com/callback")
 
 You can see a full list of parameters we will post to your URL in the :ref:`um-routes` section of the User Manual. You can also get the locations of messages through the :ref:`Events API <api-events>` and then retrieve the message through the :ref:`Messages API <api-sending-messages>`.
 
-    **stop()**
+**stop()**
 
 Simply stops the priority waterfall so the subsequent routes will not be evaluated. Without a stop() action executed, all lower priority Routes will also be evaluated.
 
