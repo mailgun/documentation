@@ -19,11 +19,29 @@ download.
 
      POST exports/<url>
 
+.. container:: ptable
+
+================= ========================================================
+Parameter         Description
+================= ========================================================
+url               Partial URL to fetch, starting with the api version.
+                  ex: /v3/domains, /v3/:domain/bounces
+================= ========================================================
+
 Create an export based on the URL given.
 
 .. code-block:: url
 
      GET exports/
+
+.. container:: ptable
+
+================= ========================================================
+Parameter         Description
+================= ========================================================
+url               Filter the list to only include exports that match the
+                  given URL
+================= ========================================================
 
 List all exports created within the past 24 hours.
 
