@@ -97,7 +97,7 @@ with our API.
 
 Github Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_
 
-Minimum PHP Version: 5.4.0
+Minimum PHP Version: 5.5.0
 
 To install the library, you will need to be using Composer in your project.
 If you aren't using Composer yet, it's really simple! Here's how to
@@ -109,7 +109,7 @@ install composer and the Mailgun library.
  curl -sS https://getcomposer.org/installer | php
 
  # Add Mailgun and Guzzle6 as a dependency (see Github README below for more info)
- php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter
+ php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter php-http/message
 
 
 Next, just include Composer's autoloader in your application to automatically
