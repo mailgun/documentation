@@ -967,7 +967,7 @@ In the "Suppressions" tab of the Control Panel or through the API you can also:
 - Remove an unsubscribed address from the list.
 - Add a new unsubscribed address.
 
-Take a look at :ref:`Unsubscribes section <api-unsubscribes>` of the API refrence
+Take a look at :ref:`Unsubscribes section <api-unsubscribes>` of the API reference
 to learn how to programmatically manage lists of unsubscribed users.
 
 **Unsubscribes Webhook**
