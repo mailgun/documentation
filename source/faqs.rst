@@ -69,35 +69,33 @@ Mailgun's infrastructure mitigates some of the argument's for a dedicated IP add
 How do I pick a domain name for my Mailgun account?
 **************************************************************************************************************
 
-Mailgun allows multiple domains per account, and you can change any time.
-
 The name of an email domain matters most for receiving messages:
 If your domain name is ``mycompany.com`` it means you can receive messages sent
 to ``xxx@mycompany.com``
 
-Domain names do not matter as much if you're only sending. You can send messages from
-sales@mycompany.com even if your domain name is called mycompanymail.com or
-mycompany.mailgun.org.  Although, it is best for deliverability if you are using the
-same domain in the From field that the actual sender is using.
+Domain names do not matter as much if you're only sending. You can send messages
+from ``sales@mycompany.com`` even if your domain name is called
+``anothercompany.org``.  Although, it is best for deliverability if you are
+using the same domain in the From field that the actual sender is using.
 
-There are two types of domains you can configure with Mailgun:
+If your company's primary domain is ``mycompany.com``, we recommend the
+following domain names for mailgun:
 
-* A sandbox subdomain of mailgun.org. Example: ``sandboxXX.mailgun.org``. This option allows for quick testing, without having to setup DNS entries. This domain is provisioned automatically with every new account.
+  - ``mycompany.com``, unless you're already using this name for your corporate
+    email;
+  - ``m.mycompany.com`` or ``mail.mycompany.com``;
+  - ``mycompany.net`` or ``mycompany.org``.
 
-* Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We provide you with those records and instructions in your control panel.
+Sometimes, it is a good idea to separate the domains for the type of messages
+you are sending. For example, some companies will use a different domains or
+subdomains for bulk marketing mailings and transactional or corporate mail in
+order to keep the reputations separate.
 
-If your company's primary domain is ``mycompany.com``, we recommend the following
-domain names for mailgun:
-
-  - mycompany.com, unless you're already using this name for your corporate email.
-  - m.mycompany.com or mail.mycompany.com
-  - mycompany.net or mycompany.org
-
-Sometimes, it is a good idea to separate the domains for the type of messages you are sending.
-For example, some companies will use a different domains or subdomains for bulk marketing mailings
-and transactional or corporate mail in order to keep the reputations separate.
-
-Finally, if you want multiple addresses and you want to direct certain emails to certain IP addresses, you will need to have a unique domain or subdomain for each IP address.  In this situation, it's best to `contact our Support Team <https://mailgun.com/cp/support>`_ to discuss your infrastructure.
+Finally, if you want multiple addresses and you want to direct certain emails
+to certain IP addresses, you will need to have a unique domain or subdomain for
+each IP address.  In this situation, it's best to
+`contact our Support Team <https://mailgun.com/cp/support>`_ to discuss your
+infrastructure.
 
 Can I use the same domain name for Mailgun and for Google Apps (or another email server)?
 **************************************************************************************************************

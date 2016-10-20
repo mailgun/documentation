@@ -67,76 +67,77 @@ sent and/or received and data retention for Logs and the Events API is at least 
 Verifying Your Domain
 =====================
 
-For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we provide at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and prove that you are an authorized sender for the domain.
+Each new Mailgun account is automatically provisioned with a **sandbox domain**
+``sandbox<uniq-alpha-numeric-string>@mailgun.org``. This domain is to be used
+for **testing only**. It allows both sending and receiving messages; and also
+tracking can be enabled for it. But it only allows sending to a list of up to 5
+`authorized recipients <https://help.mailgun.com/hc/en-us/articles/217531258-Authorized-Recipients>`_.
+This limitation is also in effect for routes that are triggered by messages
+addressed to the sandbox domain and mailing lists created under that domain.
 
-Benefits of verifying your domain:
+To be able to use Mailgun in production a custom domain(s) has to be created
+and verified with Mailgun.
 
-- Complete white labeling of your emails so you won't see "sent via Mailgun.org" message in your emails.
-- Establishing a positive email reputation for your own domain.
-- The Mailgun reputation system is less suspicious of traffic that is being sent on verified domains and so using one reduces the likelihood of being disabled. Additionally, verified domains are not subject to a sending limit of 300 emails per day.
+Verifying your domain is easy. Start by adding a domain or subdomain you own in
+the ``Domains`` tab of the Mailgun control panel. Next add two **TXT** DNS
+records found in the **Domain Verification & DNS** section on the domain
+information page of the Mailgun control panel at your DNS provider:
 
-How to verify your domain:
+- SPF: Sending server IP validation. Used by majority of email service
+  providers. `Learn about SPF <http://www.openspf.org/Introduction>`_.
+- DKIM: Like SPF, but uses cryptographic methods for validation. Supported
+  by many email service providers. This is the record that Mailgun references
+  make sure that the domain actually belongs to you.
+  `Learn about DKIM <http://www.dkim.org/#introduction>`_
 
-Verifying your domain is easy.  Start by adding a domain or subdomain you own in the Domains tab of your control panel.  Once you have added your domain, simply add the two TXT DNS records found in your control panel at your DNS provider. You'll find these DNS records when you click on a domain under the ``Domains`` tab on the Mailgun control panel. There are two types of DNS records, ``Sending`` and ``Receiving`` records.   The two TXT records needed to verify your domain are listed under the ``Sending`` section.
+Once you've added the two **TXT** records and they've propagated, your domain
+will be verified. In the Mailgun control panel verified domains are marked by a
+green ``Verified`` badge next to their name.
 
-Though not required to verify your domain, if you want Mailgun to track clicks and opens you can also add the CNAME record. MX records should also be added unless you already have MX records for your domain pointed at another email service provider.
+If it has been awhile since you have configured the DNS records but the domain
+is still reported as ``Unverified``, then try pressing the **Check DNS Records Now**
+button on the domain information page. If that does not help either, then
+please create a support ticket.
 
-Once you've added the two TXT records and they've propagated, your domain will be verified.  In some instances, we may need additional information to verify your domain.  If this is the case, we will contact you to resolve the issue.
+**Other DNS records**
 
-If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
+- **CNAME** DNS record with value `mailgun.org`, should be added if you want
+  Mailgun to track **clicks**, **opens**, and **unsubscribes**.
 
-**Sending DNS Records**
+- **MX** DNS records are required if you want Mailgun to receive and route/store
+  messages addressed to the domain recipients. You need to configure 2 **MX**
+  records with values ``10 mxa.mailgun.org`` and ``10 mxb.mailgun.org``. We
+  recommend adding them even if you do not plan the domain to get inbound
+  messages, because having **MX** DNS records configured may improve
+  deliverability of messages sent from the domain.
+  `Learn about MX DNS records <http://en.wikipedia.org/wiki/MX_record>`_
 
-- SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
-- DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_
-- CNAME: Used for tracking opens and clicks, when enabled. :ref:`tracking-messages`
+.. warning:: Do not configure **MX** DNS records if you already have another
+             provider handling inbound mail delivery for the domain.
 
-========= =========================================================== ====================
-Type      Value                                                       Purpose
-========= =========================================================== ====================
-TXT       "v=spf1 include:mailgun.org ~all"                           SPF (Required)
-TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Required)
-CNAME     "mailgun.org"                                               Tracking (Optional)
-========= =========================================================== ====================
+**DNS Records Summary**
 
-.. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links.
-
-.. _SPF Information: http://www.openspf.org/Introduction
-.. _DKIM Information: http://www.dkim.org/#introduction
-
-**Receiving DNS Records**
-
-.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound
-		     mail delivery. If you do not have MX records pointing to another mail server, then you should
-		     point them to Mailgun to optimize deliverability.
-
-Mail server for handling inbound messages.  `MX Information`_
-
-========= ========= =========================================================== ====================
-Type      Priority  Value														Purpose
-========= ========= =========================================================== ====================
-MX        10        mxa.mailgun.org     										Receiving (Optional)
-MX        10        mxb.mailgun.org 											Receiving (Optional)
-========= ========= =========================================================== ====================
-
-.. _MX Information: http://en.wikipedia.org/wiki/MX_record
+========= ========= =========================== =============================================
+Type      Required  Purpose                     Value
+========= ========= =========================== =============================================
+TXT       Yes       Domain verification (SPF)   ``v=spf1 include:mailgun.org ~all``
+TXT       Yes       Domain verification (DKIM)  *Find this record in Domain Verification & DNS section in the domain information page for a particular domain in the Mailgun control pannel*
+CNAME               Enables tracking            ``mailgun.org``
+MX                  Enables receiving           ``10 mxa.mailgun.org``
+MX                  Enables receiving           ``10 mxb.mailgun.org``
+========= ========= =========================== =============================================
 
 **Common DNS Provider Documentation**
 
-Common providers are listed below. If yours is not listed, contact your DNS provider for assistance.
+Common providers are listed below. If yours is not listed, contact your DNS
+provider for assistance:
 
-
-GoDaddy: `MX <https://www.godaddy.com/help/add-an-mx-record-19234>`__ - `CNAME <https://www.godaddy.com/help/add-a-cname-record-19236>`__ - `TXT <https://www.godaddy.com/help/add-a-txt-record-19232>`__
-
-NameCheap: `All Records <https://www.namecheap.com/support/knowledgebase/subcategory.aspx/10/dns-questions>`__
-
-Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`__ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`__
-
-Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`__
-
-Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`__
-
-Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`__
+- GoDaddy: `MX <https://www.godaddy.com/help/add-an-mx-record-19234>`_ - `CNAME <https://www.godaddy.com/help/add-a-cname-record-19236>`_ - `TXT <https://www.godaddy.com/help/add-a-txt-record-19232>`_
+- NameCheap: `All Records <https://www.namecheap.com/support/knowledgebase/subcategory.aspx/10/dns-questions>`_
+- Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`_ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`_
+- Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`_
+- Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`_
+- Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`_
 
 
 .. _um-sending-messages:
