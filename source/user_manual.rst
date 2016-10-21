@@ -28,7 +28,7 @@ If you are anxious to get started right away, feel free to check
 out the :ref:`quickstart` or :ref:`api-reference`.  There are
 also :ref:`faqs` and :ref:`best-practices` that you can reference.
 
-Finally, always feel free to `contact our Support Team <https://mailgun.com/cp/support>`_.
+Finally, always feel free to `contact our Support Team <https://mailgun.com/app/support>`_.
 
 Getting Started
 ***************
