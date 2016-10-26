@@ -46,7 +46,7 @@ You can find a full list of features on our `pricing page`_.
 Can I get multiple Domains and IP Addresses?
 **************************************************************************************************************
 
-By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Upgrade" link in the My Account tab of the control panel. If you want multiple IPs, you can `contact our Support Team <https://mailgun.com/cp/support>`_.
+By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Upgrade" link in the My Account tab of the control panel. If you want multiple IPs, you can `contact our Support Team <https://mailgun.com/app/support>`_.
 
 You can create multiple domains in the control panel or through the Domains API (limit of 5 for free accounts and 1,000 for paid accounts).
 
@@ -69,35 +69,33 @@ Mailgun's infrastructure mitigates some of the argument's for a dedicated IP add
 How do I pick a domain name for my Mailgun account?
 **************************************************************************************************************
 
-Mailgun allows multiple domains per account, and you can change any time.
-
 The name of an email domain matters most for receiving messages:
 If your domain name is ``mycompany.com`` it means you can receive messages sent
 to ``xxx@mycompany.com``
 
-Domain names do not matter as much if you're only sending. You can send messages from
-sales@mycompany.com even if your domain name is called mycompanymail.com or
-mycompany.mailgun.org.  Although, it is best for deliverability if you are using the
-same domain in the From field that the actual sender is using.
+Domain names do not matter as much if you're only sending. You can send messages
+from ``sales@mycompany.com`` even if your domain name is called
+``anothercompany.org``.  Although, it is best for deliverability if you are
+using the same domain in the From field that the actual sender is using.
 
-There are two types of domains you can configure with Mailgun:
+If your company's primary domain is ``mycompany.com``, we recommend the
+following domain names for mailgun:
 
-* A sandbox subdomain of mailgun.org. Example: ``sandboxXX.mailgun.org``. This option allows for quick testing, without having to setup DNS entries. This domain is provisioned automatically with every new account.
+  - ``mycompany.com``, unless you're already using this name for your corporate
+    email;
+  - ``m.mycompany.com`` or ``mail.mycompany.com``;
+  - ``mycompany.net`` or ``mycompany.org``.
 
-* Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We provide you with those records and instructions in your control panel.
+Sometimes, it is a good idea to separate the domains for the type of messages
+you are sending. For example, some companies will use a different domains or
+subdomains for bulk marketing mailings and transactional or corporate mail in
+order to keep the reputations separate.
 
-If your company's primary domain is ``mycompany.com``, we recommend the following
-domain names for mailgun:
-
-  - mycompany.com, unless you're already using this name for your corporate email.
-  - m.mycompany.com or mail.mycompany.com
-  - mycompany.net or mycompany.org
-
-Sometimes, it is a good idea to separate the domains for the type of messages you are sending.
-For example, some companies will use a different domains or subdomains for bulk marketing mailings
-and transactional or corporate mail in order to keep the reputations separate.
-
-Finally, if you want multiple addresses and you want to direct certain emails to certain IP addresses, you will need to have a unique domain or subdomain for each IP address.  In this situation, it's best to `contact our Support Team <https://mailgun.com/cp/support>`_ to discuss your infrastructure.
+Finally, if you want multiple addresses and you want to direct certain emails
+to certain IP addresses, you will need to have a unique domain or subdomain for
+each IP address.  In this situation, it's best to
+`contact our Support Team <https://mailgun.com/app/support>`_ to discuss your
+infrastructure.
 
 Can I use the same domain name for Mailgun and for Google Apps (or another email server)?
 **************************************************************************************************************
@@ -170,7 +168,7 @@ Check the following:
 * You've setup the DKIM DNS record (provided in the Control Panel, "Domains" tab).
 * You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v3/youcustomdomain.com/messages)
 
-If you're still seeing "via mailgun.org", please `contact our Support Team <https://mailgun.com/cp/support>`_ and we'll investigate.
+If you're still seeing "via mailgun.org", please `contact our Support Team <https://mailgun.com/app/support>`_ and we'll investigate.
 
 What is the difference between the "From" and "Sender"
 **************************************************************************************************************
@@ -296,7 +294,7 @@ Why does the amount of email I send matter?
 
 Rate limiting allows ESPs proper time to process and filter spam and ensure that transactional email doesn't get backed up. Without rate limiting in place, ESPs would be even more overwhelmed than they already are. The ESPs all have different sending limits on a per hour, per day basis. Once you hit thresholds with the rate limits, send too much spam, or have any number of other issues, the ISP may start returning error messages. Some ESPs will want you to slow down the sending, stop sending for a period of time, or change your habits (due to bad engagement, bad reputation, etc). We automatically adjust your sending rates according to the feedback from these ESPs to keep you in their good graces.
 
-Generally, these rate limits are on a per IP address basis.  `Contact our Support Team <https://mailgun.com/cp/support>`_ if you wish to purchase additional dedicated
+Generally, these rate limits are on a per IP address basis.  `Contact our Support Team <https://mailgun.com/app/support>`_ if you wish to purchase additional dedicated
 IP addresses for your account.
 
 Does the amount of email I send from my IP affect my deliverability?
