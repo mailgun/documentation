@@ -45,18 +45,34 @@
 
 .. code-block:: csharp
 
- public static IRestResponse DeleteDomain() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "/domains/{name}";
- 	request.AddUrlSegment("name", "example.mailgun.org");
- 	request.Method = Method.DELETE;
- 	return client.Execute(request);
- }
+  using System;
+  using System.IO;
+  using RestSharp;
+  using RestSharp.Authenticators;
+  
+  public class DeleteDomainChunk
+  {
+  
+      public static void Main (string[] args)
+      {
+          Console.WriteLine (DeleteDomain ().Content.ToString ());
+      }
+  
+      public static IRestResponse DeleteDomain ()
+      {
+          RestClient client = new RestClient ();
+          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+          client.Authenticator =
+              new HttpBasicAuthenticator ("api",
+                                          "YOUR_API_KEY");
+          RestRequest request = new RestRequest ();
+          request.Resource = "/domains/{name}";
+          request.AddUrlSegment ("name", "example.mailgun.org");
+          request.Method = Method.DELETE;
+          return client.Execute (request);
+      }
+  
+  }
 
 .. code-block:: go
 

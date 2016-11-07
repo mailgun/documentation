@@ -46,20 +46,34 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetCampaigns() {
-     RestClient client = new RestClient();
-     client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-     client.Authenticator =
-	new HttpBasicAuthenticator("api",
-	                           "YOUR_API_KEY");
-     RestRequest request = new RestRequest();
-     request.AddParameter("domain",
-                           "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-     request.Resource = "{domain}/campaigns";
-     request.AddParameter("limit", 2);
-     return client.Execute(request);
- }
-
+  using System;
+  using System.IO;
+  using RestSharp;
+  using RestSharp.Authenticators;
+  
+  public class GetCampaignsChunk
+  {
+  
+      public static void Main (string[] args)
+      {
+          Console.WriteLine (GetCampaigns ().Content.ToString ());
+      }
+  
+      public static IRestResponse GetCampaigns ()
+      {
+          RestClient client = new RestClient ();
+          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+          client.Authenticator =
+              new HttpBasicAuthenticator ("api",
+                                          "YOUR_API_KEY");
+          RestRequest request = new RestRequest ();
+          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+          request.Resource = "{domain}/campaigns";
+          request.AddParameter ("limit", 2);
+          return client.Execute (request);
+      }
+  
+  }
 
 .. code-block:: go
 

@@ -126,21 +126,47 @@
 
 .. code-block:: csharp
 
-  public static IRestResponse SendSimpleMessage() {
-    // Compose a message
-    MailMessage mail = new MailMessage("foo@YOUR_DOMAIN_NAME", "bar@example.com");
-    mail.Subject = "Hello";
-    mail.Body = "Testing some Mailgun awesomness";
-
-    // Send it!
-    SmtpClient client = new SmtpClient();
-    client.Port = 587;
-    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-    client.UseDefaultCredentials = false;
-    client.Credentials = new System.Net.NetworkCredential("postmaster@YOUR_DOMAIN_NAME", "3kh9umujora5");
-    client.Host = "smtp.mailgun.org";
-
-    client.Send(mail);
+  using System;
+  using System.IO;
+  using MailKit;
+  using MailKit.Net.Smtp;
+  using MimeKit;
+  using RestSharp;
+  using RestSharp.Authenticators;
+  
+  public class SmtpMessageChunk
+  {
+  
+      public static void Main (string[] args)
+      {
+          SendMessageSmtp ();
+      }
+  
+      public static void SendMessageSmtp ()
+      {
+          // Compose a message
+          MimeMessage mail = new MimeMessage ();
+          mail.From.Add (new MailboxAddress ("Excited Admin", "foo@YOUR_DOMAIN_NAME"));
+          mail.To.Add (new MailboxAddress ("Excited User", "bar@example.com"));
+          mail.Subject = "Hello";
+          mail.Body = new TextPart ("plain") {
+              Text = @"Testing some Mailgun awesomesauce!",
+          };
+  
+          // Send it!
+          using (var client = new SmtpClient ()) {
+              // XXX - Should this be a little different?
+              client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+  
+              client.Connect ("smtp.mailgun.org", 587, false);
+              client.AuthenticationMechanisms.Remove ("XOAUTH2");
+              client.Authenticate ("postmaster@YOUR_DOMAIN_NAME", "3kh9umujora5");
+  
+              client.Send (mail);
+              client.Disconnect (true);
+          }
+      }
+  
   }
 
 .. code-block:: go
