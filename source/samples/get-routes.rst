@@ -53,18 +53,34 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetRoutes() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "routes";
- 	request.AddParameter("skip", 1);
- 	request.AddParameter("limit", 1);
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class GetRoutesChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (GetRoutes ().Content.ToString ());
+    }
+
+    public static IRestResponse GetRoutes ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.Resource = "routes";
+        request.AddParameter ("skip", 1);
+        request.AddParameter ("limit", 1);
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

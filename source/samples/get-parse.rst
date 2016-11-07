@@ -53,17 +53,34 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetParse() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "/address/parse";
- 	request.AddParameter("addresses", "Alice <alice@example.com>,bob@example.com,example.com");
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class GetParseChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (GetParse ().Content.ToString ());
+    }
+
+    public static IRestResponse GetParse ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
+        RestRequest request = new RestRequest ();
+        request.Resource = "/address/parse";
+        request.AddParameter ("addresses",
+                              "Alice <alice@example.com>,bob@example.com,example.com");
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

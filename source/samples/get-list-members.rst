@@ -48,17 +48,34 @@
 
 .. code-block:: csharp
 
- public static IRestResponse ListingMembers() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "lists/{list}/members/pages";
- 	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class GetListMembersChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (GetListMembers ().Content.ToString ());
+    }
+
+    public static IRestResponse GetListMembers ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.Resource = "lists/{list}/members/pages";
+        request.AddParameter ("list", "LIST@YOUR_DOMAIN_NAME",
+                              ParameterType.UrlSegment);
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

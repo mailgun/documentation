@@ -47,18 +47,33 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetComplaint() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/complaints/baz@example.com";
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class GetComplaintChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (GetComplaint ().Content.ToString ());
+    }
+
+    public static IRestResponse GetComplaint ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+        request.Resource = "{domain}/complaints/baz@example.com";
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

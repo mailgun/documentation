@@ -58,20 +58,38 @@
 
 .. code-block:: csharp
 
- public static IRestResponse AddListMember() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "lists/{list}/members.json";
- 	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.AddParameter("members", "[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]");
- 	request.AddParameter("upsert", true);
-  	request.Method = Method.POST;
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class AddListMembersChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (AddListMembers ().Content.ToString ());
+    }
+
+    public static IRestResponse AddListMembers ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.Resource = "lists/{list}/members.json";
+        request.AddParameter ("list", "LIST@YOUR_DOMAIN_NAME",
+                              ParameterType.UrlSegment);
+        request.AddParameter ("members",
+                              "[{\"address\":\"Alice<alice@example.com>\",\"vars\":{\"age\":26}},{\"name\":\"Bob\",\"address\":\"bob@example.com\",\"vars\":{\"age\":34}}]");
+        request.AddParameter ("upsert", true);
+        request.Method = Method.POST;
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

@@ -69,24 +69,39 @@
 
 .. code-block:: csharp
 
- public static IRestResponse CreateRoute() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "routes";
- 	request.AddParameter("priority", 0);
- 	request.AddParameter("description", "Sample route");
- 	request.AddParameter("expression",
- 	                     "match_recipient('.*@YOUR_DOMAIN_NAME')");
- 	request.AddParameter("action",
- 	                     "forward('http://myhost.com/messages/')");
- 	request.AddParameter("action", "stop()");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class CreateRouteChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (CreateRoute ().Content.ToString ());
+    }
+
+    public static IRestResponse CreateRoute ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.Resource = "routes";
+        request.AddParameter ("priority", 0);
+        request.AddParameter ("description", "Sample route");
+        request.AddParameter ("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')");
+        request.AddParameter ("action",
+                              "forward('http://myhost.com/messages/')");
+        request.AddParameter ("action", "stop()");
+        request.Method = Method.POST;
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

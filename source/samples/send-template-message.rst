@@ -78,25 +78,42 @@
 
 .. code-block:: csharp
 
- public static IRestResponse SendTemplateMessage() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/messages";
- 	request.AddParameter("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
- 	request.AddParameter("to", "alice@example.com");
- 	request.AddParameter("to", "bob@example.com");
- 	request.AddParameter("subject", "Hey, %recipient.first%");
- 	request.AddParameter("text", "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%'");
- 	request.AddParameter("recipient-variables", "{\"bob@example.com\": {\"first\":\"Bob\", \"id\":1}, \"alice@example.com\": {\"first\":\"Alice\", \"id\": 2}}");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class SendTemplateMessageChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (SendTemplateMessage ().Content.ToString ());
+    }
+
+    public static IRestResponse SendTemplateMessage ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+        request.Resource = "{domain}/messages";
+        request.AddParameter ("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+        request.AddParameter ("to", "alice@example.com");
+        request.AddParameter ("to", "bob@example.com");
+        request.AddParameter ("subject", "Hey, %recipient.first%");
+        request.AddParameter ("text",
+                              "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%'");
+        request.AddParameter ("recipient-variables",
+                              "{\"bob@example.com\": {\"first\":\"Bob\", \"id\":1}, \"alice@example.com\": {\"first\":\"Alice\", \"id\": 2}}");
+        request.Method = Method.POST;
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 
