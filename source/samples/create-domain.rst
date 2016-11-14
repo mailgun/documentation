@@ -57,20 +57,7 @@
 
 .. code-block:: csharp
 
- public static IRestResponse CreateDomain() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "domains";
- 	request.AddParameter("name", "supasecret");
- 	request.AddParameter("smtp_password", "supasecret");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
- }
- 
+
 .. code-block:: go
 
  func CreateDomain(domain, apiKey string) error {

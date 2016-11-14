@@ -46,18 +46,33 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetCampaignStats() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "{domain}/campaigns/my_campaign_id/stats";
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class GetCampaignStatsChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (GetCampaignStats ().Content.ToString ());
+    }
+
+    public static IRestResponse GetCampaignStats ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "YOUR_API_KEY");
+        RestRequest request = new RestRequest ();
+        request.Resource = "{domain}/campaigns/my_campaign_id/stats";
+        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 

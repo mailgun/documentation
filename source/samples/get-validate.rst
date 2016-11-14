@@ -54,17 +54,33 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetValidate() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "/address/validate";
- 	request.AddParameter("address", "foo@mailgun.net");
- 	return client.Execute(request);
- }
+using System;
+using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+
+public class GetValidateChunk
+{
+
+    public static void Main (string[] args)
+    {
+        Console.WriteLine (GetValidate ().Content.ToString ());
+    }
+
+    public static IRestResponse GetValidate ()
+    {
+        RestClient client = new RestClient ();
+        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+        client.Authenticator =
+            new HttpBasicAuthenticator ("api",
+                                        "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
+        RestRequest request = new RestRequest ();
+        request.Resource = "/address/validate";
+        request.AddParameter ("address", "foo@mailgun.net");
+        return client.Execute (request);
+    }
+
+}
 
 .. code-block:: go
 
