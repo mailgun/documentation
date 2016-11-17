@@ -234,7 +234,7 @@ Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (
 
 .. note:: Google Compute Engine allows port ``2525`` for SMTP submission.
 
-.. note:: If you need to configure your firewall, our SMTP/API IP is: ``50.56.21.178``. This is subject to change without notice!
+.. warning:: IP addresses for HTTP and SMTP API endpoints will change frequently and subjected to change without notice. Ensure there are no IP-based ACLs that would prevent communication to new IP addresses that may be added or removed at any time.
 
 Use "plain text" SMTP authentication and the credentials from the domain details
 page in your Control Panel which can be found by clicking on a domain in the Domains
