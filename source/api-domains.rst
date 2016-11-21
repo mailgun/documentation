@@ -40,7 +40,7 @@ Create a new domain. See examples below.
  name              Name of the domain (ex. domain.com)
  smtp_password     Password for SMTP authentication
  spam_action       *disabled* or *tag* Disable, no spam filtering will occur
-                   for inbound messages. Tag, messages will be tagged wtih a
+                   for inbound messages. Tag, messages will be tagged with a
                    spam header. See :ref:`um-spam-filter`.
  wildcard          *true* or *false* Determines whether the domain will
                    accept email for sub-domains.
