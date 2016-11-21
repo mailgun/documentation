@@ -60,8 +60,8 @@ Returns statistics for a given tag.
  end               The ending date. Should be in :rfc:`2822#page-14` or
                    unix epoch time in seconds. Default: current time.
  resolution        Can be either ``hour``, ``day`` or ``month``. Default: ``day``
- duration          Period of time with resoluton encoded. See `Duration`_ for
-                   more info. If provided, overwrites the start date and resoluton.
+ duration          Period of time with resolution encoded. See `Duration`_ for
+                   more info. If provided, overwrites the start date and resolution.
  ================= ============================================================
 
  
