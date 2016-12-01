@@ -235,6 +235,7 @@ Below you can find sample events of various types:
 
     {
       "event": "accepted",
+      "id": "ncV2XwymRUKbPek_MIM-Gw",
       "timestamp": 1377211256.096436,
       "tags": [],
       "envelope": {
@@ -280,7 +281,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "delivered"
+      "event": "delivered",
+      "id": "W3X4JOhFT-OZidZGKKr9iA",
       "timestamp": 1377208314.173742,
       "tags": [],
       "envelope": {
@@ -320,7 +322,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "failed"
+      "event": "failed",
+      "id": "pVqXGJWhTzysS9GpwF2hlQ",
       "timestamp": 1377198389.769129,
       "severity": "permanent",
       "tags": [],
@@ -362,7 +365,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "opened"
+      "event": "opened",
+      "id": "-laxIqj9QWubsjY_3pTq_g",
       "timestamp": 1377047343.042277,
       "recipient": "recipient@example.com",
       "geolocation": {
@@ -395,7 +399,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "clicked"
+      "event": "clicked",
+      "id": "G5zMz2ysS6OxZ2C8xb2Tqg",
       "timestamp": 1377075564.094891,
       "recipient": "recipient@example.com",
       "geolocation": {
@@ -427,7 +432,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "unsubscribed"
+      "event": "unsubscribed",
+      "id": "W3X4JOhFT-OZidZGKKr9iA",
       "timestamp": 1377213791.421473,
       "recipient": "recipient@example.com",
       "geolocation": {
@@ -458,7 +464,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "complained"
+      "event": "complained",
+      "id": "ncV2XwymRUKbPek_MIM-Gw",
       "timestamp": 1377214260.049634,
       "recipient": "foo@example.com",
       "tags": [],
@@ -485,7 +492,8 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-       "event":"stored"
+       "event":"stored",
+       "id": "czsjqFATSlC3QtAK-C80nw",
        "timestamp":1378335036.859382,
        "storage":{
           "url":"https://api.mailgun.net/v3/domains/ninomail.com/messages/WyI3MDhjODgwZTZlIiwgIjF6",
@@ -529,6 +537,7 @@ Sample response:
     "items": [
       {
         "tags": [],
+        "id": "czsjqFATSlC3QtAK-C80nw",
         "timestamp": 1376325780.160809,
         "envelope": {
           "sender": "me@samples.mailgun.org",
@@ -580,6 +589,7 @@ starting from the most recent:
       {
         "severity": "temporary",
         "tags": [],
+        "id": "czsjqFATSlC3QtAK-C80nw",
         "envelope": {
           "sender": "me@samples.mailgun.org",
           "transport": ""
