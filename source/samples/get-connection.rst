@@ -45,30 +45,34 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetConnectionChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetConnection ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetConnection ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "domains/{domain}/connection";
+         return client.Execute (request);
+     }
+ 
+ }
 
-public class GetConnectionChunk
-{
+.. code-block:: go
 
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (GetConnection ().Content.ToString ());
-    }
-
-    public static IRestResponse GetConnection ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-        request.Resource = "domains/{domain}/connection";
-        return client.Execute (request);
-    }
-
-}
+ // Coming soon

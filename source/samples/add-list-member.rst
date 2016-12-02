@@ -73,40 +73,40 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
-
-public class AddListMemberChunk
-{
-
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (AddListMember ().Content.ToString ());
-    }
-
-    public static IRestResponse AddListMember ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.Resource = "lists/{list}/members";
-        request.AddParameter ("list", "LIST@YOUR_DOMAIN_NAME",
-                              ParameterType.UrlSegment);
-        request.AddParameter ("address", "bar@example.com");
-        request.AddParameter ("subscribed", true);
-        request.AddParameter ("name", "Bob Bar");
-        request.AddParameter ("description", "Developer");
-        request.AddParameter ("vars", "{\"age\": 26}");
-        request.Method = Method.POST;
-        return client.Execute (request);
-    }
-
-}
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class AddListMemberChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (AddListMember ().Content.ToString ());
+     }
+ 
+     public static IRestResponse AddListMember ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "lists/{list}/members";
+         request.AddParameter ("list", "LIST@YOUR_DOMAIN_NAME",
+                               ParameterType.UrlSegment);
+         request.AddParameter ("address", "bar@example.com");
+         request.AddParameter ("subscribed", true);
+         request.AddParameter ("name", "Bob Bar");
+         request.AddParameter ("description", "Developer");
+         request.AddParameter ("vars", "{\"age\": 26}");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
+ }
 
 .. code-block:: go
 

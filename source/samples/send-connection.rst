@@ -79,38 +79,42 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class SendConnectionChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (SendWithTLS ().Content.ToString ());
+     }
+ 
+     public static IRestResponse SendWithTLS ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/messages";
+         request.AddParameter ("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         request.AddParameter ("to", "bar@example.com");
+         request.AddParameter ("to", "baz@example.com");
+         request.AddParameter ("subject", "Hello");
+         request.AddParameter ("text", "Testing some Mailgun awesomness!");
+         request.AddParameter ("o:require-tls", true);
+         request.AddParameter ("o:skip-verification", false);
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
+ }
 
-public class SendConnectionChunk
-{
+.. code-block:: go
 
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (SendWithTLS ().Content.ToString ());
-    }
-
-    public static IRestResponse SendWithTLS ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v2");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-        request.Resource = "{domain}/messages";
-        request.AddParameter ("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
-        request.AddParameter ("to", "bar@example.com");
-        request.AddParameter ("to", "baz@example.com");
-        request.AddParameter ("subject", "Hello");
-        request.AddParameter ("text", "Testing some Mailgun awesomness!");
-        request.AddParameter ("o:require-tls", true);
-        request.AddParameter ("o:skip-verification", false);
-        request.Method = Method.POST;
-        return client.Execute (request);
-    }
-
-}
+ // Coming soon

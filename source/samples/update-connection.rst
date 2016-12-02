@@ -57,32 +57,36 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class UpdateConnectionChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (UpdateConnection ().Content.ToString ());
+     }
+ 
+     public static IRestResponse UpdateConnection ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "domains/YOUR_DOMAIN_NAME/connection";
+         request.AddParameter ("require_tls", true);
+         request.AddParameter ("skip_verification", false);
+         request.Method = Method.PUT;
+         return client.Execute (request);
+     }
+ 
+ }
 
-public class UpdateConnectionChunk
-{
+.. code-block:: go
 
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (UpdateConnection ().Content.ToString ());
-    }
-
-    public static IRestResponse UpdateConnection ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.Resource = "domains/YOUR_DOMAIN_NAME/connection";
-        request.AddParameter ("require_tls", true);
-        request.AddParameter ("skip_verification", false);
-        request.Method = Method.PUT;
-        return client.Execute (request);
-    }
-
-}
+ // Coming soon
