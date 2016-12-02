@@ -45,33 +45,33 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
-
-public class EventsPaginationChunk
-{
-
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (EventsPagination ().Content.ToString ());
-    }
-
-    public static IRestResponse EventsPagination ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-        request.Resource = "{domain}/events/W3siYSI6IGZhbHNlLC";
-        return client.Execute (request);
-    }
-
-}
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class EventsPaginationChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (EventsPagination ().Content.ToString ());
+     }
+ 
+     public static IRestResponse EventsPagination ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/events/W3siYSI6IGZhbHNlLC";
+         return client.Execute (request);
+     }
+ 
+ }
 
 .. code-block:: go
 

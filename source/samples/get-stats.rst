@@ -64,37 +64,37 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
-
-public class GetStatsChunk
-{
-
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (GetStats ().Content.ToString ());
-    }
-
-    public static IRestResponse GetStats ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-        request.Resource = "{domain}/stats/total";
-        request.AddParameter ("event", "accepted");
-        request.AddParameter ("event", "delivered");
-        request.AddParameter ("event", "failed");
-        request.AddParameter ("duration", "1m");
-        return client.Execute (request);
-    }
-
-}
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetStatsChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetStats ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetStats ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/stats/total";
+         request.AddParameter ("event", "accepted");
+         request.AddParameter ("event", "delivered");
+         request.AddParameter ("event", "failed");
+         request.AddParameter ("duration", "1m");
+         return client.Execute (request);
+     }
+ 
+ }
 
 .. code-block:: go
 

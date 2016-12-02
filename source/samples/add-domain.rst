@@ -56,35 +56,35 @@
 
 .. code-block:: csharp
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Authenticators;
-
-public class AddDomainChunk
-{
-
-    public static void Main (string[] args)
-    {
-        Console.WriteLine (AddDomain ().Content.ToString ());
-    }
-
-    public static IRestResponse AddDomain ()
-    {
-        RestClient client = new RestClient ();
-        client.BaseUrl = new Uri ("https://api.mailgun.net/v3/");
-        client.Authenticator =
-            new HttpBasicAuthenticator ("api",
-                                        "YOUR_API_KEY");
-        RestRequest request = new RestRequest ();
-        request.Resource = "domains";
-        request.AddParameter ("name", "YOUR_NEW_DOMAIN_NAME");
-        request.AddParameter ("smtp_password", "supersecretpassword");
-        request.Method = Method.POST;
-        return client.Execute (request);
-    }
-
-}
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class AddDomainChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (AddDomain ().Content.ToString ());
+     }
+ 
+     public static IRestResponse AddDomain ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3/");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "domains";
+         request.AddParameter ("name", "YOUR_NEW_DOMAIN_NAME");
+         request.AddParameter ("smtp_password", "supersecretpassword");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
+ }
 
 .. code-block:: go
 
