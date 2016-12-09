@@ -1463,6 +1463,7 @@ If you set a URL to be posted when the message is received (``store(notify="http
            ==================    =========    ============================================================================================================
            Parameter             Type         Description
            ==================    =========    ============================================================================================================
+           domain                string       domain name this message was received for.
            recipient             string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
            sender                string       sender of the message as reported by ``MAIL FROM`` during SMTP chat. Note: this value may differ
                                               from ``From`` MIME header.
@@ -1476,8 +1477,7 @@ If you set a URL to be posted when the message is received (``store(notify="http
                                               not just text/html. For instance if a message arrives with "foo" part it will be posted as "body-foo".
            stripped-html         string       HTML version of the message, without quoted parts.
            attachments           string       contains a json list of metadata objects, one for each attachment, see below.
-           message-url           string       a URL that you can use to get and/or delete the message.
-           content-id-map        string       contains mappings from content ids to attachment urls.
+           message-url           string       a URL that you can use to get and/or delete the message. Only present in the payload posted to the notification URL.
            timestamp             int          number of seconds passed since January 1, 1970 (see `securing webhooks`_).
            token                 string       randomly generated string with length 50 (see `securing webhooks`_).
            signature             string       string with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
