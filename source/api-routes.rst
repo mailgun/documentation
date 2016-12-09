@@ -209,3 +209,11 @@ Sample response:
         "id": "4f3bad2335335426750048c6"
     }
   }
+
+Sample payload for a ``store()`` webhook:
+
+.. include:: samples/message-store.rst
+
+Sample payload for a ``forward()`` webhook:
+
+.. include:: samples/message-forward.rst
