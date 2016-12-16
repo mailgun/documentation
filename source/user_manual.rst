@@ -350,7 +350,7 @@ When sent via SMTP, recipient variables can be included by adding the following 
 Example:
 
 .. code-block:: text
- 
+
  X-Mailgun-Recipient-Variables: {"bob@example.com": {"first":"Bob", "id":1}, "alice@example.com": {"first":"Alice", "id": 2}}
  From: me@example.com
  To: alice@example.com, bob@example.com
@@ -359,7 +359,7 @@ Example:
  Message-Id: <20160329071939.35138.9413.6915422C@example.com>
  Content-Type: text/plain; charset="us-ascii"
  Content-Transfer-Encoding: quoted-printable
- 
+
  Hi, %recipient.first%,
  =20
  Please review your profile at example.com/orders/%recipient.id%.
@@ -742,7 +742,7 @@ And here's a sample in Ruby:
       data = [timestamp, token].join
       signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
     end
-    
+
 And here's a sample in PHP:
 
 .. code-block:: php
@@ -778,6 +778,11 @@ To add this header to your message:
 API: Pass the following parameter, "v:my-custom-data" => "{"my_message_id": 123}".
 
 SMTP: Add the following header to your email, "X-Mailgun-Variables: {"my_message_id": 123}".
+
+You can also use values from your recipient variables to provide a custom variable per a recipient using
+templating. For example when sending via the API::
+
+    {'v:Recipient-Id': '%recipient.id%'}
 
 .. note:: The value of the "X-Mailgun-Variables" header should be valid JSON string,
           otherwise Mailgun won't be able to parse it.  If your X-Mailgun-Variables header exceeds
