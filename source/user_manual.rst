@@ -572,7 +572,7 @@ You can also manage unsubscribes per message by using unsubscribe variables (see
 
 You can enable Opens & Clicks tracking on two levels: per sending domain and per message.
 
-- You can enable Open & Click tracking on per domain basis in the "Tracking" tab of the control panel.
+- You can enable Open & Click tracking on per domain basis under the “Domain Settings” subsection on the domain info page.
 - Tracking can also be toggled by setting ``o:tracking``, ``o:tracking-clicks`` and ``o:tracking-opens`` parameters when sending your message. This will override the domain-level setting.
 
 .. note:: You will also have to point CNAME records to mailgun.org for Mailgun to rewrite links and track opens. In addition, there needs to be an html part of message for Mailgun to track opens (see `Tracking Opens`_ and `Tracking Clicks`_ for more detail).
