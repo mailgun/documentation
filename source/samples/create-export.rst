@@ -8,15 +8,15 @@
 .. code-block:: java
 
  public static ClientResponse CreateExport() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api", "YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/exports");
+    Client client = Client.create();
+    client.addFilter(new HTTPBasicAuthFilter("api", "YOUR_API_KEY"));
+    WebResource webResource =
+        client.resource("https://api.mailgun.net/v3/exports");
     MultivaluedMapImpl formData = new MultivaluedMapImpl();
     formData.add("url", "/v3/domains");
     return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
         post(ClientResponse.class, formData);
-    }
+ }
 
 .. code-block:: php
 
@@ -41,17 +41,31 @@
 
 .. code-block:: csharp
 
- public static IRestResponse CreateExport() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3/");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "exports";
- 	request.Method = Method.POST;
- 	request.AddParameter("url", "/v3/domains");
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+
+ public class CreateExportChunk
+ {
+
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (CreateExport ().Content.ToString ());
+     }
+
+     public static IRestResponse CreateExport () {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3/");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest();
+         request.Resource = "exports";
+         request.Method = Method.POST;
+         request.AddParameter ("url", "/v3/domains");
+         return client.Execute (request);
+     }
  }
 
 .. code-block:: go

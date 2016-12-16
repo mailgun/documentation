@@ -17,7 +17,7 @@ download.
 
 .. code-block:: url
 
-     POST exports/<url>
+     POST /exports/<url>
 
 .. container:: ptable
 
@@ -32,7 +32,7 @@ Create an export based on the URL given.
 
 .. code-block:: url
 
-     GET exports/
+     GET /exports/
 
 .. container:: ptable
 
@@ -47,13 +47,13 @@ List all exports created within the past 24 hours.
 
 .. code-block:: url
 
-     GET exports/<id>
+     GET /exports/<id>
 
 Get an export by id.
 
 .. code-block:: url
 
-     GET exports/<id>/download
+     GET /exports/<id>/download
 
 Download an export by ID. This will response with a `302 Moved` with the
 `Location` header of temporary S3 URL if it is available.
