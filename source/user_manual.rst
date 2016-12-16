@@ -1341,6 +1341,8 @@ You can combine multiple destinations separating them by a comma::
 
     forward("http://myapp.com/messages, mailbox@myapp.com")
 
+.. note:: If you forward messages to another email address, then you should disable click tracking, open tracking and unsubscribes, by editing your domain settings in the Control Panel. If these features are enabled, the content of each message is modified by Mailgun before forwarding, which invalidates the DKIM signature. If the message comes from a domain publishing a DMARC policy (like Yahoo! Mail), the message will be rejected as spam by the forwarding destination.
+
 **store(notification endpoint)**
 
 Stores the message temporarily (for up to 3 days) on Mailgun's servers so that you can retrieve it later.  This is helpful for large attachments that may cause time-outs or if you just want to retrieve them later to reduce the frequency of hits on your server.
