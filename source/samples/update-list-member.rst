@@ -8,19 +8,43 @@
 
 .. code-block:: java
 
- public static ClientResponse UpdateMember() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/lists/" +
- 				"LIST@YOUR_DOMAIN_NAME/members/bar@example.com");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("subscribed", false);
- 	formData.add("name", "Foo Bar");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		put(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
 
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse UpdateMailingListMember() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("subscribed", "false");
+         reqData.param("name", "Alice Doe");
+
+         return mgRoot
+             .path("/lists/{list_name}@{domain}/members/{address}")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .resolveTemplate("list_name", "YOUR_MAILING_LIST_NAME")
+             .resolveTemplate("address", "alice@example.com")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPut(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

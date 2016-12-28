@@ -8,22 +8,50 @@
 
 .. code-block:: java
 
- public static ClientResponse SendMimeMessage() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
- 				"/messages.mime");
- 	FormDataMultiPart form = new FormDataMultiPart();
- 	form.field("to", "bar@example.com");
- 	String file_separator = System.getProperty("file.separator");
- 	File mimeFile = new File("." + file_separator + "files" +
- 			file_separator + "message.mime");
- 	form.bodyPart(new FileDataBodyPart("message", mimeFile,
- 			MediaType.APPLICATION_OCTET_STREAM_TYPE));
- 	return webResource.type(MediaType.MULTIPART_FORM_DATA_TYPE).
- 		post(ClientResponse.class, form);
+ import java.io.File;
+
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse SendMIMEMessage() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         FormDataMultiPart reqData = new FormDataMultiPart();
+         reqData.field("to", "alice@example.com");
+
+         String file_separator = System.getProperty("file.separator");
+
+         File mimeFile = new File("files" + file_separator + "message.mime");
+         form.bodyPart(new FileDataBodyPart("message", mimeFile,
+             MediaType.APPLICATION_OCTET_STREAM_TYPE));
+
+         return mgRoot
+             .path("/{domain}/messages")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.MULTIPART_FORM_DATA_TYPE)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

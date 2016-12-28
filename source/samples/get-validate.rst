@@ -7,16 +7,37 @@
 
 .. code-block:: java
 
- public static ClientResponse GetValidate() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3" +
- 				"/address/validate");
- 	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
- 	queryParams.add("address", "foo@mailgun.net");
- 	return webResource.queryParams(queryParams).get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse ValidateAddress() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/address/validate")
+             .queryParam("address", "foo@mailgun.net")
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

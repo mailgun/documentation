@@ -10,21 +10,43 @@
 
 .. code-block:: java
 
- public static ClientResponse SendSimpleMessage() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
- 				"/messages");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("from", "Excited User <mailgun@YOUR_DOMAIN_NAME>");
- 	formData.add("to", "bar@example.com");
- 	formData.add("to", "YOU@YOUR_DOMAIN_NAME");
- 	formData.add("subject", "Hello");
- 	formData.add("text", "Testing some Mailgun awesomness!");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse SendSimple() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         reqData.param("to", "alice@example.com");
+         reqData.param("subject", "Hello");
+         reqData.param("text", "Testing out some Mailgun awesomeness!");
+
+         return mgRoot
+             .path("/{domain}/messages")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

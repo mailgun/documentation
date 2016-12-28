@@ -6,14 +6,38 @@
 
 .. code-block:: java
 
- public static ClientResponse RemoveMailingList() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/lists/" +
- 				"LIST@YOUR_DOMAIN_NAME");
- 	return webResource.delete(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse RemoveMailingList() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/lists/{list_name}@{domain}")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .resolveTemplate("list_name", "YOUR_MAILING_LIST_NAME")
+             .request()
+             .buildDelete()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
