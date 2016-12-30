@@ -9,7 +9,6 @@ API Reference
    api-sending
    api-domains
    api-events
-   api-export
    api-stats
    api-tags
    api-suppressions
