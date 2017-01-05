@@ -368,7 +368,7 @@ Example:
  Example.com Team
 
 .. note:: The value of the "X-Mailgun-Recipient-Variables" header should be valid JSON string,
-          otherwise Mailgun won't be able to parse it.  If your X-Mailgun-Variables header exceeds
+          otherwise Mailgun won't be able to parse it.  If your "X-Mailgun-Recipient-Variables" header exceeds
           998 characters, you should use `folding <https://tools.ietf.org/html/rfc2822#page-11>`_ to
           spread the variables over multiple lines.
 
