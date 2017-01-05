@@ -139,6 +139,7 @@ provider for assistance:
 - Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`_
 - Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`_
 
+Digital Ocean: `Digital Ocean <https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean>`__ - `Alternate guide <http://code.krister.ee/mailgun-digitalocean/>`__
 
 .. _um-sending-messages:
 

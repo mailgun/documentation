@@ -144,11 +144,11 @@ Common DNS Providers
 Common providers are listed below. If yours is not listed, contact your DNS provider for assistance.
 
 
-GoDaddy: `MX <http://support.godaddy.com/help/article/7924/adding-or-editing-mx-records?locale=en>`__ - `CNAME <http://support.godaddy.com/help/article/7921/adding-or-editing-cname-records?locale=en>`__ - `TXT <http://support.godaddy.com/help/article/7925/adding-or-editing-txt-records?locale=en>`__                       
+GoDaddy: `MX <https://www.godaddy.com/help/add-an-mx-record-19234>`__ - `CNAME <https://www.godaddy.com/help/add-a-cname-record-19236>`__ - `TXT <https://www.godaddy.com/help/add-a-txt-record-19232>`__                      
 
-NameCheap: `All Records <http://www.namecheap.com/support/knowledgebase/article.aspx/473/2/demo-changing-host-record-settings>`__
+NameCheap: `All Records <https://www.namecheap.com/support/knowledgebase/subcategory.aspx/10/dns-questions>`__
 
-Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`__ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`__       
+Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`__ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`__      
 
 Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`__
 
@@ -156,7 +156,7 @@ Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center
 
 Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`__
 
-DigitalOcean: `Mailgun and DigitalOcean Guide <http://code.krister.ee/mailgun-digitalocean/>`__
+Digital Ocean: `Digital Ocean <https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean>`__ - `Alternate guide <http://code.krister.ee/mailgun-digitalocean/>`__
 
 
 You are all set! 
