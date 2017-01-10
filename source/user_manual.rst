@@ -523,7 +523,7 @@ using the ``o:deliverytime`` parameter if sending via the API, or
 ``X-Mailgun-Deliver-By`` MIME header if sending via SMTP.
 
 While messages are not guaranteed to arrive at exactly the requested time due to
-the dynamic nature of the queue, Mailgun will do it's best.
+the dynamic nature of the queue, Mailgun will do its best.
 
 .. note:: Messages can be scheduled for a maximum of 3 days in the future.
 
