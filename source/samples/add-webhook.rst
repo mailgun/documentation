@@ -7,17 +7,41 @@
 
 .. code-block:: java
 
- public static ClientResponse AddWebhook() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("id", "click");
- 	formData.add("url", "http://bin.example.com/8de4a9c4");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse AddUnsubscribeAll() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("id", "click");
+         reqData.param("url", "http://bin.example.com/8de4a9c4");
+
+         return mgRoot
+             .path("/domains/{domain}/webhooks")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

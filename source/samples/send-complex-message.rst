@@ -15,31 +15,62 @@
 
 .. code-block:: java
 
- public static ClientResponse SendComplexMessage() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/" +
- 				"messages");
- 	FormDataMultiPart form = new FormDataMultiPart();
- 	form.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
- 	form.field("to", "foo@example.com");
- 	form.field("bcc", "bar@example.com");
- 	form.field("cc", "baz@example.com");
- 	form.field("subject", "Hello");
- 	form.field("text", "Testing some Mailgun awesomness!");
- 	String file_separator = System.getProperty("file.separator");
- 	File txtFile = new File("." + file_separator +
- 			"files" + file_separator + "test.txt");
- 	form.bodyPart(new FileDataBodyPart("attachment",txtFile,
- 			MediaType.TEXT_PLAIN_TYPE));
- 	File jpgFile = new File("." + file_separator +
- 			"files" + file_separator + "test.jpg");
- 	form.bodyPart(new FileDataBodyPart("attachment",jpgFile,
- 			MediaType.APPLICATION_OCTET_STREAM_TYPE));
- 	return webResource.type(MediaType.MULTIPART_FORM_DATA_TYPE).
- 		post(ClientResponse.class, form);
+ import java.io.File;
+
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse SendComplexMessage() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         FormDataMultiPart reqData = new FormDataMultiPart();
+         reqData.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         reqData.field("to", "alice@example.com");
+         reqData.field("to", "bob@example.com");
+         reqData.field("cc", "joe@example.com");
+         reqData.field("subject", "Hello");
+         reqData.field("text", "Testing out some Mailgun awesomeness!");
+         reqData.field("html", "<html>HTML version of the body</html>");
+
+         String file_separator = System.getProperty("file.separator");
+
+         File txtFile = new File("." + file_separator +
+             "files" + file_separator + "test.txt");
+         form.bodyPart(new FileDataBodyPart("attachment", txtFile,
+             MediaType.TEXT_PLAIN_TYPE));
+
+         File jpgFile = new File("." + file_separator +
+             "files" + file_separator + "test.jpg");
+         form.bodyPart(new FileDataBodyPart("attachment", jpgFile,
+             MediaType.APPLICATION_OCTET_STREAM_TYPE));
+
+         return mgRoot
+             .path("/{domain}/messages")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.MULTIPART_FORM_DATA_TYPE)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

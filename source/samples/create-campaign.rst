@@ -8,17 +8,41 @@
 
 .. code-block:: java
 
- public static ClientResponse CreateCampaign() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("name", "Newsletter");
- 	formData.add("id", "my_campaign_id");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 	post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse CreateCampaign() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("name", "Newsletter");
+         reqData.param("id", "my_campaign_id");
+
+         return mgRoot
+             .path("/{domain}/campaigns")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php

@@ -8,16 +8,38 @@
 
 .. code-block:: java
 
- public static ClientResponse GetDomains() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/domains");
- 	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
- 	queryParams.add("skip", 0);
- 	queryParams.add("limit", 3);
- 	return webResource.queryParams(queryParams).get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse GetDomains() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/domains")
+             .queryParam("skip", 0)
+             .queryParam("limit", 3)
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
