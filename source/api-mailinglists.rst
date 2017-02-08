@@ -82,7 +82,7 @@ Paginate over list members in the given mailing list
  ================== =======================================================
  Parameter          Description
  ================== =======================================================
- subscribed         ``yes`` to lists subsribed, ``no`` for unsubscribed.
+ subscribed         ``yes`` to lists subscribed, ``no`` for unsubscribed.
                     list all if not set
  limit              Maximum number of records to return *(optional: 100 by default)*
  ================== =======================================================
