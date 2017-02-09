@@ -750,7 +750,7 @@ And here's a sample in PHP:
     private function verify($apiKey, $token, $timestamp, $signature)
     {
         //check if the timestamp is fresh
-        if (time()-$timestamp>15) {
+        if (abs(time() - $timestamp) > 15) {
             return false;
         }
 
