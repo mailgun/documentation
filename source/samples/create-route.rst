@@ -10,20 +10,43 @@
 
 .. code-block:: java
 
- public static ClientResponse CreateRoute() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/routes");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("priority", 0);
- 	formData.add("description", "Sample route");
- 	formData.add("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')");
- 	formData.add("action", "forward('http://myhost.com/messages/')");
- 	formData.add("action", "stop()");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse CreateRoute() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("priority", 0);
+         reqData.param("description", "Sample route");
+         reqData.param("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')");
+         reqData.param("action", "forward('http://myhost.com/messages/')");
+         reqData.param("action", "stop()");
+
+         return mgRoot
+             .path("/routes")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -69,23 +92,38 @@
 
 .. code-block:: csharp
 
- public static IRestResponse CreateRoute() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "routes";
- 	request.AddParameter("priority", 0);
- 	request.AddParameter("description", "Sample route");
- 	request.AddParameter("expression",
- 	                     "match_recipient('.*@YOUR_DOMAIN_NAME')");
- 	request.AddParameter("action",
- 	                     "forward('http://myhost.com/messages/')");
- 	request.AddParameter("action", "stop()");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class CreateRouteChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (CreateRoute ().Content.ToString ());
+     }
+ 
+     public static IRestResponse CreateRoute ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "routes";
+         request.AddParameter ("priority", 0);
+         request.AddParameter ("description", "Sample route");
+         request.AddParameter ("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')");
+         request.AddParameter ("action",
+                               "forward('http://myhost.com/messages/')");
+         request.AddParameter ("action", "stop()");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

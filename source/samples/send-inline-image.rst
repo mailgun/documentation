@@ -12,24 +12,56 @@
 
 .. code-block:: java
 
- public static ClientResponse SendInlineImage() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
- 				"/messages");
- 	FormDataMultiPart form = new FormDataMultiPart();
- 	form.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
- 	form.field("to", "baz@example.com");
- 	form.field("subject", "Hello");
- 	form.field("text", "Testing some Mailgun awesomness!");
- 	form.field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>");
- 	File jpgFile = new File("files/test.jpg");
- 	form.bodyPart(new FileDataBodyPart("inline",jpgFile,
- 			MediaType.APPLICATION_OCTET_STREAM_TYPE));
- 	return webResource.type(MediaType.MULTIPART_FORM_DATA_TYPE).
- 		post(ClientResponse.class, form);
+ import java.io.File;
+
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse SendInlineImage() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         FormDataMultiPart reqData = new FormDataMultiPart();
+         reqData.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         reqData.field("to", "alice@example.com");
+         reqData.field("to", "bob@example.com");
+         reqData.field("cc", "joe@example.com");
+         reqData.field("subject", "Hello");
+         reqData.field("text", "Testing out some Mailgun awesomeness!");
+         reqData.field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>");
+
+         String file_separator = System.getProperty("file.separator");
+
+         File jpgFile = new File("files" + file_separator + "test.jpg");
+         form.bodyPart(new FileDataBodyPart("inline", jpgFile,
+             MediaType.APPLICATION_OCTET_STREAM_TYPE));
+
+         return mgRoot
+             .path("/{domain}/messages")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.MULTIPART_FORM_DATA_TYPE)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -84,24 +116,40 @@
 
 .. code-block:: csharp
 
- public static IRestResponse SendInlineImage() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/messages";
- 	request.AddParameter("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
- 	request.AddParameter("to", "baz@example.com");
- 	request.AddParameter("subject", "Hello");
- 	request.AddParameter("text", "Testing some Mailgun awesomness!");
- 	request.AddParameter("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>");
- 	request.AddFile("inline", "files/test.jpg");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class SendInlineImageChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (SendInlineImage ().Content.ToString ());
+     }
+ 
+     public static IRestResponse SendInlineImage ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/messages";
+         request.AddParameter ("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         request.AddParameter ("to", "baz@example.com");
+         request.AddParameter ("subject", "Hello");
+         request.AddParameter ("text", "Testing some Mailgun awesomness!");
+         request.AddParameter ("html",
+                               "<html>Inline image here: <img src=\"cid:test.jpg\"></html>");
+         request.AddFile ("inline", "files/test.jpg");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

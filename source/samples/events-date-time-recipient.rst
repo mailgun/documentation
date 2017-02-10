@@ -10,20 +10,42 @@
 
 .. code-block:: java
 
- public static ClientResponse GetLogs() {
-  Client client = new Client();
-  client.addFilter(new HTTPBasicAuthFilter("api",
-      "YOUR_API_KEY"));
-  WebResource webResource =
-      client.resource("
-          https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events");
-  MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
-  queryParams.add("begin", 50);
-  queryParams.add("ascending", "yes");
-  queryParams.add("limit", 1);
-  queryParams.add("pretty", "yes");
-  queryParams.add("recipient", "joe@example.com");
-  return webResource.queryParams(queryParams).get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse GetLogs() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/{domain}/events")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .queryParam("begin", 50);
+             .queryParam("ascending", "yes");
+             .queryParam("limit", 1);
+             .queryParam("pretty", "yes");
+             .queryParam("recipient", "joe@example.com");
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -75,23 +97,38 @@
 
 .. code-block:: csharp
 
-  public static IRestResponse GetLogs() {
-    RestClient client = new RestClient();
-    client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-    client.Authenticator =
-        new HttpBasicAuthenticator("api",
-            "YOUR_API_KEY");
-    RestRequest request = new RestRequest();
-    request.AddParameter("domain",
-        "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-    request.Resource = "{domain}/events";
-    request.AddParameter("begin", "Fri, 3 May 2013 09:00:00 -0000");
-    request.AddParameter("ascending", "yes");
-    request.AddParameter("limit", 25);
-    request.AddParameter("pretty", "yes");
-    request.AddParameter("recipient", "joe@example.com");
-    return client.Execute(request);
-  }
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class EventsDateTimeRecipientChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (EventsDateTimeRecipient ().Content.ToString ());
+     }
+ 
+     public static IRestResponse EventsDateTimeRecipient ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/events";
+         request.AddParameter ("begin", "Fri, 3 May 2013 09:00:00 -0000");
+         request.AddParameter ("ascending", "yes");
+         request.AddParameter ("limit", 25);
+         request.AddParameter ("pretty", "yes");
+         request.AddParameter ("recipient", "joe@example.com");
+         return client.Execute (request);
+     }
+ 
+ }
 
 .. code-block:: go
 

@@ -6,14 +6,37 @@
 
 .. code-block:: java
 
- public static ClientResponse GetComplaints() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/" +
- 				"complaints");
- 	return webResource.get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse GetComplaints() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/{domain}/complaints")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -48,17 +71,32 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetComplaints() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/complaints";
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetComplaintsChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetComplaints ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetComplaints ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/complaints";
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

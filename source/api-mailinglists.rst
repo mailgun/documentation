@@ -10,20 +10,18 @@ like developers@mailgun.net. This address becomes an ID for this mailing list.
 When you send a message to developers@mailgun.net, all members of the list will
 receive a copy of it.
 
-.. code-block:: url
+.. code-block:: url 
 
-     GET /lists
+    GET /lists/pages
 
-Returns a list of mailing lists under your account.
+Paginate over mailing lists under your account
 
 .. container:: ptable
 
  ================== =======================================================
  Parameter          Description
  ================== =======================================================
- address            Find a mailing list by it's address *(optional)*
- limit              Maximum number of records to return *(100 by default)*
- skip               Records to skip *(0 by default)*
+ limit              Maximim number of records to return *(optional: 100 by default)*
  ================== =======================================================
 
 .. code-block:: url
@@ -74,20 +72,19 @@ Update mailing list properties, such as address, description or name
 Deletes a mailing list.
 
 .. code-block:: url
+     
+    GET /lists/<address>/members/pages
 
-     GET /lists/<address>/members
-
-Fetches the list of mailing list members.
+Paginate over list members in the given mailing list
 
 .. container:: ptable
 
  ================== =======================================================
  Parameter          Description
  ================== =======================================================
- subscribed         ``yes`` to list subscribed, ``no`` for unsubscribed,
+ subscribed         ``yes`` to lists subscribed, ``no`` for unsubscribed.
                     list all if not set
- limit              Maximum number of records to return *(100 by default)*
- skip               Records to skip *(0 by default)*
+ limit              Maximum number of records to return *(optional: 100 by default)*
  ================== =======================================================
 
 .. code-block:: url
@@ -182,6 +179,41 @@ Sample response:
     }
   }
 
+Get a page of mailing lists:
+
+.. include:: samples/get-mailing-lists.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "items": [
+      {
+        "access_level": "everyone",
+        "address": "dev@samples.mailgun.org",
+        "created_at": "Tue, 06 Mar 2012 05:44:45 GMT",
+        "description": "Mailgun developers list",
+        "members_count": 1,
+        "name": ""
+      },
+      {
+        "access_level": "readonly",
+        "address": "bar@example.com",
+        "created_at": "Wed, 06 Mar 2013 11:39:51 GMT",
+        "description": "",
+        "members_count": 2,
+        "name": ""
+      }
+    ],
+    "paging": {
+      "first": "https://url_to_next_page",
+      "last": "https://url_to_last_page",
+      "next": "https://url_to_next_page",
+      "previous": "https://url_to_previous_page"
+    }
+  }
+
 Add a mailing list member:
 
 .. include:: samples/add-list-member.rst
@@ -262,9 +294,13 @@ Sample response:
             "address": "bar@example.com"
         }
     ],
-    "total_count": 1
+    "paging": {
+      "first": "https://url_to_first_page",
+      "last": "https://url_to_last_page",
+      "next": "http://url_to_next_page",
+      "previous": "http://url_to_previous_page"
+    }
   }
-
 
 Remove a member:
 

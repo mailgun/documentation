@@ -11,21 +11,45 @@
 
 .. code-block:: java
 
- public static ClientResponse AddListMember() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/lists/" +
- 				"LIST@YOUR_DOMAIN_NAME/members");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("address", "bar@example.com");
- 	formData.add("subscribed", true);
- 	formData.add("name", "Bob Bar");
- 	formData.add("description", "Developer");
- 	formData.add("vars", "{\"age\": 26}");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse AddListMember() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("address", "bob@example.com");
+         reqData.param("subscribed", "true");
+         reqData.param("name", "Bob Bar");
+         reqData.param("description", "developer");
+         reqData.param("vars", "{\"age\": 26}");
+
+         return mgRoot
+             .path("/lists/{list}@{domain}/members")
+             .resolveTemplate("list", "YOUR_LIST_NAME")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -73,22 +97,39 @@
 
 .. code-block:: csharp
 
- public static IRestResponse AddListMember() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "lists/{list}/members";
- 	request.AddParameter("list", "LIST@YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.AddParameter("address", "bar@example.com");
- 	request.AddParameter("subscribed", true);
- 	request.AddParameter("name", "Bob Bar");
- 	request.AddParameter("description", "Developer");
- 	request.AddParameter("vars", "{\"age\": 26}");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class AddListMemberChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (AddListMember ().Content.ToString ());
+     }
+ 
+     public static IRestResponse AddListMember ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "lists/{list}/members";
+         request.AddParameter ("list", "LIST@YOUR_DOMAIN_NAME",
+                               ParameterType.UrlSegment);
+         request.AddParameter ("address", "bar@example.com");
+         request.AddParameter ("subscribed", true);
+         request.AddParameter ("name", "Bob Bar");
+         request.AddParameter ("description", "Developer");
+         request.AddParameter ("vars", "{\"age\": 26}");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

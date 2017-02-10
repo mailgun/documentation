@@ -469,7 +469,8 @@ Paginate over a list of complaints for a domain.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- limit             Maximum number of records to return (optional, default: 100)
+ limit             Maximum number of records to return (optional, default: 100,
+                   max: 10000)
  ================= ==========================================================
 
 Example:
@@ -583,7 +584,7 @@ to 1000 complaint records in the following format.
           "created_at": "Thu, 13 Oct 2011 18:02:00 UTC"
         },
         {
-          "address": "bob@example.com",
+          "address": "bob@example.com"
         }
       ]
 

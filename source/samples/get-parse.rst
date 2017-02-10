@@ -7,16 +7,37 @@
 
 .. code-block:: java
 
- public static ClientResponse GetParse() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3" +
- 				"/address/parse");
- 	MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
- 	queryParams.add("addresses", "Alice <alice@example.com>,bob@example.com,example.com");
- 	return webResource.queryParams(queryParams).get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse ParseAddresses() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/address/parse")
+             .queryParam("addresses", "Alice <alice@example.com>,bob@example.com,example.com")
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -53,16 +74,33 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetParse() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "/address/parse";
- 	request.AddParameter("addresses", "Alice <alice@example.com>,bob@example.com,example.com");
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetParseChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetParse ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetParse ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7");
+         RestRequest request = new RestRequest ();
+         request.Resource = "/address/parse";
+         request.AddParameter ("addresses",
+                               "Alice <alice@example.com>,bob@example.com,example.com");
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

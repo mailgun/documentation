@@ -28,7 +28,7 @@ If you are anxious to get started right away, feel free to check
 out the :ref:`quickstart` or :ref:`api-reference`.  There are
 also :ref:`faqs` and :ref:`best-practices` that you can reference.
 
-Finally, always feel free to `contact our Support Team <https://mailgun.com/cp/support>`_.
+Finally, always feel free to `contact our Support Team <https://mailgun.com/app/support>`_.
 
 Getting Started
 ***************
@@ -67,76 +67,77 @@ sent and/or received and data retention for Logs and the Events API is at least 
 Verifying Your Domain
 =====================
 
-For the best experience using Mailgun, we recommend you add a domain you own (instead of a mailgun subdomain) and verify it by setting up the SPF and DKIM records we provide at your DNS provider. These DNS records simultaneously allow Mailgun to deliver email on your behalf and prove that you are an authorized sender for the domain.
+Each new Mailgun account is automatically provisioned with a **sandbox domain**
+``sandbox<uniq-alpha-numeric-string>@mailgun.org``. This domain is to be used
+for **testing only**. It allows both sending and receiving messages; and also
+tracking can be enabled for it. But it only allows sending to a list of up to 5
+`authorized recipients <https://help.mailgun.com/hc/en-us/articles/217531258-Authorized-Recipients>`_.
+This limitation is also in effect for routes that are triggered by messages
+addressed to the sandbox domain and mailing lists created under that domain.
 
-Benefits of verifying your domain:
+To be able to use Mailgun in production a custom domain(s) has to be created
+and verified with Mailgun.
 
-- Complete white labeling of your emails so you won't see "sent via Mailgun.org" message in your emails.
-- Establishing a positive email reputation for your own domain.
-- The Mailgun reputation system is less suspicious of traffic that is being sent on verified domains and so using one reduces the likelihood of being disabled. Additionally, verified domains are not subject to a sending limit of 300 emails per day.
+Verifying your domain is easy. Start by adding a domain or subdomain you own in
+the ``Domains`` tab of the Mailgun control panel. Next add two **TXT** DNS
+records found in the **Domain Verification & DNS** section on the domain
+information page of the Mailgun control panel at your DNS provider:
 
-How to verify your domain:
+- SPF: Sending server IP validation. Used by majority of email service
+  providers. `Learn about SPF <http://www.openspf.org/Introduction>`_.
+- DKIM: Like SPF, but uses cryptographic methods for validation. Supported
+  by many email service providers. This is the record that Mailgun references
+  make sure that the domain actually belongs to you.
+  `Learn about DKIM <http://www.dkim.org/#introduction>`_
 
-Verifying your domain is easy.  Start by adding a domain or subdomain you own in the Domains tab of your control panel.  Once you have added your domain, simply add the two TXT DNS records found in your control panel at your DNS provider. You'll find these DNS records when you click on a domain under the ``Domains`` tab on the Mailgun control panel. There are two types of DNS records, ``Sending`` and ``Receiving`` records.   The two TXT records needed to verify your domain are listed under the ``Sending`` section.
+Once you've added the two **TXT** records and they've propagated, your domain
+will be verified. In the Mailgun control panel verified domains are marked by a
+green ``Verified`` badge next to their name.
 
-Though not required to verify your domain, if you want Mailgun to track clicks and opens you can also add the CNAME record. MX records should also be added unless you already have MX records for your domain pointed at another email service provider.
+If it has been awhile since you have configured the DNS records but the domain
+is still reported as ``Unverified``, then try pressing the **Check DNS Records Now**
+button on the domain information page. If that does not help either, then
+please create a support ticket.
 
-Once you've added the two TXT records and they've propagated, your domain will be verified.  In some instances, we may need additional information to verify your domain.  If this is the case, we will contact you to resolve the issue.
+**Other DNS records**
 
-If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
+- **CNAME** DNS record with value `mailgun.org`, should be added if you want
+  Mailgun to track **clicks**, **opens**, and **unsubscribes**.
 
-**Sending DNS Records**
+- **MX** DNS records are required if you want Mailgun to receive and route/store
+  messages addressed to the domain recipients. You need to configure 2 **MX**
+  records with values ``10 mxa.mailgun.org`` and ``10 mxb.mailgun.org``. We
+  recommend adding them even if you do not plan the domain to get inbound
+  messages, because having **MX** DNS records configured may improve
+  deliverability of messages sent from the domain.
+  `Learn about MX DNS records <http://en.wikipedia.org/wiki/MX_record>`_
 
-- SPF: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
-- DKIM: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_
-- CNAME: Used for tracking opens and clicks, when enabled. :ref:`tracking-messages`
+.. warning:: Do not configure **MX** DNS records if you already have another
+             provider handling inbound mail delivery for the domain.
 
-========= =========================================================== ====================
-Type      Value                                                       Purpose
-========= =========================================================== ====================
-TXT       "v=spf1 include:mailgun.org ~all"                           SPF (Required)
-TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Required)
-CNAME     "mailgun.org"                                               Tracking (Optional)
-========= =========================================================== ====================
+**DNS Records Summary**
 
-.. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links.
-
-.. _SPF Information: http://www.openspf.org/Introduction
-.. _DKIM Information: http://www.dkim.org/#introduction
-
-**Receiving DNS Records**
-
-.. warning:: Do not configure Receiving MX DNS records if you already have another provider handling inbound
-		     mail delivery. If you do not have MX records pointing to another mail server, then you should
-		     point them to Mailgun to optimize deliverability.
-
-Mail server for handling inbound messages.  `MX Information`_
-
-========= ========= =========================================================== ====================
-Type      Priority  Value														Purpose
-========= ========= =========================================================== ====================
-MX        10        mxa.mailgun.org     										Receiving (Optional)
-MX        10        mxb.mailgun.org 											Receiving (Optional)
-========= ========= =========================================================== ====================
-
-.. _MX Information: http://en.wikipedia.org/wiki/MX_record
+========= ========= =========================== =============================================
+Type      Required  Purpose                     Value
+========= ========= =========================== =============================================
+TXT       Yes       Domain verification (SPF)   ``v=spf1 include:mailgun.org ~all``
+TXT       Yes       Domain verification (DKIM)  *Find this record in Domain Verification & DNS section in the domain information page for a particular domain in the Mailgun control pannel*
+CNAME               Enables tracking            ``mailgun.org``
+MX                  Enables receiving           ``10 mxa.mailgun.org``
+MX                  Enables receiving           ``10 mxb.mailgun.org``
+========= ========= =========================== =============================================
 
 **Common DNS Provider Documentation**
 
-Common providers are listed below. If yours is not listed, contact your DNS provider for assistance.
+Common providers are listed below. If yours is not listed, contact your DNS
+provider for assistance:
 
-
-GoDaddy: `MX <https://www.godaddy.com/help/add-an-mx-record-19234>`__ - `CNAME <https://www.godaddy.com/help/add-a-cname-record-19236>`__ - `TXT <https://www.godaddy.com/help/add-a-txt-record-19232>`__
-
-NameCheap: `All Records <https://www.namecheap.com/support/knowledgebase/subcategory.aspx/10/dns-questions>`__
-
-Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`__ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`__
-
-Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`__
-
-Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`__
-
-Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`__
+- GoDaddy: `MX <https://www.godaddy.com/help/add-an-mx-record-19234>`_ - `CNAME <https://www.godaddy.com/help/add-a-cname-record-19236>`_ - `TXT <https://www.godaddy.com/help/add-a-txt-record-19232>`_
+- NameCheap: `All Records <https://www.namecheap.com/support/knowledgebase/subcategory.aspx/10/dns-questions>`_
+- Network Solutions: `MX <http://www.networksolutions.com/support/mx-records-mail-servers-2/>`_ - `CNAME <http://www.networksolutions.com/support/cname-records-host-aliases-2/>`__ - `TXT <http://www.networksolutions.com/support/how-to-manage-advanced-dns-records/>`_
+- Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`_
+- Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`_
+- Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`_
 
 
 .. _um-sending-messages:
@@ -162,7 +163,7 @@ When sending via HTTP API, Mailgun offers two options:
 - You can submit the individual parts of your messages to Mailgun, such as text
   and html parts, attachments, and so on. This doesn't require any MIME knowledge on your part.
 
-.. note:: Mailgun supports maximum messages size of 25MB.
+.. note:: Mailgun supports maximum messages size of 50MB.
 
 See :ref:`sending messages <api-sending-messages>` section in our API Reference for a full
 list of message sending options.
@@ -233,7 +234,7 @@ Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (
 
 .. note:: Google Compute Engine allows port ``2525`` for SMTP submission.
 
-.. note:: If you need to configure your firewall, our SMTP/API IP is: ``50.56.21.178``. This is subject to change without notice!
+.. warning:: IP addresses for HTTP and SMTP API endpoints will change frequently and subjected to change without notice. Ensure there are no IP-based ACLs that would prevent communication to new IP addresses that may be added or removed at any time.
 
 Use "plain text" SMTP authentication and the credentials from the domain details
 page in your Control Panel which can be found by clicking on a domain in the Domains
@@ -251,38 +252,39 @@ custom  MIME_ headers listed in the table below.
 
 .. container:: ptable
 
-    =========================== ============================================================
-    Header                      Description
-    =========================== ============================================================
-    X-Mailgun-Tag               Tag string used for aggregating stats. See :ref:`tagging`
-                                for more information. You can mark a message with several
-                                categories by setting multiple ``X-Mailgun-Tag`` headers.
-    X-Mailgun-Campaign-Id       Id of the campaign the message belongs to. See
-                                :ref:`um-campaign-analytics` for details.
-                                You can assign a message to several campaigns by setting
-                                multiple different ``X-Mailgun-Campaign-Id`` headers.
-    X-Mailgun-Dkim              Enables/disables DKIM signatures on per-message basis.
-                                Use ``yes`` or ``no``.
-    X-Mailgun-Deliver-By        Desired time of delivery. See `Scheduling Delivery`_ and
-                                :ref:`date-format`.
-    X-Mailgun-Drop-Message      Enables sending in test mode. Pass ``yes`` if needed.
-                                See :ref:`manual-testmode`.
-    X-Mailgun-Track             Toggles tracking on a per-message basis, see
-                                :ref:`tracking-messages` for details.
-                                Pass ``yes`` or ``no``.
-    X-Mailgun-Track-Clicks      Toggles clicks tracking on a per-message basis. Has higher
-                                priority than domain-level setting. Pass ``yes``, ``no``
-                                or ``htmlonly``.
-    X-Mailgun-Track-Opens       Toggles opens tracking on a per-message basis. Has higher
-                                priority than domain-level setting. Pass ``yes`` or ``no``.
-    X-Mailgun-Require-TLS       Use this header to control TLS connection settings.
-                                See :ref:`tls-sending`
-    X-Mailgun-Skip-Verification Use this header to control TLS connection settings.
-                                See :ref:`tls-sending`
-
-    X-Mailgun-Variables         Use this header to attach a custom JSON data to the message.
-                                See :ref:`manual-customdata` for more information.
-    =========================== ============================================================
+    ============================= ============================================================
+    Header                        Description
+    ============================= ============================================================
+    X-Mailgun-Tag                 Tag string used for aggregating stats. See :ref:`tagging`
+                                  for more information. You can mark a message with several
+                                  categories by setting multiple ``X-Mailgun-Tag`` headers.
+    X-Mailgun-Campaign-Id         Id of the campaign the message belongs to. See
+                                  :ref:`um-campaign-analytics` for details.
+                                  You can assign a message to several campaigns by setting
+                                  multiple different ``X-Mailgun-Campaign-Id`` headers.
+    X-Mailgun-Dkim                Enables/disables DKIM signatures on per-message basis.
+                                  Use ``yes`` or ``no``.
+    X-Mailgun-Deliver-By          Desired time of delivery. See `Scheduling Delivery`_ and
+                                  :ref:`date-format`.
+    X-Mailgun-Drop-Message        Enables sending in test mode. Pass ``yes`` if needed.
+                                  See :ref:`manual-testmode`.
+    X-Mailgun-Track               Toggles tracking on a per-message basis, see
+                                  :ref:`tracking-messages` for details.
+                                  Pass ``yes`` or ``no``.
+    X-Mailgun-Track-Clicks        Toggles clicks tracking on a per-message basis. Has higher
+                                  priority than domain-level setting. Pass ``yes``, ``no``
+                                  or ``htmlonly``.
+    X-Mailgun-Track-Opens         Toggles opens tracking on a per-message basis. Has higher
+                                  priority than domain-level setting. Pass ``yes`` or ``no``.
+    X-Mailgun-Require-TLS         Use this header to control TLS connection settings.
+                                  See :ref:`tls-sending`
+    X-Mailgun-Skip-Verification   Use this header to control TLS connection settings.
+                                  See :ref:`tls-sending`
+    X-Mailgun-Recipient-Variables Use this header to substitute recipient variables referenced
+                                  in a batched mail message.  See :ref:`batch-sending`
+    X-Mailgun-Variables           Use this header to attach a custom JSON data to the message.
+                                  See :ref:`manual-customdata` for more information.
+    ============================= ============================================================
 
 
 Message Queue
@@ -343,7 +345,34 @@ Recipient Variables allow you to:
 
 In the example above, Alice and Bob both will get personalized subject lines "Hey, Alice" and "Hey, Bob" and unique unsubscribe links.
 
-When sent via SMTP, recipient variables can be also supplied through a special construct, called a variables container.
+When sent via SMTP, recipient variables can be included by adding the following header to your email, "X-Mailgun-Recipient-Variables: {"my_message_id": 123}".
+
+Example:
+
+.. code-block:: text
+
+ X-Mailgun-Recipient-Variables: {"bob@example.com": {"first":"Bob", "id":1}, "alice@example.com": {"first":"Alice", "id": 2}}
+ From: me@example.com
+ To: alice@example.com, bob@example.com
+ Date: 29 Mar 2016 00:23:35 -0700
+ Subject: Hello, %recipient.first%!
+ Message-Id: <20160329071939.35138.9413.6915422C@example.com>
+ Content-Type: text/plain; charset="us-ascii"
+ Content-Transfer-Encoding: quoted-printable
+
+ Hi, %recipient.first%,
+ =20
+ Please review your profile at example.com/orders/%recipient.id%.
+ =20
+ Thanks,
+ Example.com Team
+
+.. note:: The value of the "X-Mailgun-Recipient-Variables" header should be valid JSON string,
+          otherwise Mailgun won't be able to parse it.  If your "X-Mailgun-Recipient-Variables" header exceeds
+          998 characters, you should use `folding <https://tools.ietf.org/html/rfc2822#page-11>`_ to
+          spread the variables over multiple lines.
+
+They can also supplied through a special construct, called a variables container.
 
 To contain variables you create the following MIME construct:
 
@@ -494,7 +523,7 @@ using the ``o:deliverytime`` parameter if sending via the API, or
 ``X-Mailgun-Deliver-By`` MIME header if sending via SMTP.
 
 While messages are not guaranteed to arrive at exactly the requested time due to
-the dynamic nature of the queue, Mailgun will do it's best.
+the dynamic nature of the queue, Mailgun will do its best.
 
 .. note:: Messages can be scheduled for a maximum of 3 days in the future.
 
@@ -543,7 +572,7 @@ You can also manage unsubscribes per message by using unsubscribe variables (see
 
 You can enable Opens & Clicks tracking on two levels: per sending domain and per message.
 
-- You can enable Open & Click tracking on per domain basis in the "Tracking" tab of the control panel.
+- You can enable Open & Click tracking on per domain basis under the “Domain Settings” subsection on the domain info page.
 - Tracking can also be toggled by setting ``o:tracking``, ``o:tracking-clicks`` and ``o:tracking-opens`` parameters when sending your message. This will override the domain-level setting.
 
 .. note:: You will also have to point CNAME records to mailgun.org for Mailgun to rewrite links and track opens. In addition, there needs to be an html part of message for Mailgun to track opens (see `Tracking Opens`_ and `Tracking Clicks`_ for more detail).
@@ -696,10 +725,10 @@ Below is a Python code sample used to verify the signature:
     import hashlib, hmac
 
     def verify(api_key, token, timestamp, signature):
-        return signature == hmac.new(
-                                 key=api_key,
-                                 msg='{}{}'.format(timestamp, token),
-                                 digestmod=hashlib.sha256).hexdigest()
+        hmac_digest = hmac.new(key=api_key,
+                               msg='{}{}'.format(timestamp, token),
+                               digestmod=hashlib.sha256).hexdigest()
+        return hmac.compare_digest(unicode(signature), unicode(hmac_digest))
 
 
 And here's a sample in Ruby:
@@ -713,7 +742,7 @@ And here's a sample in Ruby:
       data = [timestamp, token].join
       signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
     end
-    
+
 And here's a sample in PHP:
 
 .. code-block:: php
@@ -749,6 +778,11 @@ To add this header to your message:
 API: Pass the following parameter, "v:my-custom-data" => "{"my_message_id": 123}".
 
 SMTP: Add the following header to your email, "X-Mailgun-Variables: {"my_message_id": 123}".
+
+You can also use values from your recipient variables to provide a custom variable per a recipient using
+templating. For example when sending via the API::
+
+    {'v:Recipient-Id': '%recipient.id%'}
 
 .. note:: The value of the "X-Mailgun-Variables" header should be valid JSON string,
           otherwise Mailgun won't be able to parse it.  If your X-Mailgun-Variables header exceeds
@@ -939,7 +973,7 @@ In the "Suppressions" tab of the Control Panel or through the API you can also:
 - Remove an unsubscribed address from the list.
 - Add a new unsubscribed address.
 
-Take a look at :ref:`Unsubscribes section <api-unsubscribes>` of the API refrence
+Take a look at :ref:`Unsubscribes section <api-unsubscribes>` of the API reference
 to learn how to programmatically manage lists of unsubscribed users.
 
 **Unsubscribes Webhook**
@@ -1312,6 +1346,8 @@ You can combine multiple destinations separating them by a comma::
 
     forward("http://myapp.com/messages, mailbox@myapp.com")
 
+.. note:: If you forward messages to another email address, then you should disable click tracking, open tracking and unsubscribes, by editing your domain settings in the Control Panel. If these features are enabled, the content of each message is modified by Mailgun before forwarding, which invalidates the DKIM signature. If the message comes from a domain publishing a DMARC policy (like Yahoo! Mail), the message will be rejected as spam by the forwarding destination.
+
 **store(notification endpoint)**
 
 Stores the message temporarily (for up to 3 days) on Mailgun's servers so that you can retrieve it later.  This is helpful for large attachments that may cause time-outs or if you just want to retrieve them later to reduce the frequency of hits on your server.
@@ -1434,6 +1470,7 @@ If you set a URL to be posted when the message is received (``store(notify="http
            ==================    =========    ============================================================================================================
            Parameter             Type         Description
            ==================    =========    ============================================================================================================
+           domain                string       domain name this message was received for.
            recipient             string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
            sender                string       sender of the message as reported by ``MAIL FROM`` during SMTP chat. Note: this value may differ
                                               from ``From`` MIME header.
@@ -1447,8 +1484,7 @@ If you set a URL to be posted when the message is received (``store(notify="http
                                               not just text/html. For instance if a message arrives with "foo" part it will be posted as "body-foo".
            stripped-html         string       HTML version of the message, without quoted parts.
            attachments           string       contains a json list of metadata objects, one for each attachment, see below.
-           message-url           string       a URL that you can use to get and/or delete the message.
-           content-id-map        string       contains mappings from content ids to attachment urls.
+           message-url           string       a URL that you can use to get and/or delete the message. Only present in the payload posted to the notification URL.
            timestamp             int          number of seconds passed since January 1, 1970 (see `securing webhooks`_).
            token                 string       randomly generated string with length 50 (see `securing webhooks`_).
            signature             string       string with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).

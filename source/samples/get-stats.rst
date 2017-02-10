@@ -9,18 +9,41 @@
 
 .. code-block:: java
 
- public static ClientResponse GetStats() {
-    Client client = new Client();
-    client.addFilter(new HTTPBasicAuthFilter("api", "YOUR_API_KEY"));
-    WebResource webResource =
-        client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
-            "/stats/total");
-    MultivaluedMapImpl queryParams = new MultivaluedMapImpl();
-    queryParams.add("event", "accepted");
-    queryParams.add("event", "delivered");
-    queryParams.add("event", "failed");
-    queryParams.add("duration", "1m");
-    return webResource.queryParams(queryParams).get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientRespone GetStats() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/{domain}/stats/total")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .queryParam("event", "accepted")
+             .queryParam("event", "delivered")
+             .queryParam("event", "failed")
+             .queryParam("duration", "1m")
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -64,19 +87,36 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetStats() {
-    RestClient client = new RestClient();
-    client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-    client.Authenticator = new HttpBasicAuthenticator("api", "YOUR_API_KEY");
-    RestRequest request = new RestRequest();
-    request.AddParameter("domain",
-                         "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-    request.Resource = "{domain}/stats/total";
-    request.AddParameter("event", "accepted");
-    request.AddParameter("event", "delivered");
-    request.AddParameter("event", "failed");
-    request.AddParameter("duration", "1m");
-    return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetStatsChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetStats ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetStats ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/stats/total";
+         request.AddParameter ("event", "accepted");
+         request.AddParameter ("event", "delivered");
+         request.AddParameter ("event", "failed");
+         request.AddParameter ("duration", "1m");
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

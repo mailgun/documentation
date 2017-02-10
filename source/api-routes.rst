@@ -58,11 +58,11 @@ Stores the message temporarily (for up to 3 days) on Mailgun's servers so that y
 
 You can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message::
 
-    store(notify="http:mydomain.com/callback")
+    store(notify="http://mydomain.com/callback")
 
 You can see a full list of parameters we will post to your URL in the :ref:`um-routes` section of the User Manual. You can also get the locations of messages through the :ref:`Events API <api-events>` and then retrieve the message through the :ref:`Messages API <api-sending-messages>`.
 
-    **stop()**
+**stop()**
 
 Simply stops the priority waterfall so the subsequent routes will not be evaluated. Without a stop() action executed, all lower priority Routes will also be evaluated.
 
@@ -209,3 +209,61 @@ Sample response:
         "id": "4f3bad2335335426750048c6"
     }
   }
+
+Sample payload for a ``store()`` webhook:
+
+.. code-block::
+
+ Content-Type: multipart/alternative; boundary="001a114490d2c5be3d05433e6d03"
+ Date: Fri, 9 Dec 2016 13:04:51 -0600
+ From: Excited User <user@samples.mailgun.com>
+ Message-Id: <CABPem2N_Ucj3wRRZnLVpVF_fRjkTBXHZReZC3zY-hHsRa=T51g@samples.mailgun.com>
+ Mime-Version: 1.0
+ Subject: Message Routes
+ To: hook@sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org
+ X-Envelope-From: <user@samples.mailgun.com>
+ X-Mailgun-Incoming: Yes
+ X-Originating-Ip: [2001:xxx:xxxx:xxx::beef:93]
+ body-html: <div dir="ltr">Testing Mailgun&#39;s forwarded and stored message routes :)</div>
+ body-plain: Testing Mailgun's forwarded and stored message routes :)
+ domain: sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org
+ from: Excited User <user@samples.mailgun.com>
+ message-headers: [["X-Mailgun-Incoming", "Yes"], ["X-Envelope-From", "<user@samples.mailgun.com>"], ["Mime-Version", "1.0"], ["X-Originating-Ip", "[2001:xxx:xxxx:xxx::beef:93]"], ["From", "Excited User <user@samples.mailgun.com>"], ["Date", "Fri, 9 Dec 2016 13:04:51 -0600"], ["Message-Id", "<CABPem2N_Ucj3wRRZnLVpVF_fRjkTBXHZReZC3zY-hHsRa=T51g@samples.mailgun.com>"], ["Subject", "Message Routes"], ["To", "hook@sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org"], ["Content-Type", "multipart/alternative; boundary=\"001a114490d2c5be3d05433e6d03\""]]
+ message-url: https://si.api.mailgun.net/v3/domains/sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org/messages/eyJwIjpmYWxzZSwiayI6IjFlOTZmNTkyLTAyOWItNDJkYi1iNjM5LTgzNTgwYzMxYjNhOCIsInMiOiIyMmNkYTRkZWFhIiwiYyI6InNhaWFkIn0=
+ recipient: hook@sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org
+ sender: user@samples.mailgun.com
+ signature: 6ed72df4b5f00af436fff03730dc8bda31bf5800fdf431d1da5c0009a639d57e
+ stripped-html: <div dir="ltr">Testing Mailgun&#39;s forwarded and stored message routes :)</div>
+ stripped-signature:
+ stripped-text: Testing Mailgun's forwarded and stored message routes :)
+ subject: Message Routes
+ timestamp: 1481310293
+ token: f2a24f20007696fb23fd66ff0f59f17fac3f885324caaaec50
+
+Sample payload for a ``forward()`` webhook:
+
+.. code-block::
+
+ Content-Type: multipart/alternative; boundary="001a114490d2c5be3d05433e6d03"
+ Date: Fri, 9 Dec 2016 13:04:51 -0600
+ From: Excited User <user@samples.mailgun.com>
+ Message-Id: <CABPem2N_Ucj3wRRZnLVpVF_fRjkTBXHZReZC3zY-hHsRa=T51g@samples.mailgun.com>
+ Mime-Version: 1.0
+ Subject: Message Routes
+ To: hook@sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org
+ X-Envelope-From: <user@samples.mailgun.com>
+ X-Mailgun-Incoming: Yes
+ X-Originating-Ip: [2001:xxx:xxxx:xxx::beef:93]
+ body-html: <div dir="ltr">Testing Mailgun&#39;s forwarded and stored message routes :)</div>
+ body-plain: Testing Mailgun's forwarded and stored message routes :)
+ from: Excited User <user@samples.mailgun.com>
+ message-headers: [["X-Mailgun-Incoming", "Yes"], ["X-Envelope-From", "<user@samples.mailgun.com>"], ["Mime-Version", "1.0"], ["X-Originating-Ip", "[2001:xxx:xxxx:xxx::beef:93]"], ["From", "Excited User <user@samples.mailgun.com>"], ["Date", "Fri, 9 Dec 2016 13:04:51 -0600"], ["Message-Id", "<CABPem2N_Ucj3wRRZnLVpVF_fRjkTBXHZReZC3zY-hHsRa=T51g@samples.mailgun.com>"], ["Subject", "Message Routes"], ["To", "hook@sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org"], ["Content-Type", "multipart/alternative; boundary=\"001a114490d2c5be3d05433e6d03\""]]
+ recipient: hook@sandboxdb91ab935a414789809f96c91229a0ee.mailgun.org
+ sender: user@samples.mailgun.com
+ signature: 17436304dd4dd094e9b8c3addb975acc6297718da468c2900dac4a43787c97596
+ stripped-html: <div dir="ltr">Testing Mailgun&#39;s forwarded and stored message routes :)</div>
+ stripped-signature:
+ stripped-text: Testing Mailgun's forwarded and stored message routes :)
+ subject: Message Routes
+ timestamp: 1481310293
+ token: a71d0000ed34da6768198da96f9daaf8fb98adbccfdbd2fdaf

@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/tags/newsletter
+    curl -s --user 'api:YOUR_API_KEY' -G \
+	https://api.mailgun.net/v3/lists/pages
 
 .. code-block:: java
 
@@ -20,7 +20,7 @@
 
      // ...
 
-     public static ClientResponse DeleteTag() {
+     public static ClientResponse GetMailingLists() {
 
          Client client = ClientBuilder.newClient();
          client.register(HttpAuthenticationFeature.basic(
@@ -31,11 +31,9 @@
          WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
 
          return mgRoot
-             .path("/{domain}/tags/{tag}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("tag", "TAG_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildDelete()
+             .path("/lists/pages")
+             .request()
+             .buildGet()
              .invoke(ClientResponse.class);
      }
  }
@@ -48,24 +46,24 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-  $tag = 'myexampletag';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("$domain/tags/$tag");
+  $result = $mgClient->get("lists/pages", array(
+      'limit'      =>  5
+  ));
 
 .. code-block:: py
 
- def delete_tag():
-     return requests.delete(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/tags/newsletter",
-         auth=("api", "YOUR_API_KEY"))
+ def list_members():
+     return requests.get(
+         "https://api.mailgun.net/v3/lists/pages",
+         auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
- def delete_tag
-   RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/tag/newsletter"
+ def list_members
+   RestClient.get("https://api:YOUR_API_KEY" \
+                  "@api.mailgun.net/v3/lists/pages")
  end
 
 .. code-block:: csharp
@@ -75,15 +73,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
  
- public class DeleteTagChunk
+ public class GetMailingListsChunk
  {
  
      public static void Main (string[] args)
      {
-         Console.WriteLine (DeleteTag ().Content.ToString ());
+         Console.WriteLine (GetMailingLists ().Content.ToString ());
      }
  
-     public static IRestResponse DeleteTag ()
+     public static IRestResponse GetMailingLists ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -91,10 +89,7 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/tags/{tag}";
-         request.AddUrlSegment ("tag", "newsletter");
-         request.Method = Method.DELETE;
+         request.Resource = "lists/pages";
          return client.Execute (request);
      }
  
@@ -102,7 +97,4 @@
 
 .. code-block:: go
 
- func DeleteTag(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.DeleteTag("newsletter")
- }
+ // Coming soon

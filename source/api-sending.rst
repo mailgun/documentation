@@ -151,19 +151,13 @@ To retrieve an inbound message that has been stored via the ``store()`` action, 
 
 - You can also retrieve the full raw mime message (attachments and all) if you make the request to the URL with the ``Accept`` header set to ``message/rfc2822``.
 
-.. code-block:: url
-
-     GET domains/<domain>/messages
-
-You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v3/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
-
 These are the parameters of the JSON returned from a GET request to a stored message url.
 
 
            ==================    =========    ============================================================================================================
            Parameter             Type         Description
            ==================    =========    ============================================================================================================
-           recipients             string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
+           recipients            string       recipient of the message as reported by ``MAIL TO`` during SMTP chat.
            sender                string       sender of the message as reported by ``MAIL FROM`` during SMTP chat. Note: this value may differ
                                               from ``From`` MIME header.
            from                  string       sender of the message as reported by ``From`` message header, for example "Bob Lee <blee@mailgun.net>".
@@ -176,8 +170,6 @@ These are the parameters of the JSON returned from a GET request to a stored mes
                                               not just text/html. For instance if a message arrives with "foo" part it will be posted as "body-foo".
            stripped-html         string       HTML version of the message, without quoted parts.
            attachments           string       contains a json list of metadata objects, one for each attachment, see below.
-           message-url           string       a URL that you can use to get and/or delete the message.
-           content-id-map        string       contains mappings from content ids to attachment urls.
            message-headers       string       list of all MIME headers dumped to a json string (order of headers preserved).
            content-id-map        string       JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding ``attachment-x`` parameter. This allows you to map posted attachments to tags like ``<img src='cid'>`` in the message body.
            ==================    =========    ============================================================================================================
@@ -216,14 +208,13 @@ These are the parameters when the ``Accept`` header is set to ``message/rfc2822`
 Deleting Stored Messages
 ========================
 
-To delete an inbound message that has been stored via the ``store()`` action, use the URL found in the stored event, or in the notify webhook.
+Stored messages are retained in the system for 3 days and automatically purged
+after this retention period, therefore there is no need to delete messages
+explicitly.
 
-.. code-block:: url
-
-     DELETE domains/<domain>/messages/<message>
-
-You don't have to construct this URL on your own. You can just use the URL provided in the Events API or the notification webhook. A sample URL returned from the Events API is ``https://api.mailgun.net/v3/domains/mydomain.com/messages/WyJhOTM4NDk1ODA3Iiw``.
-
+.. note:: Mailgun reserves the right to impose a limit on the size and number
+          of stored messages. In the event this is necessary, you will be
+          notified in advance.
 
 Examples
 ========

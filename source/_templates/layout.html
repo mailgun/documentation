@@ -99,7 +99,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="http://www.mailgun.com/" class="logo">Mailgun - Email Automation by Rackspace</a>
       <nav class="header-nav" id="js-header-nav">
           <a href="http://www.mailgun.com/pricing" class="pricing-link"><b>Pricing</b></a>
-          <a href="http://documentation.mailgun.com" class="active"><b>Docs</b></a>
+          <a href="http://www.mailgun.com/customers" class="customers-link"><b>Customers</b></a>
           <div class="dropdown">
                     <a href="http://www.mailgun.com/sending-email" class="js-dropdown-toggle"><b>Features <svg class="icon icon-dropdown" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
 </b></a>
@@ -108,18 +108,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <a href="http://www.mailgun.com/inbound-routing">Inbound routing</a>
                         <a href="http://www.mailgun.com/analytics">Tracking &amp; analytics</a>
                         <a href="http://www.mailgun.com/email-validation">Email validation</a>
-                        <a href="http://www.mailgun.com/managed">Managed email service</a>
+                        <a href="http://www.mailgun.com/deliverability">Deliverability</a>
                     </nav>
                 </div>
                 <div class="dropdown">
-                    <a href="http://resources.mailgun.com/index.html" class="js-dropdown-toggle resources-link"><b>Resources <svg class="icon icon-dropdown" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
+                    <a href="http://resources.mailgun.com/index.html" class="js-dropdown-toggle resources-link"><b>Resources <svg class="icon icon-dropdown active" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
 </b></a>
                     <nav class="dropdown-menu">
+                        <a href="http://documentation.mailgun.com">Docs</a>
                         <a href="http://resources.mailgun.com/index.html">Guides</a>
-                        <a href="http://www.mailgun.com/customers">Customers</a>
                         <a href="http://blog.mailgun.com">Blog</a>
                     </nav>
                 </div>
+                <a href="http://www.mailgun.com/managed" class="managed-link"><b>Managed</b></a>
+                <a href="http://www.mailgun.com/contact" class="contact-link"><b>Contact</b></a>
           <a href="https://www.mailgun.com/sessions/new" class="login-link"><b>Log in</b></a>
           <a href="https://www.mailgun.com/signup" class="signup-link"><b>Sign Up</b></a>
       </nav>
@@ -227,7 +229,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {%- if customsidebar %}
       {% include customsidebar %}
       {%- endif %}
-      <div class="admonition note">You can find your API Key in your <a href="https://{{cp_hostname}}/cp" target="_blank">Control Panel</a></div>
+      <div class="admonition note">You can find your API Key in your <a href="https://mailgun.com/cp" target="_blank">Control Panel</a></div>
     </div>
   </aside>
   {%- endif %}{% endif %}

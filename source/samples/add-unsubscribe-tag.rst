@@ -8,18 +8,41 @@
 
 .. code-block:: java
 
- public static ClientResponse UnsubscribeFromTag() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
- 				"/unsubscribes");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("address", "bob@example.com");
- 	formData.add("tag", "tag1");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse AddUnsubscribeTag() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("address", "bob@example.com");
+         reqData.param("tag", "tag1");
+
+         return mgRoot
+             .path("/{domain}/unsubscribes")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -57,20 +80,35 @@
 
 .. code-block:: csharp
 
- public static IRestResponse UnsubscribeFromTag() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "{domain}/unsubscribes";
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.AddParameter("address", "bob@example.com");
- 	request.AddParameter("tag", "tag1");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class AddUnsubscribeTagChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (UnsubscribeFromTag ().Content.ToString ());
+     }
+ 
+     public static IRestResponse UnsubscribeFromTag ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "{domain}/unsubscribes";
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.AddParameter ("address", "bob@example.com");
+         request.AddParameter ("tag", "tag1");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

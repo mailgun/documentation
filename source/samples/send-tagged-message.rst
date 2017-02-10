@@ -12,22 +12,45 @@
 
 .. code-block:: java
 
- public static ClientResponse SendTaggedMessage() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME" +
- 				"/messages");
- 	MultivaluedMapImpl formData = new MultivaluedMapImpl();
- 	formData.add("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
- 	formData.add("to", "bar@example.com");
- 	formData.add("subject", "Hello");
- 	formData.add("text", "Testing some Mailgun awesomness!");
- 	formData.add("o:tag", "September newsletter");
- 	formData.add("o:tag", "newsletters");
- 	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
- 		post(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse SendTagged() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         reqData.param("to", "alice@example.com");
+         reqData.param("subject", "Hello");
+         reqData.param("text", "Testing out some Mailgun awesomeness!");
+         reqData.param("o:tag", "September newsletter");
+         reqData.param("o:tag", "newsletters");
+
+         return mgRoot
+             .path("/{domain}/messages")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -77,24 +100,39 @@
 
 .. code-block:: csharp
 
- public static IRestResponse SendTaggedMessage() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("domain",
- 	                     "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
- 	request.Resource = "{domain}/messages";
- 	request.AddParameter("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
- 	request.AddParameter("to", "bar@example.com");
- 	request.AddParameter("subject", "Hello");
- 	request.AddParameter("text", "Testing some Mailgun awesomness!");
- 	request.AddParameter("o:tag", "September newsletter");
- 	request.AddParameter("o:tag", "newsletters");
- 	request.Method = Method.POST;
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class SendTaggedMessageChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (SendTaggedMessage ().Content.ToString ());
+     }
+ 
+     public static IRestResponse SendTaggedMessage ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "{domain}/messages";
+         request.AddParameter ("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
+         request.AddParameter ("to", "bar@example.com");
+         request.AddParameter ("subject", "Hello");
+         request.AddParameter ("text", "Testing some Mailgun awesomness!");
+         request.AddParameter ("o:tag", "September newsletter");
+         request.AddParameter ("o:tag", "newsletters");
+         request.Method = Method.POST;
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

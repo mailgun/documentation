@@ -6,13 +6,37 @@
 
 .. code-block:: java
 
- public static ClientResponse GetDomain() {
- 	Client client = new Client();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click);
- 	return webResource.get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse GetWebhook() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/domains/{domain}/webhooks/click")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -45,17 +69,32 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetDomain() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("domain",
-                            "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-       request.Resource = "/domains/{domain}/webhooks/click";
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetWebhookChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetWebhook ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetWebhook ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "/domains/{domain}/webhooks/click";
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

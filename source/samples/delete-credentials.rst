@@ -6,14 +6,38 @@
 
 .. code-block:: java
 
- public static ClientResponse DeleteCredentials() {
-  Client client = Client.create();
-  client.addFilter(new HTTPBasicAuthFilter("api",
-      "YOUR_API_KEY"));
-  WebResource webResource =
-    client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME" +
-        "/credentials/alice");
-  return webResource.delete(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse DeleteCredentials() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/domains/{domain}/credentials/{username}")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .resolveTemplate("username", "YOUR_CREDENTIAL_USERNAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildDelete()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -46,19 +70,34 @@
 
 .. code-block:: csharp
 
- public static IRestResponse DeleteCredentials() {
-  RestClient client = new RestClient();
-  client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-  client.Authenticator =
-    new HttpBasicAuthenticator("api",
-                               "YOUR_API_KEY");
-  RestRequest request = new RestRequest();
-  request.AddParameter("domain",
-                       "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-  request.Resource = "domains/{domain}/credentials/{login}";
-  request.AddUrlSegment("login", "alice");
-  request.Method = Method.DELETE;
-  return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class DeleteCredentialsChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (DeleteCredentials ().Content.ToString ());
+     }
+ 
+     public static IRestResponse DeleteCredentials ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "domains/{domain}/credentials/{login}";
+         request.AddUrlSegment ("login", "alice");
+         request.Method = Method.DELETE;
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

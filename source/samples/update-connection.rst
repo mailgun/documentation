@@ -8,18 +8,41 @@
 
 .. code-block:: java
 
- public static ClientResponse UpdateConnection() {
-	Client client = Client.create();
-	client.addFilter(new HTTPBasicAuthFilter("api",
-			"YOUR_API_KEY"));
-	WebResource webResource =
-		client.resource("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/connection");
-	MultivaluedMapImpl formData = new MultivaluedMapImpl();
-	formData.add("require_tls", true);
-	formData.add("skip_verification", false);
-	return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
-		put(ClientResponse.class, formData);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
 
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse UpdateConnectionSettings() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         Form reqData = new Form();
+         reqData.param("require_tls", "true");
+         reqData.param("skip_verification", "false");
+
+         return mgRoot
+             .path("/domains/{domain}/connection")
+             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
+             .request(MediaType.APPLICATION_FORM_URLENCODED)
+             .buildPut(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -57,17 +80,36 @@
 
 .. code-block:: csharp
 
- public static IRestResponse UpdateConnection() {
-	RestClient client = new RestClient();
-	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
-	client.Authenticator =
-		new HttpBasicAuthenticator("api",
-		                           "YOUR_API_KEY");
-	RestRequest request = new RestRequest();
-	request.Resource = "domains/YOUR_DOMAIN_NAME/connection";
-	request.AddParameter("require_tls", true);
-	request.AddParameter("skip_verification", false);
-	request.Method = Method.PUT;
-	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class UpdateConnectionChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (UpdateConnection ().Content.ToString ());
+     }
+ 
+     public static IRestResponse UpdateConnection ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "domains/YOUR_DOMAIN_NAME/connection";
+         request.AddParameter ("require_tls", true);
+         request.AddParameter ("skip_verification", false);
+         request.Method = Method.PUT;
+         return client.Execute (request);
+     }
+ 
  }
 
+.. code-block:: go
+
+ // Coming soon

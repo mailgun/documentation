@@ -6,14 +6,37 @@
 
 .. code-block:: java
 
- public static ClientResponse GetRoute() {
- 	Client client = Client.create();
- 	client.addFilter(new HTTPBasicAuthFilter("api",
- 			"YOUR_API_KEY"));
- 	WebResource webResource =
- 		client.resource("https://api.mailgun.net/v3/routes" +
- 				"/4e97c1b2ba8a48567f007fb6");
- 	return webResource.get(ClientResponse.class);
+ import javax.ws.rs.client.Client;
+ import javax.ws.rs.client.ClientBuilder;
+ import javax.ws.rs.client.Entity;
+ import javax.ws.rs.client.WebTarget;
+
+ import javax.ws.rs.core.Form;
+ import javax.ws.rs.core.MediaType;
+
+ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+ public class MGSample {
+
+     // ...
+
+     public static ClientResponse GetRoute() {
+
+         Client client = ClientBuilder.newClient();
+         client.register(HttpAuthenticationFeature.basic(
+             "api",
+             "YOUR_API_KEY"
+         ));
+
+         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+
+         return mgRoot
+             .path("/routes/{route_id}")
+             .resolveTemplate("route_id", "YOUR_ROUTE_ID")
+             .request()
+             .buildGet()
+             .invoke(ClientResponse.class);
+     }
  }
 
 .. code-block:: php
@@ -47,16 +70,32 @@
 
 .. code-block:: csharp
 
- public static IRestResponse GetRoute() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.Resource = "routes/{id}";
- 	request.AddUrlSegment("id", "4e97c1b2ba8a48567f007fb6");
- 	return client.Execute(request);
+ using System;
+ using System.IO;
+ using RestSharp;
+ using RestSharp.Authenticators;
+ 
+ public class GetRouteChunk
+ {
+ 
+     public static void Main (string[] args)
+     {
+         Console.WriteLine (GetRoute ().Content.ToString ());
+     }
+ 
+     public static IRestResponse GetRoute ()
+     {
+         RestClient client = new RestClient ();
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.Authenticator =
+             new HttpBasicAuthenticator ("api",
+                                         "YOUR_API_KEY");
+         RestRequest request = new RestRequest ();
+         request.Resource = "routes/{id}";
+         request.AddUrlSegment ("id", "4e97c1b2ba8a48567f007fb6");
+         return client.Execute (request);
+     }
+ 
  }
 
 .. code-block:: go

@@ -1,9 +1,9 @@
-
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints \
-	-F address='bob@example.com'
+    https://api.mailgun.net/v3/exports
+    -F url='/v3/domains' \
+    -x POST
 
 .. code-block:: java
 
@@ -21,7 +21,7 @@
 
      // ...
 
-     public static ClientResponse AddComplaint() {
+     public static ClientResponse CreateExport() {
 
          Client client = ClientBuilder.newClient();
          client.register(HttpAuthenticationFeature.basic(
@@ -32,10 +32,10 @@
          WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
 
          Form reqData = new Form();
-         reqData.param("address", "bob@example.com");
+         reqData.param("url", "/v3/domains");
 
          return mgRoot
-             .path("/{domain}/complaints")
+             .path("/exports")
              .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
              .request(MediaType.APPLICATION_FORM_URLENCODED)
              .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
@@ -45,31 +45,23 @@
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
-
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-  
-  # Issue the call to the client.
-  $result = $mgClient->post("$domain/complaints", array('address' => 'bob@example.com'));
+    Exports are unsupported in the php client bindings
 
 .. code-block:: py
 
- def add_complaint():
+ def create_export():
      return requests.post(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints",
+         "https://api.mailgun.net/v3/exports",
          auth=("api", "YOUR_API_KEY"),
-         data={'address': 'bob@example.com'})
+         data={"url": "/v3/domains"})
 
 .. code-block:: rb
 
- def add_complaint
+ def create_export
+   data = Multimap.new
+   data[:url] = "v3/domains"
    RestClient.post "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints",
-   :address => 'bob@example.com'
+   "@api.mailgun.net/v3/exports", data
  end
 
 .. code-block:: csharp
@@ -78,35 +70,29 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
- public class AddComplaintChunk
+
+ public class CreateExportChunk
  {
- 
+
      public static void Main (string[] args)
      {
-         Console.WriteLine (AddComplaint ().Content.ToString ());
+         Console.WriteLine (CreateExport ().Content.ToString ());
      }
- 
-     public static IRestResponse AddComplaint ()
-     {
+
+     public static IRestResponse CreateExport () {
          RestClient client = new RestClient ();
-         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3/");
          client.Authenticator =
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
-         RestRequest request = new RestRequest ();
-         request.Resource = "{domain}/complaints";
-         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("address", "bob@example.com");
+         RestRequest request = new RestRequest();
+         request.Resource = "exports";
          request.Method = Method.POST;
+         request.AddParameter ("url", "/v3/domains");
          return client.Execute (request);
      }
- 
  }
 
 .. code-block:: go
 
- func CreateComplaint(domain, apiKey, emailAddress string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.CreateComplaint("bob@example.com")
- }
+    Exports are unsupported in the go client bindings
