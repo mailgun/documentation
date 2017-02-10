@@ -223,6 +223,7 @@ Sample response:
 	    }
 	  ]
 	}
+
 Adding a domain.
 
 .. include:: samples/add-domain.rst
@@ -278,6 +279,7 @@ Sample response:
 	  ]
 	}
 	
+
 Deleting a domain.
 
 .. include:: samples/delete-domain.rst

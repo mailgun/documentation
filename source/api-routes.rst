@@ -212,7 +212,7 @@ Sample response:
 
 Sample payload for a ``store()`` webhook:
 
-.. code-block::
+.. code-block:: http
 
  Content-Type: multipart/alternative; boundary="001a114490d2c5be3d05433e6d03"
  Date: Fri, 9 Dec 2016 13:04:51 -0600
@@ -242,7 +242,7 @@ Sample payload for a ``store()`` webhook:
 
 Sample payload for a ``forward()`` webhook:
 
-.. code-block::
+.. code-block:: http
 
  Content-Type: multipart/alternative; boundary="001a114490d2c5be3d05433e6d03"
  Date: Fri, 9 Dec 2016 13:04:51 -0600

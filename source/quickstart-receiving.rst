@@ -38,7 +38,7 @@ Regular expressions can be used to match against message recipients or
 arbitrary headers such as subject. 
 
 Examples of filter expressions for routes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ================================ ===========================================================
 Expression                       Description
@@ -52,7 +52,7 @@ catch_all()                      Returns true if no other route matched, to impl
 ================================ ===========================================================
 
 Supported actions for routes
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ================================= ===========================================================
 Action                            Description

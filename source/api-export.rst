@@ -1,7 +1,7 @@
 .. _api-export:
 
 Exports
-==============
+=======
 
 Exports are a fast, asynchronous method for getting large amounts of data
 from Mailgun without worrying about pagination. Any list in the Mailgun api
@@ -21,12 +21,12 @@ download.
 
 .. container:: ptable
 
-================= ========================================================
-Parameter         Description
-================= ========================================================
-url               Partial URL to fetch, starting with the api version.
-                  ex: /v3/domains, /v3/:domain/bounces
-================= ========================================================
+    ================= ========================================================
+    Parameter         Description
+    ================= ========================================================
+    url               Partial URL to fetch, starting with the api version.
+                      ex: /v3/domains, /v3/:domain/bounces
+    ================= ========================================================
 
 Create an export based on the URL given.
 
@@ -36,12 +36,12 @@ Create an export based on the URL given.
 
 .. container:: ptable
 
-================= ========================================================
-Parameter         Description
-================= ========================================================
-url               Filter the list to only include exports that match the
-                  given URL
-================= ========================================================
+    ================= ========================================================
+    Parameter         Description
+    ================= ========================================================
+    url               Filter the list to only include exports that match the
+                      given URL
+    ================= ========================================================
 
 List all exports created within the past 24 hours.
 

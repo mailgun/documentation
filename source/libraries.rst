@@ -28,7 +28,7 @@ powerful. To install it you would simply run:
 
 ::
 
- pip install requests
+    pip install requests
 
 You may also need a MultiDict class to represent HTTP requests with multiple
 values per key. We recommend WebOb's MultiDict_ but `Werkzeug/Flask <http://werkzeug.pocoo.org/docs/datastructures>`_ also offer MultiDict class.
@@ -46,16 +46,16 @@ so to install it simply run:
 
 ::
 
- gem install rest-client
+    gem install rest-client
 
 **Official Mailgun Ruby Gem:**
 
-This is the Mailgun Ruby Library. This library contains methods for easily interacting with the Mailgun API. 
+This is the Mailgun Ruby Library. This library contains methods for easily interacting with the Mailgun API.
 `Fork it on GitHub <https://github.com/mailgun/mailgun-ruby>`_ or `read more about the gem here <http://blog.mailgun.com/the-official-mailgun-ruby-sdk-is-here/>`_.
 
 ::
 
- gem install mailgun-ruby
+    gem install mailgun-ruby
 
 
 Java
@@ -85,7 +85,7 @@ by installing Mozilla certificates, like so:
 
 ::
 
- mozroots --import --sync
+    mozroots --import --sync
 
 PHP
 ===
@@ -105,25 +105,27 @@ install composer and the Mailgun library.
 
 ::
 
- # Install Composer
- curl -sS https://getcomposer.org/installer | php
+    # Install Composer
+    curl -sS https://getcomposer.org/installer | php
 
- # Add Mailgun and Guzzle6 as a dependency (see Github README below for more info)
- php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter php-http/message
+    # Add Mailgun and Guzzle6 as a dependency (see Github README below for more info)
+    php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter php-http/message
 
 
 Next, just include Composer's autoloader in your application to automatically
 load the Mailgun library in your project.
+
 ::
- require 'vendor/autoload.php';
- use Mailgun\Mailgun;
- $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
+
+    require 'vendor/autoload.php';
+    use Mailgun\Mailgun;
+    $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
 
 For additional information, see the Github Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
 
 **Standard HTTP Library:**
 
-PHP users can use `cURL <http://php.net/manual/ru/book.curl.php>`_ library.
+PHP users can use `PHP cURL <http://php.net/manual/ru/book.curl.php>`_ library.
 
 Below are all the steps needed to install this library from a fresh Ubuntu
 installation.
@@ -132,26 +134,26 @@ Run:
 
 ::
 
- sudo aptitude install libmagic-dev
- sudo aptitude install php5-dev
+    sudo aptitude install libmagic-dev
+    sudo aptitude install php5-dev
 
 Then to enable curl support:
 
 ::
 
- sudo aptitude install libcurl3
+    sudo aptitude install libcurl3
 
 Then if you plan to run scripts from CLI:
 
 ::
 
- sudo aptitude install php5-cli
+    sudo aptitude install php5-cli
 
 To install cURL for php which we used for the ability to send put data:
 
 ::
 
- sudo aptitude install php5-curl
+    sudo aptitude install php5-curl
 
 That should be all. Quite a list, isn't it? But firstly, we had only a fresh
 Ubuntu installation when we started and secondly, once the library is
@@ -172,10 +174,11 @@ Luvit
 Lua and luvit users have two easy options.
 Either the 'luvit-curl <https://github.com/dvv/luvit-curl>'_ library or the 'luvit-request <https://github.com/virgo-agent-toolkit/luvit-request>'_ library.
 
-Due to luvits asynchronous i/o nature, code samples from node.js can be easily retrofitted to work in luvit with luvit libraries. 
+Due to luvits asynchronous i/o nature, code samples from node.js can be easily retrofitted to work in luvit with luvit libraries.
 
 cURL
 ====
+
 `curl <http://linux.die.net/man/1/curl>`_ is a popular command line tool to send HTTP requests.
 It is very simple and yet quite powerful. With it you could send data using any
 HTTP method. You could send post data and query params and files in a very

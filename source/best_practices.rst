@@ -173,8 +173,6 @@ In addition to the whitelists provided by the ESPs, `Return Path`_ has a certifi
 For customers with dedicated IP addresses, we can register you for whitelists. Also, you can set up a test inbox and use our spam filtering technology to provide a "spamicity" score for your outgoing emails so you can see their propensity for being filtered.  Finally, all accounts with dedicated IP addresses are qualified for Return Path certification.  Our technology has already been pre-vetted so the only remaining step is for them to monitor your sending in order to certify you.
 
 .. _list of whitelists: http://wiki.wordtothewise.com/ISP_Summary_Information
-.. _Return Path: http://www.returnpath.com
-.. _Return Path's website: http://www.returnpath.com
 
 
 Email Content
@@ -194,5 +192,6 @@ There are a few tricks to remember about content besides the mantra of 'sending 
 
 .. _Litmus: http://litmus.com/email-testing
 .. _Return Path: http://returnpath.net
+.. _Return Path's website: http://www.returnpath.com
 
 **Best of luck with your emailing...we hope we made it easier!**
