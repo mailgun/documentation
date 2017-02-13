@@ -180,16 +180,16 @@ These are the parameters of the JSON returned from a GET request to a stored mes
 
 The attachments JSON contains the following items.
 
-           .. container:: ptable
+.. container:: ptable
 
-           ==================    =========    ============================================================================================================
-           Parameter             Type         Description
-           ==================    =========    ============================================================================================================
-           size                  integer      indicates the size of the attachment in bytes.
-           url                   string       contains the url where the attachment can be found. This does not support DELETE.
-           name                  string       the name of the attachment
-           content-type          string       the content type of the attachment
-           ==================    =========    ============================================================================================================
+    ==================    =========    ============================================================================================================
+    Parameter             Type         Description
+    ==================    =========    ============================================================================================================
+    size                  integer      indicates the size of the attachment in bytes.
+    url                   string       contains the url where the attachment can be found. This does not support DELETE.
+    name                  string       the name of the attachment
+    content-type          string       the content type of the attachment
+    ==================    =========    ============================================================================================================
 
 These are the parameters when the ``Accept`` header is set to ``message/rfc2822``
 

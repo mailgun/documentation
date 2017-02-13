@@ -55,7 +55,7 @@ Parses a delimiter separated list of email addresses into two lists: parsed addr
  ================= ========================================================
 
 Example
-~~~~~~
+~~~~~~~
 
 Validate a single email address.
 

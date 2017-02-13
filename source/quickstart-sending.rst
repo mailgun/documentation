@@ -1,7 +1,7 @@
 .. _quickstart-sending:
 
 How to start sending email
-====================
+==========================
 
 .. figure::  _static/img/quickstart/sending.png
    :align: center
@@ -88,7 +88,7 @@ Why you **need to verify** your domain:
 
 
 How to verify your domain
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Add your domain or subdomain.
 2. Open your DNS provider and add the **two TXT DNS records** provided.
@@ -102,7 +102,7 @@ Once you've added the records and they've propagated, your domain will be verifi
 If you will be creating a lot of domains, Mailgun offers an API endpoint for adding/editing/removing domains from your account. See the :ref:`api-domains` endpoint for more information.
 
 Add Sending & Tracking DNS Records
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * **SPF**: Sending server IP validation. Used by majority of inbound mail servers. `SPF Information`_.
 * **DKIM**: Like SPF, but uses cryptographic methods for validation. Supported by many inbound mail servers. `DKIM Information`_ 
@@ -122,7 +122,7 @@ CNAME     "mailgun.org"                                               Tracking (
 .. _DKIM Information: http://www.dkim.org/#introduction
 
 Add Receiving MX Records
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Mail server for handling inbound messages.  `MX Information`_
 

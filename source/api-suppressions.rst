@@ -219,7 +219,7 @@ Expected response:
       }
 
 Delete an entire bounce list
-----------------------
+----------------------------
 
 .. code-block:: url
 
