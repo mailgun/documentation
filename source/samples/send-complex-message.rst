@@ -115,7 +115,7 @@
 .. code-block:: rb
 
  def send_complex_message
-   data = Multimap.new
+   data = {}
    data[:from] = "Excited User <YOU@YOUR_DOMAIN_NAME>"
    data[:to] = "foo@example.com"
    data[:cc] = "baz@example.com"
@@ -123,8 +123,9 @@
    data[:subject] = "Hello"
    data[:text] = "Testing some Mailgun awesomness!"
    data[:html] = "<html>HTML version of the body</html>"
-   data[:attachment] = File.new(File.join("files", "test.jpg"))
-   data[:attachment] = File.new(File.join("files", "test.txt"))
+   data[:attachment] = []
+   data[:attachment] << File.new(File.join("files", "test.jpg"))
+   data[:attachment] << File.new(File.join("files", "test.txt"))
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages", data
  end

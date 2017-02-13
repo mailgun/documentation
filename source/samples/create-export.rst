@@ -58,7 +58,7 @@
 .. code-block:: rb
 
  def create_export
-   data = Multimap.new
+   data = {}
    data[:url] = "v3/domains"
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/exports", data
