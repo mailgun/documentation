@@ -80,12 +80,13 @@
 .. code-block:: rb
 
  def create_route
-   data = Multimap.new
+   data = {}
    data[:priority] = 0
    data[:description] = "Sample route"
    data[:expression] = "match_recipient('.*@YOUR_DOMAIN_NAME')"
-   data[:action] = "forward('http://myhost.com/messages/')"
-   data[:action] = "stop()"
+   data[:action] = []
+   data[:action] << "forward('http://myhost.com/messages/')"
+   data[:action] << "stop()"
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/routes", data
  end

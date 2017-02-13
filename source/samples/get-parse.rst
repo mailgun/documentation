@@ -64,7 +64,7 @@
 .. code-block:: rb
 
  def get_parse
-   url_params = Multimap.new
+   url_params = {}
    url_params[:addresses] = "Alice <alice@example.com>,bob@example.com,example.com"
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")

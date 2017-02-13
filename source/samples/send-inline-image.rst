@@ -103,7 +103,7 @@
 .. code-block:: rb
 
  def send_inline_image
-   data = Multimap.new
+   data = {}
    data[:from] = "Excited User <YOU@YOUR_DOMAIN_NAME>"
    data[:to] = "bar@example.com"
    data[:subject] = "Hello"

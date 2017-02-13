@@ -87,13 +87,14 @@
 .. code-block:: rb
 
  def send_tagged_message
-   data = Multimap.new
+   data = {}
    data[:from] = "Excited User <YOU@YOUR_DOMAIN_NAME>"
    data[:to] = "bar@example.com"
    data[:subject] = "Hello"
    data[:text] = "Testing some Mailgun awesomness!"
-   data["o:tag"] = "September newsletter"
-   data["o:tag"] = "newsletters"
+   data["o:tag"] = []
+   data["o:tag"] << "September newsletter"
+   data["o:tag"] << "newsletters"
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages", data
  end

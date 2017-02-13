@@ -74,11 +74,12 @@
 .. code-block:: rb
 
  def get_stats
-   url_params = Multimap.new
+   url_params = {}
    url_params[:duration] = "1m"
-   url_params[:event] = "accepted"
-   url_params[:event] = "delivered"
-   url_params[:event] = "failed"
+   url_params[:event] = []
+   url_params[:event] << "accepted"
+   url_params[:event] << "delivered"
+   url_params[:event] << "failed"
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
    RestClient.get "https://api:YOUR_API_KEY"\

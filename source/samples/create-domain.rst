@@ -72,7 +72,7 @@
 .. code-block:: rb
 
  def create_domain
-   data = Multimap.new
+   data = {}
    data[:name] = "YOUR_DOMAIN_NAME"
    data[:smtp_password] = "supasecret"
    RestClient.post "https://api:YOUR_API_KEY"\

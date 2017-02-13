@@ -66,7 +66,7 @@
 .. code-block:: rb
 
  def get_stats
-   url_params = Multimap.new
+   url_params = {}
    url_params[:limit] = 10
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")

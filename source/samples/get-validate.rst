@@ -65,7 +65,7 @@
 .. code-block:: rb
 
  def get_validate
-   url_params = Multimap.new
+   url_params = {}
    url_params[:address] = "foo@mailgun.net"
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
