@@ -163,7 +163,7 @@ When sending via HTTP API, Mailgun offers two options:
 - You can submit the individual parts of your messages to Mailgun, such as text
   and html parts, attachments, and so on. This doesn't require any MIME knowledge on your part.
 
-.. note:: Mailgun supports maximum messages size of 50MB.
+.. note:: Mailgun supports maximum messages size of 25MB.
 
 See :ref:`sending messages <api-sending-messages>` section in our API Reference for a full
 list of message sending options.
