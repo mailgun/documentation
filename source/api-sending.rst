@@ -151,6 +151,8 @@ To retrieve an inbound message that has been stored via the ``store()`` action, 
 
 - You can also retrieve the full raw mime message (attachments and all) if you make the request to the URL with the ``Accept`` header set to ``message/rfc2822``.
 
+- Stored messages are encoded with `Quoted-printable <https://en.wikipedia.org/wiki/Quoted-printable>`_ encoding. Decoding samples are available in the examples section below.
+
 These are the parameters of the JSON returned from a GET request to a stored message url.
 
 
@@ -258,3 +260,7 @@ An example of how to set message delivery time using the ``o:deliverytime`` opti
 An example of how to tag a message with the ``o:tag`` option:
 
 .. include:: samples/send-tagged-message.rst
+
+An example of how to decode Quoted-printable encoded messages:
+
+.. include:: samples/decode-quoted-printable.rst
