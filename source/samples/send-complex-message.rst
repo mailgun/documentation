@@ -103,7 +103,7 @@
          "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
          auth=("api", "YOUR_API_KEY"),
          files=[("attachment", ("test.jpg", open("files/test.jpg","rb").read())),
-                ("attachment", ("test.txt", open("files/test.txt","r").read()))],
+                ("attachment", ("test.txt", open("files/test.txt","rb").read()))],
          data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
                "to": "foo@example.com",
                "cc": "baz@example.com",
