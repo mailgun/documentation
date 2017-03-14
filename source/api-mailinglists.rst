@@ -21,7 +21,7 @@ Paginate over mailing lists under your account
  ================== =======================================================
  Parameter          Description
  ================== =======================================================
- limit              Maximim number of records to return *(optional: 100 by default)*
+ limit              Maximum number of records to return *(optional: 100 by default)*
  ================== =======================================================
 
 .. code-block:: url
