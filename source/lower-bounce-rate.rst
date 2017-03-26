@@ -15,7 +15,7 @@ You can check your `logs`_ to see emails that are bouncing and check your `bounc
 Best practices for lowering bounce rates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. If you think your application has been compromised, change your SMTP credentials or API key through the `Mailgun control panel`_
+1. If you think your application has been compromised, change your SMTP credentials or API key through the `Mailgun control panel`_.
 2. Clean your mailing list of invalid email addresses.
 3. Only send emails to recipients that have signed up to receive them.
 4. Verify the email address is correct with a confirmation email (aka, `confirmed opt-in`_).
