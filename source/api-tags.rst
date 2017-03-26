@@ -69,7 +69,7 @@ Returns statistics for a given tag.
  
        DELETE /<domain>/tags/<tag>
  
-Deletes the tag. **Note:** The statistics for the tag is not destroyed.
+Deletes the tag. **Note:** The statistics for the tag are not destroyed.
 
 Duration
 --------
