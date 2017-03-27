@@ -114,7 +114,7 @@
   Mail.defaults do
     delivery_method :smtp, {
       :port      => 587,
-      :address   => "smtp.mailgun.org",
+      :address   => "smtp.mailgun.com",
       :user_name => "",
       :password  => "",
     }
@@ -177,4 +177,21 @@
 
 .. code-block:: go
 
- // Not supported.
+ package main
+
+ import (
+	 "github.com/jordan-wright/email"
+ )
+
+ func main() {
+	 e := email.NewEmail()
+	 e.From = "Your Name <foo@YOUR_DOMAIN_NAME>"
+	 e.To = []string{"bar@example.com"}
+	 e.Subject = "Hello"
+	 e.Text = []byte("Testing some Mailgun awesomeness")
+	 err := e.Send("smtp.mailgun.com:587", smtp.PlainAuth("", "YOUR_USERNAME", "YOUR_PASSWORD", "smtp.mailgun.com"))
+	 if err != nil {
+	 	panic(err)
+	 }
+ }
+
