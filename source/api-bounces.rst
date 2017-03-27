@@ -3,7 +3,7 @@
 Bounces
 =======
 
-Mailgun automatically handles bounced emails. The bounced addresses,
+Mailgun automatically handles bounced emails. The bounced addresses
 are collected in a bounces list and subsequent delivery attempts are
 ignored to protect your sending reputation.
 
