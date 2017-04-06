@@ -3,7 +3,7 @@
 
     curl -G --user 'api:pubkey-501jygdalut926-6mb1ozo8ay9crlc28' \
 	https://api.mailgun.net/v3/address/parse \
-	--data-urlencode addresses='Alice <alice@example.com>,bob@example.com,example.com'
+	--data-urlencode addresses='Alice <alice@example.com>,bob@example.com'
 
 .. code-block:: java
 
@@ -33,7 +33,7 @@
 
          return mgRoot
              .path("/address/parse")
-             .queryParam("addresses", "Alice <alice@example.com>,bob@example.com,example.com")
+             .queryParam("addresses", "Alice <alice@example.com>,bob@example.com")
              .request()
              .buildGet()
              .invoke(ClientResponse.class);
@@ -48,7 +48,7 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7');
-  $addressList = 'Alice <alice@example.com>,bob@example.com,example.com';
+  $addressList = 'Alice <alice@example.com>,bob@example.com';
 
   # Issue the call to the client.
   $result = $mgClient->get("address/parse", array('addresses' => $addressList));
@@ -59,13 +59,13 @@
      return requests.get(
          "https://api.mailgun.net/v3/address/parse",
          auth=("api", "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"),
-         params={"addresses": "Alice <alice@example.com>,bob@example.com,example.com"})
+         params={"addresses": "Alice <alice@example.com>,bob@example.com"})
 
 .. code-block:: rb
 
  def get_parse
    url_params = {}
-   url_params[:addresses] = "Alice <alice@example.com>,bob@example.com,example.com"
+   url_params[:addresses] = "Alice <alice@example.com>,bob@example.com"
    query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
      join("&")
    RestClient.get "https://api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"\
@@ -97,7 +97,7 @@
          RestRequest request = new RestRequest ();
          request.Resource = "/address/parse";
          request.AddParameter ("addresses",
-                               "Alice <alice@example.com>,bob@example.com,example.com");
+                               "Alice <alice@example.com>,bob@example.com");
          return client.Execute (request);
      }
  
@@ -110,7 +110,6 @@
    return mg.ParseAddress(
      "Alice <alice@example.com>",
      "bob@example.com",
-     "example.com",
      // ...
    )
  }
