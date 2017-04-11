@@ -29,7 +29,7 @@ Our goal with respect to your email reputation is to make sure that the infrastr
 Beyond making sure that the infrastructure is properly set up, we also provide the tools to answer some important questions:
 
 * Are emails being delivered and if not, why?
-* Is a recipient ESP is throttling your traffic and why?
+* Is a recipient ESP throttling your traffic and why?
 * Are messages bouncing due to incorrect domains or stale addresses?
 * Are recipients unsubscribing or complaining of spam?
 * Are recipients engaging with your emails by opening them and/or clicking on links?
