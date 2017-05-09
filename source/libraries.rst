@@ -172,7 +172,7 @@ Luvit
 =====
 
 Lua and luvit users have two easy options.
-Either the 'luvit-curl <https://github.com/dvv/luvit-curl>'_ library or the 'luvit-request <https://github.com/virgo-agent-toolkit/luvit-request>'_ library.
+Either the `luvit-curl <https://github.com/dvv/luvit-curl>`_ library or the `luvit-request <https://github.com/virgo-agent-toolkit/luvit-request>`_ library.
 
 Due to luvits asynchronous i/o nature, code samples from node.js can be easily retrofitted to work in luvit with luvit libraries.
 
