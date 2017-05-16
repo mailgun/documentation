@@ -3093,7 +3093,7 @@ header.clone {
 }
 
 .logo {
-    background: url("../img/mailgun.svg") no-repeat -26px 0;
+    background: url("../_static/img/mailgun.svg") no-repeat -26px 0;
     background-size: 116px 32px;
     display: block;
     height: 34px;
@@ -3104,7 +3104,7 @@ header.clone {
 }
 
 .logo:before {
-    background: url("../img/mailgun.svg") no-repeat 0 -4px;
+    background: url("../_static/img/mailgun.svg") no-repeat 0 -4px;
     background-size: 116px 32px;
     content: '';
     display: block;
