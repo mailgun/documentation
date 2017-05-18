@@ -19,7 +19,12 @@ if the result set is to long to be returned in a single response.
  ================= ============================================================
  Parameter         Description
  ================= ============================================================
- limit             Number of entries to return. Default: 100.
+ limit             Number of entries to return. Default: 1000
+ prefix            Return tags starting with the given prefix
+ tag               The tag that marks the end of the current page and the
+                   start of the next
+ page              The page direction based off the 'tag' parameter;
+                   valid choices are (first, last, next, prev)
  ================= ============================================================
 
 .. code-block:: url
@@ -138,6 +143,45 @@ Sample response:
         {
           "tag": "green",
           "description": "green signup button",
+        },
+        {
+          "tag": "blue",
+          "description": "blue signup button",
+        },
+        {
+          "tag": "red",
+          "description": "red signup button",
+        },
+    ],
+    "paging": {
+      "next":
+          "https://url_to_next_page",
+      "previous":
+          "https://url_to_previous_page",
+      "first":
+          "https://url_to_first_page",
+      "last":
+          "https://url_to_last_page"
+    }
+  }
+
+Page tag results:
+
+.. include:: samples/page-tags.rst
+
+Sample Response:
+
+.. code-block:: javascript
+
+  {
+    "items": [
+        {
+          "tag": "blue",
+          "description": "blue signup button",
+        },
+        {
+          "tag": "red",
+          "description": "red signup button",
         },
     ],
     "paging": {
