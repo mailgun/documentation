@@ -64,7 +64,7 @@ Delete a domain from your account.
 
      GET /domains/<domain>/credentials
 
-Returns a list of SMTP credentials for the defined domain. 
+Returns a list of SMTP credentials for the defined domain.
 
 .. container:: ptable
 
@@ -110,9 +110,9 @@ Updates the specified SMTP credentials. Currently only the password can be chang
 
 Deletes the defined SMTP credentials.
 
-.. note:: Mailgun imposes a rate limit for the Domains API endpoint. Users may 
+.. note:: Mailgun imposes a rate limit for the Domains API endpoint. Users may
 		  issue no more than 300 requests per minute, per account. See the resultant
-		  rate limit response below. 
+		  rate limit response below.
 
 .. code-block:: url
 
@@ -152,6 +152,63 @@ Updates the specified delivery connection settings for the defined domain.
                    The default is `False`.
  ================= =============================================================
 
+.. code-block:: url
+
+     GET /domains/<domain>/tracking
+
+Returns tracking settings for a domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ name              Name of the domain (ex. domain.com)
+ ================= =============================================================
+
+.. code-block:: url
+
+     PUT /domains/<domain>/tracking/open
+
+Updates the open tracking settings for a domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ name              Name of the domain (ex. domain.com)
+ ================= =============================================================
+
+.. code-block:: url
+
+     PUT /domains/<domain>/tracking/click
+
+Updates the click tracking settings for a domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ name              Name of the domain (ex. domain.com)
+ ================= =============================================================
+
+.. code-block:: url
+
+     PUT /domains/<domain>/tracking/unsubscribe
+
+Updates unsubscribe tracking settings for a domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ name              Name of the domain (ex. domain.com)
+ ================= =============================================================
+
+
 Example
 ~~~~~~~
 
@@ -171,7 +228,7 @@ Sample response:
 	      "smtp_login": "postmaster@samples.mailgun.org",
 	      "name": "samples.mailgun.org",
 	      "smtp_password": "4rtqo4p6rrx9",
-	      "wildcard": true, 
+	      "wildcard": true,
 	      "spam_action": "disabled",
 	      "state": "active"
 	    }
@@ -192,7 +249,7 @@ Sample response:
 	    "smtp_login": "postmaster@domain.com",
 	    "name": "domain.com",
 	    "smtp_password": "4rtqo4p6rrx9",
-	    "wildcard": false, 
+	    "wildcard": false,
 	    "spam_action": "tag",
 	    "state": "active"
 	  },
@@ -242,51 +299,51 @@ Sample response:
 
 	{
 	  "domain": {
-	    "name": "example.com", 
-	    "created_at": "Fri, 22 Nov 2013 18:42:33 GMT", 
-	    "wildcard": false, 
-	    "spam_action": "disabled", 
-	    "smtp_login": "postmaster@example.com", 
+	    "name": "example.com",
+	    "created_at": "Fri, 22 Nov 2013 18:42:33 GMT",
+	    "wildcard": false,
+	    "spam_action": "disabled",
+	    "smtp_login": "postmaster@example.com",
 	    "smtp_password": "thiswontwork",
 	    "state": "active"
-	  }, 
+	  },
 	  "receiving_dns_records": [
 	    {
-	      "priority": "10", 
-	      "record_type": "MX", 
-	      "valid": "valid", 
+	      "priority": "10",
+	      "record_type": "MX",
+	      "valid": "valid",
 	      "value": "mxa.mailgun.org"
-	    }, 
+	    },
 	    {
-	      "priority": "10", 
-	      "record_type": "MX", 
-	      "valid": "valid", 
+	      "priority": "10",
+	      "record_type": "MX",
+	      "valid": "valid",
 	      "value": "mxb.mailgun.org"
 	    }
-	  ], 
-	  "message": "Domain has been created", 
+	  ],
+	  "message": "Domain has been created",
 	  "sending_dns_records": [
 	    {
-	      "record_type": "TXT", 
-	      "valid": "valid", 
-	      "name": "example.com", 
+	      "record_type": "TXT",
+	      "valid": "valid",
+	      "name": "example.com",
 	      "value": "v=spf1 include:mailgun.org ~all"
-	    }, 
+	    },
 	    {
-	      "record_type": "TXT", 
-	      "valid": "valid", 
-	      "name": "k1._domainkey.example.com", 
+	      "record_type": "TXT",
+	      "valid": "valid",
+	      "name": "k1._domainkey.example.com",
 	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4G...."
-	    }, 
+	    },
 	    {
-	      "record_type": "CNAME", 
-	      "valid": "valid", 
-	      "name": "email.example.com", 
+	      "record_type": "CNAME",
+	      "valid": "valid",
+	      "name": "email.example.com",
 	      "value": "mailgun.org"
 	    }
 	  ]
 	}
-	
+
 
 Deleting a domain.
 
