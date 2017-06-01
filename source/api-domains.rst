@@ -465,4 +465,18 @@ Sample response:
 
 .. code-block:: javascript
 
- 	//where the sample response should be
+ {
+ "tracking": {
+   "click": {
+     "active": false
+   },
+   "open": {
+     "active": false
+   },
+   "unsubscribe": {
+     "active": false,
+     "html_footer": "\n<br>\n<p><a href=\"%unsubscribe_url%\">unsubscribe</a></p>\n",
+     "text_footer": "\n\nTo unsubscribe click: <%unsubscribe_url%>\n\n"
+   }
+  }
+ }
