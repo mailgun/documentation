@@ -456,3 +456,13 @@ Sample response:
    "require-tls": true,
    "skip-verification": false
  }
+
+ Get tracking settings for a domain:
+
+ .. include:: samples/get-tracking.rst
+
+ Sample response:
+
+ .. code-block:: javascript
+
+ 	//where the sample response should be
