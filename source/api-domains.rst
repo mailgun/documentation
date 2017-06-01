@@ -457,12 +457,12 @@ Sample response:
    "skip-verification": false
  }
 
- Get tracking settings for a domain:
+Get tracking settings for a domain:
 
- .. include:: samples/get-tracking.rst
+.. include:: samples/get-tracking.rst
 
- Sample response:
+Sample response:
 
- .. code-block:: javascript
+.. code-block:: javascript
 
  	//where the sample response should be
