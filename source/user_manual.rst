@@ -1874,7 +1874,7 @@ Mailgun supports internationalized email addresses through the use of the
 will contain a non-ASCII character in the local-part portion of the email address and may also
 use an internationalized domain name.
 
-Mailgun support internationalized email addresses in the following portions of our product:
+Mailgun supports internationalized email addresses in the following portions of our product:
 
 - Outgoing Messages (HTTP API / SMTP endpoint)
 - Inbound SMTP
