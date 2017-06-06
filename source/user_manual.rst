@@ -1856,12 +1856,13 @@ certificate-verified  Indicates if we verified the certificate or not when deliv
 mx-host               Tells you the MX server we connected to to deliver the message.
 ===================== =============================================================================
 
-.._Internationalization
+.. _Internationalization:
 
 Internationalization
 ********************
 
 **Internationalized Domain Names (IDN)**
+
 Our messages API supports sending to addresses that leverage internationalized domain names in
 the `to` and `from` fields.  When necessary, Mailgun will automatically convert the domains to
 the ASCII equivalent through the use of `punycode <https://en.wikipedia.org/wiki/Punycode>`_
@@ -1869,6 +1870,7 @@ the ASCII equivalent through the use of `punycode <https://en.wikipedia.org/wiki
 At this time, sending domains cannot be created using non-ASCII characters.
 
 **Internationalized Email Addresses (SMTPUTF8)**
+
 Mailgun supports internationalized email addresses through the use of the
 `SMTPUTF8 <https://tools.ietf.org/html/rfc6531>`_ extension.  An internationalized email address
 will contain a non-ASCII character in the local-part portion of the email address and may also
