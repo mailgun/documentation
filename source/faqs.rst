@@ -117,11 +117,6 @@ Can I rename a domain?
 
 No, you need to create a new one and delete the old one.  It's a good idea to create the new one first.
 
-Do you have support for multiple logins per account?
-**************************************************************************************************************
-
-No, not at this time.  This is something that is in our feature pipeline.
-
 What if I need multiple SPF records?
 **************************************************************************************************************
 
@@ -329,15 +324,10 @@ Receiving
 Do you provide spam filtering for incoming mail?
 **************************************************************************************************************
 
-Yes. Click on your domain in the `Control Panel <https://mailgun.com/cp/domains>`_ and enable
+Yes. Click on your domain in the `Control Panel <https://app.mailgun.com/app/domains>`_ and enable
 our spam filtering service.
 
-.. _Log In: https://mailgun.com/cp
-
-What happened to Mailboxes?
-**************************************************************************************************************
-
-Mailgun has always meant to be a tool for developers and their applications.  We found that people were using mailboxes as a replacement for their personal hosted email, which we couldn't support adequately. In addition, for the intended use case of handling inbound email for your application and/or service, we have found that Routes can handle 99% of these use cases better than mailboxes.
+.. _Log In: https://app.mailgun.com/sessions/new
 
 How do you handle quotations from replies and signatures when receiving mail?
 **************************************************************************************************************
@@ -391,7 +381,7 @@ know if the message is coming from an authenticated server.
 Can I use Mailgun for my personal email address?
 **************************************************************************************************************
 
-It's not recommended. Honestly, there are plenty of hosted email services better suited for this than Mailgun: Rackspace Email, Gmail / Google Apps, Outlook, etc. Mailgun is meant to be a tool for developers and their applications.
+It's not recommended. Honestly, there are plenty of hosted email services better suited for this than Mailgun: Gmail, Google Apps, Outlook, etc. Mailgun is meant to be a tool for developers and their applications.
 
 Tracking
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
