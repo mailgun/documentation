@@ -19,6 +19,7 @@ if the result set is to long to be returned in a single response.
  ================= ============================================================
  Parameter         Description
  ================= ============================================================
+ domain            Name of the domain
  limit             Number of entries to return. Default: 100.
  ================= ============================================================
 
@@ -28,17 +29,28 @@ if the result set is to long to be returned in a single response.
 
 Returns a given tag.
 
+.. contrainer:: ptable
+
+ ================= ============================================================
+ Parameter         Description
+ ================= ============================================================
+ domain            Name of the domain
+ tag               Name of the tag
+ ================= ============================================================
+
 .. code-block:: url
- 
+
       PUT /<domain>/tags/<tag>
- 
+
 Updates a given tag with the information provided.
- 
+
 .. container:: ptable
- 
+
  ================= ============================================================
   Parameter         Description
  ================= ============================================================
+ domain            Name of the domain
+ tag               Name of the tag
  description       Optional description of a tag.
  ================= ============================================================
 
@@ -64,12 +76,20 @@ Returns statistics for a given tag.
                    more info. If provided, overwrites the start date and resolution.
  ================= ============================================================
 
- 
+
  .. code-block:: url
- 
+
        DELETE /<domain>/tags/<tag>
- 
+
 Deletes the tag. **Note:** The statistics for the tag are not destroyed.
+
+.. container:: ptable
+
+ ================= ============================================================
+ Parameter         Description
+ ================= ============================================================
+ domain            Name of the domain
+ ================= ============================================================
 
 Duration
 --------
