@@ -386,12 +386,12 @@ to 1000 unsubscribe records in the following format.
       [
         {
           "address": "alice@example.com",
-          "tag": "Some tag",
+          "tags": ["some tag"],
           "created_at": "Thu, 13 Oct 2011 18:02:00 UTC"
         },
         {
           "address": "bob@example.com",
-          "tag": "*",
+          "tags": ["*"],
         },
         {
           "address": "carol@example.com"
