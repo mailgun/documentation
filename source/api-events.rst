@@ -33,21 +33,21 @@ The request time range should be given by a beginning timestamp and either an
 end timestamp or a search direction.
 
 If the range end timestamp is provided then the relation between the beginning
-and the end timestamps determines the direction in which events are going to be
-traversed. E.g. if the end timestamp is less than the beginning timestamp, then
-result pages are returned from newer to older and events on the pages are sorted
-in the descending order of their timestamps.
+and the end timestamps determines the direction - ascending or descending - in
+which events are going to be traversed. E.g. if the end timestamp is less (older)
+than the beginning timestamp, then result pages are returned from newer to older
+and events on the pages are sorted in the descending order of their timestamps.
 
 If the end timestamp is not provided then depending on the range direction the
 result page traversal behaves differently:
 
 - If the range is descending then the end timestamp is determined by the user
   tariff plan retention period.
-- If the range is ascending the it is extended all the time as the time goes on.
-  So after the most recent events have been retrieved and an empty result page
-  has been reached, then requesting next page URL returned with the last page
-  some time later will return events that occurred since then. And this can go
-  on indefinitely.
+- If the range is ascending then events will continue to be recorded but will not
+  show in the current request time range pages that are provided. So after the
+  most recent events have been retrieved and an empty result page has been reached,
+  then requesting next page URL returned with the last page some time later will
+  return events that occurred since then. And this can go on indefinitely.
 
 .. warning:: Even though it seems that real-time event polling can be
  implemented by traversing next URLs of an ascending time range that has no
