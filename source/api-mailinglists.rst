@@ -10,7 +10,7 @@ like developers@mailgun.net. This address becomes an ID for this mailing list.
 When you send a message to developers@mailgun.net, all members of the list will
 receive a copy of it.
 
-.. code-block:: url 
+.. code-block:: url
 
     GET /lists/pages
 
@@ -72,7 +72,7 @@ Update mailing list properties, such as address, description or name
 Deletes a mailing list.
 
 .. code-block:: url
-     
+
     GET /lists/<address>/members/pages
 
 Paginate over list members in the given mailing list
@@ -134,7 +134,7 @@ Won't touch the property if it's not passed in.
                     parameters, e.g. ``{"gender":"female","age":27}``
  subscribed         ``no`` to set unsubscribed, ``yes`` as subscribed
  ================== =======================================================
- 
+
  .. code-block:: url
 
      POST /lists/<address>/members.json
@@ -150,12 +150,30 @@ Adds multiple members, up to 1,000 per call, to a Mailing List.
                     or JSON objects, e.g. ``[{"address": "bob@example.com", "name": "Bob", "subscribed": false}, {"address": "alice@example.com", "name": "Alice"}]`` . Custom variables can be provided, see examples.
  upsert             ``yes`` to update existing members, ``no`` (default) to ignore duplicates
  ================== =======================================================
- 
+
 .. code-block:: url
 
      DELETE /lists/<address>/members/<member_address>
 
 Delete a mailing list member.
+
+Access Levels
+-------------
+Mailing lists have three different access levels. These levels define how users
+can interact with the list.
+
+.. container:: ptable
+
+ ================== =======================================================
+ Access Level       Description
+ ================== =======================================================
+ read-only          Only authenticated users can post to this list. It is used
+                    for mass announcements and newsletters. This is the default
+                    access level.
+ members            Subscribed members of the list can communicate with each other.
+ everyone           Everyone can post to this list. Recommended turning spam
+                    filtering on when using this mode.
+ ================== =======================================================
 
 Examples
 --------
