@@ -1,0 +1,52 @@
+#search-results {
+    margin-top: 1em;
+}
+
+div.body form {
+    display: flex;
+}
+
+form > input[name=q] {
+    flex: 1;
+    width: 85%;
+    padding-right: 0;
+    margin-right: 0;
+    box-sizing: content-box;
+
+    border-color: rgb(75, 108, 183);
+    border-style: solid;
+    border-width: 1px;
+    border-right: none;
+
+    outline: none;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+form > input[type=submit] {
+    height: 42.7px;
+    width: inherit;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+
+    background-color: #eb284f;
+    border-color: rgb(75, 108, 183);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+
+    color: #fff;
+    font-family: 'Titillium Web', Lato, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+
+    outline: none;
+
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

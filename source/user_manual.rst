@@ -746,6 +746,7 @@ And here's a sample in Ruby:
 And here's a sample in PHP:
 
 .. code-block:: php
+   :class: display-always
 
     private function verify($apiKey, $token, $timestamp, $signature)
     {

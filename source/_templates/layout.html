@@ -3,9 +3,9 @@
   {% set corpsite_hostname = "www.mailgun.com" %}
 {% endif %}
 {% if cp_hostname == "" %}
-  {% set cp_hostname = "mailgun.com" %}
+  {% set cp_hostname = "app.mailgun.com" %}
 {% endif %}
-{% set css_url = "_static/mg.css" %}
+{% set css_url = "_static" %}
 {%- block doctype -%}
 <!doctype html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 documentation"> <![endif]-->
@@ -43,8 +43,8 @@
 
     <link rel="icon" type="image/png" href="_static/img/favicon.png" />
 
-    <!-- <link rel="stylesheet" href="_static/docs.css" /> -->
-    <link rel="stylesheet" href="{{css_url}}" />
+    <link rel="stylesheet" href="{{css_url}}/mg.css" />
+    <link rel="stylesheet" href="{{css_url}}/search.css" />
     <meta name="viewport" content="width=device-width">
     {% if corpsite_hostname == "www.website.ninomail.com" %}
     <meta name="robots" content="noindex">
@@ -161,33 +161,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         {%- block sidebarsearch %}
         {%- if pagename != "search" %}
-        <div id="searchbox" style="display: none" class="search-box">
-          {# <h3>{{ _('Quick search') }}</h3> #}
-          <form>
+        <div id="search" role="search" class="search-box">
+          <form action="{{ pathto('search') }}" method="get">
             <svg class="icon icon-search" viewBox="0 0 32 32"><use xlink:href="#icon-search"></use></svg>
-            <input type="search" id="st-search-input" class="prettysearch search-input" autofocus />
-          <!--<form class="search" action="{{ pathto('search') }}" method="get">-->
-            <!--<div class="search-wrapper">
-              <span class="search-left"></span>
-              <input class="prettysearch" type="text" name="q" size="18"/>
-              <span class="search-right">&nbsp;</span>
-            </div>
-            <input type="submit" value="{{ _('Search') }}" class="searchbutton" />
+            <input name="q" type="search" id="st-search-input" class="prettysearch search-input" autofocus />
             <input type="hidden" name="check_keywords" value="yes" />
-            <input type="hidden" name="area" value="default" />-->
+            <input type="hidden" name="area" value="default" />
           </form>
         </div>
-        <script type="text/javascript">$('#searchbox').show(0);</script>
         {%- endif %}
         {%- endblock %}
-
-        <!--
-        <li id="page_buttons">
-          {%- for rellink in rellinks %}
-          <div class="headerButton"><a href="{{ pathto(rellink[0]) }}" title="{{ rellink[1]|striptags }}" {{ accesskey(rellink[2]) }}>{{ rellink[3] }}</a></div>
-          {%- endfor %}
-        </li>
-        -->
       </ul>
     </div>
   </section>
@@ -269,67 +252,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
 
 
-<script type="text/javascript">
-  var Swiftype = window.Swiftype || {};
-  (function() {
-    Swiftype.key = 'dpKXg3Qg6P5paq8LDpDu';
-    Swiftype.inputElement = '#st-search-input';
-    Swiftype.resultContainingElement = '#st-results-container';
-    Swiftype.attachElement = '#st-search-input';
-    Swiftype.renderStyle = "overlay";
-
-
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = "//swiftype.com/embed.js";
-    var entry = document.getElementsByTagName('script')[0];
-    entry.parentNode.insertBefore(script, entry);
-  }());
-</script>
-
 <!-- Ace editor for editable code -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-  (function() {
-    var timer;
-    function waitForSwiftype() {
-      if (Swiftype.Util && Swiftype.Util.pingSearchResultClick) {
-        clearInterval(timer);
-        Swiftype.Util.pingSearchResultClick = function(docId, query, destinationUrl, theWindow) {
-          var url = Swiftype.root_url + "/api/v1/public/analytics/pc?engine_key=" + Swiftype.key + "&doc_id=" + docId + "&q=" + query;
-          var queryAnchor = query.replace(/\s+/g, '-').toLowerCase();
-          Swiftype.Util.pingUrl(url, destinationUrl + '?highlight=' + query + '#' + queryAnchor, theWindow);
-        };
-      }
-    }
-    timer = setInterval(waitForSwiftype, 500);
-  })();
-
-   // $('input[type=\"search\"]').wrap('<span style=\"position:relative;\"></span>').after('<i id="clear-search" class="icon-remove-sign" style=\"position:absolute; right:5px;line-height:26px;\"></i><i class="icon-search" style=\"position:absolute; left:5px;line-height:26px;\"></i>');
-   // $('#clear-search').click(function(){
-   //  $(this).parent().find('input').val('');
-   //  $(this).parent().find('input').focus();
-   // });
-   // $("input").focusout(function() {this.value = "";});
-
     // Responsive navigation show/hide main nav
 	$("#js-show-nav").click(function(){
 		$("#js-header-nav").slideToggle();
 	});
-
-
-
 
   // highlight nav on load
   $(document).ready(function(){
       $('.docs-sidebar li').removeClass('active');
       $('.docs-sidebar ul.current li.current a.current').parent().addClass('active');
   });
-
-
-
 
   // Make sample code snippets editable in the browser
   $('.highlight pre').click(function(){
