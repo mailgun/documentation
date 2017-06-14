@@ -26,6 +26,54 @@ of them makes no sense. There are two such cases: previous page URL for the firs
 result page, and next page URL for the last result page; requesting these URLs
 always returns an empty result page.
 
+Viewing Stored Messages
+-----------------------
+
+To access the contents of the stored messages, copy the API URL of the message into
+a browser. The API URL can be found in the expanded log entry under the "storage"
+section. For the username, enter "api" and provide an API key for the password in
+order to view the parsed message.
+
+To view the raw MIME, the message's Mailgun storage key will be needed. Run the
+following python script with the storage key as a parameter. The script will retrieve
+the message from Mailgun. In the script the message is saved to "message.eml",
+which can then be opened in Mozilla Thunderbird for analysis.
+
+.. code-block:: python
+
+    """View a message using its Mailgun storage key."""
+    import os
+    import sys
+
+    import requests
+
+    if len(sys.argv) != 2:
+      print "Usage: retrieve.py message_key"
+      sys.exit(1)
+
+    api_key = YOUR_API_KEY
+
+    # output filename
+    filename = "message.eml"
+
+    # url for retrieval
+    domain = "mailgun.com"
+    key = sys.argv[1]
+    url = "https://api.mailgun.net/v3/domains/%s/messages/%s"
+    url = url % (domain, key)
+
+    headers = {"Accept": "message/rfc2822"}
+
+    # request to API
+    r = requests.get(url, auth=("api", api_key), headers=headers)
+
+    if r.status_code == 200:
+      with open(filename, "w") as message:
+        message.write(r.json()["body-mime"])
+      os.system("thunderbird -file %s" % filename)
+    else:
+      print "Oops! Something went wrong: %s" % r.content
+
 Time Range
 ----------
 
