@@ -805,7 +805,7 @@ distributions being sent out (e.g. how many recipients opened messages of a give
 or clicks on linked URLs in messages of a tag). This provides the ability to review
 the overall performance of tags as well as gives the ability to compare one tag
 against another. For example, two messages of similar content can be assigned
-different tags for analysis of which message type had better engagement, more 
+different tags for analysis of which message type had better engagement, more
 recipient activity, etc.
 
 .. note:: By default, each account is allowed a maximum of 4000 tags. Any tags created
