@@ -607,7 +607,7 @@ Below is the table of events that Mailgun tracks.
     complained        The email recipient clicked on the spam complaint button within
                       their email client. Feedback loops enable the notification to
                       be received by Mailgun.
-    
+
     stored            Mailgun has stored an incoming message
     ================= ============================================================
 
@@ -797,7 +797,20 @@ Tagging
 Sometimes it's helpful to categorize your outgoing email traffic based on some
 criteria, perhaps separate signup emails from password recovery emails or from
 user comments. Mailgun lets you tag each outgoing message with a custom value.
-When you access stats on you messages, they will be aggregated by these tags.
+When you access stats on your messages, they will be aggregated by these tags.
+
+The application of tags is more useful in tandem with our tracking features. Tags
+are unique to each send and can be used to collect data on different message
+distributions being sent out (e.g. how many recipients opened messages of a given tag
+or clicks on linked URLs in messages of a tag). This provides the ability to review
+the overall performance of tags as well as gives the ability to compare one tag
+against another. For example, two messages of similar content can be assigned
+different tags for analysis of which message type had better engagement, more 
+recipient activity, etc.
+
+.. note:: By default, each account is allowed a maximum of 4000 tags. Any tags created
+          after the 4000 tag limit are dropped. If more tags are needed, please contact
+          our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`.
 
 **Tagging Code Samples**
 
