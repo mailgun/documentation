@@ -26,6 +26,54 @@ of them makes no sense. There are two such cases: previous page URL for the firs
 result page, and next page URL for the last result page; requesting these URLs
 always returns an empty result page.
 
+Viewing Stored Messages
+-----------------------
+
+To access the contents of the stored messages, copy the API URL of the message into
+a browser. The API URL can be found in the expanded log entry under the "storage"
+section. For the username, enter "api" and provide an API key for the password in
+order to view the parsed message.
+
+To view the raw MIME, the message's Mailgun storage key will be needed. Run the
+following python script with the storage key as a parameter. The script will retrieve
+the message from Mailgun. In the script the message is saved to "message.eml",
+which can then be opened in Mozilla Thunderbird for analysis.
+
+.. code-block:: python
+
+    """View a message using its Mailgun storage key."""
+    import os
+    import sys
+
+    import requests
+
+    if len(sys.argv) != 2:
+      print "Usage: retrieve.py message_key"
+      sys.exit(1)
+
+    api_key = YOUR_API_KEY
+
+    # output filename
+    filename = "message.eml"
+
+    # url for retrieval
+    domain = "mailgun.com"
+    key = sys.argv[1]
+    url = "https://api.mailgun.net/v3/domains/%s/messages/%s"
+    url = url % (domain, key)
+
+    headers = {"Accept": "message/rfc2822"}
+
+    # request to API
+    r = requests.get(url, auth=("api", api_key), headers=headers)
+
+    if r.status_code == 200:
+      with open(filename, "w") as message:
+        message.write(r.json()["body-mime"])
+      os.system("thunderbird -file %s" % filename)
+    else:
+      print "Oops! Something went wrong: %s" % r.content
+
 Time Range
 ----------
 
@@ -33,21 +81,21 @@ The request time range should be given by a beginning timestamp and either an
 end timestamp or a search direction.
 
 If the range end timestamp is provided then the relation between the beginning
-and the end timestamps determines the direction in which events are going to be
-traversed. E.g. if the end timestamp is less than the beginning timestamp, then
-result pages are returned from newer to older and events on the pages are sorted
-in the descending order of their timestamps.
+and the end timestamps determines the direction - ascending or descending - in
+which events are going to be traversed. E.g. if the end timestamp is less (older)
+than the beginning timestamp, then result pages are returned from newer to older
+and events on the pages are sorted in the descending order of their timestamps.
 
 If the end timestamp is not provided then depending on the range direction the
 result page traversal behaves differently:
 
 - If the range is descending then the end timestamp is determined by the user
   tariff plan retention period.
-- If the range is ascending the it is extended all the time as the time goes on.
-  So after the most recent events have been retrieved and an empty result page
-  has been reached, then requesting next page URL returned with the last page
-  some time later will return events that occurred since then. And this can go
-  on indefinitely.
+- If the range is ascending then events will continue to be recorded but will not
+  show in the current request time range pages that are provided. So after the
+  most recent events have been retrieved and an empty result page has been reached,
+  then requesting next page URL returned with the last page some time later will
+  return events that occurred since then. And this can go on indefinitely.
 
 .. warning:: Even though it seems that real-time event polling can be
  implemented by traversing next URLs of an ascending time range that has no
