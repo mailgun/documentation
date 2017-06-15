@@ -60,8 +60,11 @@ var samples = {
 
         var date = new Date();
         date.setDate(date.getDate() + 365);
-        $.cookie('samples_code_language', to,
-                 { expires: date});
+        $.cookie(
+            'samples_code_language',
+            to,
+            {expires: date},
+        );
     },
 
     detectSample: function () {
@@ -100,7 +103,9 @@ var samples = {
             var self = this;
             samples.each(function () {
                 var sample = $(this);
-                sample.css('display', display);
+                if (!sample.hasClass('display-always')) {
+                    sample.css('display', display);
+                }
             });
         }
     },

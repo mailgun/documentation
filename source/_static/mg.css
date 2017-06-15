@@ -4378,7 +4378,7 @@ body.lp .logo:before {
     }
 
     input {
-        width: 100% !important
+        width: 100%;
     }
 
     .btn-cta {
