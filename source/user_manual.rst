@@ -810,7 +810,7 @@ recipient activity, etc.
 
 .. note:: By default, each account is allowed a maximum of 4000 tags. Any tags created
           after the 4000 tag limit are dropped. If more tags are needed, please contact
-          our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`.
+          our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`_.
 
 **Tagging Code Samples**
 
