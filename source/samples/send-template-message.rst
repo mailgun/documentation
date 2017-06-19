@@ -66,7 +66,7 @@
   # Make the call to the client.
   $result = $mgClient->sendMessage($domain, array(
       'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-      'to'      => 'bob@example.com, alice@example.com',
+      'to'      => array('bob@example.com, alice@example.com'),
       'subject' => 'Hey %recipient.first%',
       'text'    => 'If you wish to unsubscribe,
                             click http://mailgun/unsubscribe/%recipient.id%',
@@ -105,15 +105,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendTemplateMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendTemplateMessage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendTemplateMessage ()
      {
          RestClient client = new RestClient ();
@@ -135,7 +135,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
