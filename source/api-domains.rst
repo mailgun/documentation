@@ -26,6 +26,14 @@ Returns a list of domains under your account in JSON. See examples below.
 
 Returns a single domain, including credentials and DNS records. See examples below.
 
+.. container:: ptable
+
+ ================= ========================================================
+ Parameter         Description
+ ================= ========================================================
+ name              Name of the domain
+ ================= ========================================================
+
 .. code-block:: url
 
      PUT /domains/<domain>/verify
@@ -60,6 +68,14 @@ Create a new domain. See examples below.
 
 Delete a domain from your account.
 
+.. container:: ptable
+
+ ================= ========================================================
+ Parameter         Description
+ ================= ========================================================
+ name              Name of the domain
+ ================= ========================================================
+
 .. code-block:: url
 
      GET /domains/<domain>/credentials
@@ -71,6 +87,7 @@ Returns a list of SMTP credentials for the defined domain.
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
+ name              Name of the domain
  limit             Maximum number of records to return. (100 by default)
  skip              Number of records to skip. (0 by default)
  ================= ========================================================
@@ -86,6 +103,7 @@ Creates a new set of SMTP credentials for the defined domain.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
+ name              Name of the domain
  login             The user name, for example ``bob.bar``
  password          A password for the SMTP credentials. (Length Min 5, Max 32)
  ================= ==========================================================
@@ -101,6 +119,8 @@ Updates the specified SMTP credentials. Currently only the password can be chang
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
+ name              Name of the domain
+ login             The user name, for example ``bob.bar``
  password          A password for the SMTP credentials. (Length Min 5, Max 32)
  ================= ==========================================================
 
@@ -114,11 +134,28 @@ Deletes the defined SMTP credentials.
 		  issue no more than 300 requests per minute, per account. See the resultant
 		  rate limit response below.
 
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ name              Name of the domain
+ login             The user name, for example ``bob.bar``
+ ================= ==========================================================
+
 .. code-block:: url
 
      GET /domains/<domain>/connection
 
 Returns delivery connection settings for the defined domain.
+
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ name              Name of the domain
+ ================= ==========================================================
 
 .. code-block:: url
 

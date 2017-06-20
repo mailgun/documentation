@@ -88,6 +88,14 @@ account, not per domain as most of other API calls.
 
 Returns a single route object based on its ID. See examples below.
 
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ routeId           ID of the route
+ ================= ==========================================================
+
 .. code-block:: url
 
      POST /routes
@@ -104,7 +112,7 @@ Creates a new route.
  description       An arbitrary string.
  expression        A filter expression like
                    ``match_recipient('.*@gmail.com')``
- action:           Route action. This action is executed when the expression
+ action            Route action. This action is executed when the expression
                    evaluates to True. Example: ``forward("alice@example.com")``
                    You can pass multiple ``action`` parameters.
  ================= ==========================================================
@@ -121,12 +129,13 @@ only updates the specified fields leaving others unchanged.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
+ routeId           ID of the route
  priority          Integer: smaller number indicates higher priority. Higher
                    priority routes are handled first.
  description       An arbitrary string.
  expression        A filter expression like
                    ``match_recipient('.*@gmail.com')``
- action:           Route action. This action is executed when the expression
+ action            Route action. This action is executed when the expression
                    evaluates to True. Example: ``forward("alice@example.com")``
                    You can pass multiple ``action`` parameters.
  ================= ==========================================================
@@ -136,6 +145,15 @@ only updates the specified fields leaving others unchanged.
      DELETE /routes/<id>
 
 Deletes a route based on the id.
+
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ routeId           ID of the route
+ ================= ==========================================================
+
 
 Examples
 ~~~~~~~~
