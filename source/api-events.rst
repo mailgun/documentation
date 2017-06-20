@@ -18,8 +18,8 @@ the data and traverse through the result pages as explained below.
 A request should define a time range and can specify a set of filters to apply.
 In response, a page of events is returned along with URLs that can be used to
 retrieve the next and previous result pages. To traverse the entire range, you
-should keep requesting the next page URLs returned returned along with result
-pages until an empty result page is reached.
+should keep requesting the next page URLs returned along with result pages until
+an empty result page is reached.
 
 Both next and previous page URLs are always returned, even when retrieving one
 of them makes no sense. There are two such cases: previous page URL for the first
@@ -78,7 +78,8 @@ Time Range
 ----------
 
 The request time range should be given by a beginning timestamp and either an
-end timestamp or a search direction.
+end timestamp or a search direction. If an end timestamp is not given, a search
+direction must be provided.
 
 If the range end timestamp is provided then the relation between the beginning
 and the end timestamps determines the direction - ascending or descending - in
@@ -86,11 +87,12 @@ which events are going to be traversed. E.g. if the end timestamp is less (older
 than the beginning timestamp, then result pages are returned from newer to older
 and events on the pages are sorted in the descending order of their timestamps.
 
-If the end timestamp is not provided then depending on the range direction the
-result page traversal behaves differently:
+If the end timestamp is not provided, the direction must be specified. Depending
+on the range direction, the result page traversal behaves differently:
 
 - If the range is descending then the end timestamp is determined by the user
   tariff plan retention period.
+
 - If the range is ascending then events will continue to be recorded but will not
   show in the current request time range pages that are provided. So after the
   most recent events have been retrieved and an empty result page has been reached,
@@ -152,9 +154,9 @@ URL parameters allow you to manipulate the results of your query:
                    as a string (see :ref:`date-format`) or linux epoch seconds.
                    Refer to `Time Range`_ for details.
 
- ascending         Defines the direction of the search time range if the range
-                   end time is not specified. Can be either ``yes`` or ``no``.
-                   Refer to `Time Range`_ for details.
+ ascending         Defines the direction of the search time range and must be
+                   provided if the range end time is not specified. Can be
+                   either ``yes`` or ``no``. Refer to `Time Range`_ for details.
 
  limit             Number of entries to return. (300 max)
 
