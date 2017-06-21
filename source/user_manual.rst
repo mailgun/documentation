@@ -8,11 +8,12 @@ Introduction
 
 This document is meant to be an overview of all of the capabilities of
 Mailgun and how you can best leverage those capabilities.  It is
-organized around the three major features that Mailgun provides:
+organized around the four major features that Mailgun provides:
 
 - `Sending Messages`_
 - `Tracking Messages`_
 - `Receiving, Forwarding and Storing Messages`_
+- `Email Validation`_
 
 At the heart of Mailgun is the API.  Most of the Mailgun service can be
 accessed through the RESTful HTTP API without the need to install any
@@ -60,6 +61,7 @@ There are some limitations if you have not given us your payment information:
 
 * There is a limit of 10,000 emails per month.
 * Data for Logs and the Events API are stored for 2 days.
+* There is a limit of 100 email validations per month.
 
 If you have given us your payment information, there is no limit on number of messages
 sent and/or received and data retention for Logs and the Events API is at least 30 days.
@@ -607,7 +609,7 @@ Below is the table of events that Mailgun tracks.
     complained        The email recipient clicked on the spam complaint button within
                       their email client. Feedback loops enable the notification to
                       be received by Mailgun.
-    
+
     stored            Mailgun has stored an incoming message
     ================= ============================================================
 
@@ -746,7 +748,6 @@ And here's a sample in Ruby:
 And here's a sample in PHP:
 
 .. code-block:: php
-   :class: display-always
 
     private function verify($apiKey, $token, $timestamp, $signature)
     {
@@ -798,7 +799,20 @@ Tagging
 Sometimes it's helpful to categorize your outgoing email traffic based on some
 criteria, perhaps separate signup emails from password recovery emails or from
 user comments. Mailgun lets you tag each outgoing message with a custom value.
-When you access stats on you messages, they will be aggregated by these tags.
+When you access stats on your messages, they will be aggregated by these tags.
+
+The application of tags is more useful in tandem with our tracking features. Tags
+are unique to each send and can be used to collect data on different message
+distributions being sent out (e.g. how many recipients opened messages of a given tag
+or clicks on linked URLs in messages of a tag). This provides the ability to review
+the overall performance of tags as well as gives the ability to compare one tag
+against another. For example, two messages of similar content can be assigned
+different tags for analysis of which message type had better engagement, more
+recipient activity, etc.
+
+.. note:: By default, each account is allowed a maximum of 4000 tags. Any tags created
+          after the 4000 tag limit are dropped. If more tags are needed, please contact
+          our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`_.
 
 **Tagging Code Samples**
 
@@ -1705,6 +1719,117 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
 ``X-Mailgun-Spf``
     Mailgun will perform an SPF validation, and results will be stored in this header.
     Possible values are: 'Pass', 'Neutral', 'Fail' or 'SoftFail'.
+
+Email Validation
+****************
+
+Mailgun's email validation service is intended for validating email addresses
+submitted through forms like newsletters, online registrations, and shopping carts.
+
+Maintaining a list of valid and deliverable email addresses is important in order
+to reduce the ratio of bounce back emails and prevent negative impacts to your
+mail server reputation.
+
+Validate a single email address.
+
+.. include:: samples/get-validate.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+	{
+	    "is_valid": true,
+	    "address": "foo@mailgun.net",
+	    "parts": {
+	        "display_name": null //Deprecated Field, will always be null
+	        "local_part": "foo",
+	        "domain": "mailgun.net",
+	    },
+	    "did_you_mean": null
+    }
+
+Parse a list of email addresses.
+
+.. include:: samples/get-parse.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "parsed": [
+          "Alice <alice@example.com>",
+          "bob@example.com"
+      ],
+      "unparseable": [
+      ]
+  }
+
+Mailbox Verification
+====================
+
+Mailgun has the ability, for supported mailbox providers, to check and determine
+if a mailbox exists on the target domain. This check is an additional safeguard
+against typos.
+
+Role-based Address Check
+=======================
+
+For all validation requests, we provide whether an address is a role-based address
+(e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
+with a much higher complaint rate since unsuspecting users on the list can receive
+a message they were not expecting.
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "admin@samples.mailgun.org",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": true,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "samples.mailgun.org",
+          "local_part": "postmaster"
+      }
+  }
+
+Disposable Mailbox Detection
+============================
+
+Disposable mailboxes are commonly used for fraudulent purposes. Mailgun can detect
+whether the address provided is on a known disposable mailbox provider and given the
+determination, you may choose how to proceed based on your own risk decisions.
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "fake@throwawaymail.com",
+      "did_you_mean": null,
+      "is_disposable_address": true,
+      "is_role_address": false,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "throwawaymail.com",
+          "local_part": "fake"
+      }
+  }
+
+Reporting Dashboard
+===================
+
+Within the validation menu, you can view your usage by day or hour for the validation
+API as well as the number of valid or invalid addresses. Mailgun will also include
+the type of API call that was made to help measure the impact of email address
+validation.
+
 
 .. _smtp:
 

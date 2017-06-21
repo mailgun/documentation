@@ -61,20 +61,74 @@ Validate a single email address.
 
 .. include:: samples/get-validate.rst
 
-Sample response:
+Simple sample response:
 
 .. code-block:: javascript
 
-	{
-	    "is_valid": true,
-	    "address": "foo@mailgun.net",
-	    "parts": {
-	        "display_name": null //Deprecated Field, will always be null
-	        "local_part": "foo",
-	        "domain": "mailgun.net",
-	    },
-	    "did_you_mean": null
-    }
+  {
+      "address": "foo@mailgun.net",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": false,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "mailgun.net",
+          "local_part": "foo"
+      }
+  }
+
+Role-based email address sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "admin@samples.mailgun.org",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": true,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "samples.mailgun.org",
+          "local_part": "admin"
+      }
+  }
+
+Disposable email address sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "fake@throwawaymail.com",
+      "did_you_mean": null,
+      "is_disposable_address": true,
+      "is_role_address": false,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "throwawaymail.com",
+          "local_part": "fake"
+      }
+  }
+
+SMTP Verification response:
+
+.. code-block:: javascript
+
+  {
+      "address": "foo@samples.mailgun.org",
+      "callback_verify": true,
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": false,
+      "is_valid": false,
+      "parts": {
+          "display_name": null,
+          "domain": "samples.mailgun.org",
+          "local_part": "foo"
+      }
+  }
 
 Parse a list of email addresses.
 
