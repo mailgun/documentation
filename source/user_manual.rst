@@ -51,7 +51,7 @@ to the pricing calculator on our `pricing page`_.
 If you are a high volume sender or if you are interested in a custom contract,
 you can contact sales@mailgunhq.com for more details.
 
-.. _pricing page: http://www.mailgun.com/pricing
+.. _pricing page: https://www.mailgun.com/pricing
 
 **Features**
 
@@ -1738,16 +1738,18 @@ Sample response:
 
 .. code-block:: javascript
 
-	{
-	    "is_valid": true,
-	    "address": "foo@mailgun.net",
-	    "parts": {
-	        "display_name": null //Deprecated Field, will always be null
-	        "local_part": "foo",
-	        "domain": "mailgun.net",
-	    },
-	    "did_you_mean": null
-    }
+  {
+      "address": "foo@mailgun.net",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": false,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "mailgun.net",
+          "local_part": "foo"
+      }
+  }
 
 Parse a list of email addresses.
 
@@ -1803,7 +1805,9 @@ Disposable Mailbox Detection
 
 Disposable mailboxes are commonly used for fraudulent purposes. Mailgun can detect
 whether the address provided is on a known disposable mailbox provider and given the
-determination, you may choose how to proceed based on your own risk decisions.
+determination, you may choose how to proceed based on your own risk decisions. It is
+important to check for disposable mailboxes to ensure communication between user
+and web application.
 
 Sample response:
 
