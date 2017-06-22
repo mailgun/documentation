@@ -55,7 +55,7 @@ Returns details about a the webhook specified in the URL.
 
 Creates a new webhook.
 
-.. note:: Creating an Open or Click webhook will enable Open or Click tracking.
+.. note:: When adding a Click or Open webhook, ensure that you also have tracking enabled.
 
 .. container:: ptable
 
@@ -88,8 +88,6 @@ Updates an existing webhook.
      DELETE /domains/<domain>/webhooks/<webhookname>
 
 Deletes an existing webhook.
-
-.. note:: Deleting an Open or Click webhook will disable Open or Click tracking.
 
 .. note:: Mailgun imposes a rate limit for the Webhook API endpoint. Users may
 		  issue no more than 300 requests per minute, per account. See the resultant
