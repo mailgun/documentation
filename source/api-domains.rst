@@ -40,7 +40,10 @@ Returns a single domain, including credentials and DNS records. See examples bel
 
 Verifies and returns a single domain, including credentials and DNS records.
 If the domain is successfully verified the message should be the following:
-*Domain DNS records have been updated*
+*Domain DNS records have been updated*. For more information on verifying domains,
+visit the Mailgun `User Manual`_.
+
+.. _User Manual: https://documentation.mailgun.com/en/latest/user_manual.html#verifying-your-domain
 
 .. code-block:: url
 
