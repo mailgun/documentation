@@ -3,7 +3,9 @@
 Email Validation
 ================
 
-This API endpoint is an email address validation service. Given an arbitrary address, we will validate the address based on:
+This API endpoint is an email address validation service. We will validate the given address based on:
+
+- Mailbox detection
 
 - Syntax checks (RFC defined grammar)
 
@@ -15,9 +17,10 @@ This API endpoint is an email address validation service. Given an arbitrary add
 
 Pricing details for Mailgun's email validation service can be found on our `pricing page`_.
 
-Mailgun's email validation service is intended to validate email addresses submitted through forms like newsletters, online registrations and shopping carts.  It is not intended to be used for bulk email list scrubbing and we reserve the right to disable your account if we see it being used as such.
+Mailgun's email validation service is intended to validate email addresses submitted through forms like newsletters, online registrations and shopping carts.  Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to use the service appropriately.
 
 .. _pricing page: https://www.mailgun.com/pricing
+.. _Acceptable Use Policy (AUP): http://mailgun.com/aup
 
 
 Different email validation rates are given based on the API endpoint. Both the public and private
@@ -36,13 +39,17 @@ Given an arbitrary address, validates address based off defined checks.
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- address           An email address to validate. (Maximum: 512 characters)
- api_key           If you can not use HTTP Basic Authentication (preferred),
-                   you can pass your public api_key in as a parameter.
- ================= ========================================================
+ ====================== ========================================================
+ Parameter         	Description
+ ====================== ========================================================
+ address           	An email address to validate. (Maximum: 512 characters)
+ api_key          	If you cannot use HTTP Basic Authentication (preferred),
+                   	you can pass your public api_key in as a parameter.
+ mailbox_verification	If set to true, a mailbox verification check will be 
+ 			performed against the address.
+ 			
+			The default is `False`.
+ ====================== ========================================================
 
 .. code-block:: url
 
@@ -59,7 +66,7 @@ Parses a delimiter-separated list of email addresses into two lists: parsed addr
                    (Maximum: 8000 characters)
  syntax_only       Perform only syntax checks or DNS and ESP specific
                    validation as well. (true by default)
- api_key           If you can not use HTTP Basic Authentication (preferred),
+ api_key           If you cannot use HTTP Basic Authentication (preferred),
                    you can pass your public api_key in as a parameter.
  ================= ========================================================
 
@@ -67,23 +74,31 @@ Parses a delimiter-separated list of email addresses into two lists: parsed addr
 
     GET /address/private/validate
 
-Given an arbitrary address, validates address based off defined checks.
+Addresses are validated based off defined checks.
+
+This operation is only accessible with the private API key and not subject to the
+daily usage limits.
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- address           An email address to validate. (Maximum: 512 characters)
- api_key           If you can not use HTTP Basic Authentication (preferred),
-                   you can pass your private api_key in as a parameter.
- ================= ========================================================
+ ====================== ========================================================
+ Parameter         	Description
+ ====================== ========================================================
+ address           	An email address to validate. (Maximum: 512 characters)
+ mailbox_verification	If set to true, a mailbox verification check will be 
+ 			performed against the address.
+ 			
+			The default is `False`.
+ ====================== ========================================================
 
 .. code-block:: url
 
     GET /address/private/parse
 
 Parses a delimiter-separated list of email addresses into two lists: parsed addresses and unparsable portions. The parsed addresses are a list of addresses that are syntactically valid (and optionally pass DNS and ESP specific grammar checks). The unparsable list is a list of character sequences that could not be parsed (or optionally failed DNS or ESP specific grammar checks). Delimiter characters are comma (,) and semicolon (;).
+
+This operation is only accessible with the private API key and not subject to the
+daily usage limits.
 
 .. container:: ptable
 
@@ -113,7 +128,7 @@ Simple sample response:
       "address": "foo@mailgun.net",
       "did_you_mean": null,
       "is_disposable_address": false,
-      "is_role_address": false,
+      "is_role_address": true,
       "is_valid": true,
       "parts": {
           "display_name": null,
@@ -121,72 +136,28 @@ Simple sample response:
           "local_part": "foo"
       }
   }
-
-For all validation requests, we provide whether an address is a role-based address
-(e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
-with a much higher complaint rate since unsuspecting users on the list can receive
-a message they were not expecting.
-
-Role-based email address sample response:
+  
+Sample response with mailbox verification enabled:
 
 .. code-block:: javascript
 
   {
-      "address": "admin@samples.mailgun.org",
+      "address": "foo@mailgun.net",
       "did_you_mean": null,
       "is_disposable_address": false,
       "is_role_address": true,
       "is_valid": true,
+      "mailbox_verification": "true",
       "parts": {
           "display_name": null,
-          "domain": "samples.mailgun.org",
-          "local_part": "admin"
-      }
-  }
-
-Disposable mailboxes are commonly used for fraudulent purposes. Mailgun can detect
-whether the address provided is on a known disposable mailbox provider and given the
-determination, you may choose how to proceed based on your own risk decisions. It is
-important to check for disposable mailboxes to ensure communication between user
-and web application.
-
-Disposable email address sample response:
-
-.. code-block:: javascript
-
-  {
-      "address": "fake@throwawaymail.com",
-      "did_you_mean": null,
-      "is_disposable_address": true,
-      "is_role_address": false,
-      "is_valid": true,
-      "parts": {
-          "display_name": null,
-          "domain": "throwawaymail.com",
-          "local_part": "fake"
-      }
-  }
-
-SMTP Verification response:
-
-.. code-block:: javascript
-
-  {
-      "address": "foo@samples.mailgun.org",
-      "mailbox_verify": true,
-      "did_you_mean": null,
-      "is_disposable_address": false,
-      "is_role_address": false,
-      "is_valid": false,
-      "parts": {
-          "display_name": null,
-          "domain": "samples.mailgun.org",
+          "domain": "mailgun.net",
           "local_part": "foo"
       }
   }
+  
+.. note:: is_valid returns true when an address is parsable, passes known grammar checks and an SMTP server is present. The role-based and disposable address check will not impact the state of the `is_valid` result. The user should determine whether or not to permit the address to be used.
 
-.. note:: Mailbox verify will return true if the email is valid, false if the email
-was invalid, or unknown if the SMTP request could not be completed.
+.. note:: The mailbox verification attribute will return true if the email is valid, false if the email was invalid, or unknown if the SMTP request could not be completed. Unknown will also be returned if mailbox verification is not supported on the target mailbox provider. The outcome of the verification check will not impact the state of the is_valid result.
 
 Parse a list of email addresses.
 
