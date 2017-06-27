@@ -1727,8 +1727,8 @@ Mailgun's email validation service is intended for validating email addresses
 submitted through forms like newsletters, online registrations, and shopping carts.
 
 Maintaining a list of valid and deliverable email addresses is important in order
-to reduce the ratio of bounce back emails and prevent negative impacts to your
-mail server reputation.
+to reduce the ratio of bounce back emails and prevent negative impacts to your reputation
+as a sender.
 
 Validate a single email address.
 
@@ -1773,7 +1773,9 @@ Mailbox Verification
 
 Mailgun has the ability, for supported mailbox providers, to check and determine
 if a mailbox exists on the target domain. This check is an additional safeguard
-against typos.
+against typos. The mailbox verification check will return true, false, or unknown.
+Unknown may be returned if the mailbox provider does not support the check or the
+check times out.
 
 Role-based Address Check
 =======================
@@ -1782,23 +1784,6 @@ For all validation requests, we provide whether an address is a role-based addre
 (e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
 with a much higher complaint rate since unsuspecting users on the list can receive
 a message they were not expecting.
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-      "address": "admin@samples.mailgun.org",
-      "did_you_mean": null,
-      "is_disposable_address": false,
-      "is_role_address": true,
-      "is_valid": true,
-      "parts": {
-          "display_name": null,
-          "domain": "samples.mailgun.org",
-          "local_part": "postmaster"
-      }
-  }
 
 Disposable Mailbox Detection
 ============================
@@ -1819,6 +1804,7 @@ Sample response:
       "is_disposable_address": true,
       "is_role_address": false,
       "is_valid": true,
+      "mailbox_verification": true,
       "parts": {
           "display_name": null,
           "domain": "throwawaymail.com",
