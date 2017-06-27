@@ -8,11 +8,12 @@ Introduction
 
 This document is meant to be an overview of all of the capabilities of
 Mailgun and how you can best leverage those capabilities.  It is
-organized around the three major features that Mailgun provides:
+organized around the four major features that Mailgun provides:
 
 - `Sending Messages`_
 - `Tracking Messages`_
 - `Receiving, Forwarding and Storing Messages`_
+- `Email Validation`_
 
 At the heart of Mailgun is the API.  Most of the Mailgun service can be
 accessed through the RESTful HTTP API without the need to install any
@@ -50,7 +51,7 @@ to the pricing calculator on our `pricing page`_.
 If you are a high volume sender or if you are interested in a custom contract,
 you can contact sales@mailgunhq.com for more details.
 
-.. _pricing page: http://www.mailgun.com/pricing
+.. _pricing page: https://www.mailgun.com/pricing
 
 **Features**
 
@@ -60,6 +61,7 @@ There are some limitations if you have not given us your payment information:
 
 * There is a limit of 10,000 emails per month.
 * Data for Logs and the Events API are stored for 2 days.
+* There is a limit of 100 email validations per month.
 
 If you have given us your payment information, there is no limit on number of messages
 sent and/or received and data retention for Logs and the Events API is at least 30 days.
@@ -746,7 +748,6 @@ And here's a sample in Ruby:
 And here's a sample in PHP:
 
 .. code-block:: php
-   :class: display-always
 
     private function verify($apiKey, $token, $timestamp, $signature)
     {
@@ -1718,6 +1719,121 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
 ``X-Mailgun-Spf``
     Mailgun will perform an SPF validation, and results will be stored in this header.
     Possible values are: 'Pass', 'Neutral', 'Fail' or 'SoftFail'.
+
+Email Validation
+****************
+
+Mailgun's email validation service is intended for validating email addresses
+submitted through forms like newsletters, online registrations, and shopping carts.
+
+Maintaining a list of valid and deliverable email addresses is important in order
+to reduce the ratio of bounce back emails and prevent negative impacts to your
+mail server reputation.
+
+Validate a single email address.
+
+.. include:: samples/get-validate.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "foo@mailgun.net",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": false,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "mailgun.net",
+          "local_part": "foo"
+      }
+  }
+
+Parse a list of email addresses.
+
+.. include:: samples/get-parse.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "parsed": [
+          "Alice <alice@example.com>",
+          "bob@example.com"
+      ],
+      "unparseable": [
+      ]
+  }
+
+Mailbox Verification
+====================
+
+Mailgun has the ability, for supported mailbox providers, to check and determine
+if a mailbox exists on the target domain. This check is an additional safeguard
+against typos.
+
+Role-based Address Check
+=======================
+
+For all validation requests, we provide whether an address is a role-based address
+(e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
+with a much higher complaint rate since unsuspecting users on the list can receive
+a message they were not expecting.
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "admin@samples.mailgun.org",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": true,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "samples.mailgun.org",
+          "local_part": "postmaster"
+      }
+  }
+
+Disposable Mailbox Detection
+============================
+
+Disposable mailboxes are commonly used for fraudulent purposes. Mailgun can detect
+whether the address provided is on a known disposable mailbox provider and given the
+determination, you may choose how to proceed based on your own risk decisions. It is
+important to check for disposable mailboxes to ensure communication between user
+and web application.
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+      "address": "fake@throwawaymail.com",
+      "did_you_mean": null,
+      "is_disposable_address": true,
+      "is_role_address": false,
+      "is_valid": true,
+      "parts": {
+          "display_name": null,
+          "domain": "throwawaymail.com",
+          "local_part": "fake"
+      }
+  }
+
+Reporting Dashboard
+===================
+
+Within the validation menu, you can view your usage by day or hour for the validation
+API as well as the number of valid or invalid addresses. Mailgun will also include
+the type of API call that was made to help measure the impact of email address
+validation.
+
 
 .. _smtp:
 
