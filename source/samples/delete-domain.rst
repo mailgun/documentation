@@ -16,8 +16,8 @@
      // ...
 
      public static JsonNode deleteDomain() throws UnirestException{
-     
-	       HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME)
+
+	       HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/domain.example.com")
 			       .basicAuth("api", API_KEY)
 			       .asJson();
 
