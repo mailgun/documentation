@@ -6,36 +6,24 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse GetDomain() {
+     public static JsonNode getDomain() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME)
+			       .basicAuth("api", API_KEY)
+			       .queryString("skip", 0)
+		       	 .queryString("limit", 3)
+			       .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/{domain}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
+	       return request.getBody();
      }
  }
 
@@ -73,15 +61,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetDomainChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetDomain ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetDomain ()
      {
          RestClient client = new RestClient ();
@@ -94,7 +82,7 @@
          request.Resource = "/domains/{domain}";
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go

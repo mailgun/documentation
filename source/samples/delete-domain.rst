@@ -6,36 +6,22 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse DeleteDomain() {
+     public static JsonNode deleteDomain() throws UnirestException{
+     
+	       HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME)
+			       .basicAuth("api", API_KEY)
+			       .asJson();
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/domains/{domain}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildDelete()
-             .invoke(ClientResponse.class);
+	       return request.getBody();
      }
  }
 
@@ -72,15 +58,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class DeleteDomainChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (DeleteDomain ().Content.ToString ());
      }
- 
+
      public static IRestResponse DeleteDomain ()
      {
          RestClient client = new RestClient ();
@@ -94,7 +80,7 @@
          request.Method = Method.DELETE;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go

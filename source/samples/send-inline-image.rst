@@ -14,54 +14,30 @@
 
  import java.io.File;
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
- import org.glassfish.jersey.media.multipart.FormDataMultiPart;
- import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse SendInlineImage() {
+     public static JsonNode sendInlineImage() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+	       HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+	        	 .basicAuth("api", API_KEY)
+	       		 .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .queryString("to", "alice@example.com")
+             .queryString("to", "bob@example.com")
+	       		 .queryString("cc", "joe@example.com")
+             .queryString("subject", "Hello")
+             .queryString("text", "Testing out some Mailgun awesomeness!")
+	       		 .field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
+	       		 .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         FormDataMultiPart reqData = new FormDataMultiPart();
-         reqData.field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
-         reqData.field("to", "alice@example.com");
-         reqData.field("to", "bob@example.com");
-         reqData.field("cc", "joe@example.com");
-         reqData.field("subject", "Hello");
-         reqData.field("text", "Testing out some Mailgun awesomeness!");
-         reqData.field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>");
-
-         String file_separator = System.getProperty("file.separator");
-
-         File jpgFile = new File("files" + file_separator + "test.jpg");
-         form.bodyPart(new FileDataBodyPart("inline", jpgFile,
-             MediaType.APPLICATION_OCTET_STREAM_TYPE));
-
-         return mgRoot
-             .path("/{domain}/messages")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.MULTIPART_FORM_DATA_TYPE)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+	       return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -120,15 +96,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendInlineImageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendInlineImage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendInlineImage ()
      {
          RestClient client = new RestClient ();
@@ -149,7 +125,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
