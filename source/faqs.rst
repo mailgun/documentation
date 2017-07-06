@@ -254,7 +254,7 @@ Some of the factors that help you build a good reputation faster and increase de
 
 Also, consider letting your users to reply to your emails. Having a meaningful email conversations with your audience will do wonders for your reputation as a member of email community.
 
-Finally, there are certification and white label services that can help (although, you still need some history of sending).  We have a partnership with `Return Path`_ and get help get you signed up for their `Email Certification Program`_.  They have already audited our infrastructure so we can get you a discount off of their list pricing.
+Finally, there are certification and white label services that can help (although, you still need some history of sending).  We have a partnership with `Return Path`_ and can help get you signed up for their `Email Certification Program`_.  They have already audited our infrastructure so we can get you a discount off of their list pricing.
 
 .. _Email Certification Program: http://www.returnpath.com/solution-content/certification/
 
