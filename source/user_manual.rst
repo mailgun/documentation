@@ -1816,9 +1816,8 @@ Reporting Dashboard
 ===================
 
 Within the validation menu, you can view your usage by day or hour for the validation
-API as well as the number of valid or invalid addresses. Mailgun will also include
-the type of API call that was made to help measure the impact of email address
-validation.
+API in a given time range. Mailgun will also include the type of API call that was
+made to help measure the impact of email address validation.
 
 
 .. _smtp:
