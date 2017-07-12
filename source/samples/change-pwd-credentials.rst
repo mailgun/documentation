@@ -95,3 +95,12 @@
 .. code-block:: go
 
  // coming soon
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.put(`/domain/${DOMAIN}/credentials/alice`, {"password" : "supersecret"}, function (error, body) {
+   console.log(body);
+ });

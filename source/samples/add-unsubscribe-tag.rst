@@ -18,7 +18,7 @@
      // ...
 
      public static JsonNode addUnsubscribe() throws UnirestException{
-     
+
      		 HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
      				.basicAuth("api", API_KEY)
      				.field("address", "bob@example.com")
@@ -101,3 +101,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.Unsubscribe("bob@example.com", "tag1")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post(`/${DOMAIN}/unsubscribes`, {"address": 'bob@example.com', "tag":'tag1'}, function (error, body) {
+   console.log(body);
+ });

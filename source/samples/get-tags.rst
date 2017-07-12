@@ -16,7 +16,7 @@
      // ...
 
      public static JsonNode getTags() throws UnirestException{
-     
+
 		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME + "/tags")
 				     .basicAuth("api", API_KEY)
 				     .queryString("limit", 10)
@@ -94,3 +94,12 @@
 .. code-block:: go
 
  // Not supported yet.
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/${DOMAIN}/tags`, {"limit": 10}, function (error, body) {
+   console.log(body);
+ });

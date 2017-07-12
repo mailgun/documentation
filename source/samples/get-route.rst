@@ -90,3 +90,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.GetRouteByID("4e97c1b2ba8a48567f007fb6")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get('/routes/your_route_id', function (error, body) {
+   console.log(body);
+ });

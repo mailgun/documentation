@@ -7,15 +7,20 @@
 
 .. code-block:: java
 
-  public static JsonNode resendSimpleMessge() throws UnirestException{
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
-  HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
-      .basicAuth("api", API_KEY)
-      .queryString("to", "user@samples.mailgun.org")
-      .asJson();
+ public static JsonNode resendSimpleMessge() throws UnirestException{
 
-  return request.getBody();
-}
+     HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
+         .basicAuth("api", API_KEY)
+         .queryString("to", "user@samples.mailgun.org")
+         .asJson();
+
+     return request.getBody();
+ }
 
 
 .. code-block:: php
@@ -97,3 +102,9 @@
 
 
 .. code-block:: go
+
+ //coming soon
+
+.. code-block:: node
+
+ //coming soon

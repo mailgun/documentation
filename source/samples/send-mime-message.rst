@@ -116,3 +116,31 @@
    _, id, err := mg.Send(m)
    return id, err
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+ var mailcomposer = require('mailcomposer');
+
+ var mail = mailcomposer({
+   from: 'YOU@YOUR_DOMAIN_NAME',
+   to: 'bob@example.com',
+   subject: 'Hello',
+   text: 'Testing some Mailgun awesomeness!'
+ });
+
+ mail.build(function(mailBuildError, message) {
+
+     var dataToSend = {
+         to: 'bob@example.com',
+         message: message.toString('ascii')
+     };
+
+     mailgun.messages().sendMime(dataToSend, function (sendError, body) {
+         if (sendError) {
+             console.log(sendError);
+             return;
+         }
+     });
+ });

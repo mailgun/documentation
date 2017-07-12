@@ -153,3 +153,20 @@
    _, id, err = mg.Send(m)
    return id, err
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'alice@example.com, bob@example.com',
+   subject: 'Hey %recipient.first%',
+   text: 'If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%',
+       'recipient-variables': '{"alice@example.com": {"first":"Alice", "id":1}, "bob@example.com":{"first":"Bob", "id":2}}'
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });

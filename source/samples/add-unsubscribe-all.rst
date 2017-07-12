@@ -101,3 +101,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.Unsubscribe("bob@example.com", "*")
  }
+
+ .. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post(`/${DOMAIN}/unsubscribes`, {"address": 'bob@example.com', "tag":'*'}, function (error, body) {
+   console.log(body);
+ });

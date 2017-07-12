@@ -99,3 +99,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.CreateWebhook("deliver", "http://www.example.com")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'click', "url": 'http://bin.example.com/8de4a9c4'}, function (error, body) {
+   console.log(body);
+ });

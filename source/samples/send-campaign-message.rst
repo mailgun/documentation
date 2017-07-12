@@ -121,3 +121,22 @@
 .. code-block:: go
 
  // Not supported
+
+.. code-block:: node
+
+ var mailgun = require("mailgun-js");
+ var api_key = 'YOUR_API_KEY';
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'alice@examples.com',
+   subject: 'Hello',
+   text: 'Testing some Mailgun awesomeness!',
+   "o:campaign": 'campaign_id'
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });

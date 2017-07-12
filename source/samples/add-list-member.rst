@@ -126,3 +126,22 @@
    }
    return mg.CreateMember(true, "mailingList@example.com", memberJoe)
  }
+
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var list = mailgun.lists(`mylist@${DOMAIN}`);
+
+ var bob = {
+   subscribed: true,
+   address: 'bob@example.com',
+   name: 'Bob Barr',
+   vars: {age: 34}
+ };
+
+ list.members().create(bob, function (error, data) {
+   console.log(data);
+ });

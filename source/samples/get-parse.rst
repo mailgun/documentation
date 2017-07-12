@@ -20,7 +20,7 @@
 
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/parse")
 				     .basicAuth("api", API_KEY)
-				     .queryString("addresses", "bart@example.com, connor@example.com,megan@example.com, garfield@example.com")
+				     .queryString("addresses", "bob@example.com, alice@example.com")
 				     .asJson();
 
 		     return request.getBody();
@@ -100,3 +100,12 @@
      // ...
    )
  }
+
+.. code-block:: node
+
+var DOMAIN = 'YOUR_DOMAIN_NAME';
+var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
+
+mailgun.parse([ 'alice@example.com', 'bob@example.com', 'fake@email.com' ], function (error, body) {
+  console.log(body);
+});

@@ -127,3 +127,12 @@
      },
    })
  }
+
+ .. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post('/routes', {"priority": 0, "description": 'Sample route', "expression": 'match_recipient(".*@YOUR_DOMAIN_NAME")', "action": 'forward("http://myhost.com/messages/")', "action": 'stop()'}, function (error, body) {
+   console.log(body);
+ });
