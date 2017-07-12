@@ -103,7 +103,15 @@
 
 .. code-block:: go
 
- //coming soon
+ func ResendSimpleMessage(domain, apiKey string) (string, error) {
+   mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
+   m := mg.ResendMessage(
+     STORAGE_ID,
+     "YOU@YOUR_DOMAIN_NAME",
+   )
+   _, id, err := mg.Send(m)
+   return id, err
+ }
 
 .. code-block:: node
 
