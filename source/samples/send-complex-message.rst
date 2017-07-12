@@ -160,3 +160,27 @@
    _, id, err := mg.Send(m)
    return id, err
  }
+
+.. code-block:: node
+
+ const path = require('path');
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var api_key = 'YOUR_API_KEY';
+ var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
+
+ var filepath = path.join(__dirname, 'sample.jpg');
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'foo@example.com, baz@example.com, bar@example.com',
+   cc: 'baz@example.com',
+   bcc: 'bar@example.com',
+   subject: 'Complex',
+   text: 'Testing some Mailgun awesomness!',
+   html: "<html>HTML version of the body</html>",
+   attachment: filepath
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });

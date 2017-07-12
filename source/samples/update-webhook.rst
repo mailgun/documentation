@@ -20,7 +20,7 @@
 
          HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
              .basicAuth("api", API_KEY)
-             .field("url", "http://bin.example.com/8de4a9c4")
+             .field("url", "http://google.com")
              .asJson();
 
          return request.getBody();
@@ -97,3 +97,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.UpdateWebhook("deliver", "http://api.example.com")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.put(`/domain/${DOMAIN}/webhooks/click`, {"url": 'http://google.com'}, function (error, body) {
+   console.log(body);
+ });

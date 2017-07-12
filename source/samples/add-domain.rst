@@ -100,3 +100,12 @@
         mg := mailgun.NewMailgun(domain, apiKey, "")
         return mg.CreateDomain("YOUR_NEW_DOMAIN_NAME", "supersecretpassword", mailgun.Tag, false)
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post('/domains', {"name" : "YOUR_NEW_DOMAIN_NAME", "smtp_password" : "supersecret"}, function (error, body) {
+   console.log(body);
+ });

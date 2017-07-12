@@ -99,3 +99,12 @@
 .. code-block:: go
 
  // Not supported
+
+ .. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post(`/${DOMAIN}/mailboxes`, {"mailbox": "alice@${DOMAIN}", "password": "supersecret"}, function (error, body) {
+   console.log(body);
+ });

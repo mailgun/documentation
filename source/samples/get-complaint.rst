@@ -17,7 +17,7 @@
 
      public static JsonNode getComplaint() throws UnirestException{
 
-		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints/cassie@example.com")
+		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints/baz@example.com")
 				     .basicAuth("api", API_KEY)
 				     .asJson();
 
@@ -90,3 +90,13 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.GetSingleComplaint("baz@example.com")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/${DOMAIN}/complaints/baz@example.com`, function (error, body) {
+   console.log(body);
+ });
+ 

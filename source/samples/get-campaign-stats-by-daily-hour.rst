@@ -20,7 +20,7 @@
 
       HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/stats")
           .basicAuth("api", API_KEY)
-          .queryString("groupby", "dailyhour")
+          .queryString("groupby", "daily_hour")
           .queryString("limit", 2)
           .asJson();
 
@@ -96,3 +96,12 @@
 .. code-block:: go
 
  // Not supported
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`${DOMAIN}campaigns/my_campaign_id/stats`, {"groupby" : "daily_hour", "limit" : 2}, function (error, body) {
+  console.log(body);
+ });

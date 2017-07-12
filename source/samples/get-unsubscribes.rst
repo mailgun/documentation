@@ -16,7 +16,7 @@
      // ...
 
      public static JsonNode getUnsubscribes() throws UnirestException{
-     
+
 		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
 				     .basicAuth("api", API_KEY)
 				     .asJson();
@@ -91,3 +91,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.GetUnsubscribes(-1, -1)
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/${DOMAIN}/unsubscribes`, function (error, body) {
+   console.log(body);
+ });

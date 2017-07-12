@@ -4,7 +4,7 @@
     curl -s --user 'api:YOUR_API_KEY' \
     https://api.mailgun.net/v3/domains \
     -F name='YOUR_DOMAIN_NAME' \
-    -F smtp_password='supasecret'
+    -F smtp_password='supersecret'
 
 .. code-block:: java
 
@@ -101,3 +101,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.CreateDomain("YOUR_DOMAIN_NAME", "supersecretpw", mailgun.Tag, false)
  }
+
+.. code-block:: node
+
+  var DOMAIN = 'YOUR_DOMAIN_NAME';
+  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+  mailgun.post('/domains', {"name" : "YOUR_NEW_DOMAIN_NAME", "smtp_password" : "supersecret"}, function (error, body) {
+    console.log(body);
+  });

@@ -95,3 +95,14 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.DeleteMember("joe@example.com", "LIST@YOUR_DOMAIN_NAME")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var list = mailgun.lists(`mylist@${DOMAIN}`);
+
+ list.members('bob@example.com').delete(function (err, body) {
+   console.log(body);
+ });

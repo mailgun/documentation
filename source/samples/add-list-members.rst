@@ -123,3 +123,24 @@
      },
    })
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var members = [
+   {
+     address: 'Alice <alice@example.com>',
+     vars: { age: 26 }
+   },
+   {
+     name: 'Bob',
+     address: 'bob@example.com',
+     vars: { age: 34 }
+   }
+ ];
+
+ mailgun.lists(`mylist@${DOMAIN}`).members().add({ members: members, subscribed: true }, function (error, body) {
+   console.log(body);
+ });

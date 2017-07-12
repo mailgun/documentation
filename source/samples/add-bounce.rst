@@ -94,3 +94,13 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.AddBounce("bob@example.com", "550", "Undeliverable message error")
  }
+
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post(`/${DOMAIN}/bounces`, {'address': 'bob@example.com'}, function (error, body) {
+   console.log(body);
+ });

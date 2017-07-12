@@ -112,3 +112,14 @@
    })
    return err
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var list = mailgun.lists(`mylist@${DOMAIN}`);
+
+ list.members('bob@example.com').update({ "name": 'Bob Bar'}, function (error, data) {
+   console.log(data);
+ });

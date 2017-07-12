@@ -96,3 +96,12 @@
    mg := mailgun.NewMailgun(domain, "", publicApiKey)
    return mg.ValidateEmail("foo@mailgun.net")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
+
+ mailgun.validate('alice@example.com', function (error, body) {
+   console.log(body);
+ });

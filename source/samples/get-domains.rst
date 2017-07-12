@@ -98,3 +98,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.GetDomains(-1, -1)
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get('/domains', function (error, body) {
+   console.log(body);
+ });

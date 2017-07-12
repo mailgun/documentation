@@ -13,7 +13,7 @@
 .. code-block:: java
 
  import java.io.File;
- 
+
  import com.mashape.unirest.http.HttpResponse;
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
@@ -128,3 +128,23 @@
 .. code-block:: go
 
  // Coming soon
+
+.. code-block:: node
+
+ var mailgun = require("mailgun-js");
+ var api_key = 'YOUR_API_KEY';
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'bar@example.com, baz@example.com',
+   subject: 'Hello',
+   text: 'Testing some Mailgun awesomeness!',
+   "o:require-tls": 'True',
+   "o:skip-verification": 'False'
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });
