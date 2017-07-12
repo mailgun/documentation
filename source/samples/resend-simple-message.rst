@@ -107,4 +107,27 @@
 
 .. code-block:: node
 
- //coming soon
+var mailgun = require("mailgun-js");
+var Request = require('mailgun-js/lib/request');
+var api_key = 'YOUR_API_KEY';
+var DOMAIN = 'YOUR_DOMAIN_NAME';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+
+var data = {
+  "to": 'bar@example.com, alice@example.com',
+};
+
+var options = {
+   host: 'se.api.mailgun.net',
+   endpoint: '/v3',
+   protocol: 'https:',
+   port: 443,
+   auth: ['api', api_key].join(':'),
+   retry: 1
+ };
+
+var req = new Request(options);
+
+req.request('POST', `/domains/${DOMAIN}/messages/STORAGE_URL`, data, function (error, body) {
+  console.log(body);
+});
