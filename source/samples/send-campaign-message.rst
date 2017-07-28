@@ -11,45 +11,31 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
+ import java.io.File;
 
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse SendCampaignMessage() {
+     public static JsonNode sendCampaignMessage() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+		     HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+		     		.basicAuth("api", API_KEY)
+		     		.queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .queryString("to", "alice@example.com")
+             .queryString("to", "bob@example.com")
+             .queryString("subject", "Hello")
+             .queryString("text", "Testing out some Mailgun awesomeness!")
+             .field("o:campaign", "YOUR_CAMPAIGN_ID")
+		     		.asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
-         reqData.param("to", "alice@example.com");
-         reqData.param("to", "bob@example.com");
-         reqData.param("subject", "Hello");
-         reqData.param("text", "Testing out some Mailgun awesomeness!");
-         reqData.param("o:campaign", "YOUR_CAMPAIGN_ID");
-
-         return mgRoot
-             .path("/{domain}/messages")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	}
  }
 
 .. code-block:: php
@@ -101,15 +87,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendCampaignMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendCampaignMessage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendCampaignMessage ()
      {
          RestClient client = new RestClient ();
@@ -129,9 +115,28 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
 
  // Not supported
+
+.. code-block:: node
+
+ var mailgun = require("mailgun-js");
+ var api_key = 'YOUR_API_KEY';
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'alice@examples.com',
+   subject: 'Hello',
+   text: 'Testing some Mailgun awesomeness!',
+   "o:campaign": 'campaign_id'
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });

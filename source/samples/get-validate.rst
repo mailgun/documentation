@@ -7,37 +7,24 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse ValidateAddress() {
+     public static JsonNode validateEmail() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/validate")
+				     .basicAuth("api", PUBLIC_API_KEY)
+				     .queryString("address", "foo@mailgun.com")
+				     .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/address/validate")
-             .queryParam("address", "foo@mailgun.net")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -79,15 +66,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetValidateChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetValidate ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetValidate ()
      {
          RestClient client = new RestClient ();
@@ -100,7 +87,7 @@
          request.AddParameter ("address", "foo@mailgun.net");
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -109,3 +96,12 @@
    mg := mailgun.NewMailgun(domain, "", publicApiKey)
    return mg.ValidateEmail("foo@mailgun.net")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
+
+ mailgun.validate('alice@example.com', function (error, body) {
+   console.log(body);
+ });

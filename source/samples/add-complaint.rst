@@ -7,40 +7,24 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse AddComplaint() {
+     public static JsonNode addComplaint() throws UnirestException {
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+		     HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints")
+				     .basicAuth("api", API_KEY)
+				     .field("address", "bob@example.com")
+				     .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("address", "bob@example.com");
-
-         return mgRoot
-             .path("/{domain}/complaints")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -52,7 +36,7 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  
+
   # Issue the call to the client.
   $result = $mgClient->post("$domain/complaints", array('address' => 'bob@example.com'));
 
@@ -78,15 +62,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class AddComplaintChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (AddComplaint ().Content.ToString ());
      }
- 
+
      public static IRestResponse AddComplaint ()
      {
          RestClient client = new RestClient ();
@@ -101,7 +85,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -110,3 +94,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.CreateComplaint("bob@example.com")
  }
+
+ .. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post(`/${DOMAIN}/complaints`, {"address" : "bob@example.com"}, function (error, body) {
+   console.log(body);
+ });

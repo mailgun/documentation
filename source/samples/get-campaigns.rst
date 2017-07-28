@@ -6,38 +6,24 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse GetCampaigns() {
+     public static JsonNode getCampaigns() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+      HttpResponse<JsonNode> request =  Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns")
+          .basicAuth("api", API_KEY)
+          .queryString("limit", 2)
+          .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/{domain}/campaigns")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .queryParam("limit", 2)
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
-     }
+      return request.getBody();
+    }
  }
 
 .. code-block:: php
@@ -51,7 +37,10 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/campaigns", array('limit' => 5, 'skip' => 5));
+  $result = $mgClient->get("$domain/campaigns", array(
+      'limit' => 5,
+      'skip' => 5
+  ));
 
 .. code-block:: py
 
@@ -73,15 +62,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetCampaignsChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetCampaigns ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetCampaigns ()
      {
          RestClient client = new RestClient ();
@@ -95,10 +84,18 @@
          request.AddParameter ("limit", 2);
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
 
  // Not supported
 
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/${DOMAIN}/campaigns`, function (error, body) {
+   console.log(body);
+ });

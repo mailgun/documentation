@@ -8,43 +8,25 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse UpdateMailingListMember() {
+     public static JsonNode updateMembers() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/lists/LIST_NAME@YOUR_DOMAIN_NAME/members/alice@example.com")
+				      .basicAuth("api", API_KEY)
+				      .field("subscribed", false)
+				      .field("name", "Alice")
+				      .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("subscribed", "false");
-         reqData.param("name", "Alice Doe");
-
-         return mgRoot
-             .path("/lists/{list_name}@{domain}/members/{address}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("list_name", "YOUR_MAILING_LIST_NAME")
-             .resolveTemplate("address", "alice@example.com")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPut(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -90,15 +72,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class UpdateListMemberChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (UpdateListMember ().Content.ToString ());
      }
- 
+
      public static IRestResponse UpdateListMember ()
      {
          RestClient client = new RestClient ();
@@ -117,7 +99,7 @@
          request.Method = Method.PUT;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -130,3 +112,14 @@
    })
    return err
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var list = mailgun.lists(`mylist@${DOMAIN}`);
+
+ list.members('bob@example.com').update({ "name": 'Bob Bar'}, function (error, data) {
+   console.log(data);
+ });

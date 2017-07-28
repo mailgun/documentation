@@ -6,36 +6,23 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse GetMailingLists() {
+     public static JsonNode mailingLists() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/lists/pages")
+				     .basicAuth("api", API_KEY)
+				     .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/lists/pages")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+    }
  }
 
 .. code-block:: php
@@ -72,15 +59,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetMailingListsChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetMailingLists ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetMailingLists ()
      {
          RestClient client = new RestClient ();
@@ -92,9 +79,18 @@
          request.Resource = "lists/pages";
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
 
  // Coming soon
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post('/lists/pages', function (error, body) {
+   console.log(body);
+ });

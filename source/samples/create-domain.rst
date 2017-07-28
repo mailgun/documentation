@@ -4,44 +4,28 @@
     curl -s --user 'api:YOUR_API_KEY' \
     https://api.mailgun.net/v3/domains \
     -F name='YOUR_DOMAIN_NAME' \
-    -F smtp_password='supasecret'
+    -F smtp_password='supersecret'
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse CreateDomain() {
+     public static JsonNode addDomain() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains")
+			       .basicAuth("api", API_KEY)
+			       .field("name", "YOUR_NEW_DOMAIN_NAME")
+			       .field("smtp_password", "supersecretpassword")
+			       .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("name", "YOUR_DOMAIN_NAME");
-         reqData.param("smtp_password", "supersecret");
-
-         return mgRoot
-             .path("/domains")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+	       return jsonResponse.getBody();
      }
  }
 
@@ -85,15 +69,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class CreateDomainChunk
  {
- 
+
      public static void Main (string[]args)
      {
          Console.WriteLine (CreateDomain ().Content.ToString ());
      }
- 
+
      public static IRestResponse CreateDomain ()
      {
          RestClient client = new RestClient ();
@@ -108,7 +92,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -117,3 +101,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.CreateDomain("YOUR_DOMAIN_NAME", "supersecretpw", mailgun.Tag, false)
  }
+
+.. code-block:: node
+
+  var DOMAIN = 'YOUR_DOMAIN_NAME';
+  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+  mailgun.post('/domains', {"name" : "YOUR_NEW_DOMAIN_NAME", "smtp_password" : "supersecret"}, function (error, body) {
+    console.log(body);
+  });

@@ -11,44 +11,30 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
+ import java.io.File;
 
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse SendScheduled() {
+     public static JsonNode sendScheduledMessage() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+      	 HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+      	 		 .basicAuth("api", API_KEY)
+      	 		 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
+      	 		 .queryString("to", "bruce@example")
+      	 		 .queryString("subject", "Bah-weep-graaaaagnah wheep nini bong.")
+      	 		 .queryString("text", "Testing some MailGun awesomeness")
+      	 		 .field("o:deliverytime", "Sat, 20 May 2017 2:50:00 -0000")
+      	 		 .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
-         reqData.param("to", "alice@example.com");
-         reqData.param("subject", "Hello");
-         reqData.param("text", "Testing out some Mailgun awesomeness!");
-         reqData.param("o:deliverytime", "Fri, 14 Oct 2011 23:10:10 -0000");
-
-         return mgRoot
-             .path("/{domain}/messages")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+         return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -100,15 +86,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendScheduledMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendScheduledMessage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendScheduledMessage ()
      {
          RestClient client = new RestClient ();
@@ -128,7 +114,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -136,12 +122,31 @@
  func SendScheduledMessage(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
    m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>", 
-     "Hello", 
-     "Testing some Mailgun awesomeness!", 
+     "Excited User <YOU@YOUR_DOMAIN_NAME>",
+     "Hello",
+     "Testing some Mailgun awesomeness!",
      "bar@example.com",
    )
    m.SetDeliveryTime(time.Now().Add(5 * time.Minute))
    _, id, err := mg.Send(m)
    return id, err
  }
+
+.. code-block:: node
+
+ var mailgun = require("mailgun-js");
+ var api_key = 'YOUR_API_KEY';
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'bar@example.com',
+   subject: 'Scheduled Message',
+   text: 'Testing some Mailgun awesomeness!',
+   "o:deliverytime": 'Fri, 6 Jul 2017 18:10:10 -0000'
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });

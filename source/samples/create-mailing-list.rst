@@ -8,40 +8,25 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse CreateMailingList() {
+     public static JsonNode createMailingList() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists")
+				     .basicAuth("api", API_KEY)
+				     .field("address", "LIST@YOUR_DOMAIN_NAME")
+				     .field("description", "LIST_DESCRIPTION")
+				     .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("address", "LIST@YOUR_DOMAIN_NAME");
-         reqData.param("description", "LIST_DESCRIPTION");
-
-         return mgRoot
-             .path("/lists")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -83,18 +68,18 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class CreateMailingListChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (CreateMailingList ().Content.ToString ());
      }
- 
+
      public static IRestResponse CreateMailingList ()
      {
- 
+
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
          client.Authenticator =
@@ -107,7 +92,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -122,3 +107,13 @@
     }
     return mg.CreateList(protoList)
   }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post('/lists', {"address": `list_name@${DOMAIN}`, "description": "list_description"}, function (error, body) {
+   console.log(body);
+ });
+ 
