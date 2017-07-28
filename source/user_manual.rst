@@ -355,7 +355,7 @@ Example:
 
  X-Mailgun-Recipient-Variables: {"bob@example.com": {"first":"Bob", "id":1}, "alice@example.com": {"first":"Alice", "id": 2}}
  From: me@example.com
- To: alice@example.com, bob@example.com
+ To: %recipient%
  Date: 29 Mar 2016 00:23:35 -0700
  Subject: Hello, %recipient.first%!
  Message-Id: <20160329071939.35138.9413.6915422C@example.com>
