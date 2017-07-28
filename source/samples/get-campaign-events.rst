@@ -6,39 +6,25 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import javaimport com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse GetCampaignEvents() {
+     public static JsonNode getCampaignEvents() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+      HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/events")
+          .basicAuth("api", API_KEY)
+          .queryString("limit", 2)
+          .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
+      return request.getBody();
 
-         return mgRoot
-             .path("/{domain}/campaigns/{campaign_id}/events")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("campaign_id", "YOUR_COMPAIGN_ID")
-             .queryParam("limit", 2)
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
-     }
+    }
  }
 
 .. code-block:: php
@@ -79,15 +65,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetCampaignEventsChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetCampaignEvents ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetCampaignEvents ()
      {
          RestClient client = new RestClient ();
@@ -101,7 +87,7 @@
          request.AddParameter ("limit", 2);
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go

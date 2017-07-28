@@ -8,41 +8,25 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse CreateMailbox() {
+     public static JsonNode createMailbox() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+      HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/mailboxes")
+          .basicAuth("api", API_KEY)
+          .field("mailbox", "alice@example.com")
+          .field("password", "supersecret")
+          .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("mailbox", "alice@YOUR_DOMAIN_NAME");
-         reqData.param("password", "supersecret");
-
-         return mgRoot
-             .path("/{domain}/mailboxes")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+      return request.getBody();
+    }
  }
 
 .. code-block:: php
@@ -85,15 +69,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class CreateMailboxChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (CreateMailbox ().Content.ToString ());
      }
- 
+
      public static IRestResponse CreateMailbox ()
      {
          RestClient client = new RestClient ();
@@ -109,7 +93,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go

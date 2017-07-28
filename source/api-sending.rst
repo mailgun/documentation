@@ -261,6 +261,10 @@ An example of how to tag a message with the ``o:tag`` option:
 
 .. include:: samples/send-tagged-message.rst
 
+An example of how to resend a message:
+
+.. include:: samples/resend-simple-message.rst
+
 An example of how to decode Quoted-printable encoded messages:
 
 .. include:: samples/decode-quoted-printable.rst

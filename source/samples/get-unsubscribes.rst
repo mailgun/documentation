@@ -6,37 +6,23 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse GetUnsubscribes() {
+     public static JsonNode getUnsubscribes() throws UnirestException{
+     
+		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
+				     .basicAuth("api", API_KEY)
+				     .asJson();
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/{domain}/unsubscribes")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -75,15 +61,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetUnsubscribesChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetUnsubscribes ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetUnsubscribes ()
      {
          RestClient client = new RestClient ();
@@ -96,7 +82,7 @@
          request.Resource = "{domain}/unsubscribes";
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go

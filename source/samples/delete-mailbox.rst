@@ -6,39 +6,23 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse DeleteMailbox() {
+     public static JsonNode deleteMailbox() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+      HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/mailboxes/alice")
+          .basicAuth("api", API_KEY)
+          .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/{domain}/mailboxes/{username}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("username", "YOUR_MAILBOX_LOGIN")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildDelete()
-             .invoke(ClientResponse.class);
-     }
- }
+      return request.getBody();
+    }
 
 .. code-block:: php
 
@@ -74,15 +58,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class DeleteMailboxChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (DeleteMailbox ().Content.ToString ());
      }
- 
+
      public static IRestResponse DeleteMailbox ()
      {
          RestClient client = new RestClient ();
@@ -97,7 +81,7 @@
          request.Method = Method.DELETE;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go

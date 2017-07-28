@@ -10,43 +10,29 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
+ import java.io.File;
 
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse SendSimple() {
+     public static JsonNode sendSimpleMessage() throws UnirestException{
+		     HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+				     .basicAuth("api", API_KEY)
+				     .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
+				     .queryString("to", "artemis@example.com")
+				     .queryString("subject", "hello")
+				     .queryString("text", "testing")
+				     .asJson();
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
-         reqData.param("to", "alice@example.com");
-         reqData.param("subject", "Hello");
-         reqData.param("text", "Testing out some Mailgun awesomeness!");
-
-         return mgRoot
-             .path("/{domain}/messages")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
-     }
+		     return request.getBody();
+	   }
  }
 
 .. code-block:: php
@@ -95,15 +81,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendSimpleMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendSimpleMessage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendSimpleMessage ()
      {
          RestClient client = new RestClient ();
@@ -122,7 +108,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -130,9 +116,9 @@
  func SendSimpleMessage(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
    m := mg.NewMessage(
-     "Excited User <mailgun@YOUR_DOMAIN_NAME>", 
-     "Hello", 
-     "Testing some Mailgun awesomeness!", 
+     "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+     "Hello",
+     "Testing some Mailgun awesomeness!",
      "YOU@YOUR_DOMAIN_NAME",
    )
    _, id, err := mg.Send(m)

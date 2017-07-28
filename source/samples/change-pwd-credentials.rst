@@ -7,40 +7,23 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse ChangeCredentialPassword() {
+     public static JsonNode updatePassword() throws UnirestException{
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice")
+			       .basicAuth("api", API_KEY)
+			       .field("password", "supersecret")
+			       .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("password", "supersecret");
-
-         return mgRoot
-             .path("/{domain}/credentials/{username}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("username", "YOUR_MAILBOX_USER")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPut(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+	       return jsonResponse.getBody();
      }
  }
 
@@ -82,15 +65,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class ChangePwdCredentialsChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (ChangeCredentialPassword ().Content.ToString ());
      }
- 
+
      public static IRestResponse ChangeCredentialPassword ()
      {
          RestClient client = new RestClient ();
@@ -106,7 +89,7 @@
          request.Method = Method.PUT;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
