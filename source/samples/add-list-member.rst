@@ -28,7 +28,7 @@
 				     .field("address", "bob@example.com")
 				     .field("name", "Bob Bar")
 				     .field("description", "developer")
-             .field("vars", "{\"age\": 26}")
+                     .field("vars", "{\"age\": 26}")
 				     .asJson();
 
 		     return request.getBody();
