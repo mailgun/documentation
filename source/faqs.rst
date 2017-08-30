@@ -313,7 +313,7 @@ One of the best resources is the blog `Word to the Wise`_.  Also, `Return Path`_
 - `Yahoo Best Practices`_
 
 .. _Word to the Wise: http://blog.wordtothewise.com/
-.. _AOL Best Practices: http://postmaster-us.info.aol.com/Postmaster.Guidelines.php
+.. _AOL Best Practices: https://postmaster.aol.com/best-practices
 .. _Yahoo Best Practices: https://help.yahoo.com/kb/postmaster/practices-senders-sln3435.html
 .. _Hotmail Best Practices: http://mail.live.com/mail/policies.aspx
 .. _Gmail Best Practices: https://support.google.com/mail/answer/81126?hl=en
