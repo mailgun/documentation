@@ -10,19 +10,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getSingleRoute() throws UnirestException{
-
-		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/routes/YOUR_ROUTE_ID")
-				     .basicAuth("api", API_KEY)
-				     .asJson();
-
-		     return request.getBody();
-	   }
+ 
+     public static JsonNode getSingleRoute() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/routes/YOUR_ROUTE_ID")
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

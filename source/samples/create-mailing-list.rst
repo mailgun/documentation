@@ -12,21 +12,21 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode createMailingList() throws UnirestException{
-
+ 
+     public static JsonNode createMailingList() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists")
-				     .basicAuth("api", API_KEY)
-				     .field("address", "LIST@YOUR_DOMAIN_NAME")
-				     .field("description", "LIST_DESCRIPTION")
-				     .asJson();
-
-		     return request.getBody();
-	   }
+             .basicAuth("api", API_KEY)
+             .field("address", "LIST@YOUR_DOMAIN_NAME")
+             .field("description", "LIST_DESCRIPTION")
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php
@@ -116,4 +116,3 @@
  mailgun.post('/lists', {"address": `list_name@${DOMAIN}`, "description": "list_description"}, function (error, body) {
    console.log(body);
  });
- 

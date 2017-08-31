@@ -17,16 +17,16 @@
 
      // ...
 
-     public static JsonNode updateMembers() throws UnirestException{
+     public static JsonNode updateMembers() throws UnirestException {
 
          HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/lists/LIST_NAME@YOUR_DOMAIN_NAME/members/alice@example.com")
-				      .basicAuth("api", API_KEY)
-				      .field("subscribed", false)
-				      .field("name", "Alice")
-				      .asJson();
+		     .basicAuth("api", API_KEY)
+	         .field("subscribed", false)
+             .field("name", "Alice")
+             .asJson();
 
-		     return request.getBody();
-	   }
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

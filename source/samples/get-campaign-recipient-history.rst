@@ -11,21 +11,21 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getRecipientHistory() throws UnirestException{
-
-      HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/events")
-          .basicAuth("api", API_KEY)
-          .queryString("recipient", "bob@example.com")
-          .queryString("limit", 2)
-          .asJson();
-
-      return request.getBody();
-    }
+ 
+     public static JsonNode getRecipientHistory() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/events")
+             .basicAuth("api", API_KEY)
+             .queryString("recipient", "bob@example.com")
+             .queryString("limit", 2)
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php
@@ -106,4 +106,3 @@
  mailgun.get(`${DOMAIN}campaigns/my_campaign_id/events`, {"recipient" : "baz@example.com", "limit" : 2}, function (error, body) {
    console.log(body);
  });
- 

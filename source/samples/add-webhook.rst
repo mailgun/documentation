@@ -11,21 +11,21 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode addWebhook() throws UnirestException{
-
+ 
+     public static JsonNode addWebhook() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
-				     .basicAuth("api", API_KEY)
-				     .field("id","click")
-				     .field("url", "http://bin.example.com/8de4a9c4")
-			       .asJson();
-
-		     return request.getBody();
-	   }
+ 		      .basicAuth("api", API_KEY)
+ 			  .field("id","click")
+ 		      .field("url", "http://bin.example.com/8de4a9c4")
+ 		      .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

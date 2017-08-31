@@ -9,17 +9,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getListExports() throws UnirestException{
-
+ 
+     public static JsonNode getListExports() throws UnirestException {
+ 
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/exports")
-            .basicAuth("api", API_KEY)
-            .asJson();
-
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
          return request.getBody();
      }
  }
@@ -64,8 +64,7 @@
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
- 
+
  mailgun.get('/exports', function (error, body) {
    console.log(body);
  });
- 

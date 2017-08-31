@@ -15,24 +15,24 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode addListMember() throws UnirestException{
-
+ 
+     public static JsonNode addListMember() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members")
-				     .basicAuth("api", API_KEY)
-				     .field("subscribed", true)
-				     .field("address", "bob@example.com")
-				     .field("name", "Bob Bar")
-				     .field("description", "developer")
-                     .field("vars", "{\"age\": 26}")
-				     .asJson();
-
-		     return request.getBody();
-	   }
+             .basicAuth("api", API_KEY)
+             .field("subscribed", true)
+             .field("address", "bob@example.com")
+             .field("name", "Bob Bar")
+             .field("description", "developer")
+             .field("vars", "{\"age\": 26}")
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

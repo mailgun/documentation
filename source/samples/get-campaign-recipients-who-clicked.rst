@@ -11,21 +11,21 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getClicks() throws UnirestException{
-
-      HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/clicks")
-          .basicAuth("api", API_KEY)
-          .queryString("groupby", "recipient")
-          .queryString("limit", 2)
-          .asJson();
-
-      return request.getBody();
-    }
+ 
+     public static JsonNode getClicks() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/clicks")
+             .basicAuth("api", API_KEY)
+             .queryString("groupby", "recipient")
+             .queryString("limit", 2)
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

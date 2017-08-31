@@ -13,23 +13,23 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getStats() throws UnirestException{
-
+ 
+     public static JsonNode getStats() throws UnirestException {
+ 
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/stats/total")
-				     .basicAuth("api", API_KEY)
-				     .queryString("event", "accepted")
-				     .queryString("event", "delivered")
-				     .queryString("event", "failed")
-			       .queryString("duration","1m")
-			       .asJson();
-
-		     return request.getBody();
-	   }
+             .basicAuth("api", API_KEY)
+             .queryString("event", "accepted")
+             .queryString("event", "delivered")
+             .queryString("event", "failed")
+             .queryString("duration","1m")
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

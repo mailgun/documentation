@@ -14,21 +14,22 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getLogs() throws UnirestException{
-		     HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/events")
-				     .basicAuth("api", API_KEY)
-				     .queryString("begin", "Thurs, 18 May 2017 09:00:00 -0000")
-				     .queryString("ascending", "yes")
-				     .queryString("limit", 1)
-				     .asJson();
-
-		     return request.getBody();
-	   }
+ 
+     public static JsonNode getLogs() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/events")
+             .basicAuth("api", API_KEY)
+             .queryString("begin", "Thurs, 18 May 2017 09:00:00 -0000")
+             .queryString("ascending", "yes")
+             .queryString("limit", 1)
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

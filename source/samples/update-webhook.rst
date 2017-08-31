@@ -16,7 +16,7 @@
 
      // ...
 
-     public static JsonNode updateWebhook() throws UnirestException{
+     public static JsonNode updateWebhook() throws UnirestException {
 
          HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
              .basicAuth("api", API_KEY)

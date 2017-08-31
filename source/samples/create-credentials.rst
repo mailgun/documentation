@@ -12,20 +12,20 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode createCredentials() throws UnirestException{
-
+ 
+     public static JsonNode createCredentials() throws UnirestException {
+ 
          HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME +"/credentials")
-			       .basicAuth("api", API_KEY)
-			       .field("login", "alice@YOUR_DOMAIN_NAME.com")
-			       .field("password", "supersecretpassword")
-			       .asJson();
-
-	       return jsonResponse.getBody();
+             .basicAuth("api", API_KEY)
+             .field("login", "alice@YOUR_DOMAIN_NAME.com")
+             .field("password", "supersecretpassword")
+             .asJson();
+ 
+         return jsonResponse.getBody();
      }
  }
 

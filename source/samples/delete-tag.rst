@@ -10,19 +10,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode deleteTag() throws UnirestException{
-
+ 
+     public static JsonNode deleteTag() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME + "/tags/newsletter")
-				     .basicAuth("api", API_KEY)
-				     .asJson();
-
-		     return request.getBody();
-	   }
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php
@@ -96,7 +96,7 @@
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
- 
+
  mailgun.delete(`/${DOMAIN}/tags/newsletter`, function (error, body) {
    console.log(body);
  });

@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getRoutes() throws UnirestException{
-
+ 
+     public static JsonNode getRoutes() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/routes")
              .basicAuth("api", API_KEY)
              .queryString("skip", "0")
              .queryString("limit","5")
              .asJson();
-
+ 
          return request.getBody();
      }
  }

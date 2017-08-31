@@ -8,22 +8,23 @@
 
 .. code-block:: java
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getLogEntry() throws UnirestException{
+ 
+     public static JsonNode getLogEntry() throws UnirestException {
+ 
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/log")
              .basicAuth("api", API_KEY)
              .queryString("limit", 1)
              .queryString("skip", 50)
              .asJson();
-
+ 
          return request.getBody();
      }
  }

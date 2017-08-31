@@ -12,21 +12,21 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode addListMembers() throws UnirestException{
-
+ 
+     public static JsonNode addListMembers() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members.json")
-				     .basicAuth("api", API_KEY)
-				     .field("upsert", true)
-				     .field("members", "[{\"address\": \"Alice <alice@example.com>\", \"vars\": {\"age\": 26}},{\"name\": \"Bob\", \"address\": \"bob@example.com\", \"vars\": {\"age\": 34}}]")
-				     .asJson();
-
-		     return request.getBody();
-	   }
+ 			.basicAuth("api", API_KEY)
+ 		    .field("upsert", true)
+ 		    .field("members", "[{\"address\": \"Alice <alice@example.com>\", \"vars\": {\"age\": 26}},{\"name\": \"Bob\", \"address\": \"bob@example.com\", \"vars\": {\"age\": 34}}]")
+ 		    .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

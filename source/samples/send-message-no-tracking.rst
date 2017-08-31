@@ -22,19 +22,19 @@
 
      // ...
 
-     public static JsonNode sendMessageNoTracking() throws UnirestException{
+     public static JsonNode sendMessageNoTracking() throws UnirestException {
 
-		     HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-				     .basicAuth("api", API_KEY)
-				     .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-				     .queryString("to", "alice@example.com")
-				     .queryString("subject", "Hello")
-				     .queryString("text", "Testing some Mailgun awesomeness")
-				     .field("o:tracking", "False")
-				     .asJson();
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+            .basicAuth("api", API_KEY)
+            .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+ 			.queryString("to", "alice@example.com")
+ 	        .queryString("subject", "Hello")
+ 		    .queryString("text", "Testing some Mailgun awesomeness")
+ 		    .field("o:tracking", "False")
+ 		    .asJson();
 
-		     return request.getBody();
-	   }
+         return request.getBody();
+     }
  }
 
 .. code-block:: php
@@ -138,7 +138,7 @@
  var api_key = 'YOUR_API_KEY';
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
- 
+
  var data = {
    from: 'Excited User <me@samples.mailgun.org>',
    to: 'alice@example.com',
@@ -146,7 +146,7 @@
    text: 'Testing some Mailgun awesomeness!',
    "o:tracking": 'False'
  };
- 
+
  mailgun.messages().send(data, function (error, body) {
    console.log(body);
  });

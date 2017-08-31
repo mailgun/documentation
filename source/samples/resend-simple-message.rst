@@ -11,14 +11,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
- public static JsonNode resendSimpleMessge() throws UnirestException{
-
-     HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
-         .basicAuth("api", API_KEY)
-         .queryString("to", "user@samples.mailgun.org")
-         .asJson();
-
+ 
+ public class MGSample {
+ 
+     // ...
+ 
+     public static JsonNode resendSimpleMessge() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
+             .basicAuth("api", API_KEY)
+             .queryString("to", "user@samples.mailgun.org")
+             .asJson();
+ 
      return request.getBody();
  }
 
@@ -116,7 +120,7 @@
  var data = {
    "to": 'bar@example.com, alice@example.com',
  };
- 
+
  var options = {
     host: 'se.api.mailgun.net',
     endpoint: '/v3',

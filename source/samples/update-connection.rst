@@ -17,15 +17,15 @@
 
      // ...
 
-     public static JsonNode updateConnections() throws UnirestException{
+     public static JsonNode updateConnections() throws UnirestException {
 
-	       HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/"+ YOUR_DOMAIN_NAME +"/connection")
-			       .basicAuth("api", API_KEY)
-			       .field("require_tls", true)
-			       .field("skip_verification", false)
-			       .asJson();
+         HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/"+ YOUR_DOMAIN_NAME +"/connection")
+             .basicAuth("api", API_KEY)
+		     .field("require_tls", true)
+		     .field("skip_verification", false)
+	         .asJson();
 
-	       return jsonResponse.getBody();
+         return jsonResponse.getBody();
      }
  }
 

@@ -23,22 +23,21 @@
 
      // ...
 
-     public static JsonNode sendConnection() throws UnirestException{
+     public static JsonNode sendConnection() throws UnirestException {
 
-		      HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-		      		.basicAuth("api", API_KEY)
-		      		.queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-              .queryString("to", "alice@example.com")
-              .queryString("to", "bob@example.com")
-              .queryString("subject", "Hello")
-              .queryString("text", "Testing out some Mailgun awesomeness!")
-              .field("o:require-tls", "true")
-              .field("o:skip-verification", "false")
-		      		.asJson();
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+	         .basicAuth("api", API_KEY)
+	      	 .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .queryString("to", "alice@example.com")
+             .queryString("to", "bob@example.com")
+             .queryString("subject", "Hello")
+             .queryString("text", "Testing out some Mailgun awesomeness!")
+             .field("o:require-tls", "true")
+             .field("o:skip-verification", "false")
+             .asJson();
 
-		      return request.getBody();
-	}
-
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

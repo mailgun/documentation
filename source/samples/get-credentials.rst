@@ -15,12 +15,13 @@
 
      // ...
 
-     public static JsonNode getCredentials() throws UnirestException{
-	       HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/credentials")
-			       .basicAuth("api", API_KEY)
-			       .asJson();
+     public static JsonNode getCredentials() throws UnirestException {
 
-	       return request.getBody();
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/credentials")
+             .basicAuth("api", API_KEY)
+             .asJson();
+
+         return request.getBody();
      }
  }
 

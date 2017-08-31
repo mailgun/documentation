@@ -26,22 +26,22 @@
 
      // ...
 
-     public static JsonNode sendComplexMessage() throws UnirestException{
+     public static JsonNode sendComplexMessage() throws UnirestException {
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-			     	 .basicAuth("api", API_KEY)
-			     	 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
-			     	 .queryString("to", "alice@example.com")
-			     	 .queryString("cc", "bob@example.com")
-			     	 .queryString("bcc", "joe@example.com")
-			     	 .queryString("subject", "Hello")
-			     	 .queryString("text", "Testing out some Mailgun awesomeness!")
-			     	 .queryString("html", "<html>HTML version </html>")
-			     	 .field("attachment", new File("/temp/folder/test.txt"))
-			     	 .asJson();
+	         .basicAuth("api", API_KEY)
+	      	 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
+	      	 .queryString("to", "alice@example.com")
+	      	 .queryString("cc", "bob@example.com")
+	      	 .queryString("bcc", "joe@example.com")
+	      	 .queryString("subject", "Hello")
+	      	 .queryString("text", "Testing out some Mailgun awesomeness!")
+	      	 .queryString("html", "<html>HTML version </html>")
+	      	 .field("attachment", new File("/temp/folder/test.txt"))
+	      	 .asJson();
 
-		     return request.getBody();
-	   }
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

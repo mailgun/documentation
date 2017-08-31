@@ -11,18 +11,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode createExports() throws UnirestException{
-
+ 
+     public static JsonNode createExports() throws UnirestException {
+ 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/exports")
              .basicAuth("api", API_KEY)
-				     .field("url", "/v3/domains")
+             .field("url", "/v3/domains")
              .asJson();
-
+ 
          return request.getBody();
      }
  }

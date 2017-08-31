@@ -10,18 +10,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode deleteDomain() throws UnirestException{
-
-	       HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/domain.example.com")
-			       .basicAuth("api", API_KEY)
-			       .asJson();
-
-	       return request.getBody();
+ 
+     public static JsonNode deleteDomain() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/domain.example.com")
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 

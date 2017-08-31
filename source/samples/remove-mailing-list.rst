@@ -10,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode removeMailingList() throws UnirestException{
-
+ 
+     public static JsonNode removeMailingList() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/lists/YoungJustice@example.com")
              .basicAuth("api", API_KEY)
              .asJson();
-
+ 
          return request.getBody();
      }
  }

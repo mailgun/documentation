@@ -23,19 +23,19 @@
 
      // ...
 
-     public static JsonNode sendTaggedMessage() throws UnirestException{
+     public static JsonNode sendTaggedMessage() throws UnirestException {
 
-		     HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-				     .basicAuth("api", API_KEY)
-				     .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-				     .queryString("to", "alice@example")
-				     .queryString("subject", "Hello.")
-				     .queryString("text", "Testing some Mailgun awesomeness")
-				     .field("o:tag", "newsletters")
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+             .basicAuth("api", API_KEY)
+		     .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .queryString("to", "alice@example")
+             .queryString("subject", "Hello.")
+             .queryString("text", "Testing some Mailgun awesomeness")
+             .field("o:tag", "newsletters")
              .field("o:tag", "September newsletter")
-				     .asJson();
+             .asJson();
 
-		     return request.getBody();
+         return request.getBody();
      }
  }
 

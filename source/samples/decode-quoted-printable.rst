@@ -55,7 +55,7 @@
 
      public void doThings()
      {
-         // ...
+             // ...
          var decodedMessage = DecodeQuotedPrintable(encodedMessage);
      }
  }

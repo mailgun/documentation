@@ -31,6 +31,7 @@
  public class MGSendSimpleSMTP {
 
      public static void main(String args[]) throws Exception {
+
          Properties props = System.getProperties();
          props.put("mail.smtps.host", "smtp.mailgun.org");
          props.put("mail.smtps.auth", "true");
@@ -139,15 +140,15 @@
  using MimeKit;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SmtpMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          SendMessageSmtp ();
      }
- 
+
      public static void SendMessageSmtp ()
      {
          // Compose a message
@@ -158,21 +159,21 @@
          mail.Body = new TextPart ("plain") {
              Text = @"Testing some Mailgun awesomesauce!",
          };
- 
+
          // Send it!
          using (var client = new SmtpClient ()) {
              // XXX - Should this be a little different?
              client.ServerCertificateValidationCallback = (s, c, h, e) => true;
- 
+
              client.Connect ("smtp.mailgun.org", 587, false);
              client.AuthenticationMechanisms.Remove ("XOAUTH2");
              client.Authenticate ("postmaster@YOUR_DOMAIN_NAME", "3kh9umujora5");
- 
+
              client.Send (mail);
              client.Disconnect (true);
          }
      }
- 
+
  }
 
 .. code-block:: go
@@ -194,4 +195,3 @@
 	 	panic(err)
 	 }
  }
-

@@ -14,25 +14,24 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode createRoute() throws UnirestException{
-
-		     HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/routes")
-				     .basicAuth("api", API_KEY)
-				     .field("priority", "0")
-				     .field("description", "sample route")
-				     .field("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')")
-				     .field("action", "forward('http://myhost.com/messages/')")
-				     .field("action", "stop()")
-				     .asJson();
-
-		     return request.getBody();
-	   }
-
+ 
+     public static JsonNode createRoute() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/routes")
+             .basicAuth("api", API_KEY)
+             .field("priority", "0")
+             .field("description", "sample route")
+             .field("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')")
+             .field("action", "forward('http://myhost.com/messages/')")
+             .field("action", "stop()")
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

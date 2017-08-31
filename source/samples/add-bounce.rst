@@ -16,15 +16,15 @@
 
      // ...
 
-     public static JsonNode addBounce() throws UnirestException{
+     public static JsonNode addBounce() throws UnirestException {
 
          HttpResponse <JsonNode> request =  Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/bounces")
-				     .basicAuth("api", API_KEY)
-				     .field("address", "bob@example.com")
-				     .asJson();
+             .basicAuth("api", API_KEY)
+             .field("address", "bob@example.com")
+             .asJson();
 
-		     return request.getBody();
-	   }
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

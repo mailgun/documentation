@@ -11,20 +11,20 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode parseAddresses() throws UnirestException{
-
+ 
+     public static JsonNode parseAddresses() throws UnirestException {
+ 
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/parse")
-				     .basicAuth("api", API_KEY)
-				     .queryString("addresses", "bob@example.com, alice@example.com")
-				     .asJson();
-
-		     return request.getBody();
-	   }
+ 			.basicAuth("api", API_KEY)
+ 		    .queryString("addresses", "bob@example.com, alice@example.com")
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php

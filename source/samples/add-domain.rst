@@ -12,20 +12,20 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode addDomain() throws UnirestException{
-
-	       HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains")
-			       .basicAuth("api", API_KEY)
-			       .field("name", "YOUR_NEW_DOMAIN_NAME")
-			       .field("smtp_password", "supersecretpassword")
-			       .asJson();
-
-	       return jsonResponse.getBody();
+ 
+     public static JsonNode addDomain() throws UnirestException {
+ 
+         HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains")
+             .basicAuth("api", API_KEY)
+             .field("name", "YOUR_NEW_DOMAIN_NAME")
+             .field("smtp_password", "supersecretpassword")
+             .asJson();
+ 
+         return jsonResponse.getBody();
      }
  }
 

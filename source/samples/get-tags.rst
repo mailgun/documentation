@@ -10,20 +10,20 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode getTags() throws UnirestException{
-
-		     HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME + "/tags")
-				     .basicAuth("api", API_KEY)
-				     .queryString("limit", 10)
-				     .asJson();
-
-		     return request.getBody();
-	   }
+ 
+     public static JsonNode getTags() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME + "/tags")
+             .basicAuth("api", API_KEY)
+             .queryString("limit", 10)
+             .asJson();
+ 
+         return request.getBody();
+     }
  }
 
 .. code-block:: php
