@@ -7,39 +7,23 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse CreateExport() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("url", "/v3/domains");
-
-         return mgRoot
-             .path("/exports")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode createExports() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/exports")
+             .basicAuth("api", API_KEY)
+             .field("url", "/v3/domains")
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -96,3 +80,12 @@
 .. code-block:: go
 
     Exports are unsupported in the go client bindings
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post('/exports', {"url": "/v3/domains"}, function (error, body) {
+   console.log(body);
+ });

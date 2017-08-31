@@ -12,44 +12,30 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
+ import java.io.File;
 
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse SendTagged() {
+     public static JsonNode sendTaggedMessage() throws UnirestException {
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+             .basicAuth("api", API_KEY)
+		     .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .queryString("to", "alice@example")
+             .queryString("subject", "Hello.")
+             .queryString("text", "Testing some Mailgun awesomeness")
+             .field("o:tag", "newsletters")
+             .field("o:tag", "September newsletter")
+             .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("from", "Excited User <YOU@YOUR_DOMAIN_NAME>");
-         reqData.param("to", "alice@example.com");
-         reqData.param("subject", "Hello");
-         reqData.param("text", "Testing out some Mailgun awesomeness!");
-         reqData.param("o:tag", "September newsletter");
-         reqData.param("o:tag", "newsletters");
-
-         return mgRoot
-             .path("/{domain}/messages")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+         return request.getBody();
      }
  }
 
@@ -105,15 +91,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendTaggedMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendTaggedMessage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendTaggedMessage ()
      {
          RestClient client = new RestClient ();
@@ -133,7 +119,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -141,9 +127,9 @@
  func SendTaggedMessage(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
    m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>", 
-     "Hello", 
-     "Testing some Mailgun awesomeness!", 
+     "Excited User <YOU@YOUR_DOMAIN_NAME>",
+     "Hello",
+     "Testing some Mailgun awesomeness!",
      "bar@example.com",
    )
    m.AddTag("FooTag")
@@ -152,3 +138,23 @@
    _, id, err := mg.Send(m)
    return id, err
  }
+
+.. code-block:: node
+
+ var mailgun = require("mailgun-js")
+ var api_key = 'YOUR_API_KEY';
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+
+ var data = {
+   from: 'Excited User <me@samples.mailgun.org>',
+   to: 'alice@example',
+   subject: 'Tagged',
+   text: 'Testing some Mailgun awesomeness!',
+   "o:tag" : 'newsletters',
+   "o:tag" : 'September newsletter'
+ };
+
+ mailgun.messages().send(data, function (error, body) {
+   console.log(body);
+ });

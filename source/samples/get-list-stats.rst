@@ -6,37 +6,22 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse GetListStates() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/lists/{list_name}@{domain}/stats")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("list_name", "YOUR_MAILING_LIST_NAME")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode getListStats() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/lists/YOUR_LIST@YOUR_DOMAIN_NAME/stats")
+             .basicAuth("api", API_KEY)
+             .asJson()
+ 
+         return request.getBody();
      }
  }
 
@@ -76,15 +61,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetListStatsChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetListStats ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetListStats ()
      {
          RestClient client = new RestClient ();
@@ -98,9 +83,18 @@
                                ParameterType.UrlSegment);
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
 
  // Coming soon
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/lists/mylist@${DOMAIN}/stats`, function (error, body) {
+   console.log(body);
+ });

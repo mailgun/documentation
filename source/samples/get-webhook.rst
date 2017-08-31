@@ -6,36 +6,22 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse GetWebhook() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/domains/{domain}/webhooks/click")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode getWebhookEvent() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -73,15 +59,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetWebhookChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetWebhook ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetWebhook ()
      {
          RestClient client = new RestClient ();
@@ -94,7 +80,7 @@
          request.Resource = "/domains/{domain}/webhooks/click";
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -103,3 +89,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.GetWebhookByType("deliver")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/domain/${DOMAIN}/webhooks/click`, function (error, body) {
+   console.log(body);
+ });

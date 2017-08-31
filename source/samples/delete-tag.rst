@@ -6,37 +6,22 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse DeleteTag() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/{domain}/tags/{tag}")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .resolveTemplate("tag", "TAG_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildDelete()
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode deleteTag() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME + "/tags/newsletter")
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -74,15 +59,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class DeleteTagChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (DeleteTag ().Content.ToString ());
      }
- 
+
      public static IRestResponse DeleteTag ()
      {
          RestClient client = new RestClient ();
@@ -97,7 +82,7 @@
          request.Method = Method.DELETE;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -106,3 +91,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.DeleteTag("newsletter")
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.delete(`/${DOMAIN}/tags/newsletter`, function (error, body) {
+   console.log(body);
+ });

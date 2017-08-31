@@ -6,36 +6,22 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse GetConnectionSettings() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/{domain}/campaigns/{campaign_id}/connection")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode getConnections() throws UnirestException {
+ 
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/"+ YOUR_DOMAIN_NAME +"/connection")
+             .basicAuth("api", API_KEY)
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -72,15 +58,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetConnectionChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetConnection ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetConnection ()
      {
          RestClient client = new RestClient ();
@@ -93,9 +79,18 @@
          request.Resource = "domains/{domain}/connection";
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
 
  // Coming soon
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get(`/domains/${DOMAIN}/connection`, function (error, body) {
+   console.log(body);
+ });

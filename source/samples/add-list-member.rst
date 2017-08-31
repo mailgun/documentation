@@ -11,44 +11,27 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse AddListMember() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("address", "bob@example.com");
-         reqData.param("subscribed", "true");
-         reqData.param("name", "Bob Bar");
-         reqData.param("description", "developer");
-         reqData.param("vars", "{\"age\": 26}");
-
-         return mgRoot
-             .path("/lists/{list}@{domain}/members")
-             .resolveTemplate("list", "YOUR_LIST_NAME")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode addListMember() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members")
+             .basicAuth("api", API_KEY)
+             .field("subscribed", true)
+             .field("address", "bob@example.com")
+             .field("name", "Bob Bar")
+             .field("description", "developer")
+             .field("vars", "{\"age\": 26}")
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -101,15 +84,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class AddListMemberChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (AddListMember ().Content.ToString ());
      }
- 
+
      public static IRestResponse AddListMember ()
      {
          RestClient client = new RestClient ();
@@ -129,7 +112,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -143,3 +126,22 @@
    }
    return mg.CreateMember(true, "mailingList@example.com", memberJoe)
  }
+
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ var list = mailgun.lists(`mylist@${DOMAIN}`);
+
+ var bob = {
+   subscribed: true,
+   address: 'bob@example.com',
+   name: 'Bob Barr',
+   vars: {age: 34}
+ };
+
+ list.members().create(bob, function (error, data) {
+   console.log(data);
+ });

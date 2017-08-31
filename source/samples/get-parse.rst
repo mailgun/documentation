@@ -7,36 +7,23 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse ParseAddresses() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/address/parse")
-             .queryParam("addresses", "Alice <alice@example.com>,bob@example.com")
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode parseAddresses() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/parse")
+ 			.basicAuth("api", API_KEY)
+ 		    .queryString("addresses", "bob@example.com, alice@example.com")
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -78,15 +65,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetParseChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetParse ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetParse ()
      {
          RestClient client = new RestClient ();
@@ -100,7 +87,7 @@
                                "Alice <alice@example.com>,bob@example.com");
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -113,3 +100,12 @@
      // ...
    )
  }
+
+.. code-block:: node
+
+var DOMAIN = 'YOUR_DOMAIN_NAME';
+var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
+
+mailgun.parse([ 'alice@example.com', 'bob@example.com', 'fake@email.com' ], function (error, body) {
+  console.log(body);
+});

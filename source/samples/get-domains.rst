@@ -8,37 +8,25 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse GetDomains() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         return mgRoot
-             .path("/domains")
-             .queryParam("skip", 0)
-             .queryParam("limit", 3)
-             .request()
-             .buildGet()
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode getDomains() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains")
+             .basicAuth("api", API_KEY)
+             .queryString("skip", 0)
+             .queryString("limit", 3)
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -79,15 +67,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class GetDomainsChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (GetDomains ().Content.ToString ());
      }
- 
+
      public static IRestResponse GetDomains ()
      {
          RestClient client = new RestClient ();
@@ -101,7 +89,7 @@
          request.AddParameter ("limit", 3);
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -110,3 +98,12 @@
    mg := mailgun.NewMailgun(domain, apiKey, "")
    return mg.GetDomains(-1, -1)
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.get('/domains', function (error, body) {
+   console.log(body);
+ });

@@ -10,42 +10,27 @@
 
 .. code-block:: java
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static ClientResponse CreateRoute() {
-
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
-
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         Form reqData = new Form();
-         reqData.param("priority", 0);
-         reqData.param("description", "Sample route");
-         reqData.param("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')");
-         reqData.param("action", "forward('http://myhost.com/messages/')");
-         reqData.param("action", "stop()");
-
-         return mgRoot
-             .path("/routes")
-             .request(MediaType.APPLICATION_FORM_URLENCODED)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+ 
+     public static JsonNode createRoute() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/routes")
+             .basicAuth("api", API_KEY)
+             .field("priority", "0")
+             .field("description", "sample route")
+             .field("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')")
+             .field("action", "forward('http://myhost.com/messages/')")
+             .field("action", "stop()")
+             .asJson();
+ 
+         return request.getBody();
      }
  }
 
@@ -97,15 +82,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class CreateRouteChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (CreateRoute ().Content.ToString ());
      }
- 
+
      public static IRestResponse CreateRoute ()
      {
          RestClient client = new RestClient ();
@@ -124,7 +109,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -141,3 +126,12 @@
      },
    })
  }
+
+ .. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+
+ mailgun.post('/routes', {"priority": 0, "description": 'Sample route', "expression": 'match_recipient(".*@YOUR_DOMAIN_NAME")', "action": 'forward("http://myhost.com/messages/")', "action": 'stop()'}, function (error, body) {
+   console.log(body);
+ });

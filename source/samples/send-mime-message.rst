@@ -10,47 +10,27 @@
 
  import java.io.File;
 
- import javax.ws.rs.client.Client;
- import javax.ws.rs.client.ClientBuilder;
- import javax.ws.rs.client.Entity;
- import javax.ws.rs.client.WebTarget;
-
- import javax.ws.rs.core.Form;
- import javax.ws.rs.core.MediaType;
-
- import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
- import org.glassfish.jersey.media.multipart.FormDataMultiPart;
- import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
+ import com.mashape.unirest.http.HttpResponse;
+ import com.mashape.unirest.http.JsonNode;
+ import com.mashape.unirest.http.Unirest;
+ import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
 
      // ...
 
-     public static ClientResponse SendMIMEMessage() {
+     public static JsonNode sendMIMEMessage() throws UnirestException {
 
-         Client client = ClientBuilder.newClient();
-         client.register(HttpAuthenticationFeature.basic(
-             "api",
-             "YOUR_API_KEY"
-         ));
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages.mime")
+  		     .basicAuth("api", API_KEY)
+  			 .header("content-type", "multipart/form-data;")
+  			 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
+  			 .queryString("to", "Megan@example.com")
+  			 .queryString("subject", "Bah-weep-graaaaagnah wheep nini bong.")
+  			 .field("message", new File("/temp/folder/file.mime"))
+  			 .asJson();
 
-         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");
-
-         FormDataMultiPart reqData = new FormDataMultiPart();
-         reqData.field("to", "alice@example.com");
-
-         String file_separator = System.getProperty("file.separator");
-
-         File mimeFile = new File("files" + file_separator + "message.mime");
-         form.bodyPart(new FileDataBodyPart("message", mimeFile,
-             MediaType.APPLICATION_OCTET_STREAM_TYPE));
-
-         return mgRoot
-             .path("/{domain}/messages")
-             .resolveTemplate("domain", "YOUR_DOMAIN_NAME")
-             .request(MediaType.MULTIPART_FORM_DATA_TYPE)
-             .buildPost(Entity.entity(reqData, MediaType.APPLICATION_FORM_URLENCODED))
-             .invoke(ClientResponse.class);
+ 	    return request.getBody();
      }
  }
 
@@ -97,15 +77,15 @@
  using System.IO;
  using RestSharp;
  using RestSharp.Authenticators;
- 
+
  public class SendMimeMessageChunk
  {
- 
+
      public static void Main (string[] args)
      {
          Console.WriteLine (SendMimeMessage ().Content.ToString ());
      }
- 
+
      public static IRestResponse SendMimeMessage ()
      {
          RestClient client = new RestClient ();
@@ -121,7 +101,7 @@
          request.Method = Method.POST;
          return client.Execute (request);
      }
- 
+
  }
 
 .. code-block:: go
@@ -136,3 +116,31 @@
    _, id, err := mg.Send(m)
    return id, err
  }
+
+.. code-block:: node
+
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+ var mailcomposer = require('mailcomposer');
+
+ var mail = mailcomposer({
+   from: 'YOU@YOUR_DOMAIN_NAME',
+   to: 'bob@example.com',
+   subject: 'Hello',
+   text: 'Testing some Mailgun awesomeness!'
+ });
+
+ mail.build(function(mailBuildError, message) {
+
+     var dataToSend = {
+         to: 'bob@example.com',
+         message: message.toString('ascii')
+     };
+
+     mailgun.messages().sendMime(dataToSend, function (sendError, body) {
+         if (sendError) {
+             console.log(sendError);
+             return;
+         }
+     });
+ });
