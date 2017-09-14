@@ -11,18 +11,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode resendSimpleMessge() throws UnirestException {
- 
+
          HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
              .basicAuth("api", API_KEY)
              .queryString("to", "user@samples.mailgun.org")
              .asJson();
- 
+
      return request.getBody();
  }
 
@@ -58,11 +58,12 @@
  print_r($result);
 
 .. code-block:: py
-    def resend_simple_message():
-        return requests.post(
-             "https://se.api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages/STORAGE_URL",
-             auth=("api", "YOUR_API_KEY"),
-             data={"to": ["bar@example.com", "YOU@YOUR_DOMAIN_NAME"] })
+
+ def resend_simple_message():
+     return requests.post(
+         "https://se.api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages/STORAGE_URL",
+         auth=("api", "YOUR_API_KEY"),
+         data={"to": ["bar@example.com", "YOU@YOUR_DOMAIN_NAME"] })
 
 .. code-block:: rb
 
