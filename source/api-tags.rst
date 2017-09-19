@@ -215,21 +215,21 @@ Retrieve all countries of origin for a domain with event types:
   {
     "countries": {
         "ad": {
-            "clicked": 0,
-            "complained": 0,
-            "opened": 0,
+            "clicked": 7,
+            "complained": 4,
+            "opened": 18,
             "unique_clicked": 0,
-            "unique_opened": 0,
+            "unique_opened": 2,
             "unsubscribed": 0
         },
-        "ae": {
-            "clicked": 0,
-            "complained": 0,
-            "opened": 0,
-            "unique_clicked": 0,
+        "ck": {
+            "clicked": 13,
+            "complained": 2,
+            "opened": 1,
+            "unique_clicked": 1,
             "unique_opened": 0,
-            "unsubscribed": 0
-        }
+            "unsubscribed": 2
+        },
     },
     "tag": "exampletag"
   }
@@ -246,21 +246,21 @@ Retrieve all providers of a domain with corresponding event types:
   {
     "providers": {
         "gmail.com": {
-            "accepted": 0,
-            "clicked": 0,
+            "accepted": 23,
+            "clicked": 15,
             "complained": 0,
-            "delivered": 0,
-            "opened": 0,
-            "unique_clicked": 0,
-            "unique_opened": 0,
-            "unsubscribed": 0
+            "delivered": 23,
+            "opened": 19,
+            "unique_clicked": 2,
+            "unique_opened": 7,
+            "unsubscribed": 1
         },
         "yahoo.com": {
-            "accepted": 0,
-            "clicked": 0,
-            "complained": 0,
-            "delivered": 0,
-            "opened": 0,
+            "accepted": 16,
+            "clicked": 8,
+            "complained": 2,
+            "delivered": 8,
+            "opened": 4,
             "unique_clicked": 0,
             "unique_opened": 0,
             "unsubscribed": 0
@@ -280,17 +280,17 @@ Retrieve all devices that have triggered an event type in a domain:
   {
     "devices": {
         "desktop": {
-            "clicked": 0,
-            "complained": 0,
-            "opened": 0,
+            "clicked": 8,
+            "complained": 1,
+            "opened": 8,
             "unique_clicked": 0,
             "unique_opened": 0,
             "unsubscribed": 0
         },
         "mobile": {
-            "clicked": 0,
-            "complained": 0,
-            "opened": 0,
+            "clicked": 3,
+            "complained": 1,
+            "opened": 5,
             "unique_clicked": 0,
             "unique_opened": 0,
             "unsubscribed": 0
