@@ -91,6 +91,25 @@ Deletes the tag. **Note:** The statistics for the tag are not destroyed.
  domain            Name of the domain
  ================= ============================================================
 
+ .. code-block:: url
+
+        GET /<domain>/tags/<tag>/stats/aggregates/countries
+
+  Returns a list of countries of origin for a given domain for different event types.
+
+.. code-block:: url
+
+        GET /<domain>/tags/<tag>/stats/aggregates/providers
+
+ Returns a list of email providers for a given domain for different event types.
+
+ .. code-block:: url
+
+        GET /<domain>/tags/<tag>/stats/aggregates/devices
+
+ Returns a list of devices for a given domain that have triggered event types.
+
+
 Duration
 --------
 
@@ -182,4 +201,100 @@ Sample response:
 
   {
     "message": "Tag deleted"
+  }
+
+Retrieve all countries of origin for a domain with event types:
+
+.. code-block:: bash
+
+    curl -v -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/countries
+
+.. code-block:: javascript
+
+  {
+    "countries": {
+        "ad": {
+            "clicked": 0,
+            "complained": 0,
+            "opened": 0,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        },
+        "ae": {
+            "clicked": 0,
+            "complained": 0,
+            "opened": 0,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        }
+    },
+    "tag": "exampletag"
+  }
+
+Retrieve all providers of a domain with corresponding event types:
+
+.. code-block:: bash
+
+    curl -v -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/providers
+
+.. code-block:: javascript
+
+  {
+    "providers": {
+        "gmail.com": {
+            "accepted": 0,
+            "clicked": 0,
+            "complained": 0,
+            "delivered": 0,
+            "opened": 0,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        },
+        "yahoo.com": {
+            "accepted": 0,
+            "clicked": 0,
+            "complained": 0,
+            "delivered": 0,
+            "opened": 0,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        }
+    },
+    "tag": "exampletag"
+  }
+
+Retrieve all devices that have triggered an event type in a domain:
+
+.. code-block:: bash
+
+    curl -v -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/devices
+
+.. code-block:: javascript
+  {
+    "devices": {
+        "desktop": {
+            "clicked": 0,
+            "complained": 0,
+            "opened": 0,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        },
+        "mobile": {
+            "clicked": 0,
+            "complained": 0,
+            "opened": 0,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        }
+    },
+    "tag": "exampletag"
   }
