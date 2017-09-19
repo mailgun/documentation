@@ -61,7 +61,6 @@ There are some limitations if you have not given us your payment information:
 
 * There is a limit of 10,000 emails per month.
 * Data for Logs and the Events API are stored for 2 days.
-* There is a limit of 100 email validations per month.
 
 If you have given us your payment information, there is no limit on number of messages
 sent and/or received and data retention for Logs and the Events API is at least 30 days.
