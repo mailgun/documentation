@@ -105,7 +105,7 @@ Returns a list of countries of origin for a given domain for different event typ
 Returns a list of email providers for a given domain for different event types.
 
 
- .. code-block:: url
+..code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/devices
 
