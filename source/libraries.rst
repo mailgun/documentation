@@ -63,13 +63,17 @@ Java
 
 **Standard HTTP Library:**
 
-Check out jersey_ REST client if Java is your weapon of choice.
-It took us 3 jars to get all we needed:
+UniRest is the best library if Java is your language of choice.
 
-* jersey-client.jar (version ~ 1.17 - 1.18.1)
-* jersey-core.jar (version ~ 1.17 - 1.18.1)
-* jersey-multipart.jar (version ~ 1.17 - 1.18.1)
+- http://unirest.io/java.html
 
+Install using Maven: 
+
+<dependency>
+    <groupId>com.mashape.unirest</groupId>
+    <artifactId>unirest-java</artifactId>
+    <version>1.4.9</version>
+</dependency>
 
 C#
 ===
