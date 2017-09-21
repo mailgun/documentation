@@ -97,13 +97,15 @@ Deletes the tag. **Note:** The statistics for the tag are not destroyed.
 
 Returns a list of countries of origin for a given domain for different event types.
 
+
 .. code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/providers
 
 Returns a list of email providers for a given domain for different event types.
 
- .. code-block:: url
+
+.. code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/devices
 
@@ -277,6 +279,7 @@ Retrieve all devices that have triggered an event type in a domain:
     https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/devices
 
 .. code-block:: javascript
+
   {
     "devices": {
         "desktop": {
