@@ -122,7 +122,7 @@
 
  // Not supported
 
-.. code-block:: node
+.. code-block:: js
 
  var mailgun = require("mailgun-js");
  var api_key = 'YOUR_API_KEY';

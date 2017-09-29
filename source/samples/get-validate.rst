@@ -97,7 +97,7 @@
    return mg.ValidateEmail("foo@mailgun.net")
  }
 
-.. code-block:: node
+.. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });

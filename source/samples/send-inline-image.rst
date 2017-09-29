@@ -147,7 +147,7 @@
    return id, err
   }
 
-.. code-block:: node
+.. code-block:: js
 
  const path = require('path');
  var DOMAIN = 'YOUR_DOMAIN_NAME';

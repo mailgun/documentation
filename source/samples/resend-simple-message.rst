@@ -110,7 +110,7 @@
 
  // Not supported yet.
 
-.. code-block:: node
+.. code-block:: js
 
  var mailgun = require("mailgun-js");
  var Request = require('mailgun-js/lib/request');
