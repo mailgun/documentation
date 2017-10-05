@@ -2,8 +2,8 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/ips \
-    -d dedicated="true"
+        https://api.mailgun.net/v3/ips \
+        -d dedicated="true"
 
 .. code-block:: java
 
