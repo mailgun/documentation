@@ -8,6 +8,7 @@ API Reference
    api-intro
    api-sending
    api-domains
+   api-ips
    api-events
    api-stats
    api-tags
