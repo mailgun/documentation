@@ -161,7 +161,7 @@ Recipient Engagement
 
 In addition to processing bounces, complaints and unsubscribes, ESPs measure your reputation through the engagement of your recipients.  If recipients are opening, forwarding and replying to your emails, it will improve your reputation.  This is what makes 'do-not-reply' emails so offensive. At many ESPs, it is also helpful if recipients add your email address to their address books.
 
-Mailgun allows you to track opens and link clicks with our Tracking and Campaign functionality (see our :ref:`user-manual` for more information).  You are free to create as many campaigns as you want and use them simultaneously for A/B testing.  In addition, Mailgun is built to receive and parse emails efficiently.  So there is no excuse to not allow your recipients to reply to your emails.  Email is not a billboard - it is a conversant technology.
+Mailgun allows you to track opens and link clicks with our Tracking and Tagging functionality (see our :ref:`user-manual` for more information).  You are free to create up to 4,000 tags and use them simultaneously for A/B testing.  In addition, Mailgun is built to receive and parse emails efficiently.  So there is no excuse to not allow your recipients to reply to your emails.  Email is not a billboard - it is a conversant technology.
 
 Whitelists and other deliverability tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

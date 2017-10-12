@@ -418,20 +418,14 @@ It's up to you.  You can use Mailgun's unsubscribe handling.  You can include ou
 How do I create Campaigns in Mailgun?
 **************************************************************************************************************
 
-It's very simple, just tag your emails with the appropriate header and Mailgun will group all of the events that occur to emails with that tag. Our analytics and campaign reports include those tags as one of the dimensions by which you can view and filter data.  You can have multiple tags per email.  Take a look at our `tagging documentation`_ and `campaign reports documentation`_ for more information.
+It's very simple, just tag your emails with the appropriate ``o:tag`` parameter and Mailgun will group all of the events that occur to emails with that tag. Our analytics reports include those tags as one of the dimensions by which you can view and filter data.  You can have multiple tags per email and up to 4000 total tags.  Take a look at our `tagging documentation`_ for more information.
 
 .. _tagging documentation: http://documentation.mailgun.com/user_manual.html#tagging
-.. _campaign reports documentation: http://documentation.mailgun.com/user_manual.html#campaign-reports
-
-What is the difference between Tracking Stats and Campaign Reports?
-**************************************************************************************************************
-
-Tracking Stats are just event counters that give you an overview of what is happening to your email.  You can see all of the events that are occurring but the only other dimensions are domain and tag.  Campaign reports have other dimensions like recipient domain and time and give you a more in-depth analysis of what is happening with your emails.  In order to group emails for campaigns, you need to use the ``X-Campaign-Id`` header tag.
 
 Do you support A/B testing?
 **************************************************************************************************************
 
-Since creating a campaign is as easy as including an arbitrary tag, yes.  You can easily view which campaign is performing best by viewing the data grouped by tag.
+Since creating a campaign is as easy as including an arbitrary tag, yes.  You can easily view which campaign is performing best by viewing the data grouped by tag in the Analytics tab of the Mailgun control panel.
 
 How do I track which email a recipient has replied to?
 **************************************************************************************************************
