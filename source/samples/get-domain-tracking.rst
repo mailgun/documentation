@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1
+    curl -s --user 'api:YOUR_API_KEY' -G \
+    https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/tracking
 
 .. code-block:: java
 
@@ -15,9 +15,9 @@
  
      // ...
  
-     public static JsonNode deleteDomainIP() throws UnirestException {
+     public static JsonNode getDomainTracking() throws UnirestException {
  
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1")
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/tracking")
              .basicAuth("api", API_KEY)
              .asJson();
  
@@ -34,23 +34,23 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $ip = '127.0.0.1';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("$domain/ips/$ip");
+  $result = $mgClient->get("domains/$domain/tracking");
 
 .. code-block:: py
 
- def delete_domain_ip():
-     return requests.delete(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1",
+ def get_domain_tracking():
+     return requests.get(
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/tracking",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
- def delete_domain_ip
-   RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1"
+ def get_domain_tracking
+   RestClient.get("https://api:YOUR_API_KEY"\
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/tracking"\
+                  {|response, request, result| response }
  end
 
 .. code-block:: csharp
@@ -60,15 +60,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class DeleteDomainIPChunk
+ public class GetDomainTrackingChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (DeleteDomainIP ().Content.ToString ());
+         Console.WriteLine (GetDomainTracking ().Content.ToString ());
      }
 
-     public static IRestResponse DeleteDomainIP ()
+     public static IRestResponse GetDomainTracking ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -77,9 +77,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/ips/{ip}";
-         request.AddUrlSegment ("ip", "127.0.0.1");
-         request.Method = Method.DELETE;
+         request.Resource = "/domains/{domain}/tracking";
          return client.Execute (request);
      }
 
@@ -94,6 +92,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.delete(`/${DOMAIN}/ips/127.0.0.1`, function (error, body) {
+ mailgun.get(`/domains/${DOMAIN}/tracking`, function (error, body) {
    console.log(body);
  });

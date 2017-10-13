@@ -50,13 +50,17 @@ Create a new domain. See examples below.
  ================= ========================================================
  name              Name of the domain (ex. domain.com)
  smtp_password     Password for SMTP authentication
- spam_action       *disabled* or *tag*
-                   Disable, no spam filtering will occur for inbound
-                   messages. Tag, messages will be tagged with a spam
-                   header. See :ref:`um-spam-filter`.
+ spam_action       ``disabled``, ``block``, or ``tag``
+                   
+                   If *disabled*, no spam filtering will occur for inbound
+                   messages.
+                   
+                   If *block*, inbound spam messages will not be delivered.
+                   
+                   If *tag*, inbound messages will be tagged with a spam header.
+                   See :ref:`um-spam-filter`.
  wildcard          *true* or *false*
-                   Determines whether the domain will
-                   accept email for sub-domains.
+                   Determines whether the domain will accept email for sub-domains.
  ================= ========================================================
 
 .. code-block:: url
@@ -137,17 +141,19 @@ Updates the specified delivery connection settings for the defined domain.
  Parameter         Description
  ================= =============================================================
  require_tls       *true* or *false*
-                   If set to *true* this requires the message only be sent over
+                   
+                   If set to *true*, this requires the message only be sent over
                    a TLS connection. If a TLS connection can not be established,
                    Mailgun will not deliver the message.
 
                    If set to *false*, Mailgun will still try and upgrade the
-                   connection, but if Mailgun can not, the message will be
+                   connection, but if Mailgun cannot, the message will be
                    delivered over a plaintext SMTP connection.
 
                    The default is `False`.
 
  skip_verification *true* or *false*
+                   
                    If set to *true*, the certificate and hostname will not be
                    verified when trying to establish a TLS connection and Mailgun
                    will accept any certificate during delivery.
@@ -192,10 +198,10 @@ Updates the click tracking settings for a domain.
  ================= =============================================================
  active            ``yes``, ``no``, or ``htmlonly``
 
-                   If set to *yes* links will be overwritten and pointed to our
+                   If set to *yes*, links will be overwritten and pointed to our
                    servers so we can track clicks.
                    
-                   If set to *htmlonly* links will only be rewritten in the HTML
+                   If set to *htmlonly*, links will only be rewritten in the HTML
                    part of a message.
  ================= =============================================================
 
@@ -474,7 +480,7 @@ Sample response:
 
 Get tracking settings for a domain:
 
-.. include:: samples/get-tracking.rst
+.. include:: samples/get-domain-tracking.rst
 
 Sample response:
 
