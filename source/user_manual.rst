@@ -21,7 +21,7 @@ libraries. However, we have written :ref:`libraries` for many popular languages.
 Be sure to check out the additional capabilities provided by using our libraries.
 
 You can also access many Mailgun features through your Mailgun Control
-Panel using your browser and logging in at https://mailgun.com/cp.
+Panel using your browser and logging in at https://app.mailgun.com/app/dashboard.
 
 In addition to the API, Mailgun supports the standard SMTP protocol.  We have included some :ref:`instructions <smtp>` on how to use Mailgun, via SMTP, at the end of the User Manual.
 
@@ -29,7 +29,7 @@ If you are anxious to get started right away, feel free to check
 out the :ref:`quickstart` or :ref:`api-reference`.  There are
 also :ref:`faqs` and :ref:`best-practices` that you can reference.
 
-Finally, always feel free to `contact our Support Team <https://mailgun.com/app/support>`_.
+Finally, always feel free to `contact our Support Team <https://app.mailgun.com/app/support>`_.
 
 Getting Started
 ***************
@@ -63,7 +63,7 @@ There are some limitations if you have not given us your payment information:
 * Data for Logs and the Events API are stored for 2 days.
 
 If you have given us your payment information, there is no limit on number of messages
-sent and/or received and data retention for Logs and the Events API is at least 30 days.
+sent and/or received and data retention for Logs and the :ref:`Events API <api-events>` is at least 30 days.
 
 Verifying Your Domain
 =====================
@@ -122,7 +122,7 @@ please create a support ticket.
 Type      Required  Purpose                     Value
 ========= ========= =========================== =============================================
 TXT       Yes       Domain verification (SPF)   ``v=spf1 include:mailgun.org ~all``
-TXT       Yes       Domain verification (DKIM)  *Find this record in Domain Verification & DNS section in the domain information page for a particular domain in the Mailgun control pannel*
+TXT       Yes       Domain verification (DKIM)  *Find this record in **Domain Verification & DNS** section of the settings page for a particular domain in the Mailgun control pannel*
 CNAME               Enables tracking            ``mailgun.org``
 MX                  Enables receiving           ``10 mxa.mailgun.org``
 MX                  Enables receiving           ``10 mxb.mailgun.org``
@@ -430,7 +430,7 @@ of it is delivered to each subscribed member.
 
 **Managing a list**
 
-You can create Mailing Lists using the ``Mailing List`` tab in the Control Panel or through the API.
+You can create Mailing Lists using the ``Mailing Lists`` tab in the Control Panel or through the API.
 We support a couple of formats to make your life easier:
 you can upload a CSV file with members, use JSON or use form-like file upload.
 
@@ -547,7 +547,7 @@ Mailgun provides a variety of methods to access data on your emails:
 
 - View and search Events through the ``Logs`` tab in the Control Panel to see every event that has happened to every message. You can search by fields like recipient, subject line and even fields that don't show up in the Logs, like message-id. Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
 - Access data on Events programmatically through the :ref:`Events API <api-events>`.  Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
-- View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in `Suppression Lists <https://mailgun.com/app/suppressions>`_ or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
+- View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in the ``Suppressions`` tab of the Control Panel or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
 - Access statistics aggregated by tags in the ``Analytics`` tab of the Control Panel or the :ref:`Stats API <api-stats>`. Data is stored for at least 6 months.
 - Receive notifications of events through a `Webhook`_ each time an Event happens and store the data on your side.
 
@@ -555,12 +555,12 @@ Mailgun provides a variety of methods to access data on your emails:
 
 Event tracking is automatically enabled except for Unsubscribes, Opens and Clicks.
 
-You can enable Unsubscribes tracking for your domain via the Domains tab of the Control Panel.
+You can enable Unsubscribes tracking for your domain via the ``Domains`` tab of the Control Panel.
 You can also manage unsubscribes per message by using unsubscribe variables (see `Tracking Unsubscribes`_)
 
 You can enable Opens & Clicks tracking on two levels: per sending domain and per message.
 
-- You can enable Open & Click tracking on per domain basis under the “Domain Settings” subsection on the domain info page.
+- You can enable Open & Click tracking on a per domain basis under the **Tracking Settings** section of a particular domain's settings page.
 - Tracking can also be toggled by setting ``o:tracking``, ``o:tracking-clicks`` and ``o:tracking-opens`` parameters when sending your message. This will override the domain-level setting.
 
 .. note:: You will also have to point CNAME records to mailgun.org for Mailgun to rewrite links and track opens. In addition, there needs to be an html part of message for Mailgun to track opens (see `Tracking Opens`_ and `Tracking Clicks`_ for more detail).
@@ -605,7 +605,7 @@ You can access Events through a few interfaces:
 
 * Webhooks (we POST data to your URL).
 * The Events API (you GET data through the API).
-* The Logs tab of the Control Panel (GUI).
+* The ``Logs`` tab of the Control Panel (GUI).
 
 .. _manual-events-api:
 
@@ -820,7 +820,7 @@ Tracking Opens
 
 Mailgun can keep track of every time a recipient opens your messages. You can see when Opens happen in the ``Logs`` tab or see counters of opens aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
 
-You can enable Open tracking in the Tracking Settings section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-opens`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the Domain Verification & DNS section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel.
+You can enable Open tracking in the **Tracking Settings** section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-opens`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the **Domain Verification & DNS** section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel.
 
 Opens are tracked by including a transparent .png file, which will only work if there is
 an HTML component to the email (i.e., text only emails will not track opens). You should
@@ -877,7 +877,7 @@ Tracking Clicks
 
 Mailgun can keep track of every time a recipient clicks on links in your messages. You can see when clicks happen in the ``Logs`` tab or see counters of clicks aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
 
-You can enable click tracking in the Tracking Settings section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-clicks`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the Domain Verification & DNS section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel. If you enable Click tracking, links will be overwritten and pointed to our servers so we can track clicks. You can specify that you only want links rewritten in the HTML part of a message with the parameter ``o:tracking-clicks`` and passing ``htmlonly``.
+You can enable click tracking in the **Tracking Settings** section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-clicks`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the **Domain Verification & DNS** section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel. If you enable Click tracking, links will be overwritten and pointed to our servers so we can track clicks. You can specify that you only want links rewritten in the HTML part of a message with the parameter ``o:tracking-clicks`` and passing ``htmlonly``.
 
 **Clicks Webhook**
 

@@ -176,7 +176,7 @@ Updates the open tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- active            *true* or *false*
+ active            ``yes`` or ``no``
  ================= =============================================================
 
 .. code-block:: url
@@ -190,9 +190,9 @@ Updates the click tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- active            *true*, *false*, or *htmlonly*
+ active            ``yes``, ``no``, or ``htmlonly``
 
-                   If set to *true* links will be overwritten and pointed to our
+                   If set to *yes* links will be overwritten and pointed to our
                    servers so we can track clicks.
                    
                    If set to *htmlonly* links will only be rewritten in the HTML
@@ -216,11 +216,11 @@ Updates unsubscribe tracking settings for a domain.
 
  text_footer       Custom text version of unsubscribe footer.
 
-                   Mailgun can automatically provide an unsubscribe footer in
+                   *Mailgun can automatically provide an unsubscribe footer in
                    each email you send and also provides you with several
                    unsubscribe variables. You can customize your unsubscribe
-                   footer by editing the settings in the control panel.
-                   See :ref:`um-tracking-unsubscribes`.
+                   footer by editing the settings in the Control Panel.
+                   See :ref:`um-tracking-unsubscribes`.*
  ================= =============================================================
 
 

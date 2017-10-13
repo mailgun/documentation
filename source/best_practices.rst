@@ -130,7 +130,7 @@ You must also process this bounce data and act accordingly.  In addition, many E
 
 Mailgun automatically processes bounce information and reacts accordingly.  A good portion of Mailgun's technology is devoted to the parsing of this feedback and adjusting your sending in accordance with this feedback so that you maintain a good reputation.
 
-If we receive a hard bounce, we will stop sending to that address immediately and will not attempt future deliveries to that address.  We will stop sending to an address after multiple soft bounces, according to the ESPs' guidelines.  It is possible to remove addresses from the flagged list in your control panel or through the API, in case it was a temporary issue.
+If we receive a hard bounce, we will stop sending to that address immediately and will not attempt future deliveries to that address.  We will stop sending to an address after multiple soft bounces, according to the ESPs' guidelines.  It is possible to remove addresses from the flagged list in your Control Panel or through the API, in case it was a temporary issue.
 
 Please see our :ref:`user-manual` for more information.
 

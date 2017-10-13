@@ -7,7 +7,7 @@ Razor is Mailgun's reputation system for detecting spammers and phishers as well
 
 If you believe Razor has deactivated your account in error, please contact `Mailgun Support`_ and reference the Razor error code you received to speed up account reactivation.
 
-.. _Mailgun Support: https://mailgun.com/support
+.. _Mailgun Support: https://app.mailgun.com/app/support
 
 ========= ===========================================================
 Code      Reason

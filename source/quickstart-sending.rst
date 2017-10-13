@@ -55,7 +55,7 @@ What's actually happening:
 
 You can find your secret API key on your `dashboard`_.
 
-.. _dashboard: https://mailgun.com/app/dashboard
+.. _dashboard: https://app.mailgun.com/app/dashboard
 
 
 Send via SMTP
@@ -67,7 +67,7 @@ Run this:
 
 You can find your SMTP credentials for each domain on your `domains tab`_.
 
-.. _domains tab: https://mailgun.com/app/domains
+.. _domains tab: https://app.mailgun.com/app/domains
 
 Verify Your Domain
 ------------------
