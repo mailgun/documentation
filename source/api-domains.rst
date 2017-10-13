@@ -26,14 +26,6 @@ Returns a list of domains under your account in JSON. See examples below.
 
 Returns a single domain, including credentials and DNS records. See examples below.
 
-.. container:: ptable
-
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- name              Name of the domain
- ================= ========================================================
-
 .. code-block:: url
 
      PUT /domains/<domain>/verify
@@ -58,10 +50,12 @@ Create a new domain. See examples below.
  ================= ========================================================
  name              Name of the domain (ex. domain.com)
  smtp_password     Password for SMTP authentication
- spam_action       *disabled* or *tag* Disable, no spam filtering will occur
-                   for inbound messages. Tag, messages will be tagged with a
-                   spam header. See :ref:`um-spam-filter`.
- wildcard          *true* or *false* Determines whether the domain will
+ spam_action       *disabled* or *tag*
+                   Disable, no spam filtering will occur for inbound
+                   messages. Tag, messages will be tagged with a spam
+                   header. See :ref:`um-spam-filter`.
+ wildcard          *true* or *false*
+                   Determines whether the domain will
                    accept email for sub-domains.
  ================= ========================================================
 
@@ -70,14 +64,6 @@ Create a new domain. See examples below.
      DELETE /domains/<domain>
 
 Delete a domain from your account.
-
-.. container:: ptable
-
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- name              Name of the domain
- ================= ========================================================
 
 .. code-block:: url
 
@@ -90,7 +76,6 @@ Returns a list of SMTP credentials for the defined domain.
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
- name              Name of the domain
  limit             Maximum number of records to return. (100 by default)
  skip              Number of records to skip. (0 by default)
  ================= ========================================================
@@ -106,7 +91,6 @@ Creates a new set of SMTP credentials for the defined domain.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- name              Name of the domain
  login             The user name, for example ``bob.bar``
  password          A password for the SMTP credentials. (Length Min 5, Max 32)
  ================= ==========================================================
@@ -122,8 +106,6 @@ Updates the specified SMTP credentials. Currently only the password can be chang
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- name              Name of the domain
- login             The user name, for example ``bob.bar``
  password          A password for the SMTP credentials. (Length Min 5, Max 32)
  ================= ==========================================================
 
@@ -137,28 +119,11 @@ Deletes the defined SMTP credentials.
 		  issue no more than 300 requests per minute, per account. See the resultant
 		  rate limit response below.
 
-.. container:: ptable
-
- ================= ==========================================================
- Parameter         Description
- ================= ==========================================================
- name              Name of the domain
- login             The user name, for example ``bob.bar``
- ================= ==========================================================
-
 .. code-block:: url
 
      GET /domains/<domain>/connection
 
 Returns delivery connection settings for the defined domain.
-
-.. container:: ptable
-
- ================= ==========================================================
- Parameter         Description
- ================= ==========================================================
- name              Name of the domain
- ================= ==========================================================
 
 .. code-block:: url
 
@@ -171,25 +136,27 @@ Updates the specified delivery connection settings for the defined domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- require_tls       If set to `True` this requires the message only be sent over
+ require_tls       *true* or *false*
+                   If set to *true* this requires the message only be sent over
                    a TLS connection. If a TLS connection can not be established,
                    Mailgun will not deliver the message.
 
-                   If set to `False`, Mailgun will still try and upgrade the
+                   If set to *false*, Mailgun will still try and upgrade the
                    connection, but if Mailgun can not, the message will be
                    delivered over a plaintext SMTP connection.
 
                    The default is `False`.
 
- skip_verification If set to `True`, the certificate and hostname will not be
+ skip_verification *true* or *false*
+                   If set to *true*, the certificate and hostname will not be
                    verified when trying to establish a TLS connection and Mailgun
                    will accept any certificate during delivery.
 
-                   If set to `False`, Mailgun will verify the certificate and
+                   If set to *false*, Mailgun will verify the certificate and
                    hostname. If either one can not be verified, a TLS connection
                    will not be established.
 
-                   The default is `False`.
+                   The default is *false*.
  ================= =============================================================
 
 .. code-block:: url
@@ -197,14 +164,6 @@ Updates the specified delivery connection settings for the defined domain.
      GET /domains/<domain>/tracking
 
 Returns tracking settings for a domain.
-
-.. container:: ptable
-
- ================= =============================================================
- Parameter         Description
- ================= =============================================================
- name              Name of the domain (ex. domain.com)
- ================= =============================================================
 
 .. code-block:: url
 
@@ -217,7 +176,7 @@ Updates the open tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- name              Name of the domain (ex. domain.com)
+ active            *true* or *false*
  ================= =============================================================
 
 .. code-block:: url
@@ -231,7 +190,13 @@ Updates the click tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- name              Name of the domain (ex. domain.com)
+ active            *true*, *false*, or *htmlonly*
+
+                   If set to *true* links will be overwritten and pointed to our
+                   servers so we can track clicks.
+                   
+                   If set to *htmlonly* links will only be rewritten in the HTML
+                   part of a message.
  ================= =============================================================
 
 .. code-block:: url
@@ -245,7 +210,17 @@ Updates unsubscribe tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- name              Name of the domain (ex. domain.com)
+ active            *true* or *false*.
+
+ html_footer       Custom HTML version of unsubscribe footer.
+
+ text_footer       Custom text version of unsubscribe footer.
+
+                   Mailgun can automatically provide an unsubscribe footer in
+                   each email you send and also provides you with several
+                   unsubscribe variables. You can customize your unsubscribe
+                   footer by editing the settings in the control panel.
+                   See :ref:`um-tracking-unsubscribes`.
  ================= =============================================================
 
 
