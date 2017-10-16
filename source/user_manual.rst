@@ -80,9 +80,9 @@ To be able to use Mailgun in production a custom domain(s) has to be created
 and verified with Mailgun.
 
 Verifying your domain is easy. Start by adding a domain or subdomain you own in
-the ``Domains`` tab of the Mailgun control panel. Next add two **TXT** DNS
-records found in the **Domain Verification & DNS** section on the domain
-information page of the Mailgun control panel at your DNS provider:
+the ``Domains`` tab of the Mailgun control panel. Next, add the two **TXT** DNS
+records found in the **Domain Verification & DNS** section of the domain
+settings page of the Mailgun control panel to your DNS provider:
 
 - SPF: Sending server IP validation. Used by majority of email service
   providers. `Learn about SPF <http://www.openspf.org/Introduction>`_.
@@ -122,7 +122,7 @@ please create a support ticket.
 Type      Required  Purpose                     Value
 ========= ========= =========================== =============================================
 TXT       Yes       Domain verification (SPF)   ``v=spf1 include:mailgun.org ~all``
-TXT       Yes       Domain verification (DKIM)  *Find this record in **Domain Verification & DNS** section of the settings page for a particular domain in the Mailgun control pannel*
+TXT       Yes       Domain verification (DKIM)  *Find this record in "Domain Verification & DNS" section of the settings page for a particular domain in the Mailgun control panel.*
 CNAME               Enables tracking            ``mailgun.org``
 MX                  Enables receiving           ``10 mxa.mailgun.org``
 MX                  Enables receiving           ``10 mxb.mailgun.org``
@@ -549,7 +549,7 @@ Mailgun provides a variety of methods to access data on your emails:
 - Access data on Events programmatically through the :ref:`Events API <api-events>`.  Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
 - View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in the ``Suppressions`` tab of the Control Panel or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
 - Access statistics aggregated by tags in the ``Analytics`` tab of the Control Panel or the :ref:`Stats API <api-stats>`. Data is stored for at least 6 months.
-- Receive notifications of events through a `Webhook`_ each time an Event happens and store the data on your side.
+- Receive notifications of events through a Webhook each time an Event happens and store the data on your side.
 
 **Enable Tracking**
 
@@ -798,8 +798,8 @@ against another. For example, two messages of similar content can be assigned
 different tags for analysis of which message type had better engagement, more
 recipient activity, etc.
 
-.. note:: By default, each account is allowed a maximum of 4000 tags. Any tags created
-          after the 4000 tag limit are dropped. If more tags are needed, please contact
+.. note:: By default, each account is allowed a maximum of 4,000 tags. Any tags created
+          after the 4,000 tag limit are dropped. If more tags are needed, please contact
           our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`_.
 
 **Tagging Code Samples**

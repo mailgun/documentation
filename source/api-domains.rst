@@ -150,7 +150,7 @@ Updates the specified delivery connection settings for the defined domain.
                    connection, but if Mailgun cannot, the message will be
                    delivered over a plaintext SMTP connection.
 
-                   The default is `False`.
+                   The default is `false`.
 
  skip_verification *true* or *false*
                    
@@ -225,8 +225,8 @@ Updates unsubscribe tracking settings for a domain.
                    *Mailgun can automatically provide an unsubscribe footer in
                    each email you send and also provides you with several
                    unsubscribe variables. You can customize your unsubscribe
-                   footer by editing the settings in the Control Panel.
-                   See :ref:`um-tracking-unsubscribes`.*
+                   footer by editing the settings in the Control Panel.*
+                   See :ref:`um-tracking-unsubscribes` for more details.
  ================= =============================================================
 
 

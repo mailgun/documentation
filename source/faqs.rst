@@ -419,7 +419,7 @@ It's up to you.  You can use Mailgun's unsubscribe handling.  You can include ou
 How do I create Campaigns in Mailgun?
 **************************************************************************************************************
 
-It's very simple, just tag your emails with the appropriate ``o:tag`` parameter and Mailgun will group all of the events that occur to emails with that tag. Our analytics reports include those tags as one of the dimensions by which you can view and filter data.  You can have multiple tags per email and up to 4000 total tags.  Take a look at our `tagging documentation`_ for more information.
+It's very simple, just tag your emails with the appropriate ``o:tag`` parameter and Mailgun will group all of the events that occur to emails with that tag. Our analytics reports include those tags as one of the dimensions by which you can view and filter data.  You can have multiple tags per email and up to 4,000 total tags.  Take a look at our `tagging documentation`_ for more information.
 
 .. _tagging documentation: http://documentation.mailgun.com/user_manual.html#tagging
 
