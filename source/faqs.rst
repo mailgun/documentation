@@ -28,13 +28,13 @@ What are the differences between free and paid accounts?
 First of all, for both free and paid accounts, you get 10,000 free messages per month. However, there are some limitations if you don't provide payment information:
 
 * You will not be able to send more than 10,000 messages per month
-* Data retention for logs and the Events API is 2 days.
+* Data retention for logs and the :ref:`Events API <api-events>` is 2 days.
 * The limit for number of domains is 5.
 
 If you do provide payment information:
 
 * There is no limit on the number of emails sent or received.
-* Data retention for Logs and the Events API is 30 days.
+* Data retention for Logs and the :ref:`Events API <api-events>` is 30 days.
 * You can create up to 1,000 domains.
 
 If these limits are not enough for you, or if you need to talk to us about a custom contract, you can reach us at sales@mailgun.com.
@@ -46,9 +46,9 @@ You can find a full list of features on our `pricing page`_.
 Can I get multiple Domains and IP Addresses?
 **************************************************************************************************************
 
-By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Upgrade" link in the My Account tab of the control panel. If you want multiple IPs, you can `contact our Support Team <https://mailgun.com/app/support>`_.
+By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Add Dedicated IP" button in the **IP Management** section of the Control Panel. You will need to add a credit card to your account first, though, if you have not already done so. If you want multiple IPs, you can `contact our Support Team <https://app.mailgun.com/app/support>`_.
 
-You can create multiple domains in the control panel or through the Domains API (limit of 5 for free accounts and 1,000 for paid accounts).
+You can create multiple domains in the Control Panel or through the :ref:`Domains API <api-domains>`(limit of 5 for free accounts and 1,000 for paid accounts).
 
 Do I need a dedicated IP address?
 **************************************************************************************************************
@@ -64,7 +64,7 @@ The other thing to consider is using separate IPs for your bulk and transactiona
 - Delivery of time-sensitive transactional emails may get queued behind a large batch of bulk/marketing emails.
 - Your transactional mail will be affected by the reputation created by your bulk/marketing mail.
 
-Mailgun's infrastructure mitigates some of the argument's for a dedicated IP address.  First of all, we are constantly monitoring our shared IP addresses for any reputation issues.  We also allow you to schedule delivery of your emails by using the ``o:deliverytime`` parameter.  This allows you to delay the delivery by using a time in the future and also allows you to jump other messages in your queue (say from a large bulk mailing) by using a delivery time of now.
+Mailgun's infrastructure mitigates some of the arguments for a dedicated IP address.  First of all, we are constantly monitoring our shared IP addresses for any reputation issues.  We also allow you to schedule delivery of your emails by using the ``o:deliverytime`` parameter.  This allows you to delay the delivery by using a time in the future and also allows you to jump other messages in your queue (say from a large bulk mailing) by using a delivery time of now.
 
 How do I pick a domain name for my Mailgun account?
 **************************************************************************************************************
@@ -81,7 +81,7 @@ using the same domain in the From field that the actual sender is using.
 There are two types of domains you can configure with Mailgun:
 
 * A sandbox subdomain of mailgun.org. Example: ``sandboxXX.mailgun.org``. This option allows for quick testing, without having to setup DNS entries. This domain is provisioned automatically with every new account. But you can send only to `authorized recipients <https://help.mailgun.com/hc/en-us/articles/217531258>`_.
-* Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We provide you with those records and instructions in your control panel.
+* Your own domain like ``mycompany.com``.  This requires you to configure some records at your DNS provider. We provide you with those records and instructions in your Control Panel.
 
 If your company's primary domain is ``mycompany.com``, we recommend the
 following domain names for mailgun:
@@ -99,7 +99,7 @@ order to keep the reputations separate.
 Finally, if you want multiple addresses and you want to direct certain emails
 to certain IP addresses, you will need to have a unique domain or subdomain for
 each IP address.  In this situation, it's best to
-`contact our Support Team <https://mailgun.com/app/support>`_ to discuss your
+`contact our Support Team <https://app.mailgun.com/app/support>`_ to discuss your
 infrastructure.
 
 Can I use the same domain name for Mailgun and for Google Apps (or another email server)?
@@ -127,7 +127,7 @@ If you are using multiple email servers and you want an SPF record for each of t
 How do I know if my DNS records are set up correctly
 **************************************************************************************************************
 
-We have a "Verify Records" button when you click on a domain in the "Domains" tab that will confirm that they are set up correctly and if not, show the incorrect records in red.
+We have a "Check DNS Records Now" button when you click on a domain in the ``Domains`` tab that will confirm that they are set up correctly and, if not, show the incorrect records in red.
 
 You could also use `dig`_ in your command line interface.
 
@@ -143,7 +143,7 @@ Only TLS is supported. Support for SSL has been dropped due to the `POODLE secur
 Ok, everything is set up, how do I start using Mailgun?
 **************************************************************************************************************
 
-Mailgun is primarily a developer's tool so the best way use Mailgun is through our APIs.  They are quite `RESTful`_ and we've tried to make them as intuitive as possible.  Our `Quickstart Guide`_ is a good place to start and you can also use the `API Reference`_ for more detail.  We also expose a lot of the features through the control panel.  The `User Manual`_ is a good place to get a full overview of all of the capabilities of Mailgun.
+Mailgun is primarily a developer's tool so the best way use Mailgun is through our APIs.  They are quite `RESTful`_ and we've tried to make them as intuitive as possible.  Our `Quickstart Guide`_ is a good place to start and you can also use the `API Reference`_ for more detail.  We also expose a lot of the features through the Control Panel.  The `User Manual`_ is a good place to get a full overview of all of the capabilities of Mailgun.
 
 .. _RESTful: http://en.wikipedia.org/wiki/REST
 .. _Quickstart Guide: http://documentation.mailgun.com/quickstart.html
@@ -164,11 +164,11 @@ Email clients say "sent via mailgun.us" with messages I send.  How do I get rid 
 
 Check the following:
 
-* You have a custom domain defined in the "Domains" tab of the Control Panel.
-* You've setup the DKIM DNS record (provided in the Control Panel, "Domains" tab).
+* You have a custom domain defined in the ``Domains`` tab of the Control Panel.
+* You've setup the DKIM DNS record (provided in the Control Panel, ``Domains`` tab).
 * You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v3/youcustomdomain.com/messages)
 
-If you're still seeing "via mailgun.org", please `contact our Support Team <https://mailgun.com/app/support>`_ and we'll investigate.
+If you're still seeing "via mailgun.org", please `contact our Support Team <https://app.mailgun.com/app/support>`_ and we'll investigate.
 
 What is the difference between the "From" and "Sender"
 **************************************************************************************************************
@@ -294,7 +294,7 @@ Why does the amount of email I send matter?
 
 Rate limiting allows ESPs proper time to process and filter spam and ensure that transactional email doesn't get backed up. Without rate limiting in place, ESPs would be even more overwhelmed than they already are. The ESPs all have different sending limits on a per hour, per day basis. Once you hit thresholds with the rate limits, send too much spam, or have any number of other issues, the ISP may start returning error messages. Some ESPs will want you to slow down the sending, stop sending for a period of time, or change your habits (due to bad engagement, bad reputation, etc). We automatically adjust your sending rates according to the feedback from these ESPs to keep you in their good graces.
 
-Generally, these rate limits are on a per IP address basis.  `Contact our Support Team <https://mailgun.com/app/support>`_ if you wish to purchase additional dedicated
+Generally, these rate limits are on a per IP address basis.  `Contact our Support Team <https://app.mailgun.com/app/support>`_ if you wish to purchase additional dedicated
 IP addresses for your account.
 
 Does the amount of email I send from my IP affect my deliverability?
@@ -358,8 +358,9 @@ as both sender and recipient, therefore GMail will not show it.
 In other words GMail does not show you messages you sent to yourself.
 
 The other possibility is that the address had previously experienced a Hard
-Bounce and is on the 'do not send' list.  Check the Bounces tab for a list
-of these addresses and remove the address in question if it is there.
+Bounce and is on the 'do not send' list.  Check the ``Suppressions`` tab of your
+Control Panel for a list of these addresses and remove the address in question if
+it is there.
 
 How do I know if HTTP POST callbacks are coming from Mailgun, and not forged?
 **************************************************************************************************************
@@ -400,7 +401,7 @@ What about Email List Management?
 
 Mailgun does have features to help you with list management.  First of all, we will not deliver again to recipients that
 have hard bounced, unsubscribed, or complained of spam.  This is to maintain your email reputation.  You can remove emails from these
-do not send lists if it was a temporary issue.  You can always access this information via the API or Control panel to update
+do not send lists if it was a temporary issue.  You can always access this information via the API or Control Panel to update
 your lists.
 
 What is the difference between hard and soft bounces and how do you handle them?
@@ -418,20 +419,14 @@ It's up to you.  You can use Mailgun's unsubscribe handling.  You can include ou
 How do I create Campaigns in Mailgun?
 **************************************************************************************************************
 
-It's very simple, just tag your emails with the appropriate header and Mailgun will group all of the events that occur to emails with that tag. Our analytics and campaign reports include those tags as one of the dimensions by which you can view and filter data.  You can have multiple tags per email.  Take a look at our `tagging documentation`_ and `campaign reports documentation`_ for more information.
+It's very simple, just tag your emails with the appropriate ``o:tag`` parameter and Mailgun will group all of the events that occur to emails with that tag. Our analytics reports include those tags as one of the dimensions by which you can view and filter data.  You can have multiple tags per email and up to 4000 total tags.  Take a look at our `tagging documentation`_ for more information.
 
 .. _tagging documentation: http://documentation.mailgun.com/user_manual.html#tagging
-.. _campaign reports documentation: http://documentation.mailgun.com/user_manual.html#campaign-reports
-
-What is the difference between Tracking Stats and Campaign Reports?
-**************************************************************************************************************
-
-Tracking Stats are just event counters that give you an overview of what is happening to your email.  You can see all of the events that are occurring but the only other dimensions are domain and tag.  Campaign reports have other dimensions like recipient domain and time and give you a more in-depth analysis of what is happening with your emails.  In order to group emails for campaigns, you need to use the ``X-Campaign-Id`` header tag.
 
 Do you support A/B testing?
 **************************************************************************************************************
 
-Since creating a campaign is as easy as including an arbitrary tag, yes.  You can easily view which campaign is performing best by viewing the data grouped by tag.
+Since creating a campaign is as easy as including an arbitrary tag, yes.  You can easily view which campaign is performing best by viewing the data grouped by tag in the ``Analytics`` tab of the Mailgun control panel.
 
 How do I track which email a recipient has replied to?
 **************************************************************************************************************

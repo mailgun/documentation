@@ -11,7 +11,7 @@ Tags are created on the fly but they are subject to a limit.
 
       GET /<domain>/tags
 
-Returns a list of tags for a domain. Provides with the pagination urls
+Returns a list of tags for a domain. Provides pagination urls
 if the result set is too long to be returned in a single response.
 
 .. container:: ptable

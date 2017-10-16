@@ -5,7 +5,7 @@ IPs
 
 The IP API endpoint allows you to access information regarding the IPs allocated to your Mailgun account that are used for outbound sending.
 
-.. note:: You can manage your IPs from the control panel.
+.. note:: You can manage your IPs from the Control Panel.
           Click on **IP Management** in the settings dropdown menu.
 
 .. code-block:: url
