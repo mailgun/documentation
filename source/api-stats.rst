@@ -110,7 +110,7 @@ listed the events that you can retrieve using this API.
 Examples
 --------
 
-Get stats for 'accepted' and 'delivered' and 'failed' events for the past month:
+Get stats for 'accepted', 'delivered', and 'failed' events for the past month:
 
 .. include:: samples/get-stats.rst
 
@@ -126,21 +126,22 @@ Sample response:
        {
          "time": "Tue, 14 Feb 2012 00:00:00 UTC",
          "accepted": {
-           "total": "15",
            "outgoing": 10,  // authenticated
-           "incoming": 5    // unauthenticated
+           "incoming": 5,   // unauthenticated
+           "total": 15
          },
          "delivered": {
-             "total": 20,
              "smtp": 15,  // delivered over SMTP
-             "http": 5    // delivered over HTTP
+             "http": 5,   // delivered over HTTP
+             "total": 20
          },
          "failed": {
            "permanent": {
-             "suppress-bounce": 1,       // recipients addresses previously bounced
+             "bounce": 4,
+             "delayed-bounce": 1,
+             "suppress-bounce": 1,       // recipients previously bounced
              "suppress-unsubscribe": 2,  // recipients previously unsubscribed
              "suppress-complaint": 3,    // recipients previously complained
-             "bounce": 7,
              "total": 10                 // failed permanently and dropped
            },
            "temporary": {
