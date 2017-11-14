@@ -130,7 +130,7 @@ You must also process this bounce data and act accordingly.  In addition, many E
 
 Mailgun automatically processes bounce information and reacts accordingly.  A good portion of Mailgun's technology is devoted to the parsing of this feedback and adjusting your sending in accordance with this feedback so that you maintain a good reputation.
 
-If we receive a hard bounce, we will stop sending to that address immediately and will not attempt future deliveries to that address.  We will stop sending to an address after multiple soft bounces, according to the ESPs' guidelines.  It is possible to remove addresses from the flagged list in your control panel or through the API, in case it was a temporary issue.
+If we receive a hard bounce, we will stop sending to that address immediately and will not attempt future deliveries to that address.  We will stop sending to an address after multiple soft bounces, according to the ESPs' guidelines.  It is possible to remove addresses from the flagged list in your Control Panel or through the API, in case it was a temporary issue.
 
 Please see our :ref:`user-manual` for more information.
 
@@ -161,7 +161,7 @@ Recipient Engagement
 
 In addition to processing bounces, complaints and unsubscribes, ESPs measure your reputation through the engagement of your recipients.  If recipients are opening, forwarding and replying to your emails, it will improve your reputation.  This is what makes 'do-not-reply' emails so offensive. At many ESPs, it is also helpful if recipients add your email address to their address books.
 
-Mailgun allows you to track opens and link clicks with our Tracking and Campaign functionality (see our :ref:`user-manual` for more information).  You are free to create as many campaigns as you want and use them simultaneously for A/B testing.  In addition, Mailgun is built to receive and parse emails efficiently.  So there is no excuse to not allow your recipients to reply to your emails.  Email is not a billboard - it is a conversant technology.
+Mailgun allows you to track opens and link clicks with our Tracking and Tagging functionality (see our :ref:`user-manual` for more information).  You are free to create up to 4,000 tags and use them simultaneously for A/B testing.  In addition, Mailgun is built to receive and parse emails efficiently.  So there is no excuse to not allow your recipients to reply to your emails.  Email is not a billboard - it is a conversant technology.
 
 Whitelists and other deliverability tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -93,7 +93,7 @@ Returns a single route object based on its ID. See examples below.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- routeId           ID of the route
+ id                ID of the route
  ================= ==========================================================
 
 .. code-block:: url
@@ -129,7 +129,7 @@ only updates the specified fields leaving others unchanged.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- routeId           ID of the route
+ id                ID of the route
  priority          Integer: smaller number indicates higher priority. Higher
                    priority routes are handled first.
  description       An arbitrary string.
@@ -151,7 +151,7 @@ Deletes a route based on the id.
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
- routeId           ID of the route
+ id                ID of the route
  ================= ==========================================================
 
 

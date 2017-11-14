@@ -29,7 +29,7 @@ limit of calls per month, which can be changed, to prevent abuse of the public A
 The use of private API endpoints for email validation is encouraged and there is no limit past the initial
 burst per minute rate. It is highly suggested that the private key is used whenever possible.
 
-.. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the My Account tab of the Control Panel.
+.. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the "Security" tab under the **Account** section of the Control Panel.
 
 .. code-block:: url
 

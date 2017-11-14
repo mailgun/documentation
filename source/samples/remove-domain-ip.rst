@@ -1,9 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	-d "groupby=recipient&limit=2" \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/clicks
+ curl -s --user 'api:YOUR_API_KEY' -X DELETE \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1
 
 .. code-block:: java
 
@@ -16,12 +15,10 @@
  
      // ...
  
-     public static JsonNode getClicks() throws UnirestException {
+     public static JsonNode deleteDomainIP() throws UnirestException {
  
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/campaigns/{campaignID}/clicks")
+         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1")
              .basicAuth("api", API_KEY)
-             .queryString("groupby", "recipient")
-             .queryString("limit", 2)
              .asJson();
  
          return request.getBody();
@@ -37,27 +34,23 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $campaignId = 'myexamplecampaign';
+  $ip = '127.0.0.1';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/campaigns/$campaignId/clicks", array(
-      'groupby' => 'recipient',
-      'limit'   => 2
-  ));
+  $result = $mgClient->delete("$domain/ips/$ip");
 
 .. code-block:: py
 
- def get_clicks():
-     return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/my_campaign_id/clicks?groupby=recipient&limit=2",
-         auth=('api', 'YOUR_API_KEY'))
+ def delete_domain_ip():
+     return requests.delete(
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1",
+         auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
- def get_clicks
-   RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/campaigns/"\
-                  "my_campaign_id/clicks?groupby=recipient&limit=2")
+ def delete_domain_ip
+   RestClient.delete "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1"
  end
 
 .. code-block:: csharp
@@ -67,15 +60,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class GetCampaignRecipientsWhoClickedChunk
+ public class DeleteDomainIPChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (GetCampaignClickStats ().Content.ToString ());
+         Console.WriteLine (DeleteDomainIP ().Content.ToString ());
      }
 
-     public static IRestResponse GetCampaignClickStats ()
+     public static IRestResponse DeleteDomainIP ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -84,9 +77,9 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/campaigns/my_campaign_id/clicks";
-         request.AddParameter ("groupby", "recipient");
-         request.AddParameter ("limit", 2);
+         request.Resource = "{domain}/ips/{ip}";
+         request.AddUrlSegment ("ip", "127.0.0.1");
+         request.Method = Method.DELETE;
          return client.Execute (request);
      }
 
@@ -94,13 +87,13 @@
 
 .. code-block:: go
 
- // Not supported
+ // coming soon
 
 .. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get(`${DOMAIN}campaigns/my_campaign_id/clicks`, {"groupby" : "recipient", "limit" : 2}, function (error, body) {
+ mailgun.delete(`/${DOMAIN}/ips/127.0.0.1`, function (error, body) {
    console.log(body);
  });

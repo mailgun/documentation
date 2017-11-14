@@ -92,7 +92,7 @@
    return mg.DeleteCredential("alice")
  }
 
-.. code-block:: node
+.. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });

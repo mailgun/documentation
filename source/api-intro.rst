@@ -42,7 +42,7 @@ the domain you're interested in::
 Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When you sign up for an account, you are given an API key.  You authenticate to the Mailgun API by providing your API key in the request. You can manage your API key in the 'My Account' tab of the Control Panel.
+When you sign up for an account, you are given an API key.  You authenticate to the Mailgun API by providing your API key in the request. You can manage your API key in the "Security" tab under the **Account** section of the Control Panel.
 
 Authentication to the API occurs via `HTTP Basic Auth`_. Use ``api`` as the user
 name and your API key is the password. Here is how you use basic HTTP auth with curl::

@@ -50,8 +50,6 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
                        send inline images (see :ref:`example <inline-image>`).
                        You can post multiple ``inline`` values.
  o\:tag                Tag string. See :ref:`tagging` for more information.
- o\:campaign           Id of the campaign the message belongs to. See
-                       :ref:`um-campaign-analytics` for details.
  o\:dkim               Enables/disables DKIM signatures on per-message basis.
                        Pass ``yes`` or ``no``
  o\:deliverytime       Desired time of delivery. See :ref:`date-format`. Note:
@@ -116,8 +114,6 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
  message            MIME string of the message. Make sure to use
                     ``multipart/form-data`` to send this as a file upload.
  o\:tag             Tag string. See :ref:`tagging` for more information.
- o\:campaign        Id of the campaign the message belongs to. See
-                    :ref:`um-campaign-analytics` for details.
  o\:deliverytime    Desired time of delivery. See :ref:`date-format`. Note:
                     Messages can be scheduled for a maximum of 3 days in the
                     future.

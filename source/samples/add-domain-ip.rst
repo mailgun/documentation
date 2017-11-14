@@ -1,9 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/credentials/alice \
-	-F password='abc123'
+    curl -s --user 'api:YOUR_API_KEY' \
+	-X POST \
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips \
+	-F ip='127.0.0.1'
 
 .. code-block:: java
 
@@ -16,11 +17,11 @@
  
      // ...
  
-     public static JsonNode updatePassword() throws UnirestException {
+     public static JsonNode addDomainIP() throws UnirestException {
  
-         HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice")
+         HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips")
              .basicAuth("api", API_KEY)
-             .field("password", "supersecret")
+             .field("ip", "127.0.0.1")
              .asJson();
  
          return jsonResponse.getBody();
@@ -35,28 +36,27 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-  $login= 'alice';
+  $domain = 'YOUR_NEW_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/credentials/$login", array(
-      'password' => 'supersecret'
+  $result = $mgClient->post("$domain/ips", array(
+      'ip' => '127.0.0.1'
   ));
 
 .. code-block:: py
 
- def change_credential_password():
-     return requests.put(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/credentials/alice",
+ def add_domain_ip():
+     return requests.post(
+         "https://api.mailgun.net/v3/domains/YOUR_NEW_DOMAIN_NAME/ips",
          auth=("api", "YOUR_API_KEY"),
-         data={"password": "supersecret"})
+         data={"smtp_password": "127.0.0.1"})
 
 .. code-block:: rb
 
- def change_credential_password
-   RestClient.put "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/credentials/alice",
-   :password => "supersecret"
+ def add_domain_ip
+   RestClient.post("https://api:YOUR_API_KEY"\
+                   "@api.mailgun.net/v3/domains/YOUR_NEW_DOMAIN_NAME/ips",
+                   :ip => '127.0.0.1')
  end
 
 .. code-block:: csharp
@@ -66,27 +66,26 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class ChangePwdCredentialsChunk
+ public class AddDomainIPChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (ChangeCredentialPassword ().Content.ToString ());
+         Console.WriteLine (AddDomainIP ().Content.ToString ());
      }
 
-     public static IRestResponse ChangeCredentialPassword ()
+     public static IRestResponse AddDomainIP ()
      {
          RestClient client = new RestClient ();
-         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3/");
          client.Authenticator =
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
+         request.Resource = "{domain}/ips";
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/credentials/{username}";
-         request.AddUrlSegment ("username", "alice");
-         request.AddParameter ("password", "supersecret");
-         request.Method = Method.PUT;
+         request.AddParameter ("ip", "127.0.0.1");
+         request.Method = Method.POST;
          return client.Execute (request);
      }
 
@@ -101,6 +100,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/domain/${DOMAIN}/credentials/alice`, {"password" : "supersecret"}, function (error, body) {
+ mailgun.post(`/${DOMAIN}/ips`, {'ip': '127.0.0.1'}, function (error, body) {
    console.log(body);
  });

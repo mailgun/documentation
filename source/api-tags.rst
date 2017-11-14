@@ -11,8 +11,8 @@ Tags are created on the fly but they are subject to a limit.
 
       GET /<domain>/tags
 
-Returns a list of tags for a domain. Provides with the pagination urls
-if the result set is to long to be returned in a single response.
+Returns a list of tags for a domain. Provides pagination urls
+if the result set is too long to be returned in a single response.
 
 .. container:: ptable
 
@@ -97,13 +97,15 @@ Deletes the tag. **Note:** The statistics for the tag are not destroyed.
 
 Returns a list of countries of origin for a given domain for different event types.
 
+
 .. code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/providers
 
 Returns a list of email providers for a given domain for different event types.
 
- .. code-block:: url
+
+.. code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/devices
 
@@ -277,6 +279,7 @@ Retrieve all devices that have triggered an event type in a domain:
     https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/devices
 
 .. code-block:: javascript
+
   {
     "devices": {
         "desktop": {
