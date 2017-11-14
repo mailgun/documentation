@@ -155,7 +155,8 @@ able to easily select a role upon user creation.
 +------------+-----------------------------------------------------------------------------------------------------------+
 | Role       |  Description                                                                                              |
 +============+===========================================================================================================+
-| Analyst    | Basic users are very limited. They have access to read most data, but can only modify their own settings. |
+| Analyst    | Analyst users are very limited. They have access to read most data, but can only modify their own         |
+|            | settings.                                                                                                 |
 +------------+-----------------------------------------------------------------------------------------------------------+
 | Billing    | Billing users are focused on billing actions. Most of their access will be read only, billing is the only |
 |            | non-admin users who have access to:                                                                       |
