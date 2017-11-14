@@ -152,43 +152,47 @@ able to easily select a role upon user creation.
 
 **Roles**
 
-========== =================================================
-Role       Description
-========== =================================================
-Analyst    Basic users are very limited. They have access to read most data, but can only modify their own settings.
-Billing    Billing users are focused on billing actions. Most of their access will be read only, billing is the only 
-	   non-admin users who have access to:
-
-            * Account Upgrade
-            * Editing Credit card on File
-            * Setting/Clearing Custom Send Limits
-            * Setting/Clearing Custom Validation Limits
-Support    Support users are restricted in what they can edit. In addition to being able to read most data, they will 
-	   be able to:
-	   
-            * Edit suppressions
-            * Edit mailing lists and members
-            * Edit authorized recipients
-            * Open and comment on support tickets
-Developer  Developer users are highly trusted. This role can read and write almost all data. This includes everything 
-           support has, plus can:
-	   
-            * Edit webhooks
-            * Edit routes
-            * Edit domain settings
-            * View API Keys and SMTP passwords
-	    
-           .. warning:: This role has access to read the API Keys and SMTP credentials. This data is highly sensitive.
-Admin      Admin users have read and write access to everything. Only admins on the account can:
-
-            * Rotate and expire API Keys
-            * Create and revoke SMPT credentials
-            * Create and administer control panel users
-            * Edit account details
-
-           .. note:: The account owner will always be an admin user.
-           .. warning:: This role has access to change the API Keys and SMTP credentials. This data is highly sensitive.
-========== =================================================
++------------+-----------------------------------------------------------------------------------------------------------+
+| Role       |  Description                                                                                              |
++============+===========================================================================================================+
+| Analyst    | Basic users are very limited. They have access to read most data, but can only modify their own settings. |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Billing    | Billing users are focused on billing actions. Most of their access will be read only, billing is the only |
+|            | non-admin users who have access to:                                                                       |
+|            |                                                                                                           |
+|            | * Account Upgrade                                                                                         |
+|            | * Editing Credit card on File                                                                             |
+|            | * Setting/Clearing Custom Send Limits                                                                     |
+|            | * Setting/Clearing Custom Validation Limits                                                               |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Support    | Support users are restricted in what they can edit. In addition to being able to read most data, they     |
+|            | will be able to:                                                                                          |
+|            |                                                                                                           |
+|            | * Edit suppressions                                                                                       |
+|            | * Edit mailing lists and members                                                                          |
+|            | * Edit authorized recipients                                                                              |
+|            | * Open and comment on support tickets                                                                     |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Developer  | Developer users are highly trusted. This role can read and write almost all data. This includes           |
+|            | everything support has, plus can:                                                                         |
+|            |                                                                                                           |
+|            | * Edit webhooks                                                                                           |
+|            | * Edit routes                                                                                             |
+|            | * Edit domain settings                                                                                    |
+|            | * View API Keys and SMTP passwords                                                                        |
+|            |                                                                                                           |
+|            | .. warning:: This role has access to read API Keys and SMTP credentials. This data is highly sensitive.   |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Admin      | Admin users have read and write access to everything. Only admins on the account can:                     |
+|            |                                                                                                           |
+|            | * Rotate and expire API Keys                                                                              |
+|            | * Create and revoke SMPT credentials                                                                      |
+|            | * Create and administer control panel users                                                               |
+|            | * Edit account details                                                                                    |
+|            |                                                                                                           |
+|            | .. note:: The account owner will always be an admin user.                                                 |
+|            | .. warning:: This role has access to change API Keys and SMTP credentials. This data is highly sensitive. |
++------------+-----------------------------------------------------------------------------------------------------------+
 
 
 .. _um-sending-messages:
