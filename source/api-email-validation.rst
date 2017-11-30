@@ -139,7 +139,7 @@ Sample response *without* mailbox verification enabled:
     "reason": null
   }
   
-Sample response with mailbox verification enabled:
+Sample response *with* mailbox verification enabled:
 
 .. code-block:: javascript
 
