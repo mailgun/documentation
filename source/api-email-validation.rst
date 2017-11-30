@@ -124,7 +124,7 @@ Simple sample response:
 
 .. code-block:: javascript
 
-{
+  {
     "address": "glennbrandee@netscape.net",
     "did_you_mean": null,
     "is_disposable_address": false,
@@ -137,7 +137,7 @@ Simple sample response:
         "local_part": "glennbrandee"
     },
     "reason": null
-}
+  }
   
 Sample response with mailbox verification enabled:
 
