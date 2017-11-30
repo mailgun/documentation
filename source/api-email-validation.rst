@@ -116,11 +116,11 @@ daily usage limits.
 Example
 ~~~~~~~
 
-Validate a single email address.
+Validate a single email.
 
 .. include:: samples/get-validate.rst
 
-Simple sample response:
+Sample response _without_ mailbox verification enabled:
 
 .. code-block:: javascript
 
