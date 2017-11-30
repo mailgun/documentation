@@ -116,7 +116,7 @@ daily usage limits.
 Example
 ~~~~~~~
 
-Validate a single email.
+Validate a single email address.
 
 .. include:: samples/get-validate.rst
 
