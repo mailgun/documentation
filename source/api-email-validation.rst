@@ -120,7 +120,7 @@ Validate a single email.
 
 .. include:: samples/get-validate.rst
 
-Sample response _without_ mailbox verification enabled:
+Sample response *without* mailbox verification enabled:
 
 .. code-block:: javascript
 
