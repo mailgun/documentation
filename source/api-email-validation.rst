@@ -124,18 +124,20 @@ Simple sample response:
 
 .. code-block:: javascript
 
-  {
-      "address": "foo@mailgun.net",
-      "did_you_mean": null,
-      "is_disposable_address": false,
-      "is_role_address": true,
-      "is_valid": true,
-      "parts": {
-          "display_name": null,
-          "domain": "mailgun.net",
-          "local_part": "foo"
-      }
-  }
+{
+    "address": "glennbrandee@netscape.net",
+    "did_you_mean": null,
+    "is_disposable_address": false,
+    "is_role_address": false,
+    "is_valid": true,
+    "mailbox_verification": null,
+    "parts": {
+        "display_name": null,
+        "domain": "netscape.net",
+        "local_part": "glennbrandee"
+    },
+    "reason": null
+}
   
 Sample response with mailbox verification enabled:
 
