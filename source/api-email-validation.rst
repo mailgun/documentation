@@ -125,7 +125,7 @@ Sample response *without* mailbox verification enabled:
 .. code-block:: javascript
 
   {
-    "address": "glennbrandee@netscape.net",
+    "address": "foo@mailgun.net",
     "did_you_mean": null,
     "is_disposable_address": false,
     "is_role_address": false,
@@ -133,8 +133,8 @@ Sample response *without* mailbox verification enabled:
     "mailbox_verification": null,
     "parts": {
         "display_name": null,
-        "domain": "netscape.net",
-        "local_part": "glennbrandee"
+        "domain": "mailgun.net",
+        "local_part": "foo"
     },
     "reason": null
   }
