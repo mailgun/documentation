@@ -11,8 +11,8 @@ Tags are created on the fly but they are subject to a limit.
 
       GET /<domain>/tags
 
-Returns a list of tags for a domain. Provides with the pagination urls
-if the result set is to long to be returned in a single response.
+Returns a list of tags for a domain. Provides pagination urls
+if the result set is too long to be returned in a single response.
 
 .. container:: ptable
 
@@ -90,6 +90,27 @@ Deletes the tag. **Note:** The statistics for the tag are not destroyed.
  ================= ============================================================
  domain            Name of the domain
  ================= ============================================================
+
+ .. code-block:: url
+
+        GET /<domain>/tags/<tag>/stats/aggregates/countries
+
+Returns a list of countries of origin for a given domain for different event types.
+
+
+.. code-block:: url
+
+        GET /<domain>/tags/<tag>/stats/aggregates/providers
+
+Returns a list of email providers for a given domain for different event types.
+
+
+.. code-block:: url
+
+        GET /<domain>/tags/<tag>/stats/aggregates/devices
+
+Returns a list of devices for a given domain that have triggered event types.
+
 
 Duration
 --------
@@ -182,4 +203,101 @@ Sample response:
 
   {
     "message": "Tag deleted"
+  }
+
+Retrieve all countries of origin for a domain with event types:
+
+.. code-block:: bash
+
+    curl -v -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/countries
+
+.. code-block:: javascript
+
+  {
+    "countries": {
+        "ad": {
+            "clicked": 7,
+            "complained": 4,
+            "opened": 18,
+            "unique_clicked": 0,
+            "unique_opened": 2,
+            "unsubscribed": 0
+        },
+        "ck": {
+            "clicked": 13,
+            "complained": 2,
+            "opened": 1,
+            "unique_clicked": 1,
+            "unique_opened": 0,
+            "unsubscribed": 2
+        },
+    },
+    "tag": "exampletag"
+  }
+
+Retrieve all providers of a domain with corresponding event types:
+
+.. code-block:: bash
+
+    curl -v -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/providers
+
+.. code-block:: javascript
+
+  {
+    "providers": {
+        "gmail.com": {
+            "accepted": 23,
+            "clicked": 15,
+            "complained": 0,
+            "delivered": 23,
+            "opened": 19,
+            "unique_clicked": 2,
+            "unique_opened": 7,
+            "unsubscribed": 1
+        },
+        "yahoo.com": {
+            "accepted": 16,
+            "clicked": 8,
+            "complained": 2,
+            "delivered": 8,
+            "opened": 4,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        }
+    },
+    "tag": "exampletag"
+  }
+
+Retrieve all devices that have triggered an event type in a domain:
+
+.. code-block:: bash
+
+    curl -v -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/devices
+
+.. code-block:: javascript
+
+  {
+    "devices": {
+        "desktop": {
+            "clicked": 8,
+            "complained": 1,
+            "opened": 8,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        },
+        "mobile": {
+            "clicked": 3,
+            "complained": 1,
+            "opened": 5,
+            "unique_clicked": 0,
+            "unique_opened": 0,
+            "unsubscribed": 0
+        }
+    },
+    "tag": "exampletag"
   }

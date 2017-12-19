@@ -53,7 +53,7 @@ Get an export by id.
 
 .. code-block:: url
 
-     GET /exports/<id>/download
+     GET /exports/<id>/download_url
 
 Download an export by ID. This will response with a `302 Moved` with the
 `Location` header of temporary S3 URL if it is available.

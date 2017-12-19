@@ -12,15 +12,15 @@
  import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
-
+ 
      // ...
-
+ 
      public static JsonNode deleteDomainIP() throws UnirestException {
-
+ 
          HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1")
              .basicAuth("api", API_KEY)
              .asJson();
-
+ 
          return request.getBody();
      }
  }

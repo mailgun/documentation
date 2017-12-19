@@ -9,8 +9,8 @@ The number one reason we see people get blocked is because they have a **bad mai
 
 You can check your `logs`_ to see emails that are bouncing and check your `bounce list`_ for emails that we have stopped sending to as a result of bounces.
 
-.. _logs: https://mailgun.com/cp/log?severity=error
-.. _bounce list: https://mailgun.com/cp/bounces
+.. _logs: https://app.mailgun.com/app/logs
+.. _bounce list: https://app.mailgun.com/app/suppressions
 
 Best practices for lowering bounce rates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,13 +19,13 @@ Best practices for lowering bounce rates
 2. Clean your mailing list of invalid email addresses.
 3. Only send emails to recipients that have signed up to receive them.
 4. Verify the email address is correct with a confirmation email (aka, `confirmed opt-in`_).
-5. We recommend using our `free email validator`_ at the point of signup to reduce invalid email addresses.
+5. We recommend using our `Email Validation API`_ at the point of signup to reduce invalid email addresses.
 6. **Don’t** purchase your list or scrape websites for emails.
 
 If your domain does get disabled, `contact support`_ after you have made the recommended changes above so we can re-enable your domain.
 
-.. _Mailgun Control Panel: https://mailgun.com/cp
+.. _Mailgun Control Panel: https://app.mailgun.com/app/dashboard
 .. _confirmed opt-in: http://en.wikipedia.org/wiki/Opt-in_email
-.. _free email validator: http://documentation.mailgun.com/api-email-validation.html
-.. _contact support: https://mailgun.com/app/support
+.. _Email Validation API: http://documentation.mailgun.com/api-email-validation.html
+.. _contact support: https://app.mailgun.com/app/support
 

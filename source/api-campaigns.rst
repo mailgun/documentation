@@ -125,7 +125,7 @@ Stats
 -----
 
 Campaign Stats API allows you to retrieve a campaign performance reports
-similar to what you can see in the control panel.
+similar to what you can see in the Control Panel.
 
 .. code-block:: url
 

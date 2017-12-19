@@ -29,7 +29,7 @@ limit of calls per month, which can be changed, to prevent abuse of the public A
 The use of private API endpoints for email validation is encouraged and there is no limit past the initial
 burst per minute rate. It is highly suggested that the private key is used whenever possible.
 
-.. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the My Account tab of the Control Panel.
+.. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the "Security" tab under the **Account** section of the Control Panel.
 
 .. code-block:: url
 
@@ -120,24 +120,26 @@ Validate a single email address.
 
 .. include:: samples/get-validate.rst
 
-Simple sample response:
+Sample response *without* mailbox verification enabled:
 
 .. code-block:: javascript
 
   {
-      "address": "foo@mailgun.net",
-      "did_you_mean": null,
-      "is_disposable_address": false,
-      "is_role_address": true,
-      "is_valid": true,
-      "parts": {
-          "display_name": null,
-          "domain": "mailgun.net",
-          "local_part": "foo"
-      }
+    "address": "foo@mailgun.net",
+    "did_you_mean": null,
+    "is_disposable_address": false,
+    "is_role_address": false,
+    "is_valid": true,
+    "mailbox_verification": null,
+    "parts": {
+        "display_name": null,
+        "domain": "mailgun.net",
+        "local_part": "foo"
+    },
+    "reason": null
   }
   
-Sample response with mailbox verification enabled:
+Sample response *with* mailbox verification enabled:
 
 .. code-block:: javascript
 

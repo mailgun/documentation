@@ -63,12 +63,14 @@ Java
 
 **Standard HTTP Library:**
 
-Check out jersey_ REST client if Java is your weapon of choice.
-It took us 3 jars to get all we needed:
+Check out the  UniRest REST client if Java is your weapon of choice.
 
-* jersey-client.jar (version ~ 1.17 - 1.18.1)
-* jersey-core.jar (version ~ 1.17 - 1.18.1)
-* jersey-multipart.jar (version ~ 1.17 - 1.18.1)
+
+- http://unirest.io/java.html
+
+You will also need the following dependencies - 
+
+(org.json, httpclient 4.3.6, httpmime 4.3.6, httpasyncclient 4.0.2) 
 
 
 C#

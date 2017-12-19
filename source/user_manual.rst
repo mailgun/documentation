@@ -21,7 +21,7 @@ libraries. However, we have written :ref:`libraries` for many popular languages.
 Be sure to check out the additional capabilities provided by using our libraries.
 
 You can also access many Mailgun features through your Mailgun Control
-Panel using your browser and logging in at https://mailgun.com/cp.
+Panel using your browser and logging in at https://app.mailgun.com/app/dashboard.
 
 In addition to the API, Mailgun supports the standard SMTP protocol.  We have included some :ref:`instructions <smtp>` on how to use Mailgun, via SMTP, at the end of the User Manual.
 
@@ -29,7 +29,7 @@ If you are anxious to get started right away, feel free to check
 out the :ref:`quickstart` or :ref:`api-reference`.  There are
 also :ref:`faqs` and :ref:`best-practices` that you can reference.
 
-Finally, always feel free to `contact our Support Team <https://mailgun.com/app/support>`_.
+Finally, always feel free to `contact our Support Team <https://app.mailgun.com/app/support>`_.
 
 Getting Started
 ***************
@@ -61,10 +61,9 @@ There are some limitations if you have not given us your payment information:
 
 * There is a limit of 10,000 emails per month.
 * Data for Logs and the Events API are stored for 2 days.
-* There is a limit of 100 email validations per month.
 
 If you have given us your payment information, there is no limit on number of messages
-sent and/or received and data retention for Logs and the Events API is at least 30 days.
+sent and/or received and data retention for Logs and the :ref:`Events API <api-events>` is at least 30 days.
 
 Verifying Your Domain
 =====================
@@ -81,9 +80,9 @@ To be able to use Mailgun in production a custom domain(s) has to be created
 and verified with Mailgun.
 
 Verifying your domain is easy. Start by adding a domain or subdomain you own in
-the ``Domains`` tab of the Mailgun control panel. Next add two **TXT** DNS
-records found in the **Domain Verification & DNS** section on the domain
-information page of the Mailgun control panel at your DNS provider:
+the ``Domains`` tab of the Mailgun control panel. Next, add the two **TXT** DNS
+records found in the **Domain Verification & DNS** section of the domain
+settings page of the Mailgun control panel to your DNS provider:
 
 - SPF: Sending server IP validation. Used by majority of email service
   providers. `Learn about SPF <http://www.openspf.org/Introduction>`_.
@@ -123,7 +122,7 @@ please create a support ticket.
 Type      Required  Purpose                     Value
 ========= ========= =========================== =============================================
 TXT       Yes       Domain verification (SPF)   ``v=spf1 include:mailgun.org ~all``
-TXT       Yes       Domain verification (DKIM)  *Find this record in Domain Verification & DNS section in the domain information page for a particular domain in the Mailgun control pannel*
+TXT       Yes       Domain verification (DKIM)  *Find this record in "Domain Verification & DNS" section of the settings page for a particular domain in the Mailgun control panel.*
 CNAME               Enables tracking            ``mailgun.org``
 MX                  Enables receiving           ``10 mxa.mailgun.org``
 MX                  Enables receiving           ``10 mxb.mailgun.org``
@@ -140,6 +139,61 @@ provider for assistance:
 - Rackspace Email & Apps: `All Records <http://www.rackspace.com/apps/support/portal/1172>`_
 - Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`_
 - Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`_
+
+Managing User Roles
+===================
+
+**How to Manage**
+
+Role-based access control sets all current users to Admin-level users by default. To assign different roles
+to your account’s users, please visit the Account section of the control panel. There, you can choose the
+appropriate permissions level for each user. And when it’s time to add new users to your account, you’ll be
+able to easily select a role upon user creation.
+
+**Roles**
+
++------------+-----------------------------------------------------------------------------------------------------------+
+| Role       |  Description                                                                                              |
++============+===========================================================================================================+
+| Analyst    | Analyst users are very limited. They have access to read most data, but can only modify their own         |
+|            | settings.                                                                                                 |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Billing    | Billing users are focused on billing actions. Most of their access will be read only, billing is the only |
+|            | non-admin users who have access to:                                                                       |
+|            |                                                                                                           |
+|            | * Account Upgrade                                                                                         |
+|            | * Editing Credit card on File                                                                             |
+|            | * Setting/Clearing Custom Send Limits                                                                     |
+|            | * Setting/Clearing Custom Validation Limits                                                               |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Support    | Support users are restricted in what they can edit. In addition to being able to read most data, they     |
+|            | will be able to:                                                                                          |
+|            |                                                                                                           |
+|            | * Edit suppressions                                                                                       |
+|            | * Edit mailing lists and members                                                                          |
+|            | * Edit authorized recipients                                                                              |
+|            | * Open and comment on support tickets                                                                     |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Developer  | Developer users are highly trusted. This role can read and write almost all data. This includes           |
+|            | everything support has, plus can:                                                                         |
+|            |                                                                                                           |
+|            | * Edit webhooks                                                                                           |
+|            | * Edit routes                                                                                             |
+|            | * Edit domain settings                                                                                    |
+|            | * View API Keys and SMTP passwords                                                                        |
+|            |                                                                                                           |
+|            | .. warning:: This role has access to read API Keys and SMTP credentials. This data is highly sensitive.   |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Admin      | Admin users have read and write access to everything. Only admins on the account can:                     |
+|            |                                                                                                           |
+|            | * Rotate and expire API Keys                                                                              |
+|            | * Create and revoke SMPT credentials                                                                      |
+|            | * Create and administer control panel users                                                               |
+|            | * Edit account details                                                                                    |
+|            |                                                                                                           |
+|            | .. note:: The account owner will always be an admin user.                                                 |
+|            | .. warning:: This role has access to change API Keys and SMTP credentials. This data is highly sensitive. |
++------------+-----------------------------------------------------------------------------------------------------------+
 
 
 .. _um-sending-messages:
@@ -260,10 +314,6 @@ custom  MIME_ headers listed in the table below.
     X-Mailgun-Tag                 Tag string used for aggregating stats. See :ref:`tagging`
                                   for more information. You can mark a message with several
                                   categories by setting multiple ``X-Mailgun-Tag`` headers.
-    X-Mailgun-Campaign-Id         Id of the campaign the message belongs to. See
-                                  :ref:`um-campaign-analytics` for details.
-                                  You can assign a message to several campaigns by setting
-                                  multiple different ``X-Mailgun-Campaign-Id`` headers.
     X-Mailgun-Dkim                Enables/disables DKIM signatures on per-message basis.
                                   Use ``yes`` or ``no``.
     X-Mailgun-Deliver-By          Desired time of delivery. See `Scheduling Delivery`_ and
@@ -435,7 +485,7 @@ of it is delivered to each subscribed member.
 
 **Managing a list**
 
-You can create Mailing Lists using the Mailing List tab in the Control Panel or through the API.
+You can create Mailing Lists using the ``Mailing Lists`` tab in the Control Panel or through the API.
 We support a couple of formats to make your life easier:
 you can upload a CSV file with members, use JSON or use form-like file upload.
 
@@ -463,14 +513,6 @@ You can set the access level of Mailing Lists to:
 * Only allow the administrator to post to the list (limited to an API call or authenticated SMTP session);
 * Allow Mailing List members to post to the list; or
 * Allow anybody to post to the list.
-
-**Campaigns**
-
-Mailing lists are integrated with :ref:`um-campaign-analytics`. Each
-message sent to a list with a Campaign ID will be tracked and
-reported. In this case, the mailing list will have detailed analytics for
-all recipients that can be retrieved via API or seen in the Campaign tab of
-the Control Panel.
 
 .. _template-variables:
 
@@ -552,32 +594,33 @@ This is useful for testing purposes.
 Tracking Messages
 *****************
 
-Once you start sending and receiving messages, it's important to track what's happening with them. We try to make tracking your messages as easy as possible through Events, Stats and Campaigns.
+Once you start sending and receiving messages, it's important to track what's happening with them. We try to make tracking your messages as easy as possible through `Events`_, `Stats`_, and `Tagging`_.
 
 In addition, Mailgun permanently stores when a message can not be delivered due to a hard bounce (permanent failure) or when a recipient unsubscribes or complains of spam. In these cases, Mailgun will not attempt to deliver to these recipients in the future, in order to protect your sending reputation.
 
 Mailgun provides a variety of methods to access data on your emails:
 
-- View and search Events through the Logs tab in the Control Panel to see every event that has happened to every message. You can search by fields like recipient, subject line and even fields that don't show up in the Logs, like message-id. Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
+- View and search Events through the ``Logs`` tab in the Control Panel to see every event that has happened to every message. You can search by fields like recipient, subject line and even fields that don't show up in the Logs, like message-id. Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
 - Access data on Events programmatically through the :ref:`Events API <api-events>`.  Data is stored for at least 30 days for paid accounts and at least 2 days for free accounts.
-- View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in `Suppression Lists <https://mailgun.com/app/suppressions>`_ or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
-- Access statistics aggregated by tags in the Tracking tab of the Control Panel or the :ref:`Stats API <api-stats>`. Data is stored for at least 6 months.
-- Create Campaigns and access detailed analytics on those Campaigns through the Control Panel or the :ref:`Campaigns API <api-campaigns>`. Data is stored for at least 6 months other than the delivered event which is stored for 2 weeks.
+- View, search and edit tables for Bounces, Unsubscribes and Spam Complaints in the ``Suppressions`` tab of the Control Panel or their respective APIs (:ref:`Bounces API <api-bounces>`, :ref:`Unsubscribes API <api-unsubscribes>`, :ref:`Complaints API <api-complaints>`). Data is stored indefinitely.
+- Access statistics aggregated by tags in the ``Analytics`` tab of the Control Panel or the :ref:`Stats API <api-stats>`. Data is stored for at least 6 months.
 - Receive notifications of events through a Webhook each time an Event happens and store the data on your side.
 
 **Enable Tracking**
 
 Event tracking is automatically enabled except for Unsubscribes, Opens and Clicks.
 
-You can enable Unsubscribes tracking for your domain via the "Domains" tab of the Control Panel.
+You can enable Unsubscribes tracking for your domain via the ``Domains`` tab of the Control Panel.
 You can also manage unsubscribes per message by using unsubscribe variables (see `Tracking Unsubscribes`_)
 
 You can enable Opens & Clicks tracking on two levels: per sending domain and per message.
 
-- You can enable Open & Click tracking on per domain basis under the “Domain Settings” subsection on the domain info page.
+- You can enable Open & Click tracking on a per domain basis under the **Tracking Settings** section of a particular domain's settings page.
 - Tracking can also be toggled by setting ``o:tracking``, ``o:tracking-clicks`` and ``o:tracking-opens`` parameters when sending your message. This will override the domain-level setting.
 
 .. note:: You will also have to point CNAME records to mailgun.org for Mailgun to rewrite links and track opens. In addition, there needs to be an html part of message for Mailgun to track opens (see `Tracking Opens`_ and `Tracking Clicks`_ for more detail).
+
+.. _events:
 
 Events
 ======
@@ -617,7 +660,7 @@ You can access Events through a few interfaces:
 
 * Webhooks (we POST data to your URL).
 * The Events API (you GET data through the API).
-* The Logs Tab of the Control Panel (GUI).
+* The ``Logs`` tab of the Control Panel (GUI).
 
 .. _manual-events-api:
 
@@ -677,7 +720,7 @@ Sample response:
 Webhooks
 ========
 
-Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the Webhooks tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
+Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the ``Webhooks`` tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
 
 You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Bounces`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
 
@@ -810,8 +853,8 @@ against another. For example, two messages of similar content can be assigned
 different tags for analysis of which message type had better engagement, more
 recipient activity, etc.
 
-.. note:: By default, each account is allowed a maximum of 4000 tags. Any tags created
-          after the 4000 tag limit are dropped. If more tags are needed, please contact
+.. note:: By default, each account is allowed a maximum of 4,000 tags. Any tags created
+          after the 4,000 tag limit are dropped. If more tags are needed, please contact
           our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`_.
 
 **Tagging Code Samples**
@@ -830,9 +873,9 @@ Supply one or more ``o:tag`` parameters to tag the message.
 Tracking Opens
 ==============
 
-Mailgun can keep track of every time a recipient opens your messages. You can see when Opens happen in the Logs tab or see aggregate counters of opens in the Tracking tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
+Mailgun can keep track of every time a recipient opens your messages. You can see when Opens happen in the ``Logs`` tab or see counters of opens aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
 
-You can enable Open tracking by clicking on the checkbox in the Tracking tab of your Control Panel or using the ``o:tracking`` or ``o:tracking-opens`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the 'Domain' tab of your Control Panel.
+You can enable Open tracking in the **Tracking Settings** section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-opens`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the **Domain Verification & DNS** section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel.
 
 Opens are tracked by including a transparent .png file, which will only work if there is
 an HTML component to the email (i.e., text only emails will not track opens). You should
@@ -843,7 +886,7 @@ show up if the recipient clicks on display images button in his/her email.
 
 **Opens Webhook**
 
-You can specify a webhook URL in the 'Webhooks' tab of your Control Panel. When a user opens
+You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel. When a user opens
 one of your emails, your URL will be called with the following parameters.
 
 .. container:: ptable
@@ -887,13 +930,13 @@ one of your emails, your URL will be called with the following parameters.
 Tracking Clicks
 ===============
 
-Mailgun can keep track of every time a recipient clicks on links in your messages. You can see when clicks happen in the Logs tab or see aggregate counters of clicks in the Tracking tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
+Mailgun can keep track of every time a recipient clicks on links in your messages. You can see when clicks happen in the ``Logs`` tab or see counters of clicks aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
 
-You can enable click tracking by clicking on the checkbox in the Tracking tab of your Control Panel or using the ``o:tracking`` or ``o:tracking-clicks`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the Domains tab of your Control Panel. If you enable Click tracking, links will be overwritten and pointed to our servers so we can track clicks. You can specify that you only want links rewritten in the HTML part of a message with the parameter ``o:tracking-clicks`` and passing ``htmlonly``.
+You can enable click tracking in the **Tracking Settings** section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-clicks`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the **Domain Verification & DNS** section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel. If you enable Click tracking, links will be overwritten and pointed to our servers so we can track clicks. You can specify that you only want links rewritten in the HTML part of a message with the parameter ``o:tracking-clicks`` and passing ``htmlonly``.
 
 **Clicks Webhook**
 
-You can specify a webhook URL in the 'Webhooks' tab of your Control Panel. Every time
+You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel. Every time
 a user clicks on a link inside of your messages, your URL will be called with
 the following parameters:
 
@@ -937,7 +980,7 @@ Mailgun can keep track of every time a recipient requests to be unsubscribed fro
 your mailings.  If you enable unsubscribe tracking, Mailgun will insert unsubscribe links and remove those recipients
 from your mailings automatically for you.
 
-You can see when usubscribes happen in the Logs tab or see aggregate counters of unsubscribes in the Tracking tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
+You can see when usubscribes happen in the ``Logs`` tab or see counters of unsubscribes aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
 
 Mailgun supports three types of unsubscribes: domain, :ref:`tag <tagging>` or :ref:`mailing-lists` levels.
 
@@ -973,7 +1016,7 @@ url will be automatically unsubscribed and those email addresses will be blocked
 from receiving future emails from that domain or message tag as appropriate.
 
 Mailgun can automatically provide an unsubscribe footer in each email you send. You can customize
-your unsubscribe footer by editing the settings in the control panel.
+your unsubscribe footer by editing the settings in the Control Panel.
 
 To enable/disable unsubscribes programmaticaly per message you can do the following:
 
@@ -982,7 +1025,7 @@ To enable/disable unsubscribes programmaticaly per message you can do the follow
 - Insert a variable in the html and text bodies of your email when you need unsubscribe links.
 - This variable will be replaced by the corresponding unsubscribe link.
 
-In the "Suppressions" tab of the Control Panel or through the API you can also:
+In the ``Suppressions`` tab of the Control Panel or through the API you can also:
 
 - View/get a list of unsubscribed addresses.
 - Remove an unsubscribed address from the list.
@@ -993,7 +1036,7 @@ to learn how to programmatically manage lists of unsubscribed users.
 
 **Unsubscribes Webhook**
 
-You can specify a webhook URL in the 'Webhooks' tab of your Control Panel.
+You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel.
 When a user unsubscribes, Mailgun will invoke the webhook with the following parameters:
 
 .. container:: ptable
@@ -1034,7 +1077,7 @@ Tracking Spam Complaints
 Mailgun automatically keeps track of every time a recipient complains that a
 message is spam.
 
-You can see when complaints happen in the Logs tab or see aggregate counters of complaints in the Tracking tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Complaints API <api-complaints>`.
+You can see when complaints happen in the ``Logs`` tab or see counters of complaints, aggregated by tags, in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Complaints API <api-complaints>`.
 
 Email service providers ("ESPs") are very sensitive to users clicking on spam
 complaint buttons and it's important to monitor that activity to maintain a
@@ -1051,7 +1094,7 @@ manage the lists of users who have complained.
 
 **Spam Complaints Webhook**
 
-You can specify a webhook URL in the 'Webhooks' tab in the control panel.
+You can specify a webhook URL in the ``Webhooks`` tab in the Control Panel.
 When a user reports one of your emails as spam, Mailgun will invoke the
 webhook with the following parameters:
 
@@ -1091,11 +1134,11 @@ following two groups:
 - Hard bounces (permanent failure): Recipient is not found and the recipient
   email server specifies the recipient does not exist. Mailgun stops attempting
   delivery to invalid recipients after one Hard Bounce. These addresses are
-  added to the table in the Bounces tab and Mailgun will not attempt delivery
-  in the future.
+  added to the "Bounces" table in the ``Suppressions`` tab of your Control Panel and Mailgun
+  will not attempt delivery in the future.
 - Soft bounces (temporary failure): Email is not delivered because the mailbox
-  is full or for other reasons. These addresses are not added to the table in
-  the Bounces tab.
+  is full or for other reasons. These addresses are not added to the "Bounces" table in
+  the ``Suppressions`` tab.
 
 With respect to when the recipient SMTP server rejected an incoming message
 Mailgun classifies bounces into the following two groups:
@@ -1116,8 +1159,8 @@ Mailgun classifies bounces into the following two groups:
  email messages won't reach Mailgun. Please refer to
  :ref:`Verifying Your Domain <verifying-your-domain>` for details on how to do that.
 
-You can see when bounces happen in the Logs tab or see aggregate counters of
-bounces in the Tracking tab of the Control Panel. In addition, you can be
+You can see when bounces happen in the ``Logs`` tab or see counters of
+bounces, aggregated by tags, in the ``Analytics`` tab of the Control Panel. In addition, you can be
 notified through a webhook or get the data programmatically through the
 :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
 
@@ -1127,7 +1170,7 @@ manage the lists of hard bounces.
 
 **Bounce Event Webhook**
 
-You can specify a webhook URL in the 'Webhooks' tab of your Control Panel.
+You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel.
 If you do, every time a message experiences a hard bounce, your URL will be invoked with the following parameters:
 
 .. container:: ptable
@@ -1163,11 +1206,11 @@ Tracking Failures
 
 Mailgun tracks all delivery failures. Failures consist of both Hard Bounces (permanent failures) and Soft Bounces (temporary failures).
 
-You can see when failures happen in the Logs tab.  In addition, you can be notified through a webhook when a message is dropped (i.e., stop retries) or get the data programmatically through the :ref:`Events API <api-events>`.
+You can see when failures happen in the ``Logs`` tab.  In addition, you can be notified through a webhook when a message is dropped (i.e., stop retries) or get the data programmatically through the :ref:`Events API <api-events>`.
 
 **Drop Event Webhook**
 
-In the Webhooks tab, you can specify a URL to be notified every time a message is dropped.
+In the ``Webhooks`` tab, you can specify a URL to be notified every time a message is dropped.
 There are a few reasons why Mailgun needs to stop attempting to deliver messages and drop them.
 The most common reason is that Mailgun received a Hard bounce or repeatedly received Soft bounces and continuing attempting to deliver may hurt your reputation with the receiving ESP.  Also, if the address is on one of the 'do not send lists' because that recipient
 had previously bounced, unsubscribed, or complained of spam, we will not attempt delivery and drop the message.  If one of
@@ -1205,11 +1248,11 @@ Tracking Deliveries
 
 Mailgun tracks all successful deliveries of messages. A successful delivery occurs when the recipient email server responds that it has accepted the message.
 
-You can see when deliveries happen in the Logs tab.  In addition, you can be notified through a webhook when a message is delivered or get the data programmatically through the :ref:`Events API <api-events>`.
+You can see when deliveries happen in the ``Logs`` tab.  In addition, you can be notified through a webhook when a message is delivered or get the data programmatically through the :ref:`Events API <api-events>`.
 
 **Delivered Event Webhook**
 
-In the Webhooks tab, you can specify a URL to be notified every time a
+In the ``Webhooks`` tab, you can specify a URL to be notified every time a
 message is delivered. If the message is successfully delivered to the intended
 recipient, we will POST the following parameters to your URL:
 
@@ -1231,12 +1274,14 @@ recipient, we will POST the following parameters to your URL:
 
 .. note:: Unlike other event webhooks (due to frequency of delivered events), Delivered Event will only POST once, right after delivery, and won’t attempt again in case of failure to POST successfully.
 
+.. _stats:
+
 Stats
 =====
 
 Stats provide you with the summary of the events that occur with your messages and can be aggregated by tag, see `Tagging`_ above.
 
-You can see your current statistics in the control panel, or download them using :ref:`the API <api-stats>`
+You can see your current statistics in the Control Panel, or download them using :ref:`the API <api-stats>`
 
 Receiving, Forwarding and Storing Messages
 *******************************************
@@ -1691,7 +1736,7 @@ Spam Filter
 If you are receiving email, you need spam filtering. Mailgun spam filtering is powered
 by an army of SpamAssassin machines. Mailgun gives you three ways to configure spam
 filtering. You can select the appropriate option in the Control Panel when you click
-on a domain name in the 'Domains' tab.
+on a domain name in the ``Domains`` tab.
 
 - Disabled (default)
 - Delete spam (spam is removed and you won’t see it)

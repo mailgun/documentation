@@ -43,7 +43,7 @@ You can access Events through a few interfaces:
 
 * Webhooks (we POST data to your URL).
 * The Events API (you GET data through the API).
-* The Logs Tab of the Control Panel (GUI).
+* The ``Logs`` tab of the Control Panel (GUI).
 
 **Events API**
 
@@ -112,7 +112,7 @@ In addition to sending, receiving and storing mail, Mailgun can also help
 developers with the following:
 
 - Automatic "Unsubscribe me" functionality.
-- Support for email campaigns and tracking their performance.
+- Support for email campaigns and tracking their performance via tags.
 - Bounce handling.
 - Spam complaints handling.
 - Spam filtering for incoming messages.
