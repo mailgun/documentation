@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1
 
 .. code-block:: java
 
@@ -10,7 +10,7 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
  
      // ...
