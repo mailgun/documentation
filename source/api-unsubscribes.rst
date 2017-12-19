@@ -78,25 +78,25 @@ Sample response:
     "items": [
         {
             "created_at": "Thu, 15 Mar 2012 08:35:02 GMT",
-            "tag": "*",
+            "tags":["*"],
             "id": "4f3b954a6addaa3e196735a2",
             "address": "bob@example.com"
         },
         {
             "created_at": "Thu, 15 Mar 2012 08:35:02 GMT",
-            "tag": "tag1",
+            "tags":["tag1"],
             "id": "4f3b954a6addaa3e1967359f",
             "address": "bob@example.com"
         },
         {
             "created_at": "Wed, 01 Feb 2012 08:09:45 GMT",
-            "tag": "Testing Tag",
+            "tags":["Testing Tag"],
             "id": "4f28f3494d532a3a823d0d9f",
             "address": "alice@example.com"
         },
         {
             "created_at": "Wed, 01 Feb 2012 08:09:38 GMT",
-            "tag": "*",
+            "tags":["*", "tag2"],
             "id": "4f28f1024d532a3a823d0d68",
             "address": "alice@example.com"
         }
