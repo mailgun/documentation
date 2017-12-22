@@ -6,7 +6,7 @@
 	-F to=YOU@YOUR_DOMAIN_NAME \
 	-F to=bar@example.com \
 	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!'
+	-F text='Testing some Mailgun awesomeness!'
 
 .. code-block:: java
 
