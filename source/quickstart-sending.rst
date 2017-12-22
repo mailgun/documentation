@@ -47,9 +47,9 @@ Run this:
 
 .. include:: samples/send-simple-message.rst
 
-What's actually happening:
+What actually happened:
 
-* Mailgun assembles a MIME message.
+* Mailgun assembled a MIME message.
 * Added the log entries to our full text search index.
 * Delivered the email.
 
