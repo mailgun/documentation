@@ -1272,7 +1272,6 @@ recipient, we will POST the following parameters to your URL:
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  ==================    ==================================================================================
 
-.. note:: Unlike other event webhooks (due to frequency of delivered events), Delivered Event will only POST once, right after delivery, and won’t attempt again in case of failure to POST successfully.
 
 .. _stats:
 
