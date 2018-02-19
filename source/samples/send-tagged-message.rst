@@ -141,12 +141,11 @@
 
 .. code-block:: js
 
- var mailgun = require("mailgun-js")
- var api_key = 'YOUR_API_KEY';
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+ const API_KEY = 'YOUR_API_KEY';
+ const DOMAIN = 'YOUR_DOMAIN_NAME';
+ const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
- var data = {
+ const data = {
    from: 'Excited User <me@samples.mailgun.org>',
    to: 'alice@example',
    subject: 'Tagged',
@@ -155,6 +154,6 @@
    "o:tag" : 'September newsletter'
  };
 
- mailgun.messages().send(data, function (error, body) {
+ mailgun.messages().send(data, (error, body) => {
    console.log(body);
  });
