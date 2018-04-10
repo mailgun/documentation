@@ -53,7 +53,7 @@ What's actually happening:
 * Added the log entries to our full text search index.
 * Delivered the email.
 
-You can find your secret API key on your `dashboard`_.
+You can find your private API key on your `dashboard`_.
 
 .. _dashboard: https://app.mailgun.com/app/dashboard
 
