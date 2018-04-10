@@ -140,6 +140,61 @@ provider for assistance:
 - Rackspace Cloud DNS: `Developer Guide <http://www.rackspace.com/knowledge_center/article/rackspace-cloud-dns>`_
 - Amazon Route 53: `Developer Guide <http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/R53Console.html>`_
 
+Managing User Roles
+===================
+
+**How to Manage**
+
+Role-based access control sets all current users to Admin-level users by default. To assign different roles
+to your account’s users, please visit the Account section of the control panel. There, you can choose the
+appropriate permissions level for each user. And when it’s time to add new users to your account, you’ll be
+able to easily select a role upon user creation.
+
+**Roles**
+
++------------+-----------------------------------------------------------------------------------------------------------+
+| Role       |  Description                                                                                              |
++============+===========================================================================================================+
+| Analyst    | Analyst users are very limited. They have access to read most data, but can only modify their own         |
+|            | settings.                                                                                                 |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Billing    | Billing users are focused on billing actions. Most of their access will be read only, billing is the only |
+|            | non-admin users who have access to:                                                                       |
+|            |                                                                                                           |
+|            | * Account Upgrade                                                                                         |
+|            | * Editing Credit card on File                                                                             |
+|            | * Setting/Clearing Custom Send Limits                                                                     |
+|            | * Setting/Clearing Custom Validation Limits                                                               |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Support    | Support users are restricted in what they can edit. In addition to being able to read most data, they     |
+|            | will be able to:                                                                                          |
+|            |                                                                                                           |
+|            | * Edit suppressions                                                                                       |
+|            | * Edit mailing lists and members                                                                          |
+|            | * Edit authorized recipients                                                                              |
+|            | * Open and comment on support tickets                                                                     |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Developer  | Developer users are highly trusted. This role can read and write almost all data. This includes           |
+|            | everything support has, plus can:                                                                         |
+|            |                                                                                                           |
+|            | * Edit webhooks                                                                                           |
+|            | * Edit routes                                                                                             |
+|            | * Edit domain settings                                                                                    |
+|            | * View API Keys and SMTP passwords                                                                        |
+|            |                                                                                                           |
+|            | .. warning:: This role has access to read API Keys and SMTP credentials. This data is highly sensitive.   |
++------------+-----------------------------------------------------------------------------------------------------------+
+| Admin      | Admin users have read and write access to everything. Only admins on the account can:                     |
+|            |                                                                                                           |
+|            | * Rotate and expire API Keys                                                                              |
+|            | * Create and revoke SMPT credentials                                                                      |
+|            | * Create and administer control panel users                                                               |
+|            | * Edit account details                                                                                    |
+|            |                                                                                                           |
+|            | .. note:: The account owner will always be an admin user.                                                 |
+|            | .. warning:: This role has access to change API Keys and SMTP credentials. This data is highly sensitive. |
++------------+-----------------------------------------------------------------------------------------------------------+
+
 
 .. _um-sending-messages:
 
@@ -1217,7 +1272,6 @@ recipient, we will POST the following parameters to your URL:
  signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
  ==================    ==================================================================================
 
-.. note:: Unlike other event webhooks (due to frequency of delivered events), Delivered Event will only POST once, right after delivery, and won’t attempt again in case of failure to POST successfully.
 
 .. _stats:
 
