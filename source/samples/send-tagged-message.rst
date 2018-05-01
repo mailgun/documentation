@@ -151,8 +151,7 @@
    to: 'alice@example',
    subject: 'Tagged',
    text: 'Testing some Mailgun awesomeness!',
-   "o:tag" : 'newsletters',
-   "o:tag" : 'September newsletter'
+   "o:tag" : ['newsletters', 'September newsletter']
  };
 
  mailgun.messages().send(data, function (error, body) {
