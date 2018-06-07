@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click
 
 .. code-block:: java
 
@@ -17,7 +17,7 @@
  
      public static JsonNode deleteWebhook() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/clicked")
+         HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
              .basicAuth("api", API_KEY)
  		    .asJson();
  
@@ -36,20 +36,20 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("$domain/webhooks/clicked");
+  $result = $mgClient->delete("$domain/webhooks/click");
 
 .. code-block:: py
 
  def delete_domain():
      return requests.delete(
-         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_domain
    RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked"
+   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"
  end
 
 .. code-block:: csharp
@@ -75,7 +75,7 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "/domains/{name}/webhooks/clicked";
+         request.Resource = "/domains/{name}/webhooks/click";
          request.AddUrlSegment ("name", "YOUR_DOMAIN_NAME");
          request.Method = Method.DELETE;
          return client.Execute (request);
@@ -95,6 +95,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.delete(`/domain/${DOMAIN}/webhooks/clicked`, function (error, body) {
+ mailgun.delete(`/domain/${DOMAIN}/webhooks/click`, function (error, body) {
    console.log(body);
  });

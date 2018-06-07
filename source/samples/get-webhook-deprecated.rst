@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
- curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked
+    curl -s --user 'api:YOUR_API_KEY' -G \
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click
 
 .. code-block:: java
 
@@ -15,11 +15,11 @@
  
      // ...
  
-     public static JsonNode deleteWebhook() throws UnirestException {
+     public static JsonNode getWebhookEvent() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/clicked")
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
              .basicAuth("api", API_KEY)
- 		    .asJson();
+             .asJson();
  
          return request.getBody();
      }
@@ -36,20 +36,21 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("$domain/webhooks/clicked");
+  $result = $mgClient->get("$domain/webhooks/click");
 
 .. code-block:: py
 
- def delete_domain():
-     return requests.delete(
-         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked",
+ def get_domain():
+     return requests.get(
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
- def delete_domain
-   RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked"
+ def get_domain
+   RestClient.get("https://api:YOUR_API_KEY"\
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"\
+                  {|response, request, result| response }
  end
 
 .. code-block:: csharp
@@ -59,15 +60,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class DeleteWebhookChunk
+ public class GetWebhookChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (DeleteWebhook ().Content.ToString ());
+         Console.WriteLine (GetWebhook ().Content.ToString ());
      }
 
-     public static IRestResponse DeleteWebhook ()
+     public static IRestResponse GetWebhook ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -75,9 +76,8 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "/domains/{name}/webhooks/clicked";
-         request.AddUrlSegment ("name", "YOUR_DOMAIN_NAME");
-         request.Method = Method.DELETE;
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.Resource = "/domains/{domain}/webhooks/click";
          return client.Execute (request);
      }
 
@@ -85,9 +85,9 @@
 
 .. code-block:: go
 
- func DeleteWebhook(t *testing.T) {
+ func GetWebhook(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.DeleteWebhook("deliver")
+   return mg.GetWebhookByType("deliver")
  }
 
 .. code-block:: js
@@ -95,6 +95,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.delete(`/domain/${DOMAIN}/webhooks/clicked`, function (error, body) {
+ mailgun.get(`/domain/${DOMAIN}/webhooks/click`, function (error, body) {
    console.log(body);
  });

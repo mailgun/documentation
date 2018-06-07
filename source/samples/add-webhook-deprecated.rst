@@ -2,10 +2,8 @@
 
     curl -s --user 'api:YOUR_API_KEY' \
 	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
-	-F id='clicked' \
+	-F id='click' \
 	-F url='http://bin.example.com/8de4a9c4'
-	-F url='http://bin.example.com/8de4a9c5'
-	-F url='http://bin.example.com/8de4a9c6'
 
 .. code-block:: java
 
@@ -23,11 +21,7 @@
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
  		      .basicAuth("api", API_KEY)
  			  .field("id","click")
- 		      .field("url", { 
-                   "http://bin.example.com/8de4a9c4", 
-                   "http://bin.example.com/8de4a9c5", 
-                   "http://bin.example.com/8de4a9c6" 
-              })
+ 		      .field("url", "http://bin.example.com/8de4a9c4")
  		      .asJson();
  
          return request.getBody();
@@ -46,12 +40,8 @@
 
   # Issue the call to the client.
   $result = $mgClient->post("domains/$domain/webhooks", array(
-      'id'  => 'clicked',
-      'url' => array(
-          'http://bin.example.com/8de4a9c4',
-          'http://bin.example.com/8de4a9c5',
-          'http://bin.example.com/8de4a9c6'
-      )
+      'id'  => 'click',
+      'url' => 'http://bin.example.com/8de4a9c4'
   ));
 
 .. code-block:: py
@@ -60,23 +50,15 @@
      return requests.post(
          "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"),
-         data={
-           'id':'clicked', 
-           'url':[ 'http://bin.example.com/8de4a9c4',            
-		     'http://bin.example.com/8de4a9c5',
-		     'http://bin.example.com/8de4a9c6'
-           ]
-         })
+         data={'id':'click', 'url':'http://bin.example.com/8de4a9c4'})
 
 .. code-block:: rb
 
  def add_webhook
    RestClient.post("https://api:YOUR_API_KEY"\
                    "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
-                   :id => 'clicked',
-                   :url => ['http://bin.example.com/8de4a9c4',
-                            'http://bin.example.com/8de4a9c5',
-                            'http://bin.example.com/8de4a9c6'])
+                   :id => 'click',
+                   :url => 'http://bin.example.com/8de4a9c4')
  end
 
 .. code-block:: csharp
@@ -103,12 +85,8 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.Resource = "domains/YOUR_DOMAIN_NAME/webhooks";
-         request.AddParameter ("id", "clicked");
-         request.AddParameter ("url", new [] { 
-              "http://bin.example.com/8de4a9c4", 
-              "http://bin.example.com/8de4a9c5", 
-              "http://bin.example.com/8de4a9c6"
-         });
+         request.AddParameter ("id", "click");
+         request.AddParameter ("url", "http://bin.example.com/8de4a9c4");
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -127,6 +105,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'clicked', "url": ['http://bin.example.com/8de4a9c4, http://bin.example.com/8de4a9c5, http://bin.example.com/8de4a9c6'}, function (error, body) {
+ mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'click', "url": 'http://bin.example.com/8de4a9c4'}, function (error, body) {
    console.log(body);
  });

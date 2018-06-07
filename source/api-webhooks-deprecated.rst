@@ -1,23 +1,26 @@
-.. _api-webhooks:
+.. _api-webhooks-deprecated:
 
-Webhooks
-========
+Webhooks (deprecated)
+=====================
 
+**Note:** This refers to a previous version of the API which is deprecated
+and may be removed in a future release. Ongoing development of webhooks
+should be using the latest API available here: :ref:`api-webhooks`
+ 
 This API allows you to create, access, and delete webhooks programmatically.
-
 
 Supported webhooks, and their documentation, are listed below:
 
 ================= ========================================================
 Webhook Name      Documentation
 ================= ========================================================
-clicked           :ref:`um-tracking-clicks`
-complained        :ref:`um-tracking-spam-complaints`
-delivered         :ref:`um-tracking-deliveries`
-opened            :ref:`um-tracking-opens`
-permanent_fail    :ref:`um-tracking-failures`
-temporary_fail    :ref:`um-tracking-failures`
-unsubscribed      :ref:`um-tracking-unsubscribes`
+bounce            :ref:`um-tracking-bounces`
+deliver		        :ref:`um-tracking-deliveries`
+drop			        :ref:`um-tracking-failures`
+spam              :ref:`um-tracking-spam-complaints`
+unsubscribe       :ref:`um-tracking-unsubscribes`
+click             :ref:`um-tracking-clicks`
+open              :ref:`um-tracking-opens`
 ================= ========================================================
 
 
@@ -65,7 +68,7 @@ Creates a new webhook.
  ================= ========================================================
  domain            Name of the domain
  id                Name of the webhook. (See above for supported webhooks)
- url               URL for the webhook event. May be repeated up to 3 times.
+ url               URL for the webhook event.
  ================= ========================================================
 
 .. code-block:: url
@@ -80,8 +83,8 @@ Updates an existing webhook.
  Parameter         Description
  ================= ========================================================
  domain            Name of the domain
- webhookname       Name of the webhook. (See above for supported webhooks)
- url               URL for the webhook event. May be repeated up to 3 times.
+ id                Name of the webhook. (See above for supported webhooks)
+ url               URL for the webhook event.
  ================= ========================================================
 
 .. code-block:: url
@@ -100,7 +103,7 @@ Deletes an existing webhook.
  Parameter         Description
  ================= ========================================================
  domain            Name of the domain
- webhookname       Name of the webhook. (See above for supported webhooks)
+ id                Name of the webhook. (See above for supported webhooks)
  ================= ========================================================
 
 Examples
@@ -116,19 +119,18 @@ Sample response:
 
 	{
 	  "webhooks": {
-	    "opened": {
-	      "urls": [ "http://postbin.heroku.com/860bcd65",
-		            "http://postbin.heroku.com/860bcd65" ]
+	    "open": {
+	      "url": "http://postbin.heroku.com/860bcd65"
 	    },
-	    "clicked": {
-	      "urls": [ "http://postbin.heroku.com/860bcd65" ]
+	    "click": {
+	      "url": "http://postbin.heroku.com/860bcd65"
 	    }
 	  }
 	}
 
 Return a webhook for a specific event for the defined domain.
 
-.. include:: samples/get-webhook.rst
+.. include:: samples/get-webhook-deprecated.rst
 
 Sample response:
 
@@ -136,13 +138,13 @@ Sample response:
 
 	{
 	  "webhook": {
-	    "urls": [ "http://google.com" ]
+	    "url": "http://google.com"
 	  }
 	}
 
 Create a new webhook.
 
-.. include:: samples/add-webhook.rst
+.. include:: samples/add-webhook-deprecated.rst
 
 Sample response:
 
@@ -151,15 +153,13 @@ Sample response:
 	{
 	  "message": "Webhook has been created",
 	  "webhook": {
-	    "urls": [ "http://bin.example.com/8de4a9c4",
-                  "http://bin.example.com/8de4a9c5",
-				  "http://bin.example.com/8de4a9c6" ]
+	    "url": "http://bin.mailgun.net/8de4a9c4"
 	  }
 	}
 
 Update an existing webhook.
 
-.. include:: samples/update-webhook.rst
+.. include:: samples/update-webhook-deprecated.rst
 
 Sample response:
 
@@ -168,13 +168,13 @@ Sample response:
 	{
 	  "message": "Webhook has been updated",
 	  "webhook": {
-	    "urls": [ "http://google.com" ]
+	    "url": "http://google.com"
 	  }
 	}
 
 Delete a webhook.
 
-.. include:: samples/delete-webhook.rst
+.. include:: samples/delete-webhook-deprecated.rst
 
 Sample response:
 
@@ -183,9 +183,7 @@ Sample response:
 	{
 	  "message": "Webhook has been deleted",
 	  "webhook": {
-	    "urls": [ "http://postbin.heroku.com/860bcd65",
-		          "http://postbin.heroku.com/860bcd65",
-				  "http://postbin.heroku.com/860bcd65" ]
+	    "url": "http://postbin.heroku.com/860bcd65"
 	  }
 	}
 
