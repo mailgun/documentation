@@ -2,7 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click
+	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked
 
 .. code-block:: java
 
@@ -17,7 +17,7 @@
  
      public static JsonNode getWebhookEvent() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/clicked")
              .basicAuth("api", API_KEY)
              .asJson();
  
@@ -42,14 +42,14 @@
 
  def get_domain():
      return requests.get(
-         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_domain
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"\
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked"\
                   {|response, request, result| response }
  end
 
@@ -77,7 +77,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "/domains/{domain}/webhooks/click";
+         request.Resource = "/domains/{domain}/webhooks/clicked";
          return client.Execute (request);
      }
 
@@ -95,6 +95,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get(`/domain/${DOMAIN}/webhooks/click`, function (error, body) {
+ mailgun.get(`/domain/${DOMAIN}/webhooks/clicked`, function (error, body) {
    console.log(body);
  });
