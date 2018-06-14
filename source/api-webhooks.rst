@@ -56,7 +56,7 @@ Returns details about a the webhook specified in the URL.
 
 Creates a new webhook.
 
-.. note:: When adding a Click or Open webhook, ensure that you also have tracking enabled.
+.. note:: When adding a Clicked or Opened webhook, ensure that you also have tracking enabled.
 
 .. container:: ptable
 
@@ -118,7 +118,7 @@ Sample response:
 	  "webhooks": {
 	    "opened": {
 	      "urls": [ "http://postbin.heroku.com/860bcd65",
-		            "http://postbin.heroku.com/860bcd65" ]
+	                "http://postbin.heroku.com/860bcd65" ]
 	    },
 	    "clicked": {
 	      "urls": [ "http://postbin.heroku.com/860bcd65" ]
@@ -152,8 +152,8 @@ Sample response:
 	  "message": "Webhook has been created",
 	  "webhook": {
 	    "urls": [ "http://bin.example.com/8de4a9c4",
-                  "http://bin.example.com/8de4a9c5",
-				  "http://bin.example.com/8de4a9c6" ]
+				  "http://bin.example.com/8de4a9c5",
+	              "http://bin.example.com/8de4a9c6" ]
 	  }
 	}
 
@@ -184,8 +184,8 @@ Sample response:
 	  "message": "Webhook has been deleted",
 	  "webhook": {
 	    "urls": [ "http://postbin.heroku.com/860bcd65",
-		          "http://postbin.heroku.com/860bcd65",
-				  "http://postbin.heroku.com/860bcd65" ]
+	              "http://postbin.heroku.com/860bcd65",
+	              "http://postbin.heroku.com/860bcd65" ]
 	  }
 	}
 
