@@ -45,23 +45,31 @@ Create a new domain. See examples below.
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- name              Name of the domain (ex. domain.com)
- smtp_password     Password for SMTP authentication
- spam_action       ``disabled``, ``block``, or ``tag``
-                   
-                   If *disabled*, no spam filtering will occur for inbound
-                   messages.
-                   
-                   If *block*, inbound spam messages will not be delivered.
-                   
-                   If *tag*, inbound messages will be tagged with a spam header.
-                   See :ref:`um-spam-filter`.
- wildcard          *true* or *false*
-                   Determines whether the domain will accept email for sub-domains.
- ================= ========================================================
+ ===================== ========================================================
+ Parameter             Description
+ ===================== ========================================================
+ name                  Name of the domain (ex. domain.com)
+ smtp_password         Password for SMTP authentication
+ spam_action           ``disabled``, ``block``, or ``tag``
+                       
+                       If *disabled*, no spam filtering will occur for inbound
+                       messages.
+                       
+                       If *block*, inbound spam messages will not be delivered.
+                       
+                       If *tag*, inbound messages will be tagged with a spam header.
+                       See :ref:`um-spam-filter`.
+ wildcard              *true* or *false*
+                       Determines whether the domain will accept email for sub-domains.
+
+ force_dkim_authority  *true* or *false*
+                       
+                       If set to *true*, the domain will be the DKIM authority for itself
+                       even if the root domain is registered on the same mailgun account
+                       
+                       If set to *false*, the domain will have the same DKIM authority
+                       as the root domain registered on the same mailgun account
+ ===================== ========================================================
 
 .. code-block:: url
 
@@ -228,6 +236,31 @@ Updates unsubscribe tracking settings for a domain.
                    footer by editing the settings in the Control Panel.*
                    See :ref:`um-tracking-unsubscribes` for more details.
  ================= =============================================================
+
+.. code-block:: url
+
+     PUT /domains/<domain>/dkim_authority
+
+Change the DKIM authority for a domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ self              *true* or *false*
+                   
+                   Change the DKIM authority for a domain.
+                   
+                   If set to *true*, the domain will be the DKIM authority for itself
+                   even if the root domain is registered on the same mailgun account
+                   
+                   If set to *false*, the domain will have the same DKIM authority
+                   as the root domain registered on the same mailgun account
+ ================= =============================================================
+.. note::  Use with caution: Do not forget to change the corresponding DNS record.
+		It can take 24-48 hours for DNS changes to propagate.
+		Changing the DKIM autority of an active domain affects its current deliveriability.
 
 
 Example
