@@ -59,9 +59,12 @@ Create a new domain. See examples below.
                        
                        If *tag*, inbound messages will be tagged with a spam header.
                        See :ref:`um-spam-filter`.
+                       
+                       The default is ``disabled``.
  wildcard              *true* or *false*
                        Determines whether the domain will accept email for sub-domains.
 
+                       The default is `false`.
  force_dkim_authority  *true* or *false*
                        
                        If set to *true*, the domain will be the DKIM authority for itself
@@ -69,6 +72,8 @@ Create a new domain. See examples below.
                        
                        If set to *false*, the domain will have the same DKIM authority
                        as the root domain registered on the same mailgun account
+                       
+                       The default is `false`.
  ===================== ========================================================
 
 .. code-block:: url
