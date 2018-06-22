@@ -237,6 +237,15 @@ listed the events that you can retrieve using this API.
  delivered         Mailgun sent the email and it was accepted by the recipient
                    email server.
  failed            Mailgun could not deliver the email to the recipient email server.
+                   
+                   severity=permanent when a message is not delivered.
+                   There are several reasons why Mailgun stops attempting to deliver messages
+                   and drops them including: hard bounces, 
+                   messages that reached their retry limit,
+                   previously unsubscribed/bounced/complained addresses,
+                   or addresses rejected by an ESP.
+                   
+                   severity=temporary when a message is temporary rejected by an ESP.
  opened            The email recipient opened the email and enabled image
                    viewing. Open tracking must be enabled in the Mailgun control
                    panel, and the CNAME record must be pointing to mailgun.org.
@@ -286,46 +295,95 @@ Below you can find sample events of various types:
 
     {
       "event": "accepted",
-      "id": "ncV2XwymRUKbPek_MIM-Gw",
-      "timestamp": 1377211256.096436,
-      "tags": [],
+      "id": "jxVuhYlhReaK3QsggHfFRA",
+      "timestamp": 1529692198.641821,
+      "log-level": "info",
+      "method": "smtp",
       "envelope": {
-        "sender": "sender@example.com"
+        "targets": "team@example.org",
+        "transport": "smtp",
+        "sender": "sender@example.org"
       },
-      "campaigns": [],
-      "user-variables": {},
       "flags": {
-        "is-authenticated": false,
-        "is-test-mode": false
+        "is-authenticated": false
       },
-      "routes": [
-        {
-          "priority": 1,
-          "expression": "match_recipient(\".*@samples.mailgun.org\")",
-          "description": "Sample route",
-          "actions": [
-            "stop()",
-            "forward(\"http://host.com/messages\")"
-          ]
-        }
-      ],
       "message": {
-        "headers": {
-          "to": "",
-          "message-id": "77AF5C3CA1416D93FC47AF8AD42A60AD@example.com",
-          "from": "John Doe <sender@example.com>",
+	"headers": {
+	  "to": "team@example.org",
+          "message-id": "20180622182958.1.48906CB188F1A454@exmple.org",
+          "from": "sender@example.org",
           "subject": "Test Subject"
-        },
-        "attachments": [],
-        "recipients": [
-          "recipient@example.com"
-        ],
-        "size": 6021
+	},
+	"attachments": [],
+	"recipients": [
+          "team@example.org"
+	],
+	"size": 586
       },
-      "recipient": "recipient@example.com",
-      "method": "smtp"
+      "storage": {
+	"url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
+	"key": "eyJwI..."
+      },
+      "recipient": "team@example.org",
+      "recipient-domain": "example.org",
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {}
     }
 
+**Accepted (Routed):**
+
+.. code-block:: javascript
+
+    {
+      "event": "accepted",
+      "id": "cWgTfzV6QQiXY4PqhlLClw",
+      "timestamp": 1529692198.719447,
+      "log-level": "info",
+      "method": "smtp",
+      "routes": [
+	{
+          "expression": "match_recipient(\"team@example.org\")",
+          "id": "5b295a4aa4764a000108508c",
+          "match": {
+    	    "recipient": "team@example.org"
+          }
+	}
+      ],
+      "envelope": {
+	"sender": "sender@example.org",
+	"transport": "smtp",
+	"targets": "john@example.com"
+      },
+      "flags": {
+	"is-routed": true,
+	"is-authenticated": false,
+	"is-system-test": false,
+	"is-test-mode": false
+      },
+      "message": {
+        "headers": {
+          "to": "team@example.org",
+          "message-id": "20180622182958.1.48906CB188F1A454@exmple.org",
+          "from": "sender@exmple.org",
+          "subject": "Test Subject"
+	},
+        "attachments": [],
+        "recipients": [
+          "team@example.org"
+        ],
+        "size": 586
+      },
+      "storage": {
+        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
+        "key": "eyJwI..."
+      },
+      "recipient": "john@example.com",
+      "recipient-domain": "example.com",
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {}
+    }
 
 **Delivered:**
 
@@ -333,82 +391,192 @@ Below you can find sample events of various types:
 
     {
       "event": "delivered",
-      "id": "W3X4JOhFT-OZidZGKKr9iA",
-      "timestamp": 1377208314.173742,
-      "tags": [],
+      "id": "hK7mQVt1QtqRiOfQXta4sw",
+      "timestamp": 1529692199.626182,
+      "log-level": "info",
       "envelope": {
         "transport": "smtp",
-        "sender": "postmaster@samples.mailgun.org",
-        "sending-ip": "184.173.153.199"
+        "sender": "sender@example.org",
+        "sending-ip": "123.123.123.123",
+        "targets": "john@example.com"
+      },
+      "flags": {
+        "is-routed": false,
+        "is-authenticated": false,
+        "is-system-test": false,
+        "is-test-mode": false
       },
       "delivery-status": {
-        "message": "",
-        "code": 0,
-        "description": null
-      },
-      "campaigns": [],
-      "user-variables": {},
-      "flags": {
-        "is-authenticated": true,
-        "is-test-mode": false
+        "tls": true,
+        "mx-host": "aspmx.l.example.com",
+        "code": 250,
+        "description": "",
+        "session-seconds": 0.4367079734802246,
+        "utf8": true,
+        "attempt-no": 1,
+        "message": "OK",
+        "certificate-verified": true
       },
       "message": {
         "headers": {
-          "to": "recipient@example.com",
-          "message-id": "20130822215151.29325.59996@samples.mailgun.org",
-          "from": "sender@example.com",
-          "subject": "Sample Message"
+          "to": "team@example.org",
+          "message-id": "20180622182958.1.48906CB188F1A454@exmple.org",
+          "from": "sender@exmple.org",
+          "subject": "Test Subject"
         },
         "attachments": [],
-        "recipients": [
-          "recipient@example.com"
-        ],
-        "size": 31143
+        "size": 586
       },
-      "recipient": "recipient@example.com",
+      "storage": {
+        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
+        "key": "eyJwI..."
+      },
+      "recipient": "john@example.com",
+      "recipient-domain": "example.com",
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {}
     }
 
-**Failed:**
+**Failed (Permanent):**
 
 .. code-block:: javascript
 
     {
       "event": "failed",
-      "id": "pVqXGJWhTzysS9GpwF2hlQ",
-      "timestamp": 1377198389.769129,
+      "id": "pl271FzxTTmGRW8Uj3dUWw",
+      "timestamp": 1529701969.818328,
+      "log-level": "error",
       "severity": "permanent",
-      "tags": [],
+      "reason": "suppress-bounce",
       "envelope": {
+        "sender": "john@example.org",
         "transport": "smtp",
-        "sender": "postmaster@samples.mailgun.org",
-        "sending-ip": "184.173.153.199"
+        "targets": "joan@example.com"
+      },
+      "flags": {
+        "is-routed": false,
+        "is-authenticated": true,
+        "is-system-test": false,
+        "is-test-mode": false
       },
       "delivery-status": {
-        "message": "Relay Not Permitted",
-        "code": 550,
-        "description": null
+        "attempt-no": 1,
+        "message": "",
+        "code": 605,
+        "description": "Not delivering to previously bounced address",
+        "session-seconds": 0.0
       },
+      "message": {
+        "headers": {
+          "to": "joan@example.com",
+          "message-id": "20180622211249.1.2A6098970A380E12@example.org",
+          "from": "john@example.org",
+          "subject": "Test Subject"
+        },
+        "attachments": [],
+        "size": 867
+      },
+      "storage": {
+        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
+        "key": "eyJwI..."
+      },
+      "recipient": "slava@mailgun.com",
+      "recipient-domain": "mailgun.com",
       "campaigns": [],
+      "tags": [],
+      "user-variables": {}
+    }
+
+**Failed (Permanent, Delayed Bounce):**
+
+.. code-block:: javascript
+
+    {
+      "event": "failed"
+      "id": "igw2SXYxTOabezGjqA9_xw",
+      "timestamp": 1529700261.747814,
+      "log-level": "error",
+      "severity": "permanent",
       "reason": "bounce",
-      "user-variables": {},
+      "delivery-status": {
+        "message": "smtp; 550-5.1.1 The email account that you tried to reach does not exist.",
+        "code": "5.1.1",
+        "description": ""
+      },
       "flags": {
-        "is-authenticated": true,
+        "is-delayed-bounce": true,
         "is-test-mode": false
       },
       "message": {
         "headers": {
-          "to": "recipient@example.com",
-          "message-id": "20130822185902.31528.73196@samples.mailgun.org",
-          "from": "John Doe <sender@example.com>",
+          "to": "joan@example.com",
+          "message-id": "20180521184023.49972.E75804E1DC9E5F16@example.org",
+          "from": "john@example.org",
           "subject": "Test Subject"
         },
         "attachments": [],
-        "recipients": [
-          "recipient@example.com"
-        ],
-        "size": 557
+        "size": 771
+      },  
+      "recipient": "joan@example.com",
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {},
+    }
+
+**Failed (Temporary):**
+
+.. code-block:: javascript
+
+    {
+      "event": "failed",
+      "id": "U2kZkAiuScqcMTq-8Atz-Q",
+      "timestamp": 1529439955.794033,
+      "log-level": "warn",
+      "severity": "temporary",
+      "reason": "generic",
+      "envelope": {
+        "transport": "smtp",
+        "sender": "john@example.org",
+        "sending-ip": "123.123.123.123",
+        "targets": "joan@example.com"
       },
-      "recipient": "recipient@example.com",
+      "flags": {
+        "is-routed": false,
+        "is-authenticated": true,
+        "is-system-test": false,
+        "is-test-mode": false
+      },
+      "delivery-status": {
+        "tls": true,
+        "mx-host": "mx.example.com",
+        "code": 421,
+        "description": "",
+        "session-seconds": 0.09020090103149414,
+        "retry-seconds": 600,
+        "attempt-no": 1,
+        "message": "4.4.2 mxfront9g.mail.example.com Error: timeout exceeded",
+        "certificate-verified": true
+      },
+      "message": {
+        "headers": {
+          "to": "joan@example.com",
+          "message-id": "20180619202554.1.C370AA02DD7DDF22@example.org",
+          "from": "john@example.org",
+          "subject": "Test Subject"
+        },
+        "attachments": [],
+        "size": 810
+      },
+      "storage": {
+        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
+        "key": "eyJwI..."
+      },
+      "recipient": "joan@example.com",
+      "recipient-domain": "example.com",
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {}
     }
 
 **Opened:**
@@ -419,6 +587,7 @@ Below you can find sample events of various types:
       "event": "opened",
       "id": "-laxIqj9QWubsjY_3pTq_g",
       "timestamp": 1377047343.042277,
+      "log-level": "info",
       "recipient": "recipient@example.com",
       "geolocation": {
         "country": "US",
@@ -453,6 +622,7 @@ Below you can find sample events of various types:
       "event": "clicked",
       "id": "G5zMz2ysS6OxZ2C8xb2Tqg",
       "timestamp": 1377075564.094891,
+      "log-level": "info",
       "recipient": "recipient@example.com",
       "geolocation": {
         "country": "US",
@@ -460,8 +630,8 @@ Below you can find sample events of various types:
         "city": "Austin"
       },
       "tags": [],
-      "url": "http://google.com",
-      "ip": "127.0.0.1",
+      "url": "http://example.com/signup",
+      "ip": "123.123.123.321",
       "campaigns": [],
       "user-variables": {},
       "client-info": {
@@ -486,6 +656,7 @@ Below you can find sample events of various types:
       "event": "unsubscribed",
       "id": "W3X4JOhFT-OZidZGKKr9iA",
       "timestamp": 1377213791.421473,
+      "log-level": "info",
       "recipient": "recipient@example.com",
       "geolocation": {
         "country": "US",
@@ -495,7 +666,7 @@ Below you can find sample events of various types:
       "campaigns": [],
       "tags": [],
       "user-variables": {},
-      "ip": "50.51.14.451",
+      "ip": "23.23.23.345",
       "client-info": {
         "client-type": "browser",
         "client-os": "OS X",
@@ -518,6 +689,7 @@ Below you can find sample events of various types:
       "event": "complained",
       "id": "ncV2XwymRUKbPek_MIM-Gw",
       "timestamp": 1377214260.049634,
+      "log-level": "warn",
       "recipient": "foo@example.com",
       "tags": [],
       "campaigns": [],
@@ -543,34 +715,65 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-       "event":"stored",
-       "id": "czsjqFATSlC3QtAK-C80nw",
-       "timestamp":1378335036.859382,
-       "storage":{
-          "url":"https://api.mailgun.net/v3/domains/ninomail.com/messages/WyI3MDhjODgwZTZlIiwgIjF6",
-          "key":"WyI3MDhjODgwZTZlIiwgIjF6"
-       },
-       "campaigns":[],
-       "user-variables":{},
-       "flags":{
-          "is-test-mode":false
-       },
-       "tags":[],
-       "message":{
-          "headers":{
-             "to":"satshabad <satshabad@mailgun.com>",
-             "message-id":"CAC8xyJxAO7Y0sr=3r-rJ4C6ULZs3cSVPPqYEXLHtarKOKaOCKw@mail.gmail.com",
-             "from":"Someone <someone@example.com>",
-             "subject":"Re: A TEST"
-          },
-          "attachments":[],
-          "recipients":[
-             "satshabad@mailgun.com"
-          ],
-          "size":2566
-       },
+      "event": "stored",
+      "id": "WRVmVc47QYi4DHth_xpRUA",
+      "timestamp": 1529692198.691758,
+      "log-level": "info",
+      "flags": {
+        "is-test-mode": false
+      },
+      "message": {
+        "headers": {
+          "to": "team@example.org",
+          "message-id": "20180622182958.1.48906CB188F1A454@exmple.org",
+          "from": "sender@example.org",
+          "subject": "Test Subject"
+        },
+        "attachments": [],
+        "recipients": [
+          "team@example.org"
+        ],
+        "size": 586
+      },
+      "storage": {
+        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
+        "key": "eyJwI..."
+      },
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {}
     }
 
+**Rejected:**
+
+.. code-block:: javascript
+
+    {
+      "event": "rejected"
+      "id": "OMTXD3-sSmKIQa1gSKkYVA",
+      "timestamp": 1529704976.104692,
+      "log-level": "warn",
+      "flags": {
+        "is-test-mode": false
+      },
+      "reject": {
+        "reason": "Sandbox subdomains are for test purposes only. Please add your own domain or add the address to authorized recipients in Account Settings.",
+        "description": ""
+      },
+      "message": {
+        "headers": {
+          "to": "joan@example.org",
+          "message-id": "20180622220256.1.B31A451A2E5422BB@sandbox55887fac92de874df5ae0023b75fd62f1d.mailgun.org",
+          "from": "john@sandbox55887fac92de874df5ae0023b75fd62f1d.mailgun.org",
+          "subject": "Test Subject"
+        },
+        "attachments": [],
+        "size": 867
+      },
+      "campaigns": [],
+      "tags": [],
+      "user-variables": {}
+    }
 
 Examples
 --------
