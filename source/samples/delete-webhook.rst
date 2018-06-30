@@ -87,7 +87,7 @@
 
  func DeleteWebhook(t *testing.T) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.DeleteWebhook("deliver")
+   return mg.DeleteWebhook("clicked")
  }
 
 .. code-block:: js

@@ -36,7 +36,7 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/webhooks/click");
+  $result = $mgClient->get("$domain/webhooks/clicked");
 
 .. code-block:: py
 
@@ -87,7 +87,7 @@
 
  func GetWebhook(domain, apiKey string) (string, error) {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.GetWebhookByType("deliver")
+   return mg.GetWebhookByType("clicked")
  }
 
 .. code-block:: js

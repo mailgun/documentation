@@ -3,9 +3,9 @@
     curl -s --user 'api:YOUR_API_KEY' \
 	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
 	-F id='clicked' \
-	-F url='http://bin.example.com/8de4a9c4'
-	-F url='http://bin.example.com/8de4a9c5'
-	-F url='http://bin.example.com/8de4a9c6'
+	-F url='https://your_domain.com/v1/clicked'
+	-F url='https://your_domain.com/v2/clicked'
+	-F url='https://your_partner_domain.com/v1/clicked'
 
 .. code-block:: java
 
@@ -20,15 +20,15 @@
  
      public static JsonNode addWebhook() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + 
+                                                        YOUR_DOMAIN_NAME + 
+                                                        "/webhooks")
  		      .basicAuth("api", API_KEY)
- 			  .field("id","click")
- 		      .field("url", { 
-                   "http://bin.example.com/8de4a9c4", 
-                   "http://bin.example.com/8de4a9c5", 
-                   "http://bin.example.com/8de4a9c6" 
-              })
- 		      .asJson();
+ 		      .field("id","click")
+ 		      .field("url", "https://your_domain.com/v1/clicked")
+ 		      .field("url", "https://your_domain.com/v2/clicked")
+ 		      .field("url", "https://your_partner_domain.com/v1/clicked")
+              }).asJson();
  
          return request.getBody();
      }
@@ -48,9 +48,9 @@
   $result = $mgClient->post("domains/$domain/webhooks", array(
       'id'  => 'clicked',
       'url' => array(
-          'http://bin.example.com/8de4a9c4',
-          'http://bin.example.com/8de4a9c5',
-          'http://bin.example.com/8de4a9c6'
+          'https://your_domain.com/v1/clicked',
+          'https://your_domain.com/v2/clicked',
+          'https://your_partner_domain.com/v1/clicked'
       )
   ));
 
@@ -62,9 +62,9 @@
          auth=("api", "YOUR_API_KEY"),
          data={
            'id':'clicked', 
-           'url':[ 'http://bin.example.com/8de4a9c4',            
-		     'http://bin.example.com/8de4a9c5',
-		     'http://bin.example.com/8de4a9c6'
+           'url':[ 'https://your_domain.com/v1/clicked',
+		   'https://your_domain.com/v2/clicked',
+		   'https://your_partner_domain.com/v1/clicked'
            ]
          })
 
@@ -74,9 +74,9 @@
    RestClient.post("https://api:YOUR_API_KEY"\
                    "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
                    :id => 'clicked',
-                   :url => ['http://bin.example.com/8de4a9c4',
-                            'http://bin.example.com/8de4a9c5',
-                            'http://bin.example.com/8de4a9c6'])
+                   :url => ['https://your_domain.com/v1/clicked',
+                            'https://your_domain.com/v2/clicked',
+                            'https://your_partner_domain.com/v1/clicked'])
  end
 
 .. code-block:: csharp
@@ -104,11 +104,9 @@
          RestRequest request = new RestRequest ();
          request.Resource = "domains/YOUR_DOMAIN_NAME/webhooks";
          request.AddParameter ("id", "clicked");
-         request.AddParameter ("url", new [] { 
-              "http://bin.example.com/8de4a9c4", 
-              "http://bin.example.com/8de4a9c5", 
-              "http://bin.example.com/8de4a9c6"
-         });
+         request.AddParameter ("url", "https://your_domain.com/v1/clicked")
+         request.AddParameter ("url", "https://your_domain.com/v2/clicked")
+         request.AddParameter ("url", "https://your_partner_domain.com/v1/clicked")
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -119,14 +117,15 @@
 
  func CreateWebhook(domain, apiKey string) error {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.CreateWebhook("deliver", "http://www.example.com")
+   return mg.CreateWebhook("clicked", "https://your_domain.com/v1/clicked")
  }
 
 .. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+ var urls = ['https://your_domain.com/v1/clicked', 'https://your_domain.com/v2/clicked', 'https://your_parner_domain.com/v1/clicked']
 
- mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'clicked', "url": ['http://bin.example.com/8de4a9c4, http://bin.example.com/8de4a9c5, http://bin.example.com/8de4a9c6'}, function (error, body) {
+ mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'clicked', "url": urls}, function (error, body) {
    console.log(body);
  });

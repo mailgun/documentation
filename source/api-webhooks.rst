@@ -5,6 +5,7 @@ Webhooks
 
 This API allows you to create, access, and delete webhooks programmatically.
 
+.. note::  A previous version of the API is described here :ref:`api-webhooks-deprecated`
 
 Supported webhooks, and their documentation, are listed below:
 
@@ -56,7 +57,7 @@ Returns details about a the webhook specified in the URL.
 
 Creates a new webhook.
 
-.. note:: When adding a Click or Open webhook, ensure that you also have tracking enabled.
+.. note:: When adding a Clicked or Opened webhook, ensure that you also have tracking enabled.
 
 .. container:: ptable
 
@@ -117,11 +118,13 @@ Sample response:
 	{
 	  "webhooks": {
 	    "opened": {
-	      "urls": [ "http://postbin.heroku.com/860bcd65",
-		            "http://postbin.heroku.com/860bcd65" ]
+	      "urls": [
+		        "https://your_domain.com/v1/opened",
+		        "https://your_domain.com/v2/opened" 
+		      ]
 	    },
 	    "clicked": {
-	      "urls": [ "http://postbin.heroku.com/860bcd65" ]
+	      "urls": [ "https://your_domain.com/v1/clicked" ]
 	    }
 	  }
 	}
@@ -136,7 +139,7 @@ Sample response:
 
 	{
 	  "webhook": {
-	    "urls": [ "http://google.com" ]
+	    "urls": [ "https://your_domain.com/v1/clicked" ]
 	  }
 	}
 
@@ -151,9 +154,11 @@ Sample response:
 	{
 	  "message": "Webhook has been created",
 	  "webhook": {
-	    "urls": [ "http://bin.example.com/8de4a9c4",
-                  "http://bin.example.com/8de4a9c5",
-				  "http://bin.example.com/8de4a9c6" ]
+	    "urls": [
+		      "https://your_domain.com/v1/clicked",
+		      "https://your_domain.com/v2/clicked",
+		      "https://your_partner_domain.com/v1/clicked" 
+		    ]
 	  }
 	}
 
@@ -168,7 +173,7 @@ Sample response:
 	{
 	  "message": "Webhook has been updated",
 	  "webhook": {
-	    "urls": [ "http://google.com" ]
+	    "urls": [ "https://your_domain.com/v1/clicked" ]
 	  }
 	}
 
@@ -183,9 +188,11 @@ Sample response:
 	{
 	  "message": "Webhook has been deleted",
 	  "webhook": {
-	    "urls": [ "http://postbin.heroku.com/860bcd65",
-		          "http://postbin.heroku.com/860bcd65",
-				  "http://postbin.heroku.com/860bcd65" ]
+	    "urls": [
+		      "https://your_domain.com/v1/clicked",
+		      "https://your_domain.com/v2/clicked",
+		      "https://your_partner_domain.com/v1/clicked" 
+		    ]
 	  }
 	}
 
