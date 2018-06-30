@@ -262,6 +262,8 @@ listed the events that you can retrieve using this API.
  stored            Mailgun has stored an incoming message
  ================= ============================================================
 
+.. _api-events-structure:
+
 Event Structure
 ---------------
 

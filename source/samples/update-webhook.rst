@@ -3,7 +3,7 @@
 
     curl -s --user 'api:YOUR_API_KEY' -X PUT \
 	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked \
-	-F url='http://google.com'
+	-F url='https://your_domain,com/v1/clicked'
 
 .. code-block:: java
 
@@ -20,7 +20,7 @@
 
          HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/clicked")
              .basicAuth("api", API_KEY)
-             .field("url", "http://google.com")
+             .field("url", "https://your_domain.com/clicked")
              .asJson();
 
          return request.getBody();
@@ -40,24 +40,23 @@
 
   # Issue the call to the client.
   $result = $mgClient->put("$domain/webhooks/clicked", array(
-      'url' => 'http://google.com'
+      'url' => 'https://your_domain.com/clicked'
   ));
 
 .. code-block:: py
 
- def update_member():
+ def update_webhook():
      return requests.put(
          ("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked"),
          auth=('api', 'YOUR_API_KEY'),
-         data={'url': 'http://google.com'})
+         data={'url': 'https://your_domain.com/clicked'})
 
 .. code-block:: rb
 
- def update_member
+ def update_webhook
    RestClient.put("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked" \
-                  "/bar@example.com",
-                  :url => 'http://google.com')
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/clicked",
+                  :url => 'https://your_domain.com/clicked')
  end
 
 .. code-block:: csharp
@@ -84,7 +83,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.Resource = "/domains/YOUR_DOMAIN_NAME/webhooks/clicked";
-         request.AddParameter ("url", "http://google.com");
+         request.AddParameter ("url", "https://your_domain.com/clicked");
          request.Method = Method.PUT;
          return client.Execute (request);
      }
@@ -95,7 +94,7 @@
 
  func UpdateWebhook(domain, apiKey string) error {
    mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.UpdateWebhook("deliver", "http://api.example.com")
+   return mg.UpdateWebhook("clicked", "https://your_domain.com/clicked")
  }
 
 .. code-block:: js
@@ -103,6 +102,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/domain/${DOMAIN}/webhooks/clicked`, {"url": 'http://google.com'}, function (error, body) {
+ mailgun.put(`/domain/${DOMAIN}/webhooks/clicked`, {"url": 'https://your_domain.com/v1/clicked'}, function (error, body) {
    console.log(body);
  });

@@ -15,6 +15,5 @@ API Reference
    api-suppressions
    api-routes
    api-webhooks
-   api-webhooks-deprecated
    api-mailinglists
    api-email-validation
