@@ -6,7 +6,7 @@ Spam Complaints
 When recipients of your messages press "Spam" button, Mailgun receives
 those complaints from ESPs (email service providers).
 
-Mailgun can :ref:`notify your application <manual-webhooks>` every time a
+Mailgun can :ref:`notify your application <um-tracking-spam-complaints>` every time a
 recipient flags your message as spam.
 
 This API allows you to programmatically download the list of users who

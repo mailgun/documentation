@@ -7,7 +7,7 @@ Mailgun allows you to quickly add "Unsubscribe me" feature to your outgoing
 emails without any programming on your end. You can enable this in your
 Control Panel under your domain settings.
 
-Mailgun can :ref:`notify your application <manual-webhooks>` every time a
+Mailgun can :ref:`notify your application <um-tracking-unsubscribes>` every time a
 user unsubscribes.
 
 This API allows you to programmatically download the list of recipients who have

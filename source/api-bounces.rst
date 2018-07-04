@@ -7,7 +7,7 @@ Mailgun automatically handles bounced emails. The bounced addresses
 are collected in a bounces list and subsequent delivery attempts are
 ignored to protect your sending reputation.
 
-Mailgun can :ref:`notify your application <manual-webhooks>` every time a
+Mailgun can :ref:`notify your application <um-tracking-bounces>` every time a
 message bounces.
 
 The list of bounced addresses can be accessed programmatically:

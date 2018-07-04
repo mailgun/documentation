@@ -49,6 +49,9 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  inline                Attachment with ``inline`` disposition. Can be used to
                        send inline images (see :ref:`example <inline-image>`).
                        You can post multiple ``inline`` values.
+ template              ID of a template stored via :ref:`template API <api-templates>`.
+                       Please note ``html`` parameter is ignored if you are sending messages with this parameter.
+                       See :ref:`templating` for more information
  o\:tag                Tag string. See :ref:`tagging` for more information.
  o\:dkim               Enables/disables DKIM signatures on per-message basis.
                        Pass ``yes`` or ``no``
@@ -268,3 +271,4 @@ An example of how to resend a message:
 An example of how to decode Quoted-printable encoded messages:
 
 .. include:: samples/decode-quoted-printable.rst
+
