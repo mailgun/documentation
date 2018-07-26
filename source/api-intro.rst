@@ -111,14 +111,14 @@ The endpoints you will use for sending/receiving/tracking messages in the EU are
 
  .. container:: ptable
 
-  ==================== =============================
-  Endpoint             EU Service
-  ==================== =============================
-  api.eu.mailgun.net   REST API
-  smtp.eu.mailgun.org  Outgoing SMTP Server
-  mxa.eu.mailgun.org   Inbound SMTP Server (Routes)
-  mxb.eu.mailgun.org   Inbound SMTP Server (Routes)
-  eu.mailgun.org       Open/Click Tracking Endpoint
-  ==================== =============================
+=============================   ====================   ==================== 
+Service                         US Endpoint            EU Endpoint
+=============================   ====================   ==================== 
+ REST API                       api.mailgun.net        api.eu.mailgun.net
+ Outgoing SMTP Server           smtp.mailgun.org       smtp.eu.mailgun.org
+ Inbound SMTP Server (Routes)   mxa.mailgun.org        mxa.eu.mailgun.org
+ Inbound SMTP Server (Routes)   mxb.mailgun.org        mxb.eu.mailgun.org
+ Open/Click Tracking Endpoint   mailgun.org            eu.mailgun.org 
+=============================   ====================   ==================== 
 
 
