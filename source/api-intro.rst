@@ -93,3 +93,32 @@ Webhooks
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes.  You can read more about :ref:`webhooks` and :ref:`um-routes` in the :ref:`user-manual`.
+
+Mailgun Regions
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Using a single account and billing plan, you can choose to provision new sending domains in the EU environment. Message data never leaves the region in which it is processed. Only a limited amount of account data is replicated globally, giving you a single account from which to manage domains in both the US and the EU. Here are the specifics on the type of data that is replicated globally versus what is region-bound.
+
+.. container:: ptable
+
+ ======================================================================================================= ==================================================================================================================================
+ Global                                                                                                  Region-Bound (US / EU)
+ ======================================================================================================= ==================================================================================================================================
+ Account Information, User Accounts, Billing Details (invoices/plan information), API Keys, Domain Names Domain Metadata (e.g. SMTP credentials), Messages, Event Logs, Suppressions, Mailing Lists, Tags, Statistics, Routes, IP Addresses
+ ======================================================================================================= ==================================================================================================================================
+
+The endpoints you will use for sending/receiving/tracking messages in the EU are below:
+
+ .. container:: ptable
+
+  ==================== =============================
+  Endpoint             EU Service
+  ==================== =============================
+  api.eu.mailgun.net   REST API
+  smtp.eu.mailgun.org  Outgoing SMTP Server
+  mxa.eu.mailgun.org   Inbound SMTP Server (Routes)
+  mxb.eu.mailgun.org   Inbound SMTP Server (Routes)
+  eu.mailgun.org       Open/Click Tracking Endpoint
+  ==================== =============================
+
+
