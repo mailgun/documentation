@@ -53,6 +53,8 @@ What actually happened:
 * Added the log entries to our full text search index.
 * Delivered the email.
 
+If your domain name is associated to the EU region, use the `https://api.eu.mailgun.net/v3/YOUR_DOMAIN_NAME/messages` URL instead.
+
 You can find your private API key on your `dashboard`_.
 
 .. _dashboard: https://app.mailgun.com/app/dashboard
