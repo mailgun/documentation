@@ -43,6 +43,8 @@
 
     <link rel="icon" type="image/png" href="_static/img/favicon.png" />
 
+    <link rel="stylesheet" href="{{css_url}}/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{css_url}}/top_navigation.css" />
     <link rel="stylesheet" href="{{css_url}}/mg.css" />
     <link rel="stylesheet" href="{{css_url}}/search.css" />
     <meta name="viewport" content="width=device-width">
@@ -94,40 +96,93 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </g>
 </defs></svg>
 
-<header>
-  <div class="container">
-      <a href="https://www.mailgun.com/" class="logo">Mailgun - Email Automation</a>
-      <nav class="header-nav" id="js-header-nav">
-          <a href="https://www.mailgun.com/pricing" class="pricing-link"><b>Pricing</b></a>
-          <a href="https://www.mailgun.com/customers" class="customers-link"><b>Customers</b></a>
-          <div class="dropdown">
-                    <a href="https://www.mailgun.com/sending-email" class="js-dropdown-toggle"><b>Features <svg class="icon icon-dropdown" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
-</b></a>
-                    <nav class="dropdown-menu">
-                        <a href="https://www.mailgun.com/sending-email">Sending email</a>
-                        <a href="https://www.mailgun.com/inbound-routing">Inbound routing</a>
-                        <a href="https://www.mailgun.com/analytics">Tracking &amp; analytics</a>
-                        <a href="https://www.mailgun.com/email-validation">Email validation</a>
-                        <a href="https://www.mailgun.com/deliverability">Deliverability</a>
-                    </nav>
-                </div>
-                <div class="dropdown">
-                    <a href="https://resources.mailgun.com/index.html" class="js-dropdown-toggle resources-link"><b>Resources <svg class="icon icon-dropdown active" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
-</b></a>
-                    <nav class="dropdown-menu">
-                        <a href="https://documentation.mailgun.com">Docs</a>
-                        <a href="https://www.mailgun.com/guides">Guides</a>
-                        <a href="http://blog.mailgun.com">Blog</a>
-                    </nav>
-                </div>
-                <a href="https://www.mailgun.com/managed" class="managed-link"><b>Managed</b></a>
-                <a href="https://www.mailgun.com/contact" class="contact-link"><b>Contact</b></a>
-          <a href="https://app.mailgun.com/sessions/new" class="login-link"><b>Log in</b></a>
-          <a href="https://app.mailgun.com/signup" class="signup-link"><b>Sign Up</b></a>
-      </nav>
-      <button id="js-show-nav"><svg class="icon icon-menu" viewBox="0 0 30 32"><use xlink:href="#icon-menu"></use></svg></button>
-  </div>
-</header>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid utility-menu">
+        <div class="row">
+            <div class="nabvar-right">
+                <ul class="list-unstyled list-inline navbar-right">
+                    <li>
+                        <a href="https://www.mailgun.com/blog">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mailgun.com/jobs" target="_blank">
+                            Jobs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mailgun.com/partners">
+                            Partners
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mailgun.com/contact">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://app.mailgun.com/app/dashboard">
+                            Log In
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid header-valign-padding">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar" aria-expanded="false" aria-controls="top-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://www.mailgun.com" class="logo">
+                <img src="{{css_url}}/img/mailgun-primary-no-tag.svg" class="img-responsive" alt="Mailgun Technologies">
+            </a>
+        </div>
+        <div id="top-navbar" class="navbar-collapse collapse navbar-right header-valign">
+            <ul id="menu-top-menu" class="nav navbar-nav">
+                <li>
+                    <a href="https://www.mailgun.com/pricing">Pricing</a>
+                </li>
+                <li class="dropdown-item"><a href="https://www.mailgun.com/email-api">Products</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.mailgun.com/email-api">Email API</a></li>
+                        <li><a href="https://www.mailgun.com/email-validation">Email Validation</a></li>
+                        <li><a href="https://www.mailgun.com/managed">Deliverability Services</a></li>
+                        <li><a href="https://www.mailgun.com/rapid-fire-throughput">Rapid Fire Burst Sending</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item"><a href="https://www.mailgun.com/sending-email">Solutions</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.mailgun.com/email-deliverability">Email Deliverability</a></li>
+                        <li><a href="https://www.mailgun.com/sending-email">Sending Email</a></li>
+                        <li><a href="https://www.mailgun.com/inbound-routing">Inbound Routing</a></li>
+                        <li><a href="https://www.mailgun.com/logs">Message Event Logs</a></li>
+                        <li><a href="https://www.mailgun.com/analytics">Email Analytics</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-item"><a href="https://www.mailgun.com/resources">Resources</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.mailgun.com/blog">Blog</a></li>
+                        <li></li><a href="http://documentation.mailgun.com">Docs</a></li>
+                        <li><a href="https://www.mailgun.com/guides">Guides</a></li>
+                        <li><a href="https://www.mailgun.com/videos">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="http://documentation.mailgun.com">Docs</a></li>
+                <li><a href="https://www.mailgun.com/managed">Managed</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right nav-buttons">
+                <li><a href="https://signup.mailgun.com/" class="signup-link"><b>SIGN UP</b></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /header -->
 
 <div id="body">
   <section class="subnav">
@@ -192,12 +247,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {%- block sidebarlogo %}
       {%- if logo %}
         <p class="logo"><a href="{{ pathto(master_doc) }}">
-          <img class="logo" src="{{ pathto('_static/' + logo, 1) }}" alt="Logo"/>
+          <img class="logo" src="{{ pathto('_static/' + logo, 1) }}" alt="Mailgun Technologies"/>
         </a></p>
       {%- endif %}
       {%- endblock %}
       {%- block sidebartoc %}
-      <!-- <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul> -->
+        <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Docs Home') }}</a></li></ul>
           {%- if "FAQ" in title %}
               {{ toctree(maxdepth=1) }}
           {%- elif "Quickstart" in title %}
@@ -243,6 +298,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section> <!-- /container -->
 </div> <!-- /body -->
 
+    <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/bootstrap.min.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.debounce.min.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.min.js', 1) }}"></script>
@@ -259,10 +315,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-    // Responsive navigation show/hide main nav
-	$("#js-show-nav").click(function(){
-		$("#js-header-nav").slideToggle();
-	});
 
   // highlight nav on load
   $(document).ready(function(){

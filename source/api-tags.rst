@@ -29,7 +29,7 @@ if the result set is too long to be returned in a single response.
 
 Returns a given tag.
 
-.. contrainer:: ptable
+.. container:: ptable
 
  ================= ============================================================
  Parameter         Description
