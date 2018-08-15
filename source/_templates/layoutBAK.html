@@ -1,0 +1,302 @@
+{% extends "basic/layout.html" %}
+{% if corpsite_hostname == ""  %}
+{% set corpsite_hostname = "www.mailgun.com" %}
+{% endif %}
+{% if cp_hostname == "" %}
+{% set cp_hostname = "app.mailgun.com" %}
+{% endif %}
+{% set css_url = "_static" %}
+{%- block doctype -%}
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 documentation"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8 documentation"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9 documentation"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="documentation"> <!--<![endif]-->
+{%- endblock %}
+
+{%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
+{%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+{%- block linktags %}
+{%- if hasdoc('about') %}
+<link rel="author" title="{{ _('About these documents') }}" href="{{ pathto('about') }}" />
+{%- endif %}
+{%- if hasdoc('genindex') %}
+<link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}" />
+{%- endif %}
+{%- if hasdoc('search') %}
+<link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}" />
+{%- endif %}
+{%- if hasdoc('copyright') %}
+<link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}" />
+{%- endif %}
+<link rel="top" title="{{ docstitle|e }}" href="{{ pathto('index') }}" />
+{%- if parents %}
+<link rel="up" title="{{ parents[-1].title|striptags }}" href="{{ parents[-1].link|e }}" />
+{%- endif %}
+{%- if next %}
+<link rel="next" title="{{ next.title|striptags }}" href="{{ next.link|e }}" />
+{%- endif %}
+{%- if prev %}
+<link rel="prev" title="{{ prev.title|striptags }}" href="{{ prev.link|e }}" />
+{%- endif %}
+<link media="only screen and (max-device-width: 480px)" href="{{ pathto('_static/mobile.css', 1) }}" type="text/css" rel="stylesheet" />
+
+<link rel="icon" type="image/png" href="_static/img/favicon.png" />
+
+<link rel="stylesheet" href="{{css_url}}/mg.css" />
+<link rel="stylesheet" href="{{css_url}}/search.css" />
+<meta name="viewport" content="width=device-width">
+{% if corpsite_hostname == "www.website.ninomail.com" %}
+<meta name="robots" content="noindex">
+{% endif %}
+
+{%- endblock %}
+{%- block extrahead %}
+{{ super() }}
+
+<!-- i2a tracking code-->
+<script type="text/javascript"
+		src="{{ pathto('_static/i2a.js', 1) }}">
+</script>
+
+<!-- GA pageLoadVars -->
+<script type="text/javascript">
+  var pageLoadVars = {
+    'visitor_type' : 'Customer',
+    'customer_type' : "",
+    'coupon_id' : "",
+    'signup_state' : 'Inactive',
+    'bamGAVPV' : "",
+    'customer_action': []
+  }
+</script>
+
+{% endblock %}
+{%- block header %}{% endblock %}
+{%- block relbar1 %}
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WN2J6"
+				  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script type="text/javascript" src="{{ pathto('_static/google_tag_manager.js', 1) }}"></script>
+
+<!-- SVG Icons -->
+<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="517" height="32" viewBox="0 0 517 32">
+	<defs>
+		<g id="icon-search">
+			<path class="path1" d="M0 14.857q0-2.554 0.991-4.884t2.679-4.018 4.018-2.679 4.884-0.991 4.884 0.991 4.018 2.679 2.679 4.018 0.991 4.884q0 3.929-2.214 7.125l6.125 6.125q0.661 0.661 0.661 1.607 0 0.929-0.679 1.607t-1.607 0.679q-0.964 0-1.607-0.679l-6.125-6.107q-3.196 2.214-7.125 2.214-2.554 0-4.884-0.991t-4.018-2.679-2.679-4.018-0.991-4.884zM4.571 14.857q0 3.304 2.348 5.652t5.652 2.348 5.652-2.348 2.348-5.652-2.348-5.652-5.652-2.348-5.652 2.348-2.348 5.652z"></path>
+		</g>
+		<g id="icon-menu">
+			<path class="path1" d="M0 26.286v-2.286q0-0.464 0.339-0.804t0.804-0.339h25.143q0.464 0 0.804 0.339t0.339 0.804v2.286q0 0.464-0.339 0.804t-0.804 0.339h-25.143q-0.464 0-0.804-0.339t-0.339-0.804zM0 17.143v-2.286q0-0.464 0.339-0.804t0.804-0.339h25.143q0.464 0 0.804 0.339t0.339 0.804v2.286q0 0.464-0.339 0.804t-0.804 0.339h-25.143q-0.464 0-0.804-0.339t-0.339-0.804zM0 8v-2.286q0-0.464 0.339-0.804t0.804-0.339h25.143q0.464 0 0.804 0.339t0.339 0.804v2.286q0 0.464-0.339 0.804t-0.804 0.339h-25.143q-0.464 0-0.804-0.339t-0.339-0.804z"></path>
+		</g>
+		<g id="icon-dropdown">
+			<path d="M124.452,10.121 L118.343,4.01 C116.225,2.001 113.753,0.996 110.93,0.996 C108.05,0.996 105.606,2.001 103.596,4.01 L64,43.607 L24.404,4.011 C22.394,2.002 19.95,0.997 17.071,0.997 C14.247,0.997 11.775,2.002 9.657,4.011 L3.628,10.122 C1.564,12.185 0.532,14.657 0.532,17.536 C0.532,20.469 1.565,22.913 3.628,24.868 L56.667,77.907 C58.623,79.971 61.066,81.003 64,81.003 C66.879,81.003 69.35,79.971 71.413,77.907 L124.452,24.868 C126.462,22.858 127.468,20.414 127.468,17.536 C127.468,14.711 126.462,12.24 124.452,10.121 L124.452,10.121 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+		</g>
+	</defs></svg>
+
+<header>
+	<div class="container">
+		<a href="https://www.mailgun.com/" class="logo">Mailgun - Email Automation</a>
+		<nav class="header-nav" id="js-header-nav">
+			<a href="https://www.mailgun.com/pricing" class="pricing-link"><b>Pricing</b></a>
+			<a href="https://www.mailgun.com/customers" class="customers-link"><b>Customers</b></a>
+			<div class="dropdown">
+				<a href="https://www.mailgun.com/sending-email" class="js-dropdown-toggle"><b>Features <svg class="icon icon-dropdown" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
+				</b></a>
+				<nav class="dropdown-menu">
+					<a href="https://www.mailgun.com/sending-email">Sending email</a>
+					<a href="https://www.mailgun.com/inbound-routing">Inbound routing</a>
+					<a href="https://www.mailgun.com/analytics">Tracking &amp; analytics</a>
+					<a href="https://www.mailgun.com/email-validation">Email validation</a>
+					<a href="https://www.mailgun.com/deliverability">Deliverability</a>
+				</nav>
+			</div>
+			<div class="dropdown">
+				<a href="https://resources.mailgun.com/index.html" class="js-dropdown-toggle resources-link"><b>Resources <svg class="icon icon-dropdown active" viewBox="0 0 128 80"><use xlink:href="#icon-dropdown"></use></svg>
+				</b></a>
+				<nav class="dropdown-menu">
+					<a href="https://documentation.mailgun.com">Docs</a>
+					<a href="https://www.mailgun.com/guides">Guides</a>
+					<a href="http://blog.mailgun.com">Blog</a>
+				</nav>
+			</div>
+			<a href="https://www.mailgun.com/managed" class="managed-link"><b>Managed</b></a>
+			<a href="https://www.mailgun.com/contact" class="contact-link"><b>Contact</b></a>
+			<a href="https://app.mailgun.com/sessions/new" class="login-link"><b>Log in</b></a>
+			<a href="https://app.mailgun.com/signup" class="signup-link"><b>Sign Up</b></a>
+		</nav>
+		<button id="js-show-nav"><svg class="icon icon-menu" viewBox="0 0 30 32"><use xlink:href="#icon-menu"></use></svg></button>
+	</div>
+</header>
+
+<div id="body">
+	<section class="subnav">
+		<div class="container">
+			<a href="https://github.com/mailgun/documentation" class="edit-docs-link" onclick="mixpanel.track('Clicked Edit Docs Link');">Edit</a>
+			<ul id="headerButtons" class="nav nav-pills">
+				<li class="lang-label">
+					Code sample preference:
+				</li>
+				<li class="lang">
+					<a href="" id="lang_bash" >curl</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_rb" >Ruby</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_py" >Python</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_php" >PHP</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_java" >Java</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_csharp" >C#</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_go" >Go</a>
+				</li>
+				<li class="lang">
+					<a href="" id="lang_js" >Node.js</a>
+				</li>
+				
+				{%- block sidebarsearch %}
+				{%- if pagename != "search" %}
+				<div id="search" role="search" class="search-box">
+					<form action="{{ pathto('search') }}" method="get">
+						<svg class="icon icon-search" viewBox="0 0 32 32"><use xlink:href="#icon-search"></use></svg>
+						<input name="q" type="search" id="st-search-input" class="prettysearch search-input" autofocus />
+						<input type="hidden" name="check_keywords" value="yes" />
+						<input type="hidden" name="area" value="default" />
+					</form>
+				</div>
+				{%- endif %}
+				{%- endblock %}
+			</ul>
+		</div>
+	</section>
+	
+	<section class="main">
+		
+		<div class="container">
+			
+			
+			{% endblock %}
+			
+			{%- block sidebar1 %}
+			{%- if not embedded %}{% if not theme_nosidebar|tobool %}
+			<aside id="sphinxsidebar" class="docs-sidebar">
+				<div class="sphinxsidebarwrapper">
+					{%- block sidebarlogo %}
+					{%- if logo %}
+					<p class="logo"><a href="{{ pathto(master_doc) }}">
+						<img class="logo" src="{{ pathto('_static/' + logo, 1) }}" alt="Logo"/>
+					</a></p>
+					{%- endif %}
+					{%- endblock %}
+					{%- block sidebartoc %}
+					<!-- <ul><li class="toctree-l1"><a href="{{ pathto(master_doc) }}">{{ _('Main Page') }}</a></li></ul> -->
+					{%- if "FAQ" in title %}
+					{{ toctree(maxdepth=1) }}
+					{%- elif "Quickstart" in title %}
+					{{ toctree(maxdepth=2) }}
+					{% elif "Reference" in title %}
+					{{ toctree(maxdepth=2) }}
+					{% else %}
+					{{ toctree(maxdepth=3) }}
+					{%- endif %}
+					{%- endblock %}
+					{%- block sidebarrel %}
+					{%- endblock %}
+					{%- block sidebarsourcelink %}
+					{%- endblock %}
+					{%- if customsidebar %}
+					{% include customsidebar %}
+					{%- endif %}
+					<div class="admonition note">You can find your API Key in your <a href="https://app.mailgun.com/app/dashboard" target="_blank">Control Panel</a></div>
+				</div>
+			</aside>
+			{%- endif %}{% endif %}
+			
+			{% endblock %}
+			{%- block document %}
+			<div id="st-results-container"></div>
+			<div class="documentwrapper">
+				{%- if not embedded %}{% if not theme_nosidebar|tobool %}
+				<div class="bodywrapper">
+					{%- endif %}{% endif %}
+					<div class="body">
+						{% block body %} {% endblock %}
+					</div>
+					{%- if not embedded %}{% if not theme_nosidebar|tobool %}
+				</div>
+				{%- endif %}{% endif %}
+			</div>
+			{%- endblock %}
+			{%- block sidebar2 %}{% endblock %}
+			{%- block relbar2 %}{% endblock %}
+			{%- block footer %}
+		
+		</div> <!-- /content -->
+	</section> <!-- /container -->
+</div> <!-- /body -->
+
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.debounce.min.js', 1) }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.min.js', 1) }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.viewport.min.js', 1) }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/samples.js', 1) }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/scroll_hash.js', 1) }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ pathto('_static/underscore-min.js', 1) }}"></script>
+<script type="text/javascript">
+  window.underscore = _.noConflict();
+</script>
+
+
+<!-- Ace editor for editable code -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+  // Responsive navigation show/hide main nav
+  $("#js-show-nav").click(function(){
+    $("#js-header-nav").slideToggle();
+  });
+
+  // highlight nav on load
+  $(document).ready(function(){
+    $('.docs-sidebar li').removeClass('active');
+    $('.docs-sidebar ul.current li.current a.current').parent().addClass('active');
+  });
+
+  // Make sample code snippets editable in the browser
+  $('.highlight pre').click(function(){
+    ace_activate(this);
+  });
+
+  // Ace editor activation
+  function ace_activate(container) {
+    var editor = ace.edit(container);
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/sh");
+    editor.setShowPrintMargin(false);
+    editor.renderer.setShowGutter(false);
+    editor.setHighlightActiveLine(false);
+    editor.getSession().setUseWrapMode(true);
+    editor.setBehavioursEnabled(false);
+    $(container).height(editor.getSession().getScreenLength() * 20);
+  }
+
+</script>
+
+<!-- User information insertion code-->
+<script type="text/javascript">
+  var cp_hostname = "{{cp_hostname}}";
+</script>
+
+<script type="text/javascript"
+		src="{{ pathto('_static/insert-api-key.js', 1) }}">
+</script>
+
+{%- endblock %}
