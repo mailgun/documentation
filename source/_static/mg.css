@@ -2945,7 +2945,8 @@ footer {
 
 .code-examples .nav-pills li a:hover {
     color: #fff;
-    text-decoration: none
+    text-decoration: none;
+    background: none;
 }
 
 .code-examples .nav-pills li.active a, .code-examples .nav-pills .sending li.features-link a, .sending .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .pricing li.pricing-link a, .pricing .code-examples .nav-pills li.pricing-link a, .code-examples .nav-pills .customersgallery li.customers-link a, .customersgallery .code-examples .nav-pills li.customers-link a, .code-examples .nav-pills .validation li.validation-link a, .validation .code-examples .nav-pills li.validation-link a, .code-examples .nav-pills .sending li.sending-link a, .sending .code-examples .nav-pills li.sending-link a, .code-examples .nav-pills .routing li.routing-link a, .routing .code-examples .nav-pills li.routing-link a, .code-examples .nav-pills .managed li.managed-link a, .managed .code-examples .nav-pills li.managed-link a, .code-examples .nav-pills .logs li.logs-link a, .logs .code-examples .nav-pills li.logs-link a, .code-examples .nav-pills .reports li.reports-link a, .reports .code-examples .nav-pills li.reports-link a, .code-examples .nav-pills .deliverability li.deliverability-link a, .deliverability .code-examples .nav-pills li.deliverability-link a, .code-examples .nav-pills .contact li.contact-link a, .contact .code-examples .nav-pills li.contact-link a, .code-examples .nav-pills .routing li.features-link a, .routing .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .analytics li.features-link a, .analytics .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .validation li.features-link a, .validation .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .deliverability li.features-link a, .deliverability .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .resources li.resources-link a, .resources .code-examples .nav-pills li.resources-link a {
@@ -4463,6 +4464,10 @@ ol.linenums {
 .documentation .docs .subnav {
     width: 100%
 }
+.documentation .subnav .subnav-alignment {
+    padding-left: 35px;
+    padding-right: 38px;
+}
 
 .documentation .ptable.container {
     padding: inherit
@@ -4756,7 +4761,8 @@ ol.linenums {
 
 .documentation .subnav li a:hover {
     color: #fff;
-    text-decoration: none
+    text-decoration: none;
+    background: none;
 }
 
 .documentation .subnav li.active a, .documentation .subnav .sending li.features-link a, .sending .documentation .subnav li.features-link a, .documentation .subnav .pricing li.pricing-link a, .pricing .documentation .subnav li.pricing-link a, .documentation .subnav .customersgallery li.customers-link a, .customersgallery .documentation .subnav li.customers-link a, .documentation .subnav .validation li.validation-link a, .validation .documentation .subnav li.validation-link a, .documentation .subnav .sending li.sending-link a, .sending .documentation .subnav li.sending-link a, .documentation .subnav .routing li.routing-link a, .routing .documentation .subnav li.routing-link a, .documentation .subnav .managed li.managed-link a, .managed .documentation .subnav li.managed-link a, .documentation .subnav .logs li.logs-link a, .logs .documentation .subnav li.logs-link a, .documentation .subnav .reports li.reports-link a, .reports .documentation .subnav li.reports-link a, .documentation .subnav .deliverability li.deliverability-link a, .deliverability .documentation .subnav li.deliverability-link a, .documentation .subnav .contact li.contact-link a, .contact .documentation .subnav li.contact-link a, .documentation .subnav .routing li.features-link a, .routing .documentation .subnav li.features-link a, .documentation .subnav .analytics li.features-link a, .analytics .documentation .subnav li.features-link a, .documentation .subnav .validation li.features-link a, .validation .documentation .subnav li.features-link a, .documentation .subnav .deliverability li.features-link a, .deliverability .documentation .subnav li.features-link a, .documentation .subnav .resources li.resources-link a, .resources .documentation .subnav li.resources-link a {
