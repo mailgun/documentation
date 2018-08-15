@@ -287,6 +287,7 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
     font-style: normal;
     font-weight: 300;
+    line-height: 1.6;
 }
 
 p {
