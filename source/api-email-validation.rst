@@ -51,6 +51,49 @@ Given an arbitrary address, validates address based off defined checks.
 			The default is `False`.
  ====================== ========================================================
 
+Sample Validation Request
+.. include:: samples/get-validate.rst
+
+Sample response *without* mailbox verification enabled:
+
+.. code-block:: javascript
+
+  {
+    "address": "foo@mailgun.net",
+    "did_you_mean": null,
+    "is_disposable_address": false,
+    "is_role_address": false,
+    "is_valid": true,
+    "mailbox_verification": null,
+    "parts": {
+        "display_name": null,
+        "domain": "mailgun.net",
+        "local_part": "foo"
+    },
+    "reason": null
+  }
+
+Sample response *with* mailbox verification enabled:
+
+.. code-block:: javascript
+
+  {
+      "address": "foo@mailgun.net",
+      "did_you_mean": null,
+      "is_disposable_address": false,
+      "is_role_address": true,
+      "is_valid": true,
+      "mailbox_verification": "true",
+      "parts": {
+          "display_name": null,
+          "domain": "mailgun.net",
+          "local_part": "foo"
+      }
+  }
+
+.. note:: is_valid returns true when an address is parsable, passes known grammar checks and an SMTP server is present. The role-based and disposable address check will not impact the state of the `is_valid` result. The user should determine whether or not to permit the address to be used.
+
+.. note:: The mailbox verification attribute will return true if the email is valid, false if the email was invalid, or unknown if the SMTP request could not be completed. Unknown will also be returned if mailbox verification is not supported on the target mailbox provider. The outcome of the verification check will not impact the state of the is_valid result.
 .. code-block:: url
 
     GET /address/parse
@@ -115,51 +158,6 @@ daily usage limits.
 
 Example
 ~~~~~~~
-
-Validate a single email address.
-
-.. include:: samples/get-validate.rst
-
-Sample response *without* mailbox verification enabled:
-
-.. code-block:: javascript
-
-  {
-    "address": "foo@mailgun.net",
-    "did_you_mean": null,
-    "is_disposable_address": false,
-    "is_role_address": false,
-    "is_valid": true,
-    "mailbox_verification": null,
-    "parts": {
-        "display_name": null,
-        "domain": "mailgun.net",
-        "local_part": "foo"
-    },
-    "reason": null
-  }
-  
-Sample response *with* mailbox verification enabled:
-
-.. code-block:: javascript
-
-  {
-      "address": "foo@mailgun.net",
-      "did_you_mean": null,
-      "is_disposable_address": false,
-      "is_role_address": true,
-      "is_valid": true,
-      "mailbox_verification": "true",
-      "parts": {
-          "display_name": null,
-          "domain": "mailgun.net",
-          "local_part": "foo"
-      }
-  }
-  
-.. note:: is_valid returns true when an address is parsable, passes known grammar checks and an SMTP server is present. The role-based and disposable address check will not impact the state of the `is_valid` result. The user should determine whether or not to permit the address to be used.
-
-.. note:: The mailbox verification attribute will return true if the email is valid, false if the email was invalid, or unknown if the SMTP request could not be completed. Unknown will also be returned if mailbox verification is not supported on the target mailbox provider. The outcome of the verification check will not impact the state of the is_valid result.
 
 Parse a list of email addresses.
 
