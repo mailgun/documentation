@@ -306,7 +306,6 @@ Tab. For enhanced security, use TLS encryption.
 When sending a message via SMTP you can pass additional sending options via
 custom  MIME_ headers listed in the table below.
 
-.. container:: ptable
 
     ============================= ============================================================
     Header                        Description
@@ -1636,7 +1635,21 @@ Sample response:
       }
   }
 
-Parse a list of email addresses.
+Field Explanation:
+
+=====================    =========    ============================================================================================================
+Parameter                Type         Description
+=====================    =========    ============================================================================================================
+address                  string       Email address being validated
+did_you_mean             string       Null if nothing, however if a potential typo is made, the closest suggestion is provided
+is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
+is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
+is_valid                 boolean      Runs the email segments across a valid known provider rule list. If a violation occurs this value is false
+parts                    string       (display_name, domain, local_part): Parsed segments of the provided email address
+=====================    =========    ============================================================================================================
+
+
+Parse a list of email addresses:
 
 .. include:: samples/get-parse.rst
 
@@ -1663,7 +1676,7 @@ Unknown may be returned if the mailbox provider does not support the check or th
 check times out.
 
 Role-based Address Check
-=======================
+========================
 
 For all validation requests, we provide whether an address is a role-based address
 (e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
