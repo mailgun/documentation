@@ -1,7 +1,8 @@
+
 .. code-block:: bash
 
- curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates
+  curl -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID
 
 .. code-block:: java
 
@@ -9,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode deleteTemplate() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME +"/templates")
+ 
+     public static JsonNode getTemplate() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID")
              .basicAuth("api", API_KEY)
              .asJson();
-
+ 
          return request.getBody();
      }
  }
@@ -33,22 +34,24 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
+  $templateId = 'TEMPLATE_ID';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("/$domain/templates");
+  $result = $mgClient->get("$domain/templates/$templateId");
 
 .. code-block:: py
 
- def delete_templates():
-     return requests.delete(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
+ def get_template():
+     return requests.get(
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
- def delete_templates
-   RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates"
+ def get_template
+   RestClient.
+     get("https://api:YOUR_API_KEY"\
+         "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID"){|response, request, result| response }
  end
 
 .. code-block:: csharp
@@ -58,15 +61,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class DeleteTemplatesChunk
+ public class GetTemplatesChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (DeleteTemplates ().Content.ToString ());
+         Console.WriteLine (GetTemplate ().Content.ToString ());
      }
 
-     public static IRestResponse DeleteTemplates ()
+     public static IRestResponse GetTemplate ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -74,9 +77,9 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/templates";
-         request.Method = Method.DELETE;
+         request.Resource = "/{domain}/templates/{templateId}";
+         request.AddUrlSegment ("domain", "YOUR_DOMAIN_NAME");
+         request.AddUrlSegment ("templateId", "TEMPLATE_ID");
          return client.Execute (request);
      }
 
@@ -84,14 +87,13 @@
 
 .. code-block:: go
 
- // Not implemented
+  // Not implemented yet
 
 .. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/${DOMAIN}/templates`, function (error, body) {
+ mailgun.get('/domains/${DOMAIN}/templates/TEMPLATE_ID', function (error, body) {
    console.log(body);
  });
-
