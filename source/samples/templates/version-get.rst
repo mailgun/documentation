@@ -1,8 +1,7 @@
-
 .. code-block:: bash
 
-  curl -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID
+  curl -s --user 'api:YOUR_API_KEY' -G \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID?version=VERSION_ID
 
 .. code-block:: java
 
@@ -15,10 +14,11 @@
  
      // ...
  
-     public static JsonNode getTemplate() throws UnirestException {
+     public static JsonNode getTemplateVersion() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID")
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_ID")
              .basicAuth("api", API_KEY)
+             .queryString("version", "VERSION_ID")
              .asJson();
  
          return request.getBody();
@@ -34,24 +34,26 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $templateId = 'YOUR_TEMPLATE_ID';
-
+  $templateId = 'TEMPLATE_ID'
+  
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/templates/$templateId");
+  $result = $mgClient->get("$domain/templates/$templateId", array('version' => 'VERSION_ID'));
 
 .. code-block:: py
 
- def get_template():
+ def get_template_version():
      return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID",
-         auth=("api", "YOUR_API_KEY"))
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID",
+         auth=("api", "YOUR_API_KEY"),
+         params={"version": "VERSION_ID"})
 
 .. code-block:: rb
 
- def get_template
-   RestClient.
-     get("https://api:YOUR_API_KEY"\
-         "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID"){|response, request, result| response }
+ def get_template_version
+   RestClient.get "https://api:YOUR_API_KEY"\
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID", :params => {
+     :version => 'VERSION_ID'
+   }
  end
 
 .. code-block:: csharp
@@ -61,15 +63,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class GetTemplatesChunk
+ public class GetTemplateVersionChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (GetTemplate ().Content.ToString ());
+         Console.WriteLine (GetTemplateVersion ().Content.ToString ());
      }
 
-     public static IRestResponse GetTemplate ()
+     public static IRestResponse GetTemplateVersion ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -77,9 +79,10 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
+         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.AddParameter ("templateId", "TEMPLATE_ID", ParameterType.UrlSegment);
+         request.AddParameter ("version", "VERSION_ID");
          request.Resource = "/{domain}/templates/{templateId}";
-         request.AddUrlSegment ("domain", "YOUR_DOMAIN_NAME");
-         request.AddUrlSegment ("templateId", "YOUR_TEMPLATE_ID");
          return client.Execute (request);
      }
 
@@ -87,13 +90,14 @@
 
 .. code-block:: go
 
-  // Not implemented yet
+ // Not supported yet.
 
 .. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get('/domains/${DOMAIN}/templates/YOUR_TEMPLATE_ID', function (error, body) {
+ mailgun.get('/${DOMAIN}/templates/TEMPLATE_ID', {"version": "VERSION_ID"}, function (error, body) {
    console.log(body);
  });
+

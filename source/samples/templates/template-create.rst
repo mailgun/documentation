@@ -2,7 +2,7 @@
 
   curl -s --user 'api:YOUR_API_KEY' -X POST \
     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates \
-    -F template='YOUR_TEMPLATE' \
+    -F name='TEMPLATE_NAME' \
     -F description='TEMPLATE_DESCRIPTION'
 
 .. code-block:: java
@@ -20,7 +20,7 @@
  
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
  			.basicAuth("api", API_KEY)
- 			.field("template", "YOUR_TEMPLATE")
+ 			.field("name", "TEMPLATE_NAME")
             .field("description", "TEMPLATE_DESCRIPTION")
  			.asJson();
  
@@ -40,25 +40,25 @@
 
   # Issue the call to the client.
   $result = $mgClient->post("$domain/templates", array(
-      'template' => 'YOUR_TEMPLATE',
+      'name' => 'TEMPLATE_NAME',
       'description' => 'TEMPLATE_DESCRIPTION'
   ));
 
 .. code-block:: py
 
- def add_template():
+ def store_template():
      return requests.post(
          "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
          auth=("api", "YOUR_API_KEY"),
-         data={'address': 'YOUR_TEMPLATE',
+         data={'name': 'TEMPLATE_NAME',
                'description': 'TEMPLATE_DESCRIPTION'})
 
 .. code-block:: rb
 
- def add_template
+ def store_template
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
-   :template => 'YOUR_TEMPLATE',
+   :name=> 'TEMPLATE_NAME',
    :description: => 'TEMPLATE_DESCRIPTION'
  end
 
@@ -69,15 +69,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class CreateTemplatesChunk
+ public class StoreTemplatesChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (CreateTemplate ().Content.ToString ());
+         Console.WriteLine (StoreTemplate ().Content.ToString ());
      }
 
-     public static IRestResponse CreateTemplate ()
+     public static IRestResponse StoreTemplate ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -87,7 +87,7 @@
          RestRequest request = new RestRequest ();
          request.Resource = "{domain}/templates";
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("template", "YOUR_TEMPLATE");
+         request.AddParameter ("name", "TEMPLATE_NAME");
          request.AddParameter ("description", "TEMPLATE_DESCRIPTION")
          request.Method = Method.POST;
          return client.Execute (request);
@@ -97,14 +97,15 @@
 
 .. code-block:: go
 
- // Not implemented
+ // Not implemented yet
 
 .. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.post(`/${DOMAIN}/templates`, {"template" : "YOUR_TEMPLATE", "description": "TEMPLATE_DESCRIPTION"}, function (error, body) {
-   console.log(body);
- });
+ mailgun.post(`/${DOMAIN}/templates`, {"name" : "TEMPLATE_NAME", "description": "TEMPLATE_DESCRIPTION"},
+                                       function (error, body) {
+                                            console.log(body);
+                                       });
 

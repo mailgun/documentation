@@ -1,8 +1,7 @@
 .. code-block:: bash
 
-  curl -s --user 'api:YOUR_API_KEY' -G \
-    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates \
-    -d limit=10
+ curl -s --user 'api:YOUR_API_KEY' -X DELETE -G \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID?version=VERSION_ID
 
 .. code-block:: java
 
@@ -15,11 +14,12 @@
  
      // ...
  
-     public static JsonNode getTemplates() throws UnirestException {
+     public static JsonNode deleteTemplateVersion() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
+         HttpResponse <JsonNode> request = Unirest.delete(
+                                "https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_ID")
              .basicAuth("api", API_KEY)
-             .queryString("limit","5")
+             .queryString("version", "VERSION_ID")
              .asJson();
  
          return request.getBody();
@@ -35,24 +35,25 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
+  $templateId = 'TEMPLATE_ID'
   
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/templates", array('limit' => 10));
+  $result = $mgClient->delete("$domain/templates/$templateId", array('version' => 'VERSION_ID'));
 
 .. code-block:: py
 
- def get_templates():
-     return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
+ def delete_template_version():
+     return requests.delete(
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID",
          auth=("api", "YOUR_API_KEY"),
-         params={"limit": 1})
+         params={"version": "VERSION_ID"})
 
 .. code-block:: rb
 
- def get_templates
+ def delete_template_version
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates", :params => {
-     :limit => 5
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID", :params => {
+     :version => 'VERSION_ID'
    }
  end
 
@@ -63,15 +64,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class GetTemplatesChunk
+ public class DeleteTemplateVersionChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (GetTemplates ().Content.ToString ());
+         Console.WriteLine (DeleteTemplateVersion ().Content.ToString ());
      }
 
-     public static IRestResponse GetTemplates ()
+     public static IRestResponse DeleteTemplateVersion ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -80,8 +81,10 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("limit", 5);
-         request.Resource = "/{domain}/templates";
+         request.AddParameter ("templateId", "TEMPLATE_ID", ParameterType.UrlSegment);
+         request.AddParameter ("version", "VERSION_ID");
+         request.Resource = "/{domain}/templates/{templateId}";
+         request.Method = Method.DELETE
          return client.Execute (request);
      }
 
@@ -96,7 +99,7 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get('/${DOMAIN}/templates', {"limit": 5}, function (error, body) {
+ mailgun.delete('/${DOMAIN}/templates/TEMPLATE_ID', {"version": "VERSION_ID"}, function (error, body) {
    console.log(body);
  });
 
