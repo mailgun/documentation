@@ -65,6 +65,8 @@ There are some limitations if you have not given us your payment information:
 If you have given us your payment information, there is no limit on number of messages
 sent and/or received and data retention for Logs and the :ref:`Events API <api-events>` is at least 30 days.
 
+.. _verifying-your-domain:
+
 Verifying Your Domain
 =====================
 

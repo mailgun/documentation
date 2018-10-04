@@ -23,7 +23,7 @@ examples that will function. You're welcome to copy/paste and run the script to 
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
 .. _JSON: http://en.wikipedia.org/wiki/Json objects
 
-.. index:: Base URL
+.. _base-url:
 
 Base URL
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +39,7 @@ the domain you're interested in::
 
     https://api.mailgun.net/v3/mydomain.com
 
-.. index:: Authentication
+.. _authentication:
 
 Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +71,7 @@ box::
 
     'Thu, 13 Oct 2011 18:02:00 GMT'
 
-.. index:: Errors
+.. _errors:
 
 Errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,14 +91,14 @@ Mailgun returns standard HTTP response codes.
  500, 502, 503, 504 Server Errors - something is wrong on Mailgun's end
  ================== ==========================================================
 
-.. index:: Webhooks
+.. _webhooks:
 
 Webhooks
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes.  You can read more about :ref:`webhooks` and :ref:`um-routes` in the :ref:`user-manual`.
 
-.. index:: Mailgun Regions
+.. _mailgun-regions:
 
 Mailgun Regions
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,21 +113,21 @@ Using a single account and billing plan, you can choose to provision new sending
  Account Information, User Accounts, Billing Details (invoices/plan information), API Keys, Domain Names Domain Metadata (e.g. SMTP credentials), Messages, Event Logs, Suppressions, Mailing Lists, Tags, Statistics, Routes, IP Addresses
  ======================================================================================================= ==================================================================================================================================
 
-The endpoints you will use for sending/receiving/tracking messages in the EU are below:
+Below are the endpoints you will use for sending/receiving/tracking messages in the EU:
 
 .. container:: ptable
 
-=============================   ====================   ==================== 
-Service                         US Endpoint            EU Endpoint
-=============================   ====================   ==================== 
- REST API                       api.mailgun.net        api.eu.mailgun.net
- Outgoing SMTP Server           smtp.mailgun.org       smtp.eu.mailgun.org
- Inbound SMTP Server (Routes)   mxa.mailgun.org        mxa.eu.mailgun.org
- Inbound SMTP Server (Routes)   mxb.mailgun.org        mxb.eu.mailgun.org
- Open/Click Tracking Endpoint   mailgun.org            eu.mailgun.org 
-=============================   ====================   ====================
+ ============================= ==================== ====================
+ Service                       US Endpoint          EU Endpoint
+ ============================= ==================== ====================
+ REST API                      api.mailgun.net      api.eu.mailgun.net
+ Outgoing SMTP Server          smtp.mailgun.org     smtp.eu.mailgun.org
+ Inbound SMTP Server (Routes)  mxa.mailgun.org      mxa.eu.mailgun.org
+ Inbound SMTP Server (Routes)  mxb.mailgun.org      mxb.eu.mailgun.org
+ Open/Click Tracking Endpoint  mailgun.org          eu.mailgun.org
+ ============================= ==================== ====================
 
-.. index:: Postman Integration
+.. _postman-integration:
 
 Postman Integration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -156,4 +156,3 @@ Read more about Mailgun and Postman on our blog_.
 
 .. _Click here: https://www.getpostman.com/
 .. _blog: https://www.mailgun.com/blog/together-at-last-postman-meets-mailgun
-
