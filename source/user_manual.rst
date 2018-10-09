@@ -187,7 +187,7 @@ able to easily select a role upon user creation.
 | Admin      | Admin users have read and write access to everything. Only admins on the account can:                     |
 |            |                                                                                                           |
 |            | * Rotate and expire API Keys                                                                              |
-|            | * Create and revoke SMPT credentials                                                                      |
+|            | * Create and revoke SMTP credentials                                                                      |
 |            | * Create and administer control panel users                                                               |
 |            | * Edit account details                                                                                    |
 |            |                                                                                                           |
