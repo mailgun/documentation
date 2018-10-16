@@ -195,7 +195,7 @@ These are the parameters when the ``Accept`` header is set to ``message/rfc2822`
  ===========    ======    ============================================================================================================
  Parameter      Type      Description
  ===========    ======    ============================================================================================================
- recipient      string    recipient of the message.
+ recipients     string    recipient of the message.
  sender         string    sender of the message as reported by SMTP MAIL FROM.
  from           string    sender of the message as reported by ``From`` message header, for example "Bob <bob@example.com>".
  subject        string    subject string.
