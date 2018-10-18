@@ -16,6 +16,7 @@ Returns a list of domains under your account in JSON. See examples below.
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
+ authority         Filter a list by given DKIM authority name
  limit             Maximum number of records to return. (100 by default)
  skip              Number of records to skip. (0 by default)
  ================= ========================================================
@@ -74,6 +75,9 @@ Create a new domain. See examples below.
                        as the root domain registered on the same mailgun account
                        
                        The default is `false`.
+ dkim_key_size         Size of domain's DKIM key pairs: ``1024`` or ``2048``
+
+		       The default is ``1024``
  ===================== ========================================================
 
 .. code-block:: url
