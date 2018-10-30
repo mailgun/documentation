@@ -17,3 +17,4 @@ API Reference
    api-webhooks
    api-mailinglists
    api-email-validation
+   api-list-validation
