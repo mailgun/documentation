@@ -99,7 +99,7 @@
 .. code-block:: go
 
  func CreateCredential(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.CreateCredential("alice@YOUR_DOMAIN_NAME", "secret")
  }
 

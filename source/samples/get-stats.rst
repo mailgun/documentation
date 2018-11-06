@@ -109,7 +109,7 @@
 .. code-block:: go
 
  func GetStats(domain, apiKey string) ([]Stat, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    _, stats, err := mg.GetStats(-1, -1, nil, "accepted", "delivered", "failed");
    return stats, err
  }

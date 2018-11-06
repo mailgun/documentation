@@ -88,7 +88,7 @@
 .. code-block:: go
 
  func GetSingleDomain(domain, apiKey string) (mailgun.Domain, []mailgun.DNSRecord, []mailgun.DNSRecord, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.GetSingleDomain(domains[0].Name)
  }
 

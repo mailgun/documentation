@@ -115,7 +115,7 @@
 .. code-block:: go
 
  func CreateRoute(domain, apiKey string) (mailgun.Route, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.CreateRoute(mailgun.Route{
      Priority:    1,
      Description: "Sample Route",

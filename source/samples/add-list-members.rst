@@ -101,7 +101,7 @@
 .. code-block:: go
 
  func AddListMembers(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.CreateMemberList(nil, "LIST@YOUR_DOMAIN_NAME", []interface{}{
      mailgun.Member{
        Address:    "alice@example.com",

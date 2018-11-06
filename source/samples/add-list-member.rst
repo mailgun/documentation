@@ -118,7 +118,7 @@
 .. code-block:: go
 
  func AddListMember(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    memberJoe := mailgun.Member{
      Address:    "joe@example.com",
      Name:       "Joe Example",

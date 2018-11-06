@@ -85,7 +85,7 @@
 .. code-block:: go
 
  func GetLog2(domain, apiKey string) ([]mailgun.Event, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    ei := mg.NewEventIterator()
    err := ei.GetFirstPage(mailgun.GetEventsOptions{
      Filter:         map[string]string{

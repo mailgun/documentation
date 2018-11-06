@@ -87,7 +87,7 @@
 .. code-block:: go
 
  func GetComplaints(domain, apiKey string) (mailgun.Complaint, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.GetSingleComplaint("baz@example.com")
  }
 

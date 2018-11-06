@@ -115,7 +115,7 @@
 .. code-block:: go
 
  func SendSimpleMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
+   mg := mailgun.NewMailgun(domain, apiKey)
    m := mg.NewMessage(
      "Excited User <mailgun@YOUR_DOMAIN_NAME>",
      "Hello",
