@@ -88,7 +88,7 @@
 .. code-block:: go
 
  func GetCredentials(domain, apiKey string) (int, []mailgun.Credential, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.GetCredentials(-1, -1)
  }
 

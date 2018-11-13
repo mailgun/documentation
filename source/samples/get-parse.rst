@@ -93,7 +93,7 @@
 .. code-block:: go
 
  func ParseAddress(domain, publicApiKey string) ([]string, []string, error) {
-   mg := mailgun.NewMailgun(domain, "", publicApiKey)
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.ParseAddress(
      "Alice <alice@example.com>",
      "bob@example.com",

@@ -98,7 +98,7 @@
 .. code-block:: go
 
  func CreateUnsubscription(domain, apiKey string) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.Unsubscribe("bob@example.com", "*")
  }
 

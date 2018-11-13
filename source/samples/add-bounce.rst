@@ -91,7 +91,7 @@
 .. code-block:: go
 
  func AddBounce(domain, apiKey) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.AddBounce("bob@example.com", "550", "Undeliverable message error")
  }
 

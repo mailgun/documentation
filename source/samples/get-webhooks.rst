@@ -85,7 +85,7 @@
 .. code-block:: go
 
  func GetWebhooks(domain, apiKey string) (map[string]string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.GetWebhooks()
  }
 

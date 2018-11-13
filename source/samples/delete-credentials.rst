@@ -88,7 +88,7 @@
 .. code-block:: go
 
  func DeleteCredential(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.DeleteCredential("alice")
  }
 

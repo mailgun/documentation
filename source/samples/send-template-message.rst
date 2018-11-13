@@ -135,7 +135,7 @@
  }
 
  func SendTemplateMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    m := mg.NewMessage(
      "Excited User <YOU@YOUR_DOMAIN_NAME>",
      "Hey %recipient.first%",

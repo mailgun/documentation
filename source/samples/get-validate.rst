@@ -93,7 +93,7 @@
 .. code-block:: go
 
  func ValidateEmail(domain, publicApiKey string) (mailgun.EmailVerification, error) {
-   mg := mailgun.NewMailgun(domain, "", publicApiKey)
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.ValidateEmail("foo@mailgun.net")
  }
 

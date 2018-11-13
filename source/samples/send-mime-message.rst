@@ -107,7 +107,7 @@
 .. code-block:: go
 
  func SendMimeMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    mimeMsgReader, err := os.Open("files/message.mime")
    if err != nil {
      return "", err

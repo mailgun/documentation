@@ -89,7 +89,7 @@
 .. code-block:: go
 
  func GetMembers(domain, apiKey string) (int, []mailgun.Member, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.GetMembers(-1, -1, mailgun.All, "LIST@YOUR_DOMAIN_NAME")
  }
 

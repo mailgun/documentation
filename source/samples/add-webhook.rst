@@ -116,7 +116,7 @@
 .. code-block:: go
 
  func CreateWebhook(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.CreateWebhook("clicked", "https://your_domain.com/v1/clicked")
  }
 
