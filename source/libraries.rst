@@ -184,7 +184,7 @@ cURL
 `curl <http://linux.die.net/man/1/curl>`_ is a popular command line tool to send HTTP requests.
 It is very simple and yet quite powerful. With it you could send data using any
 HTTP method. You could send post data and query params and files in a very
-consistent and elegant way. An exellent choice to study the API.
+consistent and elegant way. An excellent choice to study the API.
 
 
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
