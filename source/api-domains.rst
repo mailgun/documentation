@@ -63,7 +63,7 @@ Create a new domain. See examples below.
                        
                        The default is ``disabled``.
  wildcard              *true* or *false*
-                       Determines whether the domain will accept email for sub-domains.
+                       Determines whether the domain will accept email for sub-domains when sending messages.
 
                        The default is `false`.
  force_dkim_authority  *true* or *false*
