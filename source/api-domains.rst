@@ -78,11 +78,11 @@ Create a new domain. See examples below.
  dkim_key_size         Size of domain's DKIM key pairs: ``1024`` or ``2048``
 
 		       The default is ``1024``
- ips                   An optional, comma-separated list of dedicated IP addresses 
-                       to be assigned to this domain. If not specified all dedicated
-                       IP addresses on the account will be assigned. If a requested
-                       IP doesn't belong to the account, or is on a warm-up plan,
-                       a `400` is returned.
+ ips                   An optional, comma-separated list of IP addresses to be assigned
+                       to this domain. If not specified, all dedicated IP addresses on
+                       the account will be assigned. If the request cannot be fulfilled
+                       (e.g. a requested IP is not assigned to the account, etc), a
+                       ``400`` will be returned.
  ===================== ========================================================
 
 .. code-block:: url
