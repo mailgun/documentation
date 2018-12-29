@@ -26,10 +26,10 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
             .basicAuth("api", API_KEY)
-            .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
- 			.queryString("to", "alice@example.com")
- 	        .queryString("subject", "Hello")
- 		    .queryString("text", "Testing some Mailgun awesomeness")
+            .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+ 			.field("to", "alice@example.com")
+ 	        .field("subject", "Hello")
+ 		    .field("text", "Testing some Mailgun awesomeness")
  		    .field("o:tracking", "False")
  		    .asJson();
 
