@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/foo@bar.com
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/foo@bar.com
 
 .. code-block:: java
 
@@ -18,7 +18,7 @@
      public static JsonNode getSingleBounce() throws UnirestException {
  
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/bounces/foo@bar.com")
- 			.basicAuth("api", API_KEY)
+             .basicAuth("api", API_KEY)
              .asJson();
  
          return request.getBody();
@@ -86,9 +86,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func GetBounce(domain, apiKey string) (mailgun.Bounce, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetSingleBounce("foo@bar.com")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetBounce(ctx, "foo@bar.com")
  }
 
 .. code-block:: js

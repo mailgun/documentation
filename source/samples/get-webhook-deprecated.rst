@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click
 
 .. code-block:: java
 
@@ -85,9 +85,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func GetWebhook(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetWebhookByType("deliver")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetWebhook(ctx, "clicked")
  }
 
 .. code-block:: js

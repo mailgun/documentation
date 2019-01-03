@@ -93,7 +93,29 @@
 
 .. code-block:: go
 
- // Not supported yet.
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListTags(domain, apiKey string) ([]mailgun.Tag, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListTags(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.Tag
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
+ }
 
 .. code-block:: js
 

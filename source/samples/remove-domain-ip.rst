@@ -87,7 +87,20 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func DeleteDomainIP(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.DeleteDomainIP(ctx, "127.0.0.1")
+ }
 
 .. code-block:: js
 

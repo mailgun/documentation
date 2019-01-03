@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/lists/pages
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/lists/pages
 
 .. code-block:: java
 
@@ -18,7 +18,7 @@
       public static JsonNode mailingLists() throws UnirestException {
  
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/lists/pages")
- 			.basicAuth("api", API_KEY)
+             .basicAuth("api", API_KEY)
              .asJson();
  
          return request.getBody();
@@ -84,7 +84,29 @@
 
 .. code-block:: go
 
- // Coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListMailingLists(domain, apiKey string) ([]mailgun.MailingList, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListMailingLists(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.MailingList
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
+ }
 
 .. code-block:: js
 

@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-    https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/tracking
+ curl -s --user 'api:YOUR_API_KEY' -G \
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/tracking
 
 .. code-block:: java
 
@@ -85,7 +85,20 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetDomainTracking(domain, apiKey string) (mailgun.DomainTracking, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetDomainTracking(ctx, domain)
+ }
 
 .. code-block:: js
 

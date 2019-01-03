@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/ips/127.0.01
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/ips/127.0.01
 
 .. code-block:: java
 
@@ -85,7 +85,20 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetIP(domain, apiKey string) (mailgun.IPAddress, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetIP(ctx, "127.0.0.1")
+ }
 
 .. code-block:: js
 

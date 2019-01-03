@@ -1,11 +1,11 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
-	-F id='clicked' \
-	-F url='https://your_domain.com/v1/clicked'
-	-F url='https://your_domain.com/v2/clicked'
-	-F url='https://your_partner_domain.com/v1/clicked'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
+     -F id='clicked' \
+     -F url='https://your_domain.com/v1/clicked'
+     -F url='https://your_domain.com/v2/clicked'
+     -F url='https://your_partner_domain.com/v1/clicked'
 
 .. code-block:: java
 
@@ -20,15 +20,13 @@
  
      public static JsonNode addWebhook() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + 
-                                                        YOUR_DOMAIN_NAME + 
-                                                        "/webhooks")
- 		      .basicAuth("api", API_KEY)
- 		      .field("id","click")
- 		      .field("url", "https://your_domain.com/v1/clicked")
- 		      .field("url", "https://your_domain.com/v2/clicked")
- 		      .field("url", "https://your_partner_domain.com/v1/clicked")
-              }).asJson();
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
+             .basicAuth("api", API_KEY)
+             .field("id","click")
+             .field("url", "https://your_domain.com/v1/clicked")
+             .field("url", "https://your_domain.com/v2/clicked")
+             .field("url", "https://your_partner_domain.com/v1/clicked")
+             .asJson();
  
          return request.getBody();
      }
@@ -63,8 +61,8 @@
          data={
            'id':'clicked', 
            'url':[ 'https://your_domain.com/v1/clicked',
-		   'https://your_domain.com/v2/clicked',
-		   'https://your_partner_domain.com/v1/clicked'
+           'https://your_domain.com/v2/clicked',
+           'https://your_partner_domain.com/v1/clicked'
            ]
          })
 
@@ -115,9 +113,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func CreateWebhook(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.CreateWebhook("clicked", "https://your_domain.com/v1/clicked")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateWebhook(ctx, "clicked", []string{"https://your_domain.com/v1/clicked"})
  }
 
 .. code-block:: js

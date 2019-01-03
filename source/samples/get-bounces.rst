@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces
+  curl -s --user 'api:YOUR_API_KEY' -G \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces
 
 .. code-block:: java
 
@@ -84,10 +84,28 @@
 
 .. code-block:: go
 
- func GetBounces(domain, apiKey string) (int, []mailgun.Bounce, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   total, bounces, err := mg.GetBounces(-1, -1)
-   return total, bounces, err
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListBounces(domain, apiKey string) ([]mailgun.Bounce, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListBounces(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.Bounce
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
  }
 
 .. code-block:: js

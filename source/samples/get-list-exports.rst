@@ -58,7 +58,21 @@
 
 .. code-block:: go
 
-    Exports are unsupported in the go client bindings
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListExports(domain, apiKey string) ([]mailgun.Export, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     // Optionally pass a url to filter by
+     return mg.ListExports(ctx, "")
+ }
 
 .. code-block:: js
 

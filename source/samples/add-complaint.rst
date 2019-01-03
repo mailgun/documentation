@@ -1,31 +1,27 @@
-
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints \
-	-F address='bob@example.com'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints \
+     -F address='bob@example.com'
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
- 
- public class MGSample {
- 
-      // ...
- 
-     public static JsonNode addComplaint() throws UnirestException {
- 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints")
- 			.basicAuth("api", API_KEY)
- 			.field("address", "bob@example.com")
- 			.asJson();
- 
-         return request.getBody();
-     }
- }
+  import com.mashape.unirest.http.HttpResponse;
+  import com.mashape.unirest.http.JsonNode;
+  import com.mashape.unirest.http.Unirest;
+  import com.mashape.unirest.http.exceptions.UnirestException;
+
+  public class MGSample {
+
+      public static JsonNode addComplaint() throws UnirestException {
+
+          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints")
+              .basicAuth("api", API_KEY)
+              .field("address", "bob@example.com")
+              .asJson();
+          return request.getBody();
+      }
+  }
 
 .. code-block:: php
 
@@ -42,11 +38,11 @@
 
 .. code-block:: py
 
- def add_complaint():
-     return requests.post(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints",
-         auth=("api", "YOUR_API_KEY"),
-         data={'address': 'bob@example.com'})
+  def add_complaint():
+      return requests.post(
+          "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints",
+          auth=("api", "YOUR_API_KEY"),
+          data={'address': 'bob@example.com'})
 
 .. code-block:: rb
 
@@ -90,12 +86,22 @@
 
 .. code-block:: go
 
- func CreateComplaint(domain, apiKey, emailAddress string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.CreateComplaint("bob@example.com")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func CreateComplaint(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateComplaint(ctx, "bob@example.com")
  }
 
- .. code-block:: js
+.. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });

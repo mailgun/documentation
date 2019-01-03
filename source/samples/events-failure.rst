@@ -20,7 +20,7 @@
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/events")
              .basicAuth("api", API_KEY)
              .queryString("event", "failed")
- 	        .asJson();
+             .asJson();
  
          return request.getBody();
      }
@@ -91,18 +91,45 @@
 
 .. code-block:: go
 
- func GetLog2(domain, apiKey string) ([]mailgun.Event, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   ei := mg.NewEventIterator()
-   err := ei.GetFirstPage(mailgun.GetEventsOptions{
-     Filter:         map[string]string{
-       "event": "rejected OR failed",
+ import (
+     "context"
+     "fmt"
+     "github.com/mailgun/mailgun-go/v3"
+     "github.com/mailgun/mailgun-go/v3/events"
+     "time"
+ )
+
+ func PrintFailedEvents(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     // Create an iterator
+     it := mg.ListEvents(&mailgun.ListEventOptions{
+         Filter: map[string]string{
+             "event": "rejected OR failed",
+         },
+     })
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     // Iterate through all the pages of events
+     var page []mailgun.Event
+     for it.Next(ctx, &page) {
+         for _, event := range page {
+             switch e := event.(type){
+             case *events.Failed:
+                 fmt.Printf("Failed Reason: %s", e.Reason)
+             case *events.Rejected:
+                 fmt.Printf("Rejected Reason: %s", e.Reject.Reason)
+             }
+         }
      }
-   })
-   if err != nil {
-     return nil, err
-   }
-   return ei.Events(), nil
+
+     // Did iteration end because of an error?
+     if it.Err() != nil {
+         return it.Err()
+     }
+     return nil
  }
 
 .. code-block:: js

@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes
+ curl -s --user 'api:YOUR_API_KEY' -G \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes
 
 .. code-block:: java
 
@@ -87,7 +87,7 @@
 
 .. code-block:: go
 
- // Not supported
+ // This feature is deprecated and not supported in the golang library
 
 .. code-block:: js
 

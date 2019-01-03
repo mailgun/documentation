@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME
 
 .. code-block:: java
 
@@ -20,7 +20,7 @@
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME)
              .basicAuth("api", API_KEY)
              .queryString("skip", 0)
-      	    .queryString("limit", 3)
+             .queryString("limit", 3)
              .asJson();
  
          return request.getBody();
@@ -87,9 +87,19 @@
 
 .. code-block:: go
 
- func GetSingleDomain(domain, apiKey string) (mailgun.Domain, []mailgun.DNSRecord, []mailgun.DNSRecord, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetSingleDomain(domains[0].Name)
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetDomain(domain, apiKey string) (mailgun.Domain, []mailgun.DNSRecord, []mailgun.DNSRecord, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetDomain(ctx, domain)
  }
 
 .. code-block:: js

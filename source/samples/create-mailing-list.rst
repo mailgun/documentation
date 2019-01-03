@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/lists \
-	-F address='LIST@YOUR_DOMAIN_NAME' \
-	-F description='Mailgun developers list'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/lists \
+     -F address='LIST@YOUR_DOMAIN_NAME' \
+     -F description='Mailgun developers list'
 
 .. code-block:: java
 
@@ -97,15 +97,24 @@
 
 .. code-block:: go
 
- func CreateMailingList(domain, apiKey string) (mailgun.List, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   protoList := mailgun.List{
-     Address:     "LIST@YOUR_DOMAIN_NAME",
-     Name:        "dev",
-     Description: "Mailgun developers list.",
-     AccessLevel: mailgun.Members,
-   }
-   return mg.CreateList(protoList)
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func CreateMailingList(domain, apiKey string) (mailgun.MailingList, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateMailingList(ctx, mailgun.MailingList{
+         Address:     "list@example.com",
+         Name:        "dev",
+         Description: "Mailgun developers list.",
+         AccessLevel: mailgun.AccessLevelMembers,
+     })
  }
 
 .. code-block:: js

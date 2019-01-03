@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/domains \
-    -F name='YOUR_DOMAIN_NAME' \
-    -F smtp_password='supersecret'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/domains \
+     -F name='YOUR_DOMAIN_NAME' \
+     -F smtp_password='supersecret'
 
 .. code-block:: java
 
@@ -97,9 +97,22 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func CreateDomain(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.CreateDomain("YOUR_DOMAIN_NAME", "supersecretpw", mailgun.Tag, false)
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateDomain(ctx, "example.com", "super_secret", &mailgun.CreateDomainOptions{
+         SpamAction: mailgun.SpamActionTag,
+         Wildcard:   false,
+     })
  }
 
 .. code-block:: js

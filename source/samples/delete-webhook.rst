@@ -19,7 +19,7 @@
  
          HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/clicked")
              .basicAuth("api", API_KEY)
- 		    .asJson();
+             .asJson();
  
          return request.getBody();
      }
@@ -85,9 +85,19 @@
 
 .. code-block:: go
 
- func DeleteWebhook(t *testing.T) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.DeleteWebhook("clicked")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func DeleteWebhook(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.DeleteWebhook(ctx, "clicked")
  }
 
 .. code-block:: js

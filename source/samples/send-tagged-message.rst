@@ -1,14 +1,14 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
-	-F to='alice@example.com' \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!' \
-	-F o:tag='September newsletter' \
-	-F o:tag='newsletters'
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+      -F to='alice@example.com' \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomness!' \
+      -F o:tag='September newsletter' \
+      -F o:tag='newsletters'
 
 .. code-block:: java
 
@@ -27,7 +27,7 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
              .basicAuth("api", API_KEY)
-		     .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
              .field("to", "alice@example")
              .field("subject", "Hello.")
              .field("text", "Testing some Mailgun awesomeness")
@@ -124,19 +124,31 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendTaggedMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "bar@example.com",
-   )
-   m.AddTag("FooTag")
-   m.AddTag("BarTag")
-   m.AddTag("BlortTag")
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "bar@example.com",
+     )
+
+     err := m.AddTag("FooTag", "BarTag", "BlortTag")
+     if err != nil {
+         return "", err
+     }
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

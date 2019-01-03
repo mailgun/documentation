@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com \
-	-F subscribed=False \
-	-F name='Foo Bar'
+  curl -s --user 'api:YOUR_API_KEY' -X PUT \
+      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com \
+      -F subscribed=False \
+      -F name='Foo Bar'
 
 .. code-block:: java
 
@@ -20,8 +20,8 @@
      public static JsonNode updateMembers() throws UnirestException {
 
          HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/lists/LIST_NAME@YOUR_DOMAIN_NAME/members/alice@example.com")
-		     .basicAuth("api", API_KEY)
-	         .field("subscribed", false)
+             .basicAuth("api", API_KEY)
+             .field("subscribed", false)
              .field("name", "Alice")
              .asJson();
 
@@ -104,13 +104,23 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func UpdateMember(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   _, err = mg.UpdateMember("bar@example.com", "LIST@YOUR_DOMAIN_NAME", mailgun.Member{
-     Name: "Foo Bar",
-     Subscribed: mailgun.Unsubscribed,
-   })
-   return err
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, err := mg.UpdateMember(ctx, "bar@example.com", "list@example.com", mailgun.Member{
+         Name: "Foo Bar",
+         Subscribed: mailgun.Unsubscribed,
+     })
+     return err
  }
 
 .. code-block:: js

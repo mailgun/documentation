@@ -108,10 +108,21 @@
 
 .. code-block:: go
 
- func GetStats(domain, apiKey string) ([]Stat, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   _, stats, err := mg.GetStats(-1, -1, nil, "accepted", "delivered", "failed");
-   return stats, err
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetStats(domain, apiKey string) ([]mailgun.Stats, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetStats(ctx, []string{"accepted", "delivered", "failed"}, &mailgun.GetStatOptions{
+         Duration: "1m",
+     })
  }
 
 .. code-block:: js

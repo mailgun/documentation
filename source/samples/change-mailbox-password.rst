@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice \
-	-F password='abc123'
+ curl -s --user 'api:YOUR_API_KEY' -X PUT \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes/alice \
+    -F password='abc123'
 
 .. code-block:: java
 
@@ -94,8 +94,7 @@
 
 .. code-block:: go
 
- // coming soon
-
+ // This feature is deprecated and not supported in the golang library
 
 .. code-block:: js
 

@@ -1,7 +1,7 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/exports/EXPORT_ID
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/exports/EXPORT_ID
 
 .. code-block:: java
 
@@ -47,21 +47,31 @@
 .. code-block:: csharp
 
  public static IRestResponse GetExport() {
- 	RestClient client = new RestClient();
- 	client.BaseUrl = new Uri("https://api.mailgun.net/v3");
- 	client.Authenticator =
- 		new HttpBasicAuthenticator("api",
- 		                           "YOUR_API_KEY");
- 	RestRequest request = new RestRequest();
- 	request.AddParameter("id",
-                            "EXPORT_ID", ParameterType.UrlSegment);
-       request.Resource = "/exports/{id}";
- 	return client.Execute(request);
+     RestClient client = new RestClient();
+     client.BaseUrl = new Uri("https://api.mailgun.net/v3");
+     client.Authenticator = new HttpBasicAuthenticator("api", "YOUR_API_KEY");
+     RestRequest request = new RestRequest();
+     request.AddParameter("id", "EXPORT_ID", ParameterType.UrlSegment);
+     request.Resource = "/exports/{id}";
+     return client.Execute(request);
  }
 
 .. code-block:: go
 
-    Exports are unsupported in the go client bindings
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetExport(domain, apiKey string) (mailgun.Export, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetExport(ctx, "EXPORT_ID")
+ }
 
 .. code-block:: js
 

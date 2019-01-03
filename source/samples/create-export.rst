@@ -1,9 +1,8 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/exports
-    -F url='/v3/domains' \
-    -x POST
+  curl -s --user 'api:YOUR_API_KEY' \
+     -x POST https://api.mailgun.net/v3/exports \
+     -F url='/v3/domains'
 
 .. code-block:: java
 
@@ -79,7 +78,20 @@
 
 .. code-block:: go
 
-    Exports are unsupported in the go client bindings
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func CreateExport(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateExport(ctx, "/v3/domains")
+ }
 
 .. code-block:: js
 

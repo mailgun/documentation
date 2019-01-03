@@ -115,21 +115,41 @@
 
 .. code-block:: go
 
- func GetLog(domain, apiKey string) ([]mailgun.Event, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   ei := mg.NewEventIterator()
-   err := ei.GetFirstPage(mailgun.GetEventsOptions{
-     Begin:          time.Now().Add(-50 * Time.Minute),
-     ForceAscending: true,
-     Limit:          1,
-     Filter:         map[string]string{
-       "recipient": "joe@example.com",
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func PrintEventLog(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     // Create an iterator
+     it := mg.ListEvents(&mailgun.ListEventOptions{
+         Begin: time.Now().Add(-50 * time.Minute),
+         Limit: 100,
+         Filter: map[string]string{
+             "recipient": "joe@example.com",
+         },
+     })
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     // Iterate through all the pages of events
+     var page []mailgun.Event
+     for it.Next(ctx, &page) {
+         for _, event := range page {
+             fmt.Printf("%+v\n", event)
+         }
      }
-   })
-   if err != nil {
-     return nil, err
-   }
-   return ei.Events(), nil
+
+     // Did iteration end because of an error?
+     if it.Err() != nil {
+         return it.Err()
+     }
+
+     return nil
  }
 
 .. code-block:: js
