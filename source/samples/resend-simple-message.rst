@@ -20,7 +20,7 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
              .basicAuth("api", API_KEY)
-             .queryString("to", "user@samples.mailgun.org")
+             .field("to", "user@samples.mailgun.org")
              .asJson();
 
      return request.getBody();

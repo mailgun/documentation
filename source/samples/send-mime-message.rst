@@ -24,9 +24,9 @@
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages.mime")
   		     .basicAuth("api", API_KEY)
   			 .header("content-type", "multipart/form-data;")
-  			 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
-  			 .queryString("to", "Megan@example.com")
-  			 .queryString("subject", "Bah-weep-graaaaagnah wheep nini bong.")
+  			 .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+  			 .field("to", "Megan@example.com")
+  			 .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
   			 .field("message", new File("/temp/folder/file.mime"))
   			 .asJson();
 

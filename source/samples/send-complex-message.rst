@@ -30,13 +30,13 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
 	         .basicAuth("api", API_KEY)
-	      	 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
-	      	 .queryString("to", "alice@example.com")
-	      	 .queryString("cc", "bob@example.com")
-	      	 .queryString("bcc", "joe@example.com")
-	      	 .queryString("subject", "Hello")
-	      	 .queryString("text", "Testing out some Mailgun awesomeness!")
-	      	 .queryString("html", "<html>HTML version </html>")
+	      	 .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+	      	 .field("to", "alice@example.com")
+	      	 .field("cc", "bob@example.com")
+	      	 .field("bcc", "joe@example.com")
+	      	 .field("subject", "Hello")
+	      	 .field("text", "Testing out some Mailgun awesomeness!")
+	      	 .field("html", "<html>HTML version </html>")
 	      	 .field("attachment", new File("/temp/folder/test.txt"))
 	      	 .asJson();
 

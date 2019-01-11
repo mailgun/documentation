@@ -27,12 +27,12 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
              .basicAuth("api", API_KEY)
-             .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .queryString("to", "alice@example.com")
-             .queryString("to", "bob@example.com")
-	         .queryString("cc", "joe@example.com")
-             .queryString("subject", "Hello")
-             .queryString("text", "Testing out some Mailgun awesomeness!")
+             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .field("to", "alice@example.com")
+             .field("to", "bob@example.com")
+	         .field("cc", "joe@example.com")
+             .field("subject", "Hello")
+             .field("text", "Testing out some Mailgun awesomeness!")
 	         .field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
 	         .asJson();
 
