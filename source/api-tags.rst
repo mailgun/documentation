@@ -231,7 +231,7 @@ Retrieve all countries of origin for a domain with event types:
             "unique_clicked": 1,
             "unique_opened": 0,
             "unsubscribed": 2
-        },
+        }
     },
     "tag": "exampletag"
   }
