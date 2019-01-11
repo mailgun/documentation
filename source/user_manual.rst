@@ -187,7 +187,7 @@ able to easily select a role upon user creation.
 | Admin      | Admin users have read and write access to everything. Only admins on the account can:                     |
 |            |                                                                                                           |
 |            | * Rotate and expire API Keys                                                                              |
-|            | * Create and revoke SMPT credentials                                                                      |
+|            | * Create and revoke SMTP credentials                                                                      |
 |            | * Create and administer control panel users                                                               |
 |            | * Edit account details                                                                                    |
 |            |                                                                                                           |
@@ -306,7 +306,6 @@ Tab. For enhanced security, use TLS encryption.
 When sending a message via SMTP you can pass additional sending options via
 custom  MIME_ headers listed in the table below.
 
-.. container:: ptable
 
     ============================= ============================================================
     Header                        Description
@@ -715,14 +714,14 @@ Sample response:
     }
   }
 
-.. _webhooks:
+.. _OBwebhooks:
 
 Webhooks
 ========
 
 Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the ``Webhooks`` tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
 
-You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Bounces`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
+You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
 
 For Webhook POSTs, Mailgun listens for the following codes from your server and reacts accordingly:
 
@@ -734,6 +733,34 @@ If your application is unable to process the webhook request but you do not retu
 
 The Webhooks API endpoint allows you to programmatically manipulate the webhook
 URLs defined for a specific domain. Head over to the :ref:`api-webhooks` API endpoint documentation.
+
+.. _webhooks payload:
+
+**Payload**
+
+When something has happened to your email, your URL will be called with application/json payload
+and with the following data:
+
+.. code-block:: javascript
+
+  {
+    “signature”:
+    {
+      "timestamp": "1529006854",
+      "token": "a8ce0edb2dd8301dee6c2405235584e45aa91d1e9f979f3de0",
+      "signature": "d2271d12299f6592d9d44cd9d250f0704e4674c30d79d07c47a66f95ce71cf55"
+    }
+    “event-data”:
+    {
+      "event": "opened",
+      "timestamp": 1529006854.329574,
+      "id": "DACSsAdVSeGpLid7TN03WA",
+      ...
+    }
+  }
+
+The 'signature' parameters are described in `securing webhooks`_
+and the 'event-data' parameters are the same as described in :ref:`api-events-structure`
 
 .. _securing webhooks:
 
@@ -886,38 +913,8 @@ show up if the recipient clicks on display images button in his/her email.
 
 **Opens Webhook**
 
-You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel. When a user opens
-one of your emails, your URL will be called with the following parameters.
-
-.. container:: ptable
-
- ==================    ==================================================================================
- Parameter Name        Description
- ==================    ==================================================================================
- event                 Event name ("opened").
- recipient             Recipient who opened.
- domain                Domain that sent the original message.
- ip                    IP address the event originated from.
- country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
-                       'unknown' if it couldn't be determined.
- region                Two-letter or two-digit `region code`_ or 'unknown' if it couldn't be determined.
- city                  Name of the city the event came from or 'unknown' if it couldn't be determined.
- user-agent            `User agent`_ string of the client triggered the event.
- device-type           Device type the email was opened on. Can be 'desktop', 'mobile', 'tablet', 'other'
-                       or 'unknown'.
- client-type           Type of software the email was opened in, e.g. 'browser', 'mobile browser',
-                       'email client'.
- client-name           Name of the client software, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
- client-os             OS family running the client software, e.g. 'Linux', 'Windows', 'OSX'.
- campaign-id           The id of campaign triggering the event.
- campaign-name         The name of campaign triggering the event.
- tag                   Message tag, if message was tagged. See :ref:`tagging`
- mailing-list          The address of mailing list the original message was sent to.
- "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- ==================    ==================================================================================
+You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+When a user opens one of your emails, your ``opened`` URLs will be called with the following `webhooks payload`_.
 
 .. _Return Path: http://www.returnpath.net/
 .. _country code: http://dev.maxmind.com/static/csv/codes/iso3166.csv
@@ -936,40 +933,8 @@ You can enable click tracking in the **Tracking Settings** section of your domai
 
 **Clicks Webhook**
 
-You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel. Every time
-a user clicks on a link inside of your messages, your URL will be called with
-the following parameters:
-
-.. container:: ptable
-
- ==================    ==================================================================================
- Parameter Name        Description
- ==================    ==================================================================================
- event                 Event name ("clicked").
- recipient             Recipient who clicked.
- domain                Domain that sent the original message.
- ip                    IP address the event originated from.
- country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
-                       'unknown' if it couldn't be determined.
- region                Two-letter or two-digit `region code`_ or 'unknown' if it couldn't be determined.
- city                  Name of the city the event came from or 'unknown' if it couldn't be determined.
- user-agent            `User agent`_ string of the client triggered the event.
- device-type           Device type the link was clicked on. Can be 'desktop', 'mobile', 'tablet', 'other'
-                       or 'unknown'.
- client-type           Type of software the link was opened in, e.g. 'browser', 'mobile browser',
-                       'email client'.
- client-name           Name of the client software, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
- client-os             OS family running the client software, e.g. 'Linux', 'Windows', 'OSX'.
- campaign-id           The id of campaign triggering the event.
- campaign-name         The name of campaign triggering the event.
- tag                   Message tag, if it was tagged. See :ref:`tagging`.
- url                   The URL that was clicked.
- mailing-list          The address of mailing list the original message was sent to.
- "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- ==================    ==================================================================================
+You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+Every time a user clicks on a link inside of your messages, your ``clicked`` URLs will be called with the following `webhooks payload`_.
 
 .. _um-tracking-unsubscribes:
 
@@ -1036,38 +1001,8 @@ to learn how to programmatically manage lists of unsubscribed users.
 
 **Unsubscribes Webhook**
 
-You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel.
-When a user unsubscribes, Mailgun will invoke the webhook with the following parameters:
-
-.. container:: ptable
-
- ==================    ==================================================================================
- Parameter Name        Description
- ==================    ==================================================================================
- event                 Event name ("unsubscribed").
- recipient             Recipient who unsubscribed.
- domain                Domain that sent the original message.
- ip                    IP address the event originated from.
- country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
-                       'unknown' if it couldn't be determined.
- region                Two-letter or two-digit `region code`_ or 'unknown' if it couldn't be determined.
- city                  Name of the city the event came from or 'unknown' if it couldn't be determined.
- user-agent            `User agent`_ string of the client triggered the event.
- device-type           Device type the person unsubscribed on. Can be 'desktop', 'mobile', 'tablet', 'other'
-                       or 'unknown'.
- client-type           Type of software the unsubscribe link was clicked in, e.g. 'browser', 'mobile browser',
-                       'email client'.
- client-name           Name of the client software, e.g. 'Thunderbird', 'Chrome', 'Firefox'.
- client-os             OS family running the client software, e.g. 'Linux', 'Windows', 'OSX'.
- campaign-id           The id of the campaign that recipient has unsubscribed from.
- campaign-name         The name of campaign triggering the event.
- tag                   Message tag, if it was tagged. See :ref:`tagging`.
- mailing-list          The address of mailing list the original message was sent to.
- "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- ==================    ==================================================================================
+You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+When a user unsubscribes, Mailgun will invoke ``unsubscribed`` webhook with the following `webhooks payload`_.
 
 .. _um-tracking-spam-complaints:
 
@@ -1092,41 +1027,20 @@ Spam Complaint tracking is always enabled.
 Mailgun provides :ref:`Spam complaints API <api-complaints>` to programmatically
 manage the lists of users who have complained.
 
-**Spam Complaints Webhook**
+**Spam Complains Webhook**
 
-You can specify a webhook URL in the ``Webhooks`` tab in the Control Panel.
-When a user reports one of your emails as spam, Mailgun will invoke the
-webhook with the following parameters:
+You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+When a user reports one of your emails as spam, Mailgun will invoke ``complained`` webhook with the following `webhooks payload`_.
 
-.. container:: ptable
+.. _um-tracking-failures:
 
- ==================    ==================================================================================
- Parameter Name        Description
- ==================    ==================================================================================
- event                 Event name ("complained").
- recipient             Recipient who clicked spam.
- domain                Domain that sent the original message.
- message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
- campaign-id           The id of campaign triggering the event.
- campaign-name         The name of campaign triggering the event.
- tag                   Message tag, if it was tagged. See :ref:`tagging`.
- mailing-list          The address of mailing list the original message was sent to.
- "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
-                       included if the recipient ESP includes them in the bounce message. They are
-                       handled as file uploads, encoded as multipart/form-data.
- ==================    ==================================================================================
+Tracking Failures
+=================
 
-.. _um-tracking-bounces:
+Mailgun tracks all delivery failures.
+Failures consist of both Hard Bounces (permanent failures) and Soft Bounces (temporary failures).
 
-Tracking Bounces
-================
-
-An email message is said to "bounce" if it is rejected by the recipient SMTP
-server.
+An email message is said to "bounce" if it is rejected by the recipient SMTP server.
 
 With respect to failure persistence Mailgun classifies bounces into the
 following two groups:
@@ -1167,78 +1081,20 @@ notified through a webhook or get the data programmatically through the
 Mailgun provides :ref:`Bounces API <api-bounces>` to programmatically
 manage the lists of hard bounces.
 
+**Permanent Failure Webhook**
 
-**Bounce Event Webhook**
-
-You can specify a webhook URL in the ``Webhooks`` tab of your Control Panel.
-If you do, every time a message experiences a hard bounce, your URL will be invoked with the following parameters:
-
-.. container:: ptable
-
- ======================    ===========================================================================
- Parameter Name            Description
- ======================    ===========================================================================
- event                     Event name ("bounced").
- recipient                 Recipient who could not be reached.
- domain                    Domain that sent the original message.
- message-headers           String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
- code                      SMTP bounce error code in form (X.X.X).
- error                     SMTP bounce error string.
- notification              Detailed reason for bouncing (optional).
- campaign-id               The id of campaign triggering the event.
- campaign-name             The name of campaign triggering the event.
- tag                       Message tag, if it was tagged. See :ref:`tagging`.
- mailing-list              The address of mailing list the original message was sent to.
- "custom variables"        Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp                 Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                     Randomly generated string with length 50 (see `securing webhooks`_).
- signature                 String with hexadecimal digits generate by HMAC algorithm
-                           (see `securing webhooks`_).
- attachment-x              attached file (‘x’ stands for number of the attachment). Attachments are
-                           included if the recipient ESP includes them in the bounce message. They are
-                           handled as file uploads, encoded as multipart/form-data.
- ======================    ===========================================================================
-
-.. _um-tracking-failures:
-
-Tracking Failures
-==================
-
-Mailgun tracks all delivery failures. Failures consist of both Hard Bounces (permanent failures) and Soft Bounces (temporary failures).
-
-You can see when failures happen in the ``Logs`` tab.  In addition, you can be notified through a webhook when a message is dropped (i.e., stop retries) or get the data programmatically through the :ref:`Events API <api-events>`.
-
-**Drop Event Webhook**
-
-In the ``Webhooks`` tab, you can specify a URL to be notified every time a message is dropped.
 There are a few reasons why Mailgun needs to stop attempting to deliver messages and drop them.
-The most common reason is that Mailgun received a Hard bounce or repeatedly received Soft bounces and continuing attempting to deliver may hurt your reputation with the receiving ESP.  Also, if the address is on one of the 'do not send lists' because that recipient
-had previously bounced, unsubscribed, or complained of spam, we will not attempt delivery and drop the message.  If one of
-these events occur we will POST the following parameters to your URL:
+The most common reason is that Mailgun received a Hard bounce or repeatedly received Soft bounces
+and continuing attempting to deliver may hurt your reputation with the receiving ESP.
+Also, if the address is on one of the 'do not send lists' because that recipient
+had previously bounced, unsubscribed, or complained of spam, we will not attempt delivery and drop the message.
+If one of these events occur we will POST the following `webhooks payload`_ to your ``permanent_fail`` URLs.
+You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
 
-.. container:: ptable
+**Temporary Failure Webhook**
 
- ==================    ==================================================================================
- Parameter Name        Description
- ==================    ==================================================================================
- event                 Event name ("dropped").
- recipient             Intended recipient.
- domain                Domain that sent the original message.
- message-headers       String list of all MIME headers of the original message dumped to a JSON string (order of headers preserved).
- reason                Reason for failure. Can be one either "hardfail" or "old". See below.
- code                  ESP response code, e.g. if the message was blocked as a spam (optional).
- description           Detailed explanation of why the messages was dropped
- "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
-                       included if the recipient ESP includes them in the bounce message. They are
-                       handled as file uploads, encoded as multipart/form-data.
- ==================    ==================================================================================
-
-- ``old`` indicates that Mailgun tried to deliver the message unsuccessfully for more than 8 hours.
-- ``hardfail`` not delivering to an address that previously bounced, unsubscribed, or complained.
+If Mailgun got a Soft bounce (temporary failure) we will POST the following `webhooks payload`_ to your ``temporary_fail`` URLs.
+You can specify webhooks URLs programmaticaly using the :ref:`api-webhooks` API.
 
 
 .. _um-tracking-deliveries:
@@ -1252,26 +1108,10 @@ You can see when deliveries happen in the ``Logs`` tab.  In addition, you can be
 
 **Delivered Event Webhook**
 
-In the ``Webhooks`` tab, you can specify a URL to be notified every time a
-message is delivered. If the message is successfully delivered to the intended
-recipient, we will POST the following parameters to your URL:
-
-.. container:: ptable
-
- ==================    ==================================================================================
- Parameter Name        Description
- ==================    ==================================================================================
- event                 Event name ("delivered").
- recipient             Intended recipient.
- domain                Domain that sent the original message.
- message-headers       String list of all MIME headers dumped to a JSON string (order of headers preserved).
- Message-Id            String id of the original message delivered to the recipient.
- "custom variables"    Your own custom JSON object included in the header of the original message (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
- ==================    ==================================================================================
-
+You can specify a webhook URL programmaticaly using the :ref:`api-webhooks` API
+to be notified every time a message is delivered.
+If the message is successfully delivered to the intended recipient,
+we will POST the following `webhooks payload`_ to your ``delivered`` URLs
 
 .. _stats:
 
@@ -1795,7 +1635,21 @@ Sample response:
       }
   }
 
-Parse a list of email addresses.
+Field Explanation:
+
+=====================    =========    ============================================================================================================
+Parameter                Type         Description
+=====================    =========    ============================================================================================================
+address                  string       Email address being validated
+did_you_mean             string       Null if nothing, however if a potential typo is made, the closest suggestion is provided
+is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
+is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
+is_valid                 boolean      Runs the email segments across a valid known provider rule list. If a violation occurs this value is false
+parts                    string       (display_name, domain, local_part): Parsed segments of the provided email address
+=====================    =========    ============================================================================================================
+
+
+Parse a list of email addresses:
 
 .. include:: samples/get-parse.rst
 
@@ -1822,7 +1676,7 @@ Unknown may be returned if the mailbox provider does not support the check or th
 check times out.
 
 Role-based Address Check
-=======================
+========================
 
 For all validation requests, we provide whether an address is a role-based address
 (e.g. postmaster@, info@, etc.). These addresses are typically distribution lists

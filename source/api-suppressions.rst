@@ -27,7 +27,7 @@ Subsequent delivery attempts to an address found in a bounce list are prevented
 to protect your sending reputation.
 
 Mailgun can notify your application every time a message bounces via
-a :ref:`bounce webhook <um-tracking-bounces>`.
+a :ref:`permanent_fail webhook <um-tracking-failures>`.
 
 View all bounces
 ----------------
@@ -253,7 +253,7 @@ emails without any programming on your end. You can enable this in your
 Control Panel under your domain settings.
 
 Mailgun can notify your application every time a user unsubscribes via
-an :ref:`unsubscribe webhook <um-tracking-unsubscribes>`.
+an :ref:`unsubscribed webhook <um-tracking-unsubscribes>`.
 
 View all unsubscribes
 ---------------------
@@ -449,7 +449,7 @@ Complaint list stores email addresses of recipients who marked your messages
 as a spam (for ESPs that support FBL).
 
 Mailgun can notify your application every time a recipient flags your message
-as spam via a :ref:`complaint webhook <um-tracking-spam-complaints>`.
+as spam via a :ref:`complained webhook <um-tracking-spam-complaints>`.
 
 View all complaints
 -------------------

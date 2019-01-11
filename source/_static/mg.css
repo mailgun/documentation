@@ -1,6 +1,5 @@
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
-@import url(//fonts.googleapis.com/css?family=Titillium+Web:300,600);
-@import url(//fonts.googleapis.com/css?family=Lato:300,400);
+@import url(//fonts.googleapis.com/css?family=Exo|Open+Sans);
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
     display: block
@@ -283,12 +282,12 @@ table {
 
 body {
     color: #626262;
-    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    font-size: 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-size: 16px;
     -webkit-font-smoothing: subpixel-antialiased;
     font-style: normal;
     font-weight: 300;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 p {
@@ -309,8 +308,8 @@ blockquote {
 }
 
 blockquote cite {
-    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    font-size: 18px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-size: 16px;
     font-style: normal;
     font-weight: 300
 }
@@ -318,16 +317,6 @@ blockquote cite {
 blockquote a {
     color: #626262;
     text-decoration: none
-}
-
-pre {
-    display: block;
-    font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
-    font-size: 16px;
-    line-height: 20px;
-    margin: 0 0 20px;
-    word-break: break-all;
-    word-wrap: break-word
 }
 
 code, .pre {
@@ -339,8 +328,19 @@ code, .pre {
     padding: 2px
 }
 
+pre {
+    display: block;
+    font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 20px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: none !important;
+}
+
 h1, h2, h3, h4 {
-    font-family: 'Titillium Web', Lato, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-family: Exo, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
     font-weight: 300
 }
 
@@ -408,13 +408,13 @@ img, video, audio, iframe, object {
     max-width: 100%
 }
 
-[class^="img-"] {
-    background: url("assets/sp.png") no-repeat;
-    background-size: 1000px 1000px;
-    display: block;
-    max-width: 100%;
-    text-indent: -9999px
-}
+/*[class^="img-"] {*/
+    /*background: url("assets/sp.png") no-repeat;*/
+    /*background-size: 1000px 1000px;*/
+    /*display: block;*/
+    /*max-width: 100%;*/
+    /*text-indent: -9999px*/
+/*}*/
 
 .customer-logos [class^="img-"] {
     background: url("assets/sp.png") no-repeat;
@@ -586,7 +586,7 @@ a:hover, a:focus {
     text-decoration: none
 }
 
-.btn, .btn-primary, .header-nav a.signup b, .btn-secondary, .btn-tertiary, .btn-link {
+.btn, .btn-primary, .btn-secondary, .btn-tertiary, .btn-link {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -602,18 +602,18 @@ a:hover, a:focus {
     text-transform: capitalize
 }
 
-.btn:hover, .btn-primary:hover, .header-nav a.signup b:hover, .btn-secondary:hover, .btn-tertiary:hover, .btn-link:hover, .btn:focus, .btn-primary:focus, .header-nav a.signup b:focus, .btn-secondary:focus, .btn-tertiary:focus, .btn-link:focus {
+.btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-tertiary:hover, .btn-link:hover, .btn:focus, .btn-primary:focus, .btn-tertiary:focus, .btn-link:focus {
     background: #496ce6;
     text-decoration: none
 }
 
-.btn:active, .btn-primary:active, .header-nav a.signup b:active, .btn-secondary:active, .btn-tertiary:active, .btn-link:active {
+.btn:active, .btn-primary:active, .btn-secondary:active, .btn-tertiary:active, .btn-link:active {
     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2)
 }
 
-.btn-primary, .header-nav a.signup b {
+.btn-primary {
     background: #eb284f;
     border: 1px solid #eb284f;
     -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -622,7 +622,7 @@ a:hover, a:focus {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
 }
 
-.btn-primary:hover, .header-nav a.signup b:hover, .btn-primary:focus, .header-nav a.signup b:focus {
+.btn-primary:hover, .btn-primary:focus {
     background: #ea1a44;
     border-color: #ea1a44;
     -moz-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.4);
@@ -630,7 +630,7 @@ a:hover, a:focus {
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.4)
 }
 
-.btn-primary:active, .header-nav a.signup b:active {
+.btn-primary:active {
     -moz-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
@@ -901,101 +901,6 @@ form .error input[type=text], form .error input[type=email], form .error input[t
     margin-bottom: 0
 }
 
-.header-nav {
-    float: right
-}
-
-.header-nav a {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #4b6cb7;
-    display: block;
-    float: left;
-    font-family: 'Titillium Web', Lato, 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 31px;
-    padding: 10px 16px;
-    text-decoration: none;
-    text-transform: uppercase
-}
-
-.header-nav a b {
-    border-bottom: 3px solid transparent;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: block;
-    font-weight: 600
-}
-
-.header-nav a:hover, .header-nav a:focus, .header-nav a.active, .header-nav .sending a.features-link, .sending .header-nav a.features-link, .header-nav .pricing a.pricing-link, .pricing .header-nav a.pricing-link, .header-nav .customersgallery a.customers-link, .customersgallery .header-nav a.customers-link, .header-nav .validation a.validation-link, .validation .header-nav a.validation-link, .header-nav .sending a.sending-link, .sending .header-nav a.sending-link, .header-nav .routing a.routing-link, .routing .header-nav a.routing-link, .header-nav .managed a.managed-link, .managed .header-nav a.managed-link, .header-nav .logs a.logs-link, .logs .header-nav a.logs-link, .header-nav .reports a.reports-link, .reports .header-nav a.reports-link, .header-nav .deliverability a.deliverability-link, .deliverability .header-nav a.deliverability-link, .header-nav .contact a.contact-link, .contact .header-nav a.contact-link, .header-nav .routing a.features-link, .routing .header-nav a.features-link, .header-nav .analytics a.features-link, .analytics .header-nav a.features-link, .header-nav .validation a.features-link, .validation .header-nav a.features-link, .header-nav .deliverability a.features-link, .deliverability .header-nav a.features-link, .header-nav .resources a.resources-link, .resources .header-nav a.resources-link {
-    color: #eb284f
-}
-
-.header-nav a:hover b, .header-nav a:focus b, .header-nav a.active b, .header-nav .sending a.features-link b, .sending .header-nav a.features-link b, .header-nav .pricing a.pricing-link b, .pricing .header-nav a.pricing-link b, .header-nav .customersgallery a.customers-link b, .customersgallery .header-nav a.customers-link b, .header-nav .validation a.validation-link b, .validation .header-nav a.validation-link b, .header-nav .sending a.sending-link b, .sending .header-nav a.sending-link b, .header-nav .routing a.routing-link b, .routing .header-nav a.routing-link b, .header-nav .managed a.managed-link b, .managed .header-nav a.managed-link b, .header-nav .logs a.logs-link b, .logs .header-nav a.logs-link b, .header-nav .reports a.reports-link b, .reports .header-nav a.reports-link b, .header-nav .deliverability a.deliverability-link b, .deliverability .header-nav a.deliverability-link b, .header-nav .contact a.contact-link b, .contact .header-nav a.contact-link b, .header-nav .routing a.features-link b, .routing .header-nav a.features-link b, .header-nav .analytics a.features-link b, .analytics .header-nav a.features-link b, .header-nav .validation a.features-link b, .validation .header-nav a.features-link b, .header-nav .deliverability a.features-link b, .deliverability .header-nav a.features-link b, .header-nav .resources a.resources-link b, .resources .header-nav a.resources-link b {
-    border-bottom-color: #eb284f
-}
-
-.header-nav a.signup b {
-    border: 0
-}
-
-.header-nav a.signup:hover b, .header-nav a.signup:focus b {
-    border: 0
-}
-
-.header-nav a.login-link {
-    padding: 10px 20px
-}
-
-.header-nav a.login-link b {
-    border: 1px solid #4b6cb7;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 14px;
-    padding-right: 14px
-}
-
-.header-nav a.login-link:hover b {
-    background: #4b6cb7;
-    border-color: #4b6cb7;
-    color: #fff
-}
-
-.header-nav a.signup-link {
-    padding: 10px 0 10px 20px
-}
-
-.header-nav a.signup-link b {
-    background: #eb284f;
-    border: 1px solid #eb284f;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    color: #fff;
-    padding-left: 14px;
-    padding-right: 14px
-}
-
-.header-nav a.signup-link:hover b, .header-nav a.signup-link:focus b {
-    background: #ea1a44;
-    border-color: #ea1a44;
-    -moz-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.4);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.4)
-}
-
-.header-nav a.signup-link:active b {
-    -moz-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-    position: relative;
-    top: 1px
-}
-
 .features-nav-container {
     background: #fff;
     border-top: 1px solid #e7e8ef
@@ -1035,22 +940,6 @@ form .error input[type=text], form .error input[type=email], form .error input[t
 }
 
 @media screen and (max-width: 480px) {
-    .header-nav {
-        display: none
-    }
-
-    .header-nav a {
-        border-bottom: 1px solid #f0f1f5;
-        float: none;
-        width: 100%
-    }
-
-    .header-nav a.login-link b, .header-nav a.login-link:hover b {
-        background: none;
-        border: 0;
-        padding-left: 0;
-        padding-right: 0
-    }
 
     .features-nav {
         display: none
@@ -1104,90 +993,8 @@ form .error input[type=text], form .error input[type=email], form .error input[t
     fill: currentColor
 }
 
-.dropdown {
-    position: relative
-}
-
-.dropdown .icon-dropdown {
-    fill: currentColor;
-    height: 8px;
-    margin-left: 2px;
-    vertical-align: middle
-}
-
-.header-nav .dropdown {
-    float: left
-}
-
-.dropdown-menu {
-    background: #fff;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    left: 0;
-    margin: 5px 0;
-    min-width: 200px;
-    opacity: 0;
-    padding: 5px 0;
-    pointer-events: none;
-    position: absolute;
-    top: 100%;
-    transform: scale(0.8) translateY(-30%);
-    transition: 0.2s cubic-bezier(0.3, 0, 0, 1.3);
-    z-index: 1000
-}
-
-.dropdown-menu.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: none
-}
-
-.dropdown-menu a {
-    color: #4b6cb7;
-    display: block;
-    float: none;
-    padding: 5px 10px;
-    text-transform: capitalize;
-    white-space: nowrap
-}
-
-.dropdown-menu a:hover, .dropdown-menu a:active {
-    background: #4b6cb7;
-    color: #fff
-}
-
 @media screen and (max-width: 480px) {
-    .header-nav .dropdown-menu {
-        background: transparent;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        display: block;
-        left: 0;
-        margin: 0;
-        min-width: 0;
-        opacity: 1;
-        padding: 0;
-        pointer-events: auto;
-        position: relative;
-        -moz-transform: none;
-        -ms-transform: none;
-        -webkit-transform: none;
-        transform: none;
-        top: 0
-    }
 
-    .header-nav .dropdown-menu a {
-        padding-left: 40px
-    }
-
-    .header-nav .dropdown {
-        float: none
-    }
 }
 
 .aligncenter {
@@ -1395,7 +1202,6 @@ a [class^="icon-"], a [class*=" icon-"] {
 [class^="icon-"].pull-right, [class*=" icon-"].pull-right {
     margin-left: .3em
 }
-
 [class^="icon-"], [class*=" icon-"] {
     display: inline;
     width: auto;
@@ -1408,15 +1214,15 @@ a [class^="icon-"], a [class*=" icon-"] {
     margin-top: 0
 }
 
-.icon-white, .nav-pills>.active>a>[class^="icon-"], .sending .nav-pills>.features-link>a>[class^="icon-"], .pricing .nav-pills>.pricing-link>a>[class^="icon-"], .customersgallery .nav-pills>.customers-link>a>[class^="icon-"], .validation .nav-pills>.validation-link>a>[class^="icon-"], .sending .nav-pills>.sending-link>a>[class^="icon-"], .routing .nav-pills>.routing-link>a>[class^="icon-"], .managed .nav-pills>.managed-link>a>[class^="icon-"], .logs .nav-pills>.logs-link>a>[class^="icon-"], .reports .nav-pills>.reports-link>a>[class^="icon-"], .deliverability .nav-pills>.deliverability-link>a>[class^="icon-"], .contact .nav-pills>.contact-link>a>[class^="icon-"], .routing .nav-pills>.features-link>a>[class^="icon-"], .analytics .nav-pills>.features-link>a>[class^="icon-"], .validation .nav-pills>.features-link>a>[class^="icon-"], .deliverability .nav-pills>.features-link>a>[class^="icon-"], .resources .nav-pills>.resources-link>a>[class^="icon-"], .nav-pills>.active>a>[class*=" icon-"], .sending .nav-pills>.features-link>a>[class*=" icon-"], .pricing .nav-pills>.pricing-link>a>[class*=" icon-"], .customersgallery .nav-pills>.customers-link>a>[class*=" icon-"], .validation .nav-pills>.validation-link>a>[class*=" icon-"], .sending .nav-pills>.sending-link>a>[class*=" icon-"], .routing .nav-pills>.routing-link>a>[class*=" icon-"], .managed .nav-pills>.managed-link>a>[class*=" icon-"], .logs .nav-pills>.logs-link>a>[class*=" icon-"], .reports .nav-pills>.reports-link>a>[class*=" icon-"], .deliverability .nav-pills>.deliverability-link>a>[class*=" icon-"], .contact .nav-pills>.contact-link>a>[class*=" icon-"], .routing .nav-pills>.features-link>a>[class*=" icon-"], .analytics .nav-pills>.features-link>a>[class*=" icon-"], .validation .nav-pills>.features-link>a>[class*=" icon-"], .deliverability .nav-pills>.features-link>a>[class*=" icon-"], .resources .nav-pills>.resources-link>a>[class*=" icon-"], .nav-list>.active>a>[class^="icon-"], .sending .nav-list>.features-link>a>[class^="icon-"], .pricing .nav-list>.pricing-link>a>[class^="icon-"], .customersgallery .nav-list>.customers-link>a>[class^="icon-"], .validation .nav-list>.validation-link>a>[class^="icon-"], .sending .nav-list>.sending-link>a>[class^="icon-"], .routing .nav-list>.routing-link>a>[class^="icon-"], .managed .nav-list>.managed-link>a>[class^="icon-"], .logs .nav-list>.logs-link>a>[class^="icon-"], .reports .nav-list>.reports-link>a>[class^="icon-"], .deliverability .nav-list>.deliverability-link>a>[class^="icon-"], .contact .nav-list>.contact-link>a>[class^="icon-"], .routing .nav-list>.features-link>a>[class^="icon-"], .analytics .nav-list>.features-link>a>[class^="icon-"], .validation .nav-list>.features-link>a>[class^="icon-"], .deliverability .nav-list>.features-link>a>[class^="icon-"], .resources .nav-list>.resources-link>a>[class^="icon-"], .nav-list>.active>a>[class*=" icon-"], .sending .nav-list>.features-link>a>[class*=" icon-"], .pricing .nav-list>.pricing-link>a>[class*=" icon-"], .customersgallery .nav-list>.customers-link>a>[class*=" icon-"], .validation .nav-list>.validation-link>a>[class*=" icon-"], .sending .nav-list>.sending-link>a>[class*=" icon-"], .routing .nav-list>.routing-link>a>[class*=" icon-"], .managed .nav-list>.managed-link>a>[class*=" icon-"], .logs .nav-list>.logs-link>a>[class*=" icon-"], .reports .nav-list>.reports-link>a>[class*=" icon-"], .deliverability .nav-list>.deliverability-link>a>[class*=" icon-"], .contact .nav-list>.contact-link>a>[class*=" icon-"], .routing .nav-list>.features-link>a>[class*=" icon-"], .analytics .nav-list>.features-link>a>[class*=" icon-"], .validation .nav-list>.features-link>a>[class*=" icon-"], .deliverability .nav-list>.features-link>a>[class*=" icon-"], .resources .nav-list>.resources-link>a>[class*=" icon-"], .navbar-inverse .nav>.active>a>[class^="icon-"], .navbar-inverse .sending .nav>.features-link>a>[class^="icon-"], .sending .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .pricing .nav>.pricing-link>a>[class^="icon-"], .pricing .navbar-inverse .nav>.pricing-link>a>[class^="icon-"], .navbar-inverse .customersgallery .nav>.customers-link>a>[class^="icon-"], .customersgallery .navbar-inverse .nav>.customers-link>a>[class^="icon-"], .navbar-inverse .validation .nav>.validation-link>a>[class^="icon-"], .validation .navbar-inverse .nav>.validation-link>a>[class^="icon-"], .navbar-inverse .sending .nav>.sending-link>a>[class^="icon-"], .sending .navbar-inverse .nav>.sending-link>a>[class^="icon-"], .navbar-inverse .routing .nav>.routing-link>a>[class^="icon-"], .routing .navbar-inverse .nav>.routing-link>a>[class^="icon-"], .navbar-inverse .managed .nav>.managed-link>a>[class^="icon-"], .managed .navbar-inverse .nav>.managed-link>a>[class^="icon-"], .navbar-inverse .logs .nav>.logs-link>a>[class^="icon-"], .logs .navbar-inverse .nav>.logs-link>a>[class^="icon-"], .navbar-inverse .reports .nav>.reports-link>a>[class^="icon-"], .reports .navbar-inverse .nav>.reports-link>a>[class^="icon-"], .navbar-inverse .deliverability .nav>.deliverability-link>a>[class^="icon-"], .deliverability .navbar-inverse .nav>.deliverability-link>a>[class^="icon-"], .navbar-inverse .contact .nav>.contact-link>a>[class^="icon-"], .contact .navbar-inverse .nav>.contact-link>a>[class^="icon-"], .navbar-inverse .routing .nav>.features-link>a>[class^="icon-"], .routing .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .analytics .nav>.features-link>a>[class^="icon-"], .analytics .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .validation .nav>.features-link>a>[class^="icon-"], .validation .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .deliverability .nav>.features-link>a>[class^="icon-"], .deliverability .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .resources .nav>.resources-link>a>[class^="icon-"], .resources .navbar-inverse .nav>.resources-link>a>[class^="icon-"], .navbar-inverse .nav>.active>a>[class*=" icon-"], .navbar-inverse .sending .nav>.features-link>a>[class*=" icon-"], .sending .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .pricing .nav>.pricing-link>a>[class*=" icon-"], .pricing .navbar-inverse .nav>.pricing-link>a>[class*=" icon-"], .navbar-inverse .customersgallery .nav>.customers-link>a>[class*=" icon-"], .customersgallery .navbar-inverse .nav>.customers-link>a>[class*=" icon-"], .navbar-inverse .validation .nav>.validation-link>a>[class*=" icon-"], .validation .navbar-inverse .nav>.validation-link>a>[class*=" icon-"], .navbar-inverse .sending .nav>.sending-link>a>[class*=" icon-"], .sending .navbar-inverse .nav>.sending-link>a>[class*=" icon-"], .navbar-inverse .routing .nav>.routing-link>a>[class*=" icon-"], .routing .navbar-inverse .nav>.routing-link>a>[class*=" icon-"], .navbar-inverse .managed .nav>.managed-link>a>[class*=" icon-"], .managed .navbar-inverse .nav>.managed-link>a>[class*=" icon-"], .navbar-inverse .logs .nav>.logs-link>a>[class*=" icon-"], .logs .navbar-inverse .nav>.logs-link>a>[class*=" icon-"], .navbar-inverse .reports .nav>.reports-link>a>[class*=" icon-"], .reports .navbar-inverse .nav>.reports-link>a>[class*=" icon-"], .navbar-inverse .deliverability .nav>.deliverability-link>a>[class*=" icon-"], .deliverability .navbar-inverse .nav>.deliverability-link>a>[class*=" icon-"], .navbar-inverse .contact .nav>.contact-link>a>[class*=" icon-"], .contact .navbar-inverse .nav>.contact-link>a>[class*=" icon-"], .navbar-inverse .routing .nav>.features-link>a>[class*=" icon-"], .routing .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .analytics .nav>.features-link>a>[class*=" icon-"], .analytics .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .validation .nav>.features-link>a>[class*=" icon-"], .validation .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .deliverability .nav>.features-link>a>[class*=" icon-"], .deliverability .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .resources .nav>.resources-link>a>[class*=" icon-"], .resources .navbar-inverse .nav>.resources-link>a>[class*=" icon-"], .dropdown-menu>li>a:hover>[class^="icon-"], .dropdown-menu>li>a:hover>[class*=" icon-"], .dropdown-menu>.active>a>[class^="icon-"], .sending .dropdown-menu>.features-link>a>[class^="icon-"], .pricing .dropdown-menu>.pricing-link>a>[class^="icon-"], .customersgallery .dropdown-menu>.customers-link>a>[class^="icon-"], .validation .dropdown-menu>.validation-link>a>[class^="icon-"], .sending .dropdown-menu>.sending-link>a>[class^="icon-"], .routing .dropdown-menu>.routing-link>a>[class^="icon-"], .managed .dropdown-menu>.managed-link>a>[class^="icon-"], .logs .dropdown-menu>.logs-link>a>[class^="icon-"], .reports .dropdown-menu>.reports-link>a>[class^="icon-"], .deliverability .dropdown-menu>.deliverability-link>a>[class^="icon-"], .contact .dropdown-menu>.contact-link>a>[class^="icon-"], .routing .dropdown-menu>.features-link>a>[class^="icon-"], .analytics .dropdown-menu>.features-link>a>[class^="icon-"], .validation .dropdown-menu>.features-link>a>[class^="icon-"], .deliverability .dropdown-menu>.features-link>a>[class^="icon-"], .resources .dropdown-menu>.resources-link>a>[class^="icon-"], .dropdown-menu>.active>a>[class*=" icon-"], .sending .dropdown-menu>.features-link>a>[class*=" icon-"], .pricing .dropdown-menu>.pricing-link>a>[class*=" icon-"], .customersgallery .dropdown-menu>.customers-link>a>[class*=" icon-"], .validation .dropdown-menu>.validation-link>a>[class*=" icon-"], .sending .dropdown-menu>.sending-link>a>[class*=" icon-"], .routing .dropdown-menu>.routing-link>a>[class*=" icon-"], .managed .dropdown-menu>.managed-link>a>[class*=" icon-"], .logs .dropdown-menu>.logs-link>a>[class*=" icon-"], .reports .dropdown-menu>.reports-link>a>[class*=" icon-"], .deliverability .dropdown-menu>.deliverability-link>a>[class*=" icon-"], .contact .dropdown-menu>.contact-link>a>[class*=" icon-"], .routing .dropdown-menu>.features-link>a>[class*=" icon-"], .analytics .dropdown-menu>.features-link>a>[class*=" icon-"], .validation .dropdown-menu>.features-link>a>[class*=" icon-"], .deliverability .dropdown-menu>.features-link>a>[class*=" icon-"], .resources .dropdown-menu>.resources-link>a>[class*=" icon-"], .dropdown-submenu:hover>a>[class^="icon-"], .dropdown-submenu:hover>a>[class*=" icon-"] {
+.icon-white, .nav-pills>.active>a>[class^="icon-"], .sending .nav-pills>.features-link>a>[class^="icon-"], .pricing .nav-pills>.pricing-link>a>[class^="icon-"], .customersgallery .nav-pills>.customers-link>a>[class^="icon-"], .validation .nav-pills>.validation-link>a>[class^="icon-"], .sending .nav-pills>.sending-link>a>[class^="icon-"], .routing .nav-pills>.routing-link>a>[class^="icon-"], .managed .nav-pills>.managed-link>a>[class^="icon-"], .logs .nav-pills>.logs-link>a>[class^="icon-"], .reports .nav-pills>.reports-link>a>[class^="icon-"], .deliverability .nav-pills>.deliverability-link>a>[class^="icon-"], .contact .nav-pills>.contact-link>a>[class^="icon-"], .routing .nav-pills>.features-link>a>[class^="icon-"], .analytics .nav-pills>.features-link>a>[class^="icon-"], .validation .nav-pills>.features-link>a>[class^="icon-"], .deliverability .nav-pills>.features-link>a>[class^="icon-"], .resources .nav-pills>.resources-link>a>[class^="icon-"], .nav-pills>.active>a>[class*=" icon-"], .sending .nav-pills>.features-link>a>[class*=" icon-"], .pricing .nav-pills>.pricing-link>a>[class*=" icon-"], .customersgallery .nav-pills>.customers-link>a>[class*=" icon-"], .validation .nav-pills>.validation-link>a>[class*=" icon-"], .sending .nav-pills>.sending-link>a>[class*=" icon-"], .routing .nav-pills>.routing-link>a>[class*=" icon-"], .managed .nav-pills>.managed-link>a>[class*=" icon-"], .logs .nav-pills>.logs-link>a>[class*=" icon-"], .reports .nav-pills>.reports-link>a>[class*=" icon-"], .deliverability .nav-pills>.deliverability-link>a>[class*=" icon-"], .contact .nav-pills>.contact-link>a>[class*=" icon-"], .routing .nav-pills>.features-link>a>[class*=" icon-"], .analytics .nav-pills>.features-link>a>[class*=" icon-"], .validation .nav-pills>.features-link>a>[class*=" icon-"], .deliverability .nav-pills>.features-link>a>[class*=" icon-"], .resources .nav-pills>.resources-link>a>[class*=" icon-"], .nav-list>.active>a>[class^="icon-"], .sending .nav-list>.features-link>a>[class^="icon-"], .pricing .nav-list>.pricing-link>a>[class^="icon-"], .customersgallery .nav-list>.customers-link>a>[class^="icon-"], .validation .nav-list>.validation-link>a>[class^="icon-"], .sending .nav-list>.sending-link>a>[class^="icon-"], .routing .nav-list>.routing-link>a>[class^="icon-"], .managed .nav-list>.managed-link>a>[class^="icon-"], .logs .nav-list>.logs-link>a>[class^="icon-"], .reports .nav-list>.reports-link>a>[class^="icon-"], .deliverability .nav-list>.deliverability-link>a>[class^="icon-"], .contact .nav-list>.contact-link>a>[class^="icon-"], .routing .nav-list>.features-link>a>[class^="icon-"], .analytics .nav-list>.features-link>a>[class^="icon-"], .validation .nav-list>.features-link>a>[class^="icon-"], .deliverability .nav-list>.features-link>a>[class^="icon-"], .resources .nav-list>.resources-link>a>[class^="icon-"], .nav-list>.active>a>[class*=" icon-"], .sending .nav-list>.features-link>a>[class*=" icon-"], .pricing .nav-list>.pricing-link>a>[class*=" icon-"], .customersgallery .nav-list>.customers-link>a>[class*=" icon-"], .validation .nav-list>.validation-link>a>[class*=" icon-"], .sending .nav-list>.sending-link>a>[class*=" icon-"], .routing .nav-list>.routing-link>a>[class*=" icon-"], .managed .nav-list>.managed-link>a>[class*=" icon-"], .logs .nav-list>.logs-link>a>[class*=" icon-"], .reports .nav-list>.reports-link>a>[class*=" icon-"], .deliverability .nav-list>.deliverability-link>a>[class*=" icon-"], .contact .nav-list>.contact-link>a>[class*=" icon-"], .routing .nav-list>.features-link>a>[class*=" icon-"], .analytics .nav-list>.features-link>a>[class*=" icon-"], .validation .nav-list>.features-link>a>[class*=" icon-"], .deliverability .nav-list>.features-link>a>[class*=" icon-"], .resources .nav-list>.resources-link>a>[class*=" icon-"], .navbar-inverse .nav>.active>a>[class^="icon-"], .navbar-inverse .sending .nav>.features-link>a>[class^="icon-"], .sending .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .pricing .nav>.pricing-link>a>[class^="icon-"], .pricing .navbar-inverse .nav>.pricing-link>a>[class^="icon-"], .navbar-inverse .customersgallery .nav>.customers-link>a>[class^="icon-"], .customersgallery .navbar-inverse .nav>.customers-link>a>[class^="icon-"], .navbar-inverse .validation .nav>.validation-link>a>[class^="icon-"], .validation .navbar-inverse .nav>.validation-link>a>[class^="icon-"], .navbar-inverse .sending .nav>.sending-link>a>[class^="icon-"], .sending .navbar-inverse .nav>.sending-link>a>[class^="icon-"], .navbar-inverse .routing .nav>.routing-link>a>[class^="icon-"], .routing .navbar-inverse .nav>.routing-link>a>[class^="icon-"], .navbar-inverse .managed .nav>.managed-link>a>[class^="icon-"], .managed .navbar-inverse .nav>.managed-link>a>[class^="icon-"], .navbar-inverse .logs .nav>.logs-link>a>[class^="icon-"], .logs .navbar-inverse .nav>.logs-link>a>[class^="icon-"], .navbar-inverse .reports .nav>.reports-link>a>[class^="icon-"], .reports .navbar-inverse .nav>.reports-link>a>[class^="icon-"], .navbar-inverse .deliverability .nav>.deliverability-link>a>[class^="icon-"], .deliverability .navbar-inverse .nav>.deliverability-link>a>[class^="icon-"], .navbar-inverse .contact .nav>.contact-link>a>[class^="icon-"], .contact .navbar-inverse .nav>.contact-link>a>[class^="icon-"], .navbar-inverse .routing .nav>.features-link>a>[class^="icon-"], .routing .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .analytics .nav>.features-link>a>[class^="icon-"], .analytics .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .validation .nav>.features-link>a>[class^="icon-"], .validation .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .deliverability .nav>.features-link>a>[class^="icon-"], .deliverability .navbar-inverse .nav>.features-link>a>[class^="icon-"], .navbar-inverse .resources .nav>.resources-link>a>[class^="icon-"], .resources .navbar-inverse .nav>.resources-link>a>[class^="icon-"], .navbar-inverse .nav>.active>a>[class*=" icon-"], .navbar-inverse .sending .nav>.features-link>a>[class*=" icon-"], .sending .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .pricing .nav>.pricing-link>a>[class*=" icon-"], .pricing .navbar-inverse .nav>.pricing-link>a>[class*=" icon-"], .navbar-inverse .customersgallery .nav>.customers-link>a>[class*=" icon-"], .customersgallery .navbar-inverse .nav>.customers-link>a>[class*=" icon-"], .navbar-inverse .validation .nav>.validation-link>a>[class*=" icon-"], .validation .navbar-inverse .nav>.validation-link>a>[class*=" icon-"], .navbar-inverse .sending .nav>.sending-link>a>[class*=" icon-"], .sending .navbar-inverse .nav>.sending-link>a>[class*=" icon-"], .navbar-inverse .routing .nav>.routing-link>a>[class*=" icon-"], .routing .navbar-inverse .nav>.routing-link>a>[class*=" icon-"], .navbar-inverse .managed .nav>.managed-link>a>[class*=" icon-"], .managed .navbar-inverse .nav>.managed-link>a>[class*=" icon-"], .navbar-inverse .logs .nav>.logs-link>a>[class*=" icon-"], .logs .navbar-inverse .nav>.logs-link>a>[class*=" icon-"], .navbar-inverse .reports .nav>.reports-link>a>[class*=" icon-"], .reports .navbar-inverse .nav>.reports-link>a>[class*=" icon-"], .navbar-inverse .deliverability .nav>.deliverability-link>a>[class*=" icon-"], .deliverability .navbar-inverse .nav>.deliverability-link>a>[class*=" icon-"], .navbar-inverse .contact .nav>.contact-link>a>[class*=" icon-"], .contact .navbar-inverse .nav>.contact-link>a>[class*=" icon-"], .navbar-inverse .routing .nav>.features-link>a>[class*=" icon-"], .routing .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .analytics .nav>.features-link>a>[class*=" icon-"], .analytics .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .validation .nav>.features-link>a>[class*=" icon-"], .validation .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .deliverability .nav>.features-link>a>[class*=" icon-"], .deliverability .navbar-inverse .nav>.features-link>a>[class*=" icon-"], .navbar-inverse .resources .nav>.resources-link>a>[class*=" icon-"], .resources .navbar-inverse .nav>.resources-link>a>[class*=" icon-"], .sending .dropdown-menu>.features-link>a>[class^="icon-"], .pricing .dropdown-menu>.pricing-link>a>[class^="icon-"], .customersgallery .dropdown-menu>.customers-link>a>[class^="icon-"], .validation .dropdown-menu>.validation-link>a>[class^="icon-"], .sending .dropdown-menu>.sending-link>a>[class^="icon-"], .routing .dropdown-menu>.routing-link>a>[class^="icon-"], .managed .dropdown-menu>.managed-link>a>[class^="icon-"], .logs .dropdown-menu>.logs-link>a>[class^="icon-"], .reports .dropdown-menu>.reports-link>a>[class^="icon-"], .deliverability .dropdown-menu>.deliverability-link>a>[class^="icon-"], .contact .dropdown-menu>.contact-link>a>[class^="icon-"], .routing .dropdown-menu>.features-link>a>[class^="icon-"], .analytics .dropdown-menu>.features-link>a>[class^="icon-"], .validation .dropdown-menu>.features-link>a>[class^="icon-"], .deliverability .dropdown-menu>.features-link>a>[class^="icon-"], .resources .dropdown-menu>.resources-link>a>[class^="icon-"], .dropdown-menu>.active>a>[class*=" icon-"], .sending .dropdown-menu>.features-link>a>[class*=" icon-"], .pricing .dropdown-menu>.pricing-link>a>[class*=" icon-"], .customersgallery .dropdown-menu>.customers-link>a>[class*=" icon-"], .validation .dropdown-menu>.validation-link>a>[class*=" icon-"], .sending .dropdown-menu>.sending-link>a>[class*=" icon-"], .routing .dropdown-menu>.routing-link>a>[class*=" icon-"], .managed .dropdown-menu>.managed-link>a>[class*=" icon-"], .logs .dropdown-menu>.logs-link>a>[class*=" icon-"], .reports .dropdown-menu>.reports-link>a>[class*=" icon-"], .deliverability .dropdown-menu>.deliverability-link>a>[class*=" icon-"], .contact .dropdown-menu>.contact-link>a>[class*=" icon-"], .routing .dropdown-menu>.features-link>a>[class*=" icon-"], .analytics .dropdown-menu>.features-link>a>[class*=" icon-"], .validation .dropdown-menu>.features-link>a>[class*=" icon-"], .deliverability .dropdown-menu>.features-link>a>[class*=" icon-"], .resources .dropdown-menu>.resources-link>a>[class*=" icon-"], .dropdown-submenu:hover>a>[class^="icon-"], .dropdown-submenu:hover>a>[class*=" icon-"] {
     background-image: none
 }
 
-.btn [class^="icon-"].icon-large, .btn-primary [class^="icon-"].icon-large, .header-nav a.signup b [class^="icon-"].icon-large, .btn-secondary [class^="icon-"].icon-large, .btn-tertiary [class^="icon-"].icon-large, .btn-link [class^="icon-"].icon-large, .nav [class^="icon-"].icon-large, .btn [class*=" icon-"].icon-large, .btn-primary [class*=" icon-"].icon-large, .header-nav a.signup b [class*=" icon-"].icon-large, .btn-secondary [class*=" icon-"].icon-large, .btn-tertiary [class*=" icon-"].icon-large, .btn-link [class*=" icon-"].icon-large, .nav [class*=" icon-"].icon-large {
+.btn [class^="icon-"].icon-large, .btn-primary [class^="icon-"], .btn-secondary [class^="icon-"].icon-large, .btn-tertiary [class^="icon-"].icon-large, .btn-link [class^="icon-"].icon-large, .nav [class^="icon-"].icon-large, .btn [class*=" icon-"].icon-large, .btn-primary [class*=" icon-"].icon-large, .btn-secondary [class*=" icon-"].icon-large, .btn-tertiary [class*=" icon-"].icon-large, .btn-link [class*=" icon-"].icon-large, .nav [class*=" icon-"].icon-large {
     line-height: .9em
 }
 
-.btn [class^="icon-"].icon-spin, .btn-primary [class^="icon-"].icon-spin, .header-nav a.signup b [class^="icon-"].icon-spin, .btn-secondary [class^="icon-"].icon-spin, .btn-tertiary [class^="icon-"].icon-spin, .btn-link [class^="icon-"].icon-spin, .nav [class^="icon-"].icon-spin, .btn [class*=" icon-"].icon-spin, .btn-primary [class*=" icon-"].icon-spin, .header-nav a.signup b [class*=" icon-"].icon-spin, .btn-secondary [class*=" icon-"].icon-spin, .btn-tertiary [class*=" icon-"].icon-spin, .btn-link [class*=" icon-"].icon-spin, .nav [class*=" icon-"].icon-spin {
+.btn [class^="icon-"].icon-spin, .btn-primary [class^="icon-"].icon-spin, .btn-secondary [class^="icon-"].icon-spin, .btn-tertiary [class^="icon-"].icon-spin, .btn-link [class^="icon-"].icon-spin, .nav [class^="icon-"].icon-spin, .btn [class*=" icon-"].icon-spin, .btn-primary [class*=" icon-"].icon-spin, .btn-tertiary [class*=" icon-"].icon-spin, .btn-link [class*=" icon-"].icon-spin, .nav [class*=" icon-"].icon-spin {
     display: inline-block
 }
 
@@ -1424,31 +1230,31 @@ a [class^="icon-"], a [class*=" icon-"] {
     line-height: .9em
 }
 
-.btn [class^="icon-"].pull-left.icon-2x, .btn-primary [class^="icon-"].pull-left.icon-2x, .header-nav a.signup b [class^="icon-"].pull-left.icon-2x, .btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-link [class^="icon-"].pull-left.icon-2x, .btn [class*=" icon-"].pull-left.icon-2x, .btn-primary [class*=" icon-"].pull-left.icon-2x, .header-nav a.signup b [class*=" icon-"].pull-left.icon-2x, .btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-link [class*=" icon-"].pull-left.icon-2x, .btn [class^="icon-"].pull-right.icon-2x, .btn-primary [class^="icon-"].pull-right.icon-2x, .header-nav a.signup b [class^="icon-"].pull-right.icon-2x, .btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-link [class^="icon-"].pull-right.icon-2x, .btn [class*=" icon-"].pull-right.icon-2x, .btn-primary [class*=" icon-"].pull-right.icon-2x, .header-nav a.signup b [class*=" icon-"].pull-right.icon-2x, .btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-link [class*=" icon-"].pull-right.icon-2x {
+.btn [class^="icon-"].pull-left.icon-2x, .btn-primary [class^="icon-"].pull-left.icon-2x, .btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-link [class^="icon-"].pull-left.icon-2x, .btn [class*=" icon-"].pull-left.icon-2x, .btn-primary [class*=" icon-"].pull-left.icon-2x, .btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-link [class*=" icon-"].pull-left.icon-2x, .btn [class^="icon-"].pull-right.icon-2x, .btn-primary [class^="icon-"].pull-right.icon-2x, .btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-link [class^="icon-"].pull-right.icon-2x, .btn [class*=" icon-"].pull-right.icon-2x, .btn-primary [class*=" icon-"].pull-right.icon-2x, .btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-link [class*=" icon-"].pull-right.icon-2x {
     margin-top: .18em
 }
 
-.btn [class^="icon-"].icon-spin.icon-large, .btn-primary [class^="icon-"].icon-spin.icon-large, .header-nav a.signup b [class^="icon-"].icon-spin.icon-large, .btn-secondary [class^="icon-"].icon-spin.icon-large, .btn-tertiary [class^="icon-"].icon-spin.icon-large, .btn-link [class^="icon-"].icon-spin.icon-large, .btn [class*=" icon-"].icon-spin.icon-large, .btn-primary [class*=" icon-"].icon-spin.icon-large, .header-nav a.signup b [class*=" icon-"].icon-spin.icon-large, .btn-secondary [class*=" icon-"].icon-spin.icon-large, .btn-tertiary [class*=" icon-"].icon-spin.icon-large, .btn-link [class*=" icon-"].icon-spin.icon-large {
+.btn [class^="icon-"].icon-spin.icon-large, .btn-primary [class^="icon-"].icon-spin.icon-large, .btn-secondary [class^="icon-"].icon-spin.icon-large, .btn-tertiary [class^="icon-"].icon-spin.icon-large, .btn-link [class^="icon-"].icon-spin.icon-large, .btn [class*=" icon-"].icon-spin.icon-large, .btn-primary [class*=" icon-"].icon-spin.icon-large, .btn-secondary [class*=" icon-"].icon-spin.icon-large, .btn-tertiary [class*=" icon-"].icon-spin.icon-large, .btn-link [class*=" icon-"].icon-spin.icon-large {
     line-height: .8em
 }
 
-.btn.btn-small [class^="icon-"].pull-left.icon-2x, .btn-small.btn-primary [class^="icon-"].pull-left.icon-2x, .header-nav a.signup b.btn-small [class^="icon-"].pull-left.icon-2x, .btn-small.btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-small.btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-small.btn-link [class^="icon-"].pull-left.icon-2x, .btn.btn-small [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-primary [class*=" icon-"].pull-left.icon-2x, .header-nav a.signup b.btn-small [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-link [class*=" icon-"].pull-left.icon-2x, .btn.btn-small [class^="icon-"].pull-right.icon-2x, .btn-small.btn-primary [class^="icon-"].pull-right.icon-2x, .header-nav a.signup b.btn-small [class^="icon-"].pull-right.icon-2x, .btn-small.btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-small.btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-small.btn-link [class^="icon-"].pull-right.icon-2x, .btn.btn-small [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-primary [class*=" icon-"].pull-right.icon-2x, .header-nav a.signup b.btn-small [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-link [class*=" icon-"].pull-right.icon-2x {
+.btn.btn-small [class^="icon-"].pull-left.icon-2x, .btn-small.btn-primary [class^="icon-"].pull-left.icon-2x, .btn-small.btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-small.btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-small.btn-link [class^="icon-"].pull-left.icon-2x, .btn.btn-small [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-primary [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-small.btn-link [class*=" icon-"].pull-left.icon-2x, .btn.btn-small [class^="icon-"].pull-right.icon-2x, .btn-small.btn-primary [class^="icon-"].pull-right.icon-2x, .btn-small.btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-small.btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-small.btn-link [class^="icon-"].pull-right.icon-2x, .btn.btn-small [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-primary [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-small.btn-link [class*=" icon-"].pull-right.icon-2x {
     margin-top: .25em
 }
 
-.btn.btn-large [class^="icon-"], .btn-large.btn-primary [class^="icon-"], .header-nav a.signup b.btn-large [class^="icon-"], .btn-large.btn-secondary [class^="icon-"], .btn-large.btn-tertiary [class^="icon-"], .btn-large.btn-link [class^="icon-"], .btn.btn-large [class*=" icon-"], .btn-large.btn-primary [class*=" icon-"], .header-nav a.signup b.btn-large [class*=" icon-"], .btn-large.btn-secondary [class*=" icon-"], .btn-large.btn-tertiary [class*=" icon-"], .btn-large.btn-link [class*=" icon-"] {
+.btn.btn-large [class^="icon-"], .btn-large.btn-primary [class^="icon-"], .btn-large.btn-secondary [class^="icon-"], .btn-large.btn-tertiary [class^="icon-"], .btn-large.btn-link [class^="icon-"], .btn.btn-large [class*=" icon-"], .btn-large.btn-primary [class*=" icon-"], .btn-large.btn-secondary [class*=" icon-"], .btn-large.btn-tertiary [class*=" icon-"], .btn-large.btn-link [class*=" icon-"] {
     margin-top: 0
 }
 
-.btn.btn-large [class^="icon-"].pull-left.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-left.icon-2x, .header-nav a.signup b.btn-large [class^="icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-link [class^="icon-"].pull-left.icon-2x, .btn.btn-large [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-left.icon-2x, .header-nav a.signup b.btn-large [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-left.icon-2x, .btn.btn-large [class^="icon-"].pull-right.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-right.icon-2x, .header-nav a.signup b.btn-large [class^="icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-link [class^="icon-"].pull-right.icon-2x, .btn.btn-large [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-right.icon-2x, .header-nav a.signup b.btn-large [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-right.icon-2x {
+.btn.btn-large [class^="icon-"].pull-left.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-left.icon-2x .btn-large.btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-link [class^="icon-"].pull-left.icon-2x, .btn.btn-large [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-left.icon-2x, .btn.btn-large [class^="icon-"].pull-right.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-link [class^="icon-"].pull-right.icon-2x, .btn.btn-large [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-right.icon-2x {
     margin-top: .05em
 }
 
-.btn.btn-large [class^="icon-"].pull-left.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-left.icon-2x, .header-nav a.signup b.btn-large [class^="icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-link [class^="icon-"].pull-left.icon-2x, .btn.btn-large [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-left.icon-2x, .header-nav a.signup b.btn-large [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-left.icon-2x {
+.btn.btn-large [class^="icon-"].pull-left.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-left.icon-2x, .btn-large.btn-link [class^="icon-"].pull-left.icon-2x, .btn.btn-large [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-left.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-left.icon-2x {
     margin-right: .2em
 }
 
-.btn.btn-large [class^="icon-"].pull-right.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-right.icon-2x, .header-nav a.signup b.btn-large [class^="icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-link [class^="icon-"].pull-right.icon-2x, .btn.btn-large [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-right.icon-2x, .header-nav a.signup b.btn-large [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-right.icon-2x {
+.btn.btn-large [class^="icon-"].pull-right.icon-2x, .btn-large.btn-primary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class^="icon-"].pull-right.icon-2x, .btn-large.btn-link [class^="icon-"].pull-right.icon-2x, .btn.btn-large [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-primary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-secondary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-tertiary [class*=" icon-"].pull-right.icon-2x, .btn-large.btn-link [class*=" icon-"].pull-right.icon-2x {
     margin-left: .2em
 }
 
@@ -3030,100 +2836,6 @@ body {
     background: #182848
 }
 
-body.down header.clone {
-    left: 0;
-    right: 0;
-    top: 0
-}
-
-header {
-    background-color: #fff;
-    background-image: url("assets/envelope-border.png");
-    background-position: 0 0;
-    background-repeat: repeat-x;
-    background-size: 40px 2px;
-    border-bottom: 1px solid #e7e8ef;
-    zoom: 1;
-    position: relative;
-    width: 100%;
-    z-index: 998
-}
-
-header:before, header:after {
-    content: '\0020';
-    display: block;
-    height: 0;
-    overflow: hidden
-}
-
-header:after {
-    clear: both
-}
-
-header .logo {
-    float: left;
-    margin-bottom: 10px;
-    margin-top: 10px
-}
-
-header.clone {
-    border-bottom: 1px solid #e7e8ef !important;
-    position: fixed;
-    top: -150px;
-    transition: .2s top ease-in;
-    z-index: 999
-}
-
-@-webkit-keyframes rotate {
-    from {
-        -webkit-transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg)
-    }
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg)
-    }
-    to {
-        transform: rotate(360deg)
-    }
-}
-
-.logo {
-    background: url("../_static/img/mailgun.svg") no-repeat -26px 0;
-    background-size: 116px 32px;
-    display: block;
-    height: 34px;
-    margin-left: 28px;
-    position: relative;
-    text-indent: -9999px;
-    width: 100px
-}
-
-.logo:before {
-    background: url("../_static/img/mailgun.svg") no-repeat 0 -4px;
-    background-size: 116px 32px;
-    content: '';
-    display: block;
-    height: 25px;
-    left: -26px;
-    position: absolute;
-    top: 6px;
-    width: 26px
-}
-
-.logo:hover:before {
-    -webkit-animation-duration: .5s;
-    animation-duration: .5s;
-    -webkit-animation-name: rotate;
-    animation-name: rotate;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear
-}
-
 main {
     background: #f7f8fc;
     overflow: hidden
@@ -3234,7 +2946,8 @@ footer {
 
 .code-examples .nav-pills li a:hover {
     color: #fff;
-    text-decoration: none
+    text-decoration: none;
+    background: none;
 }
 
 .code-examples .nav-pills li.active a, .code-examples .nav-pills .sending li.features-link a, .sending .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .pricing li.pricing-link a, .pricing .code-examples .nav-pills li.pricing-link a, .code-examples .nav-pills .customersgallery li.customers-link a, .customersgallery .code-examples .nav-pills li.customers-link a, .code-examples .nav-pills .validation li.validation-link a, .validation .code-examples .nav-pills li.validation-link a, .code-examples .nav-pills .sending li.sending-link a, .sending .code-examples .nav-pills li.sending-link a, .code-examples .nav-pills .routing li.routing-link a, .routing .code-examples .nav-pills li.routing-link a, .code-examples .nav-pills .managed li.managed-link a, .managed .code-examples .nav-pills li.managed-link a, .code-examples .nav-pills .logs li.logs-link a, .logs .code-examples .nav-pills li.logs-link a, .code-examples .nav-pills .reports li.reports-link a, .reports .code-examples .nav-pills li.reports-link a, .code-examples .nav-pills .deliverability li.deliverability-link a, .deliverability .code-examples .nav-pills li.deliverability-link a, .code-examples .nav-pills .contact li.contact-link a, .contact .code-examples .nav-pills li.contact-link a, .code-examples .nav-pills .routing li.features-link a, .routing .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .analytics li.features-link a, .analytics .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .validation li.features-link a, .validation .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .deliverability li.features-link a, .deliverability .code-examples .nav-pills li.features-link a, .code-examples .nav-pills .resources li.resources-link a, .resources .code-examples .nav-pills li.resources-link a {
@@ -3306,7 +3019,7 @@ footer {
 }
 
 .customer blockquote {
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 0
 }
 
@@ -3463,7 +3176,7 @@ ul.checklist li {
     background: #5677e8;
     color: #fff;
     display: block;
-    font-size: 18px;
+    font-size: 16px;
     padding: 20px;
     text-align: center;
     text-decoration: none
@@ -3548,7 +3261,7 @@ p.customer-logos img {
     border-color: #fff
 }
 
-.hero .btn-primary, .hero .header-nav a.signup b, .header-nav a.signup .hero b {
+.hero .btn-primary {
     margin: 0 10px 20px 0
 }
 
@@ -3756,23 +3469,6 @@ section.feature-managed h1 {
 section.feature-managed h2 {
     color: rgba(255, 255, 255, 0.8);
     margin: 0 0 15px
-}
-
-body.lp header nav, body.lp footer, body.lp #js-show-nav {
-    display: none !important
-}
-
-body.lp .logo {
-    background-position: 0 0;
-    background-size: 150px 75px;
-    float: none;
-    height: 75px;
-    margin: 20px auto;
-    width: 150px
-}
-
-body.lp .logo:before {
-    display: none
 }
 
 .lp-avatar {
@@ -4109,7 +3805,6 @@ body.lp .logo:before {
 
 .resource-form .btn-secondary {
     box-sizing: border-box;
-    line-height: auto;
     padding-bottom: 12px;
     padding-top: 12px
 }
@@ -4302,7 +3997,7 @@ body.lp .logo:before {
     }
 
     h1, h2, h3, h4 {
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 10px
     }
 
@@ -4322,23 +4017,6 @@ body.lp .logo:before {
 
     main.feature-page {
         padding-top: 0
-    }
-
-    .header-nav {
-        clear: both;
-        float: none
-    }
-
-    .header-nav>a, .header-nav .dropdown>a {
-        padding: 5px 10px 5px 0
-    }
-
-    header {
-        opacity: 1 !important
-    }
-
-    header.clone {
-        display: none !important
     }
 
     .content-block, .content-block-alt {
@@ -4442,32 +4120,6 @@ body.lp .logo:before {
     body {
         overflow-x: hidden
     }
-
-    #js-show-nav {
-        display: block !important
-    }
-
-    .hero .btn-primary, .hero .header-nav a.signup b, .header-nav a.signup .hero b {
-        margin-right: 0
-    }
-}
-
-#js-show-nav {
-    background: transparent;
-    border: 0;
-    color: #4b6cb7;
-    display: none;
-    height: 24px;
-    outline: none;
-    padding: 0;
-    position: absolute;
-    right: 10px;
-    top: 15px;
-    width: 24px
-}
-
-#js-show-nav svg {
-    fill: currentColor
 }
 
 @media print {
@@ -4779,12 +4431,11 @@ ol.linenums {
     background: #fff;
     color: #626262;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 1.6;
     margin: 0;
-    padding: 0
+    padding: 108px 0 0;
 }
 
 .documentation .footer {
@@ -4813,6 +4464,10 @@ ol.linenums {
 
 .documentation .docs .subnav {
     width: 100%
+}
+.documentation .subnav .subnav-alignment {
+    padding-left: 35px;
+    padding-right: 38px;
 }
 
 .documentation .ptable.container {
@@ -5052,7 +4707,7 @@ ol.linenums {
     zoom: 1;
     margin: 0;
     padding: 5px 0;
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: 10
 }
@@ -5107,7 +4762,8 @@ ol.linenums {
 
 .documentation .subnav li a:hover {
     color: #fff;
-    text-decoration: none
+    text-decoration: none;
+    background: none;
 }
 
 .documentation .subnav li.active a, .documentation .subnav .sending li.features-link a, .sending .documentation .subnav li.features-link a, .documentation .subnav .pricing li.pricing-link a, .pricing .documentation .subnav li.pricing-link a, .documentation .subnav .customersgallery li.customers-link a, .customersgallery .documentation .subnav li.customers-link a, .documentation .subnav .validation li.validation-link a, .validation .documentation .subnav li.validation-link a, .documentation .subnav .sending li.sending-link a, .sending .documentation .subnav li.sending-link a, .documentation .subnav .routing li.routing-link a, .routing .documentation .subnav li.routing-link a, .documentation .subnav .managed li.managed-link a, .managed .documentation .subnav li.managed-link a, .documentation .subnav .logs li.logs-link a, .logs .documentation .subnav li.logs-link a, .documentation .subnav .reports li.reports-link a, .reports .documentation .subnav li.reports-link a, .documentation .subnav .deliverability li.deliverability-link a, .deliverability .documentation .subnav li.deliverability-link a, .documentation .subnav .contact li.contact-link a, .contact .documentation .subnav li.contact-link a, .documentation .subnav .routing li.features-link a, .routing .documentation .subnav li.features-link a, .documentation .subnav .analytics li.features-link a, .analytics .documentation .subnav li.features-link a, .documentation .subnav .validation li.features-link a, .validation .documentation .subnav li.features-link a, .documentation .subnav .deliverability li.features-link a, .deliverability .documentation .subnav li.features-link a, .documentation .subnav .resources li.resources-link a, .resources .documentation .subnav li.resources-link a {
@@ -5136,7 +4792,6 @@ ol.linenums {
 
 .documentation .subnav.subnav-fixed {
     position: fixed;
-    top: 0;
     width: 100%;
     z-index: 99
 }

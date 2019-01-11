@@ -26,10 +26,10 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
 			 .basicAuth("api", API_KEY)
-		     .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
-		     .queryString("to", "artemis@example.com")
-		     .queryString("subject", "hello")
-		     .queryString("text", "testing")
+		     .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+		     .field("to", "artemis@example.com")
+		     .field("subject", "hello")
+		     .field("text", "testing")
 		     .asJson();
 
 	    return request.getBody();
@@ -115,7 +115,7 @@
 .. code-block:: go
 
  func SendSimpleMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
+   mg := mailgun.NewMailgun(domain, apiKey)
    m := mg.NewMessage(
      "Excited User <mailgun@YOUR_DOMAIN_NAME>",
      "Hello",
@@ -128,15 +128,15 @@
 
 .. code-block:: js
 
- const API_KEY = 'YOUR_API_KEY';
- const DOMAIN = 'YOUR_DOMAIN_NAME';
- const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+ var API_KEY = 'YOUR_API_KEY';
+ var DOMAIN = 'YOUR_DOMAIN_NAME';
+ var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
  const data = {
    from: 'Excited User <me@samples.mailgun.org>',
-   to: 'bar@example.com, YOU@YOUR_DOMAIN_NAME',
+   to: 'foo@example.com, bar@example.com',
    subject: 'Hello',
-   text: 'Testing some Mailgun awesomness!'
+   text: 'Testing some Mailgun awesomeness!'
  };
 
  mailgun.messages().send(data, (error, body) => {

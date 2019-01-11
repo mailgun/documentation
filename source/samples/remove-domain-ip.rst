@@ -17,7 +17,7 @@
  
      public static JsonNode deleteDomainIP() throws UnirestException {
  
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1")
+         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1")
              .basicAuth("api", API_KEY)
              .asJson();
  
@@ -43,14 +43,14 @@
 
  def delete_domain_ip():
      return requests.delete(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_domain_ip
    RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1"
+   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1"
  end
 
 .. code-block:: csharp

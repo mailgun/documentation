@@ -105,7 +105,7 @@
 .. code-block:: go
 
  func UpdateMember(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    _, err = mg.UpdateMember("bar@example.com", "LIST@YOUR_DOMAIN_NAME", mailgun.Member{
      Name: "Foo Bar",
      Subscribed: mailgun.Unsubscribed,

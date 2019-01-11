@@ -87,7 +87,7 @@
 .. code-block:: go
 
  func GetBounce(domain, apiKey string) (mailgun.Bounce, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.GetSingleBounce("foo@bar.com")
  }
 

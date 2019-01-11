@@ -26,10 +26,10 @@
 
     	 HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
    			 .basicAuth("api", API_KEY)
-   			 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
-   			 .queryString("to", "bruce@example")
-   			 .queryString("subject", "Bah-weep-graaaaagnah wheep nini bong.")
-   			 .queryString("text", "Testing some MailGun awesomeness")
+   			 .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+   			 .field("to", "bruce@example")
+   			 .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
+   			 .field("text", "Testing some MailGun awesomeness")
    			 .field("o:deliverytime", "Sat, 20 May 2017 2:50:00 -0000")
    			 .asJson();
 
@@ -120,7 +120,7 @@
 .. code-block:: go
 
  func SendScheduledMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, publicApiKey)
+   mg := mailgun.NewMailgun(domain, apiKey)
    m := mg.NewMessage(
      "Excited User <YOU@YOUR_DOMAIN_NAME>",
      "Hello",

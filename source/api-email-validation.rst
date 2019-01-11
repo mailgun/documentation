@@ -156,7 +156,23 @@ Sample response *with* mailbox verification enabled:
           "local_part": "foo"
       }
   }
-  
+
+
+Field Explanation:
+
+=====================    =========    ============================================================================================================
+Parameter                Type         Description
+=====================    =========    ============================================================================================================
+address                  string       Email address being validated
+did_you_mean             string       Null if nothing, however if a potential typo is made, the closest suggestion is provided
+is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
+is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
+is_valid                 boolean      Runs the email segments across a valid known provider rule list. If a violation occurs this value is false
+mailbox_verification     string       If the mail_verification flag is enabled, a call is made to the ESP to return existence. (true, false, unknown or null)
+parts                    string       (display_name, domain, local_part): Parsed segments of the provided email address
+=====================    =========    ============================================================================================================
+
+
 .. note:: is_valid returns true when an address is parsable, passes known grammar checks and an SMTP server is present. The role-based and disposable address check will not impact the state of the `is_valid` result. The user should determine whether or not to permit the address to be used.
 
 .. note:: The mailbox verification attribute will return true if the email is valid, false if the email was invalid, or unknown if the SMTP request could not be completed. Unknown will also be returned if mailbox verification is not supported on the target mailbox provider. The outcome of the verification check will not impact the state of the is_valid result.

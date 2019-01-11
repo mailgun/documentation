@@ -87,7 +87,7 @@
 .. code-block:: go
 
  func DeleteList(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    return mg.DeleteList("LIST@YOUR_DOMAIN_NAME")
  }
 

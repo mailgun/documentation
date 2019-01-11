@@ -27,11 +27,11 @@
 
      	 HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
      	 	 .basicAuth("api", API_KEY)
-     	 	 .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .queryString("to", "alice@example.com")
-             .queryString("to", "bob@example.com")
-     	  	 .queryString("Subject", "Hello, %recipient.first%!")
-     	  	 .queryString("text", "If you wish to unsubscribe, click <https://mailgun.com/unsubscribe/%recipient.id%>")
+     	 	 .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .field("to", "alice@example.com")
+             .field("to", "bob@example.com")
+     	  	 .field("Subject", "Hello, %recipient.first%!")
+     	  	 .field("text", "If you wish to unsubscribe, click <https://mailgun.com/unsubscribe/%recipient.id%>")
      	 	 .field("recipient-variables", "{\"bob@example.com\": {\"first\":\"Bob\", \"id\":1}, \"alice@example.com\": {\"first\":\"Alice\", \"id\": 2}}")
      		 .asJson();
 
@@ -135,7 +135,7 @@
  }
 
  func SendTemplateMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    m := mg.NewMessage(
      "Excited User <YOU@YOUR_DOMAIN_NAME>",
      "Hey %recipient.first%",

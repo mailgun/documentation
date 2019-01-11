@@ -97,8 +97,8 @@
 .. code-block:: go
 
  func AddDomain(domain, apiKey string) error {
-        mg := mailgun.NewMailgun(domain, apiKey, "")
-        return mg.CreateDomain("YOUR_NEW_DOMAIN_NAME", "supersecretpassword", mailgun.Tag, false)
+   mg := mailgun.NewMailgun(domain, apiKey)
+   return mg.CreateDomain("YOUR_NEW_DOMAIN_NAME", "supersecretpassword", mailgun.Tag, false)
  }
 
 .. code-block:: js

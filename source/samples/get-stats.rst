@@ -109,7 +109,7 @@
 .. code-block:: go
 
  func GetStats(domain, apiKey string) ([]Stat, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
+   mg := mailgun.NewMailgun(domain, apiKey)
    _, stats, err := mg.GetStats(-1, -1, nil, "accepted", "delivered", "failed");
    return stats, err
  }
@@ -119,6 +119,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get(`/${DOMAIN}/stats/total`, {"event": 'accepted', "event": 'delivered', "event": 'failed', "duration": '1m'}, function (error, body) {
+ mailgun.get(`/${DOMAIN}/stats/total`, {"event": ['accepted', 'delivered', 'failed'], "duration": '1m'}, function (error, body) {
    console.log(body);
  });
