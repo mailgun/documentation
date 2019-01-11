@@ -126,6 +126,6 @@
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
  var urls = ['https://your_domain.com/v1/clicked', 'https://your_domain.com/v2/clicked', 'https://your_parner_domain.com/v1/clicked']
 
- mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'clicked', "url": urls}, function (error, body) {
+ mailgun.post(`/domains/${DOMAIN}/webhooks`, {"id": 'clicked', "url": urls}, function (error, body) {
    console.log(body);
  });
