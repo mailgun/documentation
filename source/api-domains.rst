@@ -448,13 +448,13 @@ Sample response:
      {
        "size_bytes": 0,
        "created_at": "Tue, 27 Sep 2011 20:24:22 GMT",
-       "mailbox": "user@samples.mailgun.org"
+       "mailbox": "user@samples.mailgun.org",
        "login": "user@samples.mailgun.org"
      },
      {
        "size_bytes": 0,
        "created_at": "Thu, 06 Oct 2011 10:22:36 GMT",
-       "mailbox": "user@samples.mailgun.org"
+       "mailbox": "user@samples.mailgun.org",
        "login": "user@samples.mailgun.org"
      }
    ]
