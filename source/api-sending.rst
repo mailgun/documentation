@@ -50,8 +50,9 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
                        send inline images (see :ref:`example <inline-image>`).
                        You can post multiple ``inline`` values.
  template              ID of a template stored via :ref:`template API <api-templates>`.
-                       Please note ``html`` parameter is ignored if you are sending messages with this parameter.
                        See :ref:`templating` for more information
+ t:\version            Use this parameter to send a message to specific version of a template
+ t:\text               Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
  o\:tag                Tag string. See :ref:`tagging` for more information.
  o\:dkim               Enables/disables DKIM signatures on per-message basis.
                        Pass ``yes`` or ``no``

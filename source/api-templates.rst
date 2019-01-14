@@ -4,69 +4,147 @@ Templates
 =========
 
 The template API allows to store predefined templates and use them to send messages using :ref:`sending API <api-sending-messages>`.
-The API has next limitations:
+The API has following limitations:
 
 * 100 templates per domains
 * 10 versions per template
 * 100Kb max template size
-    
+
+
+Template API
+------------
+
+Store new template
+++++++++++++++++++
+
 .. code-block:: url
 
-    POST /domains/<domain>/templates
+    POST /<domain>/templates
 
-Stores a new template. This API allows to store template's name, description plus template body if it's provided in the request.
+This API allows to store template's name, description plus a template content if it's provided in the request.
+If the content is provided it automaticaly create new version of the template and this version becoms active.
 
 .. container:: ptable
 
  =============== ==================================================================
  Parameter             Description
  =============== ==================================================================
- name            Name of the template
- description     Description of the template
- template        (Optional) Version of the template
- engine          (Optional) Template engine. Used if template parameter is provided. Right now only ``mustache`` engine is supported
+ name            Name of the template being created
+ description     Description of the template being created
+ template        (Optional) Content of the template
+ engine          (Optional) The template engine to use to render the template. Valid only if template parameter is provided. Currently the API supports only one engine: **handlebars**
+ comment         (Optional) Version comment. Valid only if new version is being created (template parameter is provided) 
  =============== ==================================================================
 
+Example of storing template metadata only:
+
+.. include:: samples/templates/template-create.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
+        "description": "template description",
+        "id": "nj01pavjEeikvBJbspqxaQ",
+        "name": "template name",
+    },
+    "message": "template has been stored"
+  }
+
+Example of storing template with a version:
+
+.. include:: samples/templates/template-create-version.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
+        "description": "template description",
+        "id": "nnglwqvjEeikvRJbspqxaQ",
+        "name": "template name",
+        "version": {
+            "createdAt": "Wed, 29 Aug 2018 23:31:14 UTC",
+            "engine": "handlebars",
+            "id": "nnhwoavjEeikvhJbspqxaQ"
+            "comment": "version comment"
+        }
+    },
+    "message": "template has been stored"
+  }
+
+
+Get template 
++++++++++++++
+
 .. code-block:: url
-    
-    GET /domains/<domain>/templates
 
-Returns a list of stored templates
+    GET /<domain>/templates/<templateId>
 
-.. code-block:: url
-
-    GET /domains/<domain>/templates/<templateId>
-
-Returns details about a template specified in url or a specific version of a template
+Returns metadata information about a stored template specified in url. Flag active allows to return content of active version of the template. 
 
 .. container:: ptable
 
- =============== ==============================
+ =============== ===================================================================
  Parameter       Description
- =============== ==============================
- version         (Optional) Id of the version
- =============== ==============================
+ =============== ===================================================================
+ active          (Optional) If this flag is set to **yes** the active version of the template is included into a response. 
+ =============== ===================================================================
+
+Example:
+
+.. include:: samples/templates/template-get.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
+        "description": "template description",
+        "id": "nnglwqvjEeikvRJbspqxaQ",
+        "name": "template name"
+    }
+  }
+
+Example of retrieving active version of a template:
+
+.. include:: samples/templates/template-get-active.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
+        "description": "template description",
+        "id": "nnglwqvjEeikvRJbspqxaQ",
+        "name": "template name",
+        "version": {
+            "createdAt": "Wed, 29 Aug 2018 23:31:15 UTC",
+            "engine": "handlebars",
+            "id": "n2VT1KvjEeikwRJbspqxaQ",
+            "template": "{{fname}} {{lname}}",
+            "comment": "version comment"
+        }
+    }
+  }
+
+Update template
++++++++++++++++
 
 .. code-block:: url
 
-    POST /domains/<domain>/templates/<templateId>
+    PUT /<domain>/templates/<templateId>
 
-Create new versions in the given template
-
-.. container:: ptable
-
- =============== ================================================================================
- Parameter       Description
- =============== ================================================================================
- template        Template 
- engine          (Optional) Template engine. Only one engine are supported right now - ``mustache``.
- =============== ================================================================================
-
-.. code-block:: url
-
-    PUT /domains/<domain>/templates/<templateId>
-
-Update a template specified in url
+Update metadata information of a template specified in url
 
 .. container:: ptable
 
@@ -77,220 +155,7 @@ Update a template specified in url
  description     Updated description of the template
  =============== ==============================
 
-.. code-block:: url
-
-    DELETE /domains/<domain>/templates/<templateId>
-
-Delete a template specified in url or specific version of a template.
-If version id is not provide in the url all versions will be deleted.
-
-.. container:: ptable
-
- =============== ==============================
- Parameter       Description
- =============== ==============================
- version         (Optional) Id of the version to delete
- =============== ==============================
-
-.. code-block:: url
-
-   DELETE /domains/<domain>/templates
-
-Delete all stored templates for specified domain
-
-Examples
-~~~~~~~~
-
-Store a template. Template version is not provided
-
-.. include:: samples/templates/template-create.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "createdAt": "2018-08-29T23:31:13.553Z",
-        "description": "Template description",
-        "id": "nj01pavjEeikvBJbspqxaQ",
-        "name": "Template namea",
-        "version": {}
-    },
-    "message": "template has been stored"
-  }
-
-Store a template with version
-
-.. include:: samples/templates/template-version-create.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "createdAt": "2018-08-29T23:31:13.94Z",
-        "description": "Mustache testing",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "Mustache template",
-        "version": {
-            "createdAt": "2018-08-29T23:31:13.941Z",
-            "engine": "mustache",
-            "id": "nnhwoavjEeikvhJbspqxaQ"
-        }
-    },
-    "message": "template has been stored"
-  }
-
-Store a new version of template
-
-.. include:: samples/templates/version-create.rst
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "createdAt": "2018-08-29T23:31:13.94Z",
-        "description": "Mustache testing",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "Mustache template",
-        "version": {
-            "createdAt": "2018-08-29T23:31:15.102Z",
-            "engine": "mustache",
-            "id": "nymB0KvjEeiMDg472Hdb5w"
-        }
-    },
-    "message": "new version of the template has been stored"
-  }
-
-Listing templates
-
-.. include:: samples/templates/templates-get.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "items": [
-        {
-            "createdAt": "2018-08-29T23:31:14.326Z",
-            "description": "Template description 2",
-            "id": "nrMT8avjEeikvxJbspqxaQ",
-            "name": "Template name 2"
-        },
-        {
-            "createdAt": "2018-08-29T23:31:13.94Z",
-            "description": "Template description 1",
-            "id": "nnglwqvjEeikvRJbspqxaQ",
-            "name": "Template name 1"
-        },
-        {
-            "createdAt": "2018-08-29T23:31:13.553Z",
-            "description": "Template description",
-            "id": "nj01pavjEeikvBJbspqxaQ",
-            "name": "Template name"
-        }
-    ],
-    "paging": {
-        "first": "https://api.mailgin.net/v3/YOUR_DOMAIN_NAME/templates?limit=10",
-        "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=last&limit=10",
-        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=next&p=nj01pavjEeikvBJbspqxaQ&limit=10",
-        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=prev&p=nrMT8avjEeikvxJbspqxaQ&limit=10"
-    }
-  }
-
-Listing versions of the template
-
-.. include:: samples/templates/versions-get.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "createdAt": "2018-09-05T00:29:54.802Z",
-        "description": "Template description",
-        "id": "z4ujt7CiEeik0RJbspqxaQ",
-        "name": "Template name",
-        "versions": [
-            {
-                "createdAt": "2018-09-05T00:29:56.06Z",
-                "engine": "mustache",
-                "id": "0EuT-7CiEeik1hJbspqxaQ",
-                "template": "{{name}}"
-            },
-            {
-                "createdAt": "2018-09-05T00:29:55.745Z",
-                "engine": "mustache",
-                "id": "0BtzFbCiEeik1RJbspqxaQ",
-                "template": "{{body}}"
-            },
-            {
-                "createdAt": "2018-09-05T00:29:54.804Z",
-                "engine": "mustache",
-                "id": "z4vrrbCiEeik0hJbspqxaQ",
-                "template": "{{date}}"
-            }
-        ]
-    },
-    "paging": {
-        "first": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?limit=10",
-        "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=last&limit=10",
-        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=next&p=z4vrrbCiEeik0hJbspqxaQ&limit=10",
-        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=prev&p=0EuT-7CiEeik1hJbspqxaQ&limit=10"
-    }
-  }
-
-Access the template by id. When version is not provided in the request the response contains latest version.
-
-.. include:: samples/templates/template-get.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "createdAt": "2018-08-29T23:31:13.94Z",
-        "description": "Template description",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "Template name",
-        "version": {
-            "createdAt": "2018-08-29T23:31:15.494Z",
-            "engine": "mustache",
-            "id": "n2VT1KvjEeikwRJbspqxaQ",
-            "template": "<div class="entry"> <h1>{{title}}</h1> <div class="body"> {{body}} </div> </div>"
-        }
-    }
-  }
-
-Retrieve specific version of the template
-
-.. include:: samples/templates/version-get.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "createdAt": "2018-08-30T01:00:40.561Z",
-        "description": "Template description",
-        "id": "HTmi86vwEeikzhJbspqxaQ",
-        "name": "Template name",
-        "version": {
-            "createdAt": "2018-08-30T01:00:40.563Z",
-            "engine": "mustache",
-            "id": "HTneFqvwEeikzxJbspqxaQ",
-            "template": "{{body}}"
-        }
-    }
-  }
-
-Update template
+Example:
 
 .. include:: samples/templates/template-update.rst
 
@@ -301,32 +166,24 @@ Sample response:
   {
     "message": "template has been updated",
     "item": {
-        "createdAt": "2018-08-30T00:39:44.486Z",
-        "description": "Updated description",
+        "createdAt": "Wed, 29 Aug 2018 23:31:15 UTC",
+        "description": "new template description",
         "id": "MIvDPKvtEeiMEA472Hdb5w",
-        "name": "Updated name"
+        "name": "new template name"
     }
   }
 
-Delete template version
-
-.. include:: samples/templates/version-delete.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-    "item": {
-        "id": "RjASlKvuEeikxhJbspqxaQ",
-        "version": {
-            "id": "RjBVX6vuEeikxxJbspqxaQ"
-        }
-    },
-    "message": "version has been deleted"
-  }
 
 Delete template
++++++++++++++++
+
+.. code-block:: url
+
+    DELETE /<domain>/templates/<template>
+
+Delete a template specified in url. This method deletes all version of provided template
+
+Example:
 
 .. include:: samples/templates/template-delete.rst
 
@@ -341,9 +198,75 @@ Sample response:
     "message": "template has been deleted"
   }
 
-Delete all templates for domain
+View all templates in domain
+++++++++++++++++++++++++++++
 
-.. include:: samples/templates/templates-delete.rst
+.. code-block:: url
+    
+    GET /<domain>/templates
+
+Returns a list of stored templates in domain
+
+.. container:: ptable
+
+ =============== ================================================================================
+ Parameter       Description
+ =============== ================================================================================
+ page            Name of a page to retrive. ``first``, ``last``, ``next``, ``prev`` 
+ limit           Number of records to retrive. Default value is 10 
+ p               Pivot is used to retrieve records in chronological order
+ =============== ================================================================================
+
+
+Example:
+
+.. include:: samples/templates/templates-get-all.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "items": [
+        {
+            "createdAt": "Wed, 29 Aug 2018 23:31:15 UTC",
+            "description": "Template description 2",
+            "id": "nrMT8avjEeikvxJbspqxaQ",
+            "name": "Template name 2"
+        },
+        {
+            "createdAt": "Wed, 29 Aug 2018 23:31:18 UTC",
+            "description": "Template description 1",
+            "id": "nnglwqvjEeikvRJbspqxaQ",
+            "name": "Template name 1"
+        },
+        {
+            "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
+            "description": "Template description",
+            "id": "nj01pavjEeikvBJbspqxaQ",
+            "name": "Template name"
+        }
+    ],
+    "paging": {
+        "first": "https://api.mailgin.net/v3/YOUR_DOMAIN_NAME/templates?limit=10",
+        "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=last&limit=10",
+        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=next&p=nj01pavjEeikvBJbspqxaQ&limit=10",
+        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=prev&p=nrMT8avjEeikvxJbspqxaQ&limit=10"
+    }
+  }
+
+Delete all template in domain
++++++++++++++++++++++++++++++
+
+.. code-block:: url
+
+   DELETE /<domain>/templates
+
+Delete all stored templates for specified domain
+
+Example:
+
+.. include:: samples/templates/template-delete-all.rst
 
 Sample response:
 
@@ -351,5 +274,206 @@ Sample response:
 
   {
     "message": "templates have been deleted"
+  }
+
+Create new version
+++++++++++++++++++
+
+.. code-block:: url
+
+    POST /<domain>/templates/<template>/versions
+
+Create new version of the template. If the template doesn't contain any version yet the first version becomes active
+
+.. container:: ptable
+
+ =============== ================================================================================
+ Parameter       Description
+ =============== ================================================================================
+ template        Content of the template
+ engine          (Optional) Template engine. Only one engine are supported right now - ``handlebars``.
+ comment         (Optional) The comment of the stored version
+ active          (Optional) If this flag is set to ``yes`` this version becomes active
+ =============== ================================================================================
+
+Example:
+
+.. include:: samples/templates/version-create.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:11 UTC",
+        "description": "template description",
+        "id": "nnglwqvjEeikvRJbspqxaQ",
+        "name": "template name",
+        "version": {
+            "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
+            "engine": "handlebars",
+            "id": "nymB0KvjEeiMDg472Hdb5w",
+            "comment": "version comment"
+        }
+    },
+    "message": "new version of the template has been stored"
+  }
+
+Get version
++++++++++++
+
+.. code-block:: url
+
+    GET /<domain>/templates/<template>/versions/<version>
+
+Retrieve information and content of specifed version of the template
+
+Example:
+
+.. include:: samples/templates/version-get.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:11 UTC",
+        "description": "template description",
+        "id": "nnglwqvjEeikvRJbspqxaQ",
+        "name": "template name",
+        "version": {
+            "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
+            "engine": "handlebars",
+            "id": "nymB0KvjEeiMDg472Hdb5w",
+            "comment": "version comment",
+            "template": "{{fname}} {{lname}}"
+        }
+    }
+  }
+
+Update version
+++++++++++++++
+
+.. code-block:: url
+
+    PUT /<domain>/templates/<template>/versions/<version>
+
+Update information or content of the specific version of the template
+
+.. container:: ptable
+
+ =============== ================================================================================
+ Parameter       Description
+ =============== ================================================================================
+ template        (Optional) The new content of the version
+ comment         (Optional) New comment for the provided version
+ active          (Optional) If this flag is set to ``yes`` this version becomes active
+ =============== ================================================================================
+
+Example:
+
+.. include:: samples/templates/version-update.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+ {
+   "item": {
+       "id": "nnglwqvjEeikvRJbspqxaQ",
+       "version": {
+         "id": "nymB0KvjEeiMDg472Hdb5w"
+       }
+    "message": "version has been udpated"
+ }
+
+Delete version
+++++++++++++++
+.. code-block:: url
+
+    DELETE /<domain>/templates/<template>/versions/<version>
+
+Delete a specific version of the template
+
+Example:
+
+.. include:: samples/templates/version-delete.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+ {
+   "item": {
+       "id": "nnglwqvjEeikvRJbspqxaQ",
+       "version": {
+         "id": "nymB0KvjEeiMDg472Hdb5w"
+       }
+    "message": "version has been deleted"
+ }
+
+
+View all versions in template
++++++++++++++++++++++++++++++
+
+.. code-block:: url
+    
+    GET /<domain>/templates/<template>/versions
+
+Returns a list of stored versions of the template
+
+.. container:: ptable
+
+ =============== ================================================================================
+ Parameter       Description
+ =============== ================================================================================
+ page            Name of a page to retrive. ``first``, ``last``, ``next``, ``prev`` 
+ limit           Number of records to retrive. Default value is 10 
+ p               Pivot is used to retrieve records in chronological order
+ =============== ================================================================================
+
+Example:
+
+.. include:: samples/templates/version-get-all.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+  {
+    "item": {
+        "createdAt": "Wed, 29 Aug 2018 23:31:11 UTC",
+        "description": "Template description",
+        "id": "z4ujt7CiEeik0RJbspqxaQ",
+        "name": "Template name",
+        "versions": [
+            {
+                "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
+                "engine": "handlebars",
+                "id": "0EuT-7CiEeik1hJbspqxaQ",
+                "comment": "Version comment"
+            },
+            {
+                "createdAt": "Wed, 29 Aug 2018 23:31:31 UTC",
+                "engine": "handlebars",
+                "id": "0BtzFbCiEeik1RJbspqxaQ",
+                "comment": "Version comment"
+            },
+            {
+                "createdAt": "Wed, 29 Aug 2018 23:31:41 UTC",
+                "engine": "handlebars",
+                "id": "z4vrrbCiEeik0hJbspqxaQ",
+                "comment": "Version comment"
+            }
+        ]
+    },
+    "paging": {
+        "first": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?limit=10",
+        "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=last&limit=10",
+        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=next&p=z4vrrbCiEeik0hJbspqxaQ&limit=10",
+        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=prev&p=0EuT-7CiEeik1hJbspqxaQ&limit=10"
+    }
   }
 

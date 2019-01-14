@@ -19,7 +19,7 @@
  
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
              .basicAuth("api", API_KEY)
-             .queryString("limit","5")
+             .queryString("limit","10")
              .asJson();
  
          return request.getBody();
@@ -45,14 +45,14 @@
      return requests.get(
          "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
          auth=("api", "YOUR_API_KEY"),
-         params={"limit": 1})
+         params={"limit": 10})
 
 .. code-block:: rb
 
  def list_templates
    RestClient.get "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates", :params => {
-     :limit => 5
+     :limit => 10
    }
  end
 
@@ -80,7 +80,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("limit", 5);
+         request.AddParameter ("limit", 10101010101010101010);
          request.Resource = "/{domain}/templates";
          return client.Execute (request);
      }
