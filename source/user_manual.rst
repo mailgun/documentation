@@ -565,8 +565,8 @@ Templating
 Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template id.
 Don't be confused with :ref:`Template Variables <template-variables>` as **Templating** works independently.
 
-Mailgun uses very popular template engine `mustache`_.
-To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using templating:
+Mailgun uses very popular template engine `handlebars`_  (Only v3.0 is supported right now).
+To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
 First of all a template has to be stored:
 
@@ -576,17 +576,22 @@ Response returns stored template id:
 
 .. code-block:: javascript
 
-  {
-    "id":"bcgpf36d2q100094buc0",
-    "message":"template has been stored"
-  }
+ {
+   "item": {
+      "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
+      "description": "Sample template",
+      "id": "nj01pavjEeikvBJbspqxaQ",
+      "name": "Test template",
+   },
+   "message": "template has been stored"
+ }
 
 Using this template id you can send a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
 
-.. _mustache: https://mustache.github.io/
+.. _handlebars: https://handlebarsjs.com/
 
 
 .. _scheduling-delivery:

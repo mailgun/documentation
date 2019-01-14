@@ -2,10 +2,11 @@
 
   curl -s --user 'api:YOUR_API_KEY' -X POST \
     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates \
-    -F name='TEMPLATE_NAME' \
-    -F description='TEMPLATE_DESCRIPTION' \
-    -F template='TEMPLATE' \
-    -F engine='mustache'
+    -F name='template name' \
+    -F description='template description' \
+    -F template='{{fname}} {{lname}}' \
+    -F engine='handlebars'
+    -F comment='version comment'
 
 .. code-block:: java
 
@@ -22,10 +23,11 @@
  
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
  			.basicAuth("api", API_KEY)
- 			.field("name", "TEMPLATE_NAME")
-            .field("description", "TEMPLATE_DESCRIPTION")
-            .field("template", "TEMPLATE")
-            .field("engine", "mustache")
+ 			.field("name", "template name")
+            .field("description", "template description")
+            .field("template", "{{fname}} {{lname}}")
+            .field("engine", "handlebars")
+            .field("commnt", "version comment")
  			.asJson();
  
          return request.getBody();
@@ -44,10 +46,11 @@
 
   # Issue the call to the client.
   $result = $mgClient->post("$domain/templates", array(
-      'name' => 'TEMPLATE_NAME',
-      'description' => 'TEMPLATE_DESCRIPTION',
-      'template' => 'TEMPLATE',
-      'engine' => 'mustache'
+      'name' => 'template name',
+      'description' => 'template description',
+      'template' => '{{fname}} {{lname}}',
+      'engine' => 'handlebars',
+      'comment' => 'version comment'
   ));
 
 .. code-block:: py
@@ -56,20 +59,22 @@
      return requests.post(
          "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
          auth=("api", "YOUR_API_KEY"),
-         data={'name': 'TEMPLATE_NAME',
-               'description': 'TEMPLATE_DESCRIPTION',
-               'template': 'TEMPLATE',
-               'engine': 'mustache'})
+         data={'name': 'template name',
+               'description': 'template description',
+               'template': '{{fname}} {{lname}}',
+               'engine': 'handlebars',
+               'comment': 'version comment'})
 
 .. code-block:: rb
 
  def store_template
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
-   :name => 'TEMPLATE_NAME',
-   :description => 'TEMPLATE_DESCRIPTION',
-   :template => 'TEMPLATE',
-   :engine => 'mustache'
+   :name => 'template name',
+   :description => 'template description',
+   :template => '{{fname}} {{lname}}',
+   :engine => 'handlebars',
+   :comment => 'version comment'
  end
 
 .. code-block:: csharp
@@ -97,10 +102,11 @@
          RestRequest request = new RestRequest ();
          request.Resource = "{domain}/templates";
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("name", "TEMPLATE_NAME");
-         request.AddParameter ("description", "TEMPLATE_DESCRIPTION")
-         request.AddParameter ("template", "TEMPLATE")
-         request.AddParameter ("engine", "mustache")
+         request.AddParameter ("name", "template name");
+         request.AddParameter ("description", "template description")
+         request.AddParameter ("template", "{{fname}} {{lname}}")
+         request.AddParameter ("engine", "handlebars")
+         request.AddParameter ("comment", "version comment")
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -116,10 +122,11 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.post(`/${DOMAIN}/templates`, {"name" : "TEMPLATE_NAME",
-                                       "description": "TEMPLATE_DESCRIPTION",
-                                       "template": "TEMPLATE",
-                                       "engine": "mustache"}, function (error, body) {
-                                                                   console.log(body);
-                                                               });
+ mailgun.post(`/${DOMAIN}/templates`, {"name" : "template name",
+                                       "description": "template description",
+                                       "template": "{{fname}} {{lname}}",
+                                       "engine": "handlebars"},
+                                       function (error, body) {
+                                               console.log(body);
+                                       });
 

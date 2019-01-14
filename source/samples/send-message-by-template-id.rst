@@ -7,8 +7,8 @@
 	-F to='alice@example.com' \
 	-F subject='Hello' \
 	-F template='bcgpf36d2q100094buc0' \
-        -F v:title='API Documentation' \
-        -F v:body='Sending messages with template id'
+    -F v:title='API Documentation' \
+    -F v:body='Sending messages with template id'
 
 .. code-block:: java
 
