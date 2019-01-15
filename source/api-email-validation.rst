@@ -185,7 +185,7 @@ Sample response:
 
 .. code-block:: javascript
 
-	{
+    {
         "parsed": [
             "Alice <alice@example.com>",
             "bob@example.com"
