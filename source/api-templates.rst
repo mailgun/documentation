@@ -3,7 +3,7 @@
 Templates
 =========
 
-The template API allows to store predefined templates and use them to send messages using :ref:`sending API <api-sending-messages>`.
+This API allows you to store predefined templates and use them to send messages using :ref:`sending API <api-sending-messages>`.
 The API has following limitations:
 
 * 100 templates per domains
@@ -21,8 +21,8 @@ Store new template
 
     POST /<domain>/templates
 
-This API allows to store template's name, description plus a template content if it's provided in the request.
-If the content is provided it automaticaly create new version of the template and this version becoms active.
+This API stoes a new template, storing its name, description and, optionally, the template content.
+If the content is provided a new version is automatically created and becomes the active version.
 
 .. container:: ptable
 
@@ -86,7 +86,7 @@ Get template
 
     GET /<domain>/templates/<templateId>
 
-Returns metadata information about a stored template specified in url. Flag active allows to return content of active version of the template. 
+Returns metadata information about a stored template specified in url. If the `active` flag is provided the content of active version of the template is returned. 
 
 .. container:: ptable
 
@@ -181,7 +181,7 @@ Delete template
 
     DELETE /<domain>/templates/<template>
 
-Delete a template specified in url. This method deletes all version of provided template
+Delete a template specified in url. This method deletes all versions of the specified template
 
 Example:
 
@@ -205,7 +205,7 @@ View all templates in domain
     
     GET /<domain>/templates
 
-Returns a list of stored templates in domain
+Returns a list of stored templates for the domain
 
 .. container:: ptable
 
@@ -262,7 +262,7 @@ Delete all template in domain
 
    DELETE /<domain>/templates
 
-Delete all stored templates for specified domain
+Delete all stored templates for the domain
 
 Example:
 
@@ -283,7 +283,7 @@ Create new version
 
     POST /<domain>/templates/<template>/versions
 
-Create new version of the template. If the template doesn't contain any version yet the first version becomes active
+Create a new version of the template. If the template doesn't contain any versions yet the first version becomes active
 
 .. container:: ptable
 
