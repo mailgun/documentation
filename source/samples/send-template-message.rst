@@ -25,17 +25,17 @@
 
      public static JsonNode sendTemplateMessage() throws UnirestException {
 
-     	 HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-     	 	 .basicAuth("api", API_KEY)
-     	 	 .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+             .basicAuth("api", API_KEY)
+             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
              .field("to", "alice@example.com")
              .field("to", "bob@example.com")
-     	  	 .field("Subject", "Hello, %recipient.first%!")
-     	  	 .field("text", "If you wish to unsubscribe, click <https://mailgun.com/unsubscribe/%recipient.id%>")
-     	 	 .field("recipient-variables", "{\"bob@example.com\": {\"first\":\"Bob\", \"id\":1}, \"alice@example.com\": {\"first\":\"Alice\", \"id\": 2}}")
-     		 .asJson();
+             .field("Subject", "Hello, %recipient.first%!")
+             .field("text", "If you wish to unsubscribe, click <https://mailgun.com/unsubscribe/%recipient.id%>")
+             .field("recipient-variables", "{\"bob@example.com\": {\"first\":\"Bob\", \"id\":1}, \"alice@example.com\": {\"first\":\"Alice\", \"id\": 2}}")
+             .asJson();
 
-     	return request.getBody();
+         return request.getBody();
      }
  }
 
@@ -126,32 +126,35 @@
 
 .. code-block:: go
 
- var recipients = []struct {
-   Id          int
-   Name, Email string
- }{
-   {1, "Bob", bob@example.com"},
-   {2, "Alice", alice@example.com"},
- }
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
 
  func SendTemplateMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hey %recipient.first%",
-     "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%",
-   ) // IMPORTANT: No To:-field recipients!
-   for _, recipient := range recipients {
-     err := m.AddRecipientAndVariables(recipient.Email, map[string]interface{}{
-       "name": recipient.Name,
-       "id":   recipient.Id,
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hey %recipient.first%",
+         "If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%",
+     ) // IMPORTANT: No To:-field recipients!
+
+     m.AddRecipientAndVariables("bob@example.com", map[string]interface{}{
+         "first": "bob",
+         "id":   1,
      })
-     if err != nil {
-       return "", err
-     }
-   }
-   _, id, err = mg.Send(m)
-   return id, err
+
+     m.AddRecipientAndVariables("alice@example.com", map[string]interface{}{
+         "first": "alice",
+         "id":   2,
+     })
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

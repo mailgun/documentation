@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -G --user 'api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7' -G \
-	https://api.mailgun.net/v3/address/validate \
-	--data-urlencode address='foo@mailgun.net'
+  curl -G --user 'api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7' -G \
+      https://api.mailgun.net/v3/address/validate \
+      --data-urlencode address='foo@mailgun.net'
 
 .. code-block:: java
  
@@ -92,9 +92,19 @@
 
 .. code-block:: go
 
- func ValidateEmail(domain, publicApiKey string) (mailgun.EmailVerification, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.ValidateEmail("foo@mailgun.net")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ValidateEmail(apiKey string) (mailgun.EmailVerification, error) {
+     mv := mailgun.NewEmailValidator(apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mv.ValidateEmail(ctx, "foo@mailgun.net", false)
  }
 
 .. code-block:: js

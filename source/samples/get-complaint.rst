@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints/baz@example.com
+  curl -s --user 'api:YOUR_API_KEY' -G \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/complaints/baz@example.com
 
 .. code-block:: java
 
@@ -21,7 +21,7 @@
              .basicAuth("api", API_KEY)
              .asJson();
  
- 	    return request.getBody();
+         return request.getBody();
      }
  }
 
@@ -86,9 +86,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func GetComplaints(domain, apiKey string) (mailgun.Complaint, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetSingleComplaint("baz@example.com")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetComplaint(ctx, "baz@example.com")
  }
 
 .. code-block:: js

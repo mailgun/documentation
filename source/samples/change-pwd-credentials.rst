@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice \
-	-F password='abc123'
+ curl -s --user 'api:YOUR_API_KEY' -X PUT \
+    https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice \
+    -F password='abc123'
 
 .. code-block:: java
 
@@ -94,7 +94,20 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ChangePassword(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.ChangeCredentialPassword(ctx, "alice", "super_secret")
+ }
 
 .. code-block:: js
 

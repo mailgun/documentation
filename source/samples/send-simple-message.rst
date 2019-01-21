@@ -1,12 +1,12 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Excited User <mailgun@YOUR_DOMAIN_NAME>' \
-	-F to=YOU@YOUR_DOMAIN_NAME \
-	-F to=bar@example.com \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomeness!'
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Excited User <mailgun@YOUR_DOMAIN_NAME>' \
+      -F to=YOU@YOUR_DOMAIN_NAME \
+      -F to=bar@example.com \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomeness!'
 
 .. code-block:: java
 
@@ -25,14 +25,14 @@
      public static JsonNode sendSimpleMessage() throws UnirestException {
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-			 .basicAuth("api", API_KEY)
-		     .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-		     .field("to", "artemis@example.com")
-		     .field("subject", "hello")
-		     .field("text", "testing")
-		     .asJson();
+             .basicAuth("api", API_KEY)
+             .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+             .field("to", "artemis@example.com")
+             .field("subject", "hello")
+             .field("text", "testing")
+             .asJson();
 
-	    return request.getBody();
+         return request.getBody();
      }
  }
 
@@ -114,16 +114,26 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendSimpleMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   m := mg.NewMessage(
-     "Excited User <mailgun@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "YOU@YOUR_DOMAIN_NAME",
-   )
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "YOU@YOUR_DOMAIN_NAME",
+     )
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

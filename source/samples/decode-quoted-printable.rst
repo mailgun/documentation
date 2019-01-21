@@ -63,17 +63,15 @@
 .. code-block:: go
 
  import (
- 	"io/ioutil"
- 	"mime/quotedprintable"
- 	"strings"
+    "io/ioutil"
+    "mime/quotedprintable"
+    "strings"
  )
 
- // ...
-
  func DecodeMessage(encodedMessage string) (string) {
- 	decodedMessage, err := ioutil.ReadAll(quotedPrintable.NewReader(strings.NewReader(encodedMessage)))
- 	if err != nil {
- 		panic(err);
- 	}
- 	return decodedMessage
+    decodedMessage, err := ioutil.ReadAll(quotedPrintable.NewReader(strings.NewReader(encodedMessage)))
+    if err != nil {
+        panic(err);
+    }
+    return decodedMessage
  }

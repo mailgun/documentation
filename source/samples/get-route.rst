@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/routes/4f3bad2335335426750048c6
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/routes/4f3bad2335335426750048c6
 
 .. code-block:: java
 
@@ -86,9 +86,19 @@
 
 .. code-block:: go
 
- func GetRouteByID(domain, apiKey string) (Route, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetRouteByID("4e97c1b2ba8a48567f007fb6")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetRoute(domain, apiKey string) (mailgun.Route, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetRoute(ctx, "route_id")
  }
 
 .. code-block:: js

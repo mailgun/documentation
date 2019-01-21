@@ -87,7 +87,20 @@
 
 .. code-block:: go
 
- // Not supported yet.
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetTagLimits(domain, apiKey string) (mailgun.TagLimits, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetTagLimits(ctx, domain)
+ }
 
 .. code-block:: js
 

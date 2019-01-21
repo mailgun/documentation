@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks
+ curl -s --user 'api:YOUR_API_KEY' -G \
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks
 
 .. code-block:: java
 
@@ -21,7 +21,7 @@
              .basicAuth("api", API_KEY)
              .asJson();
  
- 	    return request.getBody();
+         return request.getBody();
      }
  }
 
@@ -84,10 +84,20 @@
 
 .. code-block:: go
 
- func GetWebhooks(domain, apiKey string) (map[string]string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetWebhooks()
- }
+import (
+    "context"
+    "github.com/mailgun/mailgun-go/v3"
+    "time"
+)
+
+func ListWebhooks(domain, apiKey string) (map[string]string, error) {
+    mg := mailgun.NewMailgun(domain, apiKey)
+
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+    defer cancel()
+
+    return mg.ListWebhooks(ctx)
+}
 
 .. code-block:: js
 

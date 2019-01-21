@@ -1,13 +1,13 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
-	-F to='alice@example.com' \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!' \
-	-F o:tracking=False
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+      -F to='alice@example.com' \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomness!' \
+      -F o:tracking=False
 
 .. code-block:: java
 
@@ -27,11 +27,11 @@
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
             .basicAuth("api", API_KEY)
             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
- 			.field("to", "alice@example.com")
- 	        .field("subject", "Hello")
- 		    .field("text", "Testing some Mailgun awesomeness")
- 		    .field("o:tracking", "False")
- 		    .asJson();
+            .field("to", "alice@example.com")
+            .field("subject", "Hello")
+            .field("text", "Testing some Mailgun awesomeness")
+            .field("o:tracking", "False")
+            .asJson();
 
          return request.getBody();
      }
@@ -119,17 +119,27 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendMessageNoTracking(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "foo@example.com",
-   )
-   m.SetTracking(false)
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "foo@example.com",
+     )
+     m.SetTracking(false)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

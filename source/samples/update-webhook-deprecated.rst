@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click \
-	-F url='http://google.com'
+  curl -s --user 'api:YOUR_API_KEY' -X PUT \
+      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click \
+      -F url='http://google.com'
 
 .. code-block:: java
 
@@ -93,9 +93,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func UpdateWebhook(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.UpdateWebhook("deliver", "http://api.example.com")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.UpdateWebhook(ctx, "clicked", []string{"https://your_domain.com/clicked"})
  }
 
 .. code-block:: js

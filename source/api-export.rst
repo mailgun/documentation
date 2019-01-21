@@ -17,7 +17,7 @@ download.
 
 .. code-block:: url
 
-     POST /exports/<url>
+     POST /exports/
 
 .. container:: ptable
 

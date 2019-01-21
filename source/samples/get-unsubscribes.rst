@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes
+  curl -s --user 'api:YOUR_API_KEY' -G \
+       https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes
 
 .. code-block:: java
 
@@ -19,9 +19,9 @@
  
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
              .basicAuth("api", API_KEY)
- 		    .asJson();
+             .asJson();
  
- 	    return request.getBody();
+         return request.getBody();
      }
  }
 
@@ -87,9 +87,28 @@
 
 .. code-block:: go
 
- func GetUnsubscribes(domain, apiKey string) (int, []mailgun.Unsubscribe, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetUnsubscribes(-1, -1)
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListUnsubscribes(domain, apiKey string) ([]mailgun.Unsubscribe, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListUnsubscribes(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.Unsubscribe
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
  }
 
 .. code-block:: js

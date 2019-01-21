@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages.mime \
-	-F to='bob@example.com' \
-	-F message=@files/message.mime
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages.mime \
+      -F to='bob@example.com' \
+      -F message=@files/message.mime
 
 .. code-block:: java
 
@@ -22,15 +22,15 @@
      public static JsonNode sendMIMEMessage() throws UnirestException {
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages.mime")
-  		     .basicAuth("api", API_KEY)
-  			 .header("content-type", "multipart/form-data;")
-  			 .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-  			 .field("to", "Megan@example.com")
-  			 .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
-  			 .field("message", new File("/temp/folder/file.mime"))
-  			 .asJson();
+             .basicAuth("api", API_KEY)
+             .header("content-type", "multipart/form-data;")
+             .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+             .field("to", "Megan@example.com")
+             .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
+             .field("message", new File("/temp/folder/file.mime"))
+             .asJson();
 
- 	    return request.getBody();
+         return request.getBody();
      }
  }
 
@@ -106,15 +106,27 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "os"
+     "time"
+ )
+
  func SendMimeMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   mimeMsgReader, err := os.Open("files/message.mime")
-   if err != nil {
-     return "", err
-   }
-   m := mg.NewMIMEMessage(mimeMsgReader, "bar@example.com")
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     mimeMsgReader, err := os.Open("files/message.mime")
+     if err != nil {
+         return "", err
+     }
+
+     m := mg.NewMIMEMessage(mimeMsgReader, "bar@example.com")
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

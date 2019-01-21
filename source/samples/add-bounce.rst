@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces \
-	-F address='bob@example.com'
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces \
+      -F address='bob@example.com'
 
 .. code-block:: java
 
@@ -90,11 +90,20 @@
 
 .. code-block:: go
 
- func AddBounce(domain, apiKey) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.AddBounce("bob@example.com", "550", "Undeliverable message error")
- }
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
 
+ func AddBounce(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.AddBounce(ctx, "bob@example.com", "550", "Undeliverable message error")
+ }
 
 .. code-block:: js
 

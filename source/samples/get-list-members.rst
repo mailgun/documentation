@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/pages
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/pages
 
 .. code-block:: java
 
@@ -88,9 +88,28 @@
 
 .. code-block:: go
 
- func GetMembers(domain, apiKey string) (int, []mailgun.Member, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.GetMembers(-1, -1, mailgun.All, "LIST@YOUR_DOMAIN_NAME")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetMembers(domain, apiKey string) ([]mailgun.Member, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListMembers("list@example.com", nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.Member
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
  }
 
 .. code-block:: js

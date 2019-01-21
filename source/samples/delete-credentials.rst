@@ -87,9 +87,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func DeleteCredential(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.DeleteCredential("alice")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.DeleteCredential(ctx, "alice")
  }
 
 .. code-block:: js

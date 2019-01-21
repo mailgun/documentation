@@ -1,13 +1,13 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
-	-F to='alice@example.com' \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!' \
-	-F o:deliverytime='Fri, 14 Oct 2011 23:10:10 -0000'
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+      -F to='alice@example.com' \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomness!' \
+      -F o:deliverytime='Fri, 14 Oct 2011 23:10:10 -0000'
 
 .. code-block:: java
 
@@ -24,14 +24,14 @@
 
      public static JsonNode sendScheduledMessage() throws UnirestException {
 
-    	 HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-   			 .basicAuth("api", API_KEY)
-   			 .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-   			 .field("to", "bruce@example")
-   			 .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
-   			 .field("text", "Testing some MailGun awesomeness")
-   			 .field("o:deliverytime", "Sat, 20 May 2017 2:50:00 -0000")
-   			 .asJson();
+         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
+             .basicAuth("api", API_KEY)
+             .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+             .field("to", "bruce@example")
+             .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
+             .field("text", "Testing some MailGun awesomeness")
+             .field("o:deliverytime", "Sat, 20 May 2017 2:50:00 -0000")
+             .asJson();
 
          return request.getBody();
      }
@@ -119,17 +119,27 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendScheduledMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "bar@example.com",
-   )
-   m.SetDeliveryTime(time.Now().Add(5 * time.Minute))
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "bar@example.com",
+     )
+     m.SetDeliveryTime(time.Now().Add(5 * time.Minute))
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

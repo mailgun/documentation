@@ -87,9 +87,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func DeleteTag(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.DeleteTag("newsletter")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.DeleteTag(ctx, "newsletter")
  }
 
 .. code-block:: js

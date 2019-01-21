@@ -1,9 +1,9 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
-	-F id='click' \
-	-F url='http://bin.example.com/8de4a9c4'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
+     -F id='click' \
+     -F url='http://bin.example.com/8de4a9c4'
 
 .. code-block:: java
 
@@ -19,10 +19,10 @@
      public static JsonNode addWebhook() throws UnirestException {
  
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
- 		      .basicAuth("api", API_KEY)
- 			  .field("id","click")
- 		      .field("url", "http://bin.example.com/8de4a9c4")
- 		      .asJson();
+             .basicAuth("api", API_KEY)
+             .field("id","click")
+             .field("url", "http://bin.example.com/8de4a9c4")
+             .asJson();
  
          return request.getBody();
      }
@@ -95,9 +95,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func CreateWebhook(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.CreateWebhook("deliver", "http://www.example.com")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateWebhook(ctx, "clicked", []string{"https://your_domain.com/v1/clicked"})
  }
 
 .. code-block:: js

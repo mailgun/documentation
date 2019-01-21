@@ -21,11 +21,8 @@
  import java.net.InetAddress;
  import java.util.Properties;
  import java.util.Date;
-
  import javax.mail.*;
-
  import javax.mail.internet.*;
-
  import com.sun.mail.smtp.*;
 
  public class MGSendSimpleSMTP {
@@ -178,20 +175,18 @@
 
 .. code-block:: go
 
- package main
-
  import (
-	 "github.com/jordan-wright/email"
+     "github.com/jordan-wright/email"
  )
 
  func main() {
-	 e := email.NewEmail()
-	 e.From = "Your Name <foo@YOUR_DOMAIN_NAME>"
-	 e.To = []string{"bar@example.com"}
-	 e.Subject = "Hello"
-	 e.Text = []byte("Testing some Mailgun awesomeness")
-	 err := e.Send("smtp.mailgun.com:587", smtp.PlainAuth("", "YOUR_USERNAME", "YOUR_PASSWORD", "smtp.mailgun.com"))
-	 if err != nil {
-	 	panic(err)
-	 }
+     e := email.NewEmail()
+     e.From = "Your Name <foo@YOUR_DOMAIN_NAME>"
+     e.To = []string{"bar@example.com"}
+     e.Subject = "Hello"
+     e.Text = []byte("Testing some Mailgun awesomeness")
+     err := e.Send("smtp.mailgun.com:587", smtp.PlainAuth("", "YOUR_USERNAME", "YOUR_PASSWORD", "smtp.mailgun.com"))
+     if err != nil {
+        panic(err)
+     }
  }

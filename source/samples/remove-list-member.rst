@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com
+  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
+      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/bar@example.com
 
 .. code-block:: java
 
@@ -91,9 +91,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func DeleteListMember(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey)
-   return mg.DeleteMember("joe@example.com", "LIST@YOUR_DOMAIN_NAME")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.DeleteMember(ctx, "joe@example.com", "list@example.com")
  }
 
 .. code-block:: js

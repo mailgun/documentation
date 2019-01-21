@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-        https://api.mailgun.net/v3/ips \
-        -d dedicated="true"
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/ips \
+      -d dedicated="true"
 
 .. code-block:: java
 
@@ -11,18 +11,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getIPs() throws UnirestException {
- 
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/ips)
+
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/ips")
              .basicAuth("api", API_KEY)
              .queryString("dedicated", "true")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -89,7 +89,21 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListIPS(domain, apiKey string) ([]mailgun.IPAddress, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     // Pass 'true' to only return dedicated ips
+     return mg.ListIPS(ctx, true)
+ }
 
 .. code-block:: js
 
