@@ -113,7 +113,7 @@ Deletes an existing webhook.
  ================= ========================================================
 
 Webhooks Parameters
------------------
+-------------------
 
 .. _api-opens-webhook-data-format:
 
@@ -131,11 +131,11 @@ one of your emails, your URL will be called with the following parameters.
  recipient             Recipient who opened.
  domain                Domain that sent the original message.
  ip                    IP address the event originated from.
- country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
+ country               Two-letter country code (as specified by ISO3166) the event came from or
                        'unknown' if it couldn't be determined.
- region                Two-letter or two-digit `region code`_ or 'unknown' if it couldn't be determined.
+ region                Two-letter or two-digit region code or 'unknown' if it couldn't be determined.
  city                  Name of the city the event came from or 'unknown' if it couldn't be determined.
- user-agent            `User agent`_ string of the client triggered the event.
+ user-agent            User agent string of the client triggered the event.
  device-type           Device type the email was opened on. Can be 'desktop', 'mobile', 'tablet', 'other'
                        or 'unknown'.
  client-type           Type of software the email was opened in, e.g. 'browser', 'mobile browser',
@@ -147,9 +147,9 @@ one of your emails, your URL will be called with the following parameters.
  tag                   Message tag, if message was tagged. See :ref:`tagging`
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970
+ token                 Randomly generated string with length 50
+ signature             String with hexadecimal digits generate by HMAC algorithm
  ==================    ==================================================================================
 
 .. _api-clicks-webhook-data-format:
@@ -169,11 +169,11 @@ inside of your messages, your URL will be called with the following parameters:
  recipient             Recipient who clicked.
  domain                Domain that sent the original message.
  ip                    IP address the event originated from.
- country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
+ country               Two-letter country code (as specified by ISO3166) the event came from or
                        'unknown' if it couldn't be determined.
- region                Two-letter or two-digit `region code`_ or 'unknown' if it couldn't be determined.
+ region                Two-letter or two-digit region code or 'unknown' if it couldn't be determined.
  city                  Name of the city the event came from or 'unknown' if it couldn't be determined.
- user-agent            `User agent`_ string of the client triggered the event.
+ user-agent            User agent string of the client triggered the event.
  device-type           Device type the link was clicked on. Can be 'desktop', 'mobile', 'tablet', 'other'
                        or 'unknown'.
  client-type           Type of software the link was opened in, e.g. 'browser', 'mobile browser',
@@ -186,9 +186,9 @@ inside of your messages, your URL will be called with the following parameters:
  url                   The URL that was clicked.
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970
+ token                 Randomly generated string with length 50
+ signature             String with hexadecimal digits generate by HMAC algorithm
  ==================    ==================================================================================
 
 .. _api-unsubscribes-webhook-data-format:
@@ -208,11 +208,11 @@ When a user unsubscribes, Mailgun will invoke the webhook with the following par
  recipient             Recipient who unsubscribed.
  domain                Domain that sent the original message.
  ip                    IP address the event originated from.
- country               Two-letter `country code`_ (as specified by `ISO3166`_) the event came from or
+ country               Two-letter country code (as specified by ISO3166) the event came from or
                        'unknown' if it couldn't be determined.
- region                Two-letter or two-digit `region code`_ or 'unknown' if it couldn't be determined.
+ region                Two-letter or two-digit region code or 'unknown' if it couldn't be determined.
  city                  Name of the city the event came from or 'unknown' if it couldn't be determined.
- user-agent            `User agent`_ string of the client triggered the event.
+ user-agent            User agent string of the client triggered the event.
  device-type           Device type the person unsubscribed on. Can be 'desktop', 'mobile', 'tablet', 'other'
                        or 'unknown'.
  client-type           Type of software the unsubscribe link was clicked in, e.g. 'browser', 'mobile browser',
@@ -224,9 +224,9 @@ When a user unsubscribes, Mailgun will invoke the webhook with the following par
  tag                   Message tag, if it was tagged. See :ref:`tagging`.
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970
+ token                 Randomly generated string with length 50
+ signature             String with hexadecimal digits generate by HMAC algorithm
  ==================    ==================================================================================
 
 .. _api-spam-webhook-data-format:
@@ -252,9 +252,9 @@ webhook with the following parameters:
  tag                   Message tag, if it was tagged. See :ref:`tagging`.
  mailing-list          The address of mailing list the original message was sent to.
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970
+ token                 Randomly generated string with length 50
+ signature             String with hexadecimal digits generate by HMAC algorithm
  attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
                        included if the recipient ESP includes them in the bounce message. They are
                        handled as file uploads, encoded as multipart/form-data.
@@ -285,10 +285,9 @@ If you do, every time a message experiences a hard bounce, your URL will be invo
  tag                       Message tag, if it was tagged. See :ref:`tagging`.
  mailing-list              The address of mailing list the original message was sent to.
  "custom variables"        Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp                 Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                     Randomly generated string with length 50 (see `securing webhooks`_).
+ timestamp                 Number of seconds passed since January 1, 1970
+ token                     Randomly generated string with length 50
  signature                 String with hexadecimal digits generate by HMAC algorithm
-                           (see `securing webhooks`_).
  attachment-x              attached file (‘x’ stands for number of the attachment). Attachments are
                            included if the recipient ESP includes them in the bounce message. They are
                            handled as file uploads, encoded as multipart/form-data.
@@ -320,9 +319,9 @@ If one of these events occur we will POST the following parameters to your URL:
  code                  ESP response code, e.g. if the message was blocked as a spam (optional).
  description           Detailed explanation of why the messages was dropped
  "custom variables"    Your own custom JSON object included in the header (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970
+ token                 Randomly generated string with length 50
+ signature             String with hexadecimal digits generate by HMAC algorithm
  attachment-x          attached file (‘x’ stands for number of the attachment). Attachments are
                        included if the recipient ESP includes them in the bounce message. They are
                        handled as file uploads, encoded as multipart/form-data.
@@ -351,9 +350,9 @@ we will POST the following parameters to your URL:
  message-headers       String list of all MIME headers dumped to a JSON string (order of headers preserved).
  Message-Id            String id of the original message delivered to the recipient.
  "custom variables"    Your own custom JSON object included in the header of the original message (see :ref:`manual-customdata`).
- timestamp             Number of seconds passed since January 1, 1970 (see `securing webhooks`_).
- token                 Randomly generated string with length 50 (see `securing webhooks`_).
- signature             String with hexadecimal digits generate by HMAC algorithm (see `securing webhooks`_).
+ timestamp             Number of seconds passed since January 1, 1970
+ token                 Randomly generated string with length 50
+ signature             String with hexadecimal digits generate by HMAC algorithm
  ==================    ==================================================================================
  
 Examples

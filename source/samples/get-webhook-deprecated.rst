@@ -48,7 +48,7 @@
 .. code-block:: rb
 
  def get_domain
-   RestClient.get("https://api:YOUR_API_KEY"\
+   RestClient.get "https://api:YOUR_API_KEY"\
                   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"\
                   {|response, request, result| response }
  end

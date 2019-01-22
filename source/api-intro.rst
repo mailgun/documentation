@@ -92,7 +92,7 @@ Mailgun returns standard HTTP response codes.
  500, 502, 503, 504 Server Errors - something is wrong on Mailgun's end
  ================== ==========================================================
 
-.. _webhooks:
+.. _webhooks-api-intro:
 
 Webhooks
 ~~~~~~~~~~~~~~~~~~~~~~~~~

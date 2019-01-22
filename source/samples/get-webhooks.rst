@@ -49,7 +49,7 @@
 
  def get_webhooks
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks"
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks"
  end
 
 .. code-block:: csharp
@@ -84,20 +84,20 @@
 
 .. code-block:: go
 
-import (
-    "context"
-    "github.com/mailgun/mailgun-go/v3"
-    "time"
-)
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
 
-func ListWebhooks(domain, apiKey string) (map[string]string, error) {
-    mg := mailgun.NewMailgun(domain, apiKey)
+ func ListWebhooks(domain, apiKey string) (map[string]string, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
 
-    ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
-    defer cancel()
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
 
-    return mg.ListWebhooks(ctx)
-}
+     return mg.ListWebhooks(ctx)
+ }
 
 .. code-block:: js
 
