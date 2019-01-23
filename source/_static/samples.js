@@ -24,13 +24,14 @@ var samples = {
         return this._sections;
     },
 
-    // hide: function () {
-    //     for (var i = 0; i < this.langs().length; i++) {
-    //         var id = this.langs()[i];
-    //         id = id.replace("lang_", "");
-    //         this.hideSamples(id);
-    //     }
-    // },
+    // Hides code samples until appropriate language is selected
+    hide: function () {
+        for (var i = 0; i < this.langs().length; i++) {
+            var id = this.langs()[i];
+            id = id.replace("lang_", "");
+            this.hideSamples(id);
+        }
+    },
 
     show: function () {
         this.change($.cookie('samples_code_language') || 'bash');
