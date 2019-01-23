@@ -61,7 +61,7 @@ There are some limitations if you have not given us your payment information:
 
 * There is a limit of 10,000 emails per month.
 * Data for Logs and the Events API are stored for 2 days.
-
+//
 If you have given us your payment information, there is no limit on number of messages
 sent and/or received and data retention for Logs and the :ref:`Events API <api-events>` is at least 30 days.
 
@@ -716,7 +716,7 @@ Sample response:
     }
   }
 
-.. _OBwebhooks:
+.. _webhooks:
 
 Webhooks
 ========
@@ -757,7 +757,7 @@ and with the following data:
       "event": "opened",
       "timestamp": 1529006854.329574,
       "id": "DACSsAdVSeGpLid7TN03WA",
-      ...
+      // ...
     }
   }
 
@@ -804,7 +804,6 @@ Below is a Python code sample used to verify the signature:
                                digestmod=hashlib.sha256).hexdigest()
         return hmac.compare_digest(unicode(signature), unicode(hmac_digest))
 
-
 And here's a sample in Ruby:
 
 .. code-block:: ruby
@@ -821,16 +820,35 @@ And here's a sample in PHP:
 
 .. code-block:: php
 
-    private function verify($apiKey, $token, $timestamp, $signature)
+    function verify($apiKey, $token, $timestamp, $signature)
     {
-        //check if the timestamp is fresh
+        // check if the timestamp is fresh
         if (abs(time() - $timestamp) > 15) {
             return false;
         }
 
-        //returns true if signature is valid
-        return hash_hmac('sha256', $timestamp.$token, $apiKey) === $signature;
+        // returns true if signature is valid
+        return hash_hmac('sha256', $timestamp . $token, $apiKey) === $signature;
     }
+
+And here's a sample in Go
+
+.. code-block:: go
+
+    import (
+        "github.com/mailgun/mailgun-go/v3"
+    )
+
+    func VerifyWebhookSignature(domain, apiKey, timestamp, token, signature string) (bool, error) {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        return mg.VerifyWebhookSignature(mailgun.Signature{
+            TimeStamp: timestamp,
+            Token:     token,
+            Signature: signature,
+        })
+    }
+
 
 .. _manual-customdata:
 

@@ -77,7 +77,7 @@ Returns statistics for a given tag.
  ================= ============================================================
 
 
- .. code-block:: url
+.. code-block:: url
 
        DELETE /<domain>/tags/<tag>
 
@@ -91,7 +91,7 @@ Deletes the tag. **Note:** The statistics for the tag are not destroyed.
  domain            Name of the domain
  ================= ============================================================
 
- .. code-block:: url
+.. code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/countries
 
