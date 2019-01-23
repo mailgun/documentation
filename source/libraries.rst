@@ -73,6 +73,14 @@ You will also need the following dependencies -
 (org.json, httpclient 4.3.6, httpmime 4.3.6, httpasyncclient 4.0.2) 
 
 
+Kotlin
+====
+
+Kotlin users could of course use the Java library, but for an alternative, take a look at this library:
+
+`mailgun-kotlin <https://github.com/Commit451/mailgun>`_
+
+
 C#
 ===
 
@@ -97,7 +105,7 @@ PHP
 Our PHP library is robust and provides an excellent interface to easily interact
 with our API.
 
-Github Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_
+GitHub Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_
 
 Minimum PHP Version: 5.5.0
 
@@ -110,7 +118,7 @@ install composer and the Mailgun library.
     # Install Composer
     curl -sS https://getcomposer.org/installer | php
 
-    # Add Mailgun and Guzzle6 as a dependency (see Github README below for more info)
+    # Add Mailgun and Guzzle6 as a dependency (see GitHub README below for more info)
     php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter php-http/message
 
 
@@ -123,7 +131,7 @@ load the Mailgun library in your project.
     use Mailgun\Mailgun;
     $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
 
-For additional information, see the Github Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
+For additional information, see the GitHub Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
 
 **Standard HTTP Library:**
 
