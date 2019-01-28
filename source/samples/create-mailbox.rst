@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes \
-	-F mailbox='alice@YOUR_DOMAIN_NAME' \
-	-F password='supasecret'
+ curl -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/mailboxes \
+    -F mailbox='alice@YOUR_DOMAIN_NAME' \
+    -F password='supasecret'
 
 .. code-block:: java
 
@@ -98,9 +98,9 @@
 
 .. code-block:: go
 
- // Not supported
+ // This feature is deprecated and not supported in the golang library
 
- .. code-block:: js
+.. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });

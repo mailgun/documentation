@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes \
-	-F address='bob@example.com' \
-	-F tag='*'
+ curl -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes \
+    -F address='bob@example.com' \
+    -F tag='*'
 
 .. code-block:: java
 
@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode addUnsubscribeAll() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
- 			.basicAuth("api", API_KEY)
- 			.field("address", "bob@example.com")
- 		    .field("tag", "*")
- 		    .asJson();
- 
+             .basicAuth("api", API_KEY)
+             .field("address", "bob@example.com")
+             .field("tag", "*")
+             .asJson();
+
          return request.getBody();
      }
  }
@@ -97,12 +97,22 @@
 
 .. code-block:: go
 
- func CreateUnsubscription(domain, apiKey string) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.Unsubscribe("bob@example.com", "*")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func CreateUnsubscribe(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateUnsubscribe(ctx, "bob@example.com", "*")
  }
 
- .. code-block:: js
+.. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });

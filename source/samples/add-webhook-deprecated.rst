@@ -1,9 +1,9 @@
-
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' \
-      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces \
-      -F address='bob@example.com'
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
+     -F id='click' \
+     -F url='http://bin.example.com/8de4a9c4'
 
 .. code-block:: java
 
@@ -11,18 +11,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
-
+ 
  public class MGSample {
-
+ 
      // ...
-
-     public static JsonNode addBounce() throws UnirestException {
-
-         HttpResponse <JsonNode> request =  Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/bounces")
+ 
+     public static JsonNode addWebhook() throws UnirestException {
+ 
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
              .basicAuth("api", API_KEY)
-             .field("address", "bob@example.com")
+             .field("id","click")
+             .field("url", "http://bin.example.com/8de4a9c4")
              .asJson();
-
+ 
          return request.getBody();
      }
  }
@@ -38,22 +39,26 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/bounces", array('address' => 'bob@example.com'));
+  $result = $mgClient->post("domains/$domain/webhooks", array(
+      'id'  => 'click',
+      'url' => 'http://bin.example.com/8de4a9c4'
+  ));
 
 .. code-block:: py
 
- def add_bounce():
+ def add_webhook():
      return requests.post(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"),
-         data={'address':'bob@example.com'})
+         data={'id':'click', 'url':'http://bin.example.com/8de4a9c4'})
 
 .. code-block:: rb
 
- def add_bounce
+ def add_webhook
    RestClient.post("https://api:YOUR_API_KEY"\
-                   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces",
-                   :address => 'bob@example.com')
+                   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
+                   :id => 'click',
+                   :url => 'http://bin.example.com/8de4a9c4')
  end
 
 .. code-block:: csharp
@@ -63,25 +68,25 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class AddBounceChunk
+ public class AddWebhookChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (AddBounce ().Content.ToString ());
+         Console.WriteLine (AddWebhook ().Content.ToString ());
      }
 
-     public static IRestResponse AddBounce ()
+     public static IRestResponse AddWebhook ()
      {
          RestClient client = new RestClient ();
-         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v3/");
          client.Authenticator =
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "{domain}/bounces";
-         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("address", "bob@example.com");
+         request.Resource = "domains/YOUR_DOMAIN_NAME/webhooks";
+         request.AddParameter ("id", "click");
+         request.AddParameter ("url", "http://bin.example.com/8de4a9c4");
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -96,13 +101,13 @@
      "time"
  )
 
- func AddBounce(domain, apiKey string) error {
+ func CreateWebhook(domain, apiKey string) error {
      mg := mailgun.NewMailgun(domain, apiKey)
 
      ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
      defer cancel()
 
-     return mg.AddBounce(ctx, "bob@example.com", "550", "Undeliverable message error")
+     return mg.CreateWebhook(ctx, "clicked", []string{"https://your_domain.com/v1/clicked"})
  }
 
 .. code-block:: js
@@ -110,6 +115,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.post(`/${DOMAIN}/bounces`, {'address': 'bob@example.com'}, function (error, body) {
+ mailgun.post(`/domain/${DOMAIN}/webhooks`, {"id": 'click', "url": 'http://bin.example.com/8de4a9c4'}, function (error, body) {
    console.log(body);
  });

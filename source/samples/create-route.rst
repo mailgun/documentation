@@ -1,12 +1,12 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/routes \
-	-F priority=0 \
-	-F description='Sample route' \
-	-F expression='match_recipient(".*@YOUR_DOMAIN_NAME")' \
-	-F action='forward("http://myhost.com/messages/")' \
-	-F action='stop()'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/routes \
+     -F priority=0 \
+     -F description='Sample route' \
+     -F expression='match_recipient(".*@YOUR_DOMAIN_NAME")' \
+     -F action='forward("http://myhost.com/messages/")' \
+     -F action='stop()'
 
 .. code-block:: java
 
@@ -114,20 +114,30 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func CreateRoute(domain, apiKey string) (mailgun.Route, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.CreateRoute(mailgun.Route{
-     Priority:    1,
-     Description: "Sample Route",
-     Expression:  "match_recipient(\".*@YOUR_DOMAIN_NAME\")",
-     Actions: []string{
-       "forward(\"http://example.com/messages/\")",
-       "stop()",
-     },
-   })
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateRoute(ctx, mailgun.Route{
+         Priority:    1,
+         Description: "Sample Route",
+         Expression:  "match_recipient(\".*@YOUR_DOMAIN_NAME\")",
+         Actions: []string{
+             "forward(\"http://example.com/messages/\")",
+             "stop()",
+         },
+     })
  }
 
- .. code-block:: js
+.. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });

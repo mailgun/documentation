@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members.json \
-	-F upsert=true \
-	-F members='[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]'
+ curl -s --user 'api:YOUR_API_KEY' \
+    https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members.json \
+    -F upsert=true \
+    -F members='[{"address": "Alice <alice@example.com>", "vars": {"age": 26}},{"name": "Bob", "address": "bob@example.com", "vars": {"age": 34}}]'
 
 .. code-block:: java
 
@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode addListMembers() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members.json")
- 			.basicAuth("api", API_KEY)
- 		    .field("upsert", true)
- 		    .field("members", "[{\"address\": \"Alice <alice@example.com>\", \"vars\": {\"age\": 26}},{\"name\": \"Bob\", \"address\": \"bob@example.com\", \"vars\": {\"age\": 34}}]")
- 		    .asJson();
- 
+             .basicAuth("api", API_KEY)
+             .field("upsert", true)
+             .field("members", "[{\"address\": \"Alice <alice@example.com>\", \"vars\": {\"age\": 26}},{\"name\": \"Bob\", \"address\": \"bob@example.com\", \"vars\": {\"age\": 34}}]")
+             .asJson();
+
          return request.getBody();
      }
  }
@@ -100,28 +100,38 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func AddListMembers(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.CreateMemberList(nil, "LIST@YOUR_DOMAIN_NAME", []interface{}{
-     mailgun.Member{
-       Address:    "alice@example.com",
-       Name:       "Alice's debugging account",
-       Subscribed: mailgun.Unsubscribed,
-     },
-     mailgun.Member{
-       Address:    "Bob Cool <bob@example.com>",
-       Name:       "Bob's Cool Account",
-       Subscribed: mailgun.Subscribed,
-     },
-     mailgun.Member{
-       Address: "joe.hamradio@example.com",
-       // Charlette is a ham radio packet BBS user.
-       // We attach her packet BBS e-mail address as an arbitrary var here.
-       Vars: map[string]interface{}{
-         "packet-email": "KW9ABC @ BOGUS-4.#NCA.CA.USA.NOAM",
-       },
-     },
-   })
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateMemberList(ctx, nil, "mailgunList@example.com", []interface{}{
+         mailgun.Member{
+             Address:    "alice@example.com",
+             Name:       "Alice's debugging account",
+             Subscribed: mailgun.Unsubscribed,
+         },
+         mailgun.Member{
+             Address:    "Bob Cool <bob@example.com>",
+             Name:       "Bob's Cool Account",
+             Subscribed: mailgun.Subscribed,
+         },
+         mailgun.Member{
+             Address: "joe.hamradio@example.com",
+             // Charlette is a ham radio packet BBS user.
+             // We attach her packet BBS e-mail address as an arbitrary var here.
+             Vars: map[string]interface{}{
+                 "packet-email": "KW9ABC @ BOGUS-4.#NCA.CA.USA.NOAM",
+             },
+         },
+     })
  }
 
 .. code-block:: js

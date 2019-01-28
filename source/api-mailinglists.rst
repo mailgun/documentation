@@ -135,7 +135,7 @@ Won't touch the property if it's not passed in.
  subscribed         ``no`` to set unsubscribed, ``yes`` as subscribed
  ================== =======================================================
 
- .. code-block:: url
+.. code-block:: url
 
      POST /lists/<address>/members.json
 

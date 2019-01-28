@@ -1,14 +1,14 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
-	-F to='alice@example.com' \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!' \
-	-F o:tag='September newsletter' \
-	-F o:tag='newsletters'
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+      -F to='alice@example.com' \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomness!' \
+      -F o:tag='September newsletter' \
+      -F o:tag='newsletters'
 
 .. code-block:: java
 
@@ -27,10 +27,10 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
              .basicAuth("api", API_KEY)
-		     .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .queryString("to", "alice@example")
-             .queryString("subject", "Hello.")
-             .queryString("text", "Testing some Mailgun awesomeness")
+             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .field("to", "alice@example")
+             .field("subject", "Hello.")
+             .field("text", "Testing some Mailgun awesomeness")
              .field("o:tag", "newsletters")
              .field("o:tag", "September newsletter")
              .asJson();
@@ -124,37 +124,47 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendTaggedMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "bar@example.com",
-   )
-   m.AddTag("FooTag")
-   m.AddTag("BarTag")
-   m.AddTag("BlortTag")
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "bar@example.com",
+     )
+
+     err := m.AddTag("FooTag", "BarTag", "BlortTag")
+     if err != nil {
+         return "", err
+     }
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js
 
- var mailgun = require("mailgun-js")
- var api_key = 'YOUR_API_KEY';
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+ const API_KEY = 'YOUR_API_KEY';
+ const DOMAIN = 'YOUR_DOMAIN_NAME';
+ const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
- var data = {
+ const data = {
    from: 'Excited User <me@samples.mailgun.org>',
    to: 'alice@example',
    subject: 'Tagged',
    text: 'Testing some Mailgun awesomeness!',
-   "o:tag" : 'newsletters',
-   "o:tag" : 'September newsletter'
+   "o:tag" : ['newsletters', 'September newsletter']
  };
 
- mailgun.messages().send(data, function (error, body) {
+ mailgun.messages().send(data, (error, body) => {
    console.log(body);
  });

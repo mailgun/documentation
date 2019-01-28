@@ -29,7 +29,7 @@ if the result set is too long to be returned in a single response.
 
 Returns a given tag.
 
-.. contrainer:: ptable
+.. container:: ptable
 
  ================= ============================================================
  Parameter         Description
@@ -77,7 +77,7 @@ Returns statistics for a given tag.
  ================= ============================================================
 
 
- .. code-block:: url
+.. code-block:: url
 
        DELETE /<domain>/tags/<tag>
 
@@ -91,7 +91,7 @@ Deletes the tag. **Note:** The statistics for the tag are not destroyed.
  domain            Name of the domain
  ================= ============================================================
 
- .. code-block:: url
+.. code-block:: url
 
         GET /<domain>/tags/<tag>/stats/aggregates/countries
 
@@ -231,7 +231,7 @@ Retrieve all countries of origin for a domain with event types:
             "unique_clicked": 1,
             "unique_opened": 0,
             "unsubscribed": 2
-        },
+        }
     },
     "tag": "exampletag"
   }

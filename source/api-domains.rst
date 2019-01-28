@@ -16,6 +16,7 @@ Returns a list of domains under your account in JSON. See examples below.
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
+ authority         Filter a list by given DKIM authority name
  limit             Maximum number of records to return. (100 by default)
  skip              Number of records to skip. (0 by default)
  ================= ========================================================
@@ -31,8 +32,7 @@ Returns a single domain, including credentials and DNS records. See examples bel
      PUT /domains/<domain>/verify
 
 Verifies and returns a single domain, including credentials and DNS records.
-If the domain is successfully verified the message should be the following:
-*Domain DNS records have been updated*. For more information on verifying domains,
+If the domain is successfully verified the domain's state will be 'active'. For more information on verifying domains,
 visit the Mailgun `User Manual`_.
 
 .. _User Manual: https://documentation.mailgun.com/en/latest/user_manual.html#verifying-your-domain
@@ -45,23 +45,44 @@ Create a new domain. See examples below.
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- name              Name of the domain (ex. domain.com)
- smtp_password     Password for SMTP authentication
- spam_action       ``disabled``, ``block``, or ``tag``
-                   
-                   If *disabled*, no spam filtering will occur for inbound
-                   messages.
-                   
-                   If *block*, inbound spam messages will not be delivered.
-                   
-                   If *tag*, inbound messages will be tagged with a spam header.
-                   See :ref:`um-spam-filter`.
- wildcard          *true* or *false*
-                   Determines whether the domain will accept email for sub-domains.
- ================= ========================================================
+ ===================== ========================================================
+ Parameter             Description
+ ===================== ========================================================
+ name                  Name of the domain (ex. domain.com)
+ smtp_password         Password for SMTP authentication
+ spam_action           ``disabled``, ``block``, or ``tag``
+                       
+                       If *disabled*, no spam filtering will occur for inbound
+                       messages.
+                       
+                       If *block*, inbound spam messages will not be delivered.
+                       
+                       If *tag*, inbound messages will be tagged with a spam header.
+                       See :ref:`um-spam-filter`.
+                       
+                       The default is ``disabled``.
+ wildcard              *true* or *false*
+                       Determines whether the domain will accept email for sub-domains when sending messages.
+
+                       The default is `false`.
+ force_dkim_authority  *true* or *false*
+                       
+                       If set to *true*, the domain will be the DKIM authority for itself
+                       even if the root domain is registered on the same mailgun account
+                       
+                       If set to *false*, the domain will have the same DKIM authority
+                       as the root domain registered on the same mailgun account
+                       
+                       The default is `false`.
+ dkim_key_size         Size of domain's DKIM key pairs: ``1024`` or ``2048``
+
+		       The default is ``1024``
+ ips                   An optional, comma-separated list of IP addresses to be assigned
+                       to this domain. If not specified, all dedicated IP addresses on
+                       the account will be assigned. If the request cannot be fulfilled
+                       (e.g. a requested IP is not assigned to the account, etc), a
+                       ``400`` will be returned.
+ ===================== ========================================================
 
 .. code-block:: url
 
@@ -228,6 +249,31 @@ Updates unsubscribe tracking settings for a domain.
                    footer by editing the settings in the Control Panel.*
                    See :ref:`um-tracking-unsubscribes` for more details.
  ================= =============================================================
+
+.. code-block:: url
+
+     PUT /domains/<domain>/dkim_authority
+
+Change the DKIM authority for a domain.
+
+.. container:: ptable
+
+ ================= =============================================================
+ Parameter         Description
+ ================= =============================================================
+ self              *true* or *false*
+                   
+                   Change the DKIM authority for a domain.
+                   
+                   If set to *true*, the domain will be the DKIM authority for itself
+                   even if the root domain is registered on the same mailgun account
+                   
+                   If set to *false*, the domain will have the same DKIM authority
+                   as the root domain registered on the same mailgun account
+ ================= =============================================================
+.. note::  Use with caution: Do not forget to change the corresponding DNS record.
+		It can take 24-48 hours for DNS changes to propagate.
+		Changing the DKIM autority of an active domain affects its current deliveriability.
 
 
 Example
@@ -401,13 +447,13 @@ Sample response:
      {
        "size_bytes": 0,
        "created_at": "Tue, 27 Sep 2011 20:24:22 GMT",
-       "mailbox": "user@samples.mailgun.org"
+       "mailbox": "user@samples.mailgun.org",
        "login": "user@samples.mailgun.org"
      },
      {
        "size_bytes": 0,
        "created_at": "Thu, 06 Oct 2011 10:22:36 GMT",
-       "mailbox": "user@samples.mailgun.org"
+       "mailbox": "user@samples.mailgun.org",
        "login": "user@samples.mailgun.org"
      }
    ]

@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/connection
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/connection
 
 .. code-block:: java
 
@@ -84,7 +84,20 @@
 
 .. code-block:: go
 
- // Coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetDomainConnection(domain, apiKey string) (mailgun.DomainConnection, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetDomainConnection(ctx, domain)
+ }
 
 .. code-block:: js
 

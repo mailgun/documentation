@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/domains \
-	-d skip=0 \
-	-d limit=3
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/domains \
+      -d skip=0 \
+      -d limit=3
 
 .. code-block:: java
 
@@ -94,9 +94,28 @@
 
 .. code-block:: go
 
- func GetDomains(domain, apiKey string) (int, []mailgun.Domain, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.GetDomains(-1, -1)
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListDomains(domain, apiKey string) ([]mailgun.Domain, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListDomains(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.Domain
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
  }
 
 .. code-block:: js

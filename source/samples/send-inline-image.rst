@@ -1,14 +1,14 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
-	-F to='alice@example.com' \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!' \
-	--form-string html='<html>Inline image here: <img src="cid:cartman.jpg"></html>' \
-	-F inline=@files/cartman.jpg
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
+      -F to='alice@example.com' \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomness!' \
+      --form-string html='<html>Inline image here: <img src="cid:cartman.jpg"></html>' \
+      -F inline=@files/cartman.jpg
 
 .. code-block:: java
 
@@ -27,14 +27,14 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
              .basicAuth("api", API_KEY)
-             .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .queryString("to", "alice@example.com")
-             .queryString("to", "bob@example.com")
-	         .queryString("cc", "joe@example.com")
-             .queryString("subject", "Hello")
-             .queryString("text", "Testing out some Mailgun awesomeness!")
-	         .field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
-	         .asJson();
+             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
+             .field("to", "alice@example.com")
+             .field("to", "bob@example.com")
+             .field("cc", "joe@example.com")
+             .field("subject", "Hello")
+             .field("text", "Testing out some Mailgun awesomeness!")
+             .field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
+             .asJson();
 
          return request.getBody();
      }
@@ -130,22 +130,32 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendInlineImage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "foo@example.com",
-   )
-   m.AddCC("baz@example.com")
-   m.AddBCC("bar@example.com")
-   m.SetHtml("<html>HTML version of the body</html>")
-   m.AddInline("files/test.jpg")
-   m.AddInline("files/test.txt")
-   _, id, err := mg.Send(m)
-   return id, err
-  }
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "foo@example.com",
+     )
+     m.AddCC("baz@example.com")
+     m.AddBCC("bar@example.com")
+     m.SetHtml("<html>HTML version of the body</html>")
+     m.AddInline("files/test.jpg")
+     m.AddInline("files/test.txt")
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
+ }
 
 .. code-block:: js
 

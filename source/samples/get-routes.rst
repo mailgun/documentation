@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-	https://api.mailgun.net/v3/routes \
-	-d skip=1 \
-	-d limit=1
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/routes \
+      -d skip=1 \
+      -d limit=1
 
 .. code-block:: java
 
@@ -93,9 +93,28 @@
 
 .. code-block:: go
 
- func GetRoutes(domain, apiKey string) (int, []mailgun.Route, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.GetRoutes(-1, -1)
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ListRoutes(domain, apiKey string) ([]mailgun.Route, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+     it := mg.ListRoutes(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     var page, result []mailgun.Route
+     for it.Next(ctx, &page) {
+         result = append(result, page...)
+     }
+
+     if it.Err() != nil {
+         return nil, it.Err()
+     }
+     return result, nil
  }
 
 .. code-block:: js

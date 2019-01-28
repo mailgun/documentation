@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials \
-	-F login='alice@YOUR_DOMAIN_NAME' \
-	-F password='supasecret'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials \
+     -F login='alice@YOUR_DOMAIN_NAME' \
+     -F password='supasecret'
 
 .. code-block:: java
 
@@ -98,9 +98,19 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func CreateCredential(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.CreateCredential("alice@YOUR_DOMAIN_NAME", "secret")
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateCredential(ctx, "alice@example.com", "secret")
  }
 
 .. code-block:: js

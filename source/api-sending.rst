@@ -89,6 +89,10 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  v\:my-var             ``v:`` prefix followed by an arbitrary name allows to
                        attach a custom JSON data to the message.
                        See :ref:`manual-customdata` for more information.
+ recipient-variables   A valid JSON-encoded dictionary, where key is a plain recipient 
+                       address and value is a dictionary with variables that can be 
+                       referenced in the message body. 
+                       See :ref:`batch-sending` for more information.
  ===================== ==========================================================
 
 .. code-block:: url
@@ -195,7 +199,7 @@ These are the parameters when the ``Accept`` header is set to ``message/rfc2822`
  ===========    ======    ============================================================================================================
  Parameter      Type      Description
  ===========    ======    ============================================================================================================
- recipient      string    recipient of the message.
+ recipients     string    recipient of the message.
  sender         string    sender of the message as reported by SMTP MAIL FROM.
  from           string    sender of the message as reported by ``From`` message header, for example "Bob <bob@example.com>".
  subject        string    subject string.

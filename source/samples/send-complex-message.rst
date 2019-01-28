@@ -1,17 +1,17 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
-	-F to='foo@example.com' \
-	-F cc='bar@example.com' \
-	-F bcc='baz@example.com' \
-	-F subject='Hello' \
-	-F text='Testing some Mailgun awesomness!' \
-	--form-string html='<html>HTML version of the body</html>' \
-	-F attachment=@files/cartman.jpg \
-	-F attachment=@files/cartman.png
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+      -F from='Excited User <YOU@YOUR_DOMAIN_NAME>' \
+      -F to='foo@example.com' \
+      -F cc='bar@example.com' \
+      -F bcc='baz@example.com' \
+      -F subject='Hello' \
+      -F text='Testing some Mailgun awesomness!' \
+      --form-string html='<html>HTML version of the body</html>' \
+      -F attachment=@files/cartman.jpg \
+      -F attachment=@files/cartman.png
 
 .. code-block:: java
 
@@ -29,16 +29,16 @@
      public static JsonNode sendComplexMessage() throws UnirestException {
 
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-	         .basicAuth("api", API_KEY)
-	      	 .queryString("from", "Excited User <USER@YOURDOMAIN.COM>")
-	      	 .queryString("to", "alice@example.com")
-	      	 .queryString("cc", "bob@example.com")
-	      	 .queryString("bcc", "joe@example.com")
-	      	 .queryString("subject", "Hello")
-	      	 .queryString("text", "Testing out some Mailgun awesomeness!")
-	      	 .queryString("html", "<html>HTML version </html>")
-	      	 .field("attachment", new File("/temp/folder/test.txt"))
-	      	 .asJson();
+              .basicAuth("api", API_KEY)
+              .field("from", "Excited User <USER@YOURDOMAIN.COM>")
+              .field("to", "alice@example.com")
+              .field("cc", "bob@example.com")
+              .field("bcc", "joe@example.com")
+              .field("subject", "Hello")
+              .field("text", "Testing out some Mailgun awesomeness!")
+              .field("html", "<html>HTML version </html>")
+              .field("attachment", new File("/temp/folder/test.txt"))
+              .asJson();
 
          return request.getBody();
      }
@@ -144,21 +144,31 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func SendComplexMessage(domain, apiKey string) (string, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   m := mg.NewMessage(
-     "Excited User <YOU@YOUR_DOMAIN_NAME>",
-     "Hello",
-     "Testing some Mailgun awesomeness!",
-     "foo@example.com",
-   )
-   m.AddCC("baz@example.com")
-   m.AddBCC("bar@example.com")
-   m.SetHtml("<html>HTML version of the body</html>")
-   m.AddAttachment("files/test.jpg")
-   m.AddAttachment("files/test.txt")
-   _, id, err := mg.Send(m)
-   return id, err
+     mg := mailgun.NewMailgun(domain, apiKey)
+     m := mg.NewMessage(
+         "Excited User <YOU@YOUR_DOMAIN_NAME>",
+         "Hello",
+         "Testing some Mailgun awesomeness!",
+         "foo@example.com",
+     )
+     m.AddCC("baz@example.com")
+     m.AddBCC("bar@example.com")
+     m.SetHtml("<html>HTML version of the body</html>")
+     m.AddAttachment("files/test.jpg")
+     m.AddAttachment("files/test.txt")
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     _, id, err := mg.Send(ctx, m)
+     return id, err
  }
 
 .. code-block:: js

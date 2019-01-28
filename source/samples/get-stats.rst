@@ -108,10 +108,21 @@
 
 .. code-block:: go
 
- func GetStats(domain, apiKey string) ([]Stat, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   _, stats, err := mg.GetStats(-1, -1, nil, "accepted", "delivered", "failed");
-   return stats, err
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func GetStats(domain, apiKey string) ([]mailgun.Stats, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.GetStats(ctx, []string{"accepted", "delivered", "failed"}, &mailgun.GetStatOptions{
+         Duration: "1m",
+     })
  }
 
 .. code-block:: js
@@ -119,6 +130,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get(`/${DOMAIN}/stats/total`, {"event": 'accepted', "event": 'delivered', "event": 'failed', "duration": '1m'}, function (error, body) {
+ mailgun.get(`/${DOMAIN}/stats/total`, {"event": ['accepted', 'delivered', 'failed'], "duration": '1m'}, function (error, body) {
    console.log(body);
  });

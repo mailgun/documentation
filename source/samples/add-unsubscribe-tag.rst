@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes \
-	-F address='bob@example.com' \
-	-F tag='tag1'
+  curl -s --user 'api:YOUR_API_KEY' \
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/unsubscribes \
+     -F address='bob@example.com' \
+     -F tag='tag1'
 
 .. code-block:: java
 
@@ -19,11 +19,11 @@
  
      public static JsonNode addUnsubscribe() throws UnirestException {
  
-  		HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
-  			.basicAuth("api", API_KEY)
-  			.field("address", "bob@example.com")
-  			.field("tag", "tag1")
-  			.asJson();
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
+             .basicAuth("api", API_KEY)
+             .field("address", "bob@example.com")
+             .field("tag", "tag1")
+             .asJson();
  
          return request.getBody();
      }
@@ -97,9 +97,19 @@
 
 .. code-block:: go
 
- func CreateUnsubscriptionWithTag(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   return mg.Unsubscribe("bob@example.com", "tag1")
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func CreateUnsubscribeWithTag(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateUnsubscribe(ctx, "bob@example.com", "tag1")
  }
 
 .. code-block:: js

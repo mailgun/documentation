@@ -1,13 +1,12 @@
-
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members \
-	-F subscribed=True \
-	-F address='bar@example.com' \
-	-F name='Bob Bar' \
-	-F description='Developer' \
-	-F vars='{"age": 26}'
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members \
+      -F subscribed=True \
+      -F address='bar@example.com' \
+      -F name='Bob Bar' \
+      -F description='Developer' \
+      -F vars='{"age": 26}'
 
 .. code-block:: java
 
@@ -15,13 +14,13 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode addListMember() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members")
              .basicAuth("api", API_KEY)
              .field("subscribed", true)
@@ -30,7 +29,7 @@
              .field("description", "developer")
              .field("vars", "{\"age\": 26}")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -117,14 +116,25 @@
 
 .. code-block:: go
 
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
  func AddListMember(domain, apiKey string) error {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   memberJoe := mailgun.Member{
-     Address:    "joe@example.com",
-     Name:       "Joe Example",
-     Subscribed: mailgun.Subscribed,
-   }
-   return mg.CreateMember(true, "mailingList@example.com", memberJoe)
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     memberJoe := mailgun.Member{
+         Address:    "joe@example.com",
+         Name:       "Joe Example",
+         Subscribed: mailgun.Subscribed,
+     }
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.CreateMember(ctx, true, "mailingList@example.com", memberJoe)
  }
 
 

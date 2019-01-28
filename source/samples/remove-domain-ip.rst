@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1
+     https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1
 
 .. code-block:: java
 
@@ -10,14 +10,14 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
  
      // ...
  
      public static JsonNode deleteDomainIP() throws UnirestException {
  
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1")
+         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1")
              .basicAuth("api", API_KEY)
              .asJson();
  
@@ -43,14 +43,14 @@
 
  def delete_domain_ip():
      return requests.delete(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_domain_ip
    RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/ips/127.0.0.1"
+   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1"
  end
 
 .. code-block:: csharp
@@ -87,7 +87,20 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func DeleteDomainIP(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.DeleteDomainIP(ctx, "127.0.0.1")
+ }
 
 .. code-block:: js
 

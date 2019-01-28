@@ -1,7 +1,7 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -G \
-        https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events/W3siYSI6IGZhbHNlLC
+  curl -s --user 'api:YOUR_API_KEY' -G \
+      https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/events/W3siYSI6IGZhbHNlLC
 
 .. code-block:: java
 
@@ -84,27 +84,43 @@
 
 .. code-block:: go
 
- func GetLog2(domain, apiKey string) ([]mailgun.Event, error) {
-   mg := mailgun.NewMailgun(domain, apiKey, "")
-   ei := mg.NewEventIterator()
-   err := ei.GetFirstPage(mailgun.GetEventsOptions{
-     Filter:         map[string]string{
-       "event": "rejected OR failed",
+ import (
+     "context"
+     "fmt"
+     "github.com/mailgun/mailgun-go/v3"
+     "github.com/mailgun/mailgun-go/v3/events"
+     "time"
+ )
+
+ func PrintEvents(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     // Create an iterator
+     it := mg.ListEvents(nil)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     // Iterate through all the pages of events
+     var page []mailgun.Event
+     for it.Next(ctx, &page) {
+         for _, event := range page {
+             switch e := event.(type) {
+             case *events.Accepted:
+                 fmt.Printf("Accepted ID: %s", e.Message.Headers.MessageID)
+             case *events.Rejected:
+                 fmt.Printf("Rejected Reason: %s", e.Reject.Reason)
+             // Add other event types here
+             }
+             fmt.Printf("%+v\n", event.GetTimestamp())
+         }
      }
-   })
-   if err != nil {
-     return nil, err
-   }
-   // ...
-   err = ei.GetNext()
-   if err != nil {
-     return nil, err
-   }
-   events := ei.Events()
-   if len(events) == 0 {
-     return nil, fmt.Errorf("No more events")
-   }
-   return events, nil
+
+     // Did iteration end because of an error?
+     if it.Err() != nil {
+         return it.Err()
+     }
+     return nil
  }
 
 .. code-block:: js

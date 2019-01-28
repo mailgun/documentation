@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -G --user 'api:pubkey-501jygdalut926-6mb1ozo8ay9crlc28' \
-	https://api.mailgun.net/v3/address/parse \
-	--data-urlencode addresses='Alice <alice@example.com>,bob@example.com'
+  curl -G --user 'api:pubkey-501jygdalut926-6mb1ozo8ay9crlc28' \
+      https://api.mailgun.net/v3/address/parse \
+      --data-urlencode addresses='Alice <alice@example.com>,bob@example.com'
 
 .. code-block:: java
 
@@ -19,8 +19,8 @@
      public static JsonNode parseAddresses() throws UnirestException {
  
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/parse")
- 			.basicAuth("api", API_KEY)
- 		    .queryString("addresses", "bob@example.com, alice@example.com")
+             .basicAuth("api", API_KEY)
+             .queryString("addresses", "bob@example.com, alice@example.com")
              .asJson();
  
          return request.getBody();
@@ -92,13 +92,23 @@
 
 .. code-block:: go
 
- func ParseAddress(domain, publicApiKey string) ([]string, []string, error) {
-   mg := mailgun.NewMailgun(domain, "", publicApiKey)
-   return mg.ParseAddress(
-     "Alice <alice@example.com>",
-     "bob@example.com",
-     // ...
-   )
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ParseAddress(apiKey string) ([]string, []string, error) {
+     mv := mailgun.NewEmailValidator(apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mv.ParseAddresses(ctx,
+         "Alice <alice@example.com>",
+         "bob@example.com",
+         // ...
+     )
  }
 
 .. code-block:: js

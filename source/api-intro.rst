@@ -23,13 +23,19 @@ examples that will function. You're welcome to copy/paste and run the script to 
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
 .. _JSON: http://en.wikipedia.org/wiki/Json objects
 
+.. _base-url:
+
 Base URL
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All API URLs referenced in this documentation start with the following
-base part::
+All API URLs referenced in this documentation start with a base part. For non EU
+customers the base URL is::
 
     https://api.mailgun.net/v3
+
+For EU customers the base URL is::
+
+    https://api.eu.mailgun.net/v3
 
 Your Mailgun account may contain several email domains. To avoid passing
 the domain name as a query parameter, most API URLs must include the name of
@@ -37,7 +43,7 @@ the domain you're interested in::
 
     https://api.mailgun.net/v3/mydomain.com
 
-.. index:: Authentication
+.. _authentication:
 
 Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,7 +75,7 @@ box::
 
     'Thu, 13 Oct 2011 18:02:00 GMT'
 
-.. index:: Errors
+.. _errors:
 
 Errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,10 +92,72 @@ Mailgun returns standard HTTP response codes.
  401                Unauthorized - No valid API key provided
  402                Request Failed - Parameters were valid but request failed
  404                Not Found - The requested item doesn't exist
+ 413                Request Entity Too Large - Attachment size is too big
  500, 502, 503, 504 Server Errors - something is wrong on Mailgun's end
  ================== ==========================================================
+
+.. _webhooks-api-intro:
 
 Webhooks
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes.  You can read more about :ref:`webhooks` and :ref:`um-routes` in the :ref:`user-manual`.
+
+.. _mailgun-regions:
+
+Mailgun Regions
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Using a single account and billing plan, you can choose to provision new sending domains in the EU environment. Message data never leaves the region in which it is processed. Only a limited amount of account data is replicated globally, giving you a single account from which to manage domains in both the US and the EU. Here are the specifics on the type of data that is replicated globally versus what is region-bound.
+
+.. container:: ptable
+
+ ======================================================================================================= ==================================================================================================================================
+ Global                                                                                                  Region-Bound (US / EU)
+ ======================================================================================================= ==================================================================================================================================
+ Account Information, User Accounts, Billing Details (invoices/plan information), API Keys, Domain Names Domain Metadata (e.g. SMTP credentials), Messages, Event Logs, Suppressions, Mailing Lists, Tags, Statistics, Routes, IP Addresses
+ ======================================================================================================= ==================================================================================================================================
+
+Below are the endpoints you will use for sending/receiving/tracking messages in the EU:
+
+.. container:: ptable
+
+ ============================= ==================== ====================
+ Service                       US Endpoint          EU Endpoint
+ ============================= ==================== ====================
+ REST API                      api.mailgun.net      api.eu.mailgun.net
+ Outgoing SMTP Server          smtp.mailgun.org     smtp.eu.mailgun.org
+ Inbound SMTP Server (Routes)  mxa.mailgun.org      mxa.eu.mailgun.org
+ Inbound SMTP Server (Routes)  mxb.mailgun.org      mxb.eu.mailgun.org
+ Open/Click Tracking Endpoint  mailgun.org          eu.mailgun.org
+ ============================= ==================== ====================
+
+.. _postman-integration:
+
+Postman Integration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Mailgun has a Postman Collection available for quick and easy exercise of our REST-based APIs. Included in the collection is a Mailgun Environment for easy changing of domains, regions and API keys. Use the button below for easy import into Postman. Don't have Postman? `Click here`_.
+
+Read more about Mailgun and Postman on our blog_.
+
+.. raw:: html
+
+    <div class="postman-run-button"
+         data-postman-action="collection/import"
+         data-postman-var-1="4a1b196c53ca11f2e540"
+         data-postman-param="env%5BMailgun%20Postman%20Environment%5D=W3siZGVzY3JpcHRpb24iOnsiY29udGVudCI6IiIsInR5cGUiOiJ0ZXh0L3BsYWluIn0sInZhbHVlIjoiNzM0MzE3MDM1M2RkMDU5OGIzOWFlOGRkYjcwYWMxMjItMDQ3MGExZjctYWI4OWEyYzkiLCJrZXkiOiJBUElfS0VZIiwiZW5hYmxlZCI6dHJ1ZX0seyJkZXNjcmlwdGlvbiI6eyJjb250ZW50IjoiIiwidHlwZSI6InRleHQvcGxhaW4ifSwidmFsdWUiOiJodHRwczovL2FwaS5tYWlsZ3VuLm5ldC92MyIsImtleSI6IkJBU0VfVVJMIiwiZW5hYmxlZCI6dHJ1ZX0seyJkZXNjcmlwdGlvbiI6eyJjb250ZW50IjoiIiwidHlwZSI6InRleHQvcGxhaW4ifSwidmFsdWUiOiJzYW5kYm94OTc0YWFkNjM5MDk1NGUzOWI4OGY0YmZhOGNmMTg0YzMubWFpbGd1bi5vcmciLCJrZXkiOiJteWRvbWFpbiIsImVuYWJsZWQiOnRydWV9LHsidmFsdWUiOiJZWEJwT2pjek5ETXhOekF6TlROa1pEQTFPVGhpTXpsaFpUaGtaR0kzTUdGak1USXlMVEEwTnpCaE1XWTNMV0ZpT0RsaE1tTTUiLCJrZXkiOiJ0b2tlbiIsImVuYWJsZWQiOnRydWV9XQ=="
+    >
+    </div>
+    <script type="text/javascript">
+      (function (p,o,s,t,m,a,n) {
+        !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+        !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+        (n = o.createElement("script")),
+        (n.id = s+t), (n.async = 1), (n.src = m), n
+        ));
+      }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+    </script>
+
+.. _Click here: https://www.getpostman.com/
+.. _blog: https://www.mailgun.com/blog/together-at-last-postman-meets-mailgun

@@ -1,10 +1,10 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/connection
-	-F require_tls='true' \
-	-F skip_verification='false'
+  curl -s --user 'api:YOUR_API_KEY' -X PUT \
+      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/connection
+      -F require_tls='true' \
+      -F skip_verification='false'
 
 .. code-block:: java
 
@@ -21,9 +21,9 @@
 
          HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/"+ YOUR_DOMAIN_NAME +"/connection")
              .basicAuth("api", API_KEY)
-		     .field("require_tls", true)
-		     .field("skip_verification", false)
-	         .asJson();
+             .field("require_tls", true)
+             .field("skip_verification", false)
+             .asJson();
 
          return jsonResponse.getBody();
      }
@@ -96,7 +96,23 @@
 
 .. code-block:: go
 
- // Coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func UpdateDomainConnection(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.UpdateDomainConnection(ctx, domain, mailgun.DomainConnection{
+         RequireTLS:       true,
+         SkipVerification: true,
+     })
+ }
 
 .. code-block:: js
 

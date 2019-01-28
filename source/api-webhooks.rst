@@ -5,18 +5,20 @@ Webhooks
 
 This API allows you to create, access, and delete webhooks programmatically.
 
+.. note::  A previous version of the API is described here :ref:`api-webhooks-deprecated`
+
 Supported webhooks, and their documentation, are listed below:
 
 ================= ========================================================
 Webhook Name      Documentation
 ================= ========================================================
-bounce            :ref:`um-tracking-bounces`
-deliver		        :ref:`um-tracking-deliveries`
-drop			        :ref:`um-tracking-failures`
-spam              :ref:`um-tracking-spam-complaints`
-unsubscribe       :ref:`um-tracking-unsubscribes`
-click             :ref:`um-tracking-clicks`
-open              :ref:`um-tracking-opens`
+clicked           :ref:`um-tracking-clicks`
+complained        :ref:`um-tracking-spam-complaints`
+delivered         :ref:`um-tracking-deliveries`
+opened            :ref:`um-tracking-opens`
+permanent_fail    :ref:`um-tracking-failures`
+temporary_fail    :ref:`um-tracking-failures`
+unsubscribed      :ref:`um-tracking-unsubscribes`
 ================= ========================================================
 
 
@@ -55,7 +57,7 @@ Returns details about a the webhook specified in the URL.
 
 Creates a new webhook.
 
-.. note:: When adding a Click or Open webhook, ensure that you also have tracking enabled.
+.. note:: When adding a Clicked or Opened webhook, ensure that you also have tracking enabled.
 
 .. container:: ptable
 
@@ -64,7 +66,7 @@ Creates a new webhook.
  ================= ========================================================
  domain            Name of the domain
  id                Name of the webhook. (See above for supported webhooks)
- url               URL for the webhook event.
+ url               URL for the webhook event. May be repeated up to 3 times.
  ================= ========================================================
 
 .. code-block:: url
@@ -79,8 +81,8 @@ Updates an existing webhook.
  Parameter         Description
  ================= ========================================================
  domain            Name of the domain
- id                Name of the webhook. (See above for supported webhooks)
- url               URL for the webhook event.
+ webhookname       Name of the webhook. (See above for supported webhooks)
+ url               URL for the webhook event. May be repeated up to 3 times.
  ================= ========================================================
 
 .. code-block:: url
@@ -99,7 +101,7 @@ Deletes an existing webhook.
  Parameter         Description
  ================= ========================================================
  domain            Name of the domain
- id                Name of the webhook. (See above for supported webhooks)
+ webhookname       Name of the webhook. (See above for supported webhooks)
  ================= ========================================================
 
 Examples
@@ -115,11 +117,14 @@ Sample response:
 
 	{
 	  "webhooks": {
-	    "open": {
-	      "url": "http://postbin.heroku.com/860bcd65"
+	    "opened": {
+	      "urls": [
+		        "https://your_domain.com/v1/opened",
+		        "https://your_domain.com/v2/opened" 
+		      ]
 	    },
-	    "click": {
-	      "url": "http://postbin.heroku.com/860bcd65"
+	    "clicked": {
+	      "urls": [ "https://your_domain.com/v1/clicked" ]
 	    }
 	  }
 	}
@@ -134,7 +139,7 @@ Sample response:
 
 	{
 	  "webhook": {
-	    "url": "http://google.com"
+	    "urls": [ "https://your_domain.com/v1/clicked" ]
 	  }
 	}
 
@@ -149,7 +154,11 @@ Sample response:
 	{
 	  "message": "Webhook has been created",
 	  "webhook": {
-	    "url": "http://bin.mailgun.net/8de4a9c4"
+	    "urls": [
+		      "https://your_domain.com/v1/clicked",
+		      "https://your_domain.com/v2/clicked",
+		      "https://your_partner_domain.com/v1/clicked" 
+		    ]
 	  }
 	}
 
@@ -164,7 +173,7 @@ Sample response:
 	{
 	  "message": "Webhook has been updated",
 	  "webhook": {
-	    "url": "http://google.com"
+	    "urls": [ "https://your_domain.com/v1/clicked" ]
 	  }
 	}
 
@@ -179,7 +188,11 @@ Sample response:
 	{
 	  "message": "Webhook has been deleted",
 	  "webhook": {
-	    "url": "http://postbin.heroku.com/860bcd65"
+	    "urls": [
+		      "https://your_domain.com/v1/clicked",
+		      "https://your_domain.com/v2/clicked",
+		      "https://your_partner_domain.com/v1/clicked" 
+		    ]
 	  }
 	}
 

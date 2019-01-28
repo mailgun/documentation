@@ -73,6 +73,14 @@ You will also need the following dependencies -
 (org.json, httpclient 4.3.6, httpmime 4.3.6, httpasyncclient 4.0.2) 
 
 
+Kotlin
+====
+
+Kotlin users could of course use the Java library, but for an alternative, take a look at this library:
+
+`mailgun-kotlin <https://github.com/Commit451/mailgun>`_
+
+
 C#
 ===
 
@@ -97,7 +105,7 @@ PHP
 Our PHP library is robust and provides an excellent interface to easily interact
 with our API.
 
-Github Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_
+GitHub Repository: `mailgun-php <https://github.com/mailgun/mailgun-php>`_
 
 Minimum PHP Version: 5.5.0
 
@@ -110,7 +118,7 @@ install composer and the Mailgun library.
     # Install Composer
     curl -sS https://getcomposer.org/installer | php
 
-    # Add Mailgun and Guzzle6 as a dependency (see Github README below for more info)
+    # Add Mailgun and Guzzle6 as a dependency (see GitHub README below for more info)
     php composer.phar require mailgun/mailgun-php php-http/guzzle6-adapter php-http/message
 
 
@@ -123,7 +131,7 @@ load the Mailgun library in your project.
     use Mailgun\Mailgun;
     $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
 
-For additional information, see the Github Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
+For additional information, see the GitHub Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
 
 **Standard HTTP Library:**
 
@@ -184,7 +192,7 @@ cURL
 `curl <http://linux.die.net/man/1/curl>`_ is a popular command line tool to send HTTP requests.
 It is very simple and yet quite powerful. With it you could send data using any
 HTTP method. You could send post data and query params and files in a very
-consistent and elegant way. An exellent choice to study the API.
+consistent and elegant way. An excellent choice to study the API.
 
 
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer

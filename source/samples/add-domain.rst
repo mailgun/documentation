@@ -1,10 +1,9 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-	-X POST \
-	https://api.mailgun.net/v3/domains \
-	-F name='YOUR_NEW_DOMAIN_NAME' \
-	-F smtp_password='supersecretpassword'
+  curl -s --user 'api:YOUR_API_KEY' \
+    -X POST https://api.mailgun.net/v3/domains \
+    -F name='YOUR_NEW_DOMAIN_NAME' \
+    -F smtp_password='supersecretpassword'
 
 .. code-block:: java
 
@@ -12,19 +11,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode addDomain() throws UnirestException {
- 
+
          HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains")
              .basicAuth("api", API_KEY)
              .field("name", "YOUR_NEW_DOMAIN_NAME")
              .field("smtp_password", "supersecretpassword")
              .asJson();
- 
+
          return jsonResponse.getBody();
      }
  }
@@ -96,10 +95,23 @@
 
 .. code-block:: go
 
- func AddDomain(domain, apiKey string) error {
-        mg := mailgun.NewMailgun(domain, apiKey, "")
-        return mg.CreateDomain("YOUR_NEW_DOMAIN_NAME", "supersecretpassword", mailgun.Tag, false)
- }
+  import (
+      "context"
+      "github.com/mailgun/mailgun-go/v3"
+      "time"
+  )
+
+  func AddDomain(domain, apiKey string) error {
+      mg := mailgun.NewMailgun(domain, apiKey)
+
+      ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+      defer cancel()
+
+      return mg.CreateDomain(ctx, "example.com", "super_secret", &mailgun.CreateDomainOptions{
+          SpamAction: mailgun.SpamActionTag,
+          Wildcard:   false,
+      })
+  }
 
 .. code-block:: js
 

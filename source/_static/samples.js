@@ -24,6 +24,7 @@ var samples = {
         return this._sections;
     },
 
+    // Hides code samples until appropriate language is selected
     hide: function () {
         for (var i = 0; i < this.langs().length; i++) {
             var id = this.langs()[i];

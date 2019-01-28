@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' -X PUT \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/credentials/alice \
-	-F password='abc123'
+ curl -s --user 'api:YOUR_API_KEY' -X PUT \
+    https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice \
+    -F password='abc123'
 
 .. code-block:: java
 
@@ -39,7 +39,7 @@
   $login= 'alice';
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/credentials/$login", array(
+  $result = $mgClient->put("domains/$domain/credentials/$login", array(
       'password' => 'supersecret'
   ));
 
@@ -47,7 +47,7 @@
 
  def change_credential_password():
      return requests.put(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/credentials/alice",
+         "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice",
          auth=("api", "YOUR_API_KEY"),
          data={"password": "supersecret"})
 
@@ -55,7 +55,7 @@
 
  def change_credential_password
    RestClient.put "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/credentials/alice",
+   "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice",
    :password => "supersecret"
  end
 
@@ -83,7 +83,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/credentials/{username}";
+         request.Resource = "domains/{domain}/credentials/{username}";
          request.AddUrlSegment ("username", "alice");
          request.AddParameter ("password", "supersecret");
          request.Method = Method.PUT;
@@ -94,13 +94,26 @@
 
 .. code-block:: go
 
- // coming soon
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ChangePassword(domain, apiKey string) error {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.ChangeCredentialPassword(ctx, "alice", "super_secret")
+ }
 
 .. code-block:: js
 
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/domain/${DOMAIN}/credentials/alice`, {"password" : "supersecret"}, function (error, body) {
+ mailgun.put(`/domains/${DOMAIN}/credentials/alice`, {"password" : "supersecret"}, function (error, body) {
    console.log(body);
  });

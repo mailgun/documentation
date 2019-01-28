@@ -1,9 +1,8 @@
 .. code-block:: bash
 
-    curl -s --user 'api:YOUR_API_KEY' \
-    https://se.api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/messages/STORAGE_URL \
-    -F to='bob@example.com'
-
+  curl -s --user 'api:YOUR_API_KEY' \
+      https://se.api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/messages/STORAGE_URL \
+      -F to='bob@example.com'
 
 .. code-block:: java
 
@@ -20,12 +19,12 @@
 
          HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
              .basicAuth("api", API_KEY)
-             .queryString("to", "user@samples.mailgun.org")
+             .field("to", "user@samples.mailgun.org")
              .asJson();
 
-     return request.getBody();
+         return request.getBody();
+     }
  }
-
 
 .. code-block:: php
 
@@ -105,10 +104,22 @@
 
  }
 
-
 .. code-block:: go
 
- // Not supported yet.
+ import (
+     "context"
+     "github.com/mailgun/mailgun-go/v3"
+     "time"
+ )
+
+ func ResendMessage(domain, apiKey string) (string, string, error) {
+     mg := mailgun.NewMailgun(domain, apiKey)
+
+     ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+     defer cancel()
+
+     return mg.ReSend(ctx, "STORAGE_URL", "bar@example.com")
+ }
 
 .. code-block:: js
 

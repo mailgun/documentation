@@ -1,8 +1,9 @@
 
 .. code-block:: bash
 
-  curl -s --user 'api:YOUR_API_KEY' -G \
-      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/pages
+  curl -s --user 'api:YOUR_API_KEY' -X PUT \
+      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click \
+      -F url='http://google.com'
 
 .. code-block:: java
 
@@ -10,17 +11,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
-     public static JsonNode listMembers() throws UnirestException {
- 
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/lists/{list_name}@{domain}/members/pages")
+
+     public static JsonNode updateWebhook() throws UnirestException {
+
+         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks/click")
              .basicAuth("api", API_KEY)
+             .field("url", "http://google.com")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -33,26 +35,29 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
+  $listAddress = 'YOUR_DOMAIN_NAME';
+  $memberAddress = 'bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->get("lists/$listAddress/members/pages", array(
-      'subscribed' => 'yes',
-      'limit'      =>  5
+  $result = $mgClient->put("$domain/webhooks/click", array(
+      'url' => 'http://google.com'
   ));
 
 .. code-block:: py
 
- def list_members():
-     return requests.get(
-         "https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/pages",
-         auth=('api', 'YOUR_API_KEY'))
+ def update_member():
+     return requests.put(
+         ("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click"),
+         auth=('api', 'YOUR_API_KEY'),
+         data={'url': 'http://google.com'})
 
 .. code-block:: rb
 
- def list_members
-   RestClient.get("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/members/pages")
+ def update_member
+   RestClient.put("https://api:YOUR_API_KEY" \
+                  "@api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks/click" \
+                  "/bar@example.com",
+                  :url => 'http://google.com')
  end
 
 .. code-block:: csharp
@@ -62,15 +67,15 @@
  using RestSharp;
  using RestSharp.Authenticators;
 
- public class GetListMembersChunk
+ public class UpdateWebhookChunk
  {
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (GetListMembers ().Content.ToString ());
+         Console.WriteLine (UpdateWebhook ().Content.ToString ());
      }
 
-     public static IRestResponse GetListMembers ()
+     public static IRestResponse UpdateWebhook ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
@@ -78,9 +83,9 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "lists/{list}/members/pages";
-         request.AddParameter ("list", "LIST@YOUR_DOMAIN_NAME",
-                               ParameterType.UrlSegment);
+         request.Resource = "/domains/YOUR_DOMAIN_NAME/webhooks/click";
+         request.AddParameter ("url", "http://google.com");
+         request.Method = Method.PUT;
          return client.Execute (request);
      }
 
@@ -94,22 +99,13 @@
      "time"
  )
 
- func GetMembers(domain, apiKey string) ([]mailgun.Member, error) {
+ func UpdateWebhook(domain, apiKey string) error {
      mg := mailgun.NewMailgun(domain, apiKey)
-     it := mg.ListMembers("list@example.com", nil)
 
      ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
      defer cancel()
 
-     var page, result []mailgun.Member
-     for it.Next(ctx, &page) {
-         result = append(result, page...)
-     }
-
-     if it.Err() != nil {
-         return nil, it.Err()
-     }
-     return result, nil
+     return mg.UpdateWebhook(ctx, "clicked", []string{"https://your_domain.com/clicked"})
  }
 
 .. code-block:: js
@@ -117,8 +113,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- var list = mailgun.lists(`mylist@${DOMAIN}`);
-
- list.members().list(function (err, members) {
-   console.log(members);
+ mailgun.put(`/domain/${DOMAIN}/webhooks/click`, {"url": 'http://google.com'}, function (error, body) {
+   console.log(body);
  });
