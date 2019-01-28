@@ -103,7 +103,7 @@
      "time"
  )
 
- func CreateDomain(domain, apiKey string) error {
+ func CreateDomain(domain, apiKey string) (mailgun.DomainResponse, error) {
      mg := mailgun.NewMailgun(domain, apiKey)
 
      ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
