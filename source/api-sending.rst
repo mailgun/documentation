@@ -51,37 +51,39 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
                        You can post multiple ``inline`` values.
  o\:tag                Tag string. See :ref:`tagging` for more information.
  o\:dkim               Enables/disables DKIM signatures on per-message basis.
-                       Pass ``yes`` or ``no``
+                       Pass ``yes``, ``no``, ``true`` or ``false``
  o\:deliverytime       Desired time of delivery. See :ref:`date-format`. Note:
                        Messages can be scheduled for a maximum of 3 days in the
                        future.
  o\:testmode           Enables sending in test mode. Pass ``yes`` if needed.
                        See :ref:`manual-testmode`
  o\:tracking           Toggles tracking on a per-message basis, see
-                       :ref:`tracking-messages` for details. Pass ``yes`` or ``no``.
+                       :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
+                       ``true`` or ``false``
  o\:tracking-clicks    Toggles clicks tracking on a per-message basis. Has higher
-                       priority than domain-level setting. Pass ``yes``, ``no``
-                       or ``htmlonly``.
+                       priority than domain-level setting. Pass ``yes``, ``no``,
+                       ``true``, ``false`` or ``htmlonly``.
  o\:tracking-opens     Toggles opens tracking on a per-message basis. Has higher
-                       priority than domain-level setting. Pass ``yes`` or ``no``.
- o\:require-tls        If set to `True` this requires the message only be sent over
-                       a TLS connection. If a TLS connection can not be established,
+                       priority than domain-level setting. Pass ``yes`` or ``no``,
+                       ``true`` or ``false``
+ o\:require-tls        If set to ``True`` or ``yes`` this requires the message only be
+                       sent over a TLS connection. If a TLS connection can not be established,
                        Mailgun will not deliver the message.
 
-                       If set to `False`, Mailgun will still try and upgrade the
-                       connection, but if Mailgun can not, the message will be
+                       If set to ``False`` or ``no``, Mailgun will still try and upgrade
+                       the connection, but if Mailgun can not, the message will be
                        delivered over a plaintext SMTP connection.
 
                        The default is False.
- o\:skip-verification  If set to `True`, the certificate and hostname will not be
-                       verified when trying to establish a TLS connection and Mailgun
+ o\:skip-verification  If set to ``True`` or ``yes``, the certificate and hostname will
+                       not be verified when trying to establish a TLS connection and Mailgun
                        will accept any certificate during delivery.
 
-                       If set to `False`, Mailgun will verify the certificate and
+                       If set to ``False`` or ``no``, Mailgun will verify the certificate and
                        hostname. If either one can not be verified, a TLS connection
                        will not be established.
 
-                       The default is `False`.
+                       The default is ``False``.
  h\:X-My-Header        ``h:`` prefix followed by an arbitrary value allows to append
                        a custom MIME header to the message (``X-My-Header``
                        in this case). For example, ``h:Reply-To`` to specify Reply-To
