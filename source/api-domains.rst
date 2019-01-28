@@ -51,28 +51,28 @@ Create a new domain. See examples below.
  name                  Name of the domain (ex. domain.com)
  smtp_password         Password for SMTP authentication
  spam_action           ``disabled``, ``block``, or ``tag``
-                       
+
                        If *disabled*, no spam filtering will occur for inbound
                        messages.
-                       
+
                        If *block*, inbound spam messages will not be delivered.
-                       
+
                        If *tag*, inbound messages will be tagged with a spam header.
                        See :ref:`um-spam-filter`.
-                       
+
                        The default is ``disabled``.
  wildcard              *true* or *false*
                        Determines whether the domain will accept email for sub-domains when sending messages.
 
                        The default is `false`.
  force_dkim_authority  *true* or *false*
-                       
+
                        If set to *true*, the domain will be the DKIM authority for itself
                        even if the root domain is registered on the same mailgun account
-                       
+
                        If set to *false*, the domain will have the same DKIM authority
                        as the root domain registered on the same mailgun account
-                       
+
                        The default is `false`.
  dkim_key_size         Size of domain's DKIM key pairs: ``1024`` or ``2048``
 
@@ -162,7 +162,7 @@ Updates the specified delivery connection settings for the defined domain.
  Parameter         Description
  ================= =============================================================
  require_tls       *true* or *false*
-                   
+
                    If set to *true*, this requires the message only be sent over
                    a TLS connection. If a TLS connection can not be established,
                    Mailgun will not deliver the message.
@@ -174,7 +174,7 @@ Updates the specified delivery connection settings for the defined domain.
                    The default is `false`.
 
  skip_verification *true* or *false*
-                   
+
                    If set to *true*, the certificate and hostname will not be
                    verified when trying to establish a TLS connection and Mailgun
                    will accept any certificate during delivery.
@@ -221,7 +221,7 @@ Updates the click tracking settings for a domain.
 
                    If set to *yes*, links will be overwritten and pointed to our
                    servers so we can track clicks.
-                   
+
                    If set to *htmlonly*, links will only be rewritten in the HTML
                    part of a message.
  ================= =============================================================
@@ -262,18 +262,18 @@ Change the DKIM authority for a domain.
  Parameter         Description
  ================= =============================================================
  self              *true* or *false*
-                   
+
                    Change the DKIM authority for a domain.
-                   
+
                    If set to *true*, the domain will be the DKIM authority for itself
                    even if the root domain is registered on the same mailgun account
-                   
+
                    If set to *false*, the domain will have the same DKIM authority
                    as the root domain registered on the same mailgun account
  ================= =============================================================
 .. note::  Use with caution: Do not forget to change the corresponding DNS record.
 		It can take 24-48 hours for DNS changes to propagate.
-		Changing the DKIM autority of an active domain affects its current deliveriability.
+		Changing the DKIM authority of an active domain affects its current deliverability.
 
 
 Example
