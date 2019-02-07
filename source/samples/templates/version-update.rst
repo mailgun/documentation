@@ -1,7 +1,7 @@
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' -X PUT \
-    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID/versions/VERSION_ID \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions/VERSION_TAG \
     -F template='{{fname}} {{lname}}' \
     -F comment='Updated version comment' \
     -F active='yes'
@@ -19,7 +19,7 @@
  
      public static JsonNode UpdateVersion() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_ID/versions/VERSION_ID")
+         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_NAME/versions/VERSION_TAG")
  			.basicAuth("api", API_KEY)
  			.field("template", "{{fname}} {{lname}}")
             .field("comment", "Updated version comment")
@@ -39,11 +39,11 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $templateId = 'TEMPLATE_ID'
-  $versionId = 'VERSION_ID'
+  $name = 'TEMPLATE_NAME'
+  $tag = 'VERSION_TAG'
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/templates/$templateId/versions/$versionId", array(
+  $result = $mgClient->put("$domain/templates/$name/versions/$tag", array(
       'template' => '{{fname}} {{lname}}',
       'comment' => 'Updated version comment',
       'active' => 'yes'
@@ -53,7 +53,7 @@
 
  def update_version():
      return requests.put(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID/versions/VERSION_ID",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions/VERSION_TAG",
          auth=("api", "YOUR_API_KEY"),
          data={'template': '{{fname}} {{lname}}',
                'comment': 'Updated version comment',
@@ -63,7 +63,7 @@
 
  def update_version: 
    RestClient.put "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID/versions/VERSION_ID",
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions/VERSION_TAG",
    :template => '{{fname}} {{lname}}',
    :comment => 'Updated version comment',
    :active => 'yes'
@@ -92,10 +92,10 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "{domain}/templates/{templateId}/versions/{versionId}";
+         request.Resource = "{domain}/templates/{name}/versions/{tag}";
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("templateId", "TEMPLATE_ID", ParameterType.UrlSegment);
-         request.AddParameter ("versionId", "VERSION_ID", ParameterType.UrlSegment);
+         request.AddParameter ("name", "TEMPLATE_NAME", ParameterType.UrlSegment);
+         request.AddParameter ("tag", "VERSION_TAG", ParameterType.UrlSegment);
          request.AddParameter ("template", "{{fname}} {{lname}}");
          request.AddParameter ("comment", "Updated version comment");
          request.AddParameter ("active", "yes");
@@ -114,7 +114,7 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/${DOMAIN}/templates/TEMPLATE_ID/versions/VERSION_ID`,
+ mailgun.put(`/${DOMAIN}/templates/TEMPLATE_NAME/versions/VERSION_TAG`,
              {"template" : "{{fname}} {{lname}}",
               "comment": "Updated version comment",
               "active": "yes"},

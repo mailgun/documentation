@@ -80,7 +80,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("limit", 10101010101010101010);
+         request.AddParameter ("limit", 10);
          request.Resource = "/{domain}/templates";
          return client.Execute (request);
      }

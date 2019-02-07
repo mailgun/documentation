@@ -1,7 +1,7 @@
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' -G \
-    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID/versions/VERSION_ID
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions/VERSION_TAG
 
 .. code-block:: java
 
@@ -16,7 +16,7 @@
  
      public static JsonNode getTemplateVersion() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_ID/versions/VERSION_ID")
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_NAME/versions/VERSION_TAG")
              .basicAuth("api", API_KEY)
              .asJson();
  
@@ -33,24 +33,24 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $templateId = 'TEMPLATE_ID'
-  $versionId  = 'VERSION_ID'
+  $name = 'TEMPLATE_NAME'
+  $tag  = 'VERSION_TAG'
   
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/templates/$templateId/versions/$versionId");
+  $result = $mgClient->get("$domain/templates/$name/versions/$tag");
 
 .. code-block:: py
 
  def get_template_version():
      return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID/versions/VERSION_ID",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions/VERSION_TAG",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def get_template_version
    RestClient.get "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID/versions/VERSION_ID" 
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions/VERSION_TAG" 
  end
 
 .. code-block:: csharp
@@ -76,10 +76,10 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "/{domain}/templates/{templateId}/versions/{versionId}";
+         request.Resource = "/{domain}/templates/{name}/versions/{tag}";
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("templateId", "TEMPLATE_ID", ParameterType.UrlSegment);
-         request.AddParameter ("versionId", "VERSION_ID", ParameterType.UrlSegment);
+         request.AddParameter ("name", "TEMPLATE_NAME", ParameterType.UrlSegment);
+         request.AddParameter ("tag", "VERSION_TAG", ParameterType.UrlSegment);
          
          return client.Execute (request);
      }
@@ -95,7 +95,7 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get('/${DOMAIN}/templates/TEMPLATE_ID/versions/VERSION_ID', function (error, body) {
+ mailgun.get('/${DOMAIN}/templates/TEMPLATE_NAME/versions/VERSION_TAG', function (error, body) {
    console.log(body);
  });
 

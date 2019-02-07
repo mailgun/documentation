@@ -29,9 +29,10 @@ If the content is provided a new version is automatically created and becomes th
  =============== ==================================================================
  Parameter             Description
  =============== ==================================================================
- name            Name of the template being created
+ name            Name of the template being created. The name can contain alpha characters, digits and next symbols: .-_~
  description     Description of the template being created
  template        (Optional) Content of the template
+ tag             (Optional) Initial tag of the created version. If `template` parameter is provided and `tag` is missing default value `initial` is used. The tag can contain alpha characters, digits and next symbols: .-_~
  engine          (Optional) The template engine to use to render the template. Valid only if template parameter is provided. Currently the API supports only one engine: **handlebars**
  comment         (Optional) Version comment. Valid only if new version is being created (template parameter is provided) 
  =============== ==================================================================
@@ -48,8 +49,7 @@ Sample response:
     "item": {
         "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
         "description": "template description",
-        "id": "nj01pavjEeikvBJbspqxaQ",
-        "name": "template name",
+        "name": "template.name",
     },
     "message": "template has been stored"
   }
@@ -63,15 +63,14 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
         "description": "template description",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "template name",
+        "name": "template.name",
         "version": {
             "createdAt": "Wed, 29 Aug 2018 23:31:14 UTC",
             "engine": "handlebars",
-            "id": "nnhwoavjEeikvhJbspqxaQ"
+            "tag": "initial",
             "comment": "version comment"
         }
     },
@@ -84,7 +83,7 @@ Get template
 
 .. code-block:: url
 
-    GET /<domain>/templates/<templateId>
+    GET /<domain>/templates/<name>
 
 Returns metadata information about a stored template specified in url. If the `active` flag is provided the content of active version of the template is returned. 
 
@@ -105,11 +104,10 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
         "description": "template description",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "template name"
+        "name": "template.name"
     }
   }
 
@@ -122,15 +120,14 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
         "description": "template description",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "template name",
+        "name": "template.name",
         "version": {
             "createdAt": "Wed, 29 Aug 2018 23:31:15 UTC",
             "engine": "handlebars",
-            "id": "n2VT1KvjEeikwRJbspqxaQ",
+            "tag": "v0",
             "template": "{{fname}} {{lname}}",
             "comment": "version comment"
         }
@@ -142,7 +139,7 @@ Update template
 
 .. code-block:: url
 
-    PUT /<domain>/templates/<templateId>
+    PUT /<domain>/templates/<name>
 
 Update metadata information of a template specified in url
 
@@ -151,7 +148,6 @@ Update metadata information of a template specified in url
  =============== ==============================
  Parameter       Description
  =============== ==============================
- name            Updated name of the template
  description     Updated description of the template
  =============== ==============================
 
@@ -165,11 +161,10 @@ Sample response:
 
   {
     "message": "template has been updated",
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:15 UTC",
         "description": "new template description",
-        "id": "MIvDPKvtEeiMEA472Hdb5w",
-        "name": "new template name"
+        "name": "template.name"
     }
   }
 
@@ -179,7 +174,7 @@ Delete template
 
 .. code-block:: url
 
-    DELETE /<domain>/templates/<template>
+    DELETE /<domain>/templates/<name>
 
 Delete a template specified in url. This method deletes all versions of the specified template
 
@@ -192,8 +187,8 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
-        "id": "6EdkRqvvEeiMGQ472Hdb5w"
+    "template": {
+        "name": "template.name"
     },
     "message": "template has been deleted"
   }
@@ -220,7 +215,7 @@ Returns a list of stored templates for the domain
 
 Example:
 
-.. include:: samples/templates/templates-get-all.rst
+.. include:: samples/templates/template-get-all.rst
 
 Sample response:
 
@@ -230,28 +225,25 @@ Sample response:
     "items": [
         {
             "createdAt": "Wed, 29 Aug 2018 23:31:15 UTC",
-            "description": "Template description 2",
-            "id": "nrMT8avjEeikvxJbspqxaQ",
-            "name": "Template name 2"
+            "description": "Template description",
+            "name": "template.0",
         },
         {
             "createdAt": "Wed, 29 Aug 2018 23:31:18 UTC",
-            "description": "Template description 1",
-            "id": "nnglwqvjEeikvRJbspqxaQ",
-            "name": "Template name 1"
+            "description": "Template description",
+            "name": "template.1"
         },
         {
             "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
             "description": "Template description",
-            "id": "nj01pavjEeikvBJbspqxaQ",
-            "name": "Template name"
+            "name": "template.2"
         }
     ],
     "paging": {
         "first": "https://api.mailgin.net/v3/YOUR_DOMAIN_NAME/templates?limit=10",
         "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=last&limit=10",
-        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=next&p=nj01pavjEeikvBJbspqxaQ&limit=10",
-        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=prev&p=nrMT8avjEeikvxJbspqxaQ&limit=10"
+        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=next&p=template.2&limit=10",
+        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=prev&p=template.0&limit=10"
     }
   }
 
@@ -291,6 +283,7 @@ Create a new version of the template. If the template doesn't contain any versio
  Parameter       Description
  =============== ================================================================================
  template        Content of the template
+ tag             Tag of the version is being created
  engine          (Optional) Template engine. Only one engine are supported right now - ``handlebars``.
  comment         (Optional) The comment of the stored version
  active          (Optional) If this flag is set to ``yes`` this version becomes active
@@ -305,15 +298,14 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:11 UTC",
         "description": "template description",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "template name",
+        "name": "template.name",
         "version": {
             "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
             "engine": "handlebars",
-            "id": "nymB0KvjEeiMDg472Hdb5w",
+            "tag": "v1.0.0",
             "comment": "version comment"
         }
     },
@@ -325,7 +317,7 @@ Get version
 
 .. code-block:: url
 
-    GET /<domain>/templates/<template>/versions/<version>
+    GET /<domain>/templates/<name>/versions/<tag>
 
 Retrieve information and content of specifed version of the template
 
@@ -338,15 +330,14 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:11 UTC",
         "description": "template description",
-        "id": "nnglwqvjEeikvRJbspqxaQ",
-        "name": "template name",
+        "name": "template.name",
         "version": {
             "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
             "engine": "handlebars",
-            "id": "nymB0KvjEeiMDg472Hdb5w",
+            "tag": "v1.1.0",
             "comment": "version comment",
             "template": "{{fname}} {{lname}}"
         }
@@ -358,7 +349,7 @@ Update version
 
 .. code-block:: url
 
-    PUT /<domain>/templates/<template>/versions/<version>
+    PUT /<domain>/templates/<name>/versions/<tag>
 
 Update information or content of the specific version of the template
 
@@ -381,10 +372,10 @@ Sample response:
 .. code-block:: javascript
 
  {
-   "item": {
-       "id": "nnglwqvjEeikvRJbspqxaQ",
+   "template": {
+       "name": "template.name",
        "version": {
-         "id": "nymB0KvjEeiMDg472Hdb5w"
+         "tag": "v1.2.0"
        }
     "message": "version has been udpated"
  }
@@ -406,10 +397,10 @@ Sample response:
 .. code-block:: javascript
 
  {
-   "item": {
-       "id": "nnglwqvjEeikvRJbspqxaQ",
+   "template": {
+       "name": "template.name",
        "version": {
-         "id": "nymB0KvjEeiMDg472Hdb5w"
+         "tag": "v1.3.0"
        }
     "message": "version has been deleted"
  }
@@ -443,28 +434,27 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:11 UTC",
         "description": "Template description",
-        "id": "z4ujt7CiEeik0RJbspqxaQ",
-        "name": "Template name",
+        "name": "template.name",
         "versions": [
             {
                 "createdAt": "Wed, 29 Aug 2018 23:31:21 UTC",
                 "engine": "handlebars",
-                "id": "0EuT-7CiEeik1hJbspqxaQ",
+                "tag": "v0",
                 "comment": "Version comment"
             },
             {
                 "createdAt": "Wed, 29 Aug 2018 23:31:31 UTC",
                 "engine": "handlebars",
-                "id": "0BtzFbCiEeik1RJbspqxaQ",
+                "tag": "v1",
                 "comment": "Version comment"
             },
             {
                 "createdAt": "Wed, 29 Aug 2018 23:31:41 UTC",
                 "engine": "handlebars",
-                "id": "z4vrrbCiEeik0hJbspqxaQ",
+                "tag": "v2",
                 "comment": "Version comment"
             }
         ]
@@ -472,8 +462,8 @@ Sample response:
     "paging": {
         "first": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?limit=10",
         "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=last&limit=10",
-        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=next&p=z4vrrbCiEeik0hJbspqxaQ&limit=10",
-        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=prev&p=0EuT-7CiEeik1hJbspqxaQ&limit=10"
+        "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=next&p=v2&limit=10",
+        "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/z4ujt7CiEeik0RJbspqxaQ/versions?page=prev&p=v0&limit=10"
     }
   }
 

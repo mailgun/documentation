@@ -2,8 +2,7 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' -X PUT \
-        https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID \
-        -F name='new template name' \
+        https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME \
         -F description = 'new template description'
 
 .. code-block:: java
@@ -19,9 +18,8 @@
 
      public static JsonNode updateTemplate() throws UnirestException {
 
-         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates" +TEMPLATE_ID)
+         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates" +TEMPLATE_NAME)
              .basicAuth("api", API_KEY)
-             .field("name", "new template name")
              .field("description", "new template description")
              .asJson();
 
@@ -38,11 +36,10 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $templateId = 'TEMPLATE_ID'
+  $name = 'TEMPLATE_NAME'
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/templates/$templateId", array(
-      'name' => 'new template name',
+  $result = $mgClient->put("$domain/templates/$name", array(
       'description' => 'new template description'
   ));
 
@@ -50,17 +47,15 @@
 
  def update_template():
      return requests.put(
-         ("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID"),
+         ("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME"),
          auth=('api', 'YOUR_API_KEY'),
-         data={'name': 'new template name',
-               'description': 'new template description'})
+         data={'description': 'new template description'})
 
 .. code-block:: rb
 
  def update_template
    RestClient.put("https://api:YOUR_API_KEY" \
-                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID",
-                  :name => 'new template new',
+                  "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME",
                   :description => 'new template description')
  end
 
@@ -87,8 +82,7 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "/YOUR_DOMAIN_NAME/template/TEMPLATE_ID";
-         request.AddParameter ("name", "new template name");
+         request.Resource = "/YOUR_DOMAIN_NAME/template/TEMPLATE_NAME";
          request.AddParameter ("description", "new template description");
          request.Method = Method.PUT;
          return client.Execute (request);
@@ -105,8 +99,7 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/${DOMAIN}/templates/TEMPLATE_ID`, {"name": "new template name",
-                                                  "description": "new template description"},
-                                                  function (error, body) {
+ mailgun.put(`/${DOMAIN}/templates/TEMPLATE_NAME`, {"description": "new template descripton"},
+                                                   function (error, body) {
                                                         console.log(body);
                                                    });

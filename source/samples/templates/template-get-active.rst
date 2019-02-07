@@ -2,7 +2,7 @@
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME \
     -F active='yes'
 
 .. code-block:: java
@@ -18,7 +18,7 @@
  
      public static JsonNode getTemplate() throws UnirestException {
  
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID")
+         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME")
              .basicAuth("api", API_KEY)
               .queryString("active", "yes")
              .asJson();
@@ -36,16 +36,16 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $templateId = 'TEMPLATE_ID';
+  $name = 'TEMPLATE_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/templates/$templateId", array('active' => 'yes'));
+  $result = $mgClient->get("$domain/templates/$name", array('active' => 'yes'));
 
 .. code-block:: py
 
  def get_template():
      return requests.get(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME",
          auth=("api", "YOUR_API_KEY"),
          params={"active": "yes"})
 
@@ -53,7 +53,7 @@
 
  def get_template
     RestClient.get "https://api:YOUR_API_KEY"\
-    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_ID", :params => {
+    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME", :params => {
         :active => "yes"
     }
  end
@@ -81,9 +81,9 @@
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "/{domain}/templates/{templateId}";
+         request.Resource = "/{domain}/templates/{name}";
          request.AddUrlSegment ("domain", "YOUR_DOMAIN_NAME");
-         request.AddUrlSegment ("templateId", "TEMPLATE_ID");
+         request.AddUrlSegment ("name", "TEMPLATE_NAME");
          request.AddParameter ("active", "yes");
          return client.Execute (request);
      }
@@ -99,6 +99,6 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.get('/${DOMAIN}/templates/TEMPLATE_ID', {"active", "yes"}, function (error, body) {
+ mailgun.get('/${DOMAIN}/templates/TEMPLATE_NAME', {"active", "yes"}, function (error, body) {
    console.log(body);
  });

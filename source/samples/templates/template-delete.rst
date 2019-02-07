@@ -1,7 +1,7 @@
 .. code-block:: bash
 
  curl -s --user 'api:YOUR_API_KEY' -X DELETE \
-     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID
+     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME
 
 .. code-block:: java
 
@@ -16,7 +16,7 @@
 
      public static JsonNode deleteTemplate() throws UnirestException {
 
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME +"/templates/YOUR_TEMPLATE_ID")
+         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME +"/templates/TEMPLATE_NAME")
              .basicAuth("api", API_KEY)
              .asJson();
 
@@ -33,23 +33,23 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = 'YOUR_DOMAIN_NAME';
-  $templateId = 'YOUR_TEMPLATE_ID';
+  $name = 'TEMPLATE_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("/$domain/templates/$templateId");
+  $result = $mgClient->delete("/$domain/templates/$name");
 
 .. code-block:: py
 
  def delete_template():
      return requests.delete(
-         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID",
+         "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME",
          auth=("api", "YOUR_API_KEY"))
 
 .. code-block:: rb
 
  def delete_template
    RestClient.delete "https://api:YOUR_API_KEY"\
-   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/YOUR_TEMPLATE_ID"
+   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME"
  end
 
 .. code-block:: csharp
@@ -76,8 +76,8 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.Resource = "{domain}/templates/{templateId}";
-         request.AddUrlSegment ("templateId", "YOUR_TEMPLATE_ID");
+         request.Resource = "{domain}/templates/{name}";
+         request.AddUrlSegment ("name", "TEMPLATE_NAME");
          request.Method = Method.DELETE;
          return client.Execute (request);
      }
@@ -94,7 +94,7 @@
  var TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.delete(`/${DOMAIN}/templates/${YOUR_TEMPLATE_ID}`, function (error, body) {
+ mailgun.delete(`/${DOMAIN}/templates/${TEMPLATE_NAME}`, function (error, body) {
    console.log(body);
  });
 

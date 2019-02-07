@@ -2,7 +2,7 @@
 
   curl -s --user 'api:YOUR_API_KEY' -X POST \
     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates \
-    -F name='template name' \
+    -F name='template.name' \
     -F description='template description' \
     -F template='{{fname}} {{lname}}' \
     -F engine='handlebars'
@@ -23,7 +23,7 @@
  
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
  			.basicAuth("api", API_KEY)
- 			.field("name", "template name")
+ 			.field("name", "template.name")
             .field("description", "template description")
             .field("template", "{{fname}} {{lname}}")
             .field("engine", "handlebars")
@@ -46,7 +46,7 @@
 
   # Issue the call to the client.
   $result = $mgClient->post("$domain/templates", array(
-      'name' => 'template name',
+      'name' => 'template.name',
       'description' => 'template description',
       'template' => '{{fname}} {{lname}}',
       'engine' => 'handlebars',
@@ -59,7 +59,7 @@
      return requests.post(
          "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
          auth=("api", "YOUR_API_KEY"),
-         data={'name': 'template name',
+         data={'name': 'template.name',
                'description': 'template description',
                'template': '{{fname}} {{lname}}',
                'engine': 'handlebars',
@@ -70,7 +70,7 @@
  def store_template
    RestClient.post "https://api:YOUR_API_KEY"\
    "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates",
-   :name => 'template name',
+   :name => 'template.name',
    :description => 'template description',
    :template => '{{fname}} {{lname}}',
    :engine => 'handlebars',
@@ -102,7 +102,7 @@
          RestRequest request = new RestRequest ();
          request.Resource = "{domain}/templates";
          request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
-         request.AddParameter ("name", "template name");
+         request.AddParameter ("name", "template.name");
          request.AddParameter ("description", "template description")
          request.AddParameter ("template", "{{fname}} {{lname}}")
          request.AddParameter ("engine", "handlebars")
@@ -122,7 +122,7 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.post(`/${DOMAIN}/templates`, {"name" : "template name",
+ mailgun.post(`/${DOMAIN}/templates`, {"name" : "template.name",
                                        "description": "template description",
                                        "template": "{{fname}} {{lname}}",
                                        "engine": "handlebars"},
