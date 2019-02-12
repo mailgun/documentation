@@ -169,7 +169,7 @@ is_disposable_address    boolean      If the domain is in a list of disposable e
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
 is_valid                 boolean      Runs the email segments across a valid known provider rule list. If a violation occurs this value is false
 mailbox_verification     string       If the mail_verification flag is enabled, a call is made to the ESP to return existence. (true, false, unknown or null)
-parts                    string       (display_name, domain, local_part): Parsed segments of the provided email address
+parts                    object       (display_name, domain, local_part): Parsed segments of the provided email address
 =====================    =========    ============================================================================================================
 
 
