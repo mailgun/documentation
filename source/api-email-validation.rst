@@ -31,6 +31,12 @@ burst per minute rate. It is highly suggested that the private key is used whene
 
 .. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the "Security" tab under the **Account** section of the Control Panel.
 
+.. warning:: This version is deprecated and will be replaced by /v4/ directories.
+
+             version-4-documentation_
+
+
+
 .. code-block:: url
 
      GET /address/validate
@@ -213,3 +219,74 @@ Attaching to a form:
        success: success_callback,         // called when validator has returned
        error: validation_error,           // called when an error reaching the validator has occured
    });
+
+
+.. _version-4-documentation:
+Version 4 Documentation
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: url
+
+     GET /v4/address/validate
+
+Given an arbitrary address, validates address based off defined checks.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Parameter         	Description
+ ====================== ========================================================
+ address           	An email address to validate. (Maximum: 512 characters)
+ api_key          	If you cannot use HTTP Basic Authentication (preferred),
+                   	you can pass your public api_key in as a parameter.
+ ====================== ========================================================
+
+
+Example
+~~~~~~~
+
+Validate a single email address with version 4.
+
+.. include:: samples/get-validate4.rst
+
+Example of a failed mailbox verification result.
+
+.. code-block:: javascript
+
+    {
+        "address": "nonexistentemail@realdomain.com",
+        "is_disposable_address": false,
+        "is_role_address": false,
+        "reason": "mailbox_does_not_exist",
+        "result": "undeliverable",
+        "risk": "high"
+    }
+
+
+Example of successful mailbox verification result.
+
+.. code-block:: javascript
+
+    {
+        "address": "existingemail@realdomain.com",
+        "is_disposable_address": false,
+        "is_role_address": false,
+        "reason": [],
+        "result": "deliverable",
+        "risk": "low"
+    }
+
+Field Explanation:
+
+=====================    =========    ============================================================================================================
+Parameter                Type         Description
+=====================    =========    ============================================================================================================
+address                  string       Email address being validated
+did_you_mean             string       (Optional) Null if nothing, however if a potential typo is made, the closest suggestion is provided
+is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
+is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
+reason                   array        List of potential reasons why a specific validation may be unsuccessful.
+result                   string       Either "deliverable", "undeliverable" or "unknown" status given the evaluation.
+risk                     string       "High", "Medium", "Low" or "null" Depending on the evaluation of all aspects of the given email.
+=====================    =========    ============================================================================================================
+
