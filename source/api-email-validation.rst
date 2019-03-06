@@ -291,7 +291,7 @@ risk                     string       "High", "Medium", "Low" or "null" Dependin
 =====================    =========    ============================================================================================================
 
 
-Version 4 List Validation
+Version 3 List Validation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -304,7 +304,7 @@ Version 4 List Validation
 
     POST /v3/lists/<list_ID>/validate
 
-V4 List Validation Request Example
+V3 List Validation Request Example
 
 .. code-block:: javascript
 
@@ -314,7 +314,7 @@ V4 List Validation Request Example
     }
 
 
-V4 List Validation Response Example
+V3 List Validation Response Example
 
 .. code-block:: url
 
@@ -405,7 +405,7 @@ V4 Bulk Validation Response Example
         "csv": "<download_link>",
         "json": "<download_link>"
       },
-      "id": "list_validations@sandbox.mailgun.org",
+      "id": "bulk_validations@sandbox.mailgun.org",
       "quantity": 207665,
       "records_processed": 207665,
       "status": "uploaded",
