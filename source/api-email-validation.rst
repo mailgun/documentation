@@ -379,6 +379,19 @@ Version 4 Bulk Validation
 
 V4 Bulk Validation Request Example
 
+
+.. note::
+    Its important to remember that to upload as `multi-part/form-data` where the file is defined by `file`.
+
+    Currently only raw `csv` and `gzip` are supported.
+
+.. code-block:: url
+
+    curl -F 'file=@/path/to/file' http...
+
+
+
+
 .. code-block:: url
 
     POST /v4/address/validate/bulk/<list_id>
