@@ -81,6 +81,29 @@ Kotlin users could of course use the Java library, but for an alternative, take 
 `mailgun-kotlin <https://github.com/Commit451/mailgun>`_
 
 
+Go
+====
+
+Go developers can use the standard `net.http <https://golang.org/pkg/net/http>`_ library or
+the `mailgun-go <https://github.com/mailgun/mailgun-go>`_ library to interact with the mailgun api.
+
+If you are using mailgun-go and `golang modules <https://github.com/golang/go/wiki/Modules>`_ from go 1.11 make
+sure you include the /v3 at the end of your import paths.
+
+::
+
+    $ go get github.com/mailgun/mailgun-go/v3
+
+
+If you are not using golang modules, you can drop the /v3 at the end of the import path.
+As long as you are using the latest 1.10 or 1.11 golang release, import paths that end in
+/v3 in your code should work fine even if you do not have golang modules enabled for your project.
+
+::
+
+    $ go get github.com/mailgun/mailgun-go
+
+
 C#
 ===
 
