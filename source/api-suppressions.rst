@@ -625,9 +625,9 @@ Expected response:
 Whitelists
 ===========
 
-Whitelist API provides ability to whitelist specific addresses from adding to bounce list.
-You can whitelists by domain name (i.e example.com) or by specific address (i.e. alice@example.com). Mailgun doesn't add an address to bounce list if the address is whitlisted.
-This API is very usefull if you make test against you private services and don't want constantly clean up bounce lists.
+The whitelist API provides the ability to whitelist specific addresses from being added to bounce list.
+You can whitelist by domain name (i.e example.com) or by specific address (i.e. alice@example.com). Mailgun doesn't add an address to bounce list if the address is whitelisted.
+This API is very useful if you test against your private services and don't want to constantly clean up bounce lists.
 
 View all whitelist records
 --------------------------
