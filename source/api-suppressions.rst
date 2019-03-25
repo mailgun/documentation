@@ -620,3 +620,148 @@ Expected response:
       {
         "message": "Spam complaint has been removed"
       }
+
+
+Whitelists
+===========
+
+Whitelist API provides ability to whitelist specific addresses from adding to bounce list.
+You can whitelists by domain name (i.e example.com) or by specific address (i.e. alice@example.com). Mailgun doesn't add an address to bounce list if the address is whitlisted.
+This API is very usefull if you make test against you private services and don't want constantly clean up bounce lists.
+
+View all whitelist records
+--------------------------
+
+.. code-block:: url
+
+     GET /<domain>/whitelists
+
+Paginate over a whitelists for a domain.
+
+.. container:: ptable
+
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ limit             Number of records to return (optional, default: 100,
+                   max: 10000)
+ ================= ==========================================================
+
+Example:
+
+.. include:: samples/get-whitelists.rst
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "items":
+          [
+            {
+              "value": "alice@example.com",
+              "reason": "reason of white listing"
+              "type": "address",
+              "createdAt": "Fri, 21 Oct 2011 11:02:55 UTC"
+            },
+            {
+              "value": "test.com",
+              "reason": "reason of white listing"
+              "type": "domain",
+              "createdAt": "Fri, 21 Oct 2012 11:02:56 UTC"
+            }
+            ...
+          ],
+        "paging":
+          {
+            "first": <first page URL>,
+            "next": <next page URL>,
+            "previous": <previous page URL>,
+            "last": <last page URL>
+          }
+      }
+
+View a single whitelist record
+------------------------------
+
+.. code-block:: url
+
+     GET /<domain>/whitelists/<address or domain>
+
+Fetch a single whitelist record. Can be used to check if a given address or domain
+is present in the whitelist table
+
+Expected responses:
+
+.. code-block:: javascript
+
+      200
+      {
+        "value": "alice@example.com",
+        "reason": "why the record was created"
+        "type": "address",
+        "createdAt": "Fri, 21 Oct 2011 11:02:55 GMT"
+      }
+
+.. code-block:: javascript
+
+      404
+      {
+        "message": "Address/Domain not found in whitelists table"
+      }
+
+
+Add a single whitelist record
+-----------------------------
+
+.. code-block:: url
+
+     POST /<domain>/whitelists
+
+Add an address or domain to the whitelist table.
+
+.. container:: ptable
+
+ ================== =======================================================
+ Parameter          Description
+ ================== =======================================================
+ address            Valid email address if you would like to whitelist email address
+ domain             Valid domain name if you would like whitlist entire domain name
+ ================== =======================================================
+
+.. note:: The single request accepts either one `address` or `domain` parameter
+
+Example:
+
+.. include:: samples/add-whitelist.rst
+
+Expected response:
+
+.. code-block:: javascript
+
+    200
+    {
+      "message":"Address/Domain has been added to the whitelists table",
+      "type":"domain",
+      "value":"example.com"
+    }
+
+Delete a single record from whitelist table
+-------------------------------------------
+
+.. code-block:: url
+
+     DELETE /<domain>/whitelists/<address or domain>
+
+Remove a given record from whitelist table.
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "message":"Whitelist address/domain has been removed",
+        "value":"alice@example.com"
+      }
