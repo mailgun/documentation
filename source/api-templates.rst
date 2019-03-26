@@ -46,7 +46,7 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "item": {
+    "template": {
         "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
         "description": "template description",
         "name": "template.name",

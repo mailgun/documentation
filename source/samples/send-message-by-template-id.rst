@@ -2,13 +2,13 @@
 .. code-block:: bash
 
     curl -s --user 'api:YOUR_API_KEY' \
-	https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-	-F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
-	-F to='alice@example.com' \
-	-F subject='Hello' \
-	-F template='bcgpf36d2q100094buc0' \
+    https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+    -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+    -F to='alice@example.com' \
+    -F subject='Hello' \
+    -F template='template.test' \
     -F v:title='API Documentation' \
-    -F v:body='Sending messages with template id'
+    -F v:body='Sending messages with template'
 
 .. code-block:: java
 
@@ -30,10 +30,10 @@
             .queryString("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
  			.queryString("to", "alice@example.com")
  	        .queryString("subject", "Hello")
-            .queryString("template", "bcgpf36d2q100094buc0")
+            .queryString("template", "template.test")
  		    .field("o:tracking", "False")
             .field("v:title", "API Documentation")
- 		    .asJson("v:body", "Sending messages with template id");
+ 		    .asJson("v:body", "Sending messages with templates");
 
          return request.getBody();
      }
@@ -54,9 +54,9 @@
       'from'       => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
       'to'         => 'foo@example.com',
       'subject'    => 'Hello',
-      'template'   => 'bcgpf36d2q100094buc0',
+      'template'   => 'template.test',
       'v:title'    => 'API Documentation',
-      'v:body'     => 'Sending messages with template id'
+      'v:body'     => 'Sending messages with templates'
   ));
 
 .. code-block:: py
@@ -68,9 +68,9 @@
          data={"from": "Excited User <YOU@YOUR_DOMAIN_NAME>",
                "to": ["bar@example.com", "baz@example.com"],
                "subject": "Hello",
-               "template": "bcgpf36d2q100094buc0",
+               "template": "template.test",
                "v:title": "API Documentation",
-               "v:body": "Sending messages with tempalte id"})
+               "v:body": "Sending messages with templates"})
 
 .. code-block:: rb
 
@@ -80,9 +80,9 @@
    :from => "Excited User <YOU@YOUR_DOMAIN_NAME>",
    :to => "bar@example.com, baz@example.com",
    :subject => "Hello",
-   :template => "bcgpf36d2q100094buc0",
+   :template => "template.test",
    "v:title" => "API Documentation",
-   "v:body" => "Sending messages with template id"
+   "v:body" => "Sending messages with templates"
  end
 
 .. code-block:: csharp
@@ -114,9 +114,9 @@
          request.AddParameter ("to", "bar@example.com");
          request.AddParameter ("to", "baz@example.com");
          request.AddParameter ("subject", "Hello");
-         request.AddParameter ("template", "bcgpf36d2q100094buc0");
+         request.AddParameter ("template", "template.test");
          request.AddParameter ("v:title", "API Documentation");
-         request.AddParameter ("v:body", "Sending messages with template id");
+         request.AddParameter ("v:body", "Sending messages with template");
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -138,9 +138,9 @@
    from: 'Excited User <me@samples.mailgun.org>',
    to: 'alice@example.com',
    subject: 'Hello',
-   template: 'bcgpf36d2q100094buc0',
+   template: 'template.test',
    "v:title": "API Documentation",
-   "v:body": "Sending messages with template id"
+   "v:body": "Sending messages with templates"
  };
 
  mailgun.messages().send(data, function (error, body) {
