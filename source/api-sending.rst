@@ -49,6 +49,10 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  inline                Attachment with ``inline`` disposition. Can be used to
                        send inline images (see :ref:`example <inline-image>`).
                        You can post multiple ``inline`` values.
+ template              ID of a template stored via :ref:`template API <api-templates>`.
+                       See :ref:`templating` for more information
+ t:\version            Use this parameter to send a message to specific version of a template
+ t:\text               Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
  o\:tag                Tag string. See :ref:`tagging` for more information.
  o\:dkim               Enables/disables DKIM signatures on per-message basis.
                        Pass ``yes``, ``no``, ``true`` or ``false``
@@ -270,3 +274,4 @@ An example of how to resend a message:
 An example of how to decode Quoted-printable encoded messages:
 
 .. include:: samples/decode-quoted-printable.rst
+

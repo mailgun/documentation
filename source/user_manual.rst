@@ -557,6 +557,42 @@ Mailing Lists work independently from Routes.
 If there is a Mailing List or Route with the same address, the incoming message will hit the Route and Mailing List simultaneously. This can be pretty convenient for processing replies to the Mailing List and integrating into things like forums
 or commenting systems.
 
+.. _templating:
+
+Templating
+==========
+
+Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template id.
+Don't be confused with :ref:`Template Variables <template-variables>` as **Templating** works independently.
+
+Mailgun uses the very popular template engine `handlebars`_  (Only v3.0 is supported right now).
+To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
+
+First of all a template has to be stored:
+
+.. include:: samples/templates/create-template-usage.rst
+
+Response returns stored template id:
+
+.. code-block:: javascript
+
+ {
+   "item": {
+      "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
+      "description": "Sample template",
+      "id": "nj01pavjEeikvBJbspqxaQ",
+      "name": "Test template",
+   },
+   "message": "template has been stored"
+ }
+
+Using this template id you can send a message:
+
+.. include:: samples/send-message-by-template-id.rst
+
+
+.. _handlebars: https://handlebarsjs.com/
+
 
 .. _scheduling-delivery:
 

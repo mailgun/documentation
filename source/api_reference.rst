@@ -16,4 +16,5 @@ API Reference
    api-routes
    api-webhooks
    api-mailinglists
+   api-templates
    api-email-validation
