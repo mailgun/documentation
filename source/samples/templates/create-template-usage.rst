@@ -4,7 +4,7 @@
   curl -s --user 'api:YOUR_API_KEY' -X POST \
     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates \
     -F template='<div class="entry"> <h1>{{title}}</h1> <div class="body"> {{body}} </div> </div>' \
-    -F name = 'Test template'
+    -F name = 'template.test'
     -F description='Sample template'
 
 .. code-block:: java

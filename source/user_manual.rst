@@ -562,36 +562,51 @@ or commenting systems.
 Templating
 ==========
 
-Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template id.
+Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template name.
 Don't be confused with :ref:`Template Variables <template-variables>` as **Templating** works independently.
 
-Mailgun uses the very popular template engine `handlebars`_  (Only v3.0 is supported right now).
+By default mailgun uses the very popular template engine `handlebars`_  (Only v3.0 is supported right now) but also `mustache`_ and `go-template`_ are supported.
 To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
 First of all a template has to be stored:
 
 .. include:: samples/templates/create-template-usage.rst
 
-Response returns stored template id:
+Response returns stored template information:
 
 .. code-block:: javascript
 
  {
-   "item": {
+   "template": {
       "createdAt": "Wed, 29 Aug 2018 23:31:13 UTC",
       "description": "Sample template",
-      "id": "nj01pavjEeikvBJbspqxaQ",
-      "name": "Test template",
+      "name": "template.test",
    },
    "message": "template has been stored"
  }
 
-Using this template id you can send a message:
+Just using the template name you can send a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
+Another way to provide substitution variables is to use :ref:`X-Mailgun-Variables <manual-customdata>` in the http request i.e:
+
+.. code-block:: bash
+
+  curl -s --user 'api:YOUR_API_KEY' \
+  https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+  -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+  -F to='alice@example.com' \
+  -F subject='Hello' \
+  -F template='template.test' \
+  -H h:X-Mailgun-Variables='{"title": "API Documentation", "body": "Sending messages with template"}'
+ 
+The second way is preferable as it allows you to provide complex json data (arrays, nested json and so on)
+
 
 .. _handlebars: https://handlebarsjs.com/
+.. _mustache: https://mustache.github.io/
+.. _go-template: https://golang.org/pkg/html/template/
 
 
 .. _scheduling-delivery:
