@@ -8,7 +8,7 @@
     -F subject='Hello' \
     -F template='template.test' \
     -F v:title='API Documentation' \
-    -F v:body='Sending messages with template'
+    -F v:body='Sending messages with templates'
 
 .. code-block:: java
 

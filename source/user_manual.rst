@@ -589,6 +589,20 @@ Just using the template name you can send a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
+Another way to provide substitution variables is to use :ref:`X-Mailgun-Variables <manual-customdata>` in the http request i.e:
+
+.. code-block:: bash
+
+  curl -s --user 'api:YOUR_API_KEY' \
+  https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
+  -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
+  -F to='alice@example.com' \
+  -F subject='Hello' \
+  -F template='template.test' \
+  -H h:X-Mailgun-Variables='{"title": "API Documentation", "body": "Sending messages with template"}'
+ 
+The second way is preferable as it allows you to provide complex json data (arrays, nested json and so on)
+
 
 .. _handlebars: https://handlebarsjs.com/
 .. _mustache: https://mustache.github.io/
