@@ -53,11 +53,11 @@ When you sign up for an account, you are given an API key.  You authenticate to 
 Authentication to the API occurs via `HTTP Basic Auth`_. Use ``api`` as the user
 name and your API key is the password. Here is how you use basic HTTP auth with curl::
 
-    curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'
+    curl --user 'api:YOUR_API_KEY'
 
 Or you can try the following API call right from your browser::
 
-    https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v3/samples.mailgun.org/log
+    https://api:YOUR_API_KEY@api.mailgun.net/v3/samples.mailgun.org/log
 
 .. warning:: Keep your API key secret!
 
