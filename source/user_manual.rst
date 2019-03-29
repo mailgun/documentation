@@ -1675,8 +1675,11 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
     Mailgun will perform an SPF validation, and results will be stored in this header.
     Possible values are: 'Pass', 'Neutral', 'Fail' or 'SoftFail'.
 
-Email Validation
-****************
+Email Validation V3
+*******************
+
+.. note::
+    The V3 Validations API has been deprecated in favor of V4
 
 Mailgun's email validation service is intended for validating email addresses
 submitted through forms like newsletters, online registrations, and shopping carts.
@@ -1787,6 +1790,96 @@ Reporting Dashboard
 Within the validation menu, you can view your usage by day or hour for the validation
 API in a given time range. Mailgun will also include the type of API call that was
 made to help measure the impact of email address validation.
+
+Email Validation V4
+*******************
+
+Mailgun’s email validation service is a multi-point check of an email address to ensure it exists,
+is not a high-risk address, is not disposable and more. Maintaining a list of valid and deliverable
+email addresses is important in order to reduce the ratio of bounced emails and prevent
+negative impacts to your reputation as a sender.
+
+Mailgun offers validations in three forms: performing a **single validation**, validating the email
+addresses of the members of a **mailing list**, and validating lists in **bulk** via CSV.
+
+Mailgun’s revamp of our initial validation service now offers a definitive **result** of our validation
+check and a **risk** assessment of the given address. The **result** parameter will return one of four
+values, described in the table below. This is the definitive answer for whether or not a sender
+should use an address and replaces the **is_valid** parameter in v3 validations.
+
+
+.. list-table::
+    :widths: 15 255
+    :stub-columns: 1
+
+    * - deliverable
+      - An address that has a high likelihood of being legitimate and has passed all validation checks.
+    * - undeliverable
+      - An address that is confirmed invalid and should be discarded from a list or corrected.  Sending to this address may damage sender reputation.
+    * - do_not_send
+      - An address that may damage sender reputation if messages or sent.
+    * - unknown
+      - Unable to make a decision about the validity of the supplied address, usually due to a timeout when attempting to verify an address.
+
+The **risk** parameter will return one of three values, described in the table below. This helps
+senders understand how sending to an address may impact reputation or the potential impact of
+allowing a user onto a platform.
+
+
+.. list-table::
+    :widths: 15 255
+    :stub-columns: 1
+
+    * - low
+      - An address that is likely legitimate and sending has a low likelihood of damaging reputation if the address has been obtained in a legitimate manner - we’ll make this assumption based on well known domains (hotmail.com, gmail.com, etc)
+    * - medium
+      - The default or neutral state for risk calculation.  An address that isn’t deemed a low or high risk will default to a medium risk.
+    * - high
+      - An address that has a high risk of damaging sender reputation or when used for verification should be challenged for validity.
+
+Role-based Address Check
+========================
+
+For all validation requests, we provide whether an address is a role-based address (e.g.
+postmaster@, info@, etc.). These addresses are typically distribution lists with a much higher
+complaint rate since unsuspecting users on the list can receive a message they were not
+expecting.
+
+Disposable Mailbox Detection
+============================
+
+Disposable mailboxes are commonly used for fraudulent purposes. Mailgun can detect whether
+the address provided is on a known disposable mailbox provider and given the determination,
+you may choose how to proceed based on your own risk decisions. It is important to check for
+disposable mailboxes to ensure communication between user and web application.
+
+List Validation
+===============
+
+The members of a Mailing List that exists at Mailgun can be validating with the tap of a button in
+the Control Panel as demonstrated below:
+
+.. figure::  _static/img/quickstart/validation_control_panel.png
+    :align: center
+    :width: 700 px
+
+Note that the existing limitation of a maximum of 2.5 million members still exists for Mailing Lists.
+
+
+Bulk Validation
+===============
+
+A CSV no greater than 25 MB can be submitted via API or Control Panel for validation *en masse*.
+In addition, a gzip no greater than 25 MB containing a single CSV of whatever size can also
+be submitted which greatly increases the potential size of the list that can take.
+
+Note that the following conditions must be met:
+    - The column of email addresses must be preceded with a single cell with the text email or email_address in it. Any other columns will be ignored. This text must be all lowercase.
+    - The size of the CSV must not exceed 25 MB, and the size of the gzip must not exceed 25 MB.
+    - For best results, do not include a header line in the CSV.
+    - Make sure the contents of the CSV do not contain any non-ASCII characters. The character set used must be ASCII or UTF-8.
+
+
 
 
 .. _smtp:
