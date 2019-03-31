@@ -52,12 +52,12 @@
 .. code-block:: rb
 
  def get_validate
-   url_params = {}
-   url_params[:address] = "foo@mailgun.net"
-   query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
-     join("&")
-   RestClient.get "https://api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"\
-   "@api.mailgun.net/v4/address/validate?#{query_string}"
+   url_params = { address: "foo@mailgun.net" }
+   public_key = "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"
+   validate_url = "https://api.mailgun.net/v4/address/validate"
+   RestClient::Request.execute method: :get, url: validate_url,
+                                       headers: { params: url_params },
+                                       user: 'api', password: public_key
  end
 
 .. code-block:: csharp
