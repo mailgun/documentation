@@ -51,12 +51,12 @@
 .. code-block:: rb
 
  def get_parse
-   url_params = {}
-   url_params[:addresses] = "Alice <alice@example.com>,bob@example.com"
-   query_string = url_params.collect {|k, v| "#{k.to_s}=#{CGI::escape(v.to_s)}"}.
-     join("&")
-   RestClient.get "https://api:pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"\
-   "@api.mailgun.net/v3/address/parse?#{query_string}"
+   url_params = { addresses:  "Alice <alice@example.com>,bob@example.com" }
+   public_key = "pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7"
+   parse_url = "https://api:#{public_key}@api.mailgun.net/v3/address/parse"
+   RestClient::Request.execute method: :get, url: parse_url,
+                                       headers: { params: url_params },
+                                       user: 'api', password: public_key
  end
 
 .. code-block:: csharp
