@@ -46,7 +46,7 @@
 
          SMTPTransport t =
              (SMTPTransport) session.getTransport("smtps");
-         t.connect("smtp.mailgun.com", "postmaster@YOUR_DOMAIN_NAME", "YOUR_SMTP_PASSWORD");
+         t.connect("smtp.mailgun.org", "postmaster@YOUR_DOMAIN_NAME", "YOUR_SMTP_PASSWORD");
          t.sendMessage(msg, msg.getAllRecipients());
 
          System.out.println("Response: " + t.getLastServerResponse());
@@ -112,7 +112,7 @@
   Mail.defaults do
     delivery_method :smtp, {
       :port      => 587,
-      :address   => "smtp.mailgun.com",
+      :address   => "smtp.mailgun.org",
       :user_name => "",
       :password  => "",
     }
@@ -185,7 +185,7 @@
      e.To = []string{"bar@example.com"}
      e.Subject = "Hello"
      e.Text = []byte("Testing some Mailgun awesomeness")
-     err := e.Send("smtp.mailgun.com:587", smtp.PlainAuth("", "YOUR_USERNAME", "YOUR_PASSWORD", "smtp.mailgun.com"))
+     err := e.Send("smtp.mailgun.org:587", smtp.PlainAuth("", "YOUR_USERNAME", "YOUR_PASSWORD", "smtp.mailgun.org"))
      if err != nil {
         panic(err)
      }
