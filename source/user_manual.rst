@@ -371,9 +371,10 @@ Mailgun supports the ability send to a group of recipients through a single API 
 
 **Recipient Variables**
 
-Recipient Variables are custom variables that you define, which you can then reference in the message body. They give you the ability to send a custom message to each recipient while still using a single API Call (or SMTP session).
+Recipient Variables are custom variables that you define, which you can then reference in the message body.
+They give you the ability to send a custom message to each recipient while still using a single API Call (or SMTP session).
 
-To access a recipient variable within your email, simply reference %recipient.yourkey%. For example, consider the following JSON:
+To access a recipient variable within your email, simply reference ``%recipient.yourkey%``. For example, consider the following JSON:
 
 .. code-block:: javascript
 
@@ -382,7 +383,7 @@ To access a recipient variable within your email, simply reference %recipient.yo
    "user2@example.com" : {"unique_id": "ZXY987654321"}
  }
 
-To reference the above variables within your email, use %recipient.unique_id%.
+To reference the above variables within your email, use ``%recipient.unique_id%``.
 
 Recipient Variables allow you to:
 
@@ -398,7 +399,8 @@ Recipient Variables allow you to:
 
 In the example above, Alice and Bob both will get personalized subject lines "Hey, Alice" and "Hey, Bob" and unique unsubscribe links.
 
-When sent via SMTP, recipient variables can be included by adding the following header to your email, "X-Mailgun-Recipient-Variables: {"my_message_id": 123}".
+When sent via SMTP, recipient variables can be included by adding the following header to
+your email, ``X-Mailgun-Recipient-Variables: {"user1@example.com" : {"unique_id": "ABC123456789"}}``
 
 Example:
 
@@ -906,31 +908,48 @@ And here's a sample in Go
 Attaching Data to Messages
 ==========================
 
-When sending, you can attach data to your messages by passing custom data to the API or SMTP endpoints.
-The data will be represented as a header within the email, ``X-Mailgun-Variables``. The data
-is formatted in JSON and included in any webhook events related to the email containing the custom data. Several
-such headers may be included and their values will be combined.
+When sending you can attach data to your messages for later retrieval, you can for instance attach campaign
+identifiers or recipient identifiers to messages to help relate webhook payloads or events retrieved from mailgun
+back to marketing campaigns or individual recipients in your system.
 
-Example::
+There are two methods of attaching data to emails. If you are sending email via SMTP, you can attach data by
+providing a ``X-Mailgun-Variables`` header. The header data must be in JSON map format. For example::
 
     X-Mailgun-Variables: {"first_name": "John", "last_name": "Smith"}
     X-Mailgun-Variables: {"my_message_id": 123}
 
-To add this header to your message:
+Multiple ``X-Mailgun-Variables`` headers may be provided and their map values will be combined.
 
-API: Pass the following parameter, "v:my-custom-data" => "{"my_message_id": 123}".
-
-SMTP: Add the following header to your email, "X-Mailgun-Variables: {"my_message_id": 123}".
-
-You can also use values from your recipient variables to provide a custom variable per a recipient using
-templating. For example when sending via the API::
-
-    {'v:Recipient-Id': '%recipient.id%'}
-
-.. note:: The value of the "X-Mailgun-Variables" header should be valid JSON string,
-          otherwise Mailgun won't be able to parse it.  If your X-Mailgun-Variables header exceeds
+.. note:: The value of the "X-Mailgun-Variables" header must be valid JSON string,
+          otherwise Mailgun won't be able to parse it. If your X-Mailgun-Variables header exceeds
           998 characters, you should use `folding <https://tools.ietf.org/html/rfc2822#page-11>`_ to
           spread the variables over multiple lines.
+
+If you are sending email via the HTTP API, you can attach data by providing a form parameter prefixed with ``v:``.
+For example::
+
+    v:first_name=John
+    v:last_name=Smith
+    v:my_message_id=123
+
+The data provided will be included the recipients email via a header called ``X-Mailgun-Variables``.
+Additionally the data will also be available via webhook payloads and events returned from the events API. The
+data will be attached to theses payloads via the ``user-variables`` field as a JSON map. For Example::
+
+    {
+        "event": "delivered",
+        "user-variables": {
+            "first_name": "John",
+            "last_name:" "Smith",
+            "my_message_id": "123"
+        }
+    }
+
+When sending batches of emails, you can use values from recipient variables to provide a custom variable per
+recipient using templating. For example given a variable of ``v:recipient-id=%recipient.id%`` and a recipient
+variable of ``{"user1@example.com" : { "id": 123 }}`` events and webhooks associated with the recipient
+``user1@example.com`` will contain a ``user-variable`` field with the content of ``{ "recipient-id": "123" }``
+
 
 .. _tagging:
 
