@@ -1859,7 +1859,7 @@ List Validation
 The members of a Mailing List that exists at Mailgun can be validating with the tap of a button in
 the Control Panel as demonstrated below:
 
-.. figure::  _static/img/quickstart/validation_control_panel.png
+.. figure::  _static/img/validation_control_panel.png
     :align: center
     :width: 700 px
 
@@ -1868,6 +1868,10 @@ Note that the existing limitation of a maximum of 2.5 million members still exis
 
 Bulk Validation
 ===============
+
+.. figure:: _static/img/validation_bulk_list_control_panel.png
+    :align: center
+    :width: 700px
 
 A CSV no greater than 25 MB can be submitted via API or Control Panel for validation *en masse*.
 In addition, a gzip no greater than 25 MB containing a single CSV of whatever size can also
