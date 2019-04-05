@@ -13,7 +13,8 @@ organized around the four major features that Mailgun provides:
 - `Sending Messages`_
 - `Tracking Messages`_
 - `Receiving, Forwarding and Storing Messages`_
-- `Email Validation`_
+- `Email Validation V3`_
+- `Email Validation V4`_
 
 At the heart of Mailgun is the API.  Most of the Mailgun service can be
 accessed through the RESTful HTTP API without the need to install any
@@ -1693,6 +1694,7 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
 ``X-Mailgun-Spf``
     Mailgun will perform an SPF validation, and results will be stored in this header.
     Possible values are: 'Pass', 'Neutral', 'Fail' or 'SoftFail'.
+
 
 Email Validation V3
 *******************
