@@ -71,6 +71,25 @@ Update mailing list properties, such as address, description or name
 
 Deletes a mailing list.
 
+
+.. code-block:: url
+
+    POST /lists/<address>/validate
+
+Validate all the members of the mailing list.
+
+.. code-block:: url
+
+    GET /lists/<address>/validate
+
+Retrieve current status of the mailing list validation job.
+
+.. code-block:: url
+
+    DELETE /lists/<address>/validate
+
+Cancel an active mailing list validation job.
+
 .. code-block:: url
 
     GET /lists/<address>/members/pages
@@ -347,3 +366,78 @@ Sample response:
     "message": "Mailing list has been deleted",
     "address": "dev@samples.mailgun.org"
   }
+
+
+Run mailing list validation:
+
+.. include:: samples/create-list-validation.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+    {
+        "id": "listname@yourdomain.com",
+        "message": "The validation job was submitted."
+    }
+
+Get mailing list validation status:
+
+.. include:: samples/get-list-validation.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+    {
+      "created_at": "Tue, 26 Feb 2019 21:30:03 GMT",
+      "download_url": {
+        "csv": "<download_link>",
+        "json": "<download_link>"
+      },
+      "id": "listname@mydomain.sandbox.mailgun.org",
+      "quantity": 207665,
+      "records_processed": 207665,
+      "status": "uploaded",
+      "summary": {
+        "result": {
+          "deliverable": 184199,
+          "do_not_send": 5647,
+          "undeliverable": 12116,
+          "unknown": 5613
+        },
+        "risk": {
+          "high": 17763,
+          "low": 142547,
+          "medium": 41652,
+          "unknown": 5613
+        }
+      }
+    }
+
+Field Explanation:
+
+=====================    =========    ============================================================================================================
+Parameter                Type         Description
+=====================    =========    ============================================================================================================
+created_at               string       Date/Time that the request was initiated
+download_url             array        `csv` and `json` representation of the download link for the results of the list validation
+id                       string       list name given when the list was initially created
+quantity                 integer      number of total items in the list to be validated
+records_processed        integer      de-duplicated total of validated email addresses
+status                   string       current state of the list validation request
+summary                  array        nested count results for `deliverable`, `do_not_send`, `undeliverable` and `unknown` statuses
+risk                     array        nested count results for `high`, `low`, `medium` or `unknown` risk assessment results
+=====================    =========    ============================================================================================================
+
+Cancel mailing list validation:
+
+.. include:: samples/delete-list-validation.rst
+
+Sample response:
+
+.. code-block:: javascript
+
+    {
+        "message": "Validation job canceled."
+    }

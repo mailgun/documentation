@@ -291,82 +291,7 @@ risk                     string       "High", "Medium", "Low" or "null" Dependin
 =====================    =========    ============================================================================================================
 
 
-Version 3 List Validation
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-.. note::
-    List validation supports a provided uploaded list through our email list service. Passing in the ID
-    to the list validation route deploys a task to validate every email address in the provided list.
-
-
-.. code-block:: url
-
-    POST /v3/lists/<list_ID>/validate
-
-V3 List Validation Request Example
-
-.. code-block:: javascript
-
-    {
-      "id": "57713334-aa10-4699-a1fe-1c624ca6a671",
-      "message": "The validation job was submitted."
-    }
-
-
-V3 List Validation Response Example
-
-.. code-block:: url
-
-     GET /v3/lists/listname@mydomain.sandbox.mailgun.org/validate
-
-.. code-block:: javascript
-
-    {
-      "created_at": "Tue, 26 Feb 2019 21:30:03 GMT",
-      "download_url": {
-        "csv": "<download_link>",
-        "json": "<download_link>"
-      },
-      "id": "listname@mydomain.sandbox.mailgun.org",
-      "quantity": 207665,
-      "records_processed": 207665,
-      "status": "uploaded",
-      "summary": {
-        "result": {
-          "deliverable": 184199,
-          "do_not_send": 5647,
-          "undeliverable": 12116,
-          "unknown": 5613
-        },
-        "risk": {
-          "high": 17763,
-          "low": 142547,
-          "medium": 41652,
-          "unknown": 5613
-        }
-      }
-    }
-
-
-Field Explanation:
-
-=====================    =========    ============================================================================================================
-Parameter                Type         Description
-=====================    =========    ============================================================================================================
-created_at               string       Date/Time that the request was initiated
-download_url             array        `csv` and `json` representation of the download link for the results of the bulk validations
-id                       string       list_id name given when the list was initially created
-quantity                 integer      number of total items in the list to be validated
-records_processed        integer      de-duplicated total of validated email addresses
-status                   string       current state of the list validation request
-summary                  array        nested count results for `deliverable`, `do_not_send`, `undeliverable` and `unknown` statuses
-risk                     array        nested count results for `high`, `low`, `medium` or `unknown` risk assessment results
-=====================    =========    ============================================================================================================
-
-
-
-Version 4 Bulk Validation
+Bulk Validation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
@@ -383,7 +308,7 @@ Version 4 Bulk Validation
 
 
 
-V4 Bulk Validation Request Example
+Bulk Validation Request Example
 
 
 .. note::
@@ -410,7 +335,7 @@ V4 Bulk Validation Request Example
 
 
 
-V4 Bulk Validation Response Example
+Bulk Validation Response Example
 
 .. code-block:: url
 
