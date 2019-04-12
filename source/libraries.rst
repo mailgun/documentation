@@ -152,7 +152,7 @@ load the Mailgun library in your project.
 
     require 'vendor/autoload.php';
     use Mailgun\Mailgun;
-    $mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
+    $mailgun = new Mailgun::create('key-example');
 
 For additional information, see the GitHub Repository `README <https://github.com/mailgun/mailgun-php>`_ file.
 
