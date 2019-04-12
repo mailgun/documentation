@@ -1,7 +1,7 @@
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' \
-      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/validate\
+      https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/validate \
 
 .. code-block:: java
 
