@@ -777,6 +777,65 @@ Below you can find sample events of various types:
       "user-variables": {}
     }
 
+**List Member Uploaded:**
+
+.. code-block:: javascript
+    {
+        "task-id": "235fsc00607511e9a4sa0a6d3b5f5rt6",
+        "mailing-list": {
+            "address": "list@example.com"
+        },
+        "timestamp": 1555439198.84909,
+        "log-level": "info",
+        "id": "2342sd234asDSDsdfsd",
+        "member": {
+            "name": "",
+            "subscribed": true,
+            "address": "user@example.com"
+        },
+        "event": "list_member_uploaded"
+    }
+
+**List Member Upload Error**
+
+.. code-block:: javascript
+    {
+        "task-id": "235fsc00607511e9a4sa0a6d3b5f5rt6",
+        "format": "text",
+        "mailing-list": {
+            "address": "list@example.com"
+        },
+        "timestamp": 1555440404.488491,
+        "error": {
+            "message": "Invalid format"
+        },
+        "log-level": "error",
+        "id": "Kr9ZsE8ATfqhNHYmRKlrHg",
+        "member-description": "mailto:user@example.com,",
+        "event": "list_member_upload_error"
+    },
+
+
+**List Uploaded:**
+
+.. code-block:: javascript
+    {
+        "task-id": "235fsc00607511e9a4sa0a6d3b5f5rt6",
+        "subscribed": true,
+        "format": "text",
+        "mailing-list": {
+            "address": "list@example.com"
+        },
+        "timestamp": 1555440421.099269,
+        "log-level": "info",
+        "id": "Kr9ZsE8ATfqhNHYmRKlrHg",
+        "failed-count": 12,
+        "upserted-count": 75258,
+        "is-upsert": false,
+        "event": "list_uploaded"
+    }
+
+
 Examples
 --------
 
