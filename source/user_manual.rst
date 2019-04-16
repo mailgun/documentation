@@ -686,29 +686,35 @@ Below is the table of events that Mailgun tracks.
 
 .. container:: ptable
 
-    ================= ============================================================
-    Event             Description
-    ================= ============================================================
-    accepted          Mailgun accepted the request to send/forward the email and the message
-                      has been placed in queue.
-    rejected          Mailgun rejected the request to send/forward the email.
-    delivered         Mailgun sent the email and it was accepted by the recipient
-                      email server.
-    failed            Mailgun could not deliver the email to the recipient email server.
-    opened            The email recipient opened the email and enabled image
-                      viewing. Open tracking must be enabled in the Mailgun control
-                      panel, and the CNAME record must be pointing to mailgun.org.
-    clicked           The email recipient clicked on a link in the email.
-                      Click tracking must be enabled in the Mailgun control
-                      panel, and the CNAME record must be pointing to mailgun.org.
-    unsubscribed      The email recipient clicked on the unsubscribe link.
-                      Unsubscribe tracking must be enabled in the Mailgun control
-                      panel.
-    complained        The email recipient clicked on the spam complaint button within
-                      their email client. Feedback loops enable the notification to
-                      be received by Mailgun.
+    ========================== ============================================================
+    Event                      Description
+    ========================== ============================================================
+    accepted                   Mailgun accepted the request to send/forward the email and the message
+                               has been placed in queue.
+    rejected                   Mailgun rejected the request to send/forward the email.
+    delivered                  Mailgun sent the email and it was accepted by the recipient
+                               email server.
+    failed                     Mailgun could not deliver the email to the recipient email server.
+    opened                     The email recipient opened the email and enabled image
+                               viewing. Open tracking must be enabled in the Mailgun control
+                               panel, and the CNAME record must be pointing to mailgun.org.
+    clicked                    The email recipient clicked on a link in the email.
+                               Click tracking must be enabled in the Mailgun control
+                               panel, and the CNAME record must be pointing to mailgun.org.
+    unsubscribed               The email recipient clicked on the unsubscribe link.
+                               Unsubscribe tracking must be enabled in the Mailgun control
+                               panel.
+    complained                 The email recipient clicked on the spam complaint button within
+                               their email client. Feedback loops enable the notification to
+                               be received by Mailgun.
 
-    stored            Mailgun has stored an incoming message
+    stored                     Mailgun has stored an incoming message
+    list_member_uploaded       This event occurs after successfully adding a member to a
+                               mailing list.
+    list_member_upload_error   This event occurs if an error occurs adding a member to a
+                               mailing list.
+    list_uploaded              This event occurs after successfully uploading a large list of
+                               members to a mailing list.
     ================= ============================================================
 
 You can access Events through a few interfaces:
