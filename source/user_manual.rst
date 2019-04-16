@@ -602,7 +602,7 @@ Another way to provide substitution variables is to use :ref:`X-Mailgun-Variable
   -F to='alice@example.com' \
   -F subject='Hello' \
   -F template='template.test' \
-  -H h:X-Mailgun-Variables='{"title": "API Documentation", "body": "Sending messages with template"}'
+  -F h:X-Mailgun-Variables='{"title": "API Documentation", "body": "Sending messages with template"}'
  
 The second way is preferable as it allows you to provide complex json data (arrays, nested json and so on)
 
