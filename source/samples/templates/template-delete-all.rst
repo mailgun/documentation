@@ -91,7 +91,7 @@
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 
- mailgun.put(`/${DOMAIN}/templates`, function (error, body) {
+ mailgun.delete(`/${DOMAIN}/templates`, function (error, body) {
    console.log(body);
  });
 
