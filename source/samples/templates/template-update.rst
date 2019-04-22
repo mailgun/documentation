@@ -92,6 +92,12 @@
 
 .. code-block:: go
 
+    import (
+        "context"
+        "github.com/mailgun/mailgun-go/v3"
+        "time"
+    )
+
     func UpdateTemplate(domain, apiKey string) error {
         mg := mailgun.NewMailgun(domain, apiKey)
 

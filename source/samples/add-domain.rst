@@ -107,7 +107,8 @@
       ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
       defer cancel()
 
-      return mg.CreateDomain(ctx, "example.com", "super_secret", &mailgun.CreateDomainOptions{
+      return mg.CreateDomain(ctx, "example.com", &mailgun.CreateDomainOptions{
+          Password: "super_secret",
           SpamAction: mailgun.SpamActionTag,
           Wildcard:   false,
       })

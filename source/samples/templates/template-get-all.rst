@@ -89,6 +89,12 @@
 
 .. code-block:: go
 
+    import (
+        "context"
+        "github.com/mailgun/mailgun-go/v3"
+        "time"
+    )
+
     func ListTemplates(domain, apiKey string) ([]mailgun.Template, error) {
         mg := mailgun.NewMailgun(domain, apiKey)
         it := mg.ListTemplates(nil)

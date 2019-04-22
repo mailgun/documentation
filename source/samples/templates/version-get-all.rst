@@ -86,6 +86,12 @@
 
 .. code-block:: go
 
+    import (
+        "context"
+        "github.com/mailgun/mailgun-go/v3"
+        "time"
+    )
+
     func ListTemplateVersions(domain, apiKey string) ([]mailgun.TemplateVersion, error) {
         mg := mailgun.NewMailgun(domain, apiKey)
         it := mg.ListTemplateVersions("TEMPLATE_NAME", nil)
