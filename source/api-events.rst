@@ -287,7 +287,7 @@ event has. They are as follows:
  ================= ============================================================
 
 Events can change their structure as new features are added to Mailgun, but we
-only add new fields and never modify or remove existing one.
+only add new fields and never modify or remove existing ones.
 
 Below you can find sample events of various types:
 
