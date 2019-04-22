@@ -86,7 +86,23 @@
 
 .. code-block:: go
 
- // Not supported yet.
+    func ListTemplateVersions(domain, apiKey string) ([]mailgun.TemplateVersion, error) {
+        mg := mailgun.NewMailgun(domain, apiKey)
+        it := mg.ListTemplateVersions("TEMPLATE_NAME", nil)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        var page, result []mailgun.TemplateVersion
+        for it.Next(ctx, &page) {
+            result = append(result, page...)
+        }
+
+        if it.Err() != nil {
+            return nil, it.Err()
+        }
+        return result, nil
+    }
 
 .. code-block:: js
 

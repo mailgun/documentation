@@ -87,7 +87,14 @@
 
 .. code-block:: go
 
-  // Not implemented yet
+    func GetTemplate(domain, apiKey string) (mailgun.Template, error) {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        return mg.GetTemplate(ctx, "my-template")
+    }
 
 .. code-block:: js
 

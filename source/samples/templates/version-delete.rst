@@ -92,7 +92,15 @@
 
 .. code-block:: go
 
- // Not supported yet.
+    func DeleteTemplateVersion(domain, apiKey string) error {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        // Delete the template version tagged as 'VERSION_TAG'
+        return mg.DeleteTemplateVersion(ctx, "TEMPLATE_NAME", "VERSION_TAG")
+    }
 
 .. code-block:: js
 

@@ -88,7 +88,16 @@
 
 .. code-block:: go
 
- // Not supported yet.
+    func GetTemplateVersion(domain, apiKey string) (mailgun.TemplateVersion, error) {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        // Get the template version tagged as 'VERSION_TAG'
+        return mg.GetTemplateVersion(ctx, "TEMPLATE_NAME", "VERSION_TAG")
+    }
+
 
 .. code-block:: js
 

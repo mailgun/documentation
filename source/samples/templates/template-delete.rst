@@ -86,7 +86,14 @@
 
 .. code-block:: go
 
- // Not implemented
+    func DeleteTemplate(domain, apiKey string) error {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        return mg.DeleteTemplate(ctx, "TEMPLATE_NAME")
+    }
 
 .. code-block:: js
 

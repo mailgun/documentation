@@ -92,7 +92,17 @@
 
 .. code-block:: go
 
- // Not implemented
+    func UpdateTemplate(domain, apiKey string) error {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        return mg.UpdateTemplate(ctx, &mailgun.Template{
+            Name:        "TEMPLATE_NAME",
+            Description: "Add a description to the template",
+        })
+    }
 
 .. code-block:: js
 
