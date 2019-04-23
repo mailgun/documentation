@@ -89,7 +89,29 @@
 
 .. code-block:: go
 
- // Not supported yet.
+    import (
+        "context"
+        "github.com/mailgun/mailgun-go/v3"
+        "time"
+    )
+
+    func ListTemplates(domain, apiKey string) ([]mailgun.Template, error) {
+        mg := mailgun.NewMailgun(domain, apiKey)
+        it := mg.ListTemplates(nil)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        var page, result []mailgun.Template
+        for it.Next(ctx, &page) {
+            result = append(result, page...)
+        }
+
+        if it.Err() != nil {
+            return nil, it.Err()
+        }
+        return result, nil
+    }
 
 .. code-block:: js
 

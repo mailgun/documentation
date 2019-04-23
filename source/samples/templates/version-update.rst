@@ -107,7 +107,24 @@
 
 .. code-block:: go
 
- // Not implemented yet
+    import (
+        "context"
+        "github.com/mailgun/mailgun-go/v3"
+        "time"
+    )
+
+    func UpdateTemplateVersion(domain, apiKey string) error {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        return mg.UpdateTemplateVersion(ctx, "TEMPLATE_NAME", &mailgun.TemplateVersion{
+            Comment: "Add a comment to the template and make it 'active'",
+            Tag:     "VERSION_TAG",
+            Active:  true,
+        })
+    }
 
 .. code-block:: js
 

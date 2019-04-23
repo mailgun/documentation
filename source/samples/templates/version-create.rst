@@ -105,7 +105,25 @@
 
 .. code-block:: go
 
- // Not implemented yet
+    import (
+        "context"
+        "github.com/mailgun/mailgun-go/v3"
+        "time"
+    )
+
+    func AddTemplateVersion(domain, apiKey string) error {
+        mg := mailgun.NewMailgun(domain, apiKey)
+
+        ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+        defer cancel()
+
+        return mg.AddTemplateVersion(ctx, "TEMPLATE_NAME", &mailgun.TemplateVersion{
+            Template: `'<div class="entry"> <h1>{{.title}}</h1> <div class="body"> {{.body}} </div> </div>'`,
+            Engine:   mailgun.TemplateEngineGo,
+            Tag:      "v2",
+            Active:   true,
+        })
+    }
 
 .. code-block:: js
 
