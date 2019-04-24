@@ -45,7 +45,7 @@
   $result = $mgClient->post("$domain/templates", array(
       'template' => '<div class="entry"> <h1>{{title}}</h1> <div class="body"> {{body}} </div> </div>',
       'name' => 'Test template',
-      'description' => 'Sample tempalte'
+      'description' => 'Sample template'
   ));
 
 .. code-block:: py
