@@ -43,6 +43,7 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  subject               Message subject
  text                  Body of the message. (text version)
  html                  Body of the message. (HTML version)
+ amp-html              `AMP <https://developers.google.com/gmail/ampemail/>`_ part of the message. Please follow google `guidelines <https://developers.google.com/gmail/ampemail/>`_ to copmose and send AMP emails.
  attachment            File attachment. You can post multiple ``attachment``
                        values. **Important:** You must use ``multipart/form-data``
                        encoding when sending attachments.
