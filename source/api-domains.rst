@@ -52,36 +52,45 @@ Create a new domain. See examples below.
  smtp_password         Password for SMTP authentication
  spam_action           ``disabled``, ``block``, or ``tag``
 
-                       If *disabled*, no spam filtering will occur for inbound
+                       If ``disabled``, no spam filtering will occur for inbound
                        messages.
 
-                       If *block*, inbound spam messages will not be delivered.
+                       If ``block``, inbound spam messages will not be delivered.
 
-                       If *tag*, inbound messages will be tagged with a spam header.
+                       If ``tag``, inbound messages will be tagged with a spam header.
                        See :ref:`um-spam-filter`.
 
                        The default is ``disabled``.
- wildcard              *true* or *false*
+ wildcard              ``true`` or ``false``
+
                        Determines whether the domain will accept email for sub-domains when sending messages.
 
-                       The default is `false`.
- force_dkim_authority  *true* or *false*
+                       The default is ``false``.
+ force_dkim_authority  ``true`` or ``false``
 
-                       If set to *true*, the domain will be the DKIM authority for itself
+                       If set to ``true``, the domain will be the DKIM authority for itself
                        even if the root domain is registered on the same mailgun account
 
-                       If set to *false*, the domain will have the same DKIM authority
+                       If set to ``false``, the domain will have the same DKIM authority
                        as the root domain registered on the same mailgun account
 
-                       The default is `false`.
- dkim_key_size         Size of domain's DKIM key pairs: ``1024`` or ``2048``
+                       The default is ``false``.
+ dkim_key_size         ``1024`` or ``2048``
 
-		       The default is ``1024``
+                       Set the length of your domain's generated DKIM key
+
+                       The default is ``1024``
  ips                   An optional, comma-separated list of IP addresses to be assigned
                        to this domain. If not specified, all dedicated IP addresses on
                        the account will be assigned. If the request cannot be fulfilled
                        (e.g. a requested IP is not assigned to the account, etc), a
                        ``400`` will be returned.
+
+ web_scheme            ``http`` or ``https``
+
+                       Set your open, click and unsubscribe URLs to use http or https
+
+                       The default is ``http``
  ===================== ========================================================
 
 .. code-block:: url
