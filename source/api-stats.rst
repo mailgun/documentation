@@ -37,29 +37,6 @@ Returns total stats for a given domain.
                    more info. If provided, overwrites the start date.
  ================= ============================================================
 
-.. code-block:: url
-
-      GET /<domain>/stats
-
-Returns a list of event stats items.
-Each record represents counts for one event per one day.
-
-.. warning:: This is the legacy API that should not be used.
-
-.. container:: ptable
-
- ================= ==========================================================
- Parameter         Description
- ================= ==========================================================
- limit             Maximum number of records to return. (100 by default)
- skip              Number of records to skip. (0 by default)
- event             Name of the event to receive the stats for. Note that you
-                   can specify this parameter multiple times to fetch stats
-                   for several events at the same time (see example below)
- start-date        The date to receive the stats starting from. Should
-                   have ISO8601 format (YYYY-MM-DD).
- ================= ==========================================================
-
 Duration
 --------
 
