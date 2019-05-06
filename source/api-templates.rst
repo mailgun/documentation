@@ -21,7 +21,7 @@ Store new template
 
     POST /<domain>/templates
 
-This API stoes a new template, storing its name, description and, optionally, the template content.
+This API stores a new template, storing its name, description and, optionally, the template content.
 If the content is provided a new version is automatically created and becomes the active version.
 
 .. container:: ptable
