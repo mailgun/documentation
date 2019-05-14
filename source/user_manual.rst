@@ -1315,8 +1315,7 @@ The example below will match any messages deemed spam (if spam filtering is enab
 
 The example below will match any recipient for a domain, then match if the message is in English::
 
-	match_recipient('^(.*)@example.com$') and
-	match_header("Content-Language", "^(.*)en-US(.*)$")
+	match_recipient('^(.*)@example.com$') and match_header("Content-Language", "^(.*)en-US(.*)$")
 
 **catch_all()**
 
