@@ -34,6 +34,7 @@
              .field("subject", "Hello")
              .field("text", "Testing out some Mailgun awesomeness!")
              .field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
+             .field("inline", new File("/path/to/test.jpg"))
              .asJson();
 
          return request.getBody();
