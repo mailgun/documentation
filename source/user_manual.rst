@@ -340,6 +340,11 @@ custom  MIME_ headers listed in the table below.
                                   See :ref:`manual-customdata` for more information.
     ============================= ============================================================
 
+Sending an AMP message
+================
+
+Google’s Accelerated Mobile Pages (AMP) for Email allows senders to include a subset of AMP components within an email message. This lets recipients receive content rich, dynamic emails,  that result in a more interactive experience with email messages. For recipients, this means the ability to view real time inventory, submit updates or replies in a doc, respond to surveys, etc., all from directly within the email message. For marketers, this could mean improved conversion rates since users can interact with you directly from the email without visiting a website!
+
 
 Message Queue
 =============
