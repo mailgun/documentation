@@ -344,8 +344,10 @@ Sending an AMP message
 ================
 
 .. _register: https://developers.google.com/gmail/ampemail/register
-.. _Bulk Senders Guidelines: https://support.google.com/mail/answer/81126
-.. _Amp for Email specification: https://amp.dev/documentation/guides-and-tutorials/learn/amp-email-format
+.. _Bulk Senders Guidelines_: https://support.google.com/mail/answer/81126
+.. _Amp for Email specification_: https://amp.dev/documentation/guides-and-tutorials/learn/amp-email-format
+.. _Gmail's Amp for Email Playground_: https://amp.gmail.dev/playground/
+.. _follow these steps_: https://help.mailgun.com/hc/en-us/articles/360011566033-How-to-Enable-HTTPS-Tracking-Links
 
 
 Google’s Accelerated Mobile Pages (AMP) for Email allows senders to include a subset of AMP components within an email message. This lets recipients receive content rich, dynamic emails,  that result in a more interactive experience with email messages. For recipients, this means the ability to view real time inventory, submit updates or replies in a doc, respond to surveys, etc., all from directly within the email message. For marketers, this could mean improved conversion rates since users can interact with you directly from the email without visiting a website!
@@ -360,13 +362,13 @@ In order to send AMP emails to mailboxes that support it (Gmail for now), you’
 
 *Content*
 
-Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s Bulk Senders Guidelines.  
+Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s _Bulk Senders Guidelines_.  
 
-Second, It’s important to follow the Amp for Email specification when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use Gmail’s Amp for Email Playground to test whether your message content will pass the validation process.
+Second, It’s important to follow the _Amp for Email specification_ when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use _Gmail’s Amp for Email Playground_ to test whether your message content will pass the validation process.
 
 *HTTPS URLs*
 
-All URLs must use HTTPS, including tracking and unsubscribe URLs. If you’re using Mailgun for your open/click tracking and unsubscribe URLs, you’ll need to follow these steps to enable HTTPS on your Mailgun tracking URLs.
+All URLs must use HTTPS, including tracking and unsubscribe URLs. If you’re using Mailgun for your open/click tracking and unsubscribe URLs, you’ll need to _follow these steps_ to enable HTTPS on your Mailgun tracking URLs.
 
 **Sending an AMP email on Mailgun**
 
