@@ -343,6 +343,11 @@ custom  MIME_ headers listed in the table below.
 Sending an AMP message
 ================
 
+.. _register: https://developers.google.com/gmail/ampemail/register
+.. _Bulk Senders Guidelines: https://support.google.com/mail/answer/81126
+.. _Amp for Email specification: https://amp.dev/documentation/guides-and-tutorials/learn/amp-email-format
+
+
 Google’s Accelerated Mobile Pages (AMP) for Email allows senders to include a subset of AMP components within an email message. This lets recipients receive content rich, dynamic emails,  that result in a more interactive experience with email messages. For recipients, this means the ability to view real time inventory, submit updates or replies in a doc, respond to surveys, etc., all from directly within the email message. For marketers, this could mean improved conversion rates since users can interact with you directly from the email without visiting a website!
 
 **AMP Requirements**
@@ -351,7 +356,7 @@ While AMP is a really exciting email tool, it takes a bit of setup before you ca
 
 *Registration*
 
-In order to send AMP emails to mailboxes that support it (Gmail for now), you’ll need to register your sending domain with Google. 
+In order to send AMP emails to mailboxes that support it (Gmail for now), you’ll need to register_ your sending domain with Google. 
 
 *Content*
 
