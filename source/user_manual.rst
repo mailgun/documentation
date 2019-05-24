@@ -362,9 +362,9 @@ In order to send AMP emails to mailboxes that support it (Gmail for now), you’
 
 *Content*
 
-Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s _Bulk_Senders_Guidelines_.  
+Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s `_Bulk Senders Guidelines <https://support.google.com/mail/answer/81126>`_.  
 
-Second, It’s important to follow the _Amp_for_Email_specification_ when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use _Gmail’s_Amp_for_Email_Playground_ to test whether your message content will pass the validation process.
+Next, It’s important to follow the _Amp_for_Email_specification_ when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use _Gmail’s_Amp_for_Email_Playground_ to test whether your message content will pass the validation process.
 
 *HTTPS URLs*
 
