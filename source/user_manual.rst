@@ -369,7 +369,7 @@ Mailgun has made it easy to send an AMP email using our API by providing the opt
 
 **Testing your email messages**
 
-If you’re waiting on Google for your domain to be registered, you can still start building AMP emails and testing them. Visit your Gmail settings page (GSuite users will need their admins to enable the Dynamic Email option), and then under the ``Dynamic Email`` section, check the box to ``Enable dynamic email``. After that, click on ``Developer settings`` and enter your sending address in the field in order to “whitelist” your sending address, then click OK. As long as you’re following the proper requirements for sending AMP messages, you should be able to successfully receive an AMP email from your sending address to your Gmail account.
+If you’re waiting on Google for your domain to be registered, you can still start building AMP emails and testing them. Visit your Gmail settings page (GSuite users will need their admins to enable the Dynamic Email option), and then under the **Dynamic Email** section, check the box to **Enable dynamic email**. After that, click on **Developer settings** and enter your sending address in the field in order to whitelist your sending address, then click OK. As long as you’re following the proper requirements for sending AMP messages, you should be able to successfully receive an AMP email from your sending address to your Gmail account.
 
 **AMP Best Practices**
 
