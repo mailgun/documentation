@@ -345,6 +345,53 @@ Sending an AMP message
 
 Google’s Accelerated Mobile Pages (AMP) for Email allows senders to include a subset of AMP components within an email message. This lets recipients receive content rich, dynamic emails,  that result in a more interactive experience with email messages. For recipients, this means the ability to view real time inventory, submit updates or replies in a doc, respond to surveys, etc., all from directly within the email message. For marketers, this could mean improved conversion rates since users can interact with you directly from the email without visiting a website!
 
+**AMP Requirements**
+
+While AMP is a really exciting email tool, it takes a bit of setup before you can successfully send an AMP email message to your recipients. 
+
+*Registration*
+
+In order to send AMP emails to mailboxes that support it (Gmail for now), you’ll need to register your sending domain with Google. 
+
+*Content*
+
+Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s Bulk Senders Guidelines.  
+
+Second, It’s important to follow the Amp for Email specification when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use Gmail’s Amp for Email Playground to test whether your message content will pass the validation process.
+
+*HTTPS URLs*
+
+All URLs must use HTTPS, including tracking and unsubscribe URLs. If you’re using Mailgun for your open/click tracking and unsubscribe URLs, you’ll need to follow these steps to enable HTTPS on your Mailgun tracking URLs.
+
+**Sending an AMP email on Mailgun**
+
+Mailgun has made it easy to send an AMP email using our API by providing the optional `amp-html` parameter along with your AMP content. Mailgun will take care of building the proper “text/x-amp-html” MIME portion. As long as you’re following the AMP requirements set by Google, you should be well on your way to sending your AMP messages.
+
+**Testing your email messages**
+
+If you’re waiting on Google for your domain to be registered, you can still start building AMP emails and testing them. Visit your Gmail settings page (GSuite users will need their admins to enable the Dynamic Email option), and then under the “Dynamic Email” section, check the box to “Enable dynamic email”. After that, click on “Developer settings” and enter your sending address in the field in order to “whitelist” your sending address, then click OK. As long as you’re following the proper requirements for sending AMP messages, you should be able to successfully receive an AMP email from your sending address to your Gmail account.
+
+**AMP Best Practices**
+
+*MIME part organization*
+
+Some email clients will only render the last MIME part, so you should ensure your MIME parts are in the following order:
+
+* text/plain
+* text/x-amp-html
+* text/html
+
+If you send a message via our API using the `amp-html`, Mailgun will take care of the proper ordering.
+
+*Text / HTML fallback*
+
+Just like when you send an HTML email, you should provide a Text version as a fallback in case the recipient blocks HTML content. The same applies when sending AMP emails. If you send an AMP email to a recipient that doesn’t support it or has blocked the content, they can still view the message in another format.
+
+*Replying to and forwarding AMP messages*
+
+It’s important to note that email clients will strip out the `text/x-amp-html` MIME in your messages when you reply to or forward the message. This is another reason why you should ensure you have text and HTML versions as a fallback when you send your emails.
+
+
 
 Message Queue
 =============
