@@ -362,13 +362,13 @@ In order to send AMP emails to mailboxes that support it (Gmail for now), you’
 
 *Content*
 
-Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s _Bulk Senders Guidelines_.  
+Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s _Bulk_Senders_Guidelines_.  
 
-Second, It’s important to follow the _Amp for Email specification_ when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use _Gmail’s Amp for Email Playground_ to test whether your message content will pass the validation process.
+Second, It’s important to follow the _Amp_for_Email_specification_ when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use _Gmail’s_Amp_for_Email_Playground_ to test whether your message content will pass the validation process.
 
 *HTTPS URLs*
 
-All URLs must use HTTPS, including tracking and unsubscribe URLs. If you’re using Mailgun for your open/click tracking and unsubscribe URLs, you’ll need to _follow these steps_ to enable HTTPS on your Mailgun tracking URLs.
+All URLs must use HTTPS, including tracking and unsubscribe URLs. If you’re using Mailgun for your open/click tracking and unsubscribe URLs, you’ll need to _follow_these_steps_ to enable HTTPS on your Mailgun tracking URLs.
 
 **Sending an AMP email on Mailgun**
 
