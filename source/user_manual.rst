@@ -668,13 +668,13 @@ The ``if`` block helper will allow you to conditionally render a block in your t
 
 .. code-block:: javascript
 
-	{{#if english}}
-	<p>This text is in the English language.</p>
-	{{else if spanish}} 
-	<p>Este texto está en idioma español.</p>
-	{{else if french}}
-	<p>Ce texte est en langue française.</p>                
-	{{/if}}
+  {{#if english}}
+  <p>This text is in the English language.</p>
+  {{else if spanish}} 
+  <p>Este texto está en idioma español.</p>
+  {{else if french}}
+  <p>Ce texte est en langue française.</p>                
+  {{/if}}
 
 In order to send the spanish version, for example, you would pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"spanish" : "true"}
 
@@ -685,9 +685,9 @@ The ``unless`` helper is essentially the inverse of the ``if`` helper. The block
 
 .. code-block:: javascript
 
-	{{#unless paid}}
-	<h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing department for assistance</h3>
-  	{{/unless}}
+  {{#unless paid}}
+  <h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing department for assistance</h3>
+  {{/unless}}
 
 An example JSON payload would look like this: {"paid" : "false"}
 
@@ -698,9 +698,9 @@ Using the ``each`` helper, you can iterate through a list. Include the following
 
 .. code-block:: javascript
 
-	{{#each user.services}}
-	<li>You scheduled {{this.service}} on {{this.date}}</li>
-	{{/each}}
+  {{#each user.services}}
+  <li>You scheduled {{this.service}} on {{this.date}}</li>
+  {{/each}}
 
 Your JSON data could look something like this:
 
