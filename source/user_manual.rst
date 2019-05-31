@@ -614,7 +614,7 @@ or commenting systems.
 
 .. _templating:
 
-Templating
+Templates
 ==========
 
 Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template name.
@@ -657,6 +657,68 @@ Another way to provide substitution variables is to use :ref:`X-Mailgun-Variable
   -F h:X-Mailgun-Variables='{"title": "API Documentation", "body": "Sending messages with template"}'
  
 The second way is preferable as it allows you to provide complex json data (arrays, nested json and so on)
+
+**Handlebars**
+
+Speaking of Handlebars, one of the cool things you can do with Handelbars is use their block helpers, which are easy ways to implement dynamic content in your template. Our implementation of Handlebars supports the following helpers: if, unless, each, with, lookup, log and equal. Let's explore what each of these do and some quick examples:
+
+The ``if`` block helper
+
+The ``if`` block helper will allow you to conditionally render a block in your template. For example, if you wanted to use a template that would dynamically change language body, you would include the following in your HTML:
+
+{{#if english}}
+<p>This text is in the English language.</p>
+{{else if spanish}} 
+<p>Este texto está en idioma español.</p>
+{{else if french}}
+<p>Ce texte est en langue française.</p>                
+{{/if}}
+
+In order to send the spanish version, for example, you would pass the `h:X-Mailgun-Variables` parameter with the following JSON data: {"spanish" : "true"}
+
+The ``unless`` block helper
+
+The ``unless`` helper is essentially the inverse of the `if` helper. The block will only be rendered if the expression returns a false value. Include the following in your HTML:
+
+ {{#unless paid}}
+  <h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing department for assistance</h3>
+  {{/unless}}
+
+An example JSON payload would look like this: {"paid" : "false"}
+
+The `each` block helper
+
+Using the `each` helper, you can iterate through a list. Include the following in your HTML:
+
+{{#each user.services}}
+	<li>You scheduled {{this.service}} on {{this.date}}</li>
+{{/each}}
+
+Your JSON data could look something like this:
+
+{
+  "user":{
+     "services":[
+        {
+           "date":"07/30/2019",
+           "service":"deliverability consultation"
+        },
+        {
+           "date":"08/05/2019",
+           "service":"sales consultation"
+        }
+     ]
+  }
+}
+
+
+The `with` block helper
+
+The `lookup` helper
+
+The `log` helper
+
+The `equal` helper
 
 
 .. _handlebars: https://handlebarsjs.com/
