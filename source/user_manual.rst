@@ -706,25 +706,25 @@ Your JSON data could look something like this:
 
 .. code-block:: JSON
 
-{
-	"user":{
-		"services":[
-		{
-		"date":"07/30/2019",
-		"service":"deliverability consultation"
-		},
-		{
-		"date":"08/05/2019",
-		"service":"sales consultation"
-		}
-		]
-		}
+{  
+   "user":{  
+      "services":[  
+         {  
+            "date":"07/30/2019",
+            "service":"deliverability consultation"
+         },
+         {  
+            "date":"08/05/2019",
+            "service":"sales consultation"
+         }
+      ]
+   }
 }
 
 The email would end up looking like this:
 
-*You scheduled deliverability consultation on 07/30/2019
-*You scheduled sales consultation on 08/05/2019
+- You scheduled deliverability consultation on 07/30/2019
+- You scheduled sales consultation on 08/05/2019
 
 
 
