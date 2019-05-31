@@ -678,9 +678,10 @@ The ``if`` block helper will allow you to conditionally render a block in your t
 
 In order to send the spanish version, for example, you would pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"spanish" : "true"}
 
+
 *The* ``unless`` *block helper*
 
-The ``unless`` helper is essentially the inverse of the `if` helper. The block will only be rendered if the expression returns a false value. Include the following in your HTML:
+The ``unless`` helper is essentially the inverse of the ``if`` helper. The block will only be rendered if the expression returns a false value. Include the following in your HTML:
 
 .. code-block:: javascript
 
@@ -689,6 +690,7 @@ The ``unless`` helper is essentially the inverse of the `if` helper. The block w
   	{{/unless}}
 
 An example JSON payload would look like this: {"paid" : "false"}
+
 
 *The* ``each`` *block helper*
 
@@ -724,18 +726,6 @@ The email would end up looking like this:
 *You scheduled deliverability consultation on 07/30/2019
 *You scheduled sales consultation on 08/05/2019
 
-
-*The* ``with`` *block helper*
-
-*The* ``lookup`` *helper*
-
-The lookup helper allows for dynamic parameter resolution using handlebars variables.
-
-.. code-block:: javascript
-
-{{#each bar}}
-  {{lookup ../foo @index}}
-{{/each}}
 
 
 
