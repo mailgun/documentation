@@ -704,7 +704,7 @@ Using the ``each`` helper, you can iterate through a list. Include the following
 
 Your JSON data could look something like this:
 
-.. code-block:: JSON
+.. code-block:: javascript
 
 {  
    "user":{  
