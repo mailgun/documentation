@@ -666,35 +666,43 @@ The ``if`` block helper
 
 The ``if`` block helper will allow you to conditionally render a block in your template. For example, if you wanted to use a template that would dynamically change language body, you would include the following in your HTML:
 
-{{#if english}}
-<p>This text is in the English language.</p>
-{{else if spanish}} 
-<p>Este texto está en idioma español.</p>
-{{else if french}}
-<p>Ce texte est en langue française.</p>                
-{{/if}}
+::
 
-In order to send the spanish version, for example, you would pass the `h:X-Mailgun-Variables` parameter with the following JSON data: {"spanish" : "true"}
+	{{#if english}}
+	<p>This text is in the English language.</p>
+	{{else if spanish}} 
+	<p>Este texto está en idioma español.</p>
+	{{else if french}}
+	<p>Ce texte est en langue française.</p>                
+	{{/if}}
+
+In order to send the spanish version, for example, you would pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"spanish" : "true"}
 
 The ``unless`` block helper
 
 The ``unless`` helper is essentially the inverse of the `if` helper. The block will only be rendered if the expression returns a false value. Include the following in your HTML:
 
- {{#unless paid}}
-  <h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing department for assistance</h3>
-  {{/unless}}
+::
+
+	{{#unless paid}}
+	<h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing 	department for assistance</h3>
+  	{{/unless}}
 
 An example JSON payload would look like this: {"paid" : "false"}
 
-The `each` block helper
+The ``each`` block helper
 
-Using the `each` helper, you can iterate through a list. Include the following in your HTML:
+Using the ``each`` helper, you can iterate through a list. Include the following in your HTML:
 
-{{#each user.services}}
+.. code-block:: javascript
+
+	{{#each user.services}}
 	<li>You scheduled {{this.service}} on {{this.date}}</li>
-{{/each}}
+	{{/each}}
 
 Your JSON data could look something like this:
+
+.. code-block:: javascript
 
 {
   "user":{
