@@ -696,7 +696,7 @@ An example JSON payload would look like this: {"paid" : "false"}
 
 Using the ``each`` helper, you can iterate through a list. Include the following in your HTML:
 
-.. code-block:: javascript
+.. code-block:: JSON
 
 	{{#each user.services}}
 	<li>You scheduled {{this.service}} on {{this.date}}</li>
