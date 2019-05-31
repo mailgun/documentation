@@ -709,15 +709,8 @@ Your JSON data could look something like this:
 {
   "user":{
      "services":[
-        {
-           "date":"07/30/2019",
-           "service":"deliverability consultation"
-        },
-        {
-           "date":"08/05/2019",
-           "service":"sales consultation"
-        }
-     ]
+        {"date":"07/30/2019", "service":"deliverability consultation"},
+        {"date":"08/05/2019", "service":"sales consultation"}]
   }
 }
 
