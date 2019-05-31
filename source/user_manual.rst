@@ -706,7 +706,7 @@ Your JSON data could look something like this:
 
 .. code-block:: javascript
 
-{  
+  {  
    "user":
    {  
       "services":
@@ -721,7 +721,7 @@ Your JSON data could look something like this:
          }
       ]
    }
-}
+  }
 
 The email would end up looking like this:
 
