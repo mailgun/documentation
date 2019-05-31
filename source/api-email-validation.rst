@@ -65,7 +65,7 @@ Example of a failed mailbox verification result.
         "address": "nonexistentemail@realdomain.com",
         "is_disposable_address": false,
         "is_role_address": false,
-        "reason": "mailbox_does_not_exist",
+        "reason": [mailbox_does_not_exist],
         "result": "undeliverable",
         "risk": "high"
     }
@@ -94,8 +94,8 @@ did_you_mean             string       (Optional) Null if nothing, however if a p
 is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
 reason                   array        List of potential reasons why a specific validation may be unsuccessful.
-result                   string       Either "deliverable", "undeliverable" or "unknown" status given the evaluation.
-risk                     string       "High", "Medium", "Low" or "null" Depending on the evaluation of all aspects of the given email.
+result                   string       Either ``deliverable``, ``undeliverable`` or ``unknown`` status given the evaluation.
+risk                     string       ``high``, ``medium``, ``low`` or ``null`` Depending on the evaluation of all aspects of the given email.
 =====================    =========    ============================================================================================================
 
 
@@ -190,10 +190,10 @@ download_url             array          `csv` and `json` representation of the d
 id                       string         list_id name given when the list was initially created
 quantity                 integer        number of total items in the list to be validated
 records_processed        integer        de-duplicated total of validated email addresses
-status                   string         current state of the list validation request. (`created`, `processing`, `completed`, `uploading`, `uploaded`, and `failed`)
+status                   string         current state of the list validation request. (``created``, ``processing``, ``completed``, ``uploading``, ``uploaded``, and ``failed``)
 summary                  collection     summary of the validations in the list provided
-result                   array          nested results count. (`deliverable`, `do_not_send`, `undeliverable`, and `unknown`)
-risk                     array          nested risk assessment count (`high`, `low`, `medium` or `unknown`)
+result                   array          nested results count. (``deliverable``, ``do_not_send``, ``undeliverable``, and `unknown`)
+risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
 =====================    ===========    ============================================================================================================
 
 
