@@ -662,11 +662,11 @@ The second way is preferable as it allows you to provide complex json data (arra
 
 Speaking of Handlebars, one of the cool things you can do with Handelbars is use their block helpers, which are easy ways to implement dynamic content in your template. Our implementation of Handlebars supports the following helpers: if, unless, each, with, lookup, log and equal. Let's explore what each of these do and some quick examples:
 
-The ``if`` block helper
+*The ``if`` block helper*
 
 The ``if`` block helper will allow you to conditionally render a block in your template. For example, if you wanted to use a template that would dynamically change language body, you would include the following in your HTML:
 
-::
+.. code-block:: javascript
 
 	{{#if english}}
 	<p>This text is in the English language.</p>
@@ -678,11 +678,11 @@ The ``if`` block helper will allow you to conditionally render a block in your t
 
 In order to send the spanish version, for example, you would pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"spanish" : "true"}
 
-The ``unless`` block helper
+*The ``unless`` block helper*
 
 The ``unless`` helper is essentially the inverse of the `if` helper. The block will only be rendered if the expression returns a false value. Include the following in your HTML:
 
-::
+.. code-block:: javascript
 
 	{{#unless paid}}
 	<h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing 	department for assistance</h3>
@@ -690,7 +690,7 @@ The ``unless`` helper is essentially the inverse of the `if` helper. The block w
 
 An example JSON payload would look like this: {"paid" : "false"}
 
-The ``each`` block helper
+*The ``each`` block helper*
 
 Using the ``each`` helper, you can iterate through a list. Include the following in your HTML:
 
@@ -719,14 +719,56 @@ Your JSON data could look something like this:
   }
 }
 
+The email would end up looking like this:
 
-The `with` block helper
+*You scheduled deliverability consultation on 07/30/2019
+*You scheduled sales consultation on 08/05/2019
 
-The `lookup` helper
 
-The `log` helper
+*The ``with`` block helper*
 
-The `equal` helper
+*The ``lookup`` helper*
+
+The lookup helper allows for dynamic parameter resolution using handlebars variables.
+
+.. code-block:: javascript
+
+{{#each bar}}
+  {{lookup ../foo @index}}
+{{/each}}
+
+*The ``equal`` helper*
+
+The ``equal`` helper renders a block if the string version of both arguments are equals.
+
+For example, in your HTML:
+
+.. code-block:: javascript
+
+{{#equal foo "bar"}}foo is bar{{/equal}}
+{{#equal foo baz}}foo is the same as baz{{/equal}}
+{{#equal nb 0}}nothing{{/equal}}
+{{#equal nb 1}}there is one{{/equal}}
+{{#equal nb "1"}}everything is stringified before comparison{{/equal}}
+
+Passing the following JSON data:
+
+.. code-block:: javascript
+
+
+{
+    "foo": "bar",
+    "baz": "bar",
+    "nb":  1
+}
+
+would net you the following email:
+
+foo is bar
+foo is the same as baz
+
+there is one
+everything is stringified before comparison
 
 
 .. _handlebars: https://handlebarsjs.com/
