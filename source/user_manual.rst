@@ -686,7 +686,7 @@ The ``unless`` helper is essentially the inverse of the ``if`` helper. The block
 .. code-block:: javascript
 
 	{{#unless paid}}
-	<h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing 	department for assistance</h3>
+	<h3 class="warning">WARNING: Your account is past due and will be suspended shortly. Please contact our billing department for assistance</h3>
   	{{/unless}}
 
 An example JSON payload would look like this: {"paid" : "false"}
@@ -707,8 +707,10 @@ Your JSON data could look something like this:
 .. code-block:: javascript
 
 {  
-   "user":{  
-      "services":[  
+   "user":
+   {  
+      "services":
+      [  
          {  
             "date":"07/30/2019",
             "service":"deliverability consultation"
