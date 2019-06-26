@@ -7,6 +7,9 @@ Mailgun lets you tag each outgoing message with a custom value and provides stat
 To tag a message you need to provide one or more ``o:tag`` parameter in the API.
 Tags are created on the fly but they are subject to a limit.
 
+.. note:: Unicode characters are not allowed in tags. Any unicode characters found in tags are
+          stripped from the tag. If tag is entirely unicode characters, the tag is ignored.
+
 .. code-block:: url
 
       GET /<domain>/tags
