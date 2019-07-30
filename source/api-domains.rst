@@ -16,7 +16,8 @@ Returns a list of domains under your account in JSON. See examples below.
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
- authority         Filter a list by given DKIM authority name
+ authority         Filter the list by a given DKIM authority name
+ state		   Filter the list by a given state. Can be ``active``, ``unverified`` or ``disabled``
  limit             Maximum number of records to return. (100 by default)
  skip              Number of records to skip. (0 by default)
  ================= ========================================================
