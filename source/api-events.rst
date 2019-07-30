@@ -187,9 +187,12 @@ Log records can be filtered by the following fields:
  to            An email address mentioned in the `to` MIME header.
  size          Message size. Mostly intended to be used with range filtering
                expressions (see below).
- recipient     An email address of a particular recipient. Even though a message
-               may be addressed to several recipients, delivery is tracked on
-               per recipient basis and every event pertains to only one recipient.
+ recipient     An email address of a particular recipient. While messages are
+               addressable to one or more recipients, each event (with one
+               exception) tracks one recipient. See `stored` events for use
+               of `recipients`.
+ recipients    Specific to `stored` events, this field tracks all of the potential
+               message recipients.
  tags          User defined tags.
  severity      Temporary or Permanent. Used to filter events based on severity, if
                exists. (Currently failed events only)

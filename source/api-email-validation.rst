@@ -45,8 +45,6 @@ Given an arbitrary address, validates address based off defined checks.
  Parameter         	Description
  ====================== ========================================================
  address           	An email address to validate. (Maximum: 512 characters)
- api_key          	If you cannot use HTTP Basic Authentication (preferred),
-                   	you can pass your public api_key in as a parameter.
  ====================== ========================================================
 
 
