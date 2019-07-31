@@ -1,7 +1,7 @@
 
 .. code-block:: bash
 
-  curl -s --user 'api:YOUR_API_KEY' \
+  curl -s --user 'api:YOUR_API_KEY' -X GET \
     https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME \
     -F active='yes'
 
