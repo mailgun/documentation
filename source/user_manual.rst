@@ -644,7 +644,7 @@ Just using the template name you can send a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
-Another way to provive variables is to use a form parameter prefixed with ``v:`` how it's showed :ref:`here <manual-customdata>`.
+Another way to provide variables is to use a form parameter prefixed with ``v:`` how it's shown :ref:`here <manual-customdata>`.
 
 .. include:: samples/send-message-template-v.rst
 

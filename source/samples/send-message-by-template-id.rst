@@ -7,7 +7,7 @@
     -F to='alice@example.com' \
     -F subject='Hello' \
     -F template='template.test' \
-    -F h:X-Mailgun-Variabels='{"title": "API documentation", "body": "Sending messages with templates"}'
+    -F h:X-Mailgun-Variables='{"title": "API documentation", "body": "Sending messages with templates"}'
 
 .. code-block:: java
 
@@ -31,7 +31,7 @@
  	        .field("subject", "Hello")
             .field("template", "template.test")
  		    .field("o:tracking", "False")
-            .field("h:X-Mailgun-Variabels", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}")
+            .field("h:X-Mailgun-Variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}")
  		    .asJson();
 
          return request.getBody();
@@ -54,7 +54,7 @@
       'to'                    => 'foo@example.com',
       'subject'               => 'Hello',
       'template'              => 'template.test',
-      'h:X-Mailgun-Variabels' => '{"title": "API Documentation", "body": "Sending messages with templates"}'
+      'h:X-Mailgun-Variables' => '{"title": "API Documentation", "body": "Sending messages with templates"}'
   ));
 
 .. code-block:: py
@@ -120,7 +120,37 @@
 
 .. code-block:: go
 
- // Not implemented yet
+  import (
+    "context"
+    "encoding/json"
+    "github.com/mailgun/mailgun-go"
+    "time"
+  )
+  
+
+  func SendMessageWithTemplate() (id string , err error) {
+    mg := mailgun.NewMailgun("YOUR_DOMAIN_NAME", "YOUR_API_KEY")
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second * 30)
+    defer cancel()
+    
+    m := mg.NewMessage("Excited User <YOU@YOUR_DOMAIN_NAME>", "???", "")
+    m.SetTemplate("template.test")
+    if err := m.AddRecipient("bar@example.com"); err != nil {
+      return "", err
+    }
+
+    vars, err := json.Marshal(map[string]string{
+        "title": "API Documentation",
+        "body":  "Sending messages with templates",
+    })
+    if err != nil {
+      return "", err
+    }
+    m.AddHeader("X-Mailgun-Variables", vars)
+
+    _, id, err := mg.Send(ctx, m)
+    return
+  }
 
 .. code-block:: js
 
