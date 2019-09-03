@@ -84,17 +84,17 @@ Example of successful mailbox verification result.
 
 Field Explanation:
 
-=====================    =========    ============================================================================================================
+=====================    =========    ======================================================================================================================
 Parameter                Type         Description
-=====================    =========    ============================================================================================================
+=====================    =========    ======================================================================================================================
 address                  string       Email address being validated
 did_you_mean             string       (Optional) Null if nothing, however if a potential typo is made, the closest suggestion is provided
 is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
 reason                   array        List of potential reasons why a specific validation may be unsuccessful.
 result                   string       Either ``deliverable``, ``undeliverable`` or ``unknown`` status given the evaluation.
-risk                     string       ``high``, ``medium``, ``low`` or ``null`` Depending on the evaluation of all aspects of the given email.
-=====================    =========    ============================================================================================================
+risk                     string       ``high``, ``medium``, ``low``, ``unknown`` or ``null`` Depending on the evaluation of all aspects of the given email.
+=====================    =========    ======================================================================================================================
 
 
 Bulk Validation
