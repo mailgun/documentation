@@ -101,7 +101,7 @@ Reason Explanation:
 =============================    ==========================================================================================================================================================================================
 Reason                           Description
 =============================    ==========================================================================================================================================================================================
-unknown_provider                 The MX provider is a high risk unknown provider.
+unknown_provider                 The MX provider is an unknown provider.
 no_mx / No MX host found         The recipient domain does not have a valid MX host. _Note: this reason will be consolidated to only "no_mx" in the future._
 high_risk_domain                 Information obtained about the domain indicates it is high risk to send email to.
 subdomain_mailer                 The recipient domain is identified to be a subdomain and is not on our exception list. Subdomains are considered to be high risk as many spammers and malicious actors utilize them.
