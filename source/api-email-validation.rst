@@ -96,6 +96,21 @@ result                   string       Either ``deliverable``, ``undeliverable`` 
 risk                     string       ``high``, ``medium``, ``low`` or ``null`` Depending on the evaluation of all aspects of the given email.
 =====================    =========    ============================================================================================================
 
+Reason Explanation:
+
+=============================    ==========================================================================================================================================================================================
+Reason                           Description
+=============================    ==========================================================================================================================================================================================
+unknown_provider                 The MX provider is an unknown provider.
+no_mx / No MX host found         The recipient domain does not have a valid MX host. _Note: this reason will be consolidated to only "no_mx" in the future._
+high_risk_domain                 Information obtained about the domain indicates it is high risk to send email to.
+subdomain_mailer                 The recipient domain is identified to be a subdomain and is not on our exception list. Subdomains are considered to be high risk as many spammers and malicious actors utilize them.
+immature_domain                  The domain is newly created based on the WHOIS information.
+tld_risk                         The domain has a top-level-domain (TLD) that has been identified as high risk.
+mailbox_does_not_exist           The mailbox is undeliverable or does not exist.
+mailbox_is_disposable_address    The mailbox has been identified to be a disposable address. Disposable address are temporary, generally one time use, addresses.
+mailbox_is_role_address          The mailbox is a role based address (ex. support@..., marketing@...).
+=============================    ==========================================================================================================================================================================================
 
 Bulk Validation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
