@@ -47,6 +47,8 @@ Run this:
 
 .. include:: samples/send-simple-message.rst
 
+*NOTE: If you're sending from our EU infrastructure, be sure to substitute our EU endpoint in the above example: https://api.eu.mailgun.net/v3*
+
 What actually happened:
 
 * Mailgun assembled a MIME message.
