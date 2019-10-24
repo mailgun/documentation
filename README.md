@@ -1,7 +1,7 @@
 Mailgun Documentation
 =====================
 
-This Github repository represents Mailgun's documentation site, located at http://documentation.mailgun.com. The site
+This GitHub repository represents Mailgun's documentation site, located at http://documentation.mailgun.com. The site
 is based on the [Sphinx](http://sphinx-doc.org/) documentation generator for Python.
 
 
