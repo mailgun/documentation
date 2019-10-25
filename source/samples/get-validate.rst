@@ -96,6 +96,7 @@ func val(x string) {
 
 	err := json.NewDecoder(response.Body).Decode(&emailResponse)
 	fmt.Printf("%+v", emailResponse, err)
+    
 }
 
 .. code-block:: csharp
