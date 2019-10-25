@@ -60,6 +60,44 @@
                                        user: 'api', password: public_key
  end
 
+
+.. code-block:: go 
+
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
+
+type Email struct {
+	Address       string   `json:"address"`
+	IsDisposable  bool     `json:"is_disposable_address"`
+	IsRoleAddress bool     `json:"is_role_address"`
+	Reason        []string `json:"reason"`
+	Result        string   `json:"result"`
+	Risk          string   `json:"risk"`
+}
+
+func val(x string) {
+
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
+	req.SetBasicAuth("api", apiKey)
+	param := req.URL.Query()
+	param.Add("address", x)
+	req.URL.RawQuery = param.Encode()
+	response, httpError := client.Do(req)
+
+	if httpError != nil {
+		fmt.Println(httpError)
+	}
+
+	var emailResponse Email
+
+	err := json.NewDecoder(response.Body).Decode(&emailResponse)
+	fmt.Printf("%+v", emailResponse, err)
+}
+
 .. code-block:: csharp
 
  using System;
