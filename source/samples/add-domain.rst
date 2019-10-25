@@ -36,11 +36,11 @@
 
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_NEW_DOMAIN_NAME';
+  $domain = 'anothersample.mailgun.org';
 
   # Issue the call to the client.
   $result = $mgClient->post("domains", array(
-      'name'          => 'anothersample.mailgun.org',
+      'name'          => $domain,
       'smtp_password' => 'supersecretpassword'
   ));
 
