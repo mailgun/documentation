@@ -1375,6 +1375,10 @@ Here's a more formal list of route properties:
  Description           Arbitrary string to describe the route (shown in the Control Panel UI)
  ==================    =============================================================================================================
 
+.. note:: The length of the Filter or Action fields cannot exceed 4k. If you need more actions or filters than is allowed under the 4k limit,
+          you can add additional routes. Multiple routes with the same Filter expression are allowed. This will allow you to add many more Actions
+          for the same Filter but spread across multiple route entries.
+
 Route Filters
 ~~~~~~~~~~~~~
 
