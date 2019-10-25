@@ -65,11 +65,10 @@
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
-type Email struct {
+type ValidationResponse struct {
 	Address       string   `json:"address"`
 	IsDisposable  bool     `json:"is_disposable_address"`
 	IsRoleAddress bool     `json:"is_role_address"`
@@ -78,26 +77,30 @@ type Email struct {
 	Risk          string   `json:"risk"`
 }
 
-func val(x string) {
 
+func validateAddress(email string) (vr ValidationResponse, err error) {
+
+	// creating HTTP request and returning response 
+	
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
 	req.SetBasicAuth("api", apiKey)
 	param := req.URL.Query()
-	param.Add("address", x)
+	param.Add("address", email)
 	req.URL.RawQuery = param.Encode()
-	response, httpError := client.Do(req)
+	response, err := client.Do(req)
 
-	if httpError != nil {
-		fmt.Println(httpError)
+	if err != nil {
+		return
 	}
 
-	var emailResponse Email
+	// decoding into validation response struct
+	err = json.NewDecoder(response.Body).Decode(&vr)
 
-	err := json.NewDecoder(response.Body).Decode(&emailResponse)
-	fmt.Printf("%+v", emailResponse, err)
-    
+	return
+
 }
+
 
 .. code-block:: csharp
 
