@@ -21,7 +21,7 @@ There are two ways to send emails using Mailgun API:
 .. note:: You can also use good old SMTP to send messages. But you will have
     to specify all advanced sending options via :ref:`MIME headers <passing_sending_options>`
 
-.. note:: Sending options (those prefixed by o:, h:, or v:) are limited to 4 kB in total.
+.. note:: Sending options (those prefixed by o:, h:, or v:) are limited to 16 kB in total.
 
 .. code-block:: url
 
