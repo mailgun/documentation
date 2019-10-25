@@ -644,19 +644,11 @@ Just using the template name you can send a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
-Another way to provide substitution variables is to use :ref:`X-Mailgun-Variables <manual-customdata>` in the http request i.e:
+Another way to provide variables is to use a form parameter prefixed with ``v:`` how it's shown :ref:`here <manual-customdata>`.
 
-.. code-block:: bash
+.. include:: samples/send-message-template-v.rst
 
-  curl -s --user 'api:YOUR_API_KEY' \
-  https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages \
-  -F from='Sender Bob <sbob@YOUR_DOMAIN_NAME>' \
-  -F to='alice@example.com' \
-  -F subject='Hello' \
-  -F template='template.test' \
-  -F h:X-Mailgun-Variables='{"title": "API Documentation", "body": "Sending messages with template"}'
- 
-The second way is preferable as it allows you to provide complex json data (arrays, nested json and so on)
+The second way is not recomended as it's limited to simple key value data. If you have arrays, dictionaries in values or complex json data you have to supply variables via ``X-Mailgun-Variables`` header.
 
 **Handlebars**
 
@@ -839,7 +831,7 @@ Below is the table of events that Mailgun tracks.
                                mailing list.
     list_uploaded              This event occurs after successfully uploading a large list of
                                members to a mailing list.
-    ================= ============================================================
+    ========================== ============================================================
 
 You can access Events through a few interfaces:
 

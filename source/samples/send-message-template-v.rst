@@ -7,7 +7,8 @@
     -F to='alice@example.com' \
     -F subject='Hello' \
     -F template='template.test' \
-    -F h:X-Mailgun-Variables='{"title": "API documentation", "body": "Sending messages with templates"}'
+    -F v:title='API documentation' \
+    -F v:body='Sending messages with templates'
 
 .. code-block:: java
 
@@ -31,7 +32,8 @@
  	        .field("subject", "Hello")
             .field("template", "template.test")
  		    .field("o:tracking", "False")
-            .field("h:X-Mailgun-Variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}")
+            .field("v:title": "API Documentation")
+            .field("v:body": "Sending messages with templates")
  		    .asJson();
 
          return request.getBody();
@@ -50,11 +52,12 @@
 
   # Make the call to the client.
   $result = $mgClient->sendMessage($domain, array(
-      'from'                  => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-      'to'                    => 'foo@example.com',
-      'subject'               => 'Hello',
-      'template'              => 'template.test',
-      'h:X-Mailgun-Variables' => '{"title": "API Documentation", "body": "Sending messages with templates"}'
+      'from'     => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
+      'to'       => 'foo@example.com',
+      'subject'  => 'Hello',
+      'template' => 'template.test',
+      'v:title'  => 'API Documentation',
+      'v:body'   => 'Sending messages with templates'
   ));
 
 .. code-block:: py
@@ -67,7 +70,8 @@
                "to": ["bar@example.com", "baz@example.com"],
                "subject": "Hello",
                "template": "template.test",
-               "h:X-Mailgun-Variables": json.dumps({"title": "API documentation", "body": "Sending messages with templates"}))
+               "v:title": "API Documentation",
+               "v:body": "Sending messages with templates"})
 
 .. code-block:: rb
 
@@ -78,7 +82,8 @@
    :to => "bar@example.com, baz@example.com",
    :subject => "Hello",
    :template => "template.test",
-   :"h:X-Mailgun-Variables" => '{"title": "API Documentation", "body": "Sending messages with template"}'
+   :"v:title" => "API Documentation",
+   :"v:body" => "Sending messages with templates"
  end
 
 .. code-block:: csharp
@@ -111,7 +116,8 @@
          request.AddParameter ("to", "baz@example.com");
          request.AddParameter ("subject", "Hello");
          request.AddParameter ("template", "template.test");
-         request.AddParameter ("h:X-Mailgun-Variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}");
+         request.AddParameter ("v:title": "API Documentation");
+         request.AddParameter ("v:body": "Sending messages with templates");
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -120,37 +126,7 @@
 
 .. code-block:: go
 
-  import (
-    "context"
-    "encoding/json"
-    "github.com/mailgun/mailgun-go"
-    "time"
-  )
-  
-
-  func SendMessageWithTemplate() (id string , err error) {
-    mg := mailgun.NewMailgun("YOUR_DOMAIN_NAME", "YOUR_API_KEY")
-    ctx, cancel := context.WithTimeout(context.Background(), time.Second * 30)
-    defer cancel()
-    
-    m := mg.NewMessage("Excited User <YOU@YOUR_DOMAIN_NAME>", "???", "")
-    m.SetTemplate("template.test")
-    if err := m.AddRecipient("bar@example.com"); err != nil {
-      return "", err
-    }
-
-    vars, err := json.Marshal(map[string]string{
-        "title": "API Documentation",
-        "body":  "Sending messages with templates",
-    })
-    if err != nil {
-      return "", err
-    }
-    m.AddHeader("X-Mailgun-Variables", vars)
-
-    _, id, err := mg.Send(ctx, m)
-    return
-  }
+ // Not implemented yet
 
 .. code-block:: js
 
@@ -164,7 +140,8 @@
    to: 'alice@example.com',
    subject: 'Hello',
    template: 'template.test',
-   h:X-Mailgun-Variables: '{"title": "API Documentation", "body": "Sending messages with templates"}'
+   v:title: 'API Documentation',
+   v:body: 'Sending messages with templates'
  };
 
  mailgun.messages().send(data, function (error, body) {
