@@ -63,43 +63,42 @@
 
 .. code-block:: go 
 
-import (
-	"encoding/json"
-	"net/http"
-)
+ import (
+	 "encoding/json"
+	 "net/http"
+ )
 
-type ValidationResponse struct {
-	Address       string   `json:"address"`
-	IsDisposable  bool     `json:"is_disposable_address"`
-	IsRoleAddress bool     `json:"is_role_address"`
-	Reason        []string `json:"reason"`
-	Result        string   `json:"result"`
-	Risk          string   `json:"risk"`
-}
+ type ValidationResponse struct {
+	 Address       string   `json:"address"`
+	 IsDisposable  bool     `json:"is_disposable_address"`
+	 IsRoleAddress bool     `json:"is_role_address"`
+	 Reason        []string `json:"reason"`
+	 Result        string   `json:"result"`
+	 Risk          string   `json:"risk"`
+ }
 
 
-func validateAddress(email string) (vr ValidationResponse, err error) {
+ func validateAddress(email string) (vr ValidationResponse, err error) {
 
-	// creating HTTP request and returning response 
+	 // creating HTTP request and returning response
 	
-	client := &http.Client{}
-	req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
-	req.SetBasicAuth("api", apiKey)
-	param := req.URL.Query()
-	param.Add("address", email)
-	req.URL.RawQuery = param.Encode()
-	response, err := client.Do(req)
+	 client := &http.Client{}
+	 req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
+	 req.SetBasicAuth("api", apiKey)
+	 param := req.URL.Query()
+	 param.Add("address", email)
+	 req.URL.RawQuery = param.Encode()
+	 response, err := client.Do(req)
 
-	if err != nil {
-		return
-	}
+ 	 if err != nil {
+		 return
+	 }
 
-	// decoding into validation response struct
-	err = json.NewDecoder(response.Body).Decode(&vr)
+	 // decoding into validation response struct
+	 err = json.NewDecoder(response.Body).Decode(&vr)
 
-	return
-
-}
+	 return
+ }
 
 
 .. code-block:: csharp
