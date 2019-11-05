@@ -100,6 +100,28 @@
 	 return
  }
 
+.. code-block:: node.json
+
+const request = require('request');
+const API_KEY = '123MYAPIKEY1234';
+const buffed = new Buffer.from(`api:${API_KEY}`);
+const base64Key = buffed.toString('base64');
+
+var options = {
+  method: 'GET',
+  url: 'https://api.mailgun.net/v4/address/validate',
+  qs: { address: 'user@example.com' },
+  headers: {
+    authorization: `Basic ${base64Key}`,
+  },
+};
+
+request(options, function(error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
 
 .. code-block:: csharp
 
