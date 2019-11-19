@@ -106,7 +106,7 @@ The common types of authentication are:
 .. _SPF: http://www.openspf.org
 .. _DKIM: http://www.dkim.org
 .. _DomainKeys: http://domainkeys.sourceforge.net
-.. _SenderID: http://www.microsoft.com/mscorp/safety/technologies/senderid/default.mspx
+.. _SenderID: https://docs.microsoft.com/en-us/exchange/antispam-and-antimalware/antispam-protection/sender-id?view=exchserver-2019
 
 Mailgun uses all of these types of authentication.  When you sign up for Mailgun, we provide the appropriate records for you to include at your DNS registrar.  We also provide a verification button you can use to make sure that your records are set up correctly.
 
