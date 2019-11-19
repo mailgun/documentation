@@ -1025,6 +1025,20 @@ And here's a sample in Go
         })
     }
 
+And here's a sample in Node.js
+
+.. code-block:: javascript
+
+    const crypto = require('crypto')
+
+    const verify = ({ apiKey, timestamp, token, signature }) => {
+        const encodedToken = crypto
+            .createHmac('sha256', apiKey)
+            .update(timestamp.concat(token))
+            .digest('hex')
+
+        return (encodedToken === signature)
+    }
 
 .. _manual-customdata:
 
