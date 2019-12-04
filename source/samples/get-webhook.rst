@@ -36,7 +36,7 @@
   $domain = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/webhooks/clicked");
+  $result = $mgClient->get("domains/$domain/webhooks/clicked");
 
 .. code-block:: py
 
