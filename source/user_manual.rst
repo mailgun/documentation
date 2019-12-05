@@ -968,17 +968,17 @@ To verify the webhook is originating from Mailgun you need to:
 .. note:: Due to potentially large size of posted data, Mailgun computes an authentication
           signature based on a limited set of HTTP headers.
 
-Below is a Python code sample used to verify the signature:
+Below is a Python (version 3.x.x) code sample used to verify the signature:
 
 .. code-block:: python
 
     import hashlib, hmac
 
     def verify(api_key, token, timestamp, signature):
-        hmac_digest = hmac.new(key=api_key,
-                               msg='{}{}'.format(timestamp, token),
+        hmac_digest = hmac.new(key=api_key.encode(),
+                               msg=('{}{}'.format(timestamp, token)).encode(),
                                digestmod=hashlib.sha256).hexdigest()
-        return hmac.compare_digest(unicode(signature), unicode(hmac_digest))
+        return hmac.compare_digest(str(signature), str(hmac_digest))
 
 And here's a sample in Ruby:
 
