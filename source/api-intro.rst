@@ -28,16 +28,17 @@ examples that will function. You're welcome to copy/paste and run the script to 
 Base URL
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All API URLs referenced in this documentation start with a base part. For non EU
-customers the base URL is::
+All API calls referenced in this documentation start with a base URL. Mailgun allows the ability to send and receive email in either our US region or our EU region. Be sure to use the appropriate base URL based on which region you've created your domain in.
+
+For domains created in our US region the base URL is::
 
     https://api.mailgun.net/v3
 
-For EU customers the base URL is::
+For domains created in our EU region the base URL is::
 
     https://api.eu.mailgun.net/v3
 
-Your Mailgun account may contain several email domains. To avoid passing
+Your Mailgun account may contain multiple sending domains. To avoid passing
 the domain name as a query parameter, most API URLs must include the name of
 the domain you're interested in::
 
