@@ -163,17 +163,6 @@ In addition to processing bounces, complaints and unsubscribes, ESPs measure you
 
 Mailgun allows you to track opens and link clicks with our Tracking and Tagging functionality (see our :ref:`user-manual` for more information).  You are free to create up to 4,000 tags and use them simultaneously for A/B testing.  In addition, Mailgun is built to receive and parse emails efficiently.  So there is no excuse to not allow your recipients to reply to your emails.  Email is not a billboard - it is a conversant technology.
 
-Whitelists and other deliverability tools
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-While not required, it is a good idea to sign up for whitelists where available.  Not all ESPs have them and they usually require some history of sending before they will allow you to sign up.  Also, most of them require that you be on a dedicated IP address.  Word to the Wise provides a `list of whitelists`_ along with feedback loops.
-
-In addition to the whitelists provided by the ESPs, `Return Path`_ has a certification program which whitelists you at many of the major ESPs.  In addition, the certification enables images to be displayed by default at many ESPs (which is not usually the case).  Return Path also provides seed lists (so you can test if your email is being spam filtered) and campaign preview (to see how your emails are being rendered across ESPs and test for spammy content).  You can read more about the benefits on `Return Path's website`_.
-
-For customers with dedicated IP addresses, we can register you for whitelists. Also, you can set up a test inbox and use our spam filtering technology to provide a "spamicity" score for your outgoing emails so you can see their propensity for being filtered.  Finally, all accounts with dedicated IP addresses are qualified for Return Path certification.  Our technology has already been pre-vetted so the only remaining step is for them to monitor your sending in order to certify you.
-
-.. _list of whitelists: http://wiki.wordtothewise.com/ISP_Summary_Information
-
 
 Email Content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
