@@ -28,7 +28,7 @@ examples that will function. You're welcome to copy/paste and run the script to 
 Base URL
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All API calls referenced in this documentation start with a base URL. Mailgun allows the ability to send and receive email in either our US region or our EU region. Be sure to use the appropriate base URL based on which region you've created your domain in.
+All API calls referenced in our documentation start with a base URL. Mailgun allows the ability to send and receive email in either our US region or our EU region. Be sure to use the appropriate base URL based on which region you've created your domain in.
 
 For domains created in our US region the base URL is::
 
