@@ -433,4 +433,4 @@ How do I track which email a recipient has replied to?
 
 This has been a popular question, so we wrote a `blog post`_ about it.  Basically, the Message-ID in the original email is included in the In-Reply-To header in the reply email.  So you can use that to track which specific email was replied to.  Mailgun will automatically include a unique Message-ID or you can set your own.
 
-.. _blog post: http://blog.mailgun.com/tracking-replies-in-mailgun-or-any-other-email/
+.. _blog post: https://www.mailgun.com/blog/tracking-replies-in-mailgun-or-any-other-email/
