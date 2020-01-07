@@ -960,7 +960,7 @@ along with other webhook parameters:
 To verify the webhook is originating from Mailgun you need to:
 
 - Concatenate timestamp and token values.
-- Encode the resulting string with the HMAC algorithm (using your API Key as a key and SHA256 digest mode).
+- Encode the resulting string with the HMAC algorithm (using your Webhook Signing Key as a key and SHA256 digest mode).
 - Compare the resulting hexdigest to the signature.
 - Optionally, you can cache the token value locally and not honor any subsequent request with the same token. This will prevent replay attacks.
 - Optionally, you can check if the timestamp is not too far from the current time.
@@ -974,8 +974,8 @@ Below is a Python (version 3.x.x) code sample used to verify the signature:
 
     import hashlib, hmac
 
-    def verify(api_key, token, timestamp, signature):
-        hmac_digest = hmac.new(key=api_key.encode(),
+    def verify(signing_key, token, timestamp, signature):
+        hmac_digest = hmac.new(key=signing_key.encode(),
                                msg=('{}{}'.format(timestamp, token)).encode(),
                                digestmod=hashlib.sha256).hexdigest()
         return hmac.compare_digest(str(signature), str(hmac_digest))
@@ -986,17 +986,17 @@ And here's a sample in Ruby:
 
     require 'openssl'
 
-    def verify(api_key, token, timestamp, signature)
+    def verify(signing_key, token, timestamp, signature)
       digest = OpenSSL::Digest::SHA256.new
       data = [timestamp, token].join
-      signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
+      signature == OpenSSL::HMAC.hexdigest(digest, signing_key, data)
     end
 
 And here's a sample in PHP:
 
 .. code-block:: php
 
-    function verify($apiKey, $token, $timestamp, $signature)
+    function verify($signingKey, $token, $timestamp, $signature)
     {
         // check if the timestamp is fresh
         if (abs(time() - $timestamp) > 15) {
@@ -1004,7 +1004,7 @@ And here's a sample in PHP:
         }
 
         // returns true if signature is valid
-        return hash_hmac('sha256', $timestamp . $token, $apiKey) === $signature;
+        return hash_hmac('sha256', $timestamp . $token, $signingKey) === $signature;
     }
 
 And here's a sample in Go
@@ -1015,8 +1015,8 @@ And here's a sample in Go
         "github.com/mailgun/mailgun-go/v3"
     )
 
-    func VerifyWebhookSignature(domain, apiKey, timestamp, token, signature string) (bool, error) {
-        mg := mailgun.NewMailgun(domain, apiKey)
+    func VerifyWebhookSignature(domain, signingKey, timestamp, token, signature string) (bool, error) {
+        mg := mailgun.NewMailgun(domain, signingKey)
 
         return mg.VerifyWebhookSignature(mailgun.Signature{
             TimeStamp: timestamp,
@@ -1031,9 +1031,9 @@ And here's a sample in Node.js
 
     const crypto = require('crypto')
 
-    const verify = ({ apiKey, timestamp, token, signature }) => {
+    const verify = ({ signingKey, timestamp, token, signature }) => {
         const encodedToken = crypto
-            .createHmac('sha256', apiKey)
+            .createHmac('sha256', signingKey)
             .update(timestamp.concat(token))
             .digest('hex')
 
