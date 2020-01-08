@@ -10,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
       // ...
- 
+
       public static JsonNode mailingLists() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/lists/pages")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -32,12 +32,10 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
 
   # Issue the call to the client.
-  $result = $mgClient->get("lists/pages", array(
-      'limit'      =>  5
-  ));
+  $response = $mgClient->mailingList()->pages();
 
 .. code-block:: py
 

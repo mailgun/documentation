@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode createMailingList() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists")
              .basicAuth("api", API_KEY)
              .field("address", "LIST@YOUR_DOMAIN_NAME")
              .field("description", "LIST_DESCRIPTION")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -36,13 +36,14 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $mailing_list     = 'LIST@YOUR_DOMAIN_NAME';
+  $list_name        = 'Mailgun Subscribers';
+  $list_description = 'News and service updates';
+  $access_level     = 'readonly';
 
   # Issue the call to the client.
-  $result = $mgClient->post("lists", array(
-      'address'     => 'LIST@YOUR_DOMAIN_NAME',
-      'description' => 'Mailgun Dev List'
-  ));
+  $result = $mgClient->mailingList()->create($mailing_list, $list_name, $list_description, $access_level);
 
 .. code-block:: py
 

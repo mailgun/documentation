@@ -48,21 +48,20 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = "YOUR_DOMAIN_NAME";
+  $params = array(
+        'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
+        'to'      => 'bob@example.com',
+        'subject' => 'Hello',
+        'text'    => 'Testing some Mailgun awesomness!',
+        'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>',
+        'inline' => array(
+            array('filePath' => '/path/to/image.jpg'))
+      );
 
-  # Make the call to the client.
-  $result = $mgClient->sendMessage($domain, array(
-      'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-      'to'      => 'foo@example.com',
-      'cc'      => 'baz@example.com',
-      'bcc'     => 'bar@example.com',
-      'subject' => 'Hello',
-      'text'    => 'Testing some Mailgun awesomness!',
-      'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>'
-  ), array(
-      'inline' => array('/path/to/test.jpg')
-  ));
+    # Make the call to the client.
+    $result = $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 

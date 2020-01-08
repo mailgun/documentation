@@ -10,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode deleteTag() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME + "/tags/newsletter")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -32,12 +32,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = 'YOUR_DOMAIN_NAME';
-  $tag = 'myexampletag';
+  $tag    = 'my_tag';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("$domain/tags/$tag");
+  $result = $mgClient->tags()->delete($domain, $tag);
 
 .. code-block:: py
 

@@ -19,7 +19,7 @@
      public static JsonNode addBounce() throws UnirestException {
 
          HttpResponse <JsonNode> request =  Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/bounces")
-             .basicAuth("api", API_KEY)
+             .basicAuth("api", YOUR_API_KEY)
              .field("address", "bob@example.com")
              .asJson();
 
@@ -34,11 +34,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $recipient = 'bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/bounces", array('address' => 'bob@example.com'));
+  $result = $mgClient->suppressions()->bounces()->create($domain, $recipient);
 
 .. code-block:: py
 

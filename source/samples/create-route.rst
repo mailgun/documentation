@@ -14,13 +14,13 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode createRoute() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/routes")
              .basicAuth("api", API_KEY)
              .field("priority", "0")
@@ -29,7 +29,7 @@
              .field("action", "forward('http://myhost.com/messages/')")
              .field("action", "stop()")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -41,15 +41,15 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+
+  # Define your expression, actions, and description
+  $expression   = 'match_recipient(".*@mg.example.com")';
+  $actions      = array('forward("my_address@example.com")', 'stop()');
+  $description  = 'Catch All and Forward';
 
   # Issue the call to the client.
-  $result = $mgClient->post("routes", array(
-      'priority'    => 0,
-      'expression'  => 'match_recipient(".*@YOUR_DOMAIN_NAME")',
-      'action'      => array('forward("http://host.com/messages")', 'stop()'),
-      'description' => 'Sample route'
-  ));
+  $result = $mgClient->routes()->create($expression, $actions, $description);
 
 .. code-block:: py
 

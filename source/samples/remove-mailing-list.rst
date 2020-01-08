@@ -10,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode removeMailingList() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/lists/YoungJustice@example.com")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -32,11 +32,11 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $mailing_list = 'LIST@YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("lists/$listAddress");
+  $result = $mgClient->mailingList()->delete($mailing_list);
 
 .. code-block:: py
 

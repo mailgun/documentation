@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode createCredentials() throws UnirestException {
- 
+
          HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME +"/credentials")
              .basicAuth("api", API_KEY)
              .field("login", "alice@YOUR_DOMAIN_NAME.com")
              .field("password", "supersecretpassword")
              .asJson();
- 
+
          return jsonResponse.getBody();
      }
  }
@@ -36,14 +36,13 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $smtpUser = 'bob';
+  $smtpPass = 'new_password';
 
   # Issue the call to the client.
-  $result = $mgClient->post("domains/$domain/credentials", array(
-      'login'    => 'alice@YOUR_DOMAIN_NAME',
-      'password' => 'secret'
-  ));
+  $result = $mgClient->domains()->createCredential($domain, $smtpUser, $smtpPass);
 
 .. code-block:: py
 

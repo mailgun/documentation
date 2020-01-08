@@ -10,34 +10,40 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode listTemplateVersions() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_NAME/versions")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+  # Currently, the PHP SDK does not support the Templates endpoint.
+  # Consider using the following php curl function.
+  function get_all_versions() {
+    $ch = curl_init();
 
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-  $name = 'TEMPLATE_NAME'
-  
-  # Issue the call to the client.
-  $result = $mgClient->get("$domain/templates/$name/versions");
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME/versions');
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 
 .. code-block:: py
 

@@ -41,17 +41,18 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $mailing_list = 'LIST@YOUR_DOMAIN_NAME';
+  $address ='bob@example.com';
+  $name = 'Bob';
+  $vars = array("id" => "123456");
 
   # Issue the call to the client.
-  $result = $mgClient->post("lists/$listAddress/members", array(
-      'address'     => 'bar@example.com',
-      'name'        => 'Bob Bar',
-      'description' => 'Developer',
-      'subscribed'  => true,
-      'vars'        => '{"age": 26}'
-  ));
+  $result = $mgClient->mailingList()->member()->create(
+                                                    $mailing_list,
+                                                    $address,
+                                                    $name,
+                                                    $vars);
 
 .. code-block:: py
 

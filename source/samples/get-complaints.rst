@@ -10,37 +10,35 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getComplaints() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints")
              .basicAuth("api", API_KEY)
              .queryString("limit", "100")
              .asJson();
- 
+
          return request.getBody();
      }
  }
 
 .. code-block:: php
 
+
   # Include the Autoloader (see "Libraries" for install instructions)
   require 'vendor/autoload.php';
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient  = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain    = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/complaints", array(
-      'limit' => 10,
-      'skip'  => 5
-  ));
+  $result = $mgClient->suppressions()->complaints()->index($domain);
 
 .. code-block:: py
 

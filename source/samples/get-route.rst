@@ -10,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getSingleRoute() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/routes/YOUR_ROUTE_ID")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -32,11 +32,11 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $routeId = '4e97c1b2ba8a48567f007fb6';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $route_id = '5d9fde0fd8b861ec16cf2549'
 
   # Issue the call to the client.
-  $result = $mgClient->get("routes/$routeId");
+  $result = $mgClient->routes()->show($route_id);
 
 .. code-block:: py
 

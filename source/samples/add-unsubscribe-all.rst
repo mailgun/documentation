@@ -36,14 +36,13 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient  = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain    = 'YOUR_DOMAIN_NAME';
+  $recipient = 'bob@example.com';
+  $tag       = '*';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/unsubscribes", array(
-      'address' => 'bob@example.com',
-      'tag'     => '*'
-  ));
+  $result = $mgClient->suppressions()->unsubscribes()->create($domain, $recipient, $tag);
 
 .. code-block:: py
 

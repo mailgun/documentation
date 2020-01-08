@@ -10,19 +10,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getDomain() throws UnirestException {
- 
+
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME)
              .basicAuth("api", API_KEY)
              .queryString("skip", 0)
              .queryString("limit", 3)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -34,11 +34,11 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain = "YOUR_DOMAIN_NAME";
 
   # Issue the call to the client.
-  $result = $mgClient->get("domains/$domain");
+  $result = $mgClient->domains()->show($domain);
 
 .. code-block:: py
 

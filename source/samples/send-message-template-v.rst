@@ -28,13 +28,13 @@
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
             .basicAuth("api", API_KEY)
             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
- 			.field("to", "alice@example.com")
- 	        .field("subject", "Hello")
+            .field("to", "alice@example.com")
+            .field("subject", "Hello")
             .field("template", "template.test")
- 		    .field("o:tracking", "False")
+            .field("o:tracking", "False")
             .field("v:title": "API Documentation")
             .field("v:body": "Sending messages with templates")
- 		    .asJson();
+            .asJson();
 
          return request.getBody();
      }
@@ -49,16 +49,16 @@
   # Instantiate the client.
   $mgClient = new Mailgun('YOUR_API_KEY');
   $domain = "YOUR_DOMAIN_NAME";
-
-  # Make the call to the client.
-  $result = $mgClient->sendMessage($domain, array(
+  $params = array(
       'from'     => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
       'to'       => 'foo@example.com',
       'subject'  => 'Hello',
       'template' => 'template.test',
       'v:title'  => 'API Documentation',
       'v:body'   => 'Sending messages with templates'
-  ));
+  );
+  # Make the call to the client.
+  $result = $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 

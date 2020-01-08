@@ -42,17 +42,18 @@
   require 'vendor/autoload.php';
   use Mailgun\Mailgun;
 
-  # First, instantiate the SDK with your API credentials
-  $mg = Mailgun::create('YOUR_API_KEY');
-
-  # Now, compose and send your message.
-  # $mg->messages()->send($domain, $params);
-  $mg->messages()->send('YOUR_DOMAIN_NAME', [
-    'from'    => 'Excited User <mailgun@YOUR_DOMAIN_NAME>',
-    'to'      => 'Baz <YOU@YOUR_DOMAIN_NAME>',
+  # Instantiate the client.
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain = "YOUR_DOMAIN_NAME";
+  $params = array(
+    'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
+    'to'      => 'bob@example.com',
     'subject' => 'Hello',
     'text'    => 'Testing some Mailgun awesomness!'
-  ]);
+  );
+
+  # Make the call to the client.
+  $mg->messages()->send($domain, $params);
 
 .. code-block:: py
 

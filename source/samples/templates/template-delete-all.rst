@@ -26,16 +26,24 @@
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+  # Currently, the PHP SDK does not support the Templates endpoint.
+  # Consider using the following php curl function.
+  function delete_all_templates() {
 
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+    $ch = curl_init();
 
-  # Issue the call to the client.
-  $result = $mgClient->delete("/$domain/templates");
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates');
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 
 .. code-block:: py
 
