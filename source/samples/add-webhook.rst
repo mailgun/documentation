@@ -13,13 +13,13 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode addWebhook() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
              .basicAuth("api", API_KEY)
              .field("id","click")
@@ -27,7 +27,7 @@
              .field("url", "https://your_domain.com/v2/clicked")
              .field("url", "https://your_partner_domain.com/v1/clicked")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -39,18 +39,13 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $webhook  = 'delivered';
+  $destination_url = 'https://my.webhook.url/delivered'
 
   # Issue the call to the client.
-  $result = $mgClient->post("domains/$domain/webhooks", array(
-      'id'  => 'clicked',
-      'url' => array(
-          'https://your_domain.com/v1/clicked',
-          'https://your_domain.com/v2/clicked',
-          'https://your_partner_domain.com/v1/clicked'
-      )
-  ));
+  $result = $mgClient->webhooks()->create($domain, $webhook, $destination_url);
 
 .. code-block:: py
 
@@ -59,7 +54,7 @@
          "https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks",
          auth=("api", "YOUR_API_KEY"),
          data={
-           'id':'clicked', 
+           'id':'clicked',
            'url':[ 'https://your_domain.com/v1/clicked',
            'https://your_domain.com/v2/clicked',
            'https://your_partner_domain.com/v1/clicked'

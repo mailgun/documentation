@@ -13,13 +13,13 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getStats() throws UnirestException {
- 
+
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/stats/total")
              .basicAuth("api", API_KEY)
              .queryString("event", "accepted")
@@ -27,7 +27,7 @@
              .queryString("event", "failed")
              .queryString("duration","1m")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -39,14 +39,18 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
 
-  # Issue the call to the client.
-  $result = $mgClient->get("$domain/stats/total", array(
-      'event' => array('accepted', 'delivered', 'failed'),
-      'duration' => '1m'
-  ));
+  # Define your Event types
+  $params = array(
+    "event" => "accepted",
+    "event" => "delivered",
+    "event" => "failed",
+    "event" => "complained"
+  );
+
+$response = $mgClient->stats()->total($domain, $params);
 
 .. code-block:: py
 

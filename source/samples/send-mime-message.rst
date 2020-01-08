@@ -41,17 +41,22 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = "YOUR_DOMAIN_NAME";
 
-  # Make the call to the client.
-  $result = $mgClient->sendMessage(
-      $domain, array(
-          'from' => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-          'to'   => 'foo@example.com'
-      ),
-      '<Pass fully formed MIME string here>'
+  $recipients = array(
+      'bob@example.com',
+      'alice@example.com',
+      'john@example.com;
   );
+  $params = array(
+      'from' => 'Excited User <YOU@YOUR_DOMAIN_NAME>'
+  );
+
+  $mime_string = '<Pass fully formed MIME string here>'
+
+  # Make the call to the client.
+  $result = $mgClient->messages()->sendMime($domain, $recipients, $mime_string, $params);
 
 .. code-block:: py
 

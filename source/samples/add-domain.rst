@@ -35,14 +35,11 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'anothersample.mailgun.org';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
 
   # Issue the call to the client.
-  $result = $mgClient->post("domains", array(
-      'name'          => $domain,
-      'smtp_password' => 'supersecretpassword'
-  ));
+  $result = $mgClient->domains()->create($domain);
 
 .. code-block:: py
 

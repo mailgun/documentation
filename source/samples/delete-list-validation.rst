@@ -10,33 +10,40 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode cancelMailingListValidation() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/lists/YoungJustice@example.com/validate")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+  # Currently, the PHP SDK does not support Mailing List validations.
+  # Consider using the following php curl function.
+  function delete_mailing_list_validation() {
+    $ch = curl_init();
 
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-  # Issue the call to the client.
-  $result = $mgClient->delete("lists/$listAddress/validate");
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/lists/LIST@YOUR_DOMAIN_NAME/validate');
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 
 .. code-block:: py
 

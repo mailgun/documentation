@@ -11,18 +11,18 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode parseAddresses() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/parse")
              .basicAuth("api", API_KEY)
              .queryString("addresses", "bob@example.com, alice@example.com")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -34,11 +34,11 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('pubkey-5ogiflzbnjrljiky49qxsiozqef5jxp7');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY');
   $addressList = 'Alice <alice@example.com>,bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->get("address/parse", array('addresses' => $addressList));
+  $result = $mgClient->emailValidation->parse($addressList);
 
 .. code-block:: py
 
@@ -115,7 +115,7 @@
 
   var DOMAIN = 'YOUR_DOMAIN_NAME';
   var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
-  
+
   mailgun.parse([ 'alice@example.com', 'bob@example.com', 'fake@email.com' ], function (error, body) {
     console.log(body);
   });

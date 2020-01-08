@@ -46,17 +46,18 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = "YOUR_DOMAIN_NAME";
-
-  # Make the call to the client.
-  $result = $mgClient->sendMessage($domain, array(
+  $params = array(
       'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-      'to'      => 'Baz <baz@example.com>',
+      'to'      => 'bob@example.com',
       'subject' => 'Hello',
       'text'    => 'Testing some Mailgun awesomness!',
-      'o:tag'   => array('Tag1', 'Tag2')
-  ));
+      'o:tag'   => array('Tag1', 'Tag2', 'Tag3')
+  );
+
+  # Make the call to the client.
+  $result = $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 

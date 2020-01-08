@@ -51,21 +51,26 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = "YOUR_DOMAIN_NAME";
+  $params = array(
+        'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
+        'to'      => 'bob@example.com',
+        'cc'      => 'alice@example.com',
+        'bcc'     => 'john@example.com',
+        'subject' => 'Hello',
+        'text'    => 'Testing some Mailgun awesomness!',
+        'html'    => '<html>HTML version of the body</html>',
+        'attachment' => array(
+                array(
+                    'filePath' => 'test.txt',
+                    'filename' => 'test_file.txt'
+              )
+          )
+      );
 
   # Make the call to the client.
-  $result = $mgClient->sendMessage($domain, array(
-      'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-      'to'      => 'foo@example.com',
-      'cc'      => 'baz@example.com',
-      'bcc'     => 'bar@example.com',
-      'subject' => 'Hello',
-      'text'    => 'Testing some Mailgun awesomness!',
-      'html'    => '<html>HTML version of the body</html>'
-  ), array(
-      'attachment' => array('/path/to/file.txt', '/path/to/file.txt')
-  ));
+  $result = $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 

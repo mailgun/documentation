@@ -30,11 +30,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $recipient = 'bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/complaints", array('address' => 'bob@example.com'));
+  $result = $mgClient->suppressions()->complaints()->create($domain, $recipient);
 
 .. code-block:: py
 

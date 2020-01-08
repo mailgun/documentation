@@ -11,39 +11,48 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
       // ...
- 
+
      public static JsonNode createTemplate() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
- 			.basicAuth("api", API_KEY)
- 			.field("name", "template.name")
+            .basicAuth("api", API_KEY)
+            .field("name", "template.name")
             .field("description", "template description")
- 			.asJson();
- 
+            .asJson();
+
          return request.getBody();
      }
  }
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
-
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-
-  # Issue the call to the client.
-  $result = $mgClient->post("$domain/templates", array(
+  # Currently, the PHP SDK does not support the Templates endpoint.
+  # Consider using the following php curl function.
+  function create_template() {
+    $params = array(
       'name' => 'template.name',
-      'description' => 'template description'
-  ));
+      'description' => 'template description',
+    );
 
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 .. code-block:: py
 
  def store_template():

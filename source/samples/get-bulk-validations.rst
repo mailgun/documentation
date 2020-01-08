@@ -10,20 +10,39 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getMailingListValidation() throws UnirestException {
- 
+
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v4/address/validate/bulk")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
+
+.. code-block:: php
+
+  # Currently, the PHP SDK does not support the v4 Validations endpoint.
+  # Consider using the following php curl function.
+  function get_bulk_validations() {
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/address/validate/bulk');
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 
 .. code-block:: py
 

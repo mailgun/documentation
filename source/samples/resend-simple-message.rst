@@ -28,34 +28,27 @@
 
 .. code-block:: php
 
- $api_key = 'YOUR_API_KEY';
- $storage_url = 'https://se.api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/messages/STORAGE_URL';
- $payload = http_build_query(
-     array(
-         'to' => array(
-             'user@samples.mailgun.org',
-         ),
-     )
- );
+  # Currently, the PHP SDK does not support Resend Messages endpoint.
+  # Consider using the following php curl function.
+  function resend_message() {
+    $ch = curl_init();
 
- $opts = array(
-   'http' => array(
-     'method' => 'POST',
-     'content' => $payload,
-     'header' => implode("\r\n", array(
-       'Authorization: Basic ' . base64_encode("api:$api_key"),
-       'Content-Type: application/x-www-form-urlencoded',
-     )),
-   ),
- );
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
- print_r($opts);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_URL, MESSAGE_STORAGE_URL);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+        'to'=> 'bob@example.com'
+        )
+    );
 
- $context = stream_context_create($opts);
+    $result = curl_exec($ch);
+    curl_close($ch);
 
- $result = file_get_contents($storage_url, false, $context);
- print_r($result);
-
+    return $result;
+  }
 .. code-block:: py
 
  def resend_simple_message():

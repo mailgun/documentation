@@ -36,14 +36,18 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'LIST@YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $mailing_list = 'LIST@YOUR_DOMAIN_NAME';
+  $members = array(
+      array(
+          'address'   => 'bob@example.com',
+          'name'      => 'Bob',
+          'vars'      => array("id" => "123456")
+      )
+  );
 
   # Issue the call to the client.
-  $result = $mgClient->post("lists/$listAddress/members.json", array(
-      'members'    => '[{"address": "Alice <alice@example.com>", "vars": {"age": 26}}, {"name": "Alice", "address": "alice@example.com", "vars": {"age": 34}}]',
-      'upsert' => true
-  ));
+  $result = $mgClient->mailingList()->member()->createMultiple($mailing_list, $members);
 
 .. code-block:: py
 
