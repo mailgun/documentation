@@ -8,7 +8,7 @@ Sending
 ================
 
 
-There are 2 ways to send emails using Mailgun API:
+There are two ways to send emails using Mailgun API:
 
 - You can pass the components of the messages such as ``To``,
   ``From``, ``Subject``, HTML and text parts, attachments, etc. Mailgun
