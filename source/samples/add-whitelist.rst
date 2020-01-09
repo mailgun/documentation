@@ -29,16 +29,26 @@
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+  # Currently, the PHP SDK does not support Suppression Whiteslist endpoint.
+  # Consider using the following php curl function.
+  function add_domain_whitelist() {
+    $ch = curl_init();
 
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-  # Issue the call to the client.
-  $result = $mgClient->post("$domain/whitelists", array('domain' => 'example.com'));
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/whitelists');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+        'address'=> 'bob@example.com')
+    );
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 
 .. code-block:: py
 

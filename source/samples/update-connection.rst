@@ -36,13 +36,13 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain = "YOUR_DOMAIN_NAME";
+  $require_tls = true;
+  $skip_verification = false;
 
   # Issue the call to the client.
-  $result = $mgClient->put("domains/$domain/connection", array(
-      'require_tls'       => 'true',
-      'skip_verification' => 'false'
-  ));
+  $result = $mgClient->domains()->updateConnection($domain, $require_tls, $skip_verification);
 
 .. code-block:: py
 

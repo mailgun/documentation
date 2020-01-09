@@ -32,14 +32,11 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain = "YOUR_DOMAIN_NAME";
 
   # Issue the call to the client.
-  $result = $mgClient->get("domains/$domain/credentials", array(
-      'limit' => 5,
-      'skip'  => 10
-  ));
+  $result = $mgClient->domains()->credentials($domain);
 
 .. code-block:: py
 

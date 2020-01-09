@@ -34,14 +34,13 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $listAddress = 'YOUR_DOMAIN_NAME';
-  $memberAddress = 'bob@example.com';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $webhook  = 'delivered';
+  $destination_url = 'https://my.webhook.url/delivered'
 
   # Issue the call to the client.
-  $result = $mgClient->put("$domain/webhooks/clicked", array(
-      'url' => 'https://your_domain.com/clicked'
-  ));
+  $result = $mgClient->webhooks()->update($domain, $webhook, $destination_url);
 
 .. code-block:: py
 

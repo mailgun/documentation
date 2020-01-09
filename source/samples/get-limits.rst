@@ -26,16 +26,23 @@
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+  # Currently, the PHP SDK does not support Domain Tag limits.
+  # Consider using the following php curl function.
+  function get_domain_tag_limit() {
+    $ch = curl_init();
 
-  # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-  # Issue the call to the client.
-  $result = $mgClient->get("domains/$domain/limits/tag");
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/limits/tag');
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
 
 .. code-block:: py
 

@@ -10,17 +10,17 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode getSingleBounce() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/bounces/foo@bar.com")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -32,12 +32,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-  $bounce = 'bob@example.com';
+  $mgClient  = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain    = 'YOUR_DOMAIN_NAME';
+  $recipient = 'bob@example.com';
 
   # Issue the call to the client.
-  $result = $mgClient->get("$domain/bounces/$bounce");
+  $result = $mgClient->suppressions()->bounces()->show($domain, $recipient);
 
 .. code-block:: py
 

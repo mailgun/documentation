@@ -46,19 +46,19 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = "YOUR_DOMAIN_NAME";
-
-  # Make the call to the client.
-  $result = $mgClient->sendMessage($domain, array(
+  $params =  array(
       'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
       'to'      => array('bob@example.com, alice@example.com'),
       'subject' => 'Hey %recipient.first%',
-      'text'    => 'If you wish to unsubscribe,
-                            click http://mailgun/unsubscribe/%recipient.id%',
-              'recipient-variables' => '{"bob@example.com": {"first":"Bob", "id":1},
-                                         "alice@example.com": {"first":"Alice", "id": 2}}'
-  ));
+      'text'    => 'If you wish to unsubscribe, click http://example.com/unsubscribe/%recipient.id%',
+      'recipient-variables' => '{"bob@example.com": {"first":"Bob", "id":1},
+                                 "alice@example.com": {"first":"Alice", "id": 2}}'
+  );
+
+  # Make the call to the client.
+  $result = $mgClient->messages()-send($domain, $params);
 
 .. code-block:: py
 

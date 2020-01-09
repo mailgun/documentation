@@ -33,13 +33,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_NEW_DOMAIN_NAME';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $ip       = '127.0.0.1';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/ips", array(
-      'ip' => '127.0.0.1'
-  ));
+  $result = $mgClient->ips()->assign($domain, $ip);
 
 .. code-block:: py
 

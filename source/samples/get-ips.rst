@@ -34,12 +34,10 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
 
   # Issue the call to the client.
-  $result = $mgClient->get("ips", array(
-    'dedicated' => "true"
-  ));
+  $result = $mgClient->ips->index();
 
 .. code-block:: py
 

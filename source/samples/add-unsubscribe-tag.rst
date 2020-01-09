@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode addUnsubscribe() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
              .basicAuth("api", API_KEY)
              .field("address", "bob@example.com")
              .field("tag", "tag1")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -36,14 +36,13 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
+  $mgClient  = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain    = 'YOUR_DOMAIN_NAME';
+  $recipient = 'bob@example.com';
+  $tag       = 'my_tag';
 
   # Issue the call to the client.
-  $result = $mgClient->post("$domain/unsubscribes", array(
-      'address' => 'bob@example.com',
-      'tag'     => 'myexampletag'
-  ));
+  $result = $mgClient->suppressions()->unsubscribes()->create($domain, $recipient, $tag);
 
 .. code-block:: py
 

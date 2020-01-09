@@ -27,12 +27,12 @@
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
             .basicAuth("api", API_KEY)
             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
- 			.field("to", "alice@example.com")
- 	        .field("subject", "Hello")
+            .field("to", "alice@example.com")
+            .field("subject", "Hello")
             .field("template", "template.test")
- 		    .field("o:tracking", "False")
+            .field("o:tracking", "False")
             .field("h:X-Mailgun-Variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}")
- 		    .asJson();
+            .asJson();
 
          return request.getBody();
      }
@@ -45,17 +45,18 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
   $domain = "YOUR_DOMAIN_NAME";
-
-  # Make the call to the client.
-  $result = $mgClient->sendMessage($domain, array(
+  $params = array(
       'from'                  => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-      'to'                    => 'foo@example.com',
+      'to'                    => 'bob@example.com',
       'subject'               => 'Hello',
       'template'              => 'template.test',
       'h:X-Mailgun-Variables' => '{"title": "API Documentation", "body": "Sending messages with templates"}'
-  ));
+      );
+
+  # Make the call to the client.
+  $result = $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 
@@ -126,13 +127,13 @@
     "github.com/mailgun/mailgun-go"
     "time"
   )
-  
+
 
   func SendMessageWithTemplate() (id string , err error) {
     mg := mailgun.NewMailgun("YOUR_DOMAIN_NAME", "YOUR_API_KEY")
     ctx, cancel := context.WithTimeout(context.Background(), time.Second * 30)
     defer cancel()
-    
+
     m := mg.NewMessage("Excited User <YOU@YOUR_DOMAIN_NAME>", "???", "")
     m.SetTemplate("template.test")
     if err := m.AddRecipient("bar@example.com"); err != nil {

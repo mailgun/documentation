@@ -12,15 +12,15 @@
  import com.mashape.unirest.http.exceptions.UnirestException;
 
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode deleteDomainIP() throws UnirestException {
- 
+
          HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1")
              .basicAuth("api", API_KEY)
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -32,12 +32,12 @@
   use Mailgun\Mailgun;
 
   # Instantiate the client.
-  $mgClient = new Mailgun('YOUR_API_KEY');
-  $domain = 'YOUR_DOMAIN_NAME';
-  $ip = '127.0.0.1';
+  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+  $domain   = 'YOUR_DOMAIN_NAME';
+  $ip       = '127.0.0.1';
 
   # Issue the call to the client.
-  $result = $mgClient->delete("$domain/ips/$ip");
+  $result = $mgClient->ips->unassign($domain, $ip);
 
 .. code-block:: py
 

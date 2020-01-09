@@ -6,41 +6,50 @@
       --data-urlencode address='foo@mailgun.net'
 
 .. code-block:: java
- 
+
  import com.mashape.unirest.http.HttpResponse;
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode validateEmail() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v4/address/validate")
              .basicAuth("api", PRIVATE_API_KEY)
              .queryString("address", "foo@mailgun.com")
              .asJson();
- 
+
          return request.getBody();
      }
  }
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+  # Currently, the PHP SDK does not support the v4 Validations endpoint.
+  # Consider using the following php curl function.
+  function get_bulk_validation() {
+    $params = array(
+        "address" => "bob@example.com"
+    );
+    $ch = curl_init();
 
-  # Instantiate the client.
-  $mgClient = new Mailgun('PRIVATE_API_KEY');
-  $validateAddress = 'foo@mailgun.net';
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-  # Issue the call to the client.
-  $result = $mgClient->get("address/validate", array('address' => $validateAddress));
-  # is_valid is 0 or 1
-  $isValid = $result->http_response_body->is_valid;
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/address/validate');
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
+  }
+
 .. code-block:: py
 
  def get_validate():
@@ -60,46 +69,43 @@
                                        user: 'api', password: public_key
  end
 
-
-.. code-block:: go 
+.. code-block:: go
 
  import (
-	 "encoding/json"
-	 "net/http"
+    "encoding/json"
+    "net/http"
  )
 
  type ValidationResponse struct {
-	 Address       string   `json:"address"`
-	 IsDisposable  bool     `json:"is_disposable_address"`
-	 IsRoleAddress bool     `json:"is_role_address"`
-	 Reason        []string `json:"reason"`
-	 Result        string   `json:"result"`
-	 Risk          string   `json:"risk"`
+    Address       string   `json:"address"`
+    IsDisposable  bool     `json:"is_disposable_address"`
+    IsRoleAddress bool     `json:"is_role_address"`
+    Reason        []string `json:"reason"`
+    Result        string   `json:"result"`
+    Risk          string   `json:"risk"`
  }
 
 
  func validateAddress(email string) (vr ValidationResponse, err error) {
 
-	 // creating HTTP request and returning response
-	
-	 client := &http.Client{}
-	 req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
-	 req.SetBasicAuth("api", apiKey)
-	 param := req.URL.Query()
-	 param.Add("address", email)
-	 req.URL.RawQuery = param.Encode()
-	 response, err := client.Do(req)
+    // creating HTTP request and returning response
 
- 	 if err != nil {
-		 return
-	 }
+    client := &http.Client{}
+    req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
+    req.SetBasicAuth("api", apiKey)
+    param := req.URL.Query()
+    param.Add("address", email)
+    req.URL.RawQuery = param.Encode()
+    response, err := client.Do(req)
 
-	 // decoding into validation response struct
-	 err = json.NewDecoder(response.Body).Decode(&vr)
+    if err != nil {
+        return
+    }
 
-	 return
- }
-
+    // decoding into validation response struct
+    err = json.NewDecoder(response.Body).Decode(&vr)
+    return
+    }
 
 .. code-block:: csharp
 
