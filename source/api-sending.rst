@@ -33,9 +33,9 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
 
 .. container:: ptable
 
- =============================== ==========================================================
- Parameter                       Description
- =============================== ==========================================================
+ ================================ ==========================================================
+ Parameter                        Description
+ ================================ ==========================================================
  from                             Email address for ``From`` header
  to                               Email address of the recipient(s).
                                   Example: ``"Bob <bob@host.com>"``. You can use commas to
@@ -68,44 +68,44 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  o\:testmode                      Enables sending in test mode. Pass ``yes`` if needed.
                                   See :ref:`manual-testmode`
  o\:tracking                      Toggles tracking on a per-message basis, see
-                       :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
-                       ``true`` or ``false``
- o\:tracking-clicks    Toggles clicks tracking on a per-message basis. Has higher
-                       priority than domain-level setting. Pass ``yes``, ``no``,
-                       ``true``, ``false`` or ``htmlonly``.
- o\:tracking-opens     Toggles opens tracking on a per-message basis. Has higher
-                       priority than domain-level setting. Pass ``yes`` or ``no``,
-                       ``true`` or ``false``
- o\:require-tls        If set to ``True`` or ``yes`` this requires the message only be
-                       sent over a TLS connection. If a TLS connection can not be established,
-                       Mailgun will not deliver the message.
+                                  :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
+                                  ``true`` or ``false``
+ o\:tracking-clicks               Toggles clicks tracking on a per-message basis. Has higher
+                                  priority than domain-level setting. Pass ``yes``, ``no``,
+                                  ``true``, ``false`` or ``htmlonly``.
+ o\:tracking-opens                Toggles opens tracking on a per-message basis. Has higher
+                                  priority than domain-level setting. Pass ``yes`` or ``no``,
+                                  ``true`` or ``false``
+ o\:require-tls                    If set to ``True`` or ``yes`` this requires the message only be
+                                   sent over a TLS connection. If a TLS connection can not be established,
+                                   Mailgun will not deliver the message.
 
-                       If set to ``False`` or ``no``, Mailgun will still try and upgrade
-                       the connection, but if Mailgun can not, the message will be
-                       delivered over a plaintext SMTP connection.
+                                   If set to ``False`` or ``no``, Mailgun will still try and upgrade
+                                   the connection, but if Mailgun can not, the message will be
+                                   delivered over a plaintext SMTP connection.
 
-                       The default is False.
- o\:skip-verification  If set to ``True`` or ``yes``, the certificate and hostname will
-                       not be verified when trying to establish a TLS connection and Mailgun
-                       will accept any certificate during delivery.
+                                   The default is False.
+ o\:skip-verification              If set to ``True`` or ``yes``, the certificate and hostname will
+                                   not be verified when trying to establish a TLS connection and Mailgun
+                                   will accept any certificate during delivery.
 
-                       If set to ``False`` or ``no``, Mailgun will verify the certificate and
-                       hostname. If either one can not be verified, a TLS connection
-                       will not be established.
+                                   If set to ``False`` or ``no``, Mailgun will verify the certificate and
+                                   hostname. If either one can not be verified, a TLS connection
+                                   will not be established.
 
-                       The default is ``False``.
- h\:X-My-Header        ``h:`` prefix followed by an arbitrary value allows to append
-                       a custom MIME header to the message (``X-My-Header``
-                       in this case). For example, ``h:Reply-To`` to specify Reply-To
-                       address.
- v\:my-var             ``v:`` prefix followed by an arbitrary name allows to
-                       attach a custom JSON data to the message.
-                       See :ref:`manual-customdata` for more information.
- recipient-variables   A valid JSON-encoded dictionary, where key is a plain recipient 
-                       address and value is a dictionary with variables that can be 
-                       referenced in the message body. 
-                       See :ref:`batch-sending` for more information.
- ===================== ==========================================================
+                                   The default is ``False``.
+ h\:X-My-Header                    ``h:`` prefix followed by an arbitrary value allows to append
+                                   a custom MIME header to the message (``X-My-Header``
+                                   in this case). For example, ``h:Reply-To`` to specify Reply-To
+                                   address.
+ v\:my-var                         ``v:`` prefix followed by an arbitrary name allows to
+                                   attach a custom JSON data to the message.
+                                   See :ref:`manual-customdata` for more information.
+ recipient-variables               A valid JSON-encoded dictionary, where key is a plain recipient 
+                                   address and value is a dictionary with variables that can be 
+                                   referenced in the message body. 
+                                   See :ref:`batch-sending` for more information.
+ ================================= ==========================================================
 
 .. code-block:: url
 
