@@ -62,6 +62,9 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  o\:deliverytime       Desired time of delivery. See :ref:`date-format`. Note:
                        Messages can be scheduled for a maximum of 3 days in the
                        future.
+  o\:deliverytime-     ``[0-72h]`` Enables our Send Time Optimization feature.
+optimize-period 
+                      
  o\:testmode           Enables sending in test mode. Pass ``yes`` if needed.
                        See :ref:`manual-testmode`
  o\:tracking           Toggles tracking on a per-message basis, see
