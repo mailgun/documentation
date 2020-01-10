@@ -55,15 +55,14 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  template              Name of a template stored via :ref:`template API <api-templates>`.
                        See :ref:`templating` for more information
  t:\version            Use this parameter to send a message to specific version of a template
- t:\text               Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
+ t:\text               Pass ``yes`` if you want to have rendered template in the text part of the message in case of          template sending
  o\:tag                Tag string. See :ref:`tagging` for more information.
  o\:dkim               Enables/disables DKIM signatures on per-message basis.
                        Pass ``yes``, ``no``, ``true`` or ``false``
  o\:deliverytime       Desired time of delivery. See :ref:`date-format`. Note:
                        Messages can be scheduled for a maximum of 3 days in the
                        future.
- o\:deliverytime-optimize-period ``[0-72h]`` Enables our Send Time Optimization feature.                       
-                       
+ o\:deliverytime-optimize-period ``[0-72h]`` Enables our Send Time Optimization feature.                                             
  o\:testmode           Enables sending in test mode. Pass ``yes`` if needed.
                        See :ref:`manual-testmode`
  o\:tracking           Toggles tracking on a per-message basis, see
