@@ -33,47 +33,47 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
 
 .. container:: ptable
 
- ================================ ==========================================================
- Parameter                        Description
- ================================ ==========================================================
- from                             Email address for ``From`` header
- to                               Email address of the recipient(s).
-                                  Example: ``"Bob <bob@host.com>"``. You can use commas to
-                                  separate multiple recipients.
- cc                               Same as ``To`` but for ``Cc``
- bcc                              Same as ``To`` but for ``Bcc``
- subject                          Message subject
- text                             Body of the message. (text version)
- html                             Body of the message. (HTML version)
- amp-html                         `AMP <https://developers.google.com/gmail/ampemail/>`_ part of the message. Please follow google `guidelines <https://developers.google.com/gmail/ampemail/>`_ to compose and send AMP emails.
- attachment                       File attachment. You can post multiple ``attachment``
-                                  values. **Important:** You must use ``multipart/form-data``
-                                  encoding when sending attachments.
- inline                           Attachment with ``inline`` disposition. Can be used to
-                                  send inline images (see :ref:`example <inline-image>`).
-                                  You can post multiple ``inline`` values.
- template                         Name of a template stored via :ref:`template API <api-templates>`.
-                                  See :ref:`templating` for more information
- t:\version                       Use this parameter to send a message to specific version of a template
- t:\text                          Pass ``yes`` if you want to have rendered template in the text part of the message in case                                   of template sending
- o\:tag                           Tag string. See :ref:`tagging` for more information.
- o\:dkim                          Enables/disables DKIM signatures on per-message basis.
-                                  Pass ``yes``, ``no``, ``true`` or ``false``
- o\:deliverytime                  Desired time of delivery. See :ref:`date-format`. Note:
-                                  Messages can be scheduled for a maximum of 3 days in the
-                                  future.
- o\:deliverytime-optimize-period  ``[0-72h]`` Enables our Send Time Optimization feature.
- o\:testmode                      Enables sending in test mode. Pass ``yes`` if needed.
-                                  See :ref:`manual-testmode`
- o\:tracking                      Toggles tracking on a per-message basis, see
-                                  :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
-                                  ``true`` or ``false``
- o\:tracking-clicks               Toggles clicks tracking on a per-message basis. Has higher
-                                  priority than domain-level setting. Pass ``yes``, ``no``,
-                                  ``true``, ``false`` or ``htmlonly``.
- o\:tracking-opens                Toggles opens tracking on a per-message basis. Has higher
-                                  priority than domain-level setting. Pass ``yes`` or ``no``,
-                                  ``true`` or ``false``
+  ================================= ==========================================================
+ Parameter                         Description
+ ================================= ==========================================================
+ from                              Email address for ``From`` header
+ to                                Email address of the recipient(s).
+                                   Example: ``"Bob <bob@host.com>"``. You can use commas to
+                                   separate multiple recipients.
+ cc                                Same as ``To`` but for ``Cc``
+ bcc                               Same as ``To`` but for ``Bcc``
+ subject                           Message subject
+ text                              Body of the message. (text version)
+ html                              Body of the message. (HTML version)
+ amp-html                          `AMP <https://developers.google.com/gmail/ampemail/>`_ part of the message. Please follow google `guidelines <https://developers.google.com/gmail/ampemail/>`_ to compose and send AMP emails.
+ attachment                        File attachment. You can post multiple ``attachment``
+                                   values. **Important:** You must use ``multipart/form-data``
+                                   encoding when sending attachments.
+ inline                            Attachment with ``inline`` disposition. Can be used to
+                                   send inline images (see :ref:`example <inline-image>`).
+                                   You can post multiple ``inline`` values.
+ template                          Name of a template stored via :ref:`template API <api-templates>`.
+                                   See :ref:`templating` for more information
+ t:\version                        Use this parameter to send a message to specific version of a template
+ t:\text                           Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
+ o\:tag                            Tag string. See :ref:`tagging` for more information.
+ o\:dkim                           Enables/disables DKIM signatures on per-message basis.
+                                   Pass ``yes``, ``no``, ``true`` or ``false``
+ o\:deliverytime                   Desired time of delivery. See :ref:`date-format`. Note:
+                                   Messages can be scheduled for a maximum of 3 days in the
+                                   future.
+ o\:deliverytime-optimize-period   String should be set to the number of hours in ``[0-9]+h`` format, with the minimum being ``1h`` and the maximum being ``72h``. This value defines the time window in which Mailgun will run the optimization algorithm based on prior engagement data of a given recipient.
+ o\:testmode                       Enables sending in test mode. Pass ``yes`` if needed.
+                                   See :ref:`manual-testmode`
+ o\:tracking                       Toggles tracking on a per-message basis, see
+                                   :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
+                                   ``true`` or ``false``
+ o\:tracking-clicks                Toggles clicks tracking on a per-message basis. Has higher
+                                   priority than domain-level setting. Pass ``yes``, ``no``,
+                                   ``true``, ``false`` or ``htmlonly``.
+ o\:tracking-opens                 Toggles opens tracking on a per-message basis. Has higher
+                                   priority than domain-level setting. Pass ``yes`` or ``no``,
+                                   ``true`` or ``false``
  o\:require-tls                    If set to ``True`` or ``yes`` this requires the message only be
                                    sent over a TLS connection. If a TLS connection can not be established,
                                    Mailgun will not deliver the message.
