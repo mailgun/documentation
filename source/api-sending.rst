@@ -62,7 +62,7 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  o\:deliverytime                   Desired time of delivery. See :ref:`date-format`. Note:
                                    Messages can be scheduled for a maximum of 3 days in the
                                    future.
- o\:deliverytime-optimize-period   String should be set to the number of hours in ``[0-9]+h`` format, with the minimum being ``1h`` and the maximum being ``72h``. This value defines the time window in which Mailgun will run the optimization algorithm based on prior engagement data of a given recipient.
+ o\:deliverytime-optimize-period   String should be set to the number of hours in ``[0-9]+h`` format, with the minimum being ``24h`` and the maximum being ``72h``. This value defines the time window in which Mailgun will run the optimization algorithm based on prior engagement data of a given recipient.
  o\:testmode                       Enables sending in test mode. Pass ``yes`` if needed.
                                    See :ref:`manual-testmode`
  o\:tracking                       Toggles tracking on a per-message basis, see
