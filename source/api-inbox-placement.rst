@@ -46,10 +46,23 @@ Retrieve a single inbox placement test.
  ====================== ========================================================
  Parameter              Description
  ====================== ========================================================
- test_id           	    the unique identifier for the inbox placement test.
+ test_id           	    The unique identifier for the inbox placement test.
  ====================== ========================================================
 
 
+.. code-block:: url
+
+     DELETE /v3/inbox/tests/<test_id>
+
+Delete a single inbox placement test.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ ====================== ========================================================
 
 
 Inbox Placement Examples
@@ -214,3 +227,15 @@ Example response for creating a inbox placement test.
         "tid": "5e22167af8424f444ca6d8e2"
     }
 
+
+**Delete a inbox placement test**
+
+.. include:: samples/delete-inbox-placement-test.rst
+
+Example response for deleting a inbox placement test.
+
+.. code-block:: javascript
+
+    {
+        "message": "deleted"
+    }
