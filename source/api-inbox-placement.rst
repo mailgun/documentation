@@ -19,6 +19,24 @@ Retrieve a list of all the inbox placement tests and their results ran on the ac
 
 .. code-block:: url
 
+     POST /v3/inbox/tests
+
+Start an inbox placement test. The required form fields are as follows.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ domain                 The sending domain registered with mailgun to send the messages with.
+ subject                The subject associated with the message being tested.
+ html                   The html that makes up the body of the message being tested.
+ from         	        The sending address associated with the sending of the message.
+ ====================== ========================================================
+
+
+.. code-block:: url
+
      GET /v3/inbox/tests/<test_id>
 
 Retrieve a single inbox placement test.
@@ -31,6 +49,9 @@ Retrieve a single inbox placement test.
  test_id           	    the unique identifier for the inbox placement test.
  ====================== ========================================================
 
+
+
+
 Inbox Placement Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -38,7 +59,7 @@ Inbox Placement Examples
 
 .. include:: samples/get-inbox-placement-tests.rst
 
-Example of inbox placement lists response.
+Example response of getting a list of inbox placement tests.
 
 .. code-block:: javascript
 
@@ -128,7 +149,7 @@ total                    integer      Total number of inbox placement tests ran 
 
 .. include:: samples/get-inbox-placement-test.rst
 
-Example of inbox placement lists response.
+Example response of getting a inbox placement test.
 
 .. code-block:: javascript
 
@@ -180,3 +201,16 @@ summary                  object       A summarized view of the inbox placement t
 rendered_url             string       A link to a rendered version of the message that was sent to the seed addresses.
 subject                  string       The subject for the message that was sent to the seed addresses.
 =====================    =========    ======================================================================================================================
+
+**Start a inbox placement test**
+
+.. include:: samples/create-inbox-placement-test.rst
+
+Example response for creating a inbox placement test.
+
+.. code-block:: javascript
+
+    {
+        "tid": "5e22167af8424f444ca6d8e2"
+    }
+
