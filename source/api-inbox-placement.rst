@@ -65,6 +65,19 @@ Delete a single inbox placement test.
  ====================== ========================================================
 
 
+.. code-block:: url
+
+     GET /v3/inbox/tests/<test_id>/counters
+
+Retrieve a provider breakdown of the inbox placement test's counters.
+
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ ====================== ========================================================
+
+
 Inbox Placement Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -222,11 +235,18 @@ subject                  string       The subject for the message that was sent 
 Example response for creating a inbox placement test.
 
 .. code-block:: javascript
-
     {
         "tid": "5e22167af8424f444ca6d8e2"
     }
 
+
+Field Explanation:
+
+=====================    =========    ======================================================================================================================
+Name                     Type         Description
+=====================    =========    ======================================================================================================================
+tid                      string       Unique identifier for a inbox placement test.
+=====================    =========    ======================================================================================================================
 
 **Delete a inbox placement test**
 
@@ -239,3 +259,28 @@ Example response for deleting a inbox placement test.
     {
         "message": "deleted"
     }
+
+**Get a provider breakdown for the inbox placement tests counts**
+
+.. include:: samples/get-inbox-placement-test-counters.rst
+
+Example response for inbox placement counters.
+
+.. code-block:: javascript
+
+    {
+      "counters": [
+        {
+          "inbox": 2,
+          "junk": 1,
+          "provider": "o365"
+        },
+      ]
+    }
+Field Explanation:
+
+=====================    =========    ======================================================================================================================
+Name                     Type         Description
+=====================    =========    ======================================================================================================================
+tid                      string       Unique identifier for a inbox placement test.
+=====================    =========    ======================================================================================================================
