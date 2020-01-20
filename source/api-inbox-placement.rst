@@ -17,95 +17,6 @@ Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to us
 
 Retrieve a list of all the inbox placement tests and their results ran on the account.
 
-.. code-block:: url
-
-     POST /v3/inbox/tests
-
-Start an inbox placement test. The required form fields are as follows.
-
-.. container:: ptable
-
- ====================== ========================================================
- Field                  Description
- ====================== ========================================================
- domain                 The sending domain registered with mailgun to send the messages with.
- subject                The subject associated with the message being tested.
- html                   The html that makes up the body of the message being tested.
- from         	        The sending address associated with the sending of the message.
- ====================== ========================================================
-
-
-.. code-block:: url
-
-     GET /v3/inbox/tests/<test_id>
-
-Retrieve a single inbox placement test.
-
-.. container:: ptable
-
- ====================== ========================================================
- Parameter              Description
- ====================== ========================================================
- test_id           	    The unique identifier for the inbox placement test.
- ====================== ========================================================
-
-
-.. code-block:: url
-
-     DELETE /v3/inbox/tests/<test_id>
-
-Delete a single inbox placement test.
-
-.. container:: ptable
-
- ====================== ========================================================
- Parameter              Description
- ====================== ========================================================
- test_id           	    The unique identifier for the inbox placement test.
- ====================== ========================================================
-
-
-.. code-block:: url
-
-     GET /v3/inbox/tests/<test_id>/counters
-
-Retrieve a provider breakdown of the inbox placement test's counters.
-
- ====================== ========================================================
- Parameter              Description
- ====================== ========================================================
- test_id           	    The unique identifier for the inbox placement test.
- ====================== ========================================================
-
-.. code-block:: url
-
-     GET /v3/inbox/tests/<test_id>/checks
-
-Retrieve a list of all the checks sent for a inbox placement test.
-
- ====================== ========================================================
- Parameter              Description
- ====================== ========================================================
- test_id           	    The unique identifier for the inbox placement test.
- ====================== ========================================================
-
-.. code-block:: url
-
-     GET /v3/inbox/tests/<test_id>/checks/<address>
-
-Retrieve a check sent for a inbox placement test.
-
- ====================== ========================================================
- Parameter              Description
- ====================== ========================================================
- test_id           	    The unique identifier for the inbox placement test.
- address           	    The seed address sent to in the inbox placement test.
- ====================== ========================================================
-
-
-Inbox Placement Examples
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 **Get all inbox placement tests.**
 
 .. include:: samples/get-inbox-placement-tests.rst
@@ -196,6 +107,61 @@ total                    integer      Total number of inbox placement tests ran 
 =====================    =========    ======================================================================================================================
 
 
+
+.. code-block:: url
+
+     POST /v3/inbox/tests
+
+Start an inbox placement test. The required form fields are as follows.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ domain                 The sending domain registered with mailgun to send the messages with.
+ subject                The subject associated with the message being tested.
+ html                   The html that makes up the body of the message being tested.
+ from         	        The sending address associated with the sending of the message.
+ ====================== ========================================================
+
+
+**Start a inbox placement test**
+
+.. include:: samples/create-inbox-placement-test.rst
+
+Example response for creating a inbox placement test.
+
+.. code-block:: javascript
+
+    {
+        "tid": "5e22167af8424f444ca6d8e2"
+    }
+
+
+Field Explanation:
+
+=====================    =========    ======================================================================================================================
+Name                     Type         Description
+=====================    =========    ======================================================================================================================
+tid                      string       Unique identifier for a inbox placement test.
+=====================    =========    ======================================================================================================================
+
+
+.. code-block:: url
+
+     GET /v3/inbox/tests/<test_id>
+
+Retrieve a single inbox placement test.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ ====================== ========================================================
+
 **Get a inbox placement test.**
 
 .. include:: samples/get-inbox-placement-test.rst
@@ -253,26 +219,19 @@ rendered_url             string       A link to a rendered version of the messag
 subject                  string       The subject for the message that was sent to the seed addresses.
 =====================    =========    ======================================================================================================================
 
-**Start a inbox placement test**
+.. code-block:: url
 
-.. include:: samples/create-inbox-placement-test.rst
+     DELETE /v3/inbox/tests/<test_id>
 
-Example response for creating a inbox placement test.
+Delete a single inbox placement test.
 
-.. code-block:: javascript
+.. container:: ptable
 
-    {
-        "tid": "5e22167af8424f444ca6d8e2"
-    }
-
-
-Field Explanation:
-
-=====================    =========    ======================================================================================================================
-Name                     Type         Description
-=====================    =========    ======================================================================================================================
-tid                      string       Unique identifier for a inbox placement test.
-=====================    =========    ======================================================================================================================
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ ====================== ========================================================
 
 **Delete a inbox placement test**
 
@@ -285,6 +244,18 @@ Example response for deleting a inbox placement test.
     {
         "message": "deleted"
     }
+
+.. code-block:: url
+
+     GET /v3/inbox/tests/<test_id>/counters
+
+Retrieve a provider breakdown of the inbox placement test's counters.
+
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ ====================== ========================================================
 
 **Get a provider breakdown for the inbox placement tests counts**
 
@@ -312,6 +283,17 @@ Name                     Type         Description
 tid                      string       Unique identifier for a inbox placement test.
 =====================    =========    ======================================================================================================================
 
+.. code-block:: url
+
+     GET /v3/inbox/tests/<test_id>/checks
+
+Retrieve a list of all the checks sent for a inbox placement test.
+
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ ====================== ========================================================
 
 **Get all inbox placement test checks.**
 
@@ -351,6 +333,19 @@ Name                     Type         Description
 checks                   array        Collection of checks that represent the messages sent to the seed mailboxes.
 =====================    =========    ======================================================================================================================
 
+.. code-block:: url
+
+     GET /v3/inbox/tests/<test_id>/checks/<address>
+
+Retrieve a check sent for a inbox placement test.
+
+ ====================== ========================================================
+ Parameter              Description
+ ====================== ========================================================
+ test_id           	    The unique identifier for the inbox placement test.
+ address           	    The seed address sent to in the inbox placement test.
+ ====================== ========================================================
+
 **Get a single inbox placement test check.**
 
 .. include:: samples/get-inbox-placement-test-check.rst
@@ -383,3 +378,5 @@ headers                  string       The headers attached to the test message w
 message_id               string       The unique identifier attached to the test message when it is sent.
 time                     string       The time in which the message arrived at the address.
 =====================    =========    ======================================================================================================================
+
+
