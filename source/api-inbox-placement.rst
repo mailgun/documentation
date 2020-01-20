@@ -260,6 +260,7 @@ subject                  string       The subject for the message that was sent 
 Example response for creating a inbox placement test.
 
 .. code-block:: javascript
+
     {
         "tid": "5e22167af8424f444ca6d8e2"
     }
@@ -302,6 +303,7 @@ Example response for inbox placement counters.
         },
       ]
     }
+
 Field Explanation:
 
 =====================    =========    ======================================================================================================================
