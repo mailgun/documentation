@@ -144,7 +144,7 @@ tests                    array        List of inbox placement tests.
 total                    integer      Total number of inbox placement tests ran for the account
 =====================    =========    ======================================================================================================================
 
-Retreive individual test details
+Retrieve individual test details
 --------------------------------
 
 .. code-block:: url
