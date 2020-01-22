@@ -33,76 +33,77 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
 
 .. container:: ptable
 
- ===================== ==========================================================
- Parameter             Description
- ===================== ==========================================================
- from                  Email address for ``From`` header
- to                    Email address of the recipient(s).
-                       Example: ``"Bob <bob@host.com>"``. You can use commas to
-                       separate multiple recipients.
- cc                    Same as ``To`` but for ``Cc``
- bcc                   Same as ``To`` but for ``Bcc``
- subject               Message subject
- text                  Body of the message. (text version)
- html                  Body of the message. (HTML version)
- amp-html              `AMP <https://developers.google.com/gmail/ampemail/>`_ part of the message. Please follow google `guidelines <https://developers.google.com/gmail/ampemail/>`_ to compose and send AMP emails.
- attachment            File attachment. You can post multiple ``attachment``
-                       values. **Important:** You must use ``multipart/form-data``
-                       encoding when sending attachments.
- inline                Attachment with ``inline`` disposition. Can be used to
-                       send inline images (see :ref:`example <inline-image>`).
-                       You can post multiple ``inline`` values.
- template              Name of a template stored via :ref:`template API <api-templates>`.
-                       See :ref:`templating` for more information
- t:\version            Use this parameter to send a message to specific version of a template
- t:\text               Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
- o\:tag                Tag string. See :ref:`tagging` for more information.
- o\:dkim               Enables/disables DKIM signatures on per-message basis.
-                       Pass ``yes``, ``no``, ``true`` or ``false``
- o\:deliverytime       Desired time of delivery. See :ref:`date-format`. Note:
-                       Messages can be scheduled for a maximum of 3 days in the
-                       future.
- o\:testmode           Enables sending in test mode. Pass ``yes`` if needed.
-                       See :ref:`manual-testmode`
- o\:tracking           Toggles tracking on a per-message basis, see
-                       :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
-                       ``true`` or ``false``
- o\:tracking-clicks    Toggles clicks tracking on a per-message basis. Has higher
-                       priority than domain-level setting. Pass ``yes``, ``no``,
-                       ``true``, ``false`` or ``htmlonly``.
- o\:tracking-opens     Toggles opens tracking on a per-message basis. Has higher
-                       priority than domain-level setting. Pass ``yes`` or ``no``,
-                       ``true`` or ``false``
- o\:require-tls        If set to ``True`` or ``yes`` this requires the message only be
-                       sent over a TLS connection. If a TLS connection can not be established,
-                       Mailgun will not deliver the message.
+ ================================= ==========================================================
+ Parameter                         Description
+ ================================= ==========================================================
+ from                              Email address for ``From`` header
+ to                                Email address of the recipient(s).
+                                   Example: ``"Bob <bob@host.com>"``. You can use commas to
+                                   separate multiple recipients.
+ cc                                Same as ``To`` but for ``Cc``
+ bcc                               Same as ``To`` but for ``Bcc``
+ subject                           Message subject
+ text                              Body of the message. (text version)
+ html                              Body of the message. (HTML version)
+ amp-html                          `AMP <https://developers.google.com/gmail/ampemail/>`_ part of the message. Please follow google `guidelines <https://developers.google.com/gmail/ampemail/>`_ to compose and send AMP emails.
+ attachment                        File attachment. You can post multiple ``attachment``
+                                   values. **Important:** You must use ``multipart/form-data``
+                                   encoding when sending attachments.
+ inline                            Attachment with ``inline`` disposition. Can be used to
+                                   send inline images (see :ref:`example <inline-image>`).
+                                   You can post multiple ``inline`` values.
+ template                          Name of a template stored via :ref:`template API <api-templates>`.
+                                   See :ref:`templating` for more information
+ t:\version                        Use this parameter to send a message to specific version of a template
+ t:\text                           Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
+ o\:tag                            Tag string. See :ref:`tagging` for more information.
+ o\:dkim                           Enables/disables DKIM signatures on per-message basis.
+                                   Pass ``yes``, ``no``, ``true`` or ``false``
+ o\:deliverytime                   Desired time of delivery. See :ref:`date-format`. Note:
+                                   Messages can be scheduled for a maximum of 3 days in the
+                                   future.
+ o\:deliverytime-optimize-period   String should be set to the number of hours in ``[0-9]+h`` format, with the minimum being ``24h`` and the maximum being ``72h``. This value defines the time window in which Mailgun will run the optimization algorithm based on prior engagement data of a given recipient. *Please note that STO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+ o\:testmode                       Enables sending in test mode. Pass ``yes`` if needed.
+                                   See :ref:`manual-testmode`
+ o\:tracking                       Toggles tracking on a per-message basis, see
+                                   :ref:`tracking-messages` for details. Pass ``yes``, ``no``,
+                                   ``true`` or ``false``
+ o\:tracking-clicks                Toggles clicks tracking on a per-message basis. Has higher
+                                   priority than domain-level setting. Pass ``yes``, ``no``,
+                                   ``true``, ``false`` or ``htmlonly``.
+ o\:tracking-opens                 Toggles opens tracking on a per-message basis. Has higher
+                                   priority than domain-level setting. Pass ``yes`` or ``no``,
+                                   ``true`` or ``false``
+ o\:require-tls                    If set to ``True`` or ``yes`` this requires the message only be
+                                   sent over a TLS connection. If a TLS connection can not be established,
+                                   Mailgun will not deliver the message.
 
-                       If set to ``False`` or ``no``, Mailgun will still try and upgrade
-                       the connection, but if Mailgun can not, the message will be
-                       delivered over a plaintext SMTP connection.
+                                   If set to ``False`` or ``no``, Mailgun will still try and upgrade
+                                   the connection, but if Mailgun can not, the message will be
+                                   delivered over a plaintext SMTP connection.
 
-                       The default is False.
- o\:skip-verification  If set to ``True`` or ``yes``, the certificate and hostname will
-                       not be verified when trying to establish a TLS connection and Mailgun
-                       will accept any certificate during delivery.
+                                   The default is False.
+ o\:skip-verification              If set to ``True`` or ``yes``, the certificate and hostname will
+                                   not be verified when trying to establish a TLS connection and Mailgun
+                                   will accept any certificate during delivery.
 
-                       If set to ``False`` or ``no``, Mailgun will verify the certificate and
-                       hostname. If either one can not be verified, a TLS connection
-                       will not be established.
+                                   If set to ``False`` or ``no``, Mailgun will verify the certificate and
+                                   hostname. If either one can not be verified, a TLS connection
+                                   will not be established.
 
-                       The default is ``False``.
- h\:X-My-Header        ``h:`` prefix followed by an arbitrary value allows to append
-                       a custom MIME header to the message (``X-My-Header``
-                       in this case). For example, ``h:Reply-To`` to specify Reply-To
-                       address.
- v\:my-var             ``v:`` prefix followed by an arbitrary name allows to
-                       attach a custom JSON data to the message.
-                       See :ref:`manual-customdata` for more information.
- recipient-variables   A valid JSON-encoded dictionary, where key is a plain recipient 
-                       address and value is a dictionary with variables that can be 
-                       referenced in the message body. 
-                       See :ref:`batch-sending` for more information.
- ===================== ==========================================================
+                                   The default is ``False``.
+ h\:X-My-Header                    ``h:`` prefix followed by an arbitrary value allows to append
+                                   a custom MIME header to the message (``X-My-Header``
+                                   in this case). For example, ``h:Reply-To`` to specify Reply-To
+                                   address.
+ v\:my-var                         ``v:`` prefix followed by an arbitrary name allows to
+                                   attach a custom JSON data to the message.
+                                   See :ref:`manual-customdata` for more information.
+ recipient-variables               A valid JSON-encoded dictionary, where key is a plain recipient 
+                                   address and value is a dictionary with variables that can be 
+                                   referenced in the message body. 
+                                   See :ref:`batch-sending` for more information.
+ ================================= ==========================================================
 
 .. code-block:: url
 
