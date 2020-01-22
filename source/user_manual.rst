@@ -2079,7 +2079,7 @@ Creating and running an Inbox Placement test is simple and only requires minimal
 
 - Provide a 'from' address prefix. Mailgun provides 'user' by default.
 
-Once configured, a test can be performed. Please wait up to 5 minutes for results to come in.
+Once configured, a test can be performed. Please wait for results to come in.
 
 .. _smtp:
 
