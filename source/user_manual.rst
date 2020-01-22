@@ -15,6 +15,7 @@ organized around the four major features that Mailgun provides:
 - `Receiving, Forwarding and Storing Messages`_
 - `Email Validation V3`_
 - `Email Validation V4`_
+- `Inbox Placement`_
 
 At the heart of Mailgun is the API.  Most of the Mailgun service can be
 accessed through the RESTful HTTP API without the need to install any
@@ -2044,7 +2045,41 @@ Note that the following conditions must be met:
     - Make sure the contents of the CSV do not contain any non-ASCII characters. The character set used must be ASCII or UTF-8.
 
 
+Inbox Placement
+*******************
 
+The Inbox Placement product is an email deliverability tool that provides visibility into where an email will land in the
+mailbox. While mailbox providers (i.e. Gmail, Yahoo, Hotmail, etc.) will provide feedback that an email is delivered or not
+(i.e. delivery), they do not provide insight into where in the mailbox the email landed (i.e. deliverability). Specifically,
+an email can land in the inbox, spam/junk folder, or in the case of Gmail, specific tabs within the inbox. The Inbox
+Placement product utilizes a mechanism known as seed testing to provide visibility in to where emails are landing.
+
+Seed testing roughly works as follows:
+
+1. Mailgun manages a list of seed mailbox accounts with mailbox providers in the market.
+2. A test email is sent to the seed list.
+3. Mailgun tracks where the test email landed for each mailbox in the seed list and returns the results to the user. The results contain the following information:
+
+   a. "Spam", "Missed", or "Inbox" placement (and which tab for Gmail mailboxes) for each individual mailbox in our seed list.
+   b. A rollup percentage summary for each mailbox provider. The rollup aggregates the results from each mailbox.
+   c. A rollup percentage summary for each seed test. The rollup aggregates the results from each mailbox provider.
+
+Creating a Test
+===============
+
+Creating and running an Inbox Placement test is simple and only requires minimal configuration in either the control panel or the API:
+
+*Required*
+
+- A sending domain to send a test from. If you haven't set up a domain please see the `Verifying Your Domain`_ section.
+- A message subject.
+- A message body.
+
+*Optional*
+
+- Provide a 'from' address prefix. Mailgun provides 'user' by default.
+
+Once configured, a test can be performed. Please wait for results to come in.
 
 .. _smtp:
 
