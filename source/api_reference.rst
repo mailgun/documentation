@@ -18,3 +18,5 @@ API Reference
    api-mailinglists
    api-templates
    api-email-validation
+   api-inbox-placement
+

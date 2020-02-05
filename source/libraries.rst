@@ -58,6 +58,31 @@ This is the Mailgun Ruby Library. This library contains methods for easily inter
     gem install mailgun-ruby
 
 
+Perl
+====
+
+**HTTP libraries:**
+
+Use your favourite HTTP library like `Mojo::UserAgent <https://metacpan.org/pod/Mojo::UserAgent>`_, `Furl <https://metacpan.org/pod/Furl>`_ or `LWP::UserAgent <https://metacpan.org/pod/LWP::UserAgent>`_.
+
+**API libraries:**
+
+  - `WebService::Mailgun <https://metacpan.org/pod/WebService::Mailgun>`_
+  - `WWW::Mailgun <https://metacpan.org/pod/WWW::Mailgun>`_
+
+**Mojolicious Plugin:**
+
+  - `Mojolicious::Plugin::Mailgun <https://metacpan.org/pod/Mojolicious::Plugin::Mailgun>`_
+
+**Email::Sender Transport Module:**
+
+  - `Email::Sender::Transport::Mailgun <Email::Sender::Transport::Mailgun>`_
+
+    Configuration can be done via `environment variables <https://metacpan.org/pod/Email::Sender::Transport::Mailgun#ENVIRONMENT>`_ which is among other things awesome for containerized deployments.
+
+    As `Email::Stuffer <https://metacpan.org/pod/Email::Stuffer>`_ uses Email::Sender you can use Mailgun just using those variables.
+
+
 Java
 ====
 
