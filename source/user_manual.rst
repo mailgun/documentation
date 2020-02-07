@@ -1173,7 +1173,7 @@ Mailgun can keep track of every time a recipient requests to be unsubscribed fro
 your mailings.  If you enable unsubscribe tracking, Mailgun will insert unsubscribe links and remove those recipients
 from your mailings automatically for you.
 
-You can see when usubscribes happen in the ``Logs`` tab or see counters of unsubscribes aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
+You can see when unsubscribes happen in the ``Logs`` tab or see counters of unsubscribes aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
 
 Mailgun supports three types of unsubscribes: domain, :ref:`tag <tagging>` or :ref:`mailing-lists` levels.
 
