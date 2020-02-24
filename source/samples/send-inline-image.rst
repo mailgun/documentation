@@ -43,25 +43,26 @@
 
 .. code-block:: php
 
-  # Include the Autoloader (see "Libraries" for install instructions)
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
+ # Include the Autoloader (see "Libraries" for install instructions)
+ require 'vendor/autoload.php';
+ use Mailgun\Mailgun;
 
-  # Instantiate the client.
-  $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
-  $domain = "YOUR_DOMAIN_NAME";
-  $params = array(
-        'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
-        'to'      => 'bob@example.com',
-        'subject' => 'Hello',
-        'text'    => 'Testing some Mailgun awesomness!',
-        'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>',
-        'inline' => array(
-            array('filePath' => '/path/to/image.jpg'))
-      );
-
-    # Make the call to the client.
-    $result = $mgClient->messages()->send($domain, $params);
+ # Instantiate the client.
+ $mgClient = Mailgun::create('PRIVATE_API_KEY', 'https://API_HOSTNAME');
+ $domain = "YOUR_DOMAIN_NAME";
+ $params = array(
+       'from'    => 'Excited User <YOU@YOUR_DOMAIN_NAME>',
+       'to'      => 'bob@example.com',
+       'subject' => 'Hello',
+       'text'    => 'Testing some Mailgun awesomness!',
+       'html'    => '<html>Inline image: <img src="cid:test.jpg"></html>',
+       'inline' => array(
+           array('filePath' => '/path/to/test.jpg')
+        )
+ );
+  
+  # Make the call to the client.
+  $result = $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 
