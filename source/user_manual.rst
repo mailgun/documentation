@@ -1005,7 +1005,7 @@ And here's a sample in PHP:
         }
 
         // returns true if signature is valid
-        return \hash_equals\(hash_hmac('sha256', $timestamp . $token, $signingKey), $signature);
+        return \hash_equals(\hash_hmac('sha256', $timestamp . $token, $signingKey), $signature);
     }
 
 And here's a sample in Go
