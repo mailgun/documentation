@@ -2148,9 +2148,10 @@ For more information see Exim's documentation for authenticated outgoing SMTP. Y
   		route_list = * smtp.mailgun.org byname
 
 	# In transports configuration:
-		mailgun_transport:
+	mailgun_transport:
   		driver=smtp
-  		hosts_try_auth = smtp.mailgun.org
+  		hosts_require_auth = <; $host_address
+  		hosts_require_tls = <; $host_address
 
 Also make sure to configure login credentials (in your /etc/exim/passwd.client)::
 
