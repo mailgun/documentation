@@ -1000,12 +1000,12 @@ And here's a sample in PHP:
     function verify($signingKey, $token, $timestamp, $signature)
     {
         // check if the timestamp is fresh
-        if (abs(time() - $timestamp) > 15) {
+        if (\abs(\time() - $timestamp) > 15) {
             return false;
         }
 
         // returns true if signature is valid
-        return hash_hmac('sha256', $timestamp . $token, $signingKey) === $signature;
+        return \hash_equals(\hash_hmac('sha256', $timestamp . $token, $signingKey), $signature);
     }
 
 And here's a sample in Go
