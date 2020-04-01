@@ -25,7 +25,7 @@ Here's a classic post, `So You'd Like to Send Some Email (Through Code)`_, from 
 What are the differences between free and Flex plans?
 **************************************************************************************************************
 
-Free plan (no credit card required):
+**Free plan (no credit card required):**
 
 * 5,000 messages/month are included
 * There is a limit of 300 messages per day on the included sandbox domain
@@ -33,7 +33,7 @@ Free plan (no credit card required):
 * You cannot create custom domains
 * You can only send to Authorized Recipients; and there is a maximum of 5 Authorized Recipients
 
-Flex Plan:
+**Flex Plan:**
 
 If you opt to enter your credit card, you'll receive 5,000 free messages per month for 3 months. After the 3 months is up, if you haven't opted to upgrade into one of our subscription plans, you'll continue on a Pay as you Go plan, in which you'd pay for any messages you send at a rate of $0.80/1,000 messages. Additionally, on flex plans you get:
 
