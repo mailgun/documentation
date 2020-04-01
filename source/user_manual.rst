@@ -1000,12 +1000,12 @@ And here's a sample in PHP:
     function verify($signingKey, $token, $timestamp, $signature)
     {
         // check if the timestamp is fresh
-        if (abs(time() - $timestamp) > 15) {
+        if (\abs(\time() - $timestamp) > 15) {
             return false;
         }
 
         // returns true if signature is valid
-        return hash_hmac('sha256', $timestamp . $token, $signingKey) === $signature;
+        return \hash_equals(\hash_hmac('sha256', $timestamp . $token, $signingKey), $signature);
     }
 
 And here's a sample in Go
@@ -1173,7 +1173,7 @@ Mailgun can keep track of every time a recipient requests to be unsubscribed fro
 your mailings.  If you enable unsubscribe tracking, Mailgun will insert unsubscribe links and remove those recipients
 from your mailings automatically for you.
 
-You can see when usubscribes happen in the ``Logs`` tab or see counters of unsubscribes aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
+You can see when unsubscribes happen in the ``Logs`` tab or see counters of unsubscribes aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>` or the :ref:`Bounces API <api-bounces>`.
 
 Mailgun supports three types of unsubscribes: domain, :ref:`tag <tagging>` or :ref:`mailing-lists` levels.
 
@@ -2148,9 +2148,10 @@ For more information see Exim's documentation for authenticated outgoing SMTP. Y
   		route_list = * smtp.mailgun.org byname
 
 	# In transports configuration:
-		mailgun_transport:
+	mailgun_transport:
   		driver=smtp
-  		hosts_try_auth = smtp.mailgun.org
+  		hosts_require_auth = <; $host_address
+  		hosts_require_tls = <; $host_address
 
 Also make sure to configure login credentials (in your /etc/exim/passwd.client)::
 
