@@ -22,20 +22,26 @@ Here's a classic post, `So You'd Like to Send Some Email (Through Code)`_, from 
 
 .. _So You'd Like to Send Some Email (Through Code): http://blog.codinghorror.com/so-youd-like-to-send-some-email-through-code/
 
-What are the differences between free and paid accounts?
+What are the differences between free and Flex plans?
 **************************************************************************************************************
 
-First of all, for both free and paid accounts, you get 10,000 free messages per month. However, there are some limitations if you don't provide payment information:
+Free plan (no credit card required):
 
-* You will not be able to send more than 10,000 messages per month
-* Data retention for logs and the :ref:`Events API <api-events>` is 2 days.
-* The limit for number of domains is 5.
+* 5,000 messages/month are included
+* There is a limit of 300 messages per day on the included sandbox domain
+* Data retention for Logs and the Events API is 1 day
+* You cannot create custom domains
+* You can only send to Authorized Recipients; and there is a maximum of 5 Authorized Recipients
 
-If you do provide payment information:
+Flex Plan:
 
-* There is no limit on the number of emails sent or received.
-* Data retention for Logs and the :ref:`Events API <api-events>` is 30 days.
-* You can create up to 1,000 domains.
+If you opt to enter your credit card, you'll receive 5,000 free messages per month for 3 months. After the 3 months is up, if you haven't opted to upgrade into one of our subscription plans, you'll continue on a Pay as you Go plan, in which you'd pay for any messages you send at a rate of $0.80/1,000 messages. Additionally, on flex plans you get:
+
+* No daily sending limit
+* You get 5,000 free messages a month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $0.80/1,000 messages
+* Data retention for Logs and the Events API is 5 days
+* You can create custom domains
+* Use of Authorized Recipients is not required to send with custom domains; you may send to whomever you like!
 
 If these limits are not enough for you, or if you need to talk to us about a custom contract, you can reach us at sales@mailgun.com.
 
@@ -48,7 +54,7 @@ Can I get multiple Domains and IP Addresses?
 
 By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Add Dedicated IP" button in the **IP Management** section of the Control Panel. You will need to add a credit card to your account first, though, if you have not already done so. If you want multiple IPs, you can `contact our Support Team <https://app.mailgun.com/app/support>`_.
 
-You can create multiple domains in the Control Panel or through the :ref:`Domains API <api-domains>`(limit of 5 for free accounts and 1,000 for paid accounts).
+You can create up to 1,000 domains on a paid plan in the Control Panel or through the :ref:`Domains API <api-domains>`(Free accounts do not include the ability to create a custom domain).
 
 Do I need a dedicated IP address?
 **************************************************************************************************************
