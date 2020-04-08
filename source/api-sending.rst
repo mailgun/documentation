@@ -62,8 +62,8 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  o\:deliverytime                   Desired time of delivery. See :ref:`date-format`. Note:
                                    Messages can be scheduled for a maximum of 3 days in the
                                    future.
- o\:deliverytime-optimize-period   String should be set to the number of hours in ``[0-9]+h`` format, with the minimum being ``24h`` and the maximum being ``72h``. This value defines the time window in which Mailgun will run the optimization algorithm based on prior engagement data of a given recipient. *Please note that STO is only available on certain plans. See www.mailgun.com/pricing for more info.*
- o\:time-zone-localize             String should be set to preferred delivery time in ``HH:mm`` or ``hh:mmaa`` format, where ``HH:mm`` is used for 24 hour format without AM/PM and ``hh:mm:aa`` is used for 12 hour format with AM/PM. *Please note that TZO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+ o\:deliverytime-optimize-period   Toggles Send Time Optimization (STO) on a per-message basis. String should be set to the number of hours in ``[0-9]+h`` format, with the minimum being ``24h`` and the maximum being ``72h``. This value defines the time window in which Mailgun will run the optimization algorithm based on prior engagement data of a given recipient. *Please note that STO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+ o\:time-zone-localize             Toggles Timezone Optimization (TZO) on a per message basis. String should be set to preferred delivery time in ``HH:mm`` or ``hh:mmaa`` format, where ``HH:mm`` is used for 24 hour format without AM/PM and ``hh:mm:aa`` is used for 12 hour format with AM/PM. *Please note that TZO is only available on certain plans. See www.mailgun.com/pricing for more info.*
  o\:testmode                       Enables sending in test mode. Pass ``yes`` if needed.
                                    See :ref:`manual-testmode`
  o\:tracking                       Toggles tracking on a per-message basis, see
