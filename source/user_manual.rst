@@ -311,35 +311,37 @@ When sending a message via SMTP you can pass additional sending options via
 custom  MIME_ headers listed in the table below.
 
 
-    ============================= ============================================================
-    Header                        Description
-    ============================= ============================================================
-    X-Mailgun-Tag                 Tag string used for aggregating stats. See :ref:`tagging`
-                                  for more information. You can mark a message with several
-                                  categories by setting multiple ``X-Mailgun-Tag`` headers.
-    X-Mailgun-Dkim                Enables/disables DKIM signatures on per-message basis.
-                                  Use ``yes`` or ``no``.
-    X-Mailgun-Deliver-By          Desired time of delivery. See `Scheduling Delivery`_ and
-                                  :ref:`date-format`.
-    X-Mailgun-Drop-Message        Enables sending in test mode. Pass ``yes`` if needed.
-                                  See :ref:`manual-testmode`.
-    X-Mailgun-Track               Toggles tracking on a per-message basis, see
-                                  :ref:`tracking-messages` for details.
-                                  Pass ``yes`` or ``no``.
-    X-Mailgun-Track-Clicks        Toggles clicks tracking on a per-message basis. Has higher
-                                  priority than domain-level setting. Pass ``yes``, ``no``
-                                  or ``htmlonly``.
-    X-Mailgun-Track-Opens         Toggles opens tracking on a per-message basis. Has higher
-                                  priority than domain-level setting. Pass ``yes`` or ``no``.
-    X-Mailgun-Require-TLS         Use this header to control TLS connection settings.
-                                  See :ref:`tls-sending`
-    X-Mailgun-Skip-Verification   Use this header to control TLS connection settings.
-                                  See :ref:`tls-sending`
-    X-Mailgun-Recipient-Variables Use this header to substitute recipient variables referenced
-                                  in a batched mail message.  See :ref:`batch-sending`
-    X-Mailgun-Variables           Use this header to attach a custom JSON data to the message.
-                                  See :ref:`manual-customdata` for more information.
-    ============================= ============================================================
+    ========================================= ============================================================
+    Header                                    Description
+    ========================================= ============================================================
+    X-Mailgun-Tag                             Tag string used for aggregating stats. See :ref:`tagging`
+                                              for more information. You can mark a message with several
+                                              categories by setting multiple ``X-Mailgun-Tag`` headers.
+    X-Mailgun-Dkim                            Enables/disables DKIM signatures on per-message basis.
+                                              Use ``yes`` or ``no``.
+    X-Mailgun-Deliver-By                      Desired time of delivery. See `Scheduling Delivery`_ and
+                                              :ref:`date-format`.
+    X-Mailgun-Drop-Message                    Enables sending in test mode. Pass ``yes`` if needed.
+                                              See :ref:`manual-testmode`.
+    X-Mailgun-Track                           Toggles tracking on a per-message basis, see
+                                              :ref:`tracking-messages` for details.
+                                              Pass ``yes`` or ``no``.
+    X-Mailgun-Track-Clicks                    Toggles clicks tracking on a per-message basis. Has higher
+                                              priority than domain-level setting. Pass ``yes``, ``no``
+                                              or ``htmlonly``.
+    X-Mailgun-Track-Opens                     Toggles opens tracking on a per-message basis. Has higher
+                                              priority than domain-level setting. Pass ``yes`` or ``no``.
+    X-Mailgun-Require-TLS                     Use this header to control TLS connection settings.
+                                              See :ref:`tls-sending`
+    X-Mailgun-Skip-Verification               Use this header to control TLS connection settings.
+                                              See :ref:`tls-sending`
+    X-Mailgun-Recipient-Variables             Use this header to substitute recipient variables referenced
+                                              in a batched mail message.  See :ref:`batch-sending`
+    X-Mailgun-Variables                       Use this header to attach a custom JSON data to the message.
+                                              See :ref:`manual-customdata` for more information.
+    X-Mailgun-Delivery-Time-Optimize-Period   Toggles STO on a per-message basis.			  
+				  
+    ========================================= ============================================================
 
 Sending a message with STO
 ================
