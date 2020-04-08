@@ -313,6 +313,8 @@ custom  MIME_ headers listed in the table below.
 				  
     ========================================= ============================================================
 
+.. _sto-sending:
+
 Sending a message with STO
 ================
 
@@ -321,6 +323,8 @@ Mailgun's Send Time Optimization (STO) feature uses machine learning to analyze 
 You can send a message using STO via API by passing in the parameter ``o:deliverytime-optimize-period`` or via SMTP using the MIME header ``X-Mailgun-Delivery-Time-Optimize-Period``. The value should be a string in the ``[0-9]+h`` format. This value defines the window in which Mailgun will run the optimization algorithm against the data we have and deliver the message. We recommend using a minimum value of ``24h`` for best results, and the max value is ``72h``.
 
 *Please note that STO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+
+.. _tzo-sending:
 
 Sending a message with TZO
 ================
