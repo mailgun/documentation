@@ -341,6 +341,24 @@ custom  MIME_ headers listed in the table below.
                                   See :ref:`manual-customdata` for more information.
     ============================= ============================================================
 
+Sending a message with STO
+================
+
+Mailgun's Send Time Optimization (STO) feature uses machine learning to analyze engagement data (opens and clicks) for a recipient to determine when a user is most engaged with their messages. If we have enough engagement data to make a determination of when a user is most engaged, Mailgun will hold onto the message and deliver it during that optimal period. The idea here is that if we can deliver a message to a user when they are most engaged, the message will be towards the top and is more likely to be engaged with.
+
+You can send a message using STO via API by passing in the parameter ``o:deliverytime-optimize-period`` or via SMTP using the MIME header ``X-Mailgun-Delivery-Time-Optimize-Period``. The value should be a string in the ``[0-9]+h`` format. This value defines the window in which Mailgun will run the optimization algorithm against the data we have and deliver the message. We recommend using a minimum value of ``24h`` for best results, and the max value is ``72h``.
+
+*Please note that STO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+
+Sending a message with TZO
+================
+
+Mailgun’s Timezone Optimization feature allows senders to schedule messages to be delivered in a recipient’s local timezone. Similar to how our message scheduling works, with TZO you pass your desired delivery time, and Mailgun will convert that to a user's local timezone, if we have data for that recipient. If we do not have data for that recipient, the message will be delivered immediately.
+
+Timezones are estimated based on a user’s IP address. Mailgun collects the IP address on click events, and uses a geolocation service to translate the IP address into a timezone for the user. We store that timezone in a database (hashed, of course), so that when TZO is used on a message, Mailgun will look up the timezone for that user, and schedule the message for the delivery time in that user’s local timezone.
+
+*Please note that TZO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+
 Sending an AMP message
 ================
 
