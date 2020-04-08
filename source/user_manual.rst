@@ -36,37 +36,6 @@ Finally, always feel free to `contact our Support Team <https://app.mailgun.com/
 Getting Started
 ***************
 
-We've tried to make the sign-up and on-boarding process as intuitive as possible.
-However, there are a few things to mention.
-
-Pricing & Features Overview
-===========================
-
-**Pricing**
-
-Pricing is a usage-based, monthly subscription.
-Usage is based on outbound messages and number dedicated IP addresses
-used.  There is no charge for inbound messages.
-As your volume increases your price per message decreases according
-to the pricing calculator on our `pricing page`_.
-
-If you are a high volume sender or if you are interested in a custom contract,
-you can contact sales@mailgunhq.com for more details.
-
-.. _pricing page: https://www.mailgun.com/pricing
-
-**Features**
-
-All of Mailgun's features are available to both free and paid accounts.
-
-There are some limitations if you have not given us your payment information:
-
-* There is a limit of 10,000 emails per month.
-* Data for Logs and the Events API are stored for 2 days.
-//
-If you have given us your payment information, there is no limit on number of messages
-sent and/or received and data retention for Logs and the :ref:`Events API <api-events>` is at least 30 days.
-
 .. _verifying-your-domain:
 
 Verifying Your Domain
@@ -311,35 +280,58 @@ When sending a message via SMTP you can pass additional sending options via
 custom  MIME_ headers listed in the table below.
 
 
-    ============================= ============================================================
-    Header                        Description
-    ============================= ============================================================
-    X-Mailgun-Tag                 Tag string used for aggregating stats. See :ref:`tagging`
-                                  for more information. You can mark a message with several
-                                  categories by setting multiple ``X-Mailgun-Tag`` headers.
-    X-Mailgun-Dkim                Enables/disables DKIM signatures on per-message basis.
-                                  Use ``yes`` or ``no``.
-    X-Mailgun-Deliver-By          Desired time of delivery. See `Scheduling Delivery`_ and
-                                  :ref:`date-format`.
-    X-Mailgun-Drop-Message        Enables sending in test mode. Pass ``yes`` if needed.
-                                  See :ref:`manual-testmode`.
-    X-Mailgun-Track               Toggles tracking on a per-message basis, see
-                                  :ref:`tracking-messages` for details.
-                                  Pass ``yes`` or ``no``.
-    X-Mailgun-Track-Clicks        Toggles clicks tracking on a per-message basis. Has higher
-                                  priority than domain-level setting. Pass ``yes``, ``no``
-                                  or ``htmlonly``.
-    X-Mailgun-Track-Opens         Toggles opens tracking on a per-message basis. Has higher
-                                  priority than domain-level setting. Pass ``yes`` or ``no``.
-    X-Mailgun-Require-TLS         Use this header to control TLS connection settings.
-                                  See :ref:`tls-sending`
-    X-Mailgun-Skip-Verification   Use this header to control TLS connection settings.
-                                  See :ref:`tls-sending`
-    X-Mailgun-Recipient-Variables Use this header to substitute recipient variables referenced
-                                  in a batched mail message.  See :ref:`batch-sending`
-    X-Mailgun-Variables           Use this header to attach a custom JSON data to the message.
-                                  See :ref:`manual-customdata` for more information.
-    ============================= ============================================================
+    ========================================= ============================================================
+    Header                                    Description
+    ========================================= ============================================================
+    X-Mailgun-Tag                             Tag string used for aggregating stats. See :ref:`tagging`
+                                              for more information. You can mark a message with several
+                                              categories by setting multiple ``X-Mailgun-Tag`` headers.
+    X-Mailgun-Dkim                            Enables/disables DKIM signatures on per-message basis.
+                                              Use ``yes`` or ``no``.
+    X-Mailgun-Deliver-By                      Desired time of delivery. See `Scheduling Delivery`_ and
+                                              :ref:`date-format`.
+    X-Mailgun-Drop-Message                    Enables sending in test mode. Pass ``yes`` if needed.
+                                              See :ref:`manual-testmode`.
+    X-Mailgun-Track                           Toggles tracking on a per-message basis, see
+                                              :ref:`tracking-messages` for details.
+                                              Pass ``yes`` or ``no``.
+    X-Mailgun-Track-Clicks                    Toggles clicks tracking on a per-message basis. Has higher
+                                              priority than domain-level setting. Pass ``yes``, ``no``
+                                              or ``htmlonly``.
+    X-Mailgun-Track-Opens                     Toggles opens tracking on a per-message basis. Has higher
+                                              priority than domain-level setting. Pass ``yes`` or ``no``.
+    X-Mailgun-Require-TLS                     Use this header to control TLS connection settings.
+                                              See :ref:`tls-sending`
+    X-Mailgun-Skip-Verification               Use this header to control TLS connection settings.
+                                              See :ref:`tls-sending`
+    X-Mailgun-Recipient-Variables             Use this header to substitute recipient variables referenced
+                                              in a batched mail message.  See :ref:`batch-sending`
+    X-Mailgun-Variables                       Use this header to attach a custom JSON data to the message.
+                                              See :ref:`manual-customdata` for more information.
+    X-Mailgun-Delivery-Time-Optimize-Period   Toggles STO on a per-message basis. String should be set to the number of hours in [0-                                                 9]+h format. See :ref:`Sending a message with STO` for details.
+    X-Mailgun-Time-Zone-Localize              Toggles TZO on a per-message basis. String should be set to preferred delivery time in                                                 HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and                                                       hh:mm:aa is used for 12 hour format with AM/PM. See :ref:`Sending a message with TZO` for 					             details.
+				  
+    ========================================= ============================================================
+
+Sending a message with STO
+================
+
+Mailgun's Send Time Optimization (STO) feature uses machine learning to analyze engagement data (opens and clicks) for a recipient to determine when a user is most engaged with their messages. If we have enough engagement data to make a determination of when a user is most engaged, Mailgun will hold onto the message and deliver it during that optimal period. The idea here is that if we can deliver a message to a user when they are most engaged, the message will be towards the top and is more likely to be engaged with.
+
+You can send a message using STO via API by passing in the parameter ``o:deliverytime-optimize-period`` or via SMTP using the MIME header ``X-Mailgun-Delivery-Time-Optimize-Period``. The value should be a string in the ``[0-9]+h`` format. This value defines the window in which Mailgun will run the optimization algorithm against the data we have and deliver the message. We recommend using a minimum value of ``24h`` for best results, and the max value is ``72h``.
+
+*Please note that STO is only available on certain plans. See www.mailgun.com/pricing for more info.*
+
+Sending a message with TZO
+================
+
+Mailgun’s Timezone Optimization feature allows senders to schedule messages to be delivered in a recipient’s local timezone. Similar to how our message scheduling works, with TZO you pass your desired delivery time, and Mailgun will convert that to a user's local timezone, if we have data for that recipient. If we do not have data for that recipient, the message will be delivered immediately.
+
+Timezones are estimated based on a user’s IP address. Mailgun collects the IP address on click events, and uses a geolocation service to translate the IP address into a timezone for the user. We store that timezone in a database (hashed, of course), so that when TZO is used on a message, Mailgun will look up the timezone for that user, and schedule the message for the delivery time in that user’s local timezone.
+
+You can send a message using TZO via API by passing in the parameter ``o:time-zone-localize`` or via SMTP using the MIME header ``X-Mailgun-Time-Zone-Localize``. The value (String) should be set to preferred delivery time in HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and hh:mm:aa is used for 12 hour format with AM/PM.
+
+*Please note that TZO is only available on certain plans. See www.mailgun.com/pricing for more info.*
 
 Sending an AMP message
 ================
