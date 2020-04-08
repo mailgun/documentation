@@ -36,37 +36,6 @@ Finally, always feel free to `contact our Support Team <https://app.mailgun.com/
 Getting Started
 ***************
 
-We've tried to make the sign-up and on-boarding process as intuitive as possible.
-However, there are a few things to mention.
-
-Pricing & Features Overview
-===========================
-
-**Pricing**
-
-Pricing is a usage-based, monthly subscription.
-Usage is based on outbound messages and number dedicated IP addresses
-used.  There is no charge for inbound messages.
-As your volume increases your price per message decreases according
-to the pricing calculator on our `pricing page`_.
-
-If you are a high volume sender or if you are interested in a custom contract,
-you can contact sales@mailgunhq.com for more details.
-
-.. _pricing page: https://www.mailgun.com/pricing
-
-**Features**
-
-All of Mailgun's features are available to both free and paid accounts.
-
-There are some limitations if you have not given us your payment information:
-
-* There is a limit of 10,000 emails per month.
-* Data for Logs and the Events API are stored for 2 days.
-//
-If you have given us your payment information, there is no limit on number of messages
-sent and/or received and data retention for Logs and the :ref:`Events API <api-events>` is at least 30 days.
-
 .. _verifying-your-domain:
 
 Verifying Your Domain
