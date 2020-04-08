@@ -339,7 +339,7 @@ custom  MIME_ headers listed in the table below.
                                               in a batched mail message.  See :ref:`batch-sending`
     X-Mailgun-Variables                       Use this header to attach a custom JSON data to the message.
                                               See :ref:`manual-customdata` for more information.
-    X-Mailgun-Delivery-Time-Optimize-Period   Toggles STO on a per-message basis.			  
+    X-Mailgun-Delivery-Time-Optimize-Period   Toggles STO on a per-message basis. String should be set to the number of hours in [0-                                                 9]+h format. See :ref:`Sending a message with STO` for details. 		  
 				  
     ========================================= ============================================================
 
