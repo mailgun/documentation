@@ -309,7 +309,7 @@ custom  MIME_ headers listed in the table below.
     X-Mailgun-Variables                       Use this header to attach a custom JSON data to the message.
                                               See :ref:`manual-customdata` for more information.
     X-Mailgun-Delivery-Time-Optimize-Period   Toggles STO on a per-message basis. String should be set to the number of hours in [0-                                                 9]+h format. See :ref:`Sending a message with STO` for details.
-    X-Mailgun-Time-Zone-Localize              Toggles TZO on a per-message basis. String should be set to preferred delivery time in                                                 HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and                                                       hh:mm:aa is used for 12 hour format with AM/PM. See :ref:`Sending a message with TZO` for 					             details.
+    X-Mailgun-Time-Zone-Localize              Toggles TZO on a per-message basis. String should be set to preferred delivery time in                                                 HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and                                                       hh:mmaa is used for 12 hour format with AM/PM. See :ref:`Sending a message with TZO` for 					             details.
 				  
     ========================================= ============================================================
 
@@ -333,7 +333,7 @@ Mailgun’s Timezone Optimization feature allows senders to schedule messages to
 
 Timezones are estimated based on a user’s IP address. Mailgun collects the IP address on click events, and uses a geolocation service to translate the IP address into a timezone for the user. We store that timezone in a database (hashed, of course), so that when TZO is used on a message, Mailgun will look up the timezone for that user, and schedule the message for the delivery time in that user’s local timezone.
 
-You can send a message using TZO via API by passing in the parameter ``o:time-zone-localize`` or via SMTP using the MIME header ``X-Mailgun-Time-Zone-Localize``. The value (String) should be set to preferred delivery time in HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and hh:mm:aa is used for 12 hour format with AM/PM.
+You can send a message using TZO via API by passing in the parameter ``o:time-zone-localize`` or via SMTP using the MIME header ``X-Mailgun-Time-Zone-Localize``. The value (String) should be set to preferred delivery time in HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and hh:mmaa is used for 12 hour format with AM/PM.
 
 *Please note that TZO is only available on certain plans. See www.mailgun.com/pricing for more info.*
 
