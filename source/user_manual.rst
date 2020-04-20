@@ -570,6 +570,7 @@ You can set the access level of Mailing Lists to:
 **Replying to a list**
 
 You can set the preferred method for where a reply to the list should go:
+
 * ``list`` Replies to the list go to the list address. This is the default setting for any new list created, except for read-only lists, where replies can only go to the sender. Reply-all wil still go to the list.
 * ``sender'' Replies to the list go to the sender (FROM) address. This is the default and only option for read-only lists.
 
