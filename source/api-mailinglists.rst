@@ -46,6 +46,7 @@ Creates a new mailing list.
  name               Mailing list name, e.g. ``Developers`` *(optional)*
  description        A description *(optional)*
  access_level       List access level, one of: readonly (default), members, everyone
+ reply_preference   Set where replies should go: ``list`` (default) | ``sender`` *(optional)*
  ================== =======================================================
 
 .. code-block:: url
@@ -63,6 +64,7 @@ Update mailing list properties, such as address, description or name
  name               New name, e.g. ``My newsletter`` *(optional)*
  description        Description string *(optional)*
  access_level       List access level, one of: readonly (default), members, everyone
+ reply_preference   Set where replies should go: ``list`` (default) | ``sender`` *(optional)*
  ================== =======================================================
 
 .. code-block:: url
