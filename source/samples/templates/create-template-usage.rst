@@ -166,7 +166,7 @@
 
  mailgun.post(`/${DOMAIN}/templates`,
               {"template" : "<div class=\"entry\"> <h1>{{title}}</h1> <div class=\"body\"> {{body}} </div> </div>",
-               "name": "Test template"
+               "name": "template.test"
                "description": "Sample template"},
                                function (error, body) {
                                         console.log(body);
