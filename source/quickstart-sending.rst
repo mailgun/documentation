@@ -113,7 +113,7 @@ Add Sending & Tracking DNS Records
 ========= =========================================================== ==================== 
 Type      Value                                                       Purpose    
 ========= =========================================================== ==================== 
-TXT       "v=spf1 include:mailgun.org ~all"                           SPF (Required)
+TXT       "v=spf1 include:mailgun.org include:mailgun.net ~all"       SPF (Required)
 TXT       *Find this record in your Control Panel, Domains Tab*       DKIM (Required)
 CNAME     "mailgun.org"                                               Tracking (Optional)
 ========= =========================================================== ==================== 
