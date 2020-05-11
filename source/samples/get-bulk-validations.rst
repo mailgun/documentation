@@ -19,6 +19,7 @@
 
          HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v4/address/validate/bulk")
              .basicAuth("api", API_KEY)
+             .queryString("limit", 2)
              .asJson();
 
          return request.getBody();
@@ -37,7 +38,7 @@
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/address/validate/bulk');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/address/validate/bulk?limit=2');
     $result = curl_exec($ch);
     curl_close($ch);
 
@@ -49,13 +50,15 @@
  def get_mailing_list_validation_status():
      return requests.get(
          "https://api.mailgun.net/v4/address/validate/bulk",
-         auth=('api', 'YOUR_API_KEY'))
+         auth=('api', 'YOUR_API_KEY'),
+         params={"limit": 2})
 
 .. code-block:: rb
 
  def get_mailing_list_validation_status
    RestClient.get("https://api:YOUR_API_KEY"\
-                  "@api.mailgun.net/v4/address/validate/bulk"\
+                  "@api.mailgun.net/v4/address/validate/bulk"\,
+                  {params: {limit: 2}}
                   {|response, request, result| response }
  end
 
@@ -83,6 +86,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.Resource = "/address/validate/bulk";
+         request.AddParameter ("limit", 2);
          return client.Execute (request);
      }
 

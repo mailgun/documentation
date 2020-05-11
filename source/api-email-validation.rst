@@ -135,7 +135,7 @@ Bulk Validation
 
     GET /v4/address/validate/bulk
 
-Get list of all bulk validation jobs for an account.
+Get list of all bulk validation jobs.
 
 .. code-block:: url
 
@@ -211,62 +211,99 @@ risk                     array          nested risk assessment count (``high``, 
 
 
 
-Get the status of all bulk validation jobs:
+Get a list of bulk validation jobs:
+
+This request will return a list of validation jobs in descending order by time created.
+
 
 .. include:: samples/get-bulk-validations.rst
+
+
+.. container:: ptable
+
+    =====================    =========    ======================================================================================================================
+    Parameter                Type         Description
+    =====================    =========    ======================================================================================================================
+    limit                    integer      Number of entries to return. Default: 500.
+    =====================    =========    ======================================================================================================================
 
 Sample Response:
 
 .. code-block:: javascript
 
-    [
         {
-            "created_at": "Tue, 26 Feb 2019 21:30:03 GMT",
-            "download_url": {
-                "csv": "<download_link>",
-                "json": "<download_link>"
-            }
-            "id": "bulk_validations_sandbox2_mailgun_org",
-            "quantity": 207665,
-            "records_processed": 207665,
-            "status": "uploaded",
-            "summary": {
-                "result": {
-                    "deliverable": 184199,
-                    "do_not_send": 5647,
-                    "undeliverable": 12116,
-                    "unknown": 5613},
-                "risk": {
-                    "high": 17763,
-                    "low": 142547,
-                    "medium": 41652,
-                    "unknown": 5613}
-            }
+            "jobs":[
+            {
+                "created_at": "Tue, 26 Feb 2019 21:30:03 GMT",
+                "download_url": {
+                    "csv": "<download_link>",
+                    "json": "<download_link>"
+                }
+                "id": "bulk_validations_sandbox2_mailgun_org",
+                "quantity": 207665,
+                "records_processed": 207665,
+                "status": "uploaded",
+                "summary": {
+                    "result": {
+                        "deliverable": 184199,
+                        "do_not_send": 5647,
+                        "undeliverable": 12116,
+                        "unknown": 5613},
+                    "risk": {
+                        "high": 17763,
+                        "low": 142547,
+                        "medium": 41652,
+                        "unknown": 5613}
+                }
+            },
+            {
+                "created_at": "Tue, 23 Feb 2019 21:30:03 GMT",
+                "download_url": {
+                    "csv": "<download_link>",
+                    "json": "<download_link>"
+                }
+                "id": "bulk_validations_sandbox_mailgun_org",
+                "quantity": 207,
+                "records_processed": 207,
+                "status": "uploaded",
+                "summary": {
+                    "result": {
+                        "deliverable": 184199,
+                        "do_not_send": 5647,
+                        "undeliverable": 12116,
+                        "unknown": 5613},
+                    "risk": {
+                        "high": 17763,
+                        "low": 142547,
+                        "medium": 41652,
+                        "unknown": 5613}
+                }
+            }],
+        "total":3,
+        "paging": {
+          "next":
+              "https://url_to_next_page",
+          "previous":
+              "https://url_to_previous_page",
+          "first":
+              "https://url_to_first_page",
+          "last":
+              "https://url_to_last_page"
         },
-        {
-            "created_at": "Tue, 23 Feb 2019 21:30:03 GMT",
-            "download_url": {
-                "csv": "<download_link>",
-                "json": "<download_link>"
-            }
-            "id": "bulk_validations_sandbox_mailgun_org",
-            "quantity": 207,
-            "records_processed": 207,
-            "status": "uploaded",
-            "summary": {
-                "result": {
-                    "deliverable": 184199,
-                    "do_not_send": 5647,
-                    "undeliverable": 12116,
-                    "unknown": 5613},
-                "risk": {
-                    "high": 17763,
-                    "low": 142547,
-                    "medium": 41652,
-                    "unknown": 5613}
-            }
-        }
-    ]
+    }
+
+Response Fields Explanation:
+
+.. container:: ptable
+
+    =====================    ==========    ======================================================================================================================
+    Field                    Type          Description
+    =====================    ==========    ======================================================================================================================
+    jobs                     array         The collection of validation jobs requested for.
+    total                    integer       The total number of validation jobs.
+    paging                   collection    A collection of pagination links for traversing the validation jobs.
+    =====================    ==========    ======================================================================================================================
+
 
 Create a bulk validation job:
 
