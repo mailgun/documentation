@@ -330,3 +330,195 @@ Sample Response:
     {
      "message": "Validation job canceled."
     }
+
+
+Bulk Validation Preview
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+    Bulk validation preview performs a free analysis of a list of email addresses allowing
+    you to make an informed decision to run a complete bulk validation or not. Given a preview name
+    and an uploaded file of email addresses, a preliminary validation run will be preformed. The results of the preview
+    will be, on average, and estimate of the deliverability and risk of the emails provide. This evaluation is based
+    on a statistical sampling of the list provided
+
+
+.. note::
+    Its important to upload as `multi-part/form-data` where the file is defined by `file`.
+
+    Currently only raw `csv` and `gzip` are supported.
+
+    The column header for emails needs to be either `email` or `email_address`
+
+.. warning::
+    Lists must comply to either UTF-8 or ASCII encoding and not have a '@' in the name.
+
+.. code-block:: url
+
+    GET /v4/address/validate/preview
+
+Get list of all bulk validation previews.
+
+.. code-block:: url
+
+    POST /v4/address/validate/preview/<list_id>
+
+Create a bulk validation preview.
+
+.. code-block:: url
+
+    GET /v4/address/validate/preview/<list_id>
+
+Check the current status of a bulk validation preview.
+
+.. code-block:: url
+
+    DELETE /v4/address/validate/preview/<list_id>
+
+Delete a bulk validation preview.
+
+.. code-block:: url
+
+    PUT /v4/address/validate/preview/<list_id>
+
+Promote a bulk validation preview to a bulk validation job.
+
+Bulk Validation Preview Examples
+------------------------
+
+Get the results of a bulk validation preview:
+
+.. include:: samples/get-bulk-preview.rst
+
+Sample Response:
+
+.. code-block:: javascript
+
+    {
+      "preview": {
+        "id": "test_500",
+        "valid": true,
+        "status": "preview_complete",
+        "quantity": 8,
+        "created_at": 1590080191,
+        "summary": {
+          "result": {
+            "deliverable": 37.5,
+            "undeliverable": 25,
+            "unknown": 37.5
+          },
+          "risk": {
+            "high": 25,
+            "low": 25,
+            "medium": 12.5,
+            "unknown": 37.5
+          }
+        }
+      }
+    }
+
+Field Explanation:
+
+=====================    ===========    ============================================================================================================
+Field                    Type           Description
+=====================    ===========    ============================================================================================================
+id                       string         list_id name given when the list was initially created
+created_at               string         Date/Time that the request was initiated
+quantity                 integer        number of total items in the list to be previewed
+status                   string         current state of the list validation request. (``preview_processing``, ``preview_complete``)
+valid                    bool           a boolean to represent if the list is valid
+summary                  collection     summary of the validations in the list provided
+result                   array          nested results averaged. (``deliverable``, ``undeliverable``, and `unknown`)
+risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
+=====================    ===========    ============================================================================================================
+
+
+Get a list of bulk validation previews:
+
+This request will return a list of bulk validation previews.
+
+.. include:: samples/get-bulk-previews.rst
+
+Sample Response:
+
+.. code-block:: javascript
+
+    {
+      "previews": [
+        {
+          "id": "test_500",
+          "valid": true,
+          "status": "preview_complete",
+          "quantity": 8,
+          "created_at": 1590080191,
+          "summary": {
+            "result": {
+              "deliverable": 37.5,
+              "do_not_send": 0,
+              "undeliverable": 25,
+              "unknown": 37.5
+            },
+            "risk": {
+              "high": 25,
+              "low": 25,
+              "medium": 12.5,
+              "unknown": 37.5
+            }
+          }
+        },
+        {
+          "id": "test_501",
+          "valid": true,
+          "status": "preview_complete",
+          "quantity": 8,
+          "created_at": 1590155015,
+          "summary": {
+            "result": {
+              "deliverable": 37.5,
+              "do_not_send": 0,
+              "undeliverable": 25,
+              "unknown": 37.5
+            },
+            "risk": {
+              "high": 25,
+              "low": 25,
+              "medium": 12.5,
+              "unknown": 37.5
+            }
+          }
+        }
+      ]
+    }
+
+Response Fields Explanation:
+
+.. container:: ptable
+
+    =====================    ==========    ======================================================================================================================
+    Field                    Type          Description
+    =====================    ==========    ======================================================================================================================
+    previews                 collection    A collection of bulk validation previews.
+    =====================    ==========    ======================================================================================================================
+
+
+Create a bulk validation preview:
+
+.. include:: samples/create-bulk-preview.rst
+
+Sample Response:
+
+.. code-block:: javascript
+
+    {
+      "id": "test_501",
+      "message": "The bulk preview was submitted."
+    }
+
+Delete a bulk validation preview:
+
+.. include:: samples/delete-bulk-preview.rst
+
+Sample Response:
+   A 204 will be returned upon successful deletion.
+
+
