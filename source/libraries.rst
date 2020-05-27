@@ -51,7 +51,7 @@ so to install it simply run:
 **Official Mailgun Ruby Gem:**
 
 This is the Mailgun Ruby Library. This library contains methods for easily interacting with the Mailgun API.
-`Fork it on GitHub <https://github.com/mailgun/mailgun-ruby>`_ or `read more about the gem here <http://blog.mailgun.com/the-official-mailgun-ruby-sdk-is-here/>`_.
+`Fork it on GitHub <https://github.com/mailgun/mailgun-ruby>`_ or `read more about the gem here <https://www.mailgun.com/blog/the-official-mailgun-ruby-sdk-is-here/>`_.
 
 ::
 
