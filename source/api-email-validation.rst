@@ -122,7 +122,7 @@ Bulk Validation
 
 
 .. note::
-    Its important to upload as `multi-part/form-data` where the file is defined by `file`.
+    It's important to upload as `multi-part/form-data` where the file is defined by `file`.
 
     Currently only raw `csv` and `gzip` are supported.
 
@@ -339,12 +339,12 @@ Bulk Validation Preview
     Bulk validation preview performs a free analysis of a list of email addresses allowing
     you to make an informed decision to run a complete bulk validation or not. Given a preview name
     and an uploaded file of email addresses, a preliminary validation run will be preformed. The results of the preview
-    will be, on average, and estimate of the deliverability and risk of the emails provide. This evaluation is based
-    on a statistical sampling of the list provided
+    will be, on average, an estimate of the deliverability and risk of the emails provide. This evaluation is based
+    on a statistical sampling of the list provided.
 
 
 .. note::
-    Its important to upload as `multi-part/form-data` where the file is defined by `file`.
+    It's important to upload as `multi-part/form-data` where the file is defined by `file`.
 
     Currently only raw `csv` and `gzip` are supported.
 
@@ -428,7 +428,7 @@ quantity                 integer        number of total items in the list to be 
 status                   string         current state of the list validation request. (``preview_processing``, ``preview_complete``)
 valid                    bool           a boolean to represent if the list is valid
 summary                  collection     summary of the validations in the list provided
-result                   array          nested results averaged. (``deliverable``, ``undeliverable``, and `unknown`)
+result                   array          nested results averaged. (``deliverable``, ``undeliverable``, and ``unknown``)
 risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
 =====================    ===========    ============================================================================================================
 
