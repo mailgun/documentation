@@ -498,7 +498,7 @@ Below you can find sample events of various types:
 .. code-block:: javascript
 
     {
-      "event": "failed"
+      "event": "failed",
       "id": "igw2SXYxTOabezGjqA9_xw",
       "timestamp": 1529700261.747814,
       "log-level": "error",
@@ -526,7 +526,7 @@ Below you can find sample events of various types:
       "recipient": "joan@example.com",
       "campaigns": [],
       "tags": [],
-      "user-variables": {},
+      "user-variables": {}
     }
 
 **Failed (Temporary):**
