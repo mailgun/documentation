@@ -281,12 +281,12 @@ table {
 }
 
 body {
-    color: #626262;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    font-size: 16px;
     -webkit-font-smoothing: subpixel-antialiased;
+    color: #626262;
+    font-family: "Inter UI", sans-serif;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
 }
 
@@ -340,7 +340,7 @@ pre {
 }
 
 h1, h2, h3, h4 {
-    font-family: Exo, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-family: "Inter UI", sans-serif;
     font-weight: 300
 }
 
@@ -4430,12 +4430,11 @@ ol.linenums {
 .documentation body {
     background: #fff;
     color: #626262;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-family: "Inter UI", sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0;
-    padding: 108px 0 0;
 }
 
 .documentation .footer {
@@ -4466,8 +4465,9 @@ ol.linenums {
     width: 100%
 }
 .documentation .subnav .subnav-alignment {
-    padding-left: 35px;
-    padding-right: 38px;
+    max-width: 1240px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .documentation .ptable.container {
