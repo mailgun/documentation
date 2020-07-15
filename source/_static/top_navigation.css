@@ -150,7 +150,7 @@ button.styled-wrapper {
 	flex-direction: column;
 	justify-content: flex-start;
 	white-space: nowrap !important;
-	padding: 0px 24px;
+	padding: 20px 24px;
 	width: 100%;
 }
 
@@ -170,12 +170,14 @@ button.styled-wrapper {
 	font-weight: 500;
 	justify-content: space-between;
 	line-height: 1.71;
-	padding: 20px 20px;
-	width: 100%;
 }
 
 .styled-link:active, .styled-link:hover {
 	color: initial;
+}
+
+.styled-li {
+	padding: 20px 24px;
 }
 
 .styled-title, .styled-subtitle {
@@ -190,7 +192,8 @@ button.styled-wrapper {
 
 .styled-flex-container {
 	display: flex;
-	padding: 0px 24px;
+	padding: 0 0;
+    white-space: normal;
 }
 
 .styled-icon {
@@ -355,7 +358,6 @@ nav ol, nav ul {
 		justify-content: space-between;
 		margin: 0px auto !important;
 		padding-left: 18px !important;
-		width: 100%;
 	}
 
 	li.styled-link-list-element {
@@ -426,6 +428,7 @@ nav ol, nav ul {
 	}
 
 	.styled-li {
+		padding: 0px 0px;
 		position: relative;
 		transition: all 250ms ease 0s;
 	}
@@ -469,11 +472,10 @@ nav ol, nav ul {
 	}
 
 	span.styled-span {
-		left: -60px;
 		position: absolute;
-		top: 20px;
+		top: 75px;
 		width: 308px;
-		z-index: 1000;
+		z-index: 200;
 	}
 
 	nav a.link{
@@ -488,7 +490,6 @@ nav ol, nav ul {
 	}
 
 	.documentation ul, .documentation ol {
-		margin: initial !important;
 		padding: intiial !important;
 	}
 }
