@@ -405,7 +405,6 @@ nav ol, nav ul {
 		box-shadow: rgba(10, 22, 70, 0.1) 0px 1px 1px 0px, rgba(10, 22, 70, 0.06) 0px 0px 1px 0px, rgba(5, 15, 54, 0.08) 0px 28px 70px -7px;
 		opacity: 0;
 		padding: 0 0 !important;
-		pointer-events: all;
 		transform: initial;
 		transition: 0ms;
 		width: 308px;
@@ -462,10 +461,10 @@ nav ol, nav ul {
 		visibility: hidden;
 	}
 
-	ul li:hover > span ul,
-	ul li span ul:hover {
+	ul li:hover > span ul {
 		display: block;
 		opacity: 1;
+		transform: translateY(0px);
 		transition: all 0.5s ease;
 		visibility: visible;
 		z-index: 1000;
@@ -475,7 +474,7 @@ nav ol, nav ul {
 		position: absolute;
 		top: 75px;
 		width: 308px;
-		z-index: 200;
+		z-index: 2000;
 	}
 
 	nav a.link{
