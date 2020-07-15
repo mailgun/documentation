@@ -345,18 +345,18 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    color: #4b6cb7;
-    font-size: 48px;
+    color: #000000;
+    font-size: 2.125em;
     font-style: normal;
     font-weight: 300;
     line-height: 1.6;
-    margin: 40px 0;
+    margin-bottom: 16px;
     text-align: center;
     text-transform: capitalize
 }
 
 h2 {
-    color: #4b6cb7;
+    color: #000000;
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
@@ -371,8 +371,9 @@ h2 {
 
 h3 {
     color: #eb284f;
-    font-size: 24px;
+    font-size: 1.5em;
     font-style: normal;
+    font-weight: 400;
     margin: 0 0 5px
 }
 
@@ -578,11 +579,12 @@ img, video, audio, iframe, object {
 }
 
 a {
-    color: #4b6cb7;
+    color: #192745;
     font-weight: 500
 }
 
 a:hover, a:focus {
+    color: #000000;
     text-decoration: none
 }
 
@@ -886,9 +888,9 @@ form .error input[type=text], form .error input[type=email], form .error input[t
 }
 
 .notification.info, .documentation .info.admonition.warning, .documentation .admonition.note {
-    background: rgba(30, 110, 193, 0.2);
-    border-color: #1e6ec1;
-    color: #175595
+    background: #F7F0F0;
+    border-color: #c02428;
+    color: #192745;
 }
 
 .notification.empty, .documentation .empty.admonition.warning, .documentation .empty.admonition.note {
@@ -3997,7 +3999,6 @@ section.feature-managed h2 {
     }
 
     h1, h2, h3, h4 {
-        font-size: 16px;
         margin-bottom: 10px
     }
 
@@ -4118,7 +4119,7 @@ section.feature-managed h2 {
 
 @media screen and (max-width: 480px) {
     body {
-        overflow-x: hidden
+        position: absolute;
     }
 }
 
@@ -4509,17 +4510,13 @@ ol.linenums {
 }
 
 .documentation .search-box .search-input {
-    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzIyMjIyMiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-    background-size: 100%;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #444444));
-    background-image: -moz-linear-gradient(#222222, #444444);
-    background-image: -webkit-linear-gradient(#222222, #444444);
-    background-image: linear-gradient(#222222, #444444);
     -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    border-radius: 25px;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 25px;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    background-color: #383030;
+    border-color: #383030;
+    border-radius: 25px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
     color: #fff;
     font-size: 14px;
@@ -4551,11 +4548,12 @@ ol.linenums {
 }
 
 .documentation .docs-sidebar ul li a:hover {
-    text-decoration: underline
+    color: #000000;
+    text-decoration: none
 }
 
 .documentation .docs-sidebar ul li.active>a, .documentation .docs-sidebar ul .sending li.features-link>a, .sending .documentation .docs-sidebar ul li.features-link>a, .documentation .docs-sidebar ul .pricing li.pricing-link>a, .pricing .documentation .docs-sidebar ul li.pricing-link>a, .documentation .docs-sidebar ul .customersgallery li.customers-link>a, .customersgallery .documentation .docs-sidebar ul li.customers-link>a, .documentation .docs-sidebar ul .validation li.validation-link>a, .validation .documentation .docs-sidebar ul li.validation-link>a, .documentation .docs-sidebar ul .sending li.sending-link>a, .sending .documentation .docs-sidebar ul li.sending-link>a, .documentation .docs-sidebar ul .routing li.routing-link>a, .routing .documentation .docs-sidebar ul li.routing-link>a, .documentation .docs-sidebar ul .managed li.managed-link>a, .managed .documentation .docs-sidebar ul li.managed-link>a, .documentation .docs-sidebar ul .logs li.logs-link>a, .logs .documentation .docs-sidebar ul li.logs-link>a, .documentation .docs-sidebar ul .reports li.reports-link>a, .reports .documentation .docs-sidebar ul li.reports-link>a, .documentation .docs-sidebar ul .deliverability li.deliverability-link>a, .deliverability .documentation .docs-sidebar ul li.deliverability-link>a, .documentation .docs-sidebar ul .contact li.contact-link>a, .contact .documentation .docs-sidebar ul li.contact-link>a, .documentation .docs-sidebar ul .routing li.features-link>a, .routing .documentation .docs-sidebar ul li.features-link>a, .documentation .docs-sidebar ul .analytics li.features-link>a, .analytics .documentation .docs-sidebar ul li.features-link>a, .documentation .docs-sidebar ul .validation li.features-link>a, .validation .documentation .docs-sidebar ul li.features-link>a, .documentation .docs-sidebar ul .deliverability li.features-link>a, .deliverability .documentation .docs-sidebar ul li.features-link>a, .documentation .docs-sidebar ul .resources li.resources-link>a, .resources .documentation .docs-sidebar ul li.resources-link>a {
-    background: #5677e8;
+    background: #192745;
     color: #fff;
     margin-right: -1px
 }
@@ -4591,7 +4589,7 @@ ol.linenums {
 
 .documentation .document h1 {
     font-weight: 300;
-    margin: 0 0 40px;
+    margin: 0 0 16px;
     padding-top: 80px;
     text-align: left
 }
@@ -4602,13 +4600,12 @@ ol.linenums {
 }
 
 .documentation .document h2 {
-    font-size: 28px;
-    font-weight: 600
+    font-size: 1.75em;
+    font-weight: 300;
 }
 
 .documentation .document h3 {
-    color: #4b6cb7;
-    padding-top: 40px
+    color: #000000;
 }
 
 .documentation .document .headerlink {
@@ -4627,24 +4624,12 @@ ol.linenums {
     margin-top: 10px
 }
 
-.documentation .document .section .section {
-    margin-top: 80px
-}
-
-.documentation .document .section .section .section {
-    margin-top: 80px
-}
-
 .documentation .document .section .section .section .section {
     margin-top: 40px
 }
 
 .documentation .document .section h1+.section {
     margin-top: 0
-}
-
-.documentation .document .section h2 {
-    padding-top: 40px
 }
 
 .documentation .document .section .figure {
@@ -4691,25 +4676,20 @@ ol.linenums {
 }
 
 .documentation .subnav {
-    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU1NTU1NSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-    background-size: 100%;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #555555), color-stop(100%, #444444));
-    background-image: -moz-linear-gradient(#555555, #444444);
-    background-image: -webkit-linear-gradient(#555555, #444444);
-    background-image: linear-gradient(#555555, #444444);
-    border: 1px solid #444;
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
     -moz-box-sizing: border-box;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
     -webkit-box-sizing: border-box;
+    background-color: #261e1e;
+    border: 1px solid #444;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    zoom: 1;
     margin: 0;
-    padding: 5px 0;
+    padding: 10px 0;
     position: fixed;
     width: 100%;
-    z-index: 10
+    z-index: 10;
+    zoom: 1;
 }
 
 .documentation .subnav:before, .documentation .subnav:after {
@@ -4767,17 +4747,12 @@ ol.linenums {
 }
 
 .documentation .subnav li.active a, .documentation .subnav .sending li.features-link a, .sending .documentation .subnav li.features-link a, .documentation .subnav .pricing li.pricing-link a, .pricing .documentation .subnav li.pricing-link a, .documentation .subnav .customersgallery li.customers-link a, .customersgallery .documentation .subnav li.customers-link a, .documentation .subnav .validation li.validation-link a, .validation .documentation .subnav li.validation-link a, .documentation .subnav .sending li.sending-link a, .sending .documentation .subnav li.sending-link a, .documentation .subnav .routing li.routing-link a, .routing .documentation .subnav li.routing-link a, .documentation .subnav .managed li.managed-link a, .managed .documentation .subnav li.managed-link a, .documentation .subnav .logs li.logs-link a, .logs .documentation .subnav li.logs-link a, .documentation .subnav .reports li.reports-link a, .reports .documentation .subnav li.reports-link a, .documentation .subnav .deliverability li.deliverability-link a, .deliverability .documentation .subnav li.deliverability-link a, .documentation .subnav .contact li.contact-link a, .contact .documentation .subnav li.contact-link a, .documentation .subnav .routing li.features-link a, .routing .documentation .subnav li.features-link a, .documentation .subnav .analytics li.features-link a, .analytics .documentation .subnav li.features-link a, .documentation .subnav .validation li.features-link a, .validation .documentation .subnav li.features-link a, .documentation .subnav .deliverability li.features-link a, .deliverability .documentation .subnav li.features-link a, .documentation .subnav .resources li.resources-link a, .resources .documentation .subnav li.resources-link a {
-    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzIyMjIyMiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-    background-size: 100%;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #444444));
-    background-image: -moz-linear-gradient(#222222, #444444);
-    background-image: -webkit-linear-gradient(#222222, #444444);
-    background-image: linear-gradient(#222222, #444444);
     -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    border-radius: 25px;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 25px;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    background-color: #383030;
+    border-radius: 25px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.2);
     color: #fff
 }
