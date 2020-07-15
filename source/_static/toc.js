@@ -64,7 +64,6 @@ $('.dropdown-menu').click(function(ev){
 $(".styled-hamburger").click(function() {
     $(".styled-lists").toggleClass("active");
 });
-
   
 /* toggle for mobile dropdown menus individually  */
 $('a.styled-link.products').on('click', function(){
@@ -89,3 +88,12 @@ if(window.innerWidth <= 1023) {
 } else {
     $('a.styled-link.sub').addAttr("href");
 }
+
+$("a.styled-link.solutions").hover(
+    function () {
+        $('ul.styled-submenu.solutions').finish().slideDown('fast');
+    },
+    function () {
+        $('ul.styled-submenu.solutions').finish().slideUp('fast');
+    }
+);

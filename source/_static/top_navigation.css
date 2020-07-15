@@ -4,9 +4,31 @@
 *
 ********************/
 
+
+/* only tablet and mobile */
+@media only screen and (min-width: 481px) and (max-width:768px) {
+    .navbar-docs {
+		background-color: #ffffff;
+		left: 0px;
+		padding: 31.5px 20px;
+		position: fixed;
+		top: 0px;
+		width: 100%;
+		z-index: 1000;
+	}
+}
+
 /* mobile */
 nav {
 	padding: 31.5px 20px
+}
+
+.navbar-docs {
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 10000;
 }
 
 .styled-wrapper {
@@ -452,17 +474,13 @@ nav ol, nav ul {
 		margin-bottom: 0px;
 	}
 
-	ul li ul {
-		display: none;
+	ul.styled-submenu li ul {
 		left: 0;
-		opacity: 0;
 		position: absolute;
-		transition: all 0.5s ease;
 		visibility: hidden;
 	}
 
-	ul li:hover > span ul,
-	ul li span ul:hover {
+	ul li:hover > span ul {
 		display: block;
 		opacity: 1;
 		transition: all 0.5s ease;

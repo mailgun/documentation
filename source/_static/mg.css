@@ -4436,7 +4436,6 @@ ol.linenums {
     font-style: normal;
     font-weight: 400;
     margin: 0;
-    padding: 89px 0 0;
 }
 
 .documentation .footer {
@@ -4465,6 +4464,13 @@ ol.linenums {
 
 .documentation .docs .subnav {
     width: 100%
+}
+
+/* only tablet and mobile */
+@media only screen and (min-width: 481px) and (max-width:1023px) {
+    .documentation #body {
+        padding-top: 90px;
+    }
 }
 
 .documentation .subnav .subnav-alignment {
