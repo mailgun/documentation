@@ -4464,10 +4464,10 @@ ol.linenums {
 .documentation .docs .subnav {
     width: 100%
 }
+
 .documentation .subnav .subnav-alignment {
     max-width: 1240px;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding: 0 0;
 }
 
 .documentation .ptable.container {
