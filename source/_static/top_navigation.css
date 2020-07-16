@@ -6,7 +6,7 @@
 
 
 /* only tablet and mobile */
-@media only screen and (min-width: 481px) and (max-width:768px) {
+@media only screen and (min-width: 481px) and (max-width:1023px) {
     .navbar-docs {
 		background-color: #ffffff;
 		left: 0px;
@@ -25,10 +25,9 @@ nav {
 
 .navbar-docs {
 	left: 0;
-	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: 10000;
+	z-index: 1000;
 }
 
 .styled-wrapper {

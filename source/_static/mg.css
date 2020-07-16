@@ -942,7 +942,6 @@ form .error input[type=text], form .error input[type=email], form .error input[t
 }
 
 @media screen and (max-width: 480px) {
-
     .features-nav {
         display: none
     }
@@ -993,10 +992,6 @@ form .error input[type=text], form .error input[type=email], form .error input[t
 
 .social-nav--footer a:hover svg {
     fill: currentColor
-}
-
-@media screen and (max-width: 480px) {
-
 }
 
 .aligncenter {
