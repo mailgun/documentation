@@ -4438,6 +4438,10 @@ ol.linenums {
     margin: 0;
 }
 
+.documentation .section {
+    scroll-margin-top: 100px;
+}
+
 .documentation .footer {
     padding: 80px 0
 }
@@ -4566,12 +4570,16 @@ ol.linenums {
 }
 
 .documentation .docs-sidebar ul li.active>a:hover, .documentation .docs-sidebar ul .sending li.features-link>a:hover, .sending .documentation .docs-sidebar ul li.features-link>a:hover, .documentation .docs-sidebar ul .pricing li.pricing-link>a:hover, .pricing .documentation .docs-sidebar ul li.pricing-link>a:hover, .documentation .docs-sidebar ul .customersgallery li.customers-link>a:hover, .customersgallery .documentation .docs-sidebar ul li.customers-link>a:hover, .documentation .docs-sidebar ul .validation li.validation-link>a:hover, .validation .documentation .docs-sidebar ul li.validation-link>a:hover, .documentation .docs-sidebar ul .sending li.sending-link>a:hover, .sending .documentation .docs-sidebar ul li.sending-link>a:hover, .documentation .docs-sidebar ul .routing li.routing-link>a:hover, .routing .documentation .docs-sidebar ul li.routing-link>a:hover, .documentation .docs-sidebar ul .managed li.managed-link>a:hover, .managed .documentation .docs-sidebar ul li.managed-link>a:hover, .documentation .docs-sidebar ul .logs li.logs-link>a:hover, .logs .documentation .docs-sidebar ul li.logs-link>a:hover, .documentation .docs-sidebar ul .reports li.reports-link>a:hover, .reports .documentation .docs-sidebar ul li.reports-link>a:hover, .documentation .docs-sidebar ul .deliverability li.deliverability-link>a:hover, .deliverability .documentation .docs-sidebar ul li.deliverability-link>a:hover, .documentation .docs-sidebar ul .contact li.contact-link>a:hover, .contact .documentation .docs-sidebar ul li.contact-link>a:hover, .documentation .docs-sidebar ul .routing li.features-link>a:hover, .routing .documentation .docs-sidebar ul li.features-link>a:hover, .documentation .docs-sidebar ul .analytics li.features-link>a:hover, .analytics .documentation .docs-sidebar ul li.features-link>a:hover, .documentation .docs-sidebar ul .validation li.features-link>a:hover, .validation .documentation .docs-sidebar ul li.features-link>a:hover, .documentation .docs-sidebar ul .deliverability li.features-link>a:hover, .deliverability .documentation .docs-sidebar ul li.features-link>a:hover, .documentation .docs-sidebar ul .resources li.resources-link>a:hover, .resources .documentation .docs-sidebar ul li.resources-link>a:hover {
+    color: #fff;
     text-decoration: none
 }
 
 .documentation .docs-sidebar ul li ul {
+    color: #000;
+    display: contents;
     margin: 0;
-    padding: 0
+    padding: 0;
+    position: static;
 }
 
 .documentation .docs-sidebar ul li ul li a {
@@ -4595,19 +4603,19 @@ ol.linenums {
     padding: 0;
     padding-left: 60px;
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 
 .documentation .document h1 {
     font-weight: 300;
     margin: 0 0 16px;
     padding-top: 80px;
-    text-align: left
+    text-align: left;
 }
 
 .documentation .document h2, .documentation .document h3 {
     margin: 0 0 15px;
-    text-align: left
+    text-align: left;
 }
 
 .documentation .document h2 {
@@ -4620,19 +4628,19 @@ ol.linenums {
 }
 
 .documentation .document .headerlink {
-    display: none
+    display: none;
 }
 
 .documentation .document ul, .documentation .document ol {
-    margin: 0 0 20px 20px
+    margin: 0 0 20px 20px;
 }
 
 .documentation .document ul li, .documentation .document ol li {
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .documentation .document ul ul, .documentation .document ol ul {
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .documentation .document .section .section .section .section {

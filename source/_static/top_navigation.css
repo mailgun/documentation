@@ -407,10 +407,6 @@ nav ol, nav ul {
 		margin-left: 4px;
 	}
 
-	.styled-submenu > .styled-li > .styled-link {
-		padding: 0px 0px;
-	}
-
 	.styled-link:hover,
 	.styled-link:focus {
 		background-color: none;
@@ -421,31 +417,70 @@ nav ol, nav ul {
 		padding: 0 0;
 	}
 
+	span.styled-span {
+		position: absolute;
+		top: 75px;
+		width: 308px;
+		z-index: 200;
+	}
+
 	.styled-submenu {
 		background-color: rgb(255, 255, 255);
 		border-radius: 8px;
 		box-shadow: rgba(10, 22, 70, 0.1) 0px 1px 1px 0px, rgba(10, 22, 70, 0.06) 0px 0px 1px 0px, rgba(5, 15, 54, 0.08) 0px 28px 70px -7px;
+		display: flex;
 		opacity: 0;
-		padding: 0 0 !important;
-		transform: initial;
-		transition: 0ms;
+		padding: 20px 0px;
+		pointer-events: none;
+		position: absolute;
+		transform: translateY(22px);
+		transition: all 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.05s;
+		visibility: hidden;
 		width: 308px;
-		z-index: 1000;
+    	flex-wrap: wrap;
+	}
+
+	.styled-submenu.two-columns {
+		background-color: rgb(255, 255, 255);
+		border-radius: 8px;
+		box-shadow: rgba(10, 22, 70, 0.1) 0px 1px 1px 0px, rgba(10, 22, 70, 0.06) 0px 0px 1px 0px, rgba(5, 15, 54, 0.08) 0px 28px 70px -7px;
+		display: flex;
+		opacity: 0;
+		padding: 20px 0px;
+		pointer-events: none;
+		position: absolute;
+		transform: translateY(22px);
+		transition: all 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.05s;
+		visibility: hidden;
+		width: 600px;
+    	flex-wrap: wrap;
+	}
+
+	.styled-submenu.two-columns li {
+		width: 50%;
+	}
+
+	ul li:hover > span ul {
+		opacity: 1;
+		pointer-events: all;
+		transform: translateY(0px);
+		visibility: visible;
+	}
+
+	ul li:hover > span ul.styled-submenu.two-columns {
+		opacity: 1;
+		pointer-events: all;
+		transform: translateY(0px);
+		visibility: visible;
+	}
+
+	.styled-submenu > .styled-li > .styled-link {
+		padding: 0px 0px;
 	}
 
 	.styled-submenu li {
 		display: block;
 		padding: 12px 32px;
-	}
-
-	.styled-submenu.two-columns {
-		display: flex;
-		flex-wrap: wrap;
-		width: 600px;
-	}
-
-	.styled-submenu.two-columns li {
-		width: 50%;
 	}
 
 	.styled-li {
@@ -478,21 +513,6 @@ nav ol, nav ul {
 		left: 0;
 		position: absolute;
 		visibility: hidden;
-	}
-
-	ul li:hover > span ul {
-		display: block;
-		opacity: 1;
-		transition: all 0.5s ease;
-		visibility: visible;
-		z-index: 1000;
-	}
-
-	span.styled-span {
-		position: absolute;
-		top: 75px;
-		width: 308px;
-		z-index: 200;
 	}
 
 	nav a.link{

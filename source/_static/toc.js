@@ -52,6 +52,7 @@ $(".js-dropdown-toggle").click(function(ev){
     ev.stopPropagation();
     return false;
 });
+
 // Hide dropdown if click outside
 $('body').click(function() {
     $('.dropdown-menu').removeClass('is-visible');
@@ -88,12 +89,3 @@ if(window.innerWidth <= 1023) {
 } else {
     $('a.styled-link.sub').addAttr("href");
 }
-
-$("a.styled-link.solutions").hover(
-    function () {
-        $('ul.styled-submenu.solutions').finish().slideDown('fast');
-    },
-    function () {
-        $('ul.styled-submenu.solutions').finish().slideUp('fast');
-    }
-);
