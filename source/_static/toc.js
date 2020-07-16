@@ -28,9 +28,7 @@ $(function () {
             $('section.main').removeClass('main-with-subnav');
         }
     });
-
 });
-
 
 // monkey patch for text highlighting
 highlightText_patched = jQuery.fn.highlightText;
@@ -45,10 +43,6 @@ jQuery.fn.highlightText = function () {
     }
 }
 
-
-
-
-
 // Main nav dropdown for features
 $(".js-dropdown-toggle").click(function(ev){
     var dropdown = $(this).siblings('.dropdown-menu');
@@ -58,6 +52,7 @@ $(".js-dropdown-toggle").click(function(ev){
     ev.stopPropagation();
     return false;
 });
+
 // Hide dropdown if click outside
 $('body').click(function() {
     $('.dropdown-menu').removeClass('is-visible');
@@ -65,3 +60,32 @@ $('body').click(function() {
 $('.dropdown-menu').click(function(ev){
     ev.stopPropagation();
 });
+
+/* mobile menu active expands and closes */
+$(".styled-hamburger").click(function() {
+    $(".styled-lists").toggleClass("active");
+});
+  
+/* toggle for mobile dropdown menus individually  */
+$('a.styled-link.products').on('click', function(){
+    $('ul.styled-submenu.products').toggleClass('collapse');
+});
+
+$('a.styled-link.deliverability-services').on('click', function(){
+    $('ul.styled-submenu.deliverability-services').toggleClass('collapse');
+});
+
+$('a.styled-link.solutions').on('click', function(){
+    $('ul.styled-submenu.solutions').toggleClass('collapse');
+});
+
+$('a.styled-link.docs').on('click', function(){
+    $('ul.styled-submenu.docs').toggleClass('collapse');
+});
+
+/* adds and removes href property for main nav links based on mobile or not */
+if(window.innerWidth <= 1023) {
+    $('a.styled-link.sub').removeAttr("href");
+} else {
+    $('a.styled-link.sub').addAttr("href");
+}
