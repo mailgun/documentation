@@ -1075,7 +1075,7 @@ For example::
 
 The data provided will be included the recipients email via a header called ``X-Mailgun-Variables``.
 Additionally the data will also be available via webhook payloads and events returned from the events API. The
-data will be attached to theses payloads via the ``user-variables`` field as a JSON map. For Example::
+data will be attached to these payloads via the ``user-variables`` field as a JSON map. For Example::
 
     {
         "event": "delivered",
@@ -1144,7 +1144,7 @@ show up if the recipient clicks on display images button in his/her email.
 
 **Opens Webhook**
 
-You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+You can specify webhook URLs programmatically using the :ref:`api-webhooks` API.
 When a user opens one of your emails, your ``opened`` URLs will be called with the following `webhooks payload`_.
 
 .. _Return Path: http://www.returnpath.net/
@@ -1164,7 +1164,7 @@ You can enable click tracking in the **Tracking Settings** section of your domai
 
 **Clicks Webhook**
 
-You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+You can specify webhook URLs programmatically using the :ref:`api-webhooks` API.
 Every time a user clicks on a link inside of your messages, your ``clicked`` URLs will be called with the following `webhooks payload`_.
 
 .. _um-tracking-unsubscribes:
@@ -1214,7 +1214,7 @@ from receiving future emails from that domain or message tag as appropriate.
 Mailgun can automatically provide an unsubscribe footer in each email you send. You can customize
 your unsubscribe footer by editing the settings in the Control Panel.
 
-To enable/disable unsubscribes programmaticaly per message you can do the following:
+To enable/disable unsubscribes programmatically per message you can do the following:
 
 - Enable unsubscription feature for your domain.
 - Remove text in the html and text footer templates so they won't be appended automatically.
@@ -1232,7 +1232,7 @@ to learn how to programmatically manage lists of unsubscribed users.
 
 **Unsubscribes Webhook**
 
-You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+You can specify webhook URLs programmatically using the :ref:`api-webhooks` API.
 When a user unsubscribes, Mailgun will invoke ``unsubscribed`` webhook with the following `webhooks payload`_.
 
 .. _um-tracking-spam-complaints:
@@ -1260,7 +1260,7 @@ manage the lists of users who have complained.
 
 **Spam Complains Webhook**
 
-You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+You can specify webhook URLs programmatically using the :ref:`api-webhooks` API.
 When a user reports one of your emails as spam, Mailgun will invoke ``complained`` webhook with the following `webhooks payload`_.
 
 .. _um-tracking-failures:
@@ -1320,12 +1320,12 @@ and continuing attempting to deliver may hurt your reputation with the receiving
 Also, if the address is on one of the 'do not send lists' because that recipient
 had previously bounced, unsubscribed, or complained of spam, we will not attempt delivery and drop the message.
 If one of these events occur we will POST the following `webhooks payload`_ to your ``permanent_fail`` URLs.
-You can specify webhook URLs programmaticaly using the :ref:`api-webhooks` API.
+You can specify webhook URLs programmatically using the :ref:`api-webhooks` API.
 
 **Temporary Failure Webhook**
 
 If Mailgun got a Soft bounce (temporary failure) we will POST the following `webhooks payload`_ to your ``temporary_fail`` URLs.
-You can specify webhooks URLs programmaticaly using the :ref:`api-webhooks` API.
+You can specify webhooks URLs programmatically using the :ref:`api-webhooks` API.
 
 
 .. _um-tracking-deliveries:
@@ -1339,7 +1339,7 @@ You can see when deliveries happen in the ``Logs`` tab.  In addition, you can be
 
 **Delivered Event Webhook**
 
-You can specify a webhook URL programmaticaly using the :ref:`api-webhooks` API
+You can specify a webhook URL programmatically using the :ref:`api-webhooks` API
 to be notified every time a message is delivered.
 If the message is successfully delivered to the intended recipient,
 we will POST the following `webhooks payload`_ to your ``delivered`` URLs
