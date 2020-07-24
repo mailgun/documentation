@@ -310,7 +310,7 @@ Update the CNAME used for tracking opens and clicks
 ================= =============================================================
 Parameter         Description
 ================= =============================================================
-web_prefix     change the tracking CNAME for a domain.
+web_prefix        change the tracking CNAME for a domain.
 ================= =============================================================
 
 
