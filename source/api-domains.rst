@@ -285,6 +285,34 @@ Change the DKIM authority for a domain.
 		It can take 24-48 hours for DNS changes to propagate.
 		Changing the DKIM authority of an active domain affects its current deliverability.
 
+Update the DKIM selector for a domains
+
+.. code-block:: url
+
+     PUT /domains/<domain>/dkim_selector
+
+.. container:: ptable
+
+================= =============================================================
+Parameter         Description
+================= =============================================================
+dkim_selector     change the DKIM selector for a domain.
+================= =============================================================
+
+Update the CNAME used for tracking opens and clicks
+
+.. code-block:: url
+
+     PUT /domains/<domain>/web_prefix
+
+.. container:: ptable
+
+================= =============================================================
+Parameter         Description
+================= =============================================================
+web_prefix        change the tracking CNAME for a domain.
+================= =============================================================
+
 
 Example
 ~~~~~~~
