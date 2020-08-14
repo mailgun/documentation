@@ -1,9 +1,9 @@
 
 .. code-block:: bash
 
-  curl --user 'api:PRIVATE_API_KEY' -G \
+  curl --user 'api:PRIVATE_API_KEY' -X POST \
       https://api.mailgun.net/v4/address/validate \
-      --data-urlencode address='foo@mailgun.net'
+      -F address='foo@mailgun.net'
 
 .. code-block:: java
 
@@ -18,9 +18,9 @@
 
      public static JsonNode validateEmail() throws UnirestException {
 
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v4/address/validate")
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v4/address/validate")
              .basicAuth("api", PRIVATE_API_KEY)
-             .queryString("address", "foo@mailgun.com")
+             .field("address", "foo@mailgun.com")
              .asJson();
 
          return request.getBody();
@@ -41,7 +41,7 @@
     curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
     curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/address/validate');
     $result = curl_exec($ch);
@@ -52,57 +52,61 @@
 
 .. code-block:: py
 
- def get_validate():
-     return requests.get(
+ def post_validate():
+     return requests.post(
          "https://api.mailgun.net/v4/address/validate",
          auth=("api", "PRIVATE_API_KEY"),
-         params={"address": "foo@mailgun.net"})
+         data={"address": "foo@mailgun.net"})
 
 .. code-block:: rb
 
- def get_validate
-   RestClient.get "https://api:PRIVATE_API_KEY"\
+ def post_validate
+   RestClient.post "https://api:PRIVATE_API_KEY"\
    "@api.mailgun.net/v4/address/validate",
-   {params: {address: "foo@mailgun.net"}}
+   {:address => "foo@mailgun.net", :multipart => true}
  end
 
 .. code-block:: go
 
  import (
-    "encoding/json"
-    "net/http"
+	"bytes"
+	"encoding/json"
+	"mime/multipart"
+	"net/http"
  )
 
  type ValidationResponse struct {
-    Address       string   `json:"address"`
-    IsDisposable  bool     `json:"is_disposable_address"`
-    IsRoleAddress bool     `json:"is_role_address"`
-    Reason        []string `json:"reason"`
-    Result        string   `json:"result"`
-    Risk          string   `json:"risk"`
+	 Address       string   `json:"address"`
+	 IsDisposable  bool     `json:"is_disposable_address"`
+	 IsRoleAddress bool     `json:"is_role_address"`
+	 Reason        []string `json:"reason"`
+	 Result        string   `json:"result"`
+	 Risk          string   `json:"risk"`
  }
-
 
  func validateAddress(email string) (vr ValidationResponse, err error) {
 
-    // creating HTTP request and returning response
+	 // creating HTTP request and returning response
+	 body := &bytes.Buffer{}
+	 writer := multipart.NewWriter(body)
+	 address, _ := writer.CreateFormField("address")
+	 _, _ = address.Write([]byte(email))
+	 writer.Close()
 
-    client := &http.Client{}
-    req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/address/validate", nil)
-    req.SetBasicAuth("api", apiKey)
-    param := req.URL.Query()
-    param.Add("address", email)
-    req.URL.RawQuery = param.Encode()
-    response, err := client.Do(req)
+	 client := &http.Client{}
+	 req, _ := http.NewRequest("POST", "https://api.mailgun.net/v4/address/validate", body)
+	 req.Header.Set("Content-Type", writer.FormDataContentType())
+	 req.SetBasicAuth("api", "api_key_here")
+	 response, err := client.Do(req)
 
-    if err != nil {
-        return
-    }
+	 if err != nil {
+		 return
+     }
 
-    // decoding into validation response struct
-    err = json.NewDecoder(response.Body).Decode(&vr)
-    return
-    }
+	 // decoding into validation response struct
+	 err = json.NewDecoder(response.Body).Decode(&vr)
+	 return
+ }
 
 .. code-block:: csharp
 
@@ -116,10 +120,10 @@
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (GetValidate ().Content.ToString ());
+         Console.WriteLine (PostValidate ().Content.ToString ());
      }
 
-     public static IRestResponse GetValidate ()
+     public static IRestResponse PostValidate ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v4");
@@ -127,9 +131,9 @@
              new HttpBasicAuthenticator ("api",
                                          "PRIVATE_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "/address/validate";
+         request.Resource = "/address/validate";;
          request.AddParameter ("address", "foo@mailgun.net");
+         request.Method = Method.POST
          return client.Execute (request);
      }
-
  }

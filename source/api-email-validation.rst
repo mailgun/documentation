@@ -33,6 +33,9 @@ burst per minute rate. It is highly suggested that the private key is used whene
 
 .. note::  A previous version of the API is described here :ref:`api-email-validation`
 
+Single Validation
+~~~~~~~
+
 .. code-block:: url
 
      GET /v4/address/validate
@@ -42,18 +45,35 @@ Given an arbitrary address, validates address based off defined checks.
 .. container:: ptable
 
  ====================== ========================================================
- Parameter         	Description
+ Parameter         	    Description
  ====================== ========================================================
- address           	An email address to validate. (Maximum: 512 characters)
+ address           	    An email address to validate. (Maximum: 512 characters)
  ====================== ========================================================
 
+.. code-block:: url
 
-Example
-~~~~~~~
+     POST /v4/address/validate
 
-Validate a single email address.
+Given an arbitrary address, validates address based off defined checks.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Form-Data         	    Description
+ ====================== ========================================================
+ address           	    An email address to validate. (Maximum: 512 characters)
+ ====================== ========================================================
+
+Request Examples
+_______
+
+Validate a single email address using the GET method.
 
 .. include:: samples/get-validate.rst
+
+Validate a single email address using the POST method.
+
+.. include:: samples/post-validate.rst
 
 Example of a failed mailbox verification result.
 
@@ -82,7 +102,8 @@ Example of successful mailbox verification result.
         "risk": "low"
     }
 
-Field Explanation:
+Field Explanation
+_______
 
 =====================    =========    ======================================================================================================================
 Parameter                Type         Description
@@ -96,7 +117,8 @@ result                   string       Either ``deliverable``, ``undeliverable`` 
 risk                     string       ``high``, ``medium``, ``low``, ``unknown`` or ``null`` Depending on the evaluation of all aspects of the given email.
 =====================    =========    ======================================================================================================================
 
-Reason Explanation:
+Reason Explanation
+_______
 
 =============================    ==========================================================================================================================================================================================
 Reason                           Description
