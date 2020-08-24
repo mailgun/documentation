@@ -52,7 +52,22 @@ the domain you're interested in::
 Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When you sign up for an account, you are given an API key.  You authenticate to the Mailgun API by providing your API key in the request. You can manage your API key in the "Security" tab under the **Account** section of the Control Panel.
+You authenticate to the Mailgun API by providing your API key in the request. Mailgun provides two methods for authenticating against the API:
+
+**Primary account API key**
+
+When you sign up for Mailgun, we generate a primary account API key. This key allows you to perform all CRUD operations via our various API endpoints and for any of your sending domains. To view your primary account API key, in the Mailgun dashboard click on **Settings** and then **API Keys** and click on the eye icon next to **Private API key**.
+
+**Domain Sending Keys**
+
+Domain Sending Keys are API keys that only allow sending messages using a POST call via our /messages and /messages.mime endpoints for the domain in which they are created for. In order to create a sending API key:
+
+* Click on the Sending drawer on the left-hand side of the Mailgun dashboard
+* Click on Domains, select the domain in which you wish to add a sending key to
+* Click on Domain Settings and navigate to the Sending API keys tab
+* Click on Add Sending Key
+* Give your key a suitable description (such as the name of the application or client you're creating the key for) and click Create Sending Key
+* Copy your sending API key and keep it in a safe place. For security purposes, we will not be able to show you the key again. If you lose your key, you will need to create a new key.
 
 Authentication to the API occurs via `HTTP Basic Auth`_. Use ``api`` as the user
 name and your API key is the password. Here is how you use basic HTTP auth with curl::
