@@ -43,14 +43,14 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- name              *string* Name of the IP Pool being created
- description       *string* Description of the IP Pool being created
- add_ip            *string* IP address that you want to add to the pool. Can be specified any number of times
- remove_ip         *string* IP address that you want to remove from the pool. Can be specified any number of times
- ================= ========================================================
+ ================= ========= ===============================================
+ Parameter                   Description
+ ================= ========= ===============================================
+ name              *string*  Name of the IP Pool being created
+ description       *string*  Description of the IP Pool being created
+ add_ip            *string*  IP address that you want to add to the pool. Can be specified any number of times
+ remove_ip         *string*  IP address that you want to remove from the pool. Can be specified any number of times
+ ================= ========= ===============================================
  
  
  .. code-block:: url
