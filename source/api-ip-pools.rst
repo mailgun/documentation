@@ -30,7 +30,7 @@ Creates a new IP Pool and returns a unique ID
 
      GET /v1/ip_pools
      
- Retrieve all IP Pools on an account
+ Returns a list of all IP Pools on an account
  
  
  .. code-block:: url
@@ -59,15 +59,13 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
 
 Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a replacement IP option (shared, dedicated or another IP Pool)
 
-.. note:: Only dedicated IPs that are not on a warmup can be added to an IP Pool.
-
 .. container:: ptable
 
  ================= ========= ===============================================
  Parameter                   Description
  ================= ========= ===============================================
- ip                *string*  Name of the IP Pool being created
- pool_id           *string*  (Optional) Description of the IP Pool being created
+ ip                *string*  Provide a replacement dedicated IP or `shared` to use a shared IP (automatically assigned) as a replacement
+ pool_id           *string*  Replacement IP Pool
  ================= ========= ===============================================
  
  
@@ -76,8 +74,6 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
      POST /v3/domains/{domain_name}/ips
 
 Links an IP Pool to a domain. Linking an IP Pool to a domain will replace any IPs already assigned (shared or dedicated)
-
-.. note:: Only dedicated IPs that are not on a warmup can be added to an IP Pool.
 
 .. container:: ptable
 
@@ -94,12 +90,10 @@ Links an IP Pool to a domain. Linking an IP Pool to a domain will replace any IP
 
 Removes an IP Pool from a domain. You will need to supply a replacement IP option
 
-.. note:: Only dedicated IPs that are not on a warmup can be added to an IP Pool.
-
 .. container:: ptable
 
  ================= ========= ===============================================
  Parameter                   Description
  ================= ========= ===============================================
- pool_id           *string*  id of the pool to assign
+ ip                *string*  id of the pool to assign
  ================= ========= ===============================================
