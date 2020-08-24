@@ -17,13 +17,13 @@ Creates a new IP Pool and returns a unique ID
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- name              *string* Name of the IP Pool being created
- description       *string* (Optional) Description of the IP Pool being created
- ips               *string* (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
- ================= ========================================================
+ ================= ========= ===============================================
+ Parameter                   Description
+ ================= ========= ===============================================
+ name              *string*  Name of the IP Pool being created
+ description       *string*  (Optional) Description of the IP Pool being created
+ ips               *string*  (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
+ ================= ========= ===============================================
  
  
  .. code-block:: url
@@ -63,12 +63,12 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- ip                Name of the IP Pool being created
- pool_id           (Optional) Description of the IP Pool being created
- ================= ========================================================
+ ================= ========= ===============================================
+ Parameter                   Description
+ ================= ========= ===============================================
+ ip                *string*  Name of the IP Pool being created
+ pool_id           *string*  (Optional) Description of the IP Pool being created
+ ================= ========= ===============================================
  
  
   .. code-block:: url
@@ -81,11 +81,11 @@ Links an IP Pool to a domain. Linking an IP Pool to a domain will replace any IP
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- pool_id           id of the pool to assign
- ================= ========================================================
+ ================= ========= ===============================================
+ Parameter                   Description
+ ================= ========= ===============================================
+ pool_id           *string*  id of the pool to assign
+ ================= ========= ===============================================
 
 
 .. code-block:: url
@@ -98,8 +98,8 @@ Removes an IP Pool from a domain. You will need to supply a replacement IP optio
 
 .. container:: ptable
 
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- pool_id           id of the pool to assign
- ================= ========================================================
+ ================= ========= ===============================================
+ Parameter                   Description
+ ================= ========= ===============================================
+ pool_id           *string*  id of the pool to assign
+ ================= ========= ===============================================
