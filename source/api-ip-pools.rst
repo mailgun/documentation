@@ -49,8 +49,7 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
  ================= ========================================================
  name              Name of the IP Pool being created
  description       (Optional) Description of the IP Pool being created
- ips                (Optional) IP to be added to the Pool being created
-                    
+ ips               (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
  ================= ========================================================
  
  
@@ -70,4 +69,37 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
  ip                Name of the IP Pool being created
  pool_id           (Optional) Description of the IP Pool being created
  ================= ========================================================
+ 
+ 
+  .. code-block:: url
 
+     POST /v3/domains/{domain_name}/ips
+
+Links an IP Pool to a domain. Linking an IP Pool to a domain will replace any IPs already assigned (shared or dedicated)
+
+.. note:: Only dedicated IPs that are not on a warmup can be added to an IP Pool.
+
+.. container:: ptable
+
+ ================= ========================================================
+ Parameter         Description
+ ================= ========================================================
+ pool_id           id of the pool to assign
+ ================= ========================================================
+
+
+.. code-block:: url
+
+     DELETE /v3/domains/{domain_name}/ips/ip_pool
+
+Removes an IP Pool from a domain. You will need to supply 
+
+.. note:: Only dedicated IPs that are not on a warmup can be added to an IP Pool.
+
+.. container:: ptable
+
+ ================= ========================================================
+ Parameter         Description
+ ================= ========================================================
+ pool_id           id of the pool to assign
+ ================= ========================================================
