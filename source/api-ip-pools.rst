@@ -50,7 +50,8 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
  ================= ========================================================
  name              Name of the IP Pool being created
  description       (Optional) Description of the IP Pool being created
- ip                (Optional) IP to be added to the Pool being created
+ ips                (Optional) IP to be added to the Pool being created
+                    
  ================= ========================================================
  
  
