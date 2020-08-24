@@ -73,9 +73,6 @@ Here is how you use basic HTTP auth with curl::
 
     curl --user 'api:YOUR_API_KEY'
 
-Or you can try the following API call right from your browser::
-
-    https://api:YOUR_API_KEY@api.mailgun.net/v3/samples.mailgun.org/log
 
 .. warning:: Keep your API key secret!
 
