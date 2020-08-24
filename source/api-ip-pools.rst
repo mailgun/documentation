@@ -23,8 +23,7 @@ Creates a new IP Pool and returns a unique ID
  ================= ========================================================
  name              Name of the IP Pool being created
  description       (Optional) Description of the IP Pool being created
- ips               (Optional) A comma separated list of IP addresses to be
-                    assigned to this IP Pool
+ ips               (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
  ================= ========================================================
  
  
