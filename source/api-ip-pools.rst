@@ -5,8 +5,7 @@ IP Pools
 
 IP Pools allow you to group your dedicated IPs into customized "pools" to help manage your sending reputation for different mail sending streams.
 
-.. note:: You can manage IP Pools from the Control Panel.
-          Click on **IP Pools** in the Settings dropdown menu.
+.. note:: You can manage IP Pools from the Control Panel. Click on **IP Pools** in the Settings dropdown menu.
 
 .. code-block:: url
 
@@ -21,9 +20,9 @@ Creates a new IP Pool and returns a unique ID
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
- name              Name of the IP Pool being created
- description       (Optional) Description of the IP Pool being created
- ips               (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
+ name              *string* Name of the IP Pool being created
+ description       *string* (Optional) Description of the IP Pool being created
+ ips               *string* (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
  ================= ========================================================
  
  
@@ -47,9 +46,10 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
  ================= ========================================================
  Parameter         Description
  ================= ========================================================
- name              Name of the IP Pool being created
- description       (Optional) Description of the IP Pool being created
- ips               (Optional) A comma separated list of IP addresses to be assigned to this IP Pool
+ name              *string* Name of the IP Pool being created
+ description       *string* Description of the IP Pool being created
+ add_ip            *string* IP address that you want to add to the pool. Can be specified any number of times
+ remove_ip         *string* IP address that you want to remove from the pool. Can be specified any number of times
  ================= ========================================================
  
  
@@ -92,7 +92,7 @@ Links an IP Pool to a domain. Linking an IP Pool to a domain will replace any IP
 
      DELETE /v3/domains/{domain_name}/ips/ip_pool
 
-Removes an IP Pool from a domain. You will need to supply 
+Removes an IP Pool from a domain. You will need to supply a replacement IP option
 
 .. note:: Only dedicated IPs that are not on a warmup can be added to an IP Pool.
 
