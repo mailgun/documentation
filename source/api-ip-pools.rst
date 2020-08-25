@@ -95,5 +95,5 @@ Removes an IP Pool from a domain. You will need to supply a replacement IP optio
  ================= ========= ===============================================
  Parameter                   Description
  ================= ========= ===============================================
- ip                *string*  id of the pool to assign
+ ip                *string*  Replacement IP
  ================= ========= ===============================================
