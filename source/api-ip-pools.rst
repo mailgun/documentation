@@ -73,7 +73,7 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
 
      POST /v3/domains/{domain_name}/ips
 
-Links an IP Pool to a domain. Linking an IP Pool to a domain will replace any IPs already assigned (shared or dedicated)
+Links an IP Pool to a sendign domain. Linking an IP Pool to a domain will replace any IPs already assigned (shared or dedicated) with the IPs assigned to the pool. Only a pool with dedicated IPs can be linked to a sendign domain.
 
 .. container:: ptable
 
@@ -95,5 +95,6 @@ Removes an IP Pool from a domain. You will need to supply a replacement IP optio
  ================= ========= ===============================================
  Parameter                   Description
  ================= ========= ===============================================
- ip                *string*  Replacement IP
+ ip                *string*  Provide a replacement dedicated IP or `shared` to use a shared IP (automatically assigned) as a replacement
+ pool_id           *string*  Replacement IP Pool
  ================= ========= ===============================================
