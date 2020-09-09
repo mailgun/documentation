@@ -1,7 +1,7 @@
 .. _api-ip-pools:
 
 IP Pools
-===
+========
 
 IP Pools allow you to group your dedicated IPs into customized "pools" to help manage your sending reputation for different mail sending streams.
 
