@@ -61,7 +61,7 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
 
      DELETE /v1/ip_pools/{pool_id}
 
-Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a replacement IP option (shared, dedicated or another IP Pool)
+Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a replacement IP option (shared, dedicated or another IP Pool).
 
 .. container:: ptable
 
@@ -94,7 +94,7 @@ Links an IP Pool to a sendign domain. Linking an IP Pool to a domain will replac
 
      DELETE /v3/domains/{domain_name}/ips/ip_pool
 
-Removes an IP Pool from a domain. You will need to supply a replacement IP option
+Removes an IP Pool from a domain. You will need to supply a replacement IP option (shared, dedicated or another IP Pool).
 
 .. container:: ptable
 
