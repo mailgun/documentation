@@ -7,6 +7,7 @@ IP Pools allow you to group your dedicated IPs into customized "pools" to help m
 
 .. note:: You can manage IP Pools from the Control Panel. Click on **IP Pools** in the Settings dropdown menu.
 
+
 .. code-block:: url
 
      POST /v1/ip_pools
@@ -26,11 +27,13 @@ Creates a new IP Pool and returns a unique ID
  ================= ========= ===============================================
  
  
+ 
  .. code-block:: url
 
      GET /v1/ip_pools
      
  Returns a list of all IP Pools on an account
+ 
  
  
  .. code-block:: url
@@ -53,6 +56,7 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
  ================= ========= ===============================================
  
  
+ 
  .. code-block:: url
 
      DELETE /v1/ip_pools/{pool_id}
@@ -69,6 +73,7 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
  ================= ========= ===============================================
  
  
+ 
   .. code-block:: url
 
      POST /v3/domains/{domain_name}/ips
@@ -82,6 +87,7 @@ Links an IP Pool to a sendign domain. Linking an IP Pool to a domain will replac
  ================= ========= ===============================================
  pool_id           *string*  id of the pool to assign
  ================= ========= ===============================================
+
 
 
 .. code-block:: url
