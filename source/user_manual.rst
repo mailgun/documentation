@@ -624,7 +624,7 @@ Templates
 Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template name.
 Don't be confused with :ref:`Template Variables <template-variables>` as **Templating** works independently.
 
-By default mailgun uses the very popular template engine `handlebars`_  (Only v3.0 is supported right now) but also `mustache`_ and `go-template`_ are supported.
+Mailgun's templates uses the very popular template engine `handlebars`_  (Only v3.0 is supported right now).
 To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
 First of all a template has to be stored:
@@ -728,8 +728,6 @@ The email would end up looking like this:
 
 
 .. _handlebars: https://handlebarsjs.com/
-.. _mustache: https://mustache.github.io/
-.. _go-template: https://golang.org/pkg/html/template/
 
 
 .. _scheduling-delivery:
