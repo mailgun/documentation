@@ -200,7 +200,7 @@ Expected response:
       }
 
 Import a list of bounces
---------------------
+------------------------
 
 .. code-block:: url
 
@@ -434,6 +434,27 @@ Expected response:
         "message": "3 addresses have been added to the unsubscribes table"
       }
 
+
+Import a list of unsubscribes
+-----------------------------
+
+.. code-block:: url
+
+      POST /<domain>/unsubscribes/import, Content-Type: multipart/form-data
+
+Import a CSV file containing a list of addresses to add to the unsubscribe list.
+
+CSV file must be 25MB or under and must contain the following columns: `address,tag,created_at`
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "message": "file uploaded successfully"
+      }
+
 Delete a single unsubscribe
 ---------------------------
 
@@ -624,6 +645,27 @@ Expected response:
         "message": "2 complaint addresses have been added to the complaints table"
       }
 
+
+Import a list of complaints
+---------------------------
+
+.. code-block:: url
+
+      POST /<domain>/complaints/import, Content-Type: multipart/form-data
+
+Import a CSV file containing a list of addresses to add to the complaint list.
+
+CSV file must be 25MB or under and must contain the following columns: `address,created_at`
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "message": "file uploaded successfully"
+      }
+
 Delete a single complaint
 -------------------------
 
@@ -767,6 +809,26 @@ Expected response:
       "type":"domain",
       "value":"example.com"
     }
+
+Import a list of addresses and/or domains
+-----------------------------------------
+
+.. code-block:: url
+
+      POST /<domain>/whitelists/import, Content-Type: multipart/form-data
+
+Import a CSV file containing a list of addresses and/or domains to add to the whitelist.
+
+CSV file must be 25MB or under and must contain the following columns: `address,domain`
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "message": "file uploaded successfully"
+      }
 
 Delete a single record from whitelist table
 -------------------------------------------
