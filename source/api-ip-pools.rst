@@ -29,8 +29,8 @@ Creates a new IP Pool and returns a unique ID
  ================= ========= ===============================================
  
  
- Get IP Pools
- ------------
+Get IP Pools
+------------
  
  .. code-block:: url
 
@@ -39,8 +39,8 @@ Creates a new IP Pool and returns a unique ID
  Returns a list of all IP Pools on an account
  
  
- Update an IP Pool
- -----------------
+Update an IP Pool
+-----------------
  
  .. code-block:: url
 
@@ -62,8 +62,8 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
  ================= ========= ===============================================
  
  
- Delete an IP Pool
- -----------------
+Delete an IP Pool
+-----------------
  
  .. code-block:: url
 
@@ -81,8 +81,8 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
  ================= ========= ===============================================
  
  
- Link an IP Pool
- ---------------
+Link an IP Pool
+---------------
  
   .. code-block:: url
 
