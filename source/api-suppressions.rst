@@ -208,7 +208,17 @@ Import a list of bounces
 
 Import a CSV file containing a list of addresses to add to the bounce list.
 
-CSV file must be 25MB or under and must contain the following columns: `address,code,error,created_at`
+CSV file must be 25MB or under and must contain the following column headers: `address,code,error,created_at`
+
+ ================== =======================================================
+ Column             Description
+ ================== =======================================================
+ address            Valid email address
+ code               Error code (optional, default: 550)
+ error              Error description (optional, default: empty string)
+ created_at         Timestamp of a bounce event in :ref:`RFC2822 format
+                    <date-format>` (optional, default: current time)
+ ================== =======================================================
 
 Expected response:
 
@@ -444,7 +454,18 @@ Import a list of unsubscribes
 
 Import a CSV file containing a list of addresses to add to the unsubscribe list.
 
-CSV file must be 25MB or under and must contain the following columns: `address,tag,created_at`
+CSV file must be 25MB or under and must contain the following column headers: `address,tag,created_at`
+
+ ================== =======================================================
+ Column             Description
+ ================== =======================================================
+ address            Valid email address
+ tag                Tag to unsubscribe from, use ``*`` to unsubscribe
+                    an address from all domain's correspondence (optional,
+                    default: ``*``)
+ created_at         Timestamp of an unsubscribe event in :ref:`RFC2822 format
+                    <date-format>` (optional, default: current time)
+ ================== =======================================================
 
 Expected response:
 
@@ -655,7 +676,15 @@ Import a list of complaints
 
 Import a CSV file containing a list of addresses to add to the complaint list.
 
-CSV file must be 25MB or under and must contain the following columns: `address,created_at`
+CSV file must be 25MB or under and must contain the following column headers: `address,created_at`
+
+ ================== =======================================================
+ Column             Description
+ ================== =======================================================
+ address            Valid email address
+ created_at         Timestamp of a complaint event in :ref:`RFC2822 format
+                    <date-format>` (optional, default: current time)
+ ================== =======================================================
 
 Expected response:
 
@@ -819,7 +848,14 @@ Import a list of addresses and/or domains
 
 Import a CSV file containing a list of addresses and/or domains to add to the whitelist.
 
-CSV file must be 25MB or under and must contain the following columns: `address,domain`
+CSV file must be 25MB or under and must contain the following column headers: `address,domain`
+
+ ================== =======================================================
+ Column             Description
+ ================== =======================================================
+ address            Valid email address if you would like to whitelist email address
+ domain             Valid domain name if you would like whitlist entire domain name
+ ================== =======================================================
 
 Expected response:
 
