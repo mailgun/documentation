@@ -32,17 +32,17 @@ Creates a new IP Pool and returns a unique ID
 Get IP Pools
 ------------
  
- .. code-block:: url
+.. code-block:: url
 
      GET /v1/ip_pools
      
- Returns a list of all IP Pools on an account
+Returns a list of all IP Pools on an account
  
  
 Update an IP Pool
 -----------------
  
- .. code-block:: url
+.. code-block:: url
 
      PATCH /v1/ip_pools/{pool_id}
 
@@ -65,7 +65,7 @@ Update the name, description, or dedicated IPs assigned to an IP Pool.
 Delete an IP Pool
 -----------------
  
- .. code-block:: url
+.. code-block:: url
 
      DELETE /v1/ip_pools/{pool_id}
 
@@ -84,7 +84,7 @@ Deletes an IP Pool. If an IP Pool is assigned to a domain, you must provide a re
 Link an IP Pool
 ---------------
  
-  .. code-block:: url
+.. code-block:: url
 
      POST /v3/domains/{domain_name}/ips
 
@@ -104,7 +104,7 @@ Unlink an IP Pool
 
 .. code-block:: url
 
-     DELETE /v3/domains/{domain_name}/ips/ip_pool
+    DELETE /v3/domains/{domain_name}/ips/ip_pool
 
 Removes an IP Pool from a domain. You will need to supply a replacement IP option (shared, dedicated or another IP Pool).
 
