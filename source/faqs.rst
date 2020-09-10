@@ -13,7 +13,7 @@ Getting Started / Settings
 Why not just use Sendmail + Postfix + Courier IMAP?
 **************************************************************************************************************
 
-You can but you should be aware that there is a constant battle raging between good and evil (i.e., spam) in the email universe.  In order to be on the 'good' side of that battle and get your email delivered, there are numerous things you need to do.  You need to have the right authentication infrastructure and register your IP and Domain appropriately.  Also, you need to have a history of email sending that complies with ESPs rules in order to build a good reputation.
+You can but you should be aware that there is a constant battle raging between good and evil (i.e., spam) in the email universe.  In order to be on the 'good' side of that battle and get your email delivered, there are numerous things you need to do.  You need to have the right authentication infrastructure and register your IP and Domain appropriately.  Also, you need to have a history of email sending that complies with Mailbox Providers' rules in order to build a good reputation.
 
 Moreover, if you are going to receive, store and host emails, you better be prepared for maintaining this orchestra of software,
 take care of backups, hardware failures, security patches and monitoring. Stop kidding yourself, it's not 1998 anymore. :-)
@@ -142,7 +142,7 @@ You could also use `dig`_ in your command line interface.
 Do you support SSL/TLS?
 **************************************************************************************************************
 
-Only TLS is supported. Support for SSL has been dropped due to the `POODLE security vulnerability`_.
+Only TLS version 1.2 is supported. Support for SSL has been dropped due to the `POODLE security vulnerability`_.
 
 .. _POODLE security vulnerability: http://status.mailgun.com/incidents/9g4kmgh00y5x
 
@@ -260,9 +260,7 @@ Some of the factors that help you build a good reputation faster and increase de
 
 Also, consider letting your users to reply to your emails. Having a meaningful email conversations with your audience will do wonders for your reputation as a member of email community.
 
-Finally, there are certification and white label services that can help (although, you still need some history of sending).  We have a partnership with `Return Path`_ and can help get you signed up for their `Email Certification Program`_.  They have already audited our infrastructure so we can get you a discount off of their list pricing.
 
-.. _Email Certification Program: http://www.returnpath.com/solution-content/certification/
 
 Does the content of my email matter for deliverability?
 **************************************************************************************************************
