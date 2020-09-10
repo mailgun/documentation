@@ -199,6 +199,27 @@ Expected response:
         "message": "4 addresses have been added to the bounces table"
       }
 
+Import a list of bounces
+--------------------
+
+.. code-block:: url
+
+      POST /<domain>/bounces/import, Content-Type: multipart/form-data
+
+Import a CSV file containing a list of addresses to add to the bounce list.
+
+CSV file must be 25MB or under and must contain the following columns: `address,code,error,created_at`
+
+Expected response:
+
+.. code-block:: javascript
+
+      200
+      {
+        "message": "file uploaded successfully"
+      }
+
+
 Delete a single bounce
 ----------------------
 
