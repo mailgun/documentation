@@ -1138,7 +1138,6 @@ an HTML component to the email (i.e., text only emails will not track opens). Yo
 note that many email service providers disable images by default, so this data will only
 show up if the recipient clicks on display images button in his/her email.
 
-.. note:: `Return Path`_ certification allows your images to be enabled by default at many ISPs.  Please contact us if you would like to get your IP Address certified.
 
 **Opens Webhook**
 
