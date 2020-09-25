@@ -102,9 +102,9 @@ Example of successful mailbox verification result.
         "risk": "low"
     }
 
-*For advanced users only*
+.. warning:: For advanced users only
 
-The provider_lookup query parameter provides users with the control to allow or prevent Mailgun from reaching out to the mailbox provider or rely on Mailgun’s internal analysis alone.
+The provider_lookup query parameter provides users with the control to allow or prevent Mailgun from reaching out to the mailbox provider.
 
 .. code-block:: url
 
