@@ -102,6 +102,33 @@ Example of successful mailbox verification result.
         "risk": "low"
     }
 
+.. warning:: For advanced users only
+
+The provider_lookup query parameter provides users with the control to allow or prevent Mailgun from reaching out to the mailbox provider.
+
+.. code-block:: url
+
+     GET /v4/address/validate?address=test123@test.com&provider_lookup=true
+
+.. code-block:: url
+
+     POST /v4/address/validate?provider_lookup=true
+
+‘true’ (default state) - A provider lookup will be performed if Mailgun’s internal analysis is insufficient.
+
+‘false’ - A provider lookup will not be performed. If Mailgun does not have information on the recipient address, the API will return the following response:
+
+.. code-block:: javascript
+
+    {
+      "address": "address@domain.com",
+      "is_disposable_address": false,
+      "is_role_address": false,
+      "reason": ["no_data"],
+      "result": "unknown",
+      "risk": "unknown"
+    }
+
 Field Explanation
 _______
 
