@@ -121,13 +121,14 @@ The provider_lookup query parameter provides users with the control to allow or 
 .. code-block:: javascript
 
     {
-      "address": "address@domain.com",
-      "is_disposable_address": false,
-      "is_role_address": false,
-      "reason": ["no_data"],
-      "result": "unknown",
-      "risk": "unknown"
+        "address": "address@domain.com",
+        "is_disposable_address": false,
+        "is_role_address": false,
+        "reason": ["no_data"],
+        "result": "unknown",
+        "risk": "unknown"
     }
+
 
 Field Explanation
 _______
@@ -136,12 +137,12 @@ _______
 Parameter                Type         Description
 =====================    =========    ======================================================================================================================
 address                  string       Email address being validated
-did_you_mean             string       (Optional) Null if nothing, however if a potential typo is made, the closest suggestion is provided
+did_you_mean             string       (Optional) Null if nothing, however if a potential typo is made to the domain, the closest suggestion is provided
 is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
 reason                   array        List of potential reasons why a specific validation may be unsuccessful.
-result                   string       Either ``deliverable``, ``undeliverable`` or ``unknown`` status given the evaluation.
-risk                     string       ``high``, ``medium``, ``low``, ``unknown`` or ``null`` Depending on the evaluation of all aspects of the given email.
+result                   string       Either ``deliverable``, ``undeliverable``, ``catch_all`` or ``unknown``. Please see the Result Types section below for details on each result type.
+risk                     string       ``high``, ``medium``, ``low``, or ``unknown`` Depending on the evaluation of all aspects of the given email.
 =====================    =========    ======================================================================================================================
 
 Reason Explanation
@@ -151,7 +152,7 @@ _______
 Reason                           Description
 =============================    ==========================================================================================================================================================================================
 unknown_provider                 The MX provider is an unknown provider.
-no_mx / No MX host found         The recipient domain does not have a valid MX host. _Note: this reason will be consolidated to only "no_mx" in the future._
+no_mx / No MX host found         The recipient domain does not have a valid MX host. `Note: this reason will be consolidated to only "no_mx" in the future.`
 high_risk_domain                 Information obtained about the domain indicates it is high risk to send email to.
 subdomain_mailer                 The recipient domain is identified to be a subdomain and is not on our exception list. Subdomains are considered to be high risk as many spammers and malicious actors utilize them.
 immature_domain                  The domain is newly created based on the WHOIS information.
@@ -159,7 +160,22 @@ tld_risk                         The domain has a top-level-domain (TLD) that ha
 mailbox_does_not_exist           The mailbox is undeliverable or does not exist.
 mailbox_is_disposable_address    The mailbox has been identified to be a disposable address. Disposable address are temporary, generally one time use, addresses.
 mailbox_is_role_address          The mailbox is a role based address (ex. support@..., marketing@...).
+catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists. `Note: Response may still result in a hard bounce`
 =============================    ==========================================================================================================================================================================================
+
+Result Types
+_______
+
+=============================    ==========================================================================================================================================================================================
+Reason                           Description
+=============================    ==========================================================================================================================================================================================
+deliverable                      The recipient address is considered to be valid and should accept email.
+undeliverable                    The recipient address is considered to be invalid and will result in a bounce if sent to.
+do not send                      The recipient address is considered to be highly risky and will negatively impact sending reputation if sent to.
+catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists. `Note: Response may still result in a hard bounce`
+unknown                          The validity of the recipient address cannot be determined for a variety of potential reasons. Please refer to the associated ‘reason’ array returned in the response.
+=============================    ==========================================================================================================================================================================================
+
 
 Bulk Validation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,9 +244,10 @@ Sample Response:
       "status": "uploaded",
       "summary": {
         "result": {
-          "deliverable": 184199,
+          "deliverable": 181854,
           "do_not_send": 5647,
           "undeliverable": 12116,
+          "catch_all" : 2345,
           "unknown": 5613
         },
         "risk": {
@@ -254,7 +271,7 @@ quantity                 integer        number of total items in the list to be 
 records_processed        integer        de-duplicated total of validated email addresses
 status                   string         current state of the list validation request. (``created``, ``processing``, ``completed``, ``uploading``, ``uploaded``, and ``failed``)
 summary                  collection     summary of the validations in the list provided
-result                   array          nested results count. (``deliverable``, ``do_not_send``, ``undeliverable``, and `unknown`)
+result                   array          nested results count. (``catch_all``, ``deliverable``, ``do_not_send``, ``undeliverable``, and `unknown`)
 risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
 =====================    ===========    ============================================================================================================
 
@@ -294,9 +311,10 @@ Sample Response:
                 "status": "uploaded",
                 "summary": {
                     "result": {
-                        "deliverable": 184199,
+                        "deliverable": 181854,
                         "do_not_send": 5647,
                         "undeliverable": 12116,
+                        "catch_all" : 2345,
                         "unknown": 5613},
                     "risk": {
                         "high": 17763,
@@ -317,9 +335,10 @@ Sample Response:
                 "status": "uploaded",
                 "summary": {
                     "result": {
-                        "deliverable": 184199,
+                        "deliverable": 181854,
                         "do_not_send": 5647,
                         "undeliverable": 12116,
+                        "catch_all" : 2345,
                         "unknown": 5613},
                     "risk": {
                         "high": 17763,
@@ -341,17 +360,18 @@ Sample Response:
         },
     }
 
-Response Fields Explanation:
+Results Fields Explanation:
 
 .. container:: ptable
 
-    =====================    ==========    ======================================================================================================================
-    Field                    Type          Description
-    =====================    ==========    ======================================================================================================================
-    jobs                     array         The collection of validation jobs requested for.
-    total                    integer       The total number of validation jobs.
-    paging                   collection    A collection of pagination links for traversing the validation jobs.
-    =====================    ==========    ======================================================================================================================
+    =====================       ======================================================================================================================
+    Field                       Description
+    =====================       ======================================================================================================================
+    Deliverable                 The collection of validation jobs requested for.
+    Undeliverable               The total number of validation jobs.
+    Do Not Send                 A collection of pagination links for traversing the validation jobs.
+    Catch All                   The total number of domain associated with result is considered a catch_all domain
+    =====================       ======================================================================================================================
 
 
 Create a bulk validation job:
@@ -453,7 +473,8 @@ Sample Response:
         "summary": {
           "result": {
             "deliverable": 37.5,
-            "undeliverable": 25,
+            "undeliverable": 23,
+            "catch_all" : 2,
             "unknown": 37.5
           },
           "risk": {
@@ -477,7 +498,7 @@ quantity                 integer        number of total items in the list to be 
 status                   string         current state of the list validation request. (``preview_processing``, ``preview_complete``)
 valid                    bool           a boolean to represent if the list is valid
 summary                  collection     summary of the validations in the list provided
-result                   array          nested results averaged. (``deliverable``, ``undeliverable``, and ``unknown``)
+result                   array          nested results averaged. (``deliverable``, ``undeliverable``, ``catch_all`` and ``unknown``)
 risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
 =====================    ===========    ============================================================================================================
 
@@ -504,7 +525,8 @@ Sample Response:
             "result": {
               "deliverable": 37.5,
               "do_not_send": 0,
-              "undeliverable": 25,
+              "undeliverable": 23,
+              "catch_all": 2,
               "unknown": 37.5
             },
             "risk": {
@@ -525,7 +547,8 @@ Sample Response:
             "result": {
               "deliverable": 37.5,
               "do_not_send": 0,
-              "undeliverable": 25,
+              "undeliverable": 23,
+              "catch_all": 2,
               "unknown": 37.5
             },
             "risk": {
@@ -569,5 +592,3 @@ Delete a bulk validation preview:
 
 Sample Response:
    A 204 will be returned upon successful deletion.
-
-
