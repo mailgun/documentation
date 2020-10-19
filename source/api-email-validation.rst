@@ -160,7 +160,7 @@ tld_risk                         The domain has a top-level-domain (TLD) that ha
 mailbox_does_not_exist           The mailbox is undeliverable or does not exist.
 mailbox_is_disposable_address    The mailbox has been identified to be a disposable address. Disposable address are temporary, generally one time use, addresses.
 mailbox_is_role_address          The mailbox is a role based address (ex. support@..., marketing@...).
-catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists. `Note: Response may still result in a hard bounce`
+catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists.
 =============================    ==========================================================================================================================================================================================
 
 Result Types
@@ -172,7 +172,7 @@ Reason                           Description
 deliverable                      The recipient address is considered to be valid and should accept email.
 undeliverable                    The recipient address is considered to be invalid and will result in a bounce if sent to.
 do not send                      The recipient address is considered to be highly risky and will negatively impact sending reputation if sent to.
-catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists. `Note: Response may still result in a hard bounce`
+catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists.
 unknown                          The validity of the recipient address cannot be determined for a variety of potential reasons. Please refer to the associated ‘reason’ array returned in the response.
 =============================    ==========================================================================================================================================================================================
 
