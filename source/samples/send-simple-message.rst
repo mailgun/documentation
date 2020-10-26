@@ -53,7 +53,7 @@
   );
 
   # Make the call to the client.
-  $mg->messages()->send($domain, $params);
+  $mgClient->messages()->send($domain, $params);
 
 .. code-block:: py
 
