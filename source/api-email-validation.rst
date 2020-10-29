@@ -35,6 +35,7 @@ burst per minute rate. It is highly suggested that the private key is used whene
 
 Single Validation
 ~~~~~~~
+.. note:: This feature is not currently available via the EU API.
 
 .. code-block:: url
 
