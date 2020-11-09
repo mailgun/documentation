@@ -144,6 +144,7 @@ is_role_address          boolean      Checks the mailbox portion of the email if
 reason                   array        List of potential reasons why a specific validation may be unsuccessful.
 result                   string       Either ``deliverable``, ``undeliverable``, ``catch_all`` or ``unknown``. Please see the Result Types section below for details on each result type.
 risk                     string       ``high``, ``medium``, ``low``, or ``unknown`` Depending on the evaluation of all aspects of the given email.
+root_address             string       (Optional) The root email address, with alias parts removed. 
 =====================    =========    ======================================================================================================================
 
 Reason Explanation
