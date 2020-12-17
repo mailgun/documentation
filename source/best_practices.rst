@@ -103,7 +103,7 @@ The common types of authentication are:
 * DomainKeys_
 * SenderID_
 
-.. _SPF: http://www.openspf.org
+.. _SPF: http://www.open-spf.org/
 .. _DKIM: http://www.dkim.org
 .. _DomainKeys: http://domainkeys.sourceforge.net
 .. _SenderID: https://docs.microsoft.com/en-us/exchange/antispam-and-antimalware/antispam-protection/sender-id?view=exchserver-2019
