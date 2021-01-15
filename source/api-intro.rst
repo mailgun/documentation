@@ -94,7 +94,7 @@ box::
 
 .. _errors:
 
-Errors
+Status codes
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mailgun returns standard HTTP response codes.
