@@ -30,7 +30,7 @@ Base URL
 
 All API calls referenced in our documentation start with a base URL. Mailgun allows the ability to send and receive email in either our US region or our EU region. Be sure to use the appropriate base URL based on which region you've created your domain in.
 
-It's also important to note that Mailgun uses URI versioning for 
+It's also important to note that Mailgun uses URI versioning for our API endpoints, and some endpoints may have different versions than others. Please reference the version stated in the URL for each endpoint.
 
 For domains created in our US region the base URL is::
 
