@@ -16,6 +16,10 @@
 		width: 100%;
 		z-index: 1000;
 	}
+
+	.styled-logo {
+		width: 100%;
+	}
 }
 
 /* mobile */
@@ -47,7 +51,6 @@ nav {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    width: 100%;
 }
 
 .styled-hamburger {
@@ -352,9 +355,11 @@ nav ol, nav ul {
 	}
 
 	.styled-logo {
+		/*
 		height: 32px;
 		margin: auto 0;
 		width: auto! important;
+		*/
 	}
 
 	.styled-nav-elements {
