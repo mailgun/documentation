@@ -4,6 +4,14 @@ Mailing Lists
 =============
 
 You can programmatically create mailing lists using Mailgun Mailing List API.
+
+The Mailing List API endpoint is available at:
+
+.. code-block:: url
+
+      v3/lists
+      
+      
 A mailing list is a group of members (recipients) which itself has an email address,
 like developers@mailgun.net. This address becomes an ID for this mailing list.
 

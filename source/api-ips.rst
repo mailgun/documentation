@@ -3,7 +3,11 @@
 IPs
 ===
 
-The IP API endpoint allows you to access information regarding the IPs allocated to your Mailgun account that are used for outbound sending.
+The IP API endpoint allows you to access information regarding the IPs allocated to your Mailgun account that are used for outbound sending. The IP endpoint is available at:
+
+.. code-block:: url
+
+     v3/ips
 
 .. note:: You can manage your IPs from the Control Panel.
           Click on **IP Management** in the settings dropdown menu.

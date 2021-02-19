@@ -10,10 +10,18 @@ Sending
 
 There are two ways to send emails using Mailgun API:
 
+.. code-block:: url
+
+     v3/<domain>/messages
+
 - You can pass the components of the messages such as ``To``,
   ``From``, ``Subject``, HTML and text parts, attachments, etc. Mailgun
   will build a MIME representation of the message and send it. This is the
   preferred method.
+
+.. code-block:: url
+
+     v3/<domain>/messages.mime
 
 - You can also build a MIME string yourself using a MIME library for your
   programming language and submit it to Mailgun.

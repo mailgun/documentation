@@ -9,9 +9,8 @@ detects undeliverable addresses you try to send to and as recipients unsubscribe
 from your mailings or mark your emails as a spam (for ESPs that provide FBL).
 You can also add/remove addresses from any of these lists using the API.
 
-.. note:: This is the documentation for the new Suppressions API. The documentation for the previous
-          version (/v2) will temporarily be available here: :ref:`bounces <api-bounces-old>`,
-          :ref:`unsubscribes <api-unsubscribes-old>`, :ref:`complaints <api-complaints-old>`.
+It's important to note that these suppression lists are unique to a sending domain and are not an account level (global) suppression list. If you want to add/remove the same address(es) from multiple domains, you'll need to do so for each domain.
+
 
 .. _api-bounces:
 
@@ -25,6 +24,12 @@ thinks it is spam) are not added to the list.
 
 Subsequent delivery attempts to an address found in a bounce list are prevented
 to protect your sending reputation.
+
+The bounce suppression API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/bounces
 
 Mailgun can notify your application every time a message bounces via
 a :ref:`permanent_fail webhook <um-tracking-failures>`.
@@ -283,6 +288,12 @@ Mailgun allows you to quickly add "Unsubscribe me" feature to your outgoing
 emails without any programming on your end. You can enable this in your
 Control Panel under your domain settings.
 
+The ubsubscribe suppression API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/unsubscribes
+
 Mailgun can notify your application every time a user unsubscribes via
 an :ref:`unsubscribed webhook <um-tracking-unsubscribes>`.
 
@@ -460,7 +471,7 @@ CSV file must be 25MB or under and must contain the following column headers: `a
  Column             Description
  ================== =======================================================
  address            Valid email address
- tag                Tag to unsubscribe from, use ``*`` to unsubscribe
+ tags               Tag to unsubscribe from, use ``*`` to unsubscribe
                     an address from all domain's correspondence (optional,
                     default: ``*``)
  created_at         Timestamp of an unsubscribe event in :ref:`RFC2822 format
@@ -510,6 +521,12 @@ Complaints
 
 Complaint list stores email addresses of recipients who marked your messages
 as a spam (for ESPs that support FBL).
+
+The complaint API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/complaints
 
 Mailgun can notify your application every time a recipient flags your message
 as spam via a :ref:`complained webhook <um-tracking-spam-complaints>`.

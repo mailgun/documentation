@@ -4,6 +4,13 @@ Templates
 =========
 
 This API allows you to store predefined templates and use them to send messages using :ref:`sending API <api-sending-messages>`.
+
+The Templates API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/templates
+
 The API has following limitations:
 
 * 100 templates per domains

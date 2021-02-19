@@ -3,7 +3,11 @@
 IP Pools
 ========
 
-IP Pools allow you to group your dedicated IPs into customized "pools" to help manage your sending reputation for different mail sending streams.
+IP Pools allow you to group your dedicated IPs into customized "pools" to help manage your sending reputation for different mail sending streams. The IP Pools endpoint is available at:
+
+.. code-block:: url
+
+     v1/ip_pools
 
 .. note:: You can manage IP Pools from the Control Panel. Click on **IP Pools** in the Settings dropdown menu.
 
