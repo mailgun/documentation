@@ -9,9 +9,8 @@ detects undeliverable addresses you try to send to and as recipients unsubscribe
 from your mailings or mark your emails as a spam (for ESPs that provide FBL).
 You can also add/remove addresses from any of these lists using the API.
 
-.. note:: This is the documentation for the new Suppressions API. The documentation for the previous
-          version (/v2) will temporarily be available here: :ref:`bounces <api-bounces-old>`,
-          :ref:`unsubscribes <api-unsubscribes-old>`, :ref:`complaints <api-complaints-old>`.
+It's important to note that these suppression lists are unique to a sending domain and are not an account level (global) suppression list. If you want to add/remove the same address(es) from multiple domains, you'll need to do so for each domain.
+
 
 .. _api-bounces:
 
