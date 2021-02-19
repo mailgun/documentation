@@ -3,12 +3,6 @@
 Email Validation
 ================
 
-
-Mailing Lists
-=============
-
-
-
 This API endpoint is an email address validation service. 
 
 We will validate the given address based on:
