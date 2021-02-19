@@ -5,7 +5,11 @@ Stats
 
 Mailgun collects many different events and
 generates event statistics which are available in your Control Panel.
-This data is also available via an API.
+This data is also available via our stats API endpoint. The stats endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/stats
 
 The statistics are calculated in hourly, daily and monthly resolution in UTC timezone.
 
