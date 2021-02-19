@@ -3,7 +3,9 @@
 Email Validation
 ================
 
-This API endpoint is an email address validation service. We will validate the given address based on:
+This API endpoint is an email address validation service. 
+
+We will validate the given address based on:
 
 - Mailbox detection
 
@@ -15,21 +17,18 @@ This API endpoint is an email address validation service. We will validate the g
 
 - Email Service Provider (ESP) specific local-part grammar (if available).
 
+The Email Validation API endpoint is available at:
+
+.. code-block:: url
+
+      v4/address/validate
+
 Pricing details for Mailgun's email validation service can be found on our `pricing page`_.
 
 Mailgun's email validation service is intended to validate email addresses submitted through forms like newsletters, online registrations and shopping carts.  Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to use the service appropriately.
 
 .. _pricing page: https://www.mailgun.com/pricing
 .. _Acceptable Use Policy (AUP): http://mailgun.com/aup
-
-
-Different email validation rates are given based on the API endpoint. Both the public and private
-API endpoints are limited to a burst per minute rate. The public endpoints have a default
-limit of calls per month, which can be changed, to prevent abuse of the public API key.
-The use of private API endpoints for email validation is encouraged and there is no limit past the initial
-burst per minute rate. It is highly suggested that the private key is used whenever possible.
-
-.. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the "Security" tab under the **Account** section of the Control Panel.
 
 .. note::  A previous version of the API is described here :ref:`api-email-validation`
 
