@@ -22,11 +22,6 @@ Mailgun maintains the following official libraries for interfacing with our plat
 Official Mailgun Libraries
 ======
 
-mailgun-php
-mailgun-ruby
-mailgun-go
-mailgun-js
-
 
 `mailgun-php <https://github.com/mailgun/mailgun-php>`_
 `mailgun-ruby <https://github.com/mailgun/mailgun-ruby>`_
