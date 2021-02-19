@@ -87,7 +87,7 @@ Create a new domain. See examples below.
                        (e.g. a requested IP is not assigned to the account, etc), a
                        ``400`` will be returned.
 		       
- pool_id	       The id of the IP Pool that you wish to assign to the domain. The pool must containt 
+ pool_id	       The id of the IP Pool that you wish to assign to the domain. The pool must contain 
                        at least 1 IP. (Note: IP Pools are only available on certain plans; see http://mailgun.com/pricing)
 
  web_scheme            ``http`` or ``https``
