@@ -26,6 +26,12 @@ thinks it is spam) are not added to the list.
 Subsequent delivery attempts to an address found in a bounce list are prevented
 to protect your sending reputation.
 
+The bounce suppression API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/bounces
+
 Mailgun can notify your application every time a message bounces via
 a :ref:`permanent_fail webhook <um-tracking-failures>`.
 
@@ -283,6 +289,12 @@ Mailgun allows you to quickly add "Unsubscribe me" feature to your outgoing
 emails without any programming on your end. You can enable this in your
 Control Panel under your domain settings.
 
+The ubsubscribe suppression API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/unsubscribes
+
 Mailgun can notify your application every time a user unsubscribes via
 an :ref:`unsubscribed webhook <um-tracking-unsubscribes>`.
 
@@ -460,7 +472,7 @@ CSV file must be 25MB or under and must contain the following column headers: `a
  Column             Description
  ================== =======================================================
  address            Valid email address
- tag                Tag to unsubscribe from, use ``*`` to unsubscribe
+ tags               Tag to unsubscribe from, use ``*`` to unsubscribe
                     an address from all domain's correspondence (optional,
                     default: ``*``)
  created_at         Timestamp of an unsubscribe event in :ref:`RFC2822 format
@@ -510,6 +522,12 @@ Complaints
 
 Complaint list stores email addresses of recipients who marked your messages
 as a spam (for ESPs that support FBL).
+
+The complaint API endpoint is available at:
+
+.. code-block:: url
+
+      v3/<domain>/complaints
 
 Mailgun can notify your application every time a recipient flags your message
 as spam via a :ref:`complained webhook <um-tracking-spam-complaints>`.
