@@ -3,7 +3,13 @@
 Domains
 =======
 
-This API allows you to create, access, and validate domains programmatically.
+The domains endpoint is available at:
+
+.. code-block:: url
+
+     v3/domains
+
+The domains API allows you to create, access, and validate domains programmatically.
 
 .. code-block:: url
 
