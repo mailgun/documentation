@@ -5,8 +5,14 @@ Events
 
 Mailgun tracks every event that happens to your emails and makes this data
 available to you through the Events API. Mailgun retains this detailed data for
-**two days** for free accounts and up to **30 days** for paid accounts based on subscription plan. You can query
+**one day** for free accounts and up to **30 days** for paid accounts based on subscription plan. You can query
 the data and traverse through the result pages as explained below.
+
+The Events endpoint is available at:
+
+.. code-block:: url
+
+     v3/<domain>/events
 
 .. code-block:: url
 
