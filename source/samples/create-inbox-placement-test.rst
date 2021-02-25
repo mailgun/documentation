@@ -35,7 +35,7 @@
 
   # Currently, the PHP SDK does not support the inbox placement endpoint.
   # Consider using the following php curl function.
-  function upload_bulk_validation() {
+  function create_inbox_placement_test() {
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
