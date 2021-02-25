@@ -31,7 +31,7 @@
 
   # Currently, the PHP SDK does not support the v4 Validations endpoint.
   # Consider using the following php curl function.
-  function get_bulk_validation() {
+  function get_validate() {
     $params = array(
         "address" => "bob@example.com"
     );
