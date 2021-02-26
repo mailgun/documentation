@@ -34,7 +34,7 @@ Mailgun's email validation service is intended to validate email addresses submi
 
 Single Validation
 ~~~~~~~
-.. note:: This feature is not currently available via the EU API.
+.. note:: This feature is now available via the EU API.
 
 .. code-block:: url
 
