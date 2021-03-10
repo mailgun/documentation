@@ -40,8 +40,6 @@ For domains created in our EU region the base URL is::
 
     https://api.eu.mailgun.net/
     
-    
-*Note that our Email Validation service is only available in our US region. Please be sure to use our US region base URL for Validations API calls*
 
 Your Mailgun account may contain multiple sending domains. To avoid passing
 the domain name as a query parameter, most API URLs must include the name of
