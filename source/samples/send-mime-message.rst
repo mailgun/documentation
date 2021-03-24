@@ -47,7 +47,7 @@
   $recipients = array(
       'bob@example.com',
       'alice@example.com',
-      'john@example.com;
+      'john@example.com';
   );
   $params = array(
       'from' => 'Excited User <YOU@YOUR_DOMAIN_NAME>'
