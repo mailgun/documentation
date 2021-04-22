@@ -656,7 +656,7 @@ The second way is not recomended as it's limited to simple key value data. If yo
 
 **Handlebars**
 
-Speaking of Handlebars, one of the cool things you can do with Handelbars is use their block helpers, which are easy ways to implement dynamic content in your template. Our implementation of Handlebars supports the following helpers: if, unless, each, with, lookup, and equal. Let's explore what each of these do and some quick examples:
+Speaking of Handlebars, one of the cool things you can do with Handelbars is use their block helpers, which are easy ways to implement dynamic content in your template. Our implementation of Handlebars supports the following helpers: if, unless, each, with, and equal. Let's explore what each of these do and some quick examples:
 
 *The* ``if`` *block helper*
 
