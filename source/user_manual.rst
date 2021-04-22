@@ -624,7 +624,7 @@ Templates
 Mailgun allows you to store predefined templates via :ref:`Template API <api-templates>` and use them to send messages via :ref:`sending api <api-sending-messages>` just providing template name.
 Don't be confused with :ref:`Template Variables <template-variables>` as **Templating** works independently.
 
-Mailgun's templates uses the very popular template engine `handlebars`_  (Only v3.0 is supported right now).
+Mailgun's templates uses a fork of the very popular template engine `handlebars`_.
 To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
 First of all a template has to be stored:
@@ -656,7 +656,7 @@ The second way is not recomended as it's limited to simple key value data. If yo
 
 **Handlebars**
 
-Speaking of Handlebars, one of the cool things you can do with Handelbars is use their block helpers, which are easy ways to implement dynamic content in your template. Our implementation of Handlebars supports the following helpers: if, unless, each, with, lookup, log and equal. Let's explore what each of these do and some quick examples:
+Speaking of Handlebars, one of the cool things you can do with Handelbars is use their block helpers, which are easy ways to implement dynamic content in your template. Our implementation of Handlebars supports the following helpers: if, unless, each, with, lookup, and equal. Let's explore what each of these do and some quick examples:
 
 *The* ``if`` *block helper*
 
@@ -725,6 +725,29 @@ The email would end up looking like this:
 - You scheduled sales consultation on 08/05/2019
 
 
+*The* ``equal`` *helper*
+
+The ``equal`` helper renders a block if the string version of both arguments are equals. For example, if include the following in your HTML:
+
+.. code-block:: javascript
+
+<p>{{#equal foo "bar"}}foo is bar{{/equal}}</p>
+<p>{{#equal foo baz}}foo is the same as baz{{/equal}}</p>
+<p>{{#equal nb 0}}nothing{{/equal}}</p>
+<p>{{#equal nb 1}}there is one{{/equal}}</p>
+<p>{{#equal nb "1"}}everything is stringified before comparison{{/equal}}</p>
+
+And pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"foo": "bar", "baz": "bar", "nb": 1}
+
+The email would end up looking like this:
+
+foo is bar
+
+foo is the same as baz
+
+there is one
+
+everything is stringified before comparison
 
 
 .. _handlebars: https://handlebarsjs.com/
