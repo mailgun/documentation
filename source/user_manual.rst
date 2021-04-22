@@ -731,11 +731,11 @@ The ``equal`` helper renders a block if the string version of both arguments are
 
 .. code-block:: javascript
 
-<p>{{#equal foo "bar"}}foo is bar{{/equal}}</p>
-<p>{{#equal foo baz}}foo is the same as baz{{/equal}}</p>
-<p>{{#equal nb 0}}nothing{{/equal}}</p>
-<p>{{#equal nb 1}}there is one{{/equal}}</p>
-<p>{{#equal nb "1"}}everything is stringified before comparison{{/equal}}</p>
+	<p>{{#equal foo "bar"}}foo is bar{{/equal}}</p>
+	<p>{{#equal foo baz}}foo is the same as baz{{/equal}}</p>
+	<p>{{#equal nb 0}}nothing{{/equal}}</p>
+	<p>{{#equal nb 1}}there is one{{/equal}}</p>
+	<p>{{#equal nb "1"}}everything is stringified before comparison{{/equal}}</p>
 
 And pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"foo": "bar", "baz": "bar", "nb": 1}
 
