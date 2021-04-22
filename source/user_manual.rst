@@ -727,7 +727,7 @@ The email would end up looking like this:
 
 *The* ``equal`` *helper*
 
-The ``equal`` helper renders a block if the string version of both arguments are equals. For example, if include the following in your HTML:
+The ``equal`` helper renders a block if the string version of both arguments are equals. For example, if you include the following in your HTML:
 
 .. code-block:: javascript
 
@@ -739,7 +739,7 @@ The ``equal`` helper renders a block if the string version of both arguments are
 
 And pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"foo": "bar", "baz": "bar", "nb": 1}
 
-The email would end up looking like this:
+The resulting email would end up looking like this:
 
 foo is bar
 
