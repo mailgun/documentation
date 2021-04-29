@@ -257,7 +257,7 @@ Example of sending inline image. Note how image is referenced in HTML part simpl
 Sending via SMTP
 ================
 
-Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465`` (SSL/TLS), ``587`` (STARTTLS), and ``2525``.
+Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465``, ``587``, and ``2525``. Port 465 requires a TLS connection. Ports ``25``, ``587``, and ``2525`` require a non-TLS connection but may be upgraded to TLS using the ``STARTTLS`` command.
 
 .. note:: Some ISPs are blocking or throttling SMTP port 25. We recommend using #587 instead.
 
