@@ -424,48 +424,59 @@ Sample response:
 .. code-block:: javascript
 
 	{
-	  "domain": {
-	    "name": "example.com",
-	    "created_at": "Fri, 22 Nov 2013 18:42:33 GMT",
-	    "wildcard": false,
-	    "spam_action": "disabled",
-	    "smtp_login": "postmaster@example.com",
-	    "smtp_password": "thiswontwork",
-	    "state": "active"
-	  },
-	  "receiving_dns_records": [
-	    {
-	      "priority": "10",
-	      "record_type": "MX",
-	      "valid": "valid",
-	      "value": "mxa.mailgun.org"
+    	    "domain": {
+        	"created_at": "Tue, 14 Jul 2015 19:13:04 GMT",
+        	"id": "55a55f40803267158aa113e8",
+        	"is_disabled": false,
+        	"name": "samples.mailgun.org",
+       	 	"require_tls": false,
+        	"skip_verification": false,
+        	"smtp_login": "postmaster@samples.mailgun.org",
+        	"spam_action": "disabled",
+        	"state": "active",
+        	"type": "sandbox",
+        	"web_prefix": "email",
+        	"web_scheme": "http",
+        	"wildcard": false
+    	    },
+	    "message": "Domain has been created",
+	    "receiving_dns_records": [
+	    	{
+	      	    "cached": [],
+		    "priority": "10",
+	      	    "record_type": "MX",
+	      	    "valid": "valid",
+	            "value": "mxa.mailgun.org"
 	    },
 	    {
-	      "priority": "10",
-	      "record_type": "MX",
-	      "valid": "valid",
-	      "value": "mxb.mailgun.org"
+	      	    "cached": [],
+		    "priority": "10",
+	      	    "record_type": "MX",
+	      	    "valid": "valid",
+	      	    "value": "mxb.mailgun.org"
 	    }
 	  ],
-	  "message": "Domain has been created",
 	  "sending_dns_records": [
 	    {
-	      "record_type": "TXT",
-	      "valid": "valid",
-	      "name": "example.com",
-	      "value": "v=spf1 include:mailgun.org ~all"
+	      	    "cached": [],
+		    "name": "example.com",
+		    "record_type": "TXT",
+	      	    "valid": "valid",
+	      	    "value": "v=spf1 include:mailgun.org ~all"
 	    },
 	    {
-	      "record_type": "TXT",
-	      "valid": "valid",
-	      "name": "k1._domainkey.example.com",
-	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4G...."
+	       	    "cached": [],
+		    "name": "k1._domainkey.example.com",
+		    "record_type": "TXT",
+	      	    "valid": "valid",
+	      	    "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4G...."
 	    },
 	    {
-	      "record_type": "CNAME",
-	      "valid": "valid",
-	      "name": "email.example.com",
-	      "value": "mailgun.org"
+	      	    "cached": [],
+		    "name": "email.example.com",
+		    "record_type": "CNAME",
+	      	    "valid": "valid",
+	      	    "value": "mailgun.org"
 	    }
 	  ]
 	}
