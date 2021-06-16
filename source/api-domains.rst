@@ -7,7 +7,7 @@ The domains endpoint is available at:
 
 .. code-block:: url
 
-     v3/domains
+     v4/domains
 
 The domains API allows you to create, access, and validate domains programmatically.
 
@@ -335,18 +335,24 @@ Sample response:
 .. code-block:: javascript
 
 	{
-	  "total_count": 1,
-	  "items": [
-	    {
-	      "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
-	      "smtp_login": "postmaster@samples.mailgun.org",
-	      "name": "samples.mailgun.org",
-	      "smtp_password": "4rtqo4p6rrx9",
-	      "wildcard": true,
-	      "spam_action": "disabled",
-	      "state": "active"
-	    }
-	  ]
+	    "items": [
+		{
+		    "created_at": "Mon, 30 Sep 2019 16:20:48 GMT",
+		    "id": "55a55f40803267158aa113e8",
+		    "is_disabled": false,
+		    "name": "samples.mailgun.org",
+		    "require_tls": false,
+		    "skip_verification": false,
+		    "smtp_login": "postmaster@samples.mailgun.org",
+		    "spam_action": "disabled",
+		    "state": "active",
+		    "type": "sandbox",
+		    "web_prefix": "email",
+		    "web_scheme": "http",
+		    "wildcard": false
+		}
+	    ],
+	    "total_count": 1
 	}
 
 Get a single domain.
@@ -358,16 +364,22 @@ Sample response:
 .. code-block:: javascript
 
 	{
-	  "domain": {
-	    "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
-	    "smtp_login": "postmaster@domain.com",
-	    "name": "domain.com",
-	    "smtp_password": "4rtqo4p6rrx9",
-	    "wildcard": false,
-	    "spam_action": "tag",
-	    "state": "active"
-	  },
-	  "receiving_dns_records": [
+    	    "domain": {
+        	"created_at": "Tue, 14 Jul 2015 19:13:04 GMT",
+        	"id": "55a55f40803267158aa113e8",
+        	"is_disabled": false,
+        	"name": "samples.mailgun.org",
+       	 	"require_tls": false,
+        	"skip_verification": false,
+        	"smtp_login": "postmaster@samples.mailgun.org",
+        	"spam_action": "disabled",
+        	"state": "active",
+        	"type": "sandbox",
+        	"web_prefix": "email",
+        	"web_scheme": "http",
+        	"wildcard": false
+    	    },
+    	"receiving_dns_records": [
 	    {
 	      "priority": "10",
 	      "record_type": "MX",
