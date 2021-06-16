@@ -111,21 +111,6 @@ Delete a domain from your account.
 
 .. code-block:: url
 
-     GET /domains/<domain>/credentials
-
-Returns a list of SMTP credentials for the defined domain.
-
-.. container:: ptable
-
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- limit             Maximum number of records to return. (100 by default)
- skip              Number of records to skip. (0 by default)
- ================= ========================================================
-
-.. code-block:: url
-
      POST /domains/<domain>/credentials
 
 Creates a new set of SMTP credentials for the defined domain.
