@@ -13,7 +13,13 @@
 <!--[if IE 8]> <html class="lt-ie9 documentation"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" class="documentation"> <!--<![endif]-->
 {%- endblock %}
-
+<!-- Forethought.AI script to display Agatha -->
+<script
+      src="https://solve-widget.forethought.ai/embed.js"
+      type="application/javascript"
+      data-api-key="3112e6a2-5709-439c-bc2c-7bd49d2b22db"
+      data-ft-location="docs"
+    ></script>
 {%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
 {%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
 {%- block linktags %}
@@ -75,14 +81,6 @@
 
 {% endblock %}
 {%- block header %}{% endblock %}
-{%- block forethought %}
-<script
-      src="https://solve-widget.forethought.ai/embed.js"
-      type="application/javascript"
-      data-api-key="3112e6a2-5709-439c-bc2c-7bd49d2b22db"
-      data-ft-location="docs"
-    ></script>
-{%- endblock %}
 {%- block relbar1 %}
 
 <!-- Google Tag Manager -->
