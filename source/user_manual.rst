@@ -192,7 +192,9 @@ When sending via HTTP API, Mailgun offers two options:
 - You can submit the individual parts of your messages to Mailgun, such as text
   and html parts, attachments, and so on. This doesn't require any MIME knowledge on your part.
 
-.. note:: Mailgun supports maximum messages size of 25MB.
+.. note:: - Mailgun supports maximum messages size of 25MB.
+          - HTTP send will error with "parameter is not a valid address" if the provided email address
+            fails syntax checks in accordance with RFC5321, RFC5322, RFC6854.
 
 See :ref:`sending messages <api-sending-messages>` section in our API Reference for a full
 list of message sending options.
@@ -259,9 +261,10 @@ Sending via SMTP
 
 Mailgun supports sending via SMTP. Our servers listen on ports ``25``, ``465``, ``587``, and ``2525``. Port 465 requires a TLS connection. Ports ``25``, ``587``, and ``2525`` require a non-TLS connection but may be upgraded to TLS using the ``STARTTLS`` command.
 
-.. note:: Some ISPs are blocking or throttling SMTP port 25. We recommend using #587 instead.
-
-.. note:: Google Compute Engine allows port ``2525`` for SMTP submission.
+.. note:: - Some ISPs are blocking or throttling SMTP port 25. We recommend using #587 instead.
+          - Google Compute Engine allows port ``2525`` for SMTP submission.
+          - SMTP send will error with "cannot parse to address" or "cannot parse from address" if the
+            provided email address fails syntax checks in accordance with RFC5321, RFC5322, RFC6854.
 
 .. warning:: IP addresses for HTTP and SMTP API endpoints will change frequently and subjected to change without notice. Ensure there are no IP-based ACLs that would prevent communication to new IP addresses that may be added or removed at any time.
 
@@ -269,8 +272,8 @@ Use "plain text" SMTP authentication and the credentials from the domain details
 page in your Control Panel which can be found by clicking on a domain in the Domains
 Tab. For enhanced security, use TLS encryption.
 
-.. note:: See `SMTP`_ to learn how to configure the most popular SMTP software and email clients to work with Mailgun
-
+.. note:: See `SMTP`_ to learn how to configure the most popular SMTP software and email clients
+            to work with Mailgun
 
 .. _passing_sending_options:
 
