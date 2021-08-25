@@ -26,10 +26,12 @@ There are two ways to send emails using Mailgun API:
 - You can also build a MIME string yourself using a MIME library for your
   programming language and submit it to Mailgun.
 
-.. note:: You can also use good old SMTP to send messages. But you will have
-    to specify all advanced sending options via :ref:`MIME headers <passing_sending_options>`
-
-.. note:: Sending options (those prefixed by o:, h:, or v:) are limited to 16 kB in total.
+.. note:: - Sending options (those prefixed by o:, h:, or v:) are limited to 16 kB in total.
+          - Mailgun supports maximum messages size of 25MB.
+          - You can also use good old SMTP to send messages. But you will have
+            to specify all advanced sending options via :ref:`MIME headers <passing_sending_options>`
+          - HTTP send will error with "parameter is not a valid address" if the provided email address
+            fails syntax checks in accordance with RFC5321, RFC5322, RFC6854.
 
 .. code-block:: url
 
