@@ -12,4 +12,5 @@ name                     string       The name of the seed list
 seed_filter              string       A regular expression value that will be used to filter the list of seeds in the seed list.
 mailing_list             string       A mailing list that contains the target email, and available seeds.
 delivery_stats           object       An object that contains sub-objects that describe delivery stats. See below.
+results                  array        An array of tests performed on the seed list.
 =====================    =========    ======================================================================================================================

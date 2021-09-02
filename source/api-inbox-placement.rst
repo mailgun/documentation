@@ -36,31 +36,32 @@ Example reponse for creating a seed list.
 
 .. code-block:: javascript
 
-   {
-     "kid": "610abd2009b08f382ac86c45",
-     "created_at": "2021-08-04T16:15:28.08Z",
-     "updated_at": "2021-08-04T16:15:28.08Z",
-     "last_result_at": "0001-01-01T00:00:00Z",
-     "target_email": "ibp-12345678-1234-1234-1234-123456789012@domain.com",
-     "sending_domains": [
-       "yourdomain.com"
-     ],
-     "has_results": false,
-     "name": "My campaign inbox test",
-     "seed_filter": ".*",
-     "mailing_list": "ibp-12345678-1234-1234-1234-123456789012@domain.com,another@email.com",
-     "delivery_stats": {
-       "all": {
-         "delivered": 0,
-         "missing": 0,
-         "pending": 0,
-         "spam": 0,
-         "inbox": 0,
-         "total": 0,
-         "provider": "all"
-       }
-     }
-   }
+  {
+    "kid": "610abd2009b08f382ac86c45",
+    "created_at": "2021-08-04T16:15:28.08Z",
+    "updated_at": "2021-08-04T16:15:28.08Z",
+    "last_result_at": "0001-01-01T00:00:00Z",
+    "target_email": "ibp-12345678-1234-1234-1234-123456789012@domain.com",
+    "sending_domains": [
+      "yourdomain.com"
+    ],
+    "has_results": false,
+    "name": "My campaign inbox test",
+    "seed_filter": ".*",
+    "mailing_list": "ibp-12345678-1234-1234-1234-123456789012@domain.com,another@email.com",
+    "delivery_stats": {
+      "all": {
+        "delivered": 0,
+        "missing": 0,
+        "pending": 0,
+        "spam": 0,
+        "inbox": 0,
+        "total": 0,
+        "provider": "all"
+      }
+    },
+    "results": []
+  }
 
 Field Explanation:
 
@@ -108,7 +109,7 @@ Field Explanation:
 =====================    =========    ======================================================================================================================
 Name                     Type         Description
 =====================    =========    ======================================================================================================================
-sub-object -"subkey"      object       The sub-object of the main delivery_stats object is divided by provider. There will always be an "all" provider that is the total sum.
+sub-object -"subkey"     object       The sub-object of the main delivery_stats object is divided by provider. There will always be an "all" provider that is the total sum.
 delivered                number       The amount of messages that were received by the system.
 missing                  number       The amount of messages that were not received by the required reporting time period.
 pending                  number       The amount of messages that have yet to be received within the required reporting time period.
@@ -118,6 +119,41 @@ total                    number       The amount of messages that are expected.
 provider                 string       The provider that these mailboxes are a part of (identical to key).
 =====================    =========    ======================================================================================================================
 
+Results
+-------
+
+A result is an object summarizing Inbox Placement tests sent to the ``target_email``.
+
+.. code-block:: javascript
+
+  {
+    "result_id": "12345678-1234-1234-1234-123456789012",
+    "subject": "IBP Test - 1",
+    "sender": "generated@yourdomain.com",
+    "delivery_stats": {
+      "all": {
+        "delivered": 7,
+        "missing": 0,
+        "pending": 0,
+        "spam": 2,
+        "inbox": 5,
+        "total": 7,
+        "provider": "all",
+        "categories": {}
+      }
+    }
+  }
+
+Field Explanation:
+
+=====================    =========    ======================================================================================================================
+Name                     Type         Description
+=====================    =========    ======================================================================================================================
+result_id                string       Unique idetifier for a received test.
+subject                  string       The subject of the email sent to the ``target_email``.
+sender                   string       Sender address of the email sent to the ``target_email``.
+delivery_stats           object       An object that contains sub-objects that describe delivery stats. See above.
+=====================    =========    ======================================================================================================================
 
 Get all seed lists
 ------------------
@@ -136,51 +172,61 @@ Example response for listing seed lists.
 
 .. code-block:: javascript
 
-   {
-  "items": [
-    {
-      "kid": "123456789123456789123456",
-      "created_at": "2021-08-02T23:10:17.915Z",
-      "updated_at": "2021-08-03T17:26:55.629Z",
-      "last_result_at": "2021-08-03T17:26:55.629Z",
-      "target_email": "ibp-12345678-1234-1234-1234-123456789012@domain.com",
-      "sending_domains": [
-        "mydomain.com"
-      ],
-      "has_results": true,
-      "name": "Inbox Placement Test",
-      "seed_filter": ".*",
-      "mailing_list": "ibp-12345678-1234-1234-1234-123456789012@domain.com,some@where.com",
-      "delivery_stats": {
-        "all": {
-          "delivered": 7,
-          "missing": 0,
-          "pending": 0,
-          "spam": 2,
-          "inbox": 5,
-          "total": 7,
-          "provider": "all"
+  {
+    "items": [
+      {
+        "kid": "123456789123456789123456",
+        "created_at": "2021-08-02T23:10:17.915Z",
+        "updated_at": "2021-08-03T17:26:55.629Z",
+        "last_result_at": "2021-08-03T17:26:55.629Z",
+        "target_email": "ibp-12345678-1234-1234-1234-123456789012@domain.com",
+        "sending_domains": [
+          "mydomain.com"
+        ],
+        "has_results": true,
+        "name": "Inbox Placement Test",
+        "seed_filter": ".*",
+        "mailing_list": "ibp-12345678-1234-1234-1234-123456789012@domain.com,some@where.com",
+        "delivery_stats": {
+          "all": {
+            "delivered": 7,
+            "missing": 0,
+            "pending": 0,
+            "spam": 2,
+            "inbox": 5,
+            "total": 7,
+            "provider": "all"
+          }
         },
-        "hotmail.com": {
-          "delivered": 7,
-          "missing": 0,
-          "pending": 0,
-          "spam": 2,
-          "inbox": 5,
-          "total": 6,
-          "provider": "where.com"
-        }
+        "results": [
+          {
+            "result_id": "12345678-1234-1234-1234-123456789012",
+            "subject": "IBP Test - 1",
+            "sender": "generated@yourdomain.com",
+            "delivery_stats": {
+              "all": {
+                "delivered": 7,
+                "missing": 0,
+                "pending": 0,
+                "spam": 2,
+                "inbox": 5,
+                "total": 7,
+                "provider": "all",
+                "categories": {}
+              }
+            }
+          }
+        ]
       }
-    }
-  ],
-  "paging": {
-    "first": "http://domain.com/v4/inbox/seedlists?ascending=0&limit=1",
-    "last": "http://domain.com/v4/inbox/seedlists?ascending=1&limit=1",
-    "next": "http://domain.com/v4/inbox/seedlists?ascending=0&cursor=123987123981723987873497&limit=1",
-    "previous": "http://domain.com/v4/inbox/seedlists?ascending=1&cursor=123987123981723987873487&limit=1"
-  },
-  "total": 32
- }
+    ],
+    "paging": {
+      "first": "http://domain.com/v4/inbox/seedlists?ascending=0&limit=1",
+      "last": "http://domain.com/v4/inbox/seedlists?ascending=1&limit=1",
+      "next": "http://domain.com/v4/inbox/seedlists?ascending=0&cursor=123987123981723987873497&limit=1",
+      "previous": "http://domain.com/v4/inbox/seedlists?ascending=1&cursor=123987123981723987873487&limit=1"
+    },
+    "total": 32
+  }
 
 Field Explanation:
 
@@ -238,31 +284,50 @@ Example response of getting a single seed list.
 
 .. code-block:: javascript
 
-   {
-     "kid": "610abd2009b08f382ac86c45",
-     "created_at": "2021-08-04T16:15:28.08Z",
-     "updated_at": "2021-08-04T16:15:28.08Z",
-     "last_result_at": "0001-01-01T00:00:00Z",
-     "target_email": "ibp-seedlist-address@domain.net",
-     "sending_domains": [
-       "yourdomain.com"
-     ],
-     "has_results": false,
-     "name": "My campaign inbox test",
-     "seed_filter": ".*",
-     "mailing_list": "ibp-seedlist-address@domain.net,another@email.com",
-     "delivery_stats": {
-       "all": {
-         "delivered": 0,
-         "missing": 0,
-         "pending": 0,
-         "spam": 0,
-         "inbox": 0,
-         "total": 0,
-         "provider": "all"
-       }
-     }
-   }
+  {
+    "kid": "610abd2009b08f382ac86c45",
+    "created_at": "2021-08-04T16:15:28.08Z",
+    "updated_at": "2021-08-04T16:15:28.08Z",
+    "last_result_at": "0001-01-01T00:00:00Z",
+    "target_email": "ibp-seedlist-address@domain.net",
+    "sending_domains": [
+      "yourdomain.com"
+    ],
+    "has_results": false,
+    "name": "My campaign inbox test",
+    "seed_filter": ".*",
+    "mailing_list": "ibp-seedlist-address@domain.net,another@email.com",
+    "delivery_stats": {
+      "all": {
+        "delivered": 0,
+        "missing": 0,
+        "pending": 0,
+        "spam": 0,
+        "inbox": 0,
+        "total": 0,
+        "provider": "all"
+      }
+    },
+    "results": [
+      {
+        "result_id": "12345678-1234-1234-1234-123456789012",
+        "subject": "IBP Test - 1",
+        "sender": "generated@yourdomain.com",
+        "delivery_stats": {
+          "all": {
+            "delivered": 7,
+            "missing": 0,
+            "pending": 0,
+            "spam": 2,
+            "inbox": 5,
+            "total": 7,
+            "provider": "all",
+            "categories": {}
+          }
+        }
+      }
+    ]
+  }
 
 .. include:: samples/fields-ibp-seed-lists.rst
 
@@ -410,31 +475,32 @@ Update a seed list. The available form fields are as follows:
 
 .. code-block:: javascript
 
- {
-   "kid": "610abd2009b08f382ac86c45",
-   "created_at": "2021-08-04T16:15:28.08Z",
-   "updated_at": "2021-08-04T16:15:28.08Z",
-   "last_result_at": "0001-01-01T00:00:00Z",
-   "target_email": "ibp-seedlist-address@domain.net",
-   "sending_domains": [
-     "yourdomain.com"
-   ],
-   "has_results": false,
-   "name": "My campaign inbox test",
-   "seed_filter": ".*",
-   "mailing_list": "ibp-seedlist-address@domain.net,another@email.com",
-   "delivery_stats": {
-     "all": {
-       "delivered": 0,
-       "missing": 0,
-       "pending": 0,
-       "spam": 0,
-       "inbox": 0,
-       "total": 0,
-       "provider": "all"
-     }
-   }
- }
+  {
+    "kid": "610abd2009b08f382ac86c45",
+    "created_at": "2021-08-04T16:15:28.08Z",
+    "updated_at": "2021-08-04T16:15:28.08Z",
+    "last_result_at": "0001-01-01T00:00:00Z",
+    "target_email": "ibp-seedlist-address@domain.net",
+    "sending_domains": [
+      "yourdomain.com"
+    ],
+    "has_results": false,
+    "name": "My campaign inbox test",
+    "seed_filter": ".*",
+    "mailing_list": "ibp-seedlist-address@domain.net,another@email.com",
+    "delivery_stats": {
+      "all": {
+        "delivered": 0,
+        "missing": 0,
+        "pending": 0,
+        "spam": 0,
+        "inbox": 0,
+        "total": 0,
+        "provider": "all"
+      }
+    },
+    "results": []
+  }
 
 .. include:: samples/fields-ibp-seed-lists.rst
 
