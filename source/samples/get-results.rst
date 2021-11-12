@@ -2,7 +2,7 @@
 .. code-block:: bash
 
   curl -s --user 'api:YOUR_API_KEY' -G \
-      https://api.mailgun.net/v4/results
+      https://api.mailgun.net/v4/inbox/results
 
 .. code-block:: java
 

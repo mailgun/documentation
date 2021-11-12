@@ -3,7 +3,7 @@
 Email Validation
 ================
 
-This API endpoint is an email address validation service. 
+This API endpoint is an email address validation service.
 
 We will validate the given address based on:
 
@@ -162,7 +162,8 @@ mailbox_does_not_exist           The mailbox is undeliverable or does not exist.
 mailbox_is_disposable_address    The mailbox has been identified to be a disposable address. Disposable address are temporary, generally one time use, addresses.
 mailbox_is_role_address          The mailbox is a role based address (ex. support@..., marketing@...).
 catch_all                        The validity of the recipient address cannot be determined as the provider accepts any and all email regardless of whether or not the recipient’s mailbox exists.
-long_term_disposable             The mailbox has been identified as a long term disposable address. Long term disposable addresses can be quickly and easily deactivated by users, but they will not expire without user intervention. 
+long_term_disposable             The mailbox has been identified as a long term disposable address. Long term disposable addresses can be quickly and easily deactivated by users, but they will not expire without user intervention.
+failed custom grammar check      The mailbox failed our custom ESP local-part grammar check.
 =============================    ==========================================================================================================================================================================================
 
 Result Types
