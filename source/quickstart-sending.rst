@@ -120,7 +120,7 @@ CNAME     "mailgun.org"                                               Tracking (
 
 .. note:: While the CNAME is listed as optional, it is required to enable Unsubscribe and Click tracking links. 
 
-.. _SPF Information: http://www.openspf.org/Introduction
+.. _SPF Information: http://www.open-spf.org/Introduction
 .. _DKIM Information: http://www.dkim.org/#introduction
 
 Add Receiving MX Records

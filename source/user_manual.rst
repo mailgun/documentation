@@ -58,7 +58,7 @@ records found in the **Domain Verification & DNS** section of the domain
 settings page of the Mailgun control panel to your DNS provider:
 
 - SPF: Sending server IP validation. Used by majority of email service
-  providers. `Learn about SPF <http://www.openspf.org/Introduction>`_.
+  providers. `Learn about SPF <http://www.open-spf.org/Introduction>`_.
 - DKIM: Like SPF, but uses cryptographic methods for validation. Supported
   by many email service providers. This is the record that Mailgun references
   make sure that the domain actually belongs to you.
