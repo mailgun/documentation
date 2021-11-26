@@ -176,26 +176,44 @@
      return id, err
  }
 
-.. code-block:: js
+.. code-block:: JS
 
  const path = require('path');
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var api_key = 'YOUR_API_KEY';
- var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
+ const fsPromises = require('fs').promises;
 
- var filepath = path.join(__dirname, 'sample.jpg');
+ const API_KEY = 'YOUR_API_KEY';
+ const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var data = {
-   from: 'Excited User <me@samples.mailgun.org>',
-   to: 'foo@example.com, baz@example.com, bar@example.com',
-   cc: 'baz@example.com',
-   bcc: 'bar@example.com',
-   subject: 'Complex',
-   text: 'Testing some Mailgun awesomness!',
-   html: "<html>HTML version of the body</html>",
-   attachment: filepath
- };
+ const formData = require('form-data');
+ const Mailgun = require('mailgun.js');
 
- mailgun.messages().send(data, function (error, body) {
-   console.log(body);
- });
+ const mailgun = new Mailgun(formData);
+ const client = mailgun.client({username: 'api', key: API_KEY});
+
+ (async function () {
+  const filepath = path.join(__dirname, 'sample.jpg');
+  try {
+    const file = {
+      filename: 'sample.jpg',
+      data: await fsPromises.readFile(filepath)
+    };
+    const attachment = [file];
+
+    const data = {
+      from: 'Excited User <me@samples.mailgun.org>',
+      to: ['foo@example.com','baz@example.com', 'bar@example.com'],
+      cc: 'baz@example.com',
+      bcc: 'bar@example.com',
+      subject: 'Complex',
+      text: 'Testing some Mailgun awesomness!',
+      html: "<html>HTML version of the body</html>",
+      attachment
+    };
+
+    const result = await mg.messages.create(DOMAIN, messageParams);
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+ })();
+

@@ -116,27 +116,41 @@
 
 .. code-block:: js
 
- var mailgun = require("mailgun-js");
- var Request = require('mailgun-js/lib/request');
- var api_key = 'YOUR_API_KEY';
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- var data = {
-   "to": 'bar@example.com, alice@example.com',
- };
+  var api_key = 'YOUR_API_KEY';
+  var DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var options = {
-    host: 'se.api.mailgun.net',
-    endpoint: '/v3',
-    protocol: 'https:',
-    port: 443,
-    auth: ['api', api_key].join(':'),
-    retry: 1
+  const data = {
+    to: 'bar@example.com, alice@example.com'
   };
 
- var req = new Request(options);
+  const options = {
+    /*
+    The domain of storage. Can be found in Sending -> logs on your dashboard.
+    The needed value is the first part of storage.url
+    */
+    url: 'https://se.api.mailgun.net/',
+    username: 'api',
+    key: api_key
+  };
 
- req.request('POST', `/domains/${DOMAIN}/messages/STORAGE_URL`, data, function (error, body) {
-   console.log(body);
- });
+  (async () => {
+    try {
+      const mailgun = new Mailgun(formData);
+      const client = mailgun.client(options);
+
+      /*
+        The key of message in storage.
+        Can be found in Sending -> logs on your dashboard
+        The needed value is located in storage.key
+      */
+      const storageKey = 'YOUR_MESSAGE_KEY';
+      const res = await client.request.postWithFD(`v3/domains/${DOMAIN}/messages/${storageKey}`, data);
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+

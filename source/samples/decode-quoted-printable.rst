@@ -75,3 +75,12 @@
     }
     return decodedMessage
  }
+
+.. code-block:: js
+
+  // npm install quoted-printable
+  // npm install utf8
+  const quotedPrintable = require('quoted-printable');
+
+  const res = utf8.decode(quotedPrintable.decode('foo=3Dbar'));
+  console.log('result:', res);
