@@ -60,7 +60,7 @@
            array('filePath' => '/path/to/test.jpg')
         )
  );
-  
+
   # Make the call to the client.
   $result = $mgClient->messages()->send($domain, $params);
 
@@ -160,23 +160,34 @@
 
 .. code-block:: js
 
- const path = require('path');
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- var filepath = path.join(__dirname, 'test.jpg');
+  const fsPromises = require('fs').promises;
+  const path = require('path');
 
- var data = {
-   from: 'Excited User <me@samples.mailgun.org>',
-   to: 'foo@example.com, baz@example.com, bar@example.com',
-   cc: 'baz@example.com',
-   bcc: 'bar@example.com',
-   subject: 'Hello',
-   text: 'Testing some Mailgun awesomness!',
-   html: '<html>Inline image here:<img src="cid:test.jpg"></html>',
-   inline: filepath
- };
+  const mailgun = new Mailgun(formData);
+  const filepath = path.resolve(__dirname, './test.jpg');
 
- mailgun.messages().send(data, function (error, body) {
-   console.log(body);
- });
+  const messageData = {
+    from: 'Excited User <me@samples.mailgun.org>',
+    to: 'foo@example.com, baz@example.com, bar@example.com',
+    subject: 'Hello',
+    html: '<html>Inline image here: <img alt="image" id="1" src="cid:test.jpg"/></html> Some extra text'
+  };
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  fsPromises.readFile(filepath)
+    .then((data) => {
+      const file = {
+        filename: 'test.jpg',
+        data
+      };
+
+      messageData.inline = file;
+      return client.messages.create(DOMAIN, messageData);
+    })
+    .then((response) => {
+      console.log(response);
+    });

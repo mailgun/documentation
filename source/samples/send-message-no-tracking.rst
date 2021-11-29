@@ -160,7 +160,7 @@
     to: 'alice@example.com',
     subject: 'Hello',
     text: 'Testing some Mailgun awesomeness!',
-    "o:tracking": 'False'
+    'o:tracking': 'False'
   };
 
   client.messages.create(YOUR_DOMAIN_NAME, messageData)

@@ -176,44 +176,44 @@
      return id, err
  }
 
-.. code-block:: JS
+.. code-block:: js
 
- const path = require('path');
- const fsPromises = require('fs').promises;
+  const path = require('path');
+  const fsPromises = require('fs').promises;
 
- const API_KEY = 'YOUR_API_KEY';
- const DOMAIN = 'YOUR_DOMAIN_NAME';
+  const API_KEY = 'YOUR_API_KEY';
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- const formData = require('form-data');
- const Mailgun = require('mailgun.js');
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- const mailgun = new Mailgun(formData);
- const client = mailgun.client({username: 'api', key: API_KEY});
+  const mailgun = new Mailgun(formData);
+  const client = mailgun.client({ username: 'api', key: API_KEY });
 
- (async function () {
-  const filepath = path.join(__dirname, 'sample.jpg');
-  try {
-    const file = {
-      filename: 'sample.jpg',
-      data: await fsPromises.readFile(filepath)
-    };
-    const attachment = [file];
+  (async () => {
+    const filepath = path.join(__dirname, 'sample.jpg');
+    try {
+      const file = {
+        filename: 'sample.jpg',
+        data: await fsPromises.readFile(filepath)
+      };
+      const attachment = [file];
 
-    const data = {
-      from: 'Excited User <me@samples.mailgun.org>',
-      to: ['foo@example.com','baz@example.com', 'bar@example.com'],
-      cc: 'baz@example.com',
-      bcc: 'bar@example.com',
-      subject: 'Complex',
-      text: 'Testing some Mailgun awesomness!',
-      html: "<html>HTML version of the body</html>",
-      attachment
-    };
+      const data = {
+        from: 'Excited User <me@samples.mailgun.org>',
+        to: ['foo@example.com', 'baz@example.com', 'bar@example.com'],
+        cc: 'baz@example.com',
+        bcc: 'bar@example.com',
+        subject: 'Complex',
+        text: 'Testing some Mailgun awesomness!',
+        html: '<html>HTML version of the body</html>',
+        attachment
+      };
 
-    const result = await mg.messages.create(DOMAIN, messageParams);
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  }
- })();
+      const result = await client.messages.create(DOMAIN, data);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
 
