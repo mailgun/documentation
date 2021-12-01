@@ -52,7 +52,7 @@ the domain you're interested in::
 Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Authentication to the Mailgun API is done by providing an Authorization header using `HTTP Basic Auth`_; use ``api`` as the username and your API key as the password . Mailgun provides two types of API keys for authenticating against the API:
+Authentication to the Mailgun API is done by providing an Authorization header using `HTTP Basic Auth`_; use ``api`` as the username and your API key as the password. Mailgun provides two types of API keys for authenticating against the API:
 
 **Primary account API key**
 
@@ -109,7 +109,7 @@ Mailgun returns standard HTTP response codes.
  404                Not Found - The requested item doesn't exist
  413                Request Entity Too Large - Attachment size is too big
  429                Too many requests - An API request limit has been reached
- 500, 502, 503, 504 Server Errors - something is wrong on Mailgun's end
+ 500, 502, 503, 504 Server Errors - Something is wrong on Mailgun's end
  ================== ==========================================================
 
 .. _webhooks-api-intro:
