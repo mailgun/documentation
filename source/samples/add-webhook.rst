@@ -125,10 +125,20 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
- var urls = ['https://your_domain.com/v1/clicked', 'https://your_domain.com/v2/clicked', 'https://your_parner_domain.com/v1/clicked']
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- mailgun.post(`/domains/${DOMAIN}/webhooks`, {"id": 'clicked', "url": urls}, function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      // clicked or one of the Supported webhooks
+      const createdWebhook = await client.webhooks.create(DOMAIN, 'clicked', 'https://your_domain.com/v1/clicked');
+      console.log('createdWebhook', createdWebhook);
+    } catch (error) {
+        console.error(error);
+    }
+  })();

@@ -140,21 +140,42 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var members = [
-   {
-     address: 'Alice <alice@example.com>',
-     vars: { age: 26 }
-   },
-   {
-     name: 'Bob',
-     address: 'bob@example.com',
-     vars: { age: 34 }
-   }
- ];
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.lists(`mylist@${DOMAIN}`).members().add({ members: members, subscribed: true }, function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const newMembersList = [
+        {
+        address: 'bob@example.com',
+        name: 'Bob Barr',
+        vars: JSON.stringify({ age: 27 }),
+        subscribed: 'yes',
+        upsert: 'yes'
+        },
+        {
+        address: 'Alice <alice@example.com>',
+        name: 'Alice Barr',
+        vars: JSON.stringify({ age: 27 }),
+        subscribed: 'yes',
+        upsert: 'yes'
+        },
+      ];
+
+      const newMembers = await client.lists.members.createMembers(
+        DOMAIN,
+        {
+        members: newMembersList,
+        upsert: 'yes'
+        }
+      );
+      console.log('newMembers', newMembers);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
