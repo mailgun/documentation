@@ -5,7 +5,7 @@ Webhooks
 
 This API allows you to create, access, and delete webhooks programmatically.
 
-The webhooks API endpoint is availble at:
+The webhooks API endpoint is available at:
 
 .. code-block:: url
 
