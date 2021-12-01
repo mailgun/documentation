@@ -159,17 +159,37 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const API_KEY = 'YOUR_API_KEY';
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var data = {
-   from: 'Excited User <me@samples.mailgun.org>',
-   to: 'alice@example.com, bob@example.com',
-   subject: 'Hey %recipient.first%',
-   text: 'If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.id%',
-       'recipient-variables': '{"alice@example.com": {"first":"Alice", "id":1}, "bob@example.com":{"first":"Bob", "id":2}}'
- };
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.messages().send(data, function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+  const client = mailgun.client({username: 'api', key: API_KEY});
+
+  const data = {
+    from: 'Excited User <me@samples.mailgun.org>',
+    to: ['alice@example.com', 'bob@example.com'],
+    subject: 'Hey %recipient.name%',
+    text: 'If you wish to unsubscribe, click http://mailgun/unsubscribe/%recipient.recipientId%',
+    'recipient-variables': JSON.stringify({
+      'alice@example.com': {
+        name: 'Alice',
+        recipientId: 1
+      },
+      'bob@example.com':
+      {
+        name: 'Bob',
+        recipientId: 2
+      }
+    })
+  };
+
+ client.messages.create(DOMAIN, data)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error(err);
+  });

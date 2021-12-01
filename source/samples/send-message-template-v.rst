@@ -130,21 +130,30 @@
 
 .. code-block:: js
 
- var mailgun = require("mailgun-js");
- var api_key = 'YOUR_API_KEY';
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+  const API_KEY = 'YOUR_API_KEY';
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var data = {
-   from: 'Excited User <me@samples.mailgun.org>',
-   to: 'alice@example.com',
-   subject: 'Hello',
-   template: 'template.test',
-   v:title: 'API Documentation',
-   v:body: 'Sending messages with templates'
- };
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.messages().send(data, function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+  const client = mailgun.client({ username: 'api', key: API_KEY });
+  const title = 'title value';
+  const slug = 'slug value';
+
+  const data = {
+    from: 'Excited User <me@samples.mailgun.org>',
+    to: 'alice@example.com',
+    subject: `Email ${title}`,
+    template: 'name-of-the-template-you-made-in-mailgun-web-portal',
+    'v:title': title,
+    'v:slug': slug
+  };
+
+  client.messages.create(DOMAIN, data).then((res) => {
+    console.log(res);
+  })
+    .catch((err) => {
+      console.error(err);
+    });
 

@@ -58,7 +58,7 @@ records found in the **Domain Verification & DNS** section of the domain
 settings page of the Mailgun control panel to your DNS provider:
 
 - SPF: Sending server IP validation. Used by majority of email service
-  providers. `Learn about SPF <http://www.openspf.org/Introduction>`_.
+  providers. `Learn about SPF <http://www.open-spf.org/Introduction>`_.
 - DKIM: Like SPF, but uses cryptographic methods for validation. Supported
   by many email service providers. This is the record that Mailgun references
   make sure that the domain actually belongs to you.
@@ -313,7 +313,7 @@ custom  MIME_ headers listed in the table below.
                                               See :ref:`manual-customdata` for more information.
     X-Mailgun-Delivery-Time-Optimize-Period   Toggles STO on a per-message basis. String should be set to the number of hours in [0-                                                 9]+h format. See :ref:`Sending a message with STO` for details.
     X-Mailgun-Time-Zone-Localize              Toggles TZO on a per-message basis. String should be set to preferred delivery time in                                                 HH:mm or hh:mmaa format, where HH:mm is used for 24 hour format without AM/PM and                                                       hh:mmaa is used for 12 hour format with AM/PM. See :ref:`Sending a message with TZO` for 					             details.
-				  
+
     ========================================= ============================================================
 
 .. _sto-sending:
@@ -347,15 +347,15 @@ Google’s Accelerated Mobile Pages (AMP) for Email allows senders to include a 
 
 **AMP Requirements**
 
-While AMP is a really exciting email tool, it takes a bit of setup before you can successfully send an AMP email message to your recipients. 
+While AMP is a really exciting email tool, it takes a bit of setup before you can successfully send an AMP email message to your recipients.
 
 *Registration*
 
-In order to send AMP emails to mailboxes that support it (Gmail for now), you’ll need to `register <https://support.google.com/mail/answer/81126>`_ your sending domain with Google. 
+In order to send AMP emails to mailboxes that support it (Gmail for now), you’ll need to `register <https://support.google.com/mail/answer/81126>`_ your sending domain with Google.
 
 *Content*
 
-Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s `Bulk Senders Guidelines <https://support.google.com/mail/answer/81126>`_.  
+Your AMP email content must comply with Google’s requirements. First, you need to ensure that you’re following Google’s `Bulk Senders Guidelines <https://support.google.com/mail/answer/81126>`_.
 
 Next, It’s important to follow the `Amp for Email specification <https://amp.dev/documentation/guides-and-tutorials/learn/amp-email-format>`_ when building your AMP messages, specifically the required markup,  AMP components, and CSS requirements. One of the gotchas you may run into, for example, is the <img> tag is replaced with <amp-img>. As you go along, you can use `Gmail's AMP for Email Playground <https://amp.gmail.dev/playground/>`_ to test whether your message content will pass the validation process.
 
@@ -669,10 +669,10 @@ The ``if`` block helper will allow you to conditionally render a block in your t
 
   {{#if english}}
   <p>This text is in the English language.</p>
-  {{else if spanish}} 
+  {{else if spanish}}
   <p>Este texto está en idioma español.</p>
   {{else if french}}
-  <p>Ce texte est en langue française.</p>                
+  <p>Ce texte est en langue française.</p>
   {{/if}}
 
 In order to send the spanish version, for example, you would pass the ``h:X-Mailgun-Variables`` parameter with the following JSON data: {"spanish" : "true"}
@@ -705,16 +705,16 @@ Your JSON data could look something like this:
 
 .. code-block:: javascript
 
-  {  
+  {
    "user":
-   {  
+   {
       "services":
-      [  
-         {  
+      [
+         {
             "date":"07/30/2019",
             "service":"deliverability consultation"
          },
-         {  
+         {
             "date":"08/05/2019",
             "service":"sales consultation"
          }

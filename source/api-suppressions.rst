@@ -288,7 +288,7 @@ Mailgun allows you to quickly add "Unsubscribe me" feature to your outgoing
 emails without any programming on your end. You can enable this in your
 Control Panel under your domain settings.
 
-The ubsubscribe suppression API endpoint is available at:
+The unsubscribe suppression API endpoint is available at:
 
 .. code-block:: url
 

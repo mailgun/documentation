@@ -47,7 +47,7 @@
   $recipients = array(
       'bob@example.com',
       'alice@example.com',
-      'john@example.com;
+      'john@example.com';
   );
   $params = array(
       'from' => 'Excited User <YOU@YOUR_DOMAIN_NAME>'
@@ -136,30 +136,32 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
- var MailComposer = require('nodemailer/lib/mail-composer');
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
+  const API_KEY = 'YOUR_API_KEY';
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+  const MailComposer = require('nodemailer/lib/mail-composer');
 
- var mailOptions = {
-   from: 'YOU@YOUR_DOMAIN_NAME',
-   to: 'bob@example.com',
-   subject: 'Hello',
-   text: 'Testing some Mailgun awesomeness!'
- };
+  const mailgun = new Mailgun(formData);
+  const mg = mailgun.client({ username: 'api', key: API_KEY });
 
- var mail = new MailComposer(mailOptions);
+  (async () => {
+    const mailOptions = {
+      from: 'YOU@YOUR_DOMAIN_NAME',
+      to: 'bob@example.com',
+      subject: 'Hello',
+      text: 'Testing some Mailgun awesomeness!'
+    };
+    try {
+      const mail = new MailComposer(mailOptions);
+      const compiledMessage = await mail.compile().build();
 
- mail.compile().build(function(mailBuildError, message) {
-
-     var dataToSend = {
-         to: 'bob@example.com',
-         message: message.toString('ascii')
-     };
-
-     mailgun.messages().sendMime(dataToSend, function (sendError, body) {
-         if (sendError) {
-             console.log(sendError);
-             return;
-         }
-     });
- });
+      const res = await mg.messages.create(DOMAIN, {
+        to: 'bob@example.com',
+        message: compiledMessage
+      });
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
