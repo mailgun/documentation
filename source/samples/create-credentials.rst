@@ -114,9 +114,24 @@
 
 .. code-block:: js
 
-  var DOMAIN = 'YOUR_DOMAIN_NAME';
-  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
-  mailgun.post(`/domains/${DOMAIN}/credentials`, {"login": "alice@YOUR_DOMAIN_NAME", "password": "secret"}, function (error, body) {
-    console.log(body);
-  });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const createdCredentials = await client.domains.domainCredentials.create(DOMAIN, {
+          login: 'alice@YOUR_DOMAIN_NAME',
+          password: 'secret'
+      });
+      console.log('createdCredentials', createdCredentials);
+    } catch (error) {
+        console.error(error);
+    }
+  })();
+
+

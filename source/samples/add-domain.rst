@@ -113,9 +113,23 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.post('/domains', {"name" : "YOUR_NEW_DOMAIN_NAME", "smtp_password" : "supersecret"}, function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+
+  (async () => {
+    try {
+      const newDomain = await client.domains.create({
+          name: "YOUR_NEW_DOMAIN_NAME",
+          smtp_login: "smtpLogin",
+          smtp_password: 'supersecret!'
+      });
+      console.log('newDomain', newDomain);
+    } catch (error) {
+        console.error(error);
+    }
+  })();
+
