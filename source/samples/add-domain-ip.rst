@@ -107,9 +107,19 @@
 
 .. code-block:: js
 
-  var DOMAIN = 'YOUR_DOMAIN_NAME';
-  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
-  mailgun.post(`/${DOMAIN}/ips`, {'ip': '127.0.0.1'}, function (error, body) {
-    console.log(body);
-  });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+      try {
+          const addedIp = await client.domains.assignIp(DOMAIN, '127.0.0.1');
+          console.log('addedIp', addedIp);
+      } catch (error) {
+          console.error(error);
+      }
+  })();

@@ -141,18 +141,27 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var list = mailgun.lists(`mylist@${DOMAIN}`);
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- var bob = {
-   subscribed: true,
-   address: 'bob@example.com',
-   name: 'Bob Barr',
-   vars: {age: 34}
- };
+  const mailgun = new Mailgun(formData);
 
- list.members().create(bob, function (error, data) {
-   console.log(data);
- });
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const newMember = await client.lists.members.createMember(DOMAIN,
+        {
+            address: 'bob@example.com',
+            name: 'Bob Barr',
+            vars: JSON.stringify({age: 27}),
+            subscribed: 'yes',
+            upsert: 'yes'
+        }
+      );
+      console.log('newMember', newMember);
+    } catch (error) {
+        console.error(error);
+    }
+  })();
