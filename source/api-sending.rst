@@ -262,7 +262,7 @@ Sample response:
    "id": "<20111114174239.25659.5817@samples.mailgun.org>"
  }
 
-Sending a message with HTML and text parts. This example also attaches two files to the message:
+Sending a message with HTML and text parts. This example also attaches file to the message:
 
 .. include:: samples/send-complex-message.rst
 
