@@ -139,9 +139,23 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.post('/routes', {"priority": 0, "description": 'Sample route', "expression": 'match_recipient(".*@YOUR_DOMAIN_NAME")', "action": 'forward("http://myhost.com/messages/")', "action": 'stop()'}, function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const createdRoute = await client.routes.create({
+        expression: 'match_recipient(".*@YOUR_DOMAIN_NAME")',
+        action: ['forward("http://myhost.com/messages/")', 'stop()'],
+        description: 'Sample route'
+      });
+      console.log('createdRoute', createdRoute);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+
+
