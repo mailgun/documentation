@@ -7,7 +7,7 @@ The domains endpoint is available at:
 
 .. code-block:: url
 
-     v3/domains
+     v4/domains
 
 The domains API allows you to create, access, and validate domains programmatically.
 
@@ -108,21 +108,6 @@ Create a new domain. See examples below.
      DELETE /domains/<domain>
 
 Delete a domain from your account.
-
-.. code-block:: url
-
-     GET /domains/<domain>/credentials
-
-Returns a list of SMTP credentials for the defined domain.
-
-.. container:: ptable
-
- ================= ========================================================
- Parameter         Description
- ================= ========================================================
- limit             Maximum number of records to return. (100 by default)
- skip              Number of records to skip. (0 by default)
- ================= ========================================================
 
 .. code-block:: url
 
@@ -335,18 +320,24 @@ Sample response:
 .. code-block:: javascript
 
 	{
-	  "total_count": 1,
-	  "items": [
-	    {
-	      "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
-	      "smtp_login": "postmaster@samples.mailgun.org",
-	      "name": "samples.mailgun.org",
-	      "smtp_password": "4rtqo4p6rrx9",
-	      "wildcard": true,
-	      "spam_action": "disabled",
-	      "state": "active"
-	    }
-	  ]
+	    "items": [
+		{
+		    "created_at": "Mon, 30 Sep 2019 16:20:48 GMT",
+		    "id": "55a55f40803267158aa113e8",
+		    "is_disabled": false,
+		    "name": "samples.mailgun.org",
+		    "require_tls": false,
+		    "skip_verification": false,
+		    "smtp_login": "postmaster@samples.mailgun.org",
+		    "spam_action": "disabled",
+		    "state": "active",
+		    "type": "sandbox",
+		    "web_prefix": "email",
+		    "web_scheme": "http",
+		    "wildcard": false
+		}
+	    ],
+	    "total_count": 1
 	}
 
 Get a single domain.
@@ -358,16 +349,22 @@ Sample response:
 .. code-block:: javascript
 
 	{
-	  "domain": {
-	    "created_at": "Wed, 10 Jul 2013 19:26:52 GMT",
-	    "smtp_login": "postmaster@domain.com",
-	    "name": "domain.com",
-	    "smtp_password": "4rtqo4p6rrx9",
-	    "wildcard": false,
-	    "spam_action": "tag",
-	    "state": "active"
-	  },
-	  "receiving_dns_records": [
+    	    "domain": {
+        	"created_at": "Tue, 14 Jul 2015 19:13:04 GMT",
+        	"id": "55a55f40803267158aa113e8",
+        	"is_disabled": false,
+        	"name": "samples.mailgun.org",
+       	 	"require_tls": false,
+        	"skip_verification": false,
+        	"smtp_login": "postmaster@samples.mailgun.org",
+        	"spam_action": "disabled",
+        	"state": "active",
+        	"type": "sandbox",
+        	"web_prefix": "email",
+        	"web_scheme": "http",
+        	"wildcard": false
+    	    },
+    	"receiving_dns_records": [
 	    {
 	      "priority": "10",
 	      "record_type": "MX",
@@ -412,48 +409,59 @@ Sample response:
 .. code-block:: javascript
 
 	{
-	  "domain": {
-	    "name": "example.com",
-	    "created_at": "Fri, 22 Nov 2013 18:42:33 GMT",
-	    "wildcard": false,
-	    "spam_action": "disabled",
-	    "smtp_login": "postmaster@example.com",
-	    "smtp_password": "thiswontwork",
-	    "state": "active"
-	  },
-	  "receiving_dns_records": [
-	    {
-	      "priority": "10",
-	      "record_type": "MX",
-	      "valid": "valid",
-	      "value": "mxa.mailgun.org"
+    	    "domain": {
+        	"created_at": "Tue, 14 Jul 2015 19:13:04 GMT",
+        	"id": "55a55f40803267158aa113e8",
+        	"is_disabled": false,
+        	"name": "samples.mailgun.org",
+       	 	"require_tls": false,
+        	"skip_verification": false,
+        	"smtp_login": "postmaster@samples.mailgun.org",
+        	"spam_action": "disabled",
+        	"state": "active",
+        	"type": "sandbox",
+        	"web_prefix": "email",
+        	"web_scheme": "http",
+        	"wildcard": false
+    	    },
+	    "message": "Domain has been created",
+	    "receiving_dns_records": [
+	    	{
+	      	    "cached": [],
+		    "priority": "10",
+	      	    "record_type": "MX",
+	      	    "valid": "valid",
+	            "value": "mxa.mailgun.org"
 	    },
 	    {
-	      "priority": "10",
-	      "record_type": "MX",
-	      "valid": "valid",
-	      "value": "mxb.mailgun.org"
+	      	    "cached": [],
+		    "priority": "10",
+	      	    "record_type": "MX",
+	      	    "valid": "valid",
+	      	    "value": "mxb.mailgun.org"
 	    }
 	  ],
-	  "message": "Domain has been created",
 	  "sending_dns_records": [
 	    {
-	      "record_type": "TXT",
-	      "valid": "valid",
-	      "name": "example.com",
-	      "value": "v=spf1 include:mailgun.org ~all"
+	      	    "cached": [],
+		    "name": "example.com",
+		    "record_type": "TXT",
+	      	    "valid": "valid",
+	      	    "value": "v=spf1 include:mailgun.org ~all"
 	    },
 	    {
-	      "record_type": "TXT",
-	      "valid": "valid",
-	      "name": "k1._domainkey.example.com",
-	      "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4G...."
+	       	    "cached": [],
+		    "name": "k1._domainkey.example.com",
+		    "record_type": "TXT",
+	      	    "valid": "valid",
+	      	    "value": "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4G...."
 	    },
 	    {
-	      "record_type": "CNAME",
-	      "valid": "valid",
-	      "name": "email.example.com",
-	      "value": "mailgun.org"
+	      	    "cached": [],
+		    "name": "email.example.com",
+		    "record_type": "CNAME",
+	      	    "valid": "valid",
+	      	    "value": "mailgun.org"
 	    }
 	  ]
 	}
