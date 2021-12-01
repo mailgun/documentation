@@ -44,10 +44,7 @@
 
   # Define your Event types
   $params = array(
-    "event" => "accepted",
-    "event" => "delivered",
-    "event" => "failed",
-    "event" => "complained"
+    "event" => ["accepted", "delivered", "failed", "complained"]
   );
 
 $response = $mgClient->stats()->total($domain, $params);
