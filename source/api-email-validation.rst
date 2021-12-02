@@ -36,6 +36,8 @@ Single Validation
 ~~~~~~~
 .. note:: This feature is now available via the EU API.
 
+.. note:: The validations feature is rate limited to a set number of active requests at a time. If you receive a 429 error, please wait and try again.
+
 .. code-block:: url
 
      GET /v4/address/validate
