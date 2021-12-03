@@ -14,6 +14,12 @@ reStructuredText
 The documentation pages are built using the [reStructuredText](http://docutils.sourceforge.net/rst.html) standard.
 Github supports RST, so modification via Github's editor is recommended.
 
+Deployment
+----------
+
+Documentation is hosted via ReadTheDocs and changes are automatically deployed when code is merged into master. To
+monitor build statuses and debug failed builds, see [the builds page](https://readthedocs.org/projects/mg-documentation/builds/).
+
 Support and Feedback
 --------------------
 
