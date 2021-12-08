@@ -102,9 +102,17 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.delete('/domains/example.mailgun.org', function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const destroyedDomain = await client.domains.destroy('DOMAIN_TO_DELETE');
+      console.log('destroyedDomain', destroyedDomain);
+    } catch (error) {
+      console.error(error);
+    }
+  })();

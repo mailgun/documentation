@@ -133,9 +133,22 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- mailgun.get(`/${DOMAIN}/events/W3siYSI6IGZhbHNlLCAi`, function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const events = await client.events.get(DOMAIN, {
+        page: 'WzMseyJiIjoiMjAyMS0xMi0wNlQwODo1ODowMi43MTIrMDA6MDAiLCJlIjoiMjAyMS0xMS0wNlQwODo1ODowMi43MTMrMDA6MDAifSx7ImIiOiIyMDIxLTExLTI2VDEwOjI4OjI0LjQ2OCswMDowMCIsImUiOiIyMDIxLTExLTA2VDA4OjU4OjAyLjcxMyswMDowMCJ9LCJfZG9jI1Z2X2hFcHlNUWdPbjRvcjF5cVFsd2ciLFsiZiJdLG51bGwsW1siYWNjb3VudC5pZCIsIjU5NDU5N2Y3ZDAzMDNhNGJkMWYzMzg5OCJdLFsiZG9tYWluLm5hbWUiLCIyMDQ4LnplZWZhcm1lci5jb20iXSxbImV2ZW50IiwiZmFpbGVkIl1dLDEwMF0='
+      });
+      console.log('events', events);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+

@@ -127,11 +127,23 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var list = mailgun.lists(`mylist@${DOMAIN}`);
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- list.members('bob@example.com').update({ "name": 'Bob Bar'}, function (error, data) {
-   console.log(data);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const updatedMember = await client.lists.members.updateMember(`mylist@${DOMAIN}`, 'bob@example.com',
+          {
+              subscribed: 'yes'
+          }
+      );
+      console.log('updatedMember', updatedMember);
+    } catch (error) {
+      console.error(error);
+    }
+  })();

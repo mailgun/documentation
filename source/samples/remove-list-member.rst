@@ -108,11 +108,20 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- var list = mailgun.lists(`mylist@${DOMAIN}`);
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- list.members('bob@example.com').delete(function (err, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const deletedMember = await client.lists.members.destroyMember(DOMAIN, 'bob@example.com');
+      console.log('deletedMember', deletedMember);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+

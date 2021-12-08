@@ -103,9 +103,19 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- mailgun.get(`/${DOMAIN}/complaints/baz@example.com`, function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const complaintsForAddress = await client.suppressions.get(DOMAIN, 'complaints', 'baz@example.com');
+      console.log('complaintsForAddress', complaintsForAddress);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
