@@ -147,7 +147,7 @@
     if err != nil {
       return "", err
     }
-    m.AddHeader("X-Mailgun-Variables", vars)
+    m.AddHeader("X-Mailgun-Variables", string(vars))
 
     _, id, err := mg.Send(ctx, m)
     return
