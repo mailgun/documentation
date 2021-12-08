@@ -154,9 +154,24 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- mailgun.get(`/${DOMAIN}/events`, {"begin": "Thurs, 06 July 2017 09:00:00 -0000", "ascending": "yes", "limit": 1},  function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const date = new Date(2021, 10, 1, 0, 0, 0, 0); // Mon Nov 01 2021 00:00:00 GMT+0200
+      const events = await client.events.get(DOMAIN, {
+        begin: date.toGMTString(), // Sun, 31 Oct 2021 22:00:00 GMT
+        ascending: 'yes',
+        limit: 5
+      });
+      console.log('events', events)
+    } catch (error) {
+        console.error(error);
+    }
+  })();

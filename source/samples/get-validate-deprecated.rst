@@ -6,23 +6,23 @@
       --data-urlencode address='foo@mailgun.net'
 
 .. code-block:: java
- 
+
  import com.mashape.unirest.http.HttpResponse;
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode validateEmail() throws UnirestException {
- 
+
          HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/address/validate")
              .basicAuth("api", PUBLIC_API_KEY)
              .queryString("address", "foo@mailgun.com")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -109,6 +109,7 @@
 
 .. code-block:: js
 
+ // This feature is deprecated
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
 

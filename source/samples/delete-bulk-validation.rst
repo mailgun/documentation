@@ -89,3 +89,20 @@
      }
 
  }
+
+.. code-block:: js
+
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const canceledJob = await client.validate.multipleValidation.destroy('validationList');
+      console.log('canceledJob ->', canceledJob);
+    } catch (error) {
+      console.error(error);
+    }
+  })();

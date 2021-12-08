@@ -116,9 +116,22 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- mailgun.put(`/domain/${DOMAIN}/connection`, {"require_tls": true, "skip_verification": false}, function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const updatedConnection = await client.domains.updateConnection('DOMAIN', {
+          require_tls: true,
+          skip_verification: false
+      });
+      console.log('updatedConnection', updatedConnection);
+    } catch (error) {
+      console.error(error);
+    }
+  })();

@@ -12,19 +12,19 @@
  import com.mashape.unirest.http.JsonNode;
  import com.mashape.unirest.http.Unirest;
  import com.mashape.unirest.http.exceptions.UnirestException;
- 
+
  public class MGSample {
- 
+
      // ...
- 
+
      public static JsonNode createMailbox() throws UnirestException {
- 
+
          HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/mailboxes")
              .basicAuth("api", API_KEY)
              .field("mailbox", "alice@example.com")
              .field("password", "supersecret")
              .asJson();
- 
+
          return request.getBody();
      }
  }
@@ -102,6 +102,7 @@
 
 .. code-block:: js
 
+ // This feature is deprecated
  var DOMAIN = 'YOUR_DOMAIN_NAME';
  var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
 

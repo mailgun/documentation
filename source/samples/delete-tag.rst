@@ -101,12 +101,3 @@
 
      return mg.DeleteTag(ctx, "newsletter")
  }
-
-.. code-block:: js
-
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
-
- mailgun.delete(`/${DOMAIN}/tags/newsletter`, function (error, body) {
-   console.log(body);
- });
