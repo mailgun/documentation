@@ -773,7 +773,8 @@ the dynamic nature of the queue, Mailgun will do its best.
 **Scheduling Delivery API Example**
 
 Supply :rfc:`2822#section-3.3` or `Unix epoch <http://en.wikipedia.org/wiki/Unix_time>`_
-time to schedule your message:
+time to schedule your message. Time should be in GMT/UTC or timezone should be in
+numerical offset format:
 
 .. include:: samples/send-scheduled-message.rst
 

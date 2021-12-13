@@ -88,7 +88,11 @@ passed as strings encoded according to :rfc:`2822#page-14`. This format is nativ
 JavaScript and is also supported by most programming languages out of the
 box::
 
-    'Thu, 13 Oct 2011 18:02:00 GMT'
+    'Thu, 13 Oct 2011 18:02:00 +0000'
+
+.. warning:: Abbreviated timezones like (EST, CET, IST, HLC) may not result in the correct
+  offset due to the ambiguous nature of abbreviated timezones. The numerical offset (+0500) or
+  GMT/UTC is preferred.
 
 .. _errors:
 
