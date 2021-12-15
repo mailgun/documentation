@@ -155,7 +155,7 @@
    text: 'Testing some Mailgun awesomeness!'
  };
 
- client.messages.create(YOUR_DOMAIN_NAME, messageData)
+ client.messages.create(DOMAIN, messageData)
   .then((res) => {
     console.log(res);
   })
