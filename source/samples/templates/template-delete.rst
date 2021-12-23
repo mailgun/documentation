@@ -97,11 +97,23 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
- mailgun.delete(`/${DOMAIN}/templates/${TEMPLATE_NAME}`, function (error, body) {
-   console.log(body);
- });
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const deletedDomainTemplate = await client.domains.domainTemplates.destroy(
+        DOMAIN,
+       'YOUR_TEMPLATE_NAME'
+      );
+      console.log('deletedDomainTemplate', deletedDomainTemplate);
+    } catch (error) {
+        console.error(error);
+    }
+  })();
+
 

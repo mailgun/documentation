@@ -114,10 +114,25 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
+  const TEMPLATE_NAME = 'template.name';
+  const VERSION_TAG = 'v2';
 
- mailgun.get('/${DOMAIN}/templates/TEMPLATE_NAME/versions/VERSION_TAG', function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
 
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+      const templateVersion = await client.domains.domainTemplates.getVersion(
+        DOMAIN,
+        TEMPLATE_NAME,
+        VERSION_TAG
+      );
+      console.log('templateVersion', templateVersion);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
