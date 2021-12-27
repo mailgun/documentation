@@ -640,7 +640,7 @@ Expected response:
 
       200
       {
-        "message": "Address has been addded to the complaints table",
+        "message": "Address has been added to the complaints table",
         "address": "bob@example.com"
       }
 
@@ -836,7 +836,7 @@ Add an address or domain to the whitelist table.
  Parameter          Description
  ================== =======================================================
  address            Valid email address if you would like to whitelist email address
- domain             Valid domain name if you would like whitlist entire domain name
+ domain             Valid domain name if you would like whitelist entire domain name
  ================== =======================================================
 
 .. note:: The single request accepts either one `address` or `domain` parameter
@@ -871,7 +871,7 @@ CSV file must be 25MB or under and must contain the following column headers: `a
  Column             Description
  ================== =======================================================
  address            Valid email address if you would like to whitelist email address
- domain             Valid domain name if you would like whitlist entire domain name
+ domain             Valid domain name if you would like whitelist entire domain name
  ================== =======================================================
 
 Expected response:

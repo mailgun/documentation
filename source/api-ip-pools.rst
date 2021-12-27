@@ -92,7 +92,7 @@ Link an IP Pool
 
      POST /v3/domains/{domain_name}/ips
 
-Links an IP Pool to a sendign domain. Linking an IP Pool to a domain will replace any IPs already assigned (shared or dedicated) with the IPs assigned to the pool. Only a pool with dedicated IPs can be linked to a sendign domain.
+Links an IP Pool to a sending domain. Linking an IP Pool to a domain will replace any IPs already assigned (shared or dedicated) with the IPs assigned to the pool. Only a pool with dedicated IPs can be linked to a sendign domain.
 
 .. container:: ptable
 

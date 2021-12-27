@@ -65,7 +65,7 @@ Sample JSON response is shown below. Notice the following:
 
 * There was only one user who clicked "Spam" button.
 * According to ``count`` value, he clicked twice.
-* ``created_at`` indicates the time when it happend.
+* ``created_at`` indicates the time when it happened.
 
 .. code-block:: javascript
 

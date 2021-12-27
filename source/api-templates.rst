@@ -214,8 +214,8 @@ Returns a list of stored templates for the domain
  =============== ================================================================================
  Parameter       Description
  =============== ================================================================================
- page            Name of a page to retrive. ``first``, ``last``, ``next``, ``prev`` 
- limit           Number of records to retrive. Default value is 10 
+ page            Name of a page to retrieve. ``first``, ``last``, ``next``, ``prev`` 
+ limit           Number of records to retrieve. Default value is 10 
  p               Pivot is used to retrieve records in chronological order
  =============== ================================================================================
 
@@ -326,7 +326,7 @@ Get version
 
     GET /<domain>/templates/<name>/versions/<tag>
 
-Retrieve information and content of specifed version of the template
+Retrieve information and content of specified version of the template
 
 Example:
 
@@ -384,7 +384,7 @@ Sample response:
        "version": {
          "tag": "v1.2.0"
        }
-    "message": "version has been udpated"
+    "message": "version has been updated"
  }
 
 Delete version
@@ -427,8 +427,8 @@ Returns a list of stored versions of the template
  =============== ================================================================================
  Parameter       Description
  =============== ================================================================================
- page            Name of a page to retrive. ``first``, ``last``, ``next``, ``prev`` 
- limit           Number of records to retrive. Default value is 10 
+ page            Name of a page to retrieve. ``first``, ``last``, ``next``, ``prev`` 
+ limit           Number of records to retrieve. Default value is 10 
  p               Pivot is used to retrieve records in chronological order
  =============== ================================================================================
 
