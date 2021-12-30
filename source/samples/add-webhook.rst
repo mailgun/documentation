@@ -1,10 +1,10 @@
 .. code-block:: bash
 
-  curl -s --user 'api:YOUR_API_KEY' \
+  curl -s --user 'api:YOUR_API_KEY' -X POST \
      https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/webhooks \
      -F id='clicked' \
-     -F url='https://your_domain.com/v1/clicked'
-     -F url='https://your_domain.com/v2/clicked'
+     -F url='https://your_domain.com/v1/clicked' \
+     -F url='https://your_domain.com/v2/clicked' \
      -F url='https://your_partner_domain.com/v1/clicked'
 
 .. code-block:: java
