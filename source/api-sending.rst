@@ -162,7 +162,6 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
                     See :ref:`manual-customdata` for more information.
  ================== ==========================================================
 
-
 Retrieving Stored Messages
 ===========================
 
@@ -289,3 +288,63 @@ An example of how to resend a message:
 An example of how to decode Quoted-printable encoded messages:
 
 .. include:: samples/decode-quoted-printable.rst
+
+
+Error codes
+===========================
+This is a list of possible return codes and messages from the ``/messages`` and ``/messages.mime`` endpoints.
+
+.. container:: ptable
+
+ ================== ==========================================================
+ Code               Error message
+ ================== ==========================================================
+ 400                from parameter is missing
+ 400                to parameter is missing
+ 400                message parameter is missing
+ 400                'message' parameter is not a file
+ 400                Need at least one of 'text' or 'html' parameters specified
+ 400                Only one parameters 'html' or 'template' is allowed
+ 400                Send options (parameters starting with o:, h:, or v:) are limited to 16 kB total
+ 400                Too many recipients, max is 1000
+ 400                Header name must be pure ASCII: <header-name>
+ 400                <invalid-date> is not an RFC-2822 compliant date
+ 400                to parameter is not a valid address. please check documentation
+ 400                Invalid request content type. Expecting 'multipart/form-data' but got 'application/x-www-form-urlencoded'
+ 400                malformed multipart/form-data request
+ 400                unable to parse request: invalid URL escape
+ 400                unable to parse request: unexpected EOF
+ 400                <time> invalid 24 hour time(value of 'o:time-zone-localize')
+ 400                <time> is not a valid time to send (value of 'o:time-zone-localize')
+ 400                invalid delivery time format
+ 400                to parameter is not a valid address. please check documentation
+ 400                from parameter is not a valid address. please check documentation
+ 400                cc parameter is not a valid address. please check documentation
+ 400                bcc parameter is not a valid address. please check documentation
+ 400                'recipient-variables' parameter is not a valid JSON
+ 400                Domain example.com is not allowed to send: Sandbox subdomains are for test purposes only. Please add your own domain or add the address to authorized recipients in Account Settings.
+ 400                Domain example.com is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to authorized recipients in Account Settings.
+ 400                Domain example.com is not allowed to send: The domain is unverified and requires DNS configuration. Log in to your control panel to view required DNS records.
+ 400                Domain example.com is not allowed to send: Please activate your Mailgun account. Check your inbox or log in to your control panel to resend the activation email.
+ 400                is not a valid secondary dkim domain name
+ 401                Forbidden
+ 404                Domain not found: example.com
+ 403                Domain example is not allowed to send large batches yet
+ 403                Rejected: IP <id-address> can't be used to send the message
+ 413                request size exceeds 52.4MiB limit
+ 429                Domain example.com is not allowed to send: request limit exceeded, try again after Mon, 20 Dec 2021 20:33:21 UTC
+ 429                Domain example.com is not allowed to send: bytes limit exceeded, try again after Mon, 20 Dec 2021 20:33:21 UTC
+ 429                Domain example.com is not allowed to send: recipient limit exceeded, try again after Mon, 20 Dec 2021 20:33:21 UTC
+ 500                Internal Server Error
+ ================== ==========================================================
+
+Rate Limits
+--------
+
+429 Rate limit code messages include the reason why the request was limited and when to try again.
+The Message contains "why" the request was rate limited, ``<why> limit exceeded, try again`` where ``<why>`` could be one of the following.
+
+- **request** - The account was rate limited because we received too many HTTP requests.
+- **recipient** - The account was rate limited because we received too many email recipients in a short period of time.
+- **bytes** - The account was rate limited because we received too many bytes. (usually due to large attachments or very large emails)
+
