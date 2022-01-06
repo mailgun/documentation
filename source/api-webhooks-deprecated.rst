@@ -119,7 +119,7 @@ Webhooks Parameters
 
 Opens Parameters
 ~~~~~~~~~~~~~~~~
-You can specify a webhook URL programmaticaly using the API described above or in the ``Webhooks`` tab of your Control Panel. When a user opens
+You can specify a webhook URL programmatically using the API described above or in the ``Webhooks`` tab of your Control Panel. When a user opens
 one of your emails, your URL will be called with the following parameters.
 
 .. container:: ptable
@@ -156,7 +156,7 @@ one of your emails, your URL will be called with the following parameters.
 
 Clicks Parameters
 ~~~~~~~~~~~~~~~~~
-You can specify a webhook URL programmaticaly using the API described above or 
+You can specify a webhook URL programmatically using the API described above or 
 in the ``Webhooks`` tab of your Control Panel. Every time a user clicks on a link
 inside of your messages, your URL will be called with the following parameters:
 
@@ -195,7 +195,7 @@ inside of your messages, your URL will be called with the following parameters:
 
 Unsubscribes Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~
-You can specify a webhook URL programmaticaly using the API described above or 
+You can specify a webhook URL programmatically using the API described above or 
 in the ``Webhooks`` tab of your Control Panel.
 When a user unsubscribes, Mailgun will invoke the webhook with the following parameters:
 
@@ -233,7 +233,7 @@ When a user unsubscribes, Mailgun will invoke the webhook with the following par
 
 Spam Complaints Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-You can specify a webhook URL programmaticaly using the API described above or 
+You can specify a webhook URL programmatically using the API described above or 
 in the ``Webhooks`` tab in the Control Panel.
 When a user reports one of your emails as spam, Mailgun will invoke the
 webhook with the following parameters:
@@ -264,7 +264,7 @@ webhook with the following parameters:
 
 Bounces Parameters
 ~~~~~~~~~~~~~~~~~~
-You can specify a webhook URL programmaticaly using the API described above or 
+You can specify a webhook URL programmatically using the API described above or 
 in the ``Webhooks`` tab of your Control Panel.
 If you do, every time a message experiences a hard bounce, your URL will be invoked with the following parameters:
 
@@ -297,7 +297,7 @@ If you do, every time a message experiences a hard bounce, your URL will be invo
 
 Drops Parameters
 ~~~~~~~~~~~~~~~~
-In the ``Webhooks`` tab or programmaticaly using the API described above,
+In the ``Webhooks`` tab or programmatically using the API described above,
 you can specify a URL to be notified every time a message is dropped.
 There are a few reasons why Mailgun needs to stop attempting to deliver messages and drop them.
 The most common reason is that Mailgun received a Hard bounce or repeatedly received Soft bounces 
@@ -334,7 +334,7 @@ If one of these events occur we will POST the following parameters to your URL:
 
 Deliveries Parameters
 ~~~~~~~~~~~~~~~~~~~~~
-In the ``Webhooks`` tab or programmaticaly using the API described above, you can specify 
+In the ``Webhooks`` tab or programmatically using the API described above, you can specify 
 a URL to be notified every time a message is delivered. 
 If the message is successfully delivered to the intended recipient, 
 we will POST the following parameters to your URL:

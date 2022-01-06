@@ -32,7 +32,7 @@ Generate a seed list. The available form fields are as follows:
 
 .. include:: samples/create-seed-list.rst
 
-Example reponse for creating a seed list.
+Example response for creating a seed list.
 
 .. code-block:: javascript
 
@@ -149,7 +149,7 @@ Field Explanation:
 =====================    =========    ======================================================================================================================
 Name                     Type         Description
 =====================    =========    ======================================================================================================================
-result_id                string       Unique idetifier for a received test.
+result_id                string       Unique identifier for a received test.
 subject                  string       The subject of the email sent to the ``target_email``.
 sender                   string       Sender address of the email sent to the ``target_email``.
 delivery_stats           object       An object that contains sub-objects that describe delivery stats. See above.
@@ -1094,7 +1094,7 @@ Name                     Type         Description
 address                  string       The address used to check for a test message.
 provider                 string       The provider responsible for maintaining the address.
 ip                       string       The ip the test message was sent from.
-folder                   string       The folder the test meassage landed in.
+folder                   string       The folder the test message landed in.
 headers                  string       The headers attached to the test message when retrieved from the address
 message_id               string       The unique identifier attached to the test message when it is sent.
 time                     string       The time in which the message arrived at the address.

@@ -33,7 +33,7 @@ Fetches the list of unsubscribes.
 
      GET /<domain>/unsubscribes/<address>
 
-Retreives a single unsubscribe record. Can be used to check if
+Retrieves a single unsubscribe record. Can be used to check if
 a given address is present in the list of unsubscribed users.
 
 .. code-block:: url
