@@ -26,7 +26,7 @@
 
 .. code-block:: php
 
-  # Currently, the PHP SDK does not support Mailing List validations.
+  # Currently, the PHP SDK does not support Mailing List verifications.
   # Consider using the following php curl function.
   function upload_bulk_validation() {
     $ch = curl_init();
