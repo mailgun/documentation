@@ -65,7 +65,7 @@ Given an arbitrary address, verifies address based off defined checks.
  ====================== ========================================================
  Form-Data         	    Description
  ====================== ========================================================
- address           	    An email address to verifies. (Maximum: 512 characters)
+ address           	    An email address to verify. (Maximum: 512 characters)
  ====================== ========================================================
 
 Request Examples
