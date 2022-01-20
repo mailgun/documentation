@@ -137,7 +137,7 @@ able to easily select a role upon user creation.
 |            | * Account Upgrade                                                                                         |
 |            | * Editing Credit card on File                                                                             |
 |            | * Setting/Clearing Custom Send Limits                                                                     |
-|            | * Setting/Clearing Custom Validation Limits                                                               |
+|            | * Setting/Clearing Custom Verification Limits                                                             |
 +------------+-----------------------------------------------------------------------------------------------------------+
 | Support    | Support users are restricted in what they can edit. In addition to being able to read most data, they     |
 |            | will be able to:                                                                                          |
@@ -1868,15 +1868,17 @@ Email Validation V3
 
 .. note::
     The V3 Validations API has been deprecated in favor of V4
+    
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
-Mailgun's email validation service is intended for validating email addresses
+Mailgun's email verification service is intended for validating email addresses
 submitted through forms like newsletters, online registrations, and shopping carts.
 
 Maintaining a list of valid and deliverable email addresses is important in order
 to reduce the ratio of bounce back emails and prevent negative impacts to your reputation
 as a sender.
 
-Validate a single email address.
+Verify a single email address.
 
 .. include:: samples/get-validate.rst
 
@@ -1902,7 +1904,7 @@ Field Explanation:
 =====================    =========    ============================================================================================================
 Parameter                Type         Description
 =====================    =========    ============================================================================================================
-address                  string       Email address being validated
+address                  string       Email address being verified
 did_you_mean             string       Null if nothing, however if a potential typo is made, the closest suggestion is provided
 is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
@@ -1940,7 +1942,7 @@ check times out.
 Role-based Address Check
 ========================
 
-For all validation requests, we provide whether an address is a role-based address
+For all verification requests, we provide whether an address is a role-based address
 (e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
 with a much higher complaint rate since unsuspecting users on the list can receive
 a message they were not expecting.
@@ -1975,25 +1977,27 @@ Sample response:
 Reporting Dashboard
 ===================
 
-Within the validation menu, you can view your usage by day or hour for the validation
+Within the verification menu, you can view your usage by day or hour for the Validation
 API in a given time range. Mailgun will also include the type of API call that was
-made to help measure the impact of email address validation.
+made to help measure the impact of email address verification.
 
 Email Validation V4
 *******************
 
-Mailgun’s email validation service is a multi-point check of an email address to ensure it exists,
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
+
+Mailgun’s email verification service is a multi-point check of an email address to ensure it exists,
 is not a high-risk address, is not disposable and more. Maintaining a list of valid and deliverable
 email addresses is important in order to reduce the ratio of bounced emails and prevent
 negative impacts to your reputation as a sender.
 
-Mailgun offers validations in three forms: performing a **single validation**, validating the email
+Mailgun offers verifications in three forms: performing a **single verification**, validating the email
 addresses of the members of a **mailing list**, and validating lists in **bulk** via CSV.
 
-Mailgun’s revamp of our initial validation service now offers a definitive **result** of our validation
+Mailgun’s revamp of our initial verification service now offers a definitive **result** of our verification
 check and a **risk** assessment of the given address. The **result** parameter will return one of four
 values, described in the table below. This is the definitive answer for whether or not a sender
-should use an address and replaces the **is_valid** parameter in v3 validations.
+should use an address and replaces the **is_valid** parameter in v3 verifications.
 
 
 .. list-table::
@@ -2001,7 +2005,7 @@ should use an address and replaces the **is_valid** parameter in v3 validations.
     :stub-columns: 1
 
     * - deliverable
-      - An address that has a high likelihood of being legitimate and has passed all validation checks.
+      - An address that has a high likelihood of being legitimate and has passed all verification checks.
     * - undeliverable
       - An address that is confirmed invalid and should be discarded from a list or corrected.  Sending to this address may damage sender reputation.
     * - do_not_send
@@ -2028,7 +2032,7 @@ allowing a user onto a platform.
 Role-based Address Check
 ========================
 
-For all validation requests, we provide whether an address is a role-based address (e.g.
+For all verification requests, we provide whether an address is a role-based address (e.g.
 postmaster@, info@, etc.). These addresses are typically distribution lists with a much higher
 complaint rate since unsuspecting users on the list can receive a message they were not
 expecting.
@@ -2041,7 +2045,7 @@ the address provided is on a known disposable mailbox provider and given the det
 you may choose how to proceed based on your own risk decisions. It is important to check for
 disposable mailboxes to ensure communication between user and web application.
 
-List Validation
+List Verification
 ===============
 
 The members of a Mailing List that exists at Mailgun can be validating with the tap of a button in
@@ -2054,14 +2058,14 @@ the Control Panel as demonstrated below:
 Note that the existing limitation of a maximum of 2.5 million members still exists for Mailing Lists.
 
 
-Bulk Validation
+Bulk Verification
 ===============
 
 .. figure:: _static/img/validation_bulk_list_control_panel.png
     :align: center
     :width: 700px
 
-A CSV no greater than 25 MB can be submitted via API or Control Panel for validation *en masse*.
+A CSV no greater than 25 MB can be submitted via API or Control Panel for verification *en masse*.
 In addition, a gzip no greater than 25 MB containing a single CSV of whatever size can also
 be submitted which greatly increases the potential size of the list that can take.
 
@@ -2286,7 +2290,7 @@ Mailgun supports internationalized email addresses in the following portions of 
 - Inbound SMTP
 - Routes (match_recipient and forward action)
 - Mailing Lists (list names and member addresses)
-- Email Validation
+- Email Verification
 - Suppressions Lists
 
 In order to send messages to an internationalized email address, the receiving mailbox provider

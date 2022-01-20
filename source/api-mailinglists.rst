@@ -86,19 +86,25 @@ Deletes a mailing list.
 
     POST /lists/<address>/validate
 
-Validate all the members of the mailing list.
+Verify all the members of the mailing list.
+
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 .. code-block:: url
 
     GET /lists/<address>/validate
 
-Retrieve current status of the mailing list validation job.
+Retrieve current status of the mailing list verification job.
+
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 .. code-block:: url
 
     DELETE /lists/<address>/validate
 
-Cancel an active mailing list validation job.
+Cancel an active mailing list verification job.
+
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 .. code-block:: url
 
@@ -378,7 +384,9 @@ Sample response:
   }
 
 
-Run mailing list validation:
+Run mailing list verification:
+
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 .. include:: samples/create-list-validation.rst
 
@@ -391,7 +399,9 @@ Sample response:
         "message": "The validation job was submitted."
     }
 
-Get mailing list validation status:
+Get mailing list verification status:
+
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 .. include:: samples/get-list-validation.rst
 
@@ -431,16 +441,18 @@ Field Explanation:
 Parameter                Type         Description
 =====================    =========    ============================================================================================================
 created_at               string       Date/Time that the request was initiated
-download_url             array        `csv` and `json` representation of the download link for the results of the list validation
+download_url             array        `csv` and `json` representation of the download link for the results of the list verification
 id                       string       list name given when the list was initially created
-quantity                 integer      number of total items in the list to be validated
-records_processed        integer      de-duplicated total of validated email addresses
-status                   string       current state of the list validation request
+quantity                 integer      number of total items in the list to be verified
+records_processed        integer      de-duplicated total of verified email addresses
+status                   string       current state of the list verification request
 summary                  array        nested count results for `deliverable`, `do_not_send`, `undeliverable` and `unknown` statuses
 risk                     array        nested count results for `high`, `low`, `medium` or `unknown` risk assessment results
 =====================    =========    ============================================================================================================
 
-Cancel mailing list validation:
+Cancel mailing list verification:
+
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 .. include:: samples/delete-list-validation.rst
 

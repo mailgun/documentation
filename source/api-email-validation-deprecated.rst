@@ -3,7 +3,9 @@
 Email Validation
 ================
 
-This API endpoint is an email address validation service. We will validate the given address based on:
+.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
+
+This API endpoint is an email address verification service. We will verify the given address based on:
 
 - Mailbox detection
 
@@ -15,37 +17,37 @@ This API endpoint is an email address validation service. We will validate the g
 
 - Email Service Provider (ESP) specific local-part grammar (if available).
 
-Pricing details for Mailgun's email validation service can be found on our `pricing page`_.
+Pricing details for Mailgun's email verification service can be found on our `pricing page`_.
 
-Mailgun's email validation service is intended to validate email addresses submitted through forms like newsletters, online registrations and shopping carts.  Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to use the service appropriately.
+Mailgun's email verification service is intended to verify email addresses submitted through forms like newsletters, online registrations and shopping carts.  Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to use the service appropriately.
 
 .. _pricing page: https://www.mailgun.com/pricing
 .. _Acceptable Use Policy (AUP): http://mailgun.com/aup
 
 
-Different email validation rates are given based on the API endpoint. Both the public and private
+Different email verification rates are given based on the API endpoint. Both the public and private
 API endpoints are limited to a burst per minute rate. The public endpoints have a default
 limit of calls per month, which can be changed, to prevent abuse of the public API key.
-The use of private API endpoints for email validation is encouraged and there is no limit past the initial
+The use of private API endpoints for email verification is encouraged and there is no limit past the initial
 burst per minute rate. It is highly suggested that the private key is used whenever possible.
 
 .. warning:: Do not use your Mailgun private API key on publicly accessible code. Instead, use your Mailgun public key, available in the "Security" tab under the **Account** section of the Control Panel.
 
-.. warning:: This version is deprecated. The new version of the validations api is here :ref:`api-email-validations`
+.. warning:: This version is deprecated. The new version of the Validations API is here :ref:`api-email-validations`
 
 
 .. code-block:: url
 
      GET /address/validate
 
-Given an arbitrary address, validates address based off defined checks.
+Given an arbitrary address, verifies address based off defined checks.
 
 .. container:: ptable
 
  ====================== ========================================================
  Parameter         	Description
  ====================== ========================================================
- address           	An email address to validate. (Maximum: 512 characters)
+ address           	An email address to verify. (Maximum: 512 characters)
  api_key          	If you cannot use HTTP Basic Authentication (preferred),
                    	you can pass your public api_key in as a parameter.
  mailbox_verification	If set to true, a mailbox verification check will be 
@@ -68,7 +70,7 @@ Parses a delimiter-separated list of email addresses into two lists: parsed addr
  addresses         A delimiter separated list of addresses.
                    (Maximum: 8000 characters)
  syntax_only       Perform only syntax checks or DNS and ESP specific
-                   validation as well. (true by default)
+                   verification as well. (true by default)
  api_key           If you cannot use HTTP Basic Authentication (preferred),
                    you can pass your public api_key in as a parameter.
  ================= ========================================================
@@ -77,7 +79,7 @@ Parses a delimiter-separated list of email addresses into two lists: parsed addr
 
     GET /address/private/validate
 
-Addresses are validated based off defined checks.
+Addresses are verified based off defined checks.
 
 This operation is only accessible with the private API key and not subject to the
 daily usage limits.
@@ -87,7 +89,7 @@ daily usage limits.
  ====================== ========================================================
  Parameter         	Description
  ====================== ========================================================
- address           	An email address to validate. (Maximum: 512 characters)
+ address           	An email address to verify. (Maximum: 512 characters)
  mailbox_verification	If set to true, a mailbox verification check will be 
  			performed against the address.
  			
@@ -111,7 +113,7 @@ daily usage limits.
  addresses         A delimiter separated list of addresses.
                    (Maximum: 8000 characters)
  syntax_only       Perform only syntax checks or DNS and ESP specific
-                   validation as well. (true by default)
+                   verification as well. (true by default)
  api_key           If you can not use HTTP Basic Authentication (preferred),
                    you can pass your private api_key in as a parameter.
  ================= ========================================================
@@ -119,7 +121,7 @@ daily usage limits.
 Example
 ~~~~~~~
 
-Validate a single email address.
+Verify a single email address.
 
 .. include:: samples/get-validate-deprecated.rst
 
@@ -166,7 +168,7 @@ Field Explanation:
 =====================    =========    ============================================================================================================
 Parameter                Type         Description
 =====================    =========    ============================================================================================================
-address                  string       Email address being validated
+address                  string       Email address being verified
 did_you_mean             string       Null if nothing, however if a potential typo is made, the closest suggestion is provided
 is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
@@ -200,7 +202,7 @@ Sample response:
 jQuery Plugin
 ~~~~~~~~~~~~~
 
-We also have a `jQuery plugin`_ you can use for front-end email validation.
+We also have a `jQuery plugin`_ you can use for front-end email verification.
 
 Just remember to use your public Mailgun API key.
 
