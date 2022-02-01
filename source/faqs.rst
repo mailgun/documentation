@@ -22,7 +22,7 @@ Here's a classic post, `So You'd Like to Send Some Email (Through Code)`_, from 
 
 .. _So You'd Like to Send Some Email (Through Code): http://blog.codinghorror.com/so-youd-like-to-send-some-email-through-code/
 
-What are the differences between free and Flex plans?
+What are the differences between Free and Flex plans?
 **************************************************************************************************************
 
 **Free plan (no credit card required):**
