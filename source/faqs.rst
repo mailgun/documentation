@@ -35,12 +35,15 @@ What are the differences between free and Flex plans?
 
 **Flex Plan:**
 
-If you opt to enter your credit card, you'll receive 5,000 free messages per month for 3 months. After the 3 months is up, if you haven't opted to upgrade into one of our subscription plans, you'll continue on a Pay as you Go plan, in which you'd pay for any messages you send at a rate of $0.80/1,000 messages. Additionally, on flex plans you get:
+If you opt to enter your credit card during sign-up, you'll enter a three-month trial in which your card will not be charged unless you exceed the 5,000 messages per month allotment. After your trial expires, you will be charged $35/mo for the Foundation 50k plan (unless another subscription plan was selected during sign-up or during the three-month trial period).
+
+Additional features on the Flex plan include:
 
 * No daily sending limit
-* You get 5,000 free messages a month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $0.80/1,000 messages
-* Data retention for Logs and the Events API is 5 days
+* You receive 5,000 free messages a month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $1.00/1,000 messages
+* Data retention for Logs and the Events API is 5 days
 * You can create custom domains
+* You can add up to 5 routes
 * Use of Authorized Recipients is not required to send with custom domains; you may send to whomever you like!
 
 If these limits are not enough for you, or if you need to talk to us about a custom contract, you can reach us at sales@mailgun.com.
