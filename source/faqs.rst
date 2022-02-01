@@ -40,7 +40,7 @@ If you opt to enter your credit card during sign-up, you'll enter a three-month 
 Additional features on the Flex plan include:
 
 * No daily sending limit
-* You receive 5,000 free messages a month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $1.00/1,000 messages
+* You receive 5,000 free messages per month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $1.00/1,000 messages
 * Data retention for Logs and the Events API is 5 days
 * You can create custom domains
 * You can add up to 5 routes
