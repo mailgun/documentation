@@ -33,9 +33,9 @@ What are the differences between free and Flex plans?
 * You cannot create custom domains
 * You can only send to Authorized Recipients; and there is a maximum of 5 Authorized Recipients
 
-**Flex Plan:**
+**Flex plan (credit card required):**
 
-If you opt to enter your credit card during sign-up, you'll enter a three-month trial in which your card will not be charged unless you exceed the 5,000 messages per month allotment. After your trial expires, you will be charged $35/mo for the Foundation 50k plan (unless another subscription plan was selected during sign-up or during the three-month trial period).
+If you opt to enter your credit card during sign-up, you'll enter a three-month trial in which your card will not be charged unless you exceed the 5,000 messages per month allotment. After your trial expires, you will be charged $35/mo for the Foundation 50k plan (unless another subscription plan was selected during the three-month trial period).
 
 Additional features on the Flex plan include:
 
