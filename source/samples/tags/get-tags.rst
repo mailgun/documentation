@@ -117,9 +117,19 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
+ const DOMAIN = 'YOUR_DOMAIN_NAME';
 
- mailgun.get(`/${DOMAIN}/tags`, {"limit": 10}, function (error, body) {
-   console.log(body);
- });
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+
+  const mailgun = new Mailgun(formData);
+
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+  (async () => {
+    try {
+       const tagsList = await client.domains.domainTags.list(DOMAIN, {"limit": 10});
+       console.log('tagsList', tagsList);
+    } catch (error) {
+      console.error(error);
+    }
+  })();

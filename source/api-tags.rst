@@ -173,7 +173,7 @@ Examples
 
 Retrieve all tags for a domain:
 
-.. include:: samples/get-tags.rst
+.. include:: samples/tags/get-tags.rst
 
 Sample response:
 
@@ -204,7 +204,7 @@ Sample response:
 
 Delete tag:
 
-.. include:: samples/delete-tag.rst
+.. include:: samples/tags/delete-tag.rst
 
 Sample response:
 
@@ -216,10 +216,9 @@ Sample response:
 
 Retrieve all countries of origin for a domain with event types:
 
-.. code-block:: bash
+.. include:: samples/tags/tag-countries-aggregation.rst
 
-    curl -v -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/countries
+Sample response:
 
 .. code-block:: javascript
 
@@ -247,10 +246,7 @@ Retrieve all countries of origin for a domain with event types:
 
 Retrieve all providers of a domain with corresponding event types:
 
-.. code-block:: bash
-
-    curl -v -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/providers
+.. include:: samples/tags/tag-providers-aggregation.rst
 
 .. code-block:: javascript
 
@@ -282,10 +278,7 @@ Retrieve all providers of a domain with corresponding event types:
 
 Retrieve all devices that have triggered an event type in a domain:
 
-.. code-block:: bash
-
-    curl -v -s --user 'api:YOUR_API_KEY' \
-    https://api.mailgun.net/v3/<domain>/tags/<tag>/stats/aggregates/devices
+.. include:: samples/tags/tag-devices-aggregation.rst
 
 .. code-block:: javascript
 
