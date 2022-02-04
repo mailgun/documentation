@@ -179,8 +179,6 @@ There are a few tricks to remember about content besides the mantra of 'sending 
 * Links should include the domain that is sending the email.  Also, popular url shorteners can be a bad idea because they are frequently used by spammers.
 * A/B test your emails to optimize recipient engagement. Subject lines are particularly important.  You can use Mailgun's tagging and tracking statistics in order to measure A/B testing and improve your content.
 
-.. _Litmus: http://litmus.com/email-testing
-.. _Return Path: http://returnpath.net
-.. _Return Path's website: http://www.returnpath.com
+.. _Email On Acid: https://www.emailonacid.com/
 
 **Best of luck with your emailing...we hope we made it easier!**
