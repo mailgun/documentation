@@ -32,25 +32,27 @@ What are the differences between Free and Flex plans?
 * Data retention for Logs and the Events API is 1 day
 * You cannot create custom domains
 * You can only send to Authorized Recipients; and there is a maximum of 5 Authorized Recipients
+* You cannot add any routes
 
 **Flex plan (credit card required):**
 
-If you opt to enter your credit card during sign-up, you'll enter a three-month trial in which your card will not be charged unless you exceed the 5,000 messages per month allotment. After your trial expires, you will be charged $35/mo for the Foundation 50k plan (unless another subscription plan was selected during the three-month trial period).
-
-Additional features on the Flex plan include:
-
 * No daily sending limit
-* You receive 5,000 free messages per month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $1.00/1,000 messages
+* You receive 5,000 free messages per month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $1.00/1,000 messages. After these 3 months, the allotment of free messages received is 1,000
 * Data retention for Logs and the Events API is 5 days
 * You can create custom domains
-* You can add up to 5 routes
 * Use of Authorized Recipients is not required to send with custom domains; you may send to whomever you like!
+* You can add up to 5 routes
 
 If these limits are not enough for you, or if you need to talk to us about a custom contract, you can reach us at sales@mailgun.com.
 
 You can find a full list of features on our `pricing page`_.
 
 .. _pricing page: http://mailgun.com/pricing
+
+**Foundation Trial (credit card required):**
+
+If you opt to enter your credit card during sign-up, you'll enter a three-month trial in which your card will not be charged unless you exceed the 5,000 messages per month allotment. After your trial expires, you will be charged $35/mo for the Foundation 50k plan (unless another subscription plan was selected during the three-month trial period).
+
 
 Can I get multiple Domains and IP Addresses?
 **************************************************************************************************************
