@@ -3,7 +3,7 @@
 Templates
 =========
 
-This API allows you to store predefined templates and use them to send messages using :ref:`sending API <api-sending-messages>`.
+This API allows you to store predefined templates and use them to send messages using the :ref:`Sending API <api-sending-messages>`.
 
 The Templates API endpoint is available at:
 
@@ -11,14 +11,14 @@ The Templates API endpoint is available at:
 
       v3/<domain>/templates
 
-The API has following limitations:
+The API has the following limitations:
 
-* 100 templates per domains
+* 100 templates per domain
 * 10 versions per template
 * 100Kb max template size
 
 
-Template API
+Templates API
 ------------
 
 Store new template
@@ -28,23 +28,23 @@ Store new template
 
     POST /<domain>/templates
 
-This API stores a new template, storing its name, description and, optionally, the template content.
-If the content is provided a new version is automatically created and becomes the active version.
+This API stores a new template, including its name, description and (optionally) the template content.
+If the template content is provided, a new version is automatically created and becomes the active version.
 
 .. container:: ptable
 
  =============== ==================================================================
  Parameter             Description
  =============== ==================================================================
- name            Name of the template being created. The name can contain alpha characters, digits and next symbols: .-_~
- description     Description of the template being created
+ name            Name of the template being stored. The name can contain alpha characters, digits and next symbols: .-_~
+ description     Description of the template being stored
  template        (Optional) Content of the template
- tag             (Optional) Initial tag of the created version. If `template` parameter is provided and `tag` is missing default value `initial` is used. The tag can contain alpha characters, digits and next symbols: .-_~
- engine          (Optional) The template engine to use to render the template. Valid only if template parameter is provided. Currently the API supports only one engine: **handlebars**
- comment         (Optional) Version comment. Valid only if new version is being created (template parameter is provided) 
+ tag             (Optional) Initial tag of the created version. If the `template` parameter is provided and the `tag` is missing, the default value `initial` is used. The tag can contain alpha-numeric characters and next symbols, such as .-_~
+ engine          (Optional) The template engine used to render the template. This is valid only if the `template` parameter is provided. Currently, the Templates API supports only the **handlebars** engine.
+ comment         (Optional) Version comment. This is valid only if a new version is being created. (`template` parameter is provided.) 
  =============== ==================================================================
 
-Example of storing template metadata only:
+Example of storing only the template metadata:
 
 .. include:: samples/templates/template-create.rst
 
@@ -61,7 +61,7 @@ Sample response:
     "message": "template has been stored"
   }
 
-Example of storing template with a version:
+Example of storing a template with a version:
 
 .. include:: samples/templates/template-create-version.rst
 
@@ -92,14 +92,14 @@ Get template
 
     GET /<domain>/templates/<name>
 
-Returns metadata information about a stored template specified in url. If the `active` flag is provided the content of active version of the template is returned. 
+Returns metadata information about the stored template specified in the url. If the `active` flag is provided, the content of the active version of the template is returned. 
 
 .. container:: ptable
 
  =============== ===================================================================
  Parameter       Description
  =============== ===================================================================
- active          (Optional) If this flag is set to **yes** the active version of the template is included into a response. 
+ active          (Optional) If this flag is set to **yes** the active version of the template is included in the response. 
  =============== ===================================================================
 
 Example:
@@ -118,7 +118,7 @@ Sample response:
     }
   }
 
-Example of retrieving active version of a template:
+Example of retrieving the active version of a template:
 
 .. include:: samples/templates/template-get-active.rst
 
@@ -148,7 +148,7 @@ Update template
 
     PUT /<domain>/templates/<name>
 
-Update metadata information of a template specified in url
+Update the metadata information of the template specified in url.
 
 .. container:: ptable
 
@@ -183,7 +183,7 @@ Delete template
 
     DELETE /<domain>/templates/<name>
 
-Delete a template specified in url. This method deletes all versions of the specified template
+Delete the template specified in the url. **NOTE:** This method deletes all versions of the specified template.
 
 Example:
 
@@ -200,7 +200,7 @@ Sample response:
     "message": "template has been deleted"
   }
 
-View all templates in domain
+View all templates in a domain
 ++++++++++++++++++++++++++++
 
 .. code-block:: url
@@ -247,21 +247,21 @@ Sample response:
         }
     ],
     "paging": {
-        "first": "https://api.mailgin.net/v3/YOUR_DOMAIN_NAME/templates?limit=10",
+        "first": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?limit=10",
         "last": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=last&limit=10",
         "next": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=next&p=template.2&limit=10",
         "prev": "https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates?page=prev&p=template.0&limit=10"
     }
   }
 
-Delete all template in domain
+Delete all templates in a domain
 +++++++++++++++++++++++++++++
 
 .. code-block:: url
 
    DELETE /<domain>/templates
 
-Delete all stored templates for the domain
+Delete all stored templates for the domain.
 
 Example:
 
@@ -282,7 +282,7 @@ Create new version
 
     POST /<domain>/templates/<template>/versions
 
-Create a new version of the template. If the template doesn't contain any versions yet the first version becomes active
+Create a new version of a template. If the template doesn't contain any other versions, the first version becomes active.
 
 .. container:: ptable
 
@@ -291,9 +291,9 @@ Create a new version of the template. If the template doesn't contain any versio
  =============== ================================================================================
  template        Content of the template
  tag             Tag of the version is being created
- engine          (Optional) Template engine. Only one engine are supported right now - ``handlebars``.
- comment         (Optional) The comment of the stored version
- active          (Optional) If this flag is set to ``yes`` this version becomes active
+ engine          (Optional) Template engine. The only engine currently supported is ``handlebars``.
+ comment         (Optional) Comments relating to the stored version
+ active          (Optional) If this flag is set to ``yes``, this version becomes active
  =============== ================================================================================
 
 Example:
@@ -326,7 +326,7 @@ Get version
 
     GET /<domain>/templates/<name>/versions/<tag>
 
-Retrieve information and content of specified version of the template
+Retrieve the information and content of the specified version of a template.
 
 Example:
 
@@ -358,7 +358,7 @@ Update version
 
     PUT /<domain>/templates/<name>/versions/<tag>
 
-Update information or content of the specific version of the template
+Update information or content of the specific version of the template.
 
 .. container:: ptable
 
@@ -393,7 +393,7 @@ Delete version
 
     DELETE /<domain>/templates/<template>/versions/<version>
 
-Delete a specific version of the template
+Delete a specific version of the template.
 
 Example:
 
