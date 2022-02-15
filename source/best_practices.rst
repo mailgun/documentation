@@ -170,7 +170,7 @@ Email Content
 There are a few tricks to remember about content besides the mantra of 'sending something people want'.  As mentioned above, you can set up a test mailbox at Mailgun and enable our spam filters to receive a "spamicity" score to test how your content is being judged by spam filters.
 
 * Personalize your emails to each recipient. Ideally, the content should reflect recipient's specific interests or usage patterns in your application.  At least address them by their name...don't be rude!. Mailgun has recipient variables that you can define and use with your email templates to achieve detailed levels of personalization.
-* It is best to send multi-part emails using both text and HTML or text only.  Sending HTML only email is not well received by ESPs.  Also, remember that ESPs generally block images by default so HTML only will not look very good unless users are proactive about enabling images.  There are a few tools available to test how your email will render across ESPs and browsers.  Litmus_ offers one, as does `Return Path`_.
+* It is best to send multi-part emails using both text and HTML or text only.  Sending HTML only email is not well received by ESPs.  Also, remember that ESPs generally block images by default so HTML only will not look very good unless users are proactive about enabling images.  The best tool available to test how your email will render across various ESPs and browsers is `Email On Acid`_. 
 * The higher the text to link and text to image ratios, the better.  Too many links and images trigger spam flags at ESPs.
 * Misspellings, spammy words (buy now!, Free!) are big spam flags, as are ALL CAPS AND EXCLAMATION MARKS!!!!!!!!!!!!!
 * The domains in the from field, return-path and message-id should match the domain you are sending from.
@@ -179,8 +179,6 @@ There are a few tricks to remember about content besides the mantra of 'sending 
 * Links should include the domain that is sending the email.  Also, popular url shorteners can be a bad idea because they are frequently used by spammers.
 * A/B test your emails to optimize recipient engagement. Subject lines are particularly important.  You can use Mailgun's tagging and tracking statistics in order to measure A/B testing and improve your content.
 
-.. _Litmus: http://litmus.com/email-testing
-.. _Return Path: http://returnpath.net
-.. _Return Path's website: http://www.returnpath.com
+.. _Email On Acid: https://www.emailonacid.com/
 
 **Best of luck with your emailing...we hope we made it easier!**
