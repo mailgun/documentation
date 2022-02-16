@@ -13,8 +13,7 @@ organized around the four major features that Mailgun provides:
 - `Sending Messages`_
 - `Tracking Messages`_
 - `Receiving, Forwarding and Storing Messages`_
-- `Email Validation V3`_
-- `Email Validation V4`_
+- `Email Verification`_
 - `Inbox Placement`_
 
 At the heart of Mailgun is the API.  Most of the Mailgun service can be
@@ -1863,136 +1862,16 @@ If you chose option 3, there are four headers we provide for you: ``X-Mailgun-Sf
     Possible values are: 'Pass', 'Neutral', 'Fail' or 'SoftFail'.
 
 
-Email Validation V3
+Email Verification
 *******************
-
-.. note::
-    The V3 Validations API has been deprecated in favor of V4
-    
-.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
-
-Mailgun's email verification service is intended for validating email addresses
-submitted through forms like newsletters, online registrations, and shopping carts.
-
-Maintaining a list of valid and deliverable email addresses is important in order
-to reduce the ratio of bounce back emails and prevent negative impacts to your reputation
-as a sender.
-
-Verify a single email address.
-
-.. include:: samples/get-validate.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-      "address": "foo@mailgun.net",
-      "did_you_mean": null,
-      "is_disposable_address": false,
-      "is_role_address": false,
-      "is_valid": true,
-      "parts": {
-          "display_name": null,
-          "domain": "mailgun.net",
-          "local_part": "foo"
-      }
-  }
-
-Field Explanation:
-
-=====================    =========    ============================================================================================================
-Parameter                Type         Description
-=====================    =========    ============================================================================================================
-address                  string       Email address being verified
-did_you_mean             string       Null if nothing, however if a potential typo is made, the closest suggestion is provided
-is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
-is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
-is_valid                 boolean      Runs the email segments across a valid known provider rule list. If a violation occurs this value is false
-parts                    string       (display_name, domain, local_part): Parsed segments of the provided email address
-=====================    =========    ============================================================================================================
-
-
-Parse a list of email addresses:
-
-.. include:: samples/get-parse.rst
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-      "parsed": [
-          "Alice <alice@example.com>",
-          "bob@example.com"
-      ],
-      "unparsable": [
-      ]
-  }
-
-Mailbox Verification
-====================
-
-Mailgun has the ability, for supported mailbox providers, to check and determine
-if a mailbox exists on the target domain. This check is an additional safeguard
-against typos. The mailbox verification check will return true, false, or unknown.
-Unknown may be returned if the mailbox provider does not support the check or the
-check times out.
-
-Role-based Address Check
-========================
-
-For all verification requests, we provide whether an address is a role-based address
-(e.g. postmaster@, info@, etc.). These addresses are typically distribution lists
-with a much higher complaint rate since unsuspecting users on the list can receive
-a message they were not expecting.
-
-Disposable Mailbox Detection
-============================
-
-Disposable mailboxes are commonly used for fraudulent purposes. Mailgun can detect
-whether the address provided is on a known disposable mailbox provider and given the
-determination, you may choose how to proceed based on your own risk decisions. It is
-important to check for disposable mailboxes to ensure communication between user
-and web application.
-
-Sample response:
-
-.. code-block:: javascript
-
-  {
-      "address": "fake@throwawaymail.com",
-      "did_you_mean": null,
-      "is_disposable_address": true,
-      "is_role_address": false,
-      "is_valid": true,
-      "mailbox_verification": true,
-      "parts": {
-          "display_name": null,
-          "domain": "throwawaymail.com",
-          "local_part": "fake"
-      }
-  }
-
-Reporting Dashboard
-===================
-
-Within the verification menu, you can view your usage by day or hour for the Validation
-API in a given time range. Mailgun will also include the type of API call that was
-made to help measure the impact of email address verification.
-
-Email Validation V4
-*******************
-
-.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
 Mailgun’s email verification service is a multi-point check of an email address to ensure it exists,
-is not a high-risk address, is not disposable and more. Maintaining a list of valid and deliverable
+is not a high-risk address, is not disposable and more. Maintaining a list of verified and deliverable
 email addresses is important in order to reduce the ratio of bounced emails and prevent
 negative impacts to your reputation as a sender.
 
-Mailgun offers verifications in three forms: performing a **single verification**, validating the email
-addresses of the members of a **mailing list**, and validating lists in **bulk** via CSV.
+Mailgun offers verifications in three forms: performing a **single verification**, verifying the email
+addresses of the members of a **mailing list**, and verifying lists in **bulk** via CSV.
 
 Mailgun’s revamp of our initial verification service now offers a definitive **result** of our verification
 check and a **risk** assessment of the given address. The **result** parameter will return one of four
@@ -2048,7 +1927,7 @@ disposable mailboxes to ensure communication between user and web application.
 List Verification
 ===============
 
-The members of a Mailing List that exists at Mailgun can be validating with the tap of a button in
+The members of a Mailing List that exists within Mailgun can be verified with the click of a button in
 the Control Panel as demonstrated below:
 
 .. figure::  _static/img/validation_control_panel.png
@@ -2056,7 +1935,6 @@ the Control Panel as demonstrated below:
     :width: 700 px
 
 Note that the existing limitation of a maximum of 2.5 million members still exists for Mailing Lists.
-
 
 Bulk Verification
 ===============
