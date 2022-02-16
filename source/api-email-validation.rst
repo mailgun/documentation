@@ -1,6 +1,6 @@
 .. _api-email-validation:
 
-Email Validation
+Email Validation/Verification
 ================
 
 .. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
@@ -19,7 +19,7 @@ We will verify the given address based on:
 
 - Email Service Provider (ESP) specific local-part grammar (if available).
 
-The Email Validation API endpoint is available at:
+The Email Validation/Verification API endpoint is available at:
 
 .. code-block:: url
 
