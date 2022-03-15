@@ -20,7 +20,7 @@ In this guide, we will not focus much on the content of email messages. Content 
 Reputation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One of the most important assets you have in the email world (much like the real world) is your reputation. If you do not have a good reputation tied to your domain and your IP address (“IP” used herein for abbreviation), your email will not reach your recipients’ inboxes. Due to its popularity and its unique ability to push information to users, email has been overrun with spammers (as if you didn’t notice). Depending on your definition, approximately 90% of all email is spam (source: MAAWG_). Due to this, email service providers (“ESPs”) like Gmail, AOL, Yahoo and MSN/Hotmail have declared an all-out war on spammers. This has made our inboxes a more pleasant place. This also makes it very important to manage your email reputation. If it is not impeccable, you will get caught in the ESPs’ spam filters.
+
 
 A good analogy for your email reputation is your personal credit score. Obviously, a bad reputation will hurt you. However, not having a reputation will also hurt you. If ESPs don’t know you (or more specifically your IP and domain) they will assume the worst and filter you, at least initially. It’s tough to blame them given all the spam out there. Due to the importance of reputation, a significant portion of our discussion on best practices revolves around building and maintaining your email reputation.
 
