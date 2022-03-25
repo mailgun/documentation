@@ -14,7 +14,7 @@ The response will include an “id” property that should be used to request th
 
 .. code-block:: url
 
-     POST /v1/previews/tests
+     POST /v1/preview/tests
 
 The available request fields are as follows:
 
@@ -41,4 +41,44 @@ Example response:
   {
     "id": "<UNIQUE ID>",
     "reference_id": "123ABC"
-   }
+  }
+
+Get Email Tests
+---------------
+
+This call returns a list of all available Email Tests and some metadata about them.
+Email Tests are stored for 90 days. The query string is an optional standard URL
+parameterized version containing any or all of the below search parameters.
+
+.. code-block:: url
+
+     GET /v1/preview/tests?<query_string>
+
+The available search query parameters are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Name                   Description
+ ====================== ========================================================
+ from                   The starting point of your test date range.
+ to                     The ending point of your test date range.
+ subject                The "subject" field of returned tests must contain the exact string. This search is case-insensitive.
+ results                The number of results to return. Must be between 1 and 200. The default value is 50.
+ page                   The page number. If you submit a number higher than the number of pages in the data, an empty array will be returned. The default value is 1.
+ ====================== ========================================================
+
+Example response:
+
+.. code-block:: javascript
+
+  [
+    {
+      "id": "<test_id>",
+      "date": 1648177673,
+    },
+    {
+      "id": "<test_id>",
+      "date": 1648177673,
+    }
+  ]
