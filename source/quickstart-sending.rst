@@ -3,7 +3,7 @@
 How to start sending email
 ==========================
 
-.. figure::  _static/img/quickstart/sending.png
+.. figure::  _static/img/quickstart/send.png
    :align: center
    :width: 800 px
 
