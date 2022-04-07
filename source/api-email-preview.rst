@@ -34,6 +34,8 @@ The available request fields are as follows:
  ``transfer_encoding``  One of base64, quoted-printable, 7bit, or 8bit.
  ====================== ========================================================
 
+.. include:: samples/email_preview/create-test.rst
+
 Example response:
 
 .. code-block:: javascript
