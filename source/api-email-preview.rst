@@ -3,6 +3,8 @@
 Email Preview
 =============
 
+Our Email Preview service allows you to see how your emails render across various web, desktop, and mobile clients.
+
 Create Test
 -----------
 
