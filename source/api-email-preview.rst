@@ -29,7 +29,7 @@ The available request fields are as follows:
  ``subject``            The subject line of your email, encoded as declared in ``transfer_encoding``.
  ``html``               The email source of your email, encoded as declared in ``transfer_encoding``.
  ``url``                A URL pointing to the email source of your email.
- ``clients``            An array of string IDs as returned from client list functions.
+ ``clients``            An array of string IDs as returned from client list functions. If no clients are specified, all available clients will be used.
  ``reference_id``       This value can be used for searching and internal reporting.
  ``charset``            The character set your HTML is encoded in.
  ``image_blocking``     If true, run a test with images blocked in clients that support it.
@@ -99,7 +99,7 @@ that have completed screenshots uploaded. The ``processing`` property contains c
 still being processed by our system. The ``bounced`` property contains clients that were bounced
 by the destination and cannot be retried.
 
-This call will automatically requeue screenshots if they stay in processing for more than threeminutes.
+This call will automatically requeue screenshots if they stay in processing for more than three minutes.
 
 .. code-block:: url
 
