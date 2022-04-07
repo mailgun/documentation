@@ -212,3 +212,21 @@ so this function should be used more as a guide than as an exact preview.
 .. code-block:: url
 
      GET /v1/preview/tests/{TEST_ID}/content/textonly
+
+
+Delete Test
+-----------
+
+This call marks an Email Test as deleted. Once it is deleted, it cannot be recovered.
+
+.. code-block:: url
+
+     DELETE /v1/preview/tests/{TEST_ID}
+
+Example response:
+
+.. code-block:: javascript
+
+  {
+    "success": true
+  }
