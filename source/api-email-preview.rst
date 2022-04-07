@@ -24,14 +24,14 @@ The available request fields are as follows:
  ====================== ========================================================
  Field                  Description
  ====================== ========================================================
- subject                The subject line of your email, encoded as declared in ``transfer_encoding``.
- html                   The email source of your email, encoded as declared in ``transfer_encoding``.
- url                    A URL pointing to the email source of your email.
- clients                An array of string IDs as returned from client list functions.
- reference_id           This value can be used for searching and internal reporting.
- charset                The character set your HTML is encoded in.
- image_blocking         If true, run a test with images blocked in clients that support it.
- transfer_encoding      One of base64, quoted-printable, 7bit, or 8bit.
+ ``subject``            The subject line of your email, encoded as declared in ``transfer_encoding``.
+ ``html``               The email source of your email, encoded as declared in ``transfer_encoding``.
+ ``url``                A URL pointing to the email source of your email.
+ ``clients``            An array of string IDs as returned from client list functions.
+ ``reference_id``       This value can be used for searching and internal reporting.
+ ``charset``            The character set your HTML is encoded in.
+ ``image_blocking``     If true, run a test with images blocked in clients that support it.
+ ``transfer_encoding``  One of base64, quoted-printable, 7bit, or 8bit.
  ====================== ========================================================
 
 Example response:
@@ -61,11 +61,11 @@ The available search query parameters are as follows:
  ====================== ========================================================
  Name                   Description
  ====================== ========================================================
- from                   The starting point of your test date range.
- to                     The ending point of your test date range.
- subject                The ``subject`` field of returned tests must contain the exact string. This search is case-insensitive.
- results                The number of results to return. Must be between 1 and 200. The default value is 50.
- page                   The page number. If you submit a number higher than the number of pages in the data, an empty array will be returned. The default value is 1.
+ ``from``               The starting point of your test date range.
+ ``to``                 The ending point of your test date range.
+ ``subject``            The ``subject`` field of returned tests must contain the exact string. This search is case-insensitive.
+ ``results``            The number of results to return. Must be between 1 and 200. The default value is 50.
+ ``page``               The page number. If you submit a number higher than the number of pages in the data, an empty array will be returned. The default value is 1.
  ====================== ========================================================
 
 Example response:
@@ -325,13 +325,13 @@ Response property details:
  ====================== ========================================================
  Field                  Description
  ====================== ========================================================
- id                     Our unique identifier for the email client. This code can be used when creating new Email Tests.
- client                 Name of the email client.
- os                     The name of the OS that this client is running on.
- category               The type of client this is: one of "Application", "Mobile", or "Web"
- browser                If this is client is in a browser, the name of the browser the client is running in.
- rotate                 A boolean value indicating if this client supports orientation changes. If it is missing, assume ``false``.
- image_blocking         A boolean value indicating if this client supports image blocking. If it is missing, assume ``false``.
- free                   A boolean value indicating if this client can be used with free tests. If it is missing, assume ``false``.
- default                A boolean value indicating if this client will be included if no client key is sent with test creation. If it is missing, assume ``false``.
+ ``id``                 Our unique identifier for the email client. This code can be used when creating new Email Tests.
+ ``client``             Name of the email client.
+ ``os``                 The name of the OS that this client is running on.
+ ``category``           The type of client this is: one of "Application", "Mobile", or "Web"
+ ``browser``            If this is client is in a browser, the name of the browser the client is running in.
+ ``rotate``             A boolean value indicating if this client supports orientation changes. If it is missing, assume ``false``.
+ ``image_blocking``     A boolean value indicating if this client supports image blocking. If it is missing, assume ``false``.
+ ``free``               A boolean value indicating if this client can be used with free tests. If it is missing, assume ``false``.
+ ``default``            A boolean value indicating if this client will be included if no client key is sent with test creation. If it is missing, assume ``false``.
  ====================== ========================================================
