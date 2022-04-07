@@ -32,7 +32,6 @@ The available request fields are as follows:
  ``clients``            An array of string IDs as returned from client list functions. If no clients are specified, all available clients will be used.
  ``reference_id``       This value can be used for searching and internal reporting.
  ``charset``            The character set your HTML is encoded in.
- ``image_blocking``     If true, run a test with images blocked in clients that support it.
  ``transfer_encoding``  One of base64, quoted-printable, 7bit, or 8bit.
  ====================== ========================================================
 
@@ -295,10 +294,6 @@ client ID, a printable client name, and OS. Clients are split into three
 categories: "Web", "Application", and "Mobile". "Browser" type clients will
 contain a ``browser`` property.
 
-The ``rotate`` and ``image_blocking`` describe client features. The ``default``
-property shows whether or not this client will be processed when submitting a
-test without setting the clients.
-
 Missing properties should be interpreted as a feature NOT being supported (i.e.
 equivalent to "false"). The API MAY respond with "false".
 
@@ -335,7 +330,5 @@ Response property details:
  ``category``           The type of client this is: one of "Application", "Mobile", or "Web"
  ``browser``            If this is client is in a browser, the name of the browser the client is running in.
  ``rotate``             A boolean value indicating if this client supports orientation changes. If it is missing, assume ``false``.
- ``image_blocking``     A boolean value indicating if this client supports image blocking. If it is missing, assume ``false``.
- ``free``               A boolean value indicating if this client can be used with free tests. If it is missing, assume ``false``.
  ``default``            A boolean value indicating if this client will be included if no client key is sent with test creation. If it is missing, assume ``false``.
  ====================== ========================================================
