@@ -39,7 +39,7 @@ Example response:
 .. code-block:: javascript
 
   {
-    "id": "<UNIQUE ID>",
+    "id": "<TEST_ID>",
     "reference_id": "123ABC"
   }
 
@@ -74,13 +74,48 @@ Example response:
 
   [
     {
-      "id": "<UNIQUE ID>",
+      "id": "<TEST_ID>",
       "date": 1648177673,
       "type": "email-test",
     },
     {
-      "id": "<UNIQUE ID>",
+      "id": "<TEST_ID>",
       "date": 1648177673,
       "type": "email-test",
     }
   ]
+
+
+Get Test Info
+-------------
+
+This call returns the subject and submission time in UNIX timestamp format. It will also contain
+one to three properties containing an array of clients. The ``completed`` property shows clients
+that have completed screenshots uploaded. The ``processing`` property contains clients which are
+still being processed by our system. The ``bounced`` property contains clients that were bounced
+by the destination and cannot be retried.
+
+This call will automatically requeue screenshots if they stay in processing for more than threeminutes.
+
+.. code-block:: url
+
+     GET /v1/preview/tests/{TEST_ID}
+
+Example response:
+
+.. code-block:: javascript
+
+  {
+    "subject": "Test Subject",
+    "date": 1470034800,
+    "completed": [
+      "iphone12_15",
+      "iphone12_15_dm"
+    ],
+    "processing": [
+      "iphone13_15"
+    ],
+    "bounced": [
+      "ffr_chr26_win"
+    ]
+  }
