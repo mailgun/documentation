@@ -119,3 +119,96 @@ Example response:
       "ffr_chr26_win"
     ]
   }
+
+
+Get Test Results
+----------------
+
+This call returns detailed results for screenshots including their upload locations,
+send times, completion times, and information about bounces, if any. ``TEST_ID`` is
+a test ID returned from test creation or the get tests functions.
+
+The URLs in this call are static – that is to say that they will not change for the
+duration your test is active (90 days from test creation). Any reprocessing that is
+done will replace the images in these locations. The image locations are generated
+programmatically before the screenshots are complete, so the presence of a URL in
+the call is not a guarantee that the file will be present. Use the "status" property
+to determine whether or not the file is present in the location, or you can manually
+test the URL provided. If the file is not present, you will receive a 403 Forbidden
+response from the endpoint.
+
+.. code-block:: url
+
+     GET /v1/preview/tests/{TEST_ID}/results
+
+Example response:
+
+.. code-block:: javascript
+
+  {
+    "iphone13_15": {
+      "id": "iphone13_15",
+      "display_name": "iPhone 13",
+      "client": "iPhone",
+      "os": "iOS 15",
+      "category": "Mobile",
+      "screenshots": {
+        "default": "<URL>",
+        "horizontal": "<URL>"
+      },
+      "thumbnail": "<URL>",
+      "full_thumbnail": "<URL>",
+      "status": "Complete",
+      "status_details": {
+        "submitted": 1649353640,
+        "completed": 1649353649
+      }
+    },
+    "iphone13_15_dm": {
+      ...
+    }
+  }
+
+
+Get Test Content
+----------------
+
+Each of these calls will return an object with a single property ``content`` that
+contains the desired format of content. ``TEST_ID`` is a test ID returned from
+test creation or the get tests functions.
+
+Example response:
+
+.. code-block:: javascript
+
+  {
+    "content": "<CONTENT>"
+  }
+
+**HTML**
+
+This call returns the HTML associated with your Email Test. This is what is sent to our servers.
+
+.. code-block:: url
+
+     GET /v1/preview/tests/{TEST_ID}/content
+
+**INLINED CSS CONTENT**
+
+This call returns HTML with all stylesheets inlined into the HTML.
+
+.. code-block:: url
+
+     GET /v1/preview/tests/{TEST_ID}/content/inlinecss
+
+**TEXT ONLY CONTENT**
+
+This call returns a plain text version of your HTML. This approximates what will be displayed
+on devices that do not support HTML content. Our system does not currently support multipart
+emails, so if you send a separate text/plain section when you send your email, this may not be
+accurate to what users see. Additionally, devices may differ in their plain text renderings,
+so this function should be used more as a guide than as an exact preview.
+
+.. code-block:: url
+
+     GET /v1/preview/tests/{TEST_ID}/content/textonly
