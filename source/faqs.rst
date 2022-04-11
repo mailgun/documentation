@@ -378,7 +378,7 @@ Mailgun allows you to check the authenticity of its requests by providing three
 additional parameters in every HTTP POST request it makes. Please take a look
 at our `webhooks documentation`_ for more information.
 
-.. _webhooks documentation: http://documentation.mailgun.com/user_manual.html#events-webhooks
+.. _webhooks documentation: https://documentation.mailgun.com/en/latest/user_manual.html#webhooks-1
 
 How do I know if the sender of an email is spoofed?
 **************************************************************************************************************
