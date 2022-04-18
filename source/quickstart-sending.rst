@@ -47,7 +47,7 @@ Run this:
 
 .. include:: samples/send-simple-message.rst
 
-*NOTE: If you're sending from our EU infrastructure, be sure to substitute our EU endpoint in the above example: https://api.eu.mailgun.net/v3*
+*NOTE: If you're sending from our EU infrastructure, be sure to substitute the beginning of the endpoint "https://api.mailgun.net" with "https://api.eu.mailgun.net"*
 
 What actually happened:
 
