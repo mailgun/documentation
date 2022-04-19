@@ -32,7 +32,7 @@
 
   # Currently, the PHP SDK does not support the email preview endpoint.
   # Consider using the following php curl function.
-  function create_seed_list() {
+  function create_email_previews() {
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -55,7 +55,7 @@
 
 .. code-block:: py
 
- def create_seed_list():
+ def create_email_previews():
      data = {'subject': 'test', 'url': 'url'}
      return requests.post(
          "https://api.mailgun.net/v1/preview/tests", data=data,
@@ -63,7 +63,7 @@
 
 .. code-block:: rb
 
- def create_seed_list
+ def create_email_previews
    data = { subject: "test", url: "url" }
    RestClient.post("https://api:YOUR_API_KEY@api.mailgun.net/v1/preview/tests",
                    fields_hash.merge(data))
