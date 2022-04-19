@@ -58,7 +58,8 @@
  def create_email_previews():
      data = {'subject': 'test', 'url': 'url'}
      return requests.post(
-         "https://api.mailgun.net/v1/preview/tests", data=data,
+         "https://api.mailgun.net/v1/preview/tests",
+         data=json.dumps(data),
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
