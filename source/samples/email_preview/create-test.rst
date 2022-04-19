@@ -58,15 +58,14 @@
  def create_seed_list():
      data = {'subject': 'test', 'url': 'url'}
      return requests.post(
-         "https://api.mailgun.net/v1/preview/tests", data=data
+         "https://api.mailgun.net/v1/preview/tests", data=data,
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def create_seed_list
    data = { subject: "test", url: "url" }
-   RestClient.post("https://api:YOUR_API_KEY" \
-                   "@api.mailgun.net/v1/preview/tests",
+   RestClient.post("https://api:YOUR_API_KEY@api.mailgun.net/v1/preview/tests",
                    fields_hash.merge(data))
  end
 

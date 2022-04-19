@@ -66,7 +66,7 @@
              'subject': 'testSubject',
              'html': '<html>HTML version of the body</html>' }
      return requests.post(
-         "https://api.mailgun.net/v3/inbox/tests", data=data
+         "https://api.mailgun.net/v3/inbox/tests", data=data,
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
