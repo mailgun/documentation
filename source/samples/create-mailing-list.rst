@@ -8,26 +8,28 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMailingListApi;
+    import com.mailgun.enums.AccessLevel;
+    import com.mailgun.enums.ReplyPreference;
+    import com.mailgun.model.mailing.lists.MailingListRequest;
+    import com.mailgun.model.mailing.lists.MailingListResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MailingListResponse createMailingList() {
+        MailgunMailingListApi mailgunMailingListApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMailingListApi.class);
 
-     public static JsonNode createMailingList() throws UnirestException {
+        MailingListRequest mailingListRequest = MailingListRequest.builder()
+            .address( "LIST@YOUR_DOMAIN_NAME")
+            .name("LIST_NAME")
+            .description("LIST_DESCRIPTION")
+            .accessLevel(AccessLevel.EVERYONE)
+            .replyPreference(ReplyPreference.LIST)
+            .build();
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists")
-             .basicAuth("api", API_KEY)
-             .field("address", "LIST@YOUR_DOMAIN_NAME")
-             .field("description", "LIST_DESCRIPTION")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMailingListApi.createMailingList(mailingListRequest);
+    }
 
 .. code-block:: php
 

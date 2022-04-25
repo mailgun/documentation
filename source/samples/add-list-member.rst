@@ -10,29 +10,29 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMailingListApi;
+    import com.mailgun.model.mailing.lists.MailingListMemberResponse;
+    import com.mailgun.model.mailing.lists.MailingListNewMemberRequest;
 
- public class MGSample {
+    import java.util.Map;
 
-     // ...
+    // ...
 
-     public static JsonNode addListMember() throws UnirestException {
+    public MailingListMemberResponse addListMember() {
+        MailgunMailingListApi mailgunMailingListApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMailingListApi.class);
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members")
-             .basicAuth("api", API_KEY)
-             .field("subscribed", true)
-             .field("address", "bob@example.com")
-             .field("name", "Bob Bar")
-             .field("description", "developer")
-             .field("vars", "{\"age\": 26}")
-             .asJson();
+        Map<String, Object> vars = vars = Map.of("age", "26");
 
-         return request.getBody();
-     }
- }
+        MailingListNewMemberRequest request = MailingListNewMemberRequest.builder()
+            .address("bob@example.com")
+            .name("Bob Bar")
+            .vars(vars)
+            .subscribed(true)
+            .build();
+
+        return mailgunMailingListApi.addMemberToMailingList(MAILING_LIST_ADDRESS, request);
+    }
 
 .. code-block:: php
 

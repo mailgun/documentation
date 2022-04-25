@@ -7,25 +7,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunTemplatesApi;
+    import com.mailgun.model.templates.TemplateStatusResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public TemplateStatusResponse updateTemplate() {
+        MailgunTemplatesApi mailgunTemplatesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunTemplatesApi.class);
 
-     public static JsonNode updateTemplate() throws UnirestException {
-
-         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates" +TEMPLATE_NAME)
-             .basicAuth("api", API_KEY)
-             .field("description", "new template description")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunTemplatesApi.updateTemplate(YOUR_DOMAIN_NAME, TEMPLATE_NAME, "new template description");
+    }
 
 .. code-block:: php
 

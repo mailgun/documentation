@@ -6,24 +6,16 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunIPsApi;
+    import com.mailgun.model.ResponseWithMessage
 
- public class MGSample {
+    // ...
 
-     // ...
+    public ResponseWithMessage deleteDomainIP() {
+        MailgunIPsApi mailgunIPsApi = MailgunClient.config(API_KEY).createApi(MailgunIPsApi.class);
 
-     public static JsonNode deleteDomainIP() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips/127.0.0.1")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunIPsApi.unassignIPFromDomain(YOUR_DOMAIN_NAME, "127.0.0.1");
+    }
 
 .. code-block:: php
 

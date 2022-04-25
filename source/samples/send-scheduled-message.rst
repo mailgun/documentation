@@ -11,31 +11,28 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import java.time.ZonedDateTime;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MessageResponse sendScheduledMessage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
-     public static JsonNode sendScheduledMessage() throws UnirestException {
+        Message message = Message.builder()
+            .from("Excited User <USER@YOURDOMAIN.COM>")
+            .to("bruce@example.com")
+            .subject("Hello")
+            .text("Testing out some Mailgun awesomeness!")
+            .deliveryTime(ZonedDateTime.now().plusHours(2L)) // Two hours delay.
+            .build();
 
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-             .basicAuth("api", API_KEY)
-             .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-             .field("to", "bruce@example")
-             .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
-             .field("text", "Testing some MailGun awesomeness")
-             .field("o:deliverytime", "Sat, 20 May 2017 2:50:00 -0000")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

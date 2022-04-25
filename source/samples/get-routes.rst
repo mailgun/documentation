@@ -8,26 +8,23 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunRoutesApi;
+    import com.mailgun.model.routes.RoutesListResponse;
+    import com.mailgun.model.routes.RoutesPageRequest;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public RoutesListResponse getRoutes() {
+        MailgunRoutesApi mailgunRoutesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunRoutesApi.class);
 
-     public static JsonNode getRoutes() throws UnirestException {
+        RoutesPageRequest pageRequest = RoutesPageRequest.builder()
+            .skip(0)
+            .limit(5)
+            .build();
 
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/routes")
-             .basicAuth("api", API_KEY)
-             .queryString("skip", "0")
-             .queryString("limit","5")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunRoutesApi.getRoutesList(pageRequest);
+    }
 
 .. code-block:: php
 

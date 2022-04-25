@@ -5,24 +5,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunTemplatesApi;
+    import com.mailgun.model.ResponseWithMessage;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public ResponseWithMessage deleteTemplates() {
+        MailgunTemplatesApi mailgunTemplatesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunTemplatesApi.class);
 
-     public static JsonNode deleteTemplates() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/"+ YOUR_DOMAIN_NAME +"/templates")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunTemplatesApi.deleteAllTemplatesInDomain(YOUR_DOMAIN_NAME);
+    }
 
 .. code-block:: php
 

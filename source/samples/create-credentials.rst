@@ -8,26 +8,23 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunDomainsApi;
+    import com.mailgun.model.ResponseWithMessage;
+    import com.mailgun.model.domains.DomainCredentials;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public ResponseWithMessage createCredentials() {
+        MailgunDomainsApi mailgunDomainsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunDomainsApi.class);
 
-     public static JsonNode createCredentials() throws UnirestException {
+        DomainCredentials domainCredentials = DomainCredentials.builder()
+            .login("alice@YOUR_DOMAIN_NAME.com")
+            .password( "super_secret_password")
+            .build();
 
-         HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME +"/credentials")
-             .basicAuth("api", API_KEY)
-             .field("login", "alice@YOUR_DOMAIN_NAME.com")
-             .field("password", "supersecretpassword")
-             .asJson();
-
-         return jsonResponse.getBody();
-     }
- }
+        return mailgunDomainsApi.createNewCredentials(YOUR_DOMAIN_NAME, domainCredentials);
+    }
 
 .. code-block:: php
 

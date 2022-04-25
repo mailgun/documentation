@@ -6,25 +6,17 @@
 
 .. code-block:: java
 
-  import com.mashape.unirest.http.HttpResponse;
-  import com.mashape.unirest.http.JsonNode;
-  import com.mashape.unirest.http.Unirest;
-  import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunIPsApi;
+    import com.mailgun.model.ResponseWithMessage;
 
-  public class MGSample {
+    // ...
 
-      // ...
+    public ResponseWithMessage addDomainIP() {
+        MailgunIPsApi mailgunIPsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunIPsApi.class);
 
-      public static JsonNode addDomainIP() throws UnirestException {
-
-          HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/ips")
-              .basicAuth("api", API_KEY)
-              .field("ip", "127.0.0.1")
-              .asJson();
-
-          return jsonResponse.getBody();
-      }
-  }
+        return mailgunIPsApi.assignIPToDomain(YOUR_DOMAIN_NAME, "127.0.0.1");
+    }
 
 .. code-block:: php
 
