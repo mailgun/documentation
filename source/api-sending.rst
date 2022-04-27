@@ -110,6 +110,9 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  v\:my-var                         ``v:`` prefix followed by an arbitrary name allows to
                                    attach a custom JSON data to the message.
                                    See :ref:`manual-customdata` for more information.
+ o\:suppress-variables-header      If set to ``True`` or ``yes``, will suppress the inclusion of
+                                   the ``X-Mailgun-Variables`` header in delivered emails.
+                                   See :ref:`manual-customdata` for more information.
  recipient-variables               A valid JSON-encoded dictionary, where key is a plain recipient
                                    address and value is a dictionary with variables that can be
                                    referenced in the message body.
