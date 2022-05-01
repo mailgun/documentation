@@ -6,24 +6,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMailingListApi;
+    import com.mailgun.model.mailing.lists.MailingListMemberResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MailingListMemberResponse removeMembers() {
+        MailgunMailingListApi mailgunMailingListApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMailingListApi.class);
 
-     public static JsonNode removeMembers() throws UnirestException {
-
-         HttpResponse <JsonNode> request = Unirest.delete("https://api.mailgun.net/v3/lists/YoungJustice@example.com/members/karen@example.com")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMailingListApi.deleteMemberFromMailingList(MAILING_LIST_ADDRESS, "karen@example.com");
+    }
 
 .. code-block:: php
 

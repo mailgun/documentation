@@ -6,24 +6,16 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunWebhooksApi;
+    import com.mailgun.model.webhooks.WebhookListResult;;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public WebhookListResult getWebhooks() {
+        MailgunWebhooksApi mailgunWebhooksApi = MailgunClient.config(API_KEY).createApi(MailgunWebhooksApi.class);
 
-     public static JsonNode getWebhooks() throws UnirestException {
-
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunWebhooksApi.getAllWebhooks(YOUR_DOMAIN_NAME);
+    }
 
 .. code-block:: php
 

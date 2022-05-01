@@ -13,6 +13,8 @@
     import com.mailgun.model.domains.DomainRequest;
     import com.mailgun.model.domains.DomainResponse;
 
+    import java.util.List;
+
     // ...
 
     public DomainResponse addDomain() {
@@ -25,7 +27,7 @@
             .wildcard(true)
             .forceDkimAuthority(false)
             .dkimKeySize(1024)
-            .ips(Arrays.asList(IP_1, IP_2))
+            .ips(List.of(IP_1, IP_2))
             .webScheme(WebScheme.HTTPS)
             .build();
 
