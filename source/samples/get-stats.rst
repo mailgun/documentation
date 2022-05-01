@@ -9,28 +9,29 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import java.util.List;
 
- public class MGSample {
+    import com.mailgun.api.v3.MailgunStatisticsApi;
+    import com.mailgun.enums.Duration;
+    import com.mailgun.enums.ResolutionPeriod;
+    import com.mailgun.enums.StatsEventType;
+    import com.mailgun.model.StatisticsOptions;
+    import com.mailgun.model.stats.StatsResult;
 
-     // ...
+    // ...
 
-     public static JsonNode getStats() throws UnirestException {
+    public StatsResult getStats() {
+        MailgunStatisticsApi mailgunStatisticsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunStatisticsApi.class);
 
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/stats/total")
-             .basicAuth("api", API_KEY)
-             .queryString("event", "accepted")
-             .queryString("event", "delivered")
-             .queryString("event", "failed")
-             .queryString("duration","1m")
-             .asJson();
+        StatisticsOptions statsOptions = StatisticsOptions.builder()
+            .event(List.of(StatsEventType.ACCEPTED, StatsEventType.DELIVERED))
+            .resolution(ResolutionPeriod.MONTH)
+            .duration(3, Duration.MONTH)
+            .build();
 
-         return request.getBody();
-     }
- }
+        return mailgunStatisticsApi.getDomainStats(YOUR_DOMAIN_NAME, statsOptions);
+    }
 
 .. code-block:: php
 

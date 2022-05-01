@@ -11,11 +11,11 @@
 
 .. code-block:: java
 
-    import java.time.ZonedDateTime;
-
     import com.mailgun.api.v3.MailgunMessagesApi;
     import com.mailgun.model.message.Message;
     import com.mailgun.model.message.MessageResponse;
+
+    import java.time.ZonedDateTime;
 
     // ...
 

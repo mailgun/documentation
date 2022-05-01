@@ -5,24 +5,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunEventsApi;
+    import com.mailgun.model.events.EventsResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public EventsResponse getLogsPagination() {
+        MailgunEventsApi mailgunEventsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunEventsApi.class);
 
-     public static JsonNode getLogsPagination() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/events/W3siYSI6IGZhbHNlLCAi")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunEventsApi.getEvents(YOUR_DOMAIN_NAME, PAGE_ID);
+    }
 
 .. code-block:: php
 

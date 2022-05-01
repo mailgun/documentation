@@ -8,26 +8,26 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.suppression.MailgunSuppressionUnsubscribeApi;
+    import com.mailgun.model.suppression.SuppressionResponse;
+    import com.mailgun.model.suppression.unsubscribe.UnsubscribeSingleItemRequest;
 
- public class MGSample {
+    import java.time.ZonedDateTime;
 
-     // ...
+    // ...
 
-     public static JsonNode addUnsubscribeAll() throws UnirestException {
+    public SuppressionResponse addUnsubscribeAll() {
+        MailgunSuppressionUnsubscribeApi suppressionUnsubscribeApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunSuppressionUnsubscribeApi.class);
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/unsubscribes")
-             .basicAuth("api", API_KEY)
-             .field("address", "bob@example.com")
-             .field("tag", "*")
-             .asJson();
+        UnsubscribeSingleItemRequest unsubscribeSingleItemRequest = UnsubscribeSingleItemRequest.builder()
+            .address("bob@example.com")
+            .tag("*")
+            .createdAt(ZonedDateTime.now())
+            .build();
 
-         return request.getBody();
-     }
- }
+        return suppressionUnsubscribeApi.addAddressToUnsubscribeTable(YOUR_DOMAIN_NAME, unsubscribeSingleItemRequest);
+    }
 
 .. code-block:: php
 

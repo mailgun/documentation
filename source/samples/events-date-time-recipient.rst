@@ -10,12 +10,12 @@
 
 .. code-block:: java
 
-    import java.time.ZoneId;
-    import java.time.ZonedDateTime;
-
     import com.mailgun.api.v3.MailgunEventsApi;
     import com.mailgun.model.events.EventsQueryOptions;
     import com.mailgun.model.events.EventsResponse;
+
+    import java.time.ZoneId;
+    import java.time.ZonedDateTime;
 
     // ...
 

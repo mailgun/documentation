@@ -6,11 +6,11 @@
 
 .. code-block:: java
 
-    import java.time.ZonedDateTime;
-
     import com.mailgun.api.v3.suppression.MailgunSuppressionComplaintsApi;
     import com.mailgun.model.suppression.SuppressionResponse;
     import com.mailgun.model.suppression.complaints.ComplaintsSingleItemRequest;
+
+    import java.time.ZonedDateTime;
 
     // ...
 

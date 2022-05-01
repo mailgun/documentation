@@ -7,11 +7,11 @@
 
 .. code-block:: java
 
-    import java.time.ZonedDateTime;
-
     import com.mailgun.api.v3.suppression.MailgunSuppressionBouncesApi;
     import com.mailgun.model.suppression.SuppressionResponse;
     import com.mailgun.model.suppression.bounces.BouncesRequest;
+
+    import java.time.ZonedDateTime;
 
     // ...
 
