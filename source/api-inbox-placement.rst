@@ -1,7 +1,7 @@
 .. _api-inbox-placement:
 
-Inbox Placement v2
-==================
+Inbox Placement
+===============
 
 A seed list is an object that provides the mailing list for your inbox placement test.
 It also acts as a container for all the results of those tests and will aggregate
