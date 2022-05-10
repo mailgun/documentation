@@ -3,8 +3,8 @@
 Spam Trap Monitoring
 ====================
 
-Our spam trap monitoring services surfaces how much of your email is being sent
-to known spam traps.
+Our `spam trap monitoring <https://help.mailgun.com/hc/en-us/articles/4413151071515-What-are-Spam-Traps>`_ service
+surfaces how much of your email is being sent to known spam traps.
 
 Add Domain
 ----------
@@ -186,6 +186,9 @@ Example 200 response:
         ...
       }
     }
+
+For more details on the data returned by this API endpoint such as trap
+types, see our `help documentation <https://help.mailgun.com/hc/en-us/articles/4413151071515-What-are-Spam-Traps>`_.
 
 **Filtered Results**
 
