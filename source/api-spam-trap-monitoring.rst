@@ -10,16 +10,16 @@ Add Domain
 ----------
 
 This endpoint allows domains to be registered for spam trap monitoring. Please
-note that your domain must be verified before spam trap monitoring can begin.
-Once your domain has been added, add the provided TXT record (``txt_record``)
-to your domain configuration within your DNS provider. For more details, see
-our documentation_. Following TXT record configuration, use the
-`Verify Domain`_ endpoint to begin the domain verification process.
+note that your domain or subdomain must be verified before spam trap monitoring
+can begin. Once your domain has been added, add the provided TXT record
+(``txt_record``) to your domain configuration within your DNS provider. For
+more details, see our documentation_. Following TXT record configuration, use
+the `Verify Domain`_ endpoint to begin the domain verification process.
 
 .. _documentation: https://help.mailgun.com/hc/en-us/articles/360026833053-Domain-Verification-Walkthrough
 
-**NOTE:** If your domain is already verified for sending email via Mailgun, you do
-not need to configure the provided TXT record. Instead, skip to the
+**NOTE:** If your domain is already verified for sending email via Mailgun, you
+do not need to configure the provided TXT record. Instead, skip to the
 `Verify Domain`_ section.
 
 .. code-block:: url
@@ -54,10 +54,10 @@ Use this endpoint to start the domain verification process. When called, a
 background process will begin to periodically attempt domain verification for
 up to 24 hours.
 
-Please note that domain verification is not instant. Depending on your DNS TTL,
-the domain verification may take up to 24 hours to complete. Feel free to check
-your DNS configuration for accuracy, but please allow for up to 24 hours for
-the verification process to complete.
+Please note that domain verification is not instant. DNS verification typically
+takes 1 hour to complete, but in some cases may take up to 24 hours to complete.
+Feel free to check your DNS configuration for accuracy, but please allow for up
+to 24 hours for the verification process to complete.
 
 The `Get Domains`_ endpoint can be used to check verification status. On
 verification success, the domain ``verified.status`` property will contain a
@@ -66,7 +66,9 @@ value of "inbox_ready" or "sending".
 **NOTE:** In the case that your domain is already verified for sending email
 via Mailgun, you will still need to use this endpoint to begin the verification
 process. Your domain verification status will be inherited from Mailgun. Upon
-verification, your domain's ``verified.status`` will be set to "sending".
+verification, your domain's ``verified.status`` will be set to "sending". Please
+note that in this scenario, verification is still performed via the background
+process workflow and that there will be a ~1 hour delay in verification.
 
 .. code-block:: url
 
