@@ -653,9 +653,9 @@ You can now use the template when sending a message:
 If you are sending a MIME you can instead pass template variables via the ``X-Mailgun-Template-Variables`` header.
 
 .. note:: It is possible to use values defined via ``v:`` option or ``X-Mailgun-Variables`` in your templates.
-          However if you do so, the variables are included in the delivered message via the ``X-Mailgun-Variables``.
-          If this is not desired, you should use the ``t:variables`` option
-          or ``X-Mailgun-Template-Variables`` header instead.
+          However if you do so, the variables are included in the delivered message via the ``X-Mailgun-Variables``
+          header. If this is not desired, use the ``t:variables`` option or ``X-Mailgun-Template-Variables``
+          header instead.
 
 **Handlebars**
 
@@ -1117,8 +1117,8 @@ variable of ``{"user1@example.com" : { "id": 123 }}`` events and webhooks associ
 ``user1@example.com`` will contain a ``user-variable`` field with the content of ``{ "recipient-id": "123" }``
 
 When using variables, the ``X-Mailgun-Variables`` header will be included in the MIME of the delivered email. This
-means that recipients who receive emails when variables are used WILL be able to see the variables the
-if they view the MIME headers.
+means that recipients who receive emails when variables are used WILL be able to see the variables if they view
+the MIME headers.
 
 .. _tagging:
 
