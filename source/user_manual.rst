@@ -629,11 +629,11 @@ Don't be confused with :ref:`Template Variables <template-variables>` as **Templ
 Mailgun's templates uses a fork of the very popular template engine `handlebars`_.
 To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
-First of all a template has to be stored:
+First create a template via the :ref:`Template API <api-teamplates>`
 
 .. include:: samples/templates/create-template-usage.rst
 
-Response returns stored template information:
+Response returns stored template information
 
 .. code-block:: javascript
 
@@ -646,20 +646,16 @@ Response returns stored template information:
    "message": "template has been stored"
  }
 
-Just using the template name you can send a message:
+You can now use the template when sending a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
-Another way to provide variables is to use a form parameter prefixed with ``v:`` how it's shown :ref:`here <manual-customdata>`.
+If you are sending a MIME you can instead pass template variables via the ``X-Mailgun-Template-Variables`` header.
 
-.. include:: samples/send-message-template-v.rst
-
-The second way is not recommended as it's limited to simple key value data. If you have arrays, dictionaries in values or complex json data you have to supply variables via ``X-Mailgun-Variables`` header.
-
-.. note:: The variables used in the template will be included in the delivered
-          mime via the ``X-Mailgun-Variables`` header. You can opt out of this
-          functionality by setting either ``X-Mailgun-Suppress-Variables-Header`` or
-          ``o:suppress-variables-header`` See :ref:`Messages API <api-sending-messages>`
+.. note:: It is possible to use values defined via ``v:`` option or ``X-Mailgun-Variables`` in your templates.
+          However if you do so, the variables are included in the delivered message via the ``X-Mailgun-Variables``.
+          If this is not desired, you should use the ``t:variables`` option
+          or ``X-Mailgun-Template-Variables`` header instead.
 
 **Handlebars**
 
@@ -1123,10 +1119,6 @@ variable of ``{"user1@example.com" : { "id": 123 }}`` events and webhooks associ
 When using variables, the ``X-Mailgun-Variables`` header will be included in the MIME of the delivered email. This
 means that recipients who receive emails when variables are used WILL be able to see the variables the
 if they view the MIME headers.
-
-If you wish your variables to remain private you can include the header ``X-Mailgun-Suppress-Variables-Header: true`` in
-your MIME or use the ``o:suppress-variables-header`` option via the HTTP API. When set this option will suppress
-the inclusion of ``X-Mailgun-Variables`` in the MIME of the delivered email.
 
 .. _tagging:
 
