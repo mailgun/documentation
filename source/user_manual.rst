@@ -629,7 +629,7 @@ Don't be confused with :ref:`Template Variables <template-variables>` as **Templ
 Mailgun's templates uses a fork of the very popular template engine `handlebars`_.
 To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
-First create a template via the :ref:`Template API <api-teamplates>`
+First create a template via the :ref:`Template API <api-templates>`
 
 .. include:: samples/templates/create-template-usage.rst
 
