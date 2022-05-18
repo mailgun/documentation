@@ -24,7 +24,7 @@ do not need to configure the provided TXT record. Instead, skip to the
 
 .. code-block:: url
 
-    POST /v1/inboxready/domains, Content-Type: multipart/form-data
+    POST /v1/inboxready/domains
 
 The available request fields are as follows:
 
@@ -82,7 +82,7 @@ process workflow and that there will be a ~1 hour delay in verification.
 
 .. code-block:: url
 
-    PUT /v1/inboxready/domains/verify, Content-Type: multipart/form-data
+    PUT /v1/inboxready/domains/verify
 
 The available request fields are as follows:
 
@@ -148,7 +148,7 @@ This endpoint can be used to remove a domain from spam trap monitoring.
 
 .. code-block:: url
 
-    DELETE /v1/inboxready/domains, Content-Type: multipart/form-data
+    DELETE /v1/inboxready/domains
 
 The available request fields are as follows:
 
