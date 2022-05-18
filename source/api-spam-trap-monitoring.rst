@@ -24,7 +24,17 @@ do not need to configure the provided TXT record. Instead, skip to the
 
 .. code-block:: url
 
-    POST /v1/inboxready/domains?domain=example.com
+    POST /v1/inboxready/domains, Content-Type: multipart/form-data
+
+The available request fields are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``domain``             Required. The domain or subdomain that you wish to add.
+ ====================== ========================================================
 
 Example 200 response:
 
@@ -72,7 +82,17 @@ process workflow and that there will be a ~1 hour delay in verification.
 
 .. code-block:: url
 
-    PUT /v1/inboxready/domains/verify?domain=example.com
+    PUT /v1/inboxready/domains/verify, Content-Type: multipart/form-data
+
+The available request fields are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``domain``             Required. The domain or subdomain that you wish to verify.
+ ====================== ========================================================
 
 Example 200 response:
 
@@ -128,7 +148,17 @@ This endpoint can be used to remove a domain from spam trap monitoring.
 
 .. code-block:: url
 
-    DELETE /v1/inboxready/domains?domain=example.com
+    DELETE /v1/inboxready/domains, Content-Type: multipart/form-data
+
+The available request fields are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``domain``             Required. The domain or subdomain that you wish to remove.
+ ====================== ========================================================
 
 Example 200 response:
 
