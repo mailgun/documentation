@@ -6,25 +6,18 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v4.MailgunEmailVerificationApi;
+    import com.mailgun.client.MailgunClient;
+    import com.mailgun.model.verification.BulkVerificationJobListResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public BulkVerificationJobListResponse getBulkVerificationJobList() {
+        MailgunEmailVerificationApi mailgunEmailVerificationApi = MailgunClient.config(API_KEY)
+                .createApi(MailgunEmailVerificationApi.class);
 
-     public static JsonNode getMailingListValidation() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v4/address/validate/bulk")
-             .basicAuth("api", API_KEY)
-             .queryString("limit", 2)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunEmailVerificationApi.getBulkVerificationJobList();
+    }
 
 .. code-block:: php
 
