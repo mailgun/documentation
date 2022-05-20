@@ -1196,6 +1196,49 @@ Every time a user clicks on a link inside of your messages, your ``clicked`` URL
 
 .. _um-tracking-unsubscribes:
 
+Open and Click Bot Detection
+=====================
+Mailgun uses tracking pixels and URL redirects to track when a user opens the message and clicks links in the email.
+However, there are various third-party automated systems that will automatically open a message and follow links for
+virus scanning and user activity obfuscation, such as `Apple Mail Privacy Protection <https://support.apple.com/guide/iphone/use-mail-privacy-protection-iphf084865c7/ios>`_
+
+These automated systems can affect the accuracy of open and click tracking, as a result mailgun attempts to detect
+when one of these systems retrieves the tracking pixel or clicks a link. When we detect a bot opening or clicking
+a link in the email we will indicate this via the ``client-info.bot`` field in the open/click events.
+
+.. code-block:: javascript
+
+    {
+        "client-info": {
+          "client-name": "unknown",
+          "client-type": "unknown",
+          "user-agent": "Mozilla/5.0",
+          "device-type": "unknown",
+          "client-os": "unknown",
+          "bot": "apple"
+        },
+        "tags": [],
+        "timestamp": 1652883435.279025,
+        "recipient": "bot@apple.com",
+        "geolocation": {
+          "region": "Unknown",
+          "country": "US",
+          "city": "Unknown"
+        },
+        "event": "opened",
+    }
+
+the ``bot`` field can have one of the following possible values
+
+ ==============================    ====================================================================
+ Value                             Description
+ ==============================    ====================================================================
+ apple                             Indicates an Apple MPP bot
+ gmail                             Indicates a Gmail bot
+ unknown                           Indicates an unknown bot (most likely a firewall or anti virus scan)
+ (empty)                           If the ``bot`` field is empty, no bot was detected.
+ ==============================    ====================================================================
+
 Tracking Unsubscribes
 =====================
 
