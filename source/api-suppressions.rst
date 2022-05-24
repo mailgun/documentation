@@ -53,7 +53,7 @@ Paginate over a list of bounces for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Maximum number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
@@ -316,7 +316,7 @@ Paginate over a list of unsubscribes for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
@@ -550,7 +550,7 @@ Paginate over a list of complaints for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Maximum number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
@@ -753,7 +753,7 @@ Paginate over a whitelists for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
