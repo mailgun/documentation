@@ -6,24 +6,18 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v4.MailgunSeedListApi;
+    import com.mailgun.client.MailgunClient;
+    import feign.Response;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public Response deleteInboxPlacementTest() {
+        MailgunSeedListApi mailgunSeedListApi = MailgunClient.config(API_KEY)
+                .createApi(MailgunSeedListApi.class);
 
-     public static JsonNode deleteInboxPlacementTest() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.delete("https://api.mailgun.net/v4/inbox/seedlists/{TARGET_EMAIL}")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunSeedListApi.deleteSeedListFeignResponse(TARGET_EMAIL);
+    }
 
 .. code-block:: php
 

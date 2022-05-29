@@ -6,24 +6,26 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v4.MailgunSeedListApi;
+    import com.mailgun.client.MailgunClient;
+    import com.mailgun.model.seedlist.SeedListItem;
+    import com.mailgun.model.seedlist.SeedListRequest;
+    import java.util.List;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public SeedListItem createSeedList() {
+        MailgunSeedListApi mailgunSeedListApi = MailgunClient.config(API_KEY)
+                .createApi(MailgunSeedListApi.class);
 
-     public static JsonNode createSeedList() throws UnirestException {
+        SeedListRequest request = SeedListRequest.builder()
+                .seedFilter(SEED_FILTER)
+                .name(SEED_LIST_NAME)
+                .sendingDomains(List.of(TEST_DOMAIN_1, TEST_DOMAIN_2))
+                .build();
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v4/inbox/seedlists")
-             .basicAuth("api", API_KEY)
-             .field("sending_domains", "domain.com")
-             .asJson();
-
-         return request.getBody();
-     }
+        return mailgunSeedListApi.generateSeedList(request);
+    }
  }
 
 .. code-block:: php
