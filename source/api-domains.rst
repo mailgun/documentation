@@ -38,7 +38,7 @@ Returns a single domain, including credentials and DNS records. See examples bel
 
      PUT /domains/<domain>/verify
 
-Verifies and returns a single domain, including credentials and DNS records.
+Places the domain in an unverified state and triggers the verification process. Returns a single domain, including credentials and DNS records.
 If the domain is successfully verified the domain's state will be 'active'. For more information on verifying domains,
 visit the Mailgun `User Manual`_.
 
