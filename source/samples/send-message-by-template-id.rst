@@ -7,7 +7,7 @@
     -F to='alice@example.com' \
     -F subject='Hello' \
     -F template='template.test' \
-    -F h:X-Mailgun-Variables='{"title": "API documentation", "body": "Sending messages with templates"}'
+    -F t:variables='{"title": "API documentation", "body": "Sending messages with templates"}'
 
 .. code-block:: java
 
@@ -54,7 +54,7 @@
       'to'                    => 'bob@example.com',
       'subject'               => 'Hello',
       'template'              => 'template.test',
-      'h:X-Mailgun-Variables' => '{"title": "API Documentation", "body": "Sending messages with templates"}'
+      't:variables' => '{"title": "API Documentation", "body": "Sending messages with templates"}'
       );
 
   # Make the call to the client.
@@ -70,7 +70,7 @@
                "to": ["bar@example.com", "baz@example.com"],
                "subject": "Hello",
                "template": "template.test",
-               "h:X-Mailgun-Variables": json.dumps({"title": "API documentation", "body": "Sending messages with templates"}))
+               "t:variables": json.dumps({"title": "API documentation", "body": "Sending messages with templates"}))
 
 .. code-block:: rb
 
@@ -81,7 +81,7 @@
    :to => "bar@example.com, baz@example.com",
    :subject => "Hello",
    :template => "template.test",
-   :"h:X-Mailgun-Variables" => '{"title": "API Documentation", "body": "Sending messages with template"}'
+   :"t:variables" => '{"title": "API Documentation", "body": "Sending messages with template"}'
  end
 
 .. code-block:: csharp
@@ -114,7 +114,7 @@
          request.AddParameter ("to", "baz@example.com");
          request.AddParameter ("subject", "Hello");
          request.AddParameter ("template", "template.test");
-         request.AddParameter ("h:X-Mailgun-Variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}");
+         request.AddParameter ("t:variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}");
          request.Method = Method.POST;
          return client.Execute (request);
      }
@@ -149,7 +149,7 @@
     if err != nil {
       return "", err
     }
-    m.AddHeader("X-Mailgun-Variables", string(vars))
+    m.AddHeader("X-Mailgun-Template-Variables", string(vars))
 
     _, id, err := mg.Send(ctx, m)
     return
@@ -173,7 +173,7 @@
     to: 'alice@example.com',
     subject: `Email ${title}`,
     template: 'name-of-the-template-you-made-in-mailgun-web-portal',
-    'h:X-Mailgun-Variables': JSON.stringify({ // be sure to stringify your payload
+    't:variables': JSON.stringify({ // be sure to stringify your payload
       title,
       slug,
     })

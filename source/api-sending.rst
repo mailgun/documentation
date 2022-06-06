@@ -66,6 +66,8 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
                                    See :ref:`templating` for more information
  t:\version                        Use this parameter to send a message to specific version of a template
  t:\text                           Pass ``yes`` if you want to have rendered template in the text part of the message in case of template sending
+ t\:variables                      A valid JSON-encoded dictionary used as the input for template variable expansion
+                                   See :ref:`api-templates` for more information.
  o\:tag                            Tag string. See :ref:`tagging` for more information.
  o\:dkim                           Enables/disables DKIM signatures on per-message basis.
                                    Pass ``yes``, ``no``, ``true`` or ``false``

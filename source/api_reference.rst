@@ -21,4 +21,5 @@ API Reference
    api-email-validation
    api-inbox-placement
    api-email-preview
+   api-spam-trap-monitoring
 
