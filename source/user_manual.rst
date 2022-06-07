@@ -629,11 +629,11 @@ Don't be confused with :ref:`Template Variables <template-variables>` as **Templ
 Mailgun's templates uses a fork of the very popular template engine `handlebars`_.
 To provide values for substitution you have to use :ref:`Attaching Data to Messages <manual-customdata>`. Let's see how to send a message using the template feature:
 
-First of all a template has to be stored:
+First create a template via the :ref:`Template API <api-templates>`
 
 .. include:: samples/templates/create-template-usage.rst
 
-Response returns stored template information:
+Response returns stored template information
 
 .. code-block:: javascript
 
@@ -646,15 +646,16 @@ Response returns stored template information:
    "message": "template has been stored"
  }
 
-Just using the template name you can send a message:
+You can now use the template when sending a message:
 
 .. include:: samples/send-message-by-template-id.rst
 
-Another way to provide variables is to use a form parameter prefixed with ``v:`` how it's shown :ref:`here <manual-customdata>`.
+If you are sending a MIME you can instead pass template variables via the ``X-Mailgun-Template-Variables`` header.
 
-.. include:: samples/send-message-template-v.rst
-
-The second way is not recomended as it's limited to simple key value data. If you have arrays, dictionaries in values or complex json data you have to supply variables via ``X-Mailgun-Variables`` header.
+.. note:: It is possible to use values defined via ``v:`` option or ``X-Mailgun-Variables`` in your templates.
+          However if you do so, the variables are included in the delivered message via the ``X-Mailgun-Variables``
+          header. If this is not desired, use the ``t:variables`` option or ``X-Mailgun-Template-Variables``
+          header instead.
 
 **Handlebars**
 
@@ -925,7 +926,7 @@ Sample response:
 Webhooks
 ========
 
-Mailgun can make an HTTP POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the ``Webhooks`` tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector.
+Mailgun can make an HTTP/HTTPS POST to your URLs when events occur with your messages. If you would like Mailgun to POST event notifications, you need to provide a callback URL in the ``Webhooks`` tab of the Control Panel. Webhooks are at the domain level so you can provide a unique URL for each domain by using the domain drop down selector. Note, if you want to include an HTTPS endpoint it must be confiured with a trusted CA signed SSL certificate, not a self signed certificate.
 
 You can read more about the data that is posted in the appropriate section below (`Tracking Opens`_, `Tracking Clicks`_, `Tracking Unsubscribes`_, `Tracking Spam Complaints`_, `Tracking Failures`_, `Tracking Deliveries`_). We recommend using `<http://bin.mailgun.net/>`_ for creating temporary URLs to test and debug your webhooks.
 
@@ -1115,6 +1116,9 @@ recipient using templating. For example given a variable of ``v:recipient-id=%re
 variable of ``{"user1@example.com" : { "id": 123 }}`` events and webhooks associated with the recipient
 ``user1@example.com`` will contain a ``user-variable`` field with the content of ``{ "recipient-id": "123" }``
 
+When using variables, the ``X-Mailgun-Variables`` header will be included in the MIME of the delivered email. This
+means that recipients who receive emails when variables are used WILL be able to see the variables if they view
+the MIME headers.
 
 .. _tagging:
 

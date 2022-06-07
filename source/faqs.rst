@@ -378,7 +378,7 @@ Mailgun allows you to check the authenticity of its requests by providing three
 additional parameters in every HTTP POST request it makes. Please take a look
 at our `webhooks documentation`_ for more information.
 
-.. _webhooks documentation: http://documentation.mailgun.com/user_manual.html#events-webhooks
+.. _webhooks documentation: https://documentation.mailgun.com/en/latest/user_manual.html#webhooks-1
 
 How do I know if the sender of an email is spoofed?
 **************************************************************************************************************
@@ -423,7 +423,7 @@ Do I control the unsubscribe handling or do you?
 
 It's up to you.  You can use Mailgun's unsubscribe handling.  You can include our unsubscribe variables: ``%unsubscribe_url%`` (for the entire domain) and ``%tag_unsubscribe_url%`` (for just emails with this tag) and we will take care of the unsubscribe handling for you.  Take a look at our `unsubscribe documentation`_ for more information.
 
-.. _unsubscribe documentation: http://documentation.mailgun.com/user_manual.html#unsubscribes
+.. _unsubscribe documentation: https://documentation.mailgun.com/en/latest/user_manual.html#tracking-unsubscribes
 
 How do I create Campaigns in Mailgun?
 **************************************************************************************************************

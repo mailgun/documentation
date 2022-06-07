@@ -11,6 +11,7 @@ You can also add/remove addresses from any of these lists using the API.
 
 It's important to note that these suppression lists are unique to a sending domain and are not an account level (global) suppression list. If you want to add/remove the same address(es) from multiple domains, you'll need to do so for each domain.
 
+You can determine if you have reached the last page of suppressions if the <next page URL> is equal to the <last page URL>.
 
 .. _api-bounces:
 
@@ -53,7 +54,7 @@ Paginate over a list of bounces for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Maximum number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
@@ -316,7 +317,7 @@ Paginate over a list of unsubscribes for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
@@ -550,7 +551,7 @@ Paginate over a list of complaints for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Maximum number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
@@ -753,7 +754,7 @@ Paginate over a whitelists for a domain.
  Parameter         Description
  ================= ==========================================================
  limit             Number of records to return (optional, default: 100,
-                   max: 10000)
+                   max: 1000)
  ================= ==========================================================
 
 Example:
