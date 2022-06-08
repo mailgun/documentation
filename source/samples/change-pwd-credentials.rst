@@ -7,25 +7,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunDomainsApi;
+    import com.mailgun.model.ResponseWithMessage;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public ResponseWithMessage updatePassword() {
+        MailgunDomainsApi mailgunDomainsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunDomainsApi.class);
 
-     public static JsonNode updatePassword() throws UnirestException {
-
-         HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/credentials/alice")
-             .basicAuth("api", API_KEY)
-             .field("password", "supersecret")
-             .asJson();
-
-         return jsonResponse.getBody();
-     }
- }
+        return mailgunDomainsApi.updateCredentials(YOUR_DOMAIN_NAME, YOUR_LOGIN, "super_secret_password");
+    }
 
 .. code-block:: php
 

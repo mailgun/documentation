@@ -6,24 +6,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunTemplatesApi;
+    import com.mailgun.model.templates.TemplateResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public TemplateResponse getTemplate() {
+        MailgunTemplatesApi mailgunTemplatesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunTemplatesApi.class);
 
-     public static JsonNode getTemplate() throws UnirestException {
-
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/templates/TEMPLATE_NAME")
-             .basicAuth("api", API_KEY)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunTemplatesApi.getTemplate(YOUR_DOMAIN_NAME, TEMPLATE_NAME);
+    }
 
 .. code-block:: php
 

@@ -8,26 +8,26 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMailingListApi;
+    import com.mailgun.model.mailing.lists.MailingListMemberResponse;
+    import com.mailgun.model.mailing.lists.MailingListMemberUpdateRequest;
 
- public class MGSample {
+    import java.util.Map;
 
-     // ...
+    // ...
 
-     public static JsonNode updateMembers() throws UnirestException {
+    public MailingListMemberResponse updateMembers() {
+        MailgunMailingListApi mailgunMailingListApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMailingListApi.class);
 
-         HttpResponse <JsonNode> request = Unirest.put("https://api.mailgun.net/v3/lists/LIST_NAME@YOUR_DOMAIN_NAME/members/alice@example.com")
-             .basicAuth("api", API_KEY)
-             .field("subscribed", false)
-             .field("name", "Alice")
-             .asJson();
+        MailingListMemberUpdateRequest request = MailingListMemberUpdateRequest.builder()
+            .name("Alice")
+            .vars(Map.of("age", "26"))
+            .subscribed(false)
+            .build();
 
-         return request.getBody();
-     }
- }
+        return mailgunMailingListApi.updateMailingListMember(MAILING_LIST_ADDRESS, "alice@example.com", request);
+    }
 
 .. code-block:: php
 

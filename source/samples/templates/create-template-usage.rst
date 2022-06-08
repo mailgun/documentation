@@ -9,27 +9,24 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunTemplatesApi;
+    import com.mailgun.model.templates.TemplateRequest;
+    import com.mailgun.model.templates.TemplateWithMessageResponse;
 
- public class MGSample {
+    // ...
 
-      // ...
+    public TemplateWithMessageResponse createTemplate() {
+        MailgunTemplatesApi mailgunTemplatesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunTemplatesApi.class);
 
-     public static JsonNode createTemplate() throws UnirestException {
+        TemplateRequest request = TemplateRequest.builder()
+            .template("<div class=\"entry\"> <h1>{{title}}</h1> <div class=\"body\"> {{body}} </div> </div>")
+            .name("template.name")
+            .description("Sample template")
+            .build();
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates")
-            .basicAuth("api", API_KEY)
-            .field("template", "<div class=\"entry\"> <h1>{{title}}</h1> <div class=\"body\"> {{body}} </div> </div>")
-            .field("name", "Test template")
-            .field("description", "Sample template")
-            .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunTemplatesApi.storeNewTemplate(YOUR_DOMAIN_NAME, request);
+    }
 
 .. code-block:: php
 

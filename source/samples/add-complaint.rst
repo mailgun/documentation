@@ -6,22 +6,25 @@
 
 .. code-block:: java
 
-  import com.mashape.unirest.http.HttpResponse;
-  import com.mashape.unirest.http.JsonNode;
-  import com.mashape.unirest.http.Unirest;
-  import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.suppression.MailgunSuppressionComplaintsApi;
+    import com.mailgun.model.suppression.SuppressionResponse;
+    import com.mailgun.model.suppression.complaints.ComplaintsSingleItemRequest;
 
-  public class MGSample {
+    import java.time.ZonedDateTime;
 
-      public static JsonNode addComplaint() throws UnirestException {
+    // ...
 
-          HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/complaints")
-              .basicAuth("api", API_KEY)
-              .field("address", "bob@example.com")
-              .asJson();
-          return request.getBody();
-      }
-  }
+    public SuppressionResponse addComplaint() {
+        MailgunSuppressionComplaintsApi suppressionComplaintsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunSuppressionComplaintsApi.class);
+
+        ComplaintsSingleItemRequest complaintsSingleItemRequest = ComplaintsSingleItemRequest.builder()
+            .address( "bob@example.com")
+            .createdAt(ZonedDateTime.now())
+            .build();
+
+        return suppressionComplaintsApi.addAddressToComplaintsList(YOUR_DOMAIN_NAME, complaintsSingleItemRequest);
+    }
 
 .. code-block:: php
 

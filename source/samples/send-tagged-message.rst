@@ -12,32 +12,27 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    // ...
 
- public class MGSample {
+    public MessageResponse sendTaggedMessage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
-     // ...
+        Message message = Message.builder()
+            .from("Excited User <USER@YOURDOMAIN.COM>")
+            .to("bruce@example.com")
+            .subject("Hello")
+            .text("Testing out some Mailgun awesomeness!")
+            .tag("newsletters")
+            .tag("September newsletter")
+            .build();
 
-     public static JsonNode sendTaggedMessage() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-             .basicAuth("api", API_KEY)
-             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .field("to", "alice@example")
-             .field("subject", "Hello.")
-             .field("text", "Testing some Mailgun awesomeness")
-             .field("o:tag", "newsletters")
-             .field("o:tag", "September newsletter")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

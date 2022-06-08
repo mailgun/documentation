@@ -15,34 +15,30 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import java.io.File;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MessageResponse sendComplexMessage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
-     public static JsonNode sendComplexMessage() throws UnirestException {
+        Message message = Message.builder()
+            .from("Excited User <USER@YOURDOMAIN.COM>")
+            .to("alice@example.com")
+            .cc("bob@example.com")
+            .bcc("joe@example.com")
+            .subject("Hello")
+            .html("<html>HTML version </html>")
+            .attachment(new File("/temp/folder/test.txt"))
+            .build();
 
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-              .basicAuth("api", API_KEY)
-              .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-              .field("to", "alice@example.com")
-              .field("cc", "bob@example.com")
-              .field("bcc", "joe@example.com")
-              .field("subject", "Hello")
-              .field("text", "Testing out some Mailgun awesomeness!")
-              .field("html", "<html>HTML version </html>")
-              .field("attachment", new File("/temp/folder/test.txt"))
-              .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

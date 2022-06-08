@@ -8,26 +8,32 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunDomainsApi;
+    import com.mailgun.enums.SpamAction;
+    import com.mailgun.enums.WebScheme;
+    import com.mailgun.model.domains.DomainRequest;
+    import com.mailgun.model.domains.DomainResponse;
 
- public class MGSample {
+    import java.util.List;
 
-     // ...
+    // ...
 
-     public static JsonNode addDomain() throws UnirestException {
+    public DomainResponse addDomain() {
+        MailgunDomainsApi mailgunDomainsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunDomainsApi.class);
 
-         HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.mailgun.net/v3/domains")
-             .basicAuth("api", API_KEY)
-             .field("name", "YOUR_NEW_DOMAIN_NAME")
-             .field("smtp_password", "supersecretpassword")
-             .asJson();
+        DomainRequest request = DomainRequest.builder()
+            .name(YOUR_NEW_DOMAIN_NAME)
+            .spamAction(SpamAction.BLOCK)
+            .wildcard(true)
+            .forceDkimAuthority(false)
+            .dkimKeySize(1024)
+            .ips(List.of(IP_1, IP_2))
+            .webScheme(WebScheme.HTTPS)
+            .build();
 
-         return jsonResponse.getBody();
-     }
- }
+        return mailgunDomainsApi.createNewDomain(request);
+    }
 
 .. code-block:: php
 

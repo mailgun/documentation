@@ -7,25 +7,23 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.suppression.MailgunSuppressionWhitelistsApi;
+    import com.mailgun.model.ResponseWithMessage;
+    import com.mailgun.model.suppression.whitelists.WhitelistsRequest;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public ResponseWithMessage addBounce() {
+        MailgunSuppressionWhitelistsApi suppressionWhitelistsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunSuppressionWhitelistsApi.class);
 
-     public static JsonNode addBounce() throws UnirestException {
+        WhitelistsRequest whitelistsRequest = WhitelistsRequest.builder()
+            .address("bob@example.com")
+            .reason(REASON)
+            .build();
 
-         HttpResponse <JsonNode> request =  Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/whitelists")
-             .basicAuth("api", API_KEY)
-             .field("domain", "example.com")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return suppressionWhitelistsApi.addSingleWhitelistRecord(YOUR_DOMAIN_NAME, whitelistsRequest);
+    }
 
 .. code-block:: php
 

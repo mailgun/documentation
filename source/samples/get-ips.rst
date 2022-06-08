@@ -7,25 +7,17 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunIPsApi;
+    import com.mailgun.model.ips.IPsResult;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public IPsResult getIPs() {
+        MailgunIPsApi mailgunIPsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunIPsApi.class);
 
-     public static JsonNode getIPs() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/ips")
-             .basicAuth("api", API_KEY)
-             .queryString("dedicated", "true")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunIPsApi.getDedicatedIPs(true);
+    }
 
 .. code-block:: php
 

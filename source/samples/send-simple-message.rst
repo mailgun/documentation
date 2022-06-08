@@ -10,31 +10,25 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    // ...
 
+    public MessageResponse sendSimpleMessage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
- public class MGSample {
+        Message message = Message.builder()
+            .from("Excited User <USER@YOURDOMAIN.COM>")
+            .to("artemis@example.com")
+            .subject("Hello")
+            .text("Testing out some Mailgun awesomeness!")
+            .build();
 
-     // ...
-
-     public static JsonNode sendSimpleMessage() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-             .basicAuth("api", API_KEY)
-             .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-             .field("to", "artemis@example.com")
-             .field("subject", "hello")
-             .field("text", "testing")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

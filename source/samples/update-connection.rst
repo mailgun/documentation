@@ -8,26 +8,23 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunDomainsApi;
+    import com.mailgun.model.domains.DomainConnectionRequest;
+    import com.mailgun.model.domains.UpdateDomainConnectionResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public UpdateDomainConnectionResponse updateConnections() {
+        MailgunDomainsApi mailgunDomainsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunDomainsApi.class);
 
-     public static JsonNode updateConnections() throws UnirestException {
+        DomainConnectionRequest domainConnection = DomainConnectionRequest.builder()
+            .requireTls(true)
+            .skipVerification(false)
+            .build();
 
-         HttpResponse<JsonNode> jsonResponse = Unirest.put("https://api.mailgun.net/v3/domains/"+ YOUR_DOMAIN_NAME +"/connection")
-             .basicAuth("api", API_KEY)
-             .field("require_tls", true)
-             .field("skip_verification", false)
-             .asJson();
-
-         return jsonResponse.getBody();
-     }
- }
+        return mailgunDomainsApi.updateDomainConnectionSettings(YOUR_DOMAIN_NAME, domainConnection);
+    }
 
 .. code-block:: php
 

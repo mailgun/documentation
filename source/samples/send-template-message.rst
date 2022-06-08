@@ -12,32 +12,44 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import java.util.List;
+    import java.util.Map;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MessageResponse sendTemplateMessage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
-     public static JsonNode sendTemplateMessage() throws UnirestException {
+        Map<String, Object> aliceVars = Map.of(
+                "name", "Alice",
+                "id", 1
+        );
 
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-             .basicAuth("api", API_KEY)
-             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .field("to", "alice@example.com")
-             .field("to", "bob@example.com")
-             .field("Subject", "Hello, %recipient.first%!")
-             .field("text", "If you wish to unsubscribe, click <https://mailgun.com/unsubscribe/%recipient.id%>")
-             .field("recipient-variables", "{\"bob@example.com\": {\"first\":\"Bob\", \"id\":1}, \"alice@example.com\": {\"first\":\"Alice\", \"id\": 2}}")
-             .asJson();
+        Map<String, Object> bobVars = Map.of(
+                "name", "Bob",
+                "id", 2
+        );
 
-         return request.getBody();
-     }
- }
+        Map<String, Map<String, Object>> recipientVariables = Map.ofEntries(
+                Map.entry("alice@example.com", aliceVars),
+                Map.entry("bob@example.com", bobVars)
+        );
+
+        Message message = Message.builder()
+            .from("Excited User <USER@YOURDOMAIN.COM>")
+            .to(List.of("alice@example.com", "bob@example.com"))
+            .subject("Hey %recipient.name%")
+            .text("If you wish to unsubscribe, click <https://mailgun.com/unsubscribe/%recipient.id%>")
+            .recipientVariables(recipientVariables)
+            .build();
+
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

@@ -15,7 +15,7 @@ libraries, or your favorite/suggested HTTP/REST library available for your progr
 language, to make HTTP calls to Mailgun.
 
 Most code samples in our docs can be viewed in several programming languages
-by using the language bar at the top. 
+by using the language bar at the top.
 
 Mailgun maintains the following official libraries for interfacing with our platform:
 
@@ -27,3 +27,4 @@ Official Mailgun Libraries
 * `mailgun-ruby <https://github.com/mailgun/mailgun-ruby>`_
 * `mailgun-go <https://github.com/mailgun/mailgun-go>`_
 * `mailgun-js <https://github.com/mailgun/mailgun-js>`_
+* `mailgun-java <https://github.com/mailgun/mailgun-java>`_

@@ -12,34 +12,30 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import java.io.File;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MessageResponse sendInlineImage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
-     public static JsonNode sendInlineImage() throws UnirestException {
+        Message message = Message.builder()
+            .from("Excited User <USER@YOURDOMAIN.COM>")
+            .to("alice@example.com")
+            .to("bob@example.com")
+            .cc("joe@example.com")
+            .subject("Hello")
+            .html("<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
+            .inline(new File("/path/to/test.jpg"))
+            .build();
 
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-             .basicAuth("api", API_KEY)
-             .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-             .field("to", "alice@example.com")
-             .field("to", "bob@example.com")
-             .field("cc", "joe@example.com")
-             .field("subject", "Hello")
-             .field("text", "Testing out some Mailgun awesomeness!")
-             .field("html", "<html>Inline image here: <img src=\"cid:test.jpg\"></html>")
-             .field("inline", new File("/path/to/test.jpg"))
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

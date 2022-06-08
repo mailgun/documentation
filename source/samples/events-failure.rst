@@ -6,25 +6,23 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunEventsApi;
+    import com.mailgun.enums.EventType;
+    import com.mailgun.model.events.EventsQueryOptions;
+    import com.mailgun.model.events.EventsResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public EventsResponse getEvents() {
+        MailgunEventsApi mailgunEventsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunEventsApi.class);
 
-     public static JsonNode getLogs() throws UnirestException {
+        EventsQueryOptions eventsQueryOptions = EventsQueryOptions.builder()
+            .event(EventType.FAILED)
+            .build();
 
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/events")
-             .basicAuth("api", API_KEY)
-             .queryString("event", "failed")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunEventsApi.getEvents(YOUR_DOMAIN_NAME, eventsQueryOptions);
+    }
 
 .. code-block:: php
 

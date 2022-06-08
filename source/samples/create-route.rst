@@ -10,29 +10,27 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunRoutesApi;
+    import com.mailgun.model.routes.RoutesRequest;
+    import com.mailgun.model.routes.RoutesResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public RoutesResponse createRoute() {
+        MailgunRoutesApi mailgunRoutesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunRoutesApi.class);
 
-     public static JsonNode createRoute() throws UnirestException {
+        RoutesRequest routesRequest = RoutesRequest.builder()
+            .priority(0)
+            .description("sample route")
+            .expression("match_recipient('.*@YOUR_DOMAIN_NAME')")
+            .action("forward('http://myhost.com/messages/')")
+            .action("stop()")
+            .build();
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/routes")
-             .basicAuth("api", API_KEY)
-             .field("priority", "0")
-             .field("description", "sample route")
-             .field("expression", "match_recipient('.*@YOUR_DOMAIN_NAME')")
-             .field("action", "forward('http://myhost.com/messages/')")
-             .field("action", "stop()")
-             .asJson();
+        return mailgunRoutesApi.createRoute(routesRequest);
+    }
 
-         return request.getBody();
-     }
- }
 
 .. code-block:: php
 

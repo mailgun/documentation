@@ -8,27 +8,27 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunTemplatesApi;
+    import com.mailgun.model.templates.TemplateVersionRequest;
+    import com.mailgun.model.templates.TemplateWithMessageResponse;
 
- public class MGSample {
+    // ...
 
-      // ...
+    public TemplateWithMessageResponse storeTemplateVersion() {
+        MailgunTemplatesApi mailgunTemplatesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunTemplatesApi.class);
 
-     public static JsonNode storeTemplateVersion() throws UnirestException {
+        TemplateVersionRequest request = TemplateVersionRequest.builder()
+            .template(TEMPLATE_2)
+            .tag("v1")
+            .template("{{fname}} {{lname}}")
+            .engine("handlebars")
+            .comment("comment")
+            .active(true)
+            .build();
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/templates/TEMPLATE_NAME/versions")
-            .basicAuth("api", API_KEY)
-            .field("tag", "v0")
-            .field("template", "{{fname}} {{lname}}")
-            .field("engine", "handlebars")
-            .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunTemplatesApi.createNewTemplateVersion(YOUR_DOMAIN_NAME, TEMPLATE_NAME, request);
+    }
 
 .. code-block:: php
 

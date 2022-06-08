@@ -10,27 +10,27 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunEventsApi;
+    import com.mailgun.model.events.EventsQueryOptions;
+    import com.mailgun.model.events.EventsResponse;
 
- public class MGSample {
+    import java.time.ZoneId;
+    import java.time.ZonedDateTime;
 
-     // ...
+    // ...
 
-     public static JsonNode getLogs() throws UnirestException {
+    public EventsResponse getEvents() {
+        MailgunEventsApi mailgunEventsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunEventsApi.class);
 
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/events")
-             .basicAuth("api", API_KEY)
-             .queryString("begin", "Thurs, 18 May 2017 09:00:00 -0000")
-             .queryString("ascending", "yes")
-             .queryString("limit", 1)
-             .asJson();
+        EventsQueryOptions eventsQueryOptions = EventsQueryOptions.builder()
+            .begin(ZonedDateTime.now().minusDays(5))
+            .ascending(true)
+            .limit(1)
+            .build();
 
-         return request.getBody();
-     }
- }
+        return mailgunEventsApi.getEvents(YOUR_DOMAIN_NAME, eventsQueryOptions);
+    }
 
 .. code-block:: php
 

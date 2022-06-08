@@ -9,28 +9,26 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunWebhooksApi;
+    import com.mailgun.enums.WebhookName;
+    import com.mailgun.model.webhooks.WebhookRequest;
+    import com.mailgun.model.webhooks.WebhookResult;
 
- public class MGSample {
+    import java.util.List;
 
-     // ...
+    // ...
 
-     public static JsonNode addWebhook() throws UnirestException {
+    public WebhookResult addWebhook() {
+        MailgunWebhooksApi mailgunWebhooksApi = MailgunClient.config(API_KEY).createApi(MailgunWebhooksApi.class);
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/webhooks")
-             .basicAuth("api", API_KEY)
-             .field("id","click")
-             .field("url", "https://your_domain.com/v1/clicked")
-             .field("url", "https://your_domain.com/v2/clicked")
-             .field("url", "https://your_partner_domain.com/v1/clicked")
-             .asJson();
+        WebhookRequest request = WebhookRequest.builder()
+            .webhookName(WebhookName.CLICKED)
+            .url("https://your_domain.com/v1/clicked")
+            .urls(List.of("https://your_domain.com/v2/clicked", "https://your_partner_domain.com/v1/clicked"))
+            .build();
 
-         return request.getBody();
-     }
- }
+        return mailgunWebhooksApi.createNewWebhook(YOUR_DOMAIN_NAME, request);
+    }
 
 .. code-block:: php
 

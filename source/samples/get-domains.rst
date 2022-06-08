@@ -8,27 +8,25 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunDomainsApi;
+    import com.mailgun.enums.DomainState;
+    import com.mailgun.model.domains.DomainListResponse;
+    import com.mailgun.model.domains.DomainsParametersFilter;
 
+    // ...
 
- public class MGSample {
+    public DomainListResponse getDomains() {
+        MailgunDomainsApi mailgunDomainsApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunDomainsApi.class);
 
-     // ...
+        DomainsParametersFilter filter = DomainsParametersFilter.builder()
+            .skip(0)
+            .limit(3)
+            .state(DomainState.ACTIVE)
+            .build();
 
-     public static JsonNode getDomains() throws UnirestException {
-
-         HttpResponse <JsonNode> request = Unirest.get("https://api.mailgun.net/v3/domains")
-             .basicAuth("api", API_KEY)
-             .queryString("skip", 0)
-             .queryString("limit", 3)
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunDomainsApi.getDomainsList(filter);
+    }
 
 .. code-block:: php
 

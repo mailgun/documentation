@@ -11,32 +11,34 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.model.message.Message;
+    import com.mailgun.model.message.MessageResponse;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import java.util.Map;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MessageResponse sendMessageByTemplateId() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMessagesApi.class);
 
-     public static JsonNode sendMessageByTemplateId() throws UnirestException {
+        Map<String, String> mailgunVariables = Map.of(
+                "title", "API Documentation",
+                "body", "Sending messages with templates"
+        );
 
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
-            .basicAuth("api", API_KEY)
-            .field("from", "Excited User <YOU@YOUR_DOMAIN_NAME>")
-            .field("to", "alice@example.com")
-            .field("subject", "Hello")
-            .field("template", "template.test")
-            .field("o:tracking", "False")
-            .field("t:variables", "{\"title\": \"API Documentation\", \"body\": \"Sending messages with templates\"}")
-            .asJson();
+        Message message = Message.builder()
+            .from("Excited User <YOU@YOUR_DOMAIN_NAME>")
+            .to("alice@example.com")
+            .subject("Hello")
+            .template(TEMPLATE_NAME)
+            .tracking(false)
+            .mailgunVariables(mailgunVariables)
+            .build();
 
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMessage(YOUR_DOMAIN_NAME, message);
+    }
 
 .. code-block:: php
 

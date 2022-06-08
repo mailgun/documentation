@@ -8,26 +8,50 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
 
- public class MGSample {
+    import com.mailgun.api.v3.MailgunMailingListApi;
+    import com.mailgun.model.mailing.lists.AddMailingListMembersRequest;
+    import com.mailgun.model.mailing.lists.MailingListMember;
+    import com.mailgun.model.mailing.lists.MailingListResponse;
 
-     // ...
+    import java.util.List;
+    import java.util.Map;
 
-     public static JsonNode addListMembers() throws UnirestException {
+    // ...
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/lists/{list}@{domain}/members.json")
-             .basicAuth("api", API_KEY)
-             .field("upsert", true)
-             .field("members", "[{\"address\": \"Alice <alice@example.com>\", \"vars\": {\"age\": 26}},{\"name\": \"Bob\", \"address\": \"bob@example.com\", \"vars\": {\"age\": 34}}]")
-             .asJson();
+    public MailingListResponse addListMembers() {
+        MailgunMailingListApi mailgunMailingListApi = MailgunClient.config(API_KEY)
+            .createApi(MailgunMailingListApi.class);
 
-         return request.getBody();
-     }
- }
+        Map<String, Object> aliceVars = Map.of("age", 26);
+
+        MailingListMember alice = MailingListMember.builder()
+            .address("Alice <alice@example.com>")
+            .name("Alice")
+            .vars(aliceVars)
+            .subscribed(true)
+            .build();
+
+        Map<String, Object> bobVars = Map.of(
+                "gender", "male",
+                "age", 1,
+                "name", "Bob"
+        );
+
+        MailingListMember bob = MailingListMember.builder()
+            .address("bob@example.com")
+            .name("Bob")
+            .vars(bobVars)
+            .subscribed(true)
+            .build();
+
+        AddMailingListMembersRequest request = AddMailingListMembersRequest.builder()
+            .members(List.of(alice, bob))
+            .upsert(true)
+            .build();
+
+        return mailgunMailingListApi.addMembersToMailingList(MAILING_LIST_ADDRESS, request);
+    }
 
 .. code-block:: php
 
