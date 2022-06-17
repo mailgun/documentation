@@ -6,25 +6,18 @@
 
 .. code-block:: java
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    import com.mailgun.api.v3.MailgunStoreMessagesApi;
+    import com.mailgun.client.MailgunClient;
+    import com.mailgun.model.message.MessageResponse;
 
- public class MGSample {
+    // ...
 
-     // ...
+    public MessageResponse resendSimpleMessage() {
+        MailgunStoreMessagesApi mailgunStoreMessagesApi = MailgunClient.config(STORED_MESSAGE_FULL_URL, API_KEY)
+                .createApiWithAbsoluteUrl(MailgunStoreMessagesApi.class);
 
-     public static JsonNode resendSimpleMessge() throws UnirestException {
-
-         HttpResponse<JsonNode> request = Unirest.post("https://se.api.mailgun.net/v3/domains/" + YOUR_DOMAIN_NAME + "/messages/{storage_url}")
-             .basicAuth("api", API_KEY)
-             .field("to", "user@samples.mailgun.org")
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunStoreMessagesApi.resendMessage("user@samples.org");
+    }
 
 .. code-block:: php
 

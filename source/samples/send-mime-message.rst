@@ -8,31 +8,26 @@
 
 .. code-block:: java
 
- import java.io.File;
+    import java.io.File;
+    import com.mailgun.api.v3.MailgunMessagesApi;
+    import com.mailgun.client.MailgunClient;
+    import com.mailgun.model.message.MailgunMimeMessage;
+    import com.mailgun.model.message.MessageResponse;
 
- import com.mashape.unirest.http.HttpResponse;
- import com.mashape.unirest.http.JsonNode;
- import com.mashape.unirest.http.Unirest;
- import com.mashape.unirest.http.exceptions.UnirestException;
+    // ...
 
- public class MGSample {
+    public MessageResponse sendMIMEMessage() {
+        MailgunMessagesApi mailgunMessagesApi = MailgunClient.config(API_KEY)
+                .createApi(MailgunMessagesApi.class);
 
-     // ...
 
-     public static JsonNode sendMIMEMessage() throws UnirestException {
+        MailgunMimeMessage mailgunMimeMessage = MailgunMimeMessage.builder()
+                .to("megan@example.com)
+                .message(new File("/path/to/file.mime"))
+                .build();
 
-         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages.mime")
-             .basicAuth("api", API_KEY)
-             .header("content-type", "multipart/form-data;")
-             .field("from", "Excited User <USER@YOURDOMAIN.COM>")
-             .field("to", "Megan@example.com")
-             .field("subject", "Bah-weep-graaaaagnah wheep nini bong.")
-             .field("message", new File("/temp/folder/file.mime"))
-             .asJson();
-
-         return request.getBody();
-     }
- }
+        return mailgunMessagesApi.sendMIMEMessage(YOUR_DOMAIN_NAME, mailgunMimeMessage);
+    }
 
 .. code-block:: php
 
