@@ -23,7 +23,7 @@
 
         MailgunMimeMessage mailgunMimeMessage = MailgunMimeMessage.builder()
                 .to("megan@example.com)
-                .message(new File("/path/to/file"))
+                .message(new File("/path/to/file.mime"))
                 .build();
 
         return mailgunMessagesApi.sendMIMEMessage(YOUR_DOMAIN_NAME, mailgunMimeMessage);
