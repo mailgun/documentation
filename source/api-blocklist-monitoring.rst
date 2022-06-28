@@ -25,6 +25,7 @@ The available request fields are as follows:
  Field                  Description
  ====================== ========================================================
  ``ip``                 Required. The IP address you wish to add. Note that only IPv4 format is supported.
+ ``ip_pool``            Optional. Use this field to specify an IP pool.
  ``description``        Optional. Use this field to provide a description for you IP address.
  ====================== ========================================================
 
@@ -135,6 +136,39 @@ See below for an explanation of the health details returned in the response body
  ``state``              This field describes IP's current state of health. Possible values include "healthy" and "listed". If the IP exists on any monitored blocklists, state will be "listed".
  ``listed``             This field contains a list of blocklists where your IP is currently listed. 
  ====================== ========================================================
+
+
+Update IP
+---------
+
+Use this endpoint to update IP address attributes.
+
+.. code-block:: url
+
+    PUT /v1/inboxready/ip_addresses/{ip}
+
+The available request fields are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``ip_pool``            Optional. Use this field to specify an IP pool.
+ ``description``        Optional. Use this field to provide a description for you IP address.
+ ====================== ========================================================
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "ip": "127.0.0.1",
+     "ip_pool": "",
+     "description": "",
+     "state": "healthy",
+     "listed": []
+   }
 
 
 Remove IP
