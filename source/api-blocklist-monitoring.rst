@@ -83,6 +83,60 @@ See below for an explanation of the health details returned in the response body
  ====================== ========================================================
 
 
+List IPs
+--------
+
+This endpoint allows you to retrieve a list of monitored IP addresses including
+their information about their health statuses.
+
+.. code-block:: url
+
+    GET /v1/inboxready/ip_addresses
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "items": [
+       {
+         "ip": "127.0.0.1",
+         "ip_pool": "",
+         "description": "",
+         "state": "listed",
+         "listed": [
+           {
+             "list":"cbl.abuseat.org",
+             "name":"CBL",
+             "first_seen":"2022-06-24T04:19:43.212Z",
+             "last_seen":"2022-06-28T16:43:38.954Z",
+             "delist_requested_at":"0001-01-01T00:00:00Z",
+             "comments":["https://www.spamhaus.org/query/ip/127.0.0.1"]
+           },
+         ]
+       },
+       {
+         "ip": "124.124.124.124",
+         "ip_pool": "",
+         "description": "",
+         "state": "healthy",
+         "listed": []
+       }
+     ]
+   }
+
+See below for an explanation of the health details returned in the response body:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``state``              This field describes IP's current state of health. Possible values include "healthy" and "listed". If the IP exists on any monitored blocklists, state will be "listed".
+ ``listed``             This field contains a list of blocklists where your IP is currently listed. 
+ ====================== ========================================================
+
+
 Remove IP
 ---------
 
