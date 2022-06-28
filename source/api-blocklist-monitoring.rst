@@ -180,3 +180,57 @@ Use this endpoint to remove an IP address from blocklist monitoring. A
 .. code-block:: url
 
     DELETE /v1/inboxready/ip_addresses/{ip}
+
+
+Blocklist Events
+----------------
+
+This endpoint returns blocklisted and delisted event data for your monitored
+IP addresses.
+
+.. code-block:: url
+
+    GET /v1/blocklist_monitoring/events
+
+The available filter parameters are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``timerange_start``    Required. An ISO8601 format timestamp specifying the start of your desired timerange.
+ ``timerange_end``      Required. An ISO8601 format timestamp specifying the end of your desired timerange.
+ ``ip``                 Optional. Use to filter events by specific IP address.
+ ``blocklist``          Optional. Use to filter events by specific blocklist.
+ ``event``              Optional. Use to filter events by event type. Accepted values include ``[ip_listed, ip_delisted]``.
+ ====================== ========================================================
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "items": [
+       {
+         "ip": "123.123.123.123",
+         "ip_pool": "",
+         "timestamp": "2022-01-01T12:14:16-04:00",
+         "event": "ip_delisted",
+         "blocklist": "pbl.spamhaus.org",
+         "account_id": "",
+       },
+       {
+         "ip": "123.123.123.123",
+         "ip_pool": "",
+         "timestamp": "2022-01-01T12:12:12-04:00",
+         "event": "ip_delisted",
+         "blocklist": "pbl.spamhaus.org",
+         "account_id": "",
+       },
+       ...
+     ],
+     "paging": {
+       ...
+     }
+   }
