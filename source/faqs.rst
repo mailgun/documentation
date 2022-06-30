@@ -37,7 +37,7 @@ What are the differences between Free and Flex plans?
 **Flex plan (credit card required):**
 
 * No daily sending limit
-* You receive 5,000 free messages per month for 3 months. If you send over this amount during the first 3 months, additional messages are charged at a rate of $1.00/1,000 messages. After these 3 months, the allotment of free messages received is 1,000
+* You receive 1,000 free messages per month. If you send over this amount, additional messages are charged at a rate of $1.00/1,000 messages
 * Data retention for Logs and the Events API is 5 days
 * You can create custom domains
 * Use of Authorized Recipients is not required to send with custom domains; you may send to whomever you like!
@@ -49,10 +49,11 @@ You can find a full list of features on our `pricing page`_.
 
 .. _pricing page: http://mailgun.com/pricing
 
-**Foundation Trial (credit card required):**
+**Foundation Trial (credit card required, newly created accounts only):**
 
-If you opt to enter your credit card during sign-up, you'll enter a three-month trial in which your card will not be charged unless you exceed the 5,000 messages per month allotment. After your trial expires, you will be charged $35/mo for the Foundation 50k plan (unless another subscription plan was selected during the three-month trial period).
+If you opt to enter your credit card during sign-up, you’ll enter a one-month trial in which your card will not be charged unless you exceed the trial's 5,000 messages allotment. After your trial expires, you will be charged $35 per month for the Foundation 50k plan (unless another `subscription plan`_ was selected during the one-month trial period).
 
+.. _subscription plan: http://mailgun.com/pricing
 
 Can I get multiple Domains and IP Addresses?
 **************************************************************************************************************
