@@ -122,7 +122,8 @@ Example 200 response:
          "description": "",
          "state": "healthy",
          "listed": []
-       }
+       },
+       ...
      ]
    }
 
@@ -199,8 +200,8 @@ The available filter parameters are as follows:
  ====================== ========================================================
  Field                  Description
  ====================== ========================================================
- ``timerange_start``    Required. An ISO8601 format timestamp specifying the start of your desired timerange.
- ``timerange_end``      Required. An ISO8601 format timestamp specifying the end of your desired timerange.
+ ``timerangeStart``     Required. An ISO8601 format timestamp specifying the start of your desired timerange.
+ ``timerangeEnd``       Required. An ISO8601 format timestamp specifying the end of your desired timerange.
  ``ip``                 Optional. Use to filter events by specific IP address.
  ``blocklist``          Optional. Use to filter events by specific blocklist.
  ``event``              Optional. Use to filter events by event type. Accepted values include ``[ip_listed, ip_delisted]``.
