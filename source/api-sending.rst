@@ -108,7 +108,10 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  h\:X-My-Header                    ``h:`` prefix followed by an arbitrary value allows to append
                                    a custom MIME header to the message (``X-My-Header``
                                    in this case). For example, ``h:Reply-To`` to specify Reply-To
-                                   address.
+                                   address, ``h:X-Mailgun-Sending-Ip-Pool=123`` to deliver the message
+                                   with an IP address that is part of the IP pool identified by ID 123,
+                                   or ``h:X-Mailgun-Sending-Ip-Pool=xx.xx.xxx.x`` to deliver the message
+                                   with a specified IP address.
  v\:my-var                         ``v:`` prefix followed by an arbitrary name allows to
                                    attach a custom JSON data to the message.
                                    See :ref:`manual-customdata` for more information.
@@ -158,7 +161,10 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
  h\:X-My-Header     ``h:`` prefix followed by an arbitrary value allows to append
                     a custom MIME header to the message (``X-My-Header``
                     in this case). For example, ``h:Reply-To`` to specify Reply-To
-                    address.
+                    address, ``h:X-Mailgun-Sending-Ip-Pool=123`` to deliver the message
+                    with an IP address that is part of the IP pool identified by ID 123,
+                    or ``h:X-Mailgun-Sending-Ip-Pool=xx.xx.xxx.x`` to deliver the message
+                    with a specified IP address.
  v\:my-var          ``v:`` prefix followed by an arbitrary name allows to
                     attach a custom JSON data to the message.
                     See :ref:`manual-customdata` for more information.
