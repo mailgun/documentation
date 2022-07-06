@@ -302,6 +302,10 @@ custom  MIME_ headers listed in the table below.
                                               or ``htmlonly``.
     X-Mailgun-Track-Opens                     Toggles opens tracking on a per-message basis. Has higher
                                               priority than domain-level setting. Pass ``yes`` or ``no``.
+    X-Mailgun-Sending-Ip                      Used to specify an IP Address to send the email with that is
+                                              owned by your account.
+    X-Mailgun-Sending-Ip-Pool                 If an IP Pool ID is provided, the email will be delivered
+                                              with an IP that belongs in that pool.
     X-Mailgun-Require-TLS                     Use this header to control TLS connection settings.
                                               See :ref:`tls-sending`
     X-Mailgun-Skip-Verification               Use this header to control TLS connection settings.
