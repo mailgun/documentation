@@ -69,6 +69,7 @@ Example 200 response:
          "delist_requested_at":"0001-01-01T00:00:00Z",
          "comments":["https://www.spamhaus.org/query/ip/127.0.0.1"]
        },
+       ...
      ]
    }
 
@@ -114,6 +115,7 @@ Example 200 response:
              "delist_requested_at":"0001-01-01T00:00:00Z",
              "comments":["https://www.spamhaus.org/query/ip/127.0.0.1"]
            },
+           ...
          ]
        },
        {
