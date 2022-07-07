@@ -8,6 +8,16 @@ enables you to keep an eye on your reputation. Monitor every IP address you have
 against our curated list of blocklist providers to make sure you aren’t being
 blocked.
 
+Monitored blocklists include:
+
+- SpamCop
+- CBL
+- Spamhaus SBL
+- Spamhaus PBL
+- Spamhaus XBL
+- Barracuda
+- Senderscore BL
+
 Add IP
 ------
 
