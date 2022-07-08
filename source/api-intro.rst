@@ -21,7 +21,7 @@ Our samples from :ref:`quickstart`, :ref:`user-manual`, and :ref:`api-reference`
 examples that will function. You're welcome to copy/paste and run the script to see the API in action.
 
 .. _RESTful: http://en.wikipedia.org/wiki/Representational_State_Transfer
-.. _JSON: http://en.wikipedia.org/wiki/Json objects
+.. _JSON: http://en.wikipedia.org/wiki/JSON
 
 .. _base-url:
 
