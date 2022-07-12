@@ -4,7 +4,6 @@ Mailgun Documentation
 This Github repository represents Mailgun's documentation site, located at http://documentation.mailgun.com. The site
 is based on the [Sphinx](http://sphinx-doc.org/) documentation generator for Python.
 
-
 To suggest changes to the documentation, please submit an [Issue](https://github.com/mailgun/documentation/issues/new)
 or [Pull Request](https://github.com/mailgun/documentation/compare/).
 
@@ -17,7 +16,7 @@ Github supports RST, so modification via Github's editor is recommended.
 Deployment
 ----------
 
-Documentation is hosted via ReadTheDocs and changes are automatically deployed when code is merged into master. To
+Documentation is hosted via ReadTheDocs and changes are automatically deployed when code is merged into the master. To
 monitor build statuses and debug failed builds, see [the builds page](https://readthedocs.org/projects/mg-documentation/builds/).
 
 Support and Feedback
