@@ -5,6 +5,8 @@ Email Validation/Verification
 
 .. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
+.. note:: Our Single and Bulk Email Verification service is available via the EU API.
+
 This API endpoint is an email address verification service.
 
 We will verify the given address based on:
@@ -36,8 +38,6 @@ Mailgun's email verification service is intended to verify email addresses submi
 
 Single Verification
 ~~~~~~~
-.. note:: This feature is now available via the EU API.
-
 .. note:: The verifications feature is rate limited to a set number of active requests at a time. If you receive a 429 error, please wait and try again.
 
 .. code-block:: url
