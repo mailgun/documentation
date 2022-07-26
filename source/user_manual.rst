@@ -1235,7 +1235,7 @@ the ``bot`` field can have one of the following possible values
  ==============================    ====================================================================
  apple                             Indicates an Apple MPP bot
  gmail                             Indicates a Gmail bot
- unknown                           Indicates an unknown bot (most likely a firewall or anti virus scan)
+ generic                           Indicates an unknown bot (most likely a firewall or anti virus scan)
  (empty)                           If the ``bot`` field is empty, no bot was detected.
  ==============================    ====================================================================
 
