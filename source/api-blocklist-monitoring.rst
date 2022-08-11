@@ -223,6 +223,7 @@ The available filter parameters are as follows:
 Example 200 response:
 
 .. code-block:: javascript
+
    {
      "items": [
        {
