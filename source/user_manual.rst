@@ -824,6 +824,10 @@ You can enable Opens & Clicks tracking on two levels: per sending domain and per
 
 .. note:: You will also have to point CNAME records to mailgun.org for Mailgun to rewrite links and track opens. In addition, there needs to be an html part of message for Mailgun to track opens (see `Tracking Opens`_ and `Tracking Clicks`_ for more detail).
 
+You can also disable click tracking for a specific link by including the html attribute ``disable-tracking=true`` in the html tag of the link.
+e.g. ``<a href="http://mailgun.com" disable-tracking=true>Mailgun</a>`` With this html attribute in the link's html tag,
+Mailgun will not rewrite the url.
+
 .. _events:
 
 Events
