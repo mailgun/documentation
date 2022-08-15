@@ -246,3 +246,31 @@ Example 200 response:
        ...
      }
    }
+
+
+Monitored Blocklists
+--------------------
+
+This endpoint returns the blocklists monitored by InboxReady.
+
+.. code-block:: url
+
+    GET /v1/blocklist-monitoring/blocklists
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "items": [
+       {
+         "blocklist": "b.barracudacentral.org",
+         "name": "Barracuda",
+       },
+       {
+         "blocklist": "bl.score.senderscore.com",
+         "name": "Senderscore BL",
+       },
+       ...
+     ],
+   }
