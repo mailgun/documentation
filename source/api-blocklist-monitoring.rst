@@ -193,3 +193,84 @@ Use this endpoint to remove an IP address from blocklist monitoring. A
 .. code-block:: url
 
     DELETE /v1/inboxready/ip_addresses/{ip}
+
+
+Blocklist Events
+----------------
+
+This endpoint returns blocklisted and delisted event data for your monitored
+IP addresses.
+
+.. code-block:: url
+
+    GET /v1/blocklist-monitoring/events
+
+The available filter parameters are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``timerangeStart``     Optional. An ISO8601 format timestamp specifying the start of your desired timerange.
+ ``timerangeEnd``       Optional. An ISO8601 format timestamp specifying the end of your desired timerange.
+ ``ip``                 Optional. Use to filter events by specific IP address.
+ ``blocklist``          Optional. Use to filter events by specific blocklist.
+ ``event``              Optional. Use to filter events by event type. Accepted values include ``[ip_listed, ip_delisted]``.
+ ``limit``              Optional. Defaults to 10. Minimum accepted value is 10 and maximum accepted value is 50.
+ ====================== ========================================================
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "items": [
+       {
+         "ip": "123.123.123.123",
+         "ip_pool": "",
+         "timestamp": "2022-01-01T12:14:16-04:00",
+         "event": "ip_delisted",
+         "blocklist": "pbl.spamhaus.org",
+       },
+       {
+         "ip": "123.123.123.123",
+         "ip_pool": "",
+         "timestamp": "2022-01-01T12:12:12-04:00",
+         "event": "ip_listed",
+         "blocklist": "pbl.spamhaus.org",
+       },
+       ...
+     ],
+     "paging": {
+       ...
+     }
+   }
+
+
+Monitored Blocklists
+--------------------
+
+This endpoint returns the blocklists monitored by InboxReady.
+
+.. code-block:: url
+
+    GET /v1/blocklist-monitoring/blocklists
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "items": [
+       {
+         "blocklist": "b.barracudacentral.org",
+         "name": "Barracuda",
+       },
+       {
+         "blocklist": "bl.score.senderscore.com",
+         "name": "Senderscore BL",
+       },
+       ...
+     ],
+   }
