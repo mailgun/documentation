@@ -4461,13 +4461,6 @@ ol.linenums {
     width: 100%
 }
 
-/* only tablet and mobile */
-@media only screen and (min-width: 481px) and (max-width:1023px) {
-    .documentation #body {
-        padding-top: 90px;
-    }
-}
-
 .documentation .subnav .subnav-alignment {
     max-width: 1240px;
     padding: 0 0;
@@ -4486,7 +4479,7 @@ ol.linenums {
     padding: 0
 }
 
-.documentation ul, .documentation ol {
+.documentation ul:not(.subpanel-mainMenu-0, .subpanel-mainMenu-1, .subpanel-mainMenu-2, .subpanel-mainMenu-3, .subpanel-mainMenu-4, .subpanel-mainMenu-5), .documentation ol:not(.subpanel-mainMenu-0, .subpanel-mainMenu-1, .subpanel-mainMenu-2, .subpanel-mainMenu-3, .subpanel-mainMenu-4, .subpanel-mainMenu-5) {
     margin: 0;
     padding: 0
 }

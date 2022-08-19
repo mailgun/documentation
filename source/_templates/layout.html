@@ -47,17 +47,20 @@
   <link rel="stylesheet" href="{{css_url}}/top_navigation.css" />
   <link rel="stylesheet" href="{{css_url}}/mg.css" />
   <link rel="stylesheet" href="{{css_url}}/search.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width">
   {% if corpsite_hostname == "www.website.ninomail.com" %}
   <meta name="robots" content="noindex">
   {% endif %}
-
+<script src="{{ pathto('_static/navbar.js', 1) }}" type="text/javascript"></script>
 {%- endblock %}
 {%- block extrahead %}
 {{ super() }}
 
 <!-- i2a tracking code-->
-<script type="text/javascript"
+<script type="text/javascript" 
   src="{{ pathto('_static/i2a.js', 1) }}">
 </script>
 
@@ -198,388 +201,10 @@
   </defs>
 </svg>
 
-<nav class="navbar-docs">
-  <div class="styled-wrapper">
-    <div class="styled-nav-elements">
-      <div class="styled-logo">
-        <a href="https://www.mailgun.com" class="logo">
-          <img src="https://images.ctfassets.net/y6oq7udscnj8/6ZBhy3wCQx3WhSaoejr2fs/d5ff47541079b886877a80ab5ca0a471/01_1121_SinchMailgunLogo_Mailgun-Colour.png" width="185px">
-        </a>
-        <div class="styled-hamburger">
-          <p>Menu</p>
-          <button class="styled-wrapper" type="button">
-            <span class="styled-box">
-              <span class="styled-inner"></span>
-            </span>
-          </button>
-        </div>
-      </div>
-      <div class="styled-lists">
-        <ul class="styled-link-list">
-          <!-- PRICING -->
-          <li class="styled-link-list-element">
-            <a class="styled-link" href="https://www.mailgun.com/pricing">Pricing</a>
-          </li>
-          <!-- PRODUCTS -->
-          <li class="styled-link-list-element">
-            <a class="styled-link products sub" href="https://www.mailgun.com/email-api">
-              Products
-              <svg class="main-icon arrow" width="12" height="12" viewBox="0 0 12 12"><use xlink:href="#arrow"></use></svg>
-            </a>
-            <span class="styled-span">
-              <ul class="styled-submenu products collapse">
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/email-api">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon email-api" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#email-api"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Email API</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/email-validation">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon email-validation" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#email-validation"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Email Validation</p>
-                        <p class="styled-subtitle">Verify that an email address from your list actually exists.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/deliverability-services">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon deliverability" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#deliverability"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Deliverability</p>
-                        <p class="styled-subtitle">Ensure every email lands where it's supposed to.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/rapid-fire-email">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon burst-sending" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#burst-sending"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Burst Sending</p>
-                        <p class="styled-subtitle">Attempted delivery of up to 1.5 million emails in a single hour, guaranteed.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/inbox-placement">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon inbox-placement" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#inbox-placement"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Inbox Placement</p>
-                        <p class="styled-subtitle">Predict deliverability issues and take action to improve performance.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </span>
-          </li>
-          <!-- DELIVERABILITY SERVICES -->
-          <li class="styled-link-list-element">
-            <a class="styled-link deliverability-services sub" href="https://www.mailgun.com/deliverability-services">
-              Deliverability Services
-              <svg class="main-icon arrow" width="12" height="12" viewBox="0 0 12 12"><use xlink:href="#arrow"></use></svg>
-            </a>
-            <span class="styled-span">
-              <ul class="styled-submenu deliverability-services collapse">
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/deliverability-services">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon deliverability" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#deliverability"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Deliverability Services</p>
-                        <p class="styled-subtitle">Partner with an email expert to improve your deliverability.</p>
-                      </div>
-                    </div>
-                    </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/enterprise">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon enterprise" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#enterprise"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Enterprise Services</p>
-                        <p class="styled-subtitle">Grow an enterprise email program with deliverability in mind.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </span>
-          </li>
-          <!-- SOLUTIONS -->
-          <li class="styled-link-list-element">
-            <a class="styled-link solutions sub" href="https://documentation.mailgun.com">
-              Solutions
-              <svg class="main-icon arrow" width="12" height="12" viewBox="0 0 12 12"><use xlink:href="#arrow"></use></svg>
-            </a>
-            <span class="styled-span">
-              <ul class="styled-submenu solutions collapse two-columns">
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/deliverability">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon deliverability" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#deliverability"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Deliverability</p>
-                        <p class="styled-subtitle">Land your emails in the inbox with deliverability features.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/smtp">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon smtp" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#smtp"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">SMTP</p>
-                        <p class="styled-subtitle">Get started in seconds with robust email delivery through SMTP.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/sending-email">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon email-api" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#email-api"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Email Sending</p>
-                        <p class="styled-subtitle">Personalize, schedule, and send all your emails with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/email-parsing-software">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon email-parsing" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#email-parsing"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Email Parsing</p>
-                        <p class="styled-subtitle">Automatically parse incoming messages - no more manual work.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/email-marketing">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon email-marketing" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#email-marketing"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Email Marketing</p>
-                        <p class="styled-subtitle">Engage with customers with the right campaign at the right time.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/transactional-email">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon transactional-email" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#transactional-email"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Transactional Email</p>
-                        <p class="styled-subtitle">Trigger emails when a user takes a specific action in your app.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/send-time-optimization" target="_blank">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon send-time-optimization" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#send-time-optimization"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Send Time Optimization</p>
-                        <p class="styled-subtitle">Send emails at the best time to engage with your audience.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/email-analytics">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon email-analytics" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#email-analytics"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Email Analytics</p>
-                        <p class="styled-subtitle">Optimize your email performance with powerful analytics.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </span>
-          </li>
-          <!-- DOCS & BLOG -->
-          <li class="styled-link-list-element">
-            <a class="styled-link docs sub" href="https://documentation.mailgun.com">
-              Docs & Blog
-              <svg class="main-icon arrow" width="12" height="12" viewBox="0 0 12 12"><use xlink:href="#arrow"></use></svg>
-            </a>
-            <span class="styled-span">
-              <ul class="styled-submenu docs collapse two-columns">
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/blog">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon blog" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#blog"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Blog</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://documentation.mailgun.com">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon documentation" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#documentation"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Documentation</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://documentation.mailgun.com/en/latest/quickstart.html">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon quickstart-guide" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#quickstart-guide"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Quickstart Guide</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/case-studies" target="_blank">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon case-studies" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#case-studies"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Case Studies</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/podcasts">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon podcasts" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#podcasts"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Podcasts</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/videos">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon videos" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#videos"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Videos</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://www.mailgun.com/guides">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon guides" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#guides"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Guides</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="styled-li">
-                  <a class="styled-link" href="https://help.mailgun.com/hc/en-us">
-                    <div class="styled-flex-container">
-                      <div class="styled-icon">
-                        <svg class="icon help-center" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#help-center"></use></svg>
-                      </div>
-                      <div>
-                        <p class="styled-title">Help Center</p>
-                        <p class="styled-subtitle">Get set up in minutes and reach the inbox with confidence.</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </span>
-          </li>
-          <!-- CONTACT -->
-          <li class="styled-link-list-element">
-            <a class="styled-link" href="https://www.mailgun.com/contact">Contact</a>
-          </li>
-        </ul>
-        <!-- LOG IN AND SIGN UP -->
-        <div class="styled-button-list">
-          <a class="styled-link styled-link-list-element link" href="https://app.mailgun.com/app/dashboard" target="_self" rel="external">Log In</a>
-          <a href="https://signup.mailgun.com/" class="primary" target="_self" rel="external">Start Sending</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
 <!-- /header -->
 
 <div id="body">
+  <div id="navbar"></div>
   <section class="subnav">
     <div class="container-fluid subnav-alignment">
       <a href="https://github.com/mailgun/documentation" class="edit-docs-link" onclick="mixpanel.track('Clicked Edit Docs Link');">Edit</a>
@@ -693,10 +318,7 @@
     </div> <!-- /content -->
   </section> <!-- /container -->
 </div> <!-- /body -->
-
-
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/bootstrap.min.js', 1) }}"></script>
-    <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/toc.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.debounce.min.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.cookie.min.js', 1) }}"></script>
     <script type="text/javascript" charset="utf-8" src="{{ pathto('_static/jquery.viewport.min.js', 1) }}"></script>
@@ -736,9 +358,10 @@
     editor.setBehavioursEnabled(false);
     $(container).height(editor.getSession().getScreenLength() * 20);
   }
-
 </script>
-
+<script>
+  displayNavbar(document.getElementById("navbar"));
+</script>
 <!-- User information insertion code-->
 <script type="text/javascript">
   var cp_hostname = "{{cp_hostname}}";
