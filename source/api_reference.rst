@@ -23,4 +23,5 @@ API Reference
    api-email-preview
    api-spam-trap-monitoring
    api-blocklist-monitoring
+   api-deliverability-alerts
 
