@@ -49,6 +49,10 @@ The available request fields are as follows:
 
 Settings payload for ``webhook`` channel:
 
+*NOTE: When registering a webhook alert, we will ensure the endpoint is reachable by
+sending a GET request to the provided URL. If a 200 response is not returned, a 400 will
+be returned and the alert setting will not be saved.*
+
 .. code-block:: javascript
 
    {
