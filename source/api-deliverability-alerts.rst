@@ -103,3 +103,57 @@ Example 200 response:
      "disabled_at": null
    }
 
+
+List Alerts
+-----------
+
+This endpoint returns a list of all configured alert settings for your account.
+
+.. code-block:: url
+
+    GET /v1/alerts/settings/events
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "events": [
+       {
+         "id": "8a2db565-cdd0-41d2-ae5d-461ee9c64492"
+         "event_type": "ip_listed",
+         "channel": "webhook",
+         "settings": {
+           "url": "https://yourwebhookurl.com"
+         },
+         "disabled_at": null
+       },
+       {
+         "id": "b1ca01c2-fde0-4b69-adc4-6cf42b3f33ed"
+         "event_type": "ip_listed",
+         "channel": "email",
+         "settings": {
+           "emails": ["recipient-1@example.com", "recipient-2@example.com"]
+         },
+         "disabled_at": null
+       }
+       ...
+     ],
+     "webhooks": {
+       "signing_key": "bdee4d3e39910a92628f1df02fd0a73a"
+     }
+   }
+
+See below for an explanation of the objects returned in the ``events`` list.
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``id``                 The unique identifier for the alert settings record.
+ ``event_type``         The event acted on.
+ ``channel``            The delivery channel for the alert.
+ ``settings``           This object contains channel-specific settings.
+ ``disabled_at``        Read only. When present, an iso8601 timestamp indicating when a webhook endpoint was disabled.
+ ====================== ========================================================
