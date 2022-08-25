@@ -595,6 +595,7 @@ Get Available Result Filters
 Example response of getting the available results filters.
 
 .. code-block:: javascript
+
  {
    "supported_filters": {
      "filters": [
@@ -638,6 +639,7 @@ Get all iterable attributes of results
 Example response of getting the result attributes.
 
 .. code-block:: javascript
+
  {
    "items": {
      "attribute": "available attributes",
