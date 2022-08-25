@@ -550,7 +550,10 @@ List all results for your account.
           "originating_ip": "123.123.123.123",
           "tags": [
             "inbox"
-          ]
+          ],
+          "spf": "pass",
+          "dkim": "pass",
+          "dmarc": "pass"
         }
       ]
     }
@@ -575,6 +578,9 @@ destination              string       Either "inbox" or "spam"
 state                    string       Whether or not the mailbox has received a message
 originating_ip           string       The IP address from which the message came from (if available)
 tags                     array        The folder, or labels of where the message ended up.
+spf                      string       SPF email authentication results. Possible values are "pass" and "fail".
+dkim                     string       Results from DKIM evaluation. Possible values are "pass" and "fail".
+dmarc                    string       DMARC email authentication results. Possible values include "pass" and "fail".
 =====================    =========    ======================================================================================================================
 
 Get Available Result Filters
@@ -702,7 +708,10 @@ You can use this endpoint to get a single result.
         "originating_ip": "123.123.123.123",
         "tags": [
           "inbox"
-        ]
+        ],
+        "spf": "pass",
+        "dkim": "pass",
+        "dmarc": "pass"
       }
     ]
   }
