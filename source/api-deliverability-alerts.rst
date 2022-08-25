@@ -42,7 +42,7 @@ The available request fields are as follows:
  ====================== ========================================================
  Field                  Description
  ====================== ========================================================
- ``event_type``         Required. The type of event that you would like to receive alerts for. 
+ ``event_type``         Required. The type of event for which you would like to receive alerts.
  ``channel``            Required. The delivery method for the alert. Supported values include ``"webhook"`` and ``"email"``.
  ``settings``           Required. The details pertaining to the specified channel. Please note that the contents of this object differ per channel type. See below for details.
  ====================== ========================================================
@@ -111,7 +111,7 @@ This endpoint returns a list of all configured alert settings for your account.
 
 .. code-block:: url
 
-    GET /v1/alerts/settings/events
+    GET /v1/alerts/settings
 
 Example 200 response:
 
@@ -152,8 +152,72 @@ See below for an explanation of the objects returned in the ``events`` list.
  Field                  Description
  ====================== ========================================================
  ``id``                 The unique identifier for the alert settings record.
- ``event_type``         The event acted on.
+ ``event_type``         The event type that is alerted on.
  ``channel``            The delivery channel for the alert.
  ``settings``           This object contains channel-specific settings.
  ``disabled_at``        Read only. When present, an iso8601 timestamp indicating when a webhook endpoint was disabled.
  ====================== ========================================================
+
+
+Update Alert
+------------
+
+Use this endpoint to update an existing alert setting record.
+
+.. code-block:: url
+
+    PUT /v1/alerts/settings/events/{id}
+
+The available request fields are as follows:
+
+.. container:: ptable
+
+ ====================== ========================================================
+ Field                  Description
+ ====================== ========================================================
+ ``event_type``         Required. The type of event for which you would like to receive alerts.
+ ``channel``            Required. The delivery method for the alert. Supported values include ``"webhook"`` and ``"email"``.
+ ``settings``           Required. The details pertaining to the specified channel. Please note that the contents of this object differ per channel type. See below for details.
+ ====================== ========================================================
+
+*NOTE: When updating a webhook alert, we will ensure the endpoint is reachable by
+sending a GET request to the provided URL. If a 200 response is not returned, a 400 will
+be returned and the alert setting update will be rejected.*
+
+Example request:
+
+.. code-block:: javascript
+
+   // PUT /v1/alerts/settings/events/8a2db565-cdd0-41d2-ae5d-461ee9c64492
+   {
+     "event_type": "ip_listed",
+     "channel": "webhook",
+     "settings": {
+       "url": "https://newwebhookurl.com"
+     }
+   }
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "id": "8a2db565-cdd0-41d2-ae5d-461ee9c64492"
+     "event_type": "ip_listed",
+     "channel": "webhook",
+     "settings": {
+       "url": "https://newwebhookurl.com"
+     },
+     "disabled_at": null
+   }
+
+
+Remove Alert
+------------
+
+Use this endpoint to delete an alert settings record. A 200 response is returned on success.
+
+.. code-block:: url
+
+    DELETE /v1/alerts/settings/events/{id}
+
