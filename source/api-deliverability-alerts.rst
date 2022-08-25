@@ -4,7 +4,7 @@ Deliverability Alerts
 =====================
 
 This section describes our RESTful API for alert configuration for InboxReady
-products and Mailgun deliverability tools.
+products.
 
 
 Events & Channels
@@ -22,8 +22,6 @@ The current list of events that you can chose to receive alerts for are:
 
 - ``ip_listed``: A monitored IP has been added to a blocklist.
 - ``ip_delisted``: A monitored IP has been removed from a blocklist.
-- ``domain_listed``: A monitored domain has been added to a blocklist.
-- ``domain_delisted``: A monitored domain has been removed from a blocklist.
 
 
 Add Alert
@@ -221,3 +219,114 @@ Use this endpoint to delete an alert settings record. A 200 response is returned
 
     DELETE /v1/alerts/settings/events/{id}
 
+
+Webhooks
+--------
+
+This section covers details around consuming InboxReady deliverability alerts via webhooks.
+If you are familiar with Mailgun webhooks, there is a lot of overlapping similarity, however,
+there are also a few minor nuances to account for.
+
+**Securing Webhooks**
+
+HMAC_ is used to verified to integrity as well as the authenticity of received webhooks. To
+verify the origin of a webhook:
+
+1. Stringify the POST request's entire JSON body.
+2. Encode the resulting string with the HMAC algorithm (using your webhook signing key and SHA256 digest mode)
+3. Compare the resulting hexdigest to the signature provided in the POST request's ``x-sign`` header.
+
+Below is a Ruby code example for verifying a webhook signature:
+
+.. code-block:: ruby
+
+    require "json"
+    require "openssl"
+
+    def verify(signing_key, webhook_payload, signature)
+      data = JSON.generate(webhook_payload)
+
+      signature == OpenSSL::HMAC.hexdigest("SHA256", signing_key, data)
+    end
+
+
+*NOTE: If you're comsuming Mailgun webhooks, please note that your Mailgun webhook signing key
+differs from your InboxReady alerts webhook signing key. Your InboxReady alerts webhook signing key
+is available within the InboxReady UI.*
+
+.. _HMAC: https://en.wikipedia.org/wiki/HMAC
+
+
+**Webhook URL Validation**
+
+When adding or updating a webhook URL for alerts, we will ensure the endpoint is reachable by
+sending a GET request to the provided URL. If a 200 response is not returned from your endpoint,
+the request will be rejected and your alert setting will not be saved. We intentionally chose
+to send a GET request instead of a POST when validating URLs so that your webhook endpoint
+does not have to account for test requests.
+
+Additionally, when a POST request is sent to your webhook URL, if a 2xx is not returned, we will
+attempt to retry 7 times. If the max retry count is reached, the alert will be disabled and the
+related alert settings record's ``disabled_at`` field will be populated.
+
+**Reset Webhook Signing Key**
+
+Your webhook signing key is accessible via the ``GET /v1/alerts/settings`` API. You can reset your
+signing key at any time using the endpoint below:
+
+.. code-block:: url
+
+    PUT /v1/alerts/settings/webhooks/signing_key
+
+
+Example 200 response:
+
+.. code-block:: javascript
+
+   {
+     "signing_key": "<SIGNING KEY>"
+   }
+
+**Webhook Samples**
+
+Below are samples of webhook payloads for each support event type:
+
+IP Blocklisted
+
+.. code-block:: javascript
+
+    {
+      "signature": {
+        "timestamp": 1661445572,
+        "token": "b912851220af04be63e2feacebeafc7844f813847d309631ec"
+      },
+      "event_data": {
+        "id": "927156bd-0000-0000-0000-38100897278d",
+        "timestamp": "2022-08-25T16:00:00.04368716Z",
+        "log_level": "warn",
+        "event": "ip_listed",
+        "ip": "49.0.2.000",
+        "blocklist": "Barracuda",
+        "message": "IP 49.0.2.000 was blocklisted by Barracuda"
+      }
+    }
+
+IP Delisted
+
+.. code-block:: javascript
+
+    {
+      "signature": {
+        "timestamp": 1661445573,
+        "token": "429caef899af60b9c412af6161428e7a41a669f6e5a30cb5f3"
+      },
+      "event_data": {
+        "id": "f8b2cb0d-0000-0000-0000-a846ded58d3d",
+        "timestamp": "2022-08-25T17:00:00.04368716Z",
+        "log_level": "warn",
+        "event": "ip_delisted",
+        "ip": "49.0.2.000",
+        "blocklist": "Barracuda",
+        "message": "IP 49.0.2.000 was removed by Barracuda"
+      }
+    }
