@@ -578,9 +578,9 @@ destination              string       Either "inbox" or "spam"
 state                    string       Whether or not the mailbox has received a message
 originating_ip           string       The IP address from which the message came from (if available)
 tags                     array        The folder, or labels of where the message ended up.
-spf                      string       SPF email authentication results. Possible values are "pass" and "fail".
-dkim                     string       Results from DKIM evaluation. Possible values are "pass" and "fail".
-dmarc                    string       DMARC email authentication results. Possible values include "pass" and "fail".
+spf                      string       SPF email authentication results (if available). Possible values are "pass", "fail", and "missing/not-set".
+dkim                     string       Results from DKIM evaluation (if available). Possible values are "pass", "fail", and "missing/not-set".
+dmarc                    string       DMARC email authentication results (if available). Possible values are "pass", "fail", and "missing/not-set".
 =====================    =========    ======================================================================================================================
 
 Get Available Result Filters
