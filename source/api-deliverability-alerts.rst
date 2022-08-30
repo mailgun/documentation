@@ -232,9 +232,8 @@ there are also a few minor nuances to account for.
 HMAC_ is used to verified to integrity as well as the authenticity of received webhooks. To
 verify the origin of a webhook:
 
-1. Stringify the POST request's entire JSON body.
-2. Encode the resulting string with the HMAC algorithm (using your webhook signing key and SHA256 digest mode)
-3. Compare the resulting hexdigest to the signature provided in the POST request's ``x-sign`` header.
+1. Encode the webhook's entire POST request body with the HMAC algorithm (using your webhook signing key and SHA256 digest mode)
+2. Compare the resulting hexdigest to the signature provided in the POST request's ``X-Sign`` header.
 
 Below is a Ruby code example for verifying a webhook signature:
 
@@ -266,8 +265,9 @@ to send a GET request instead of a POST when validating URLs so that your webhoo
 does not have to account for test requests.
 
 Additionally, when a POST request is sent to your webhook URL, if a 2xx is not returned, we will
-attempt to retry 7 times. If the max retry count is reached, the alert will be disabled and the
-related alert settings record's ``disabled_at`` field will be populated.
+attempt retries via an exponential backoff strategy for up to ~8 hours. If the max retry count is
+reached, the alert will be disabled and the related alert settings record's ``disabled_at`` field
+will be populated.
 
 **Reset Webhook Signing Key**
 
