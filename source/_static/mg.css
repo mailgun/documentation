@@ -4479,8 +4479,8 @@ ol.linenums {
     padding: 0
 }
 
-.documentation ul:not(.subpanel-mainMenu-0, .subpanel-mainMenu-1, .subpanel-mainMenu-2, .subpanel-mainMenu-3, .subpanel-mainMenu-4, .subpanel-mainMenu-5, .top-menu),
-.documentation ol:not(.subpanel-mainMenu-0, .subpanel-mainMenu-1, .subpanel-mainMenu-2, .subpanel-mainMenu-3, .subpanel-mainMenu-4, .subpanel-mainMenu-5, .top-menu) {
+.documentation ul:not(.navbar-ul),
+.documentation ol:not(.navbar-ul) {
     margin: 0;
     padding: 0
 }
