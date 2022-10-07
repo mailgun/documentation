@@ -3,12 +3,12 @@
 Libraries
 ---------
 
-The Mailgun API is built on HTTP. Our API is RESTful_ and it:
+The Mailgun API is built on HTTP. Our API is RESTful and it:
 
 * Uses predictable, resource-oriented URLs.
 * Uses built-in HTTP capabilities for passing parameters and authentication.
 * Responds with standard HTTP response codes to indicate errors.
-* Returns JSON_.
+* Returns JSON.
 
 Mailgun has published libraries for various languages. You may use our
 libraries, or your favorite/suggested HTTP/REST library available for your programming
