@@ -503,37 +503,42 @@ Below you can find sample events of various types:
 
 .. code-block:: javascript
 
-    {
-      "event": "failed",
-      "id": "igw2SXYxTOabezGjqA9_xw",
-      "timestamp": 1529700261.747814,
-      "log-level": "error",
-      "severity": "permanent",
-      "reason": "bounce",
-      "delivery-status": {
-        "message": "smtp; 550-5.1.1 The email account that you tried to reach does not exist.",
-        "code": "5.1.1",
-        "description": ""
-      },
-      "flags": {
-        "is-delayed-bounce": true,
-        "is-test-mode": false
-      },
-      "message": {
-        "headers": {
-          "to": "joan@example.com",
-          "message-id": "20180521184023.49972.E75804E1DC9E5F16@example.org",
-          "from": "john@example.org",
-          "subject": "Test Subject"
+	{
+	 "severity": "permanent",
+         "timestamp": 1666214138.4046676,
+         "storage": {
+         	"url": "https://storage-us-east4.api.mailgun.net/v3/domains/...",
+                "region": "us-east4",
+                "key": "AwABB...",
+                "env": "production"
+            },
+            "delivery-status": {
+                "bounce-code": "5.1.1",
+                "message": "smtp; 550-5.1.1 The email account that you tried to reach does not exist.",
+                "code": 550,
+                "description": "I'm sorry to have to inform you that your message could not\r\nbe delivered to one or more recipients.",
+                "enhanced-code": "5.1.1"
+            },
+            "log-level": "error",
+            "id": "ZDMqRgjLTDi6rQcy7K60aA",
+            "reason": "generic",
+            "user-variables": {},
+            "flags": {
+                "is-delayed-bounce": true
+            },
+            "envelope": {},
+            "message": {
+                "headers": {
+                    "to": "christest123@test.com",
+                    "message-id": "20221019211537.93011d31ea99c5a8@test.com",
+                    "from": "Test Message <test@test.com>",
+                    "subject": "Testing delayed bounce"
+                },
+                "size": 275
+            },
+            "recipient": "christest123@test.com",
+            "event": "failed"
         },
-        "attachments": [],
-        "size": 771
-      },  
-      "recipient": "joan@example.com",
-      "campaigns": [],
-      "tags": [],
-      "user-variables": {}
-    }
 
 **Failed (Temporary):**
 
