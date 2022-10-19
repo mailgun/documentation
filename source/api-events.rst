@@ -516,7 +516,7 @@ Below you can find sample events of various types:
                 "bounce-code": "5.1.1",
                 "message": "smtp; 550-5.1.1 The email account that you tried to reach does not exist.",
                 "code": 550,
-                "description": "I'm sorry to have to inform you that your message could not\r\nbe delivered to one or more recipients.",
+                "description": "I'm sorry to have to inform you that your message could not be delivered to one or more recipients.",
                 "enhanced-code": "5.1.1"
             },
             "log-level": "error",
