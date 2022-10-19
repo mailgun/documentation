@@ -529,7 +529,7 @@ Below you can find sample events of various types:
             "envelope": {},
             "message": {
                 "headers": {
-                    "to": "christest123@test.com",
+                    "to": "test@test.com",
                     "message-id": "20221019211537.93011d31ea99c5a8@test.com",
                     "from": "Test Message <test@test.com>",
                     "subject": "Testing delayed bounce"
@@ -544,56 +544,66 @@ Below you can find sample events of various types:
 
 .. code-block:: javascript
 
-    {
-      "event": "failed",
-      "id": "U2kZkAiuScqcMTq-8Atz-Q",
-      "timestamp": 1529439955.794033,
-      "log-level": "warn",
-      "severity": "temporary",
-      "reason": "generic",
-      "envelope": {
-        "transport": "smtp",
-        "sender": "john@example.org",
-        "sending-ip": "123.123.123.123",
-        "targets": "joan@example.com"
-      },
-      "flags": {
-        "is-routed": false,
-        "is-authenticated": true,
-        "is-system-test": false,
-        "is-test-mode": false
-      },
-      "delivery-status": {
-        "tls": true,
-        "mx-host": "mx.example.com",
-        "code": 421,
-        "description": "",
-        "session-seconds": 0.09020090103149414,
-        "retry-seconds": 600,
-        "attempt-no": 1,
-        "message": "4.4.2 mxfront9g.mail.example.com Error: timeout exceeded",
-        "certificate-verified": true
-      },
-      "message": {
-        "headers": {
-          "to": "joan@example.com",
-          "message-id": "20180619202554.1.C370AA02DD7DDF22@example.org",
-          "from": "john@example.org",
-          "subject": "Test Subject"
-        },
-        "attachments": [],
-        "size": 810
-      },
-      "storage": {
-        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
-        "key": "eyJwI..."
-      },
-      "recipient": "joan@example.com",
-      "recipient-domain": "example.com",
-      "campaigns": [],
-      "tags": [],
-      "user-variables": {}
-    }
+	{
+            "severity": "temporary",
+            "tags": [],
+            "timestamp": 1665066523.871657,
+            "storage": {
+                "url": "https://storage-us-east4.api.mailgun.net/v3/domains/...",
+                "region": "us-east4",
+                "key": "AwABB...",
+                "env": "production"
+            },
+            "delivery-status": {
+                "tls": true,
+                "mx-host": "hotmail-com.olc.protection.outlook.com",
+                "code": 451,
+                "description": "",
+                "session-seconds": 0.7517080307006836,
+                "utf8": true,
+                "retry-seconds": 600,
+                "enhanced-code": "4.7.652",
+                "attempt-no": 1,
+                "message": "4.7.652 The mail server [xxx.xxx.xxx.xxx] has exceeded the maximum number of connections.",
+                "certificate-verified": true
+            },
+            "batch": {
+                "id": "633ee6154618b2fed628ccb0"
+            },
+            "recipient-domain": "test.com",
+            "id": "xYrATi63Rke8EC_s7EoJeA",
+            "campaigns": [],
+            "reason": "generic",
+            "user-variables": {},
+            "flags": {
+                "is-routed": false,
+                "is-authenticated": true,
+                "is-system-test": false,
+                "is-test-mode": false
+            },
+            "log-level": "warn",
+            "template": {
+                "name": "test"
+            },
+            "envelope": {
+                "transport": "smtp",
+                "sender": "test@test.com",
+                "sending-ip": "xxx.xxx.xxx.xxx",
+                "targets": "test@test.com"
+            },
+            "message": {
+                "headers": {
+                    "to": "test@test.net",
+                    "message-id": "20221006142837.1618e01bf42da9fa@test.com",
+                    "from": "test@test.com",
+                    "subject": "Test send"
+                },
+                "attachments": [],
+                "size": 3499
+            },
+            "recipient": "test@test.com",
+            "event": "failed"
+        }
 
 **Opened:**
 
