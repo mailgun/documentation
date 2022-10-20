@@ -18,8 +18,6 @@ The Events endpoint is available at:
 
      GET /<domain>/events
 
-.. note:: The Events API replaces the deprecated Logs API endpoint. You should
- use the Events API moving forward.
 
 A request should define a time range and can specify a set of filters to apply.
 In response, a page of events is returned along with URLs that can be used to
@@ -438,9 +436,11 @@ Below you can find sample events of various types:
         "attachments": [],
         "size": 586
       },
-      "storage": {
-        "url": "https://se.api.mailgun.net/v3/domains/example.org/messages/eyJwI...",
-        "key": "eyJwI..."
+	"storage": {
+                "url": "https://storage-us-west1.api.mailgun.net/v3/domains/...",
+                "region": "us-west1",
+                "key": "AwABB...",
+                "env": "production"
       },
       "recipient": "john@example.com",
       "recipient-domain": "example.com",
@@ -516,7 +516,7 @@ Below you can find sample events of various types:
                 "bounce-code": "5.1.1",
                 "message": "smtp; 550-5.1.1 The email account that you tried to reach does not exist.",
                 "code": 550,
-                "description": "I'm sorry to have to inform you that your message could not\r\nbe delivered to one or more recipients.",
+                "description": "I'm sorry to have to inform you that your message could not be delivered to one or more recipients.",
                 "enhanced-code": "5.1.1"
             },
             "log-level": "error",
@@ -629,7 +629,8 @@ Below you can find sample events of various types:
         "client-os": "iOS",
         "device-type": "mobile",
         "client-name": "Mobile Safari",
-        "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B143"
+        "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B143",
+	"bot": ""
       },
       "message": {
         "headers": {
@@ -665,7 +666,8 @@ Below you can find sample events of various types:
         "client-os": "Linux",
         "device-type": "desktop",
         "client-name": "Chromium",
-        "user-agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36"
+        "user-agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36",
+	"bot": ""
       },
       "message": {
         "headers": {
