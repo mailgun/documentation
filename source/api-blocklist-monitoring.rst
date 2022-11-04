@@ -274,3 +274,10 @@ Example 200 response:
        ...
      ],
    }
+
+
+Alerts
+------
+
+Use our alerting platform to be notified when your monitored IPs are blocklisted. To
+learn more, see the `alerting documentation <https://documentation.mailgun.com/en/latest/api-deliverability-alerts.html>`_.
