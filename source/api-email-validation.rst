@@ -599,3 +599,10 @@ Delete a bulk verification preview:
 
 Sample Response:
    A 204 will be returned upon successful deletion.
+
+
+Alerts
+~~~~~~
+
+Use our alerting platform to be notified when your bulk email verification jobs complete. To
+learn more, see the `alerting documentation <https://documentation.mailgun.com/en/latest/api-deliverability-alerts.html>`_.

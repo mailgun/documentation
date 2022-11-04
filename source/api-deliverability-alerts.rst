@@ -22,6 +22,8 @@ The current list of events that you can chose to receive alerts for are:
 
 - ``ip_listed``: A monitored IP has been added to a blocklist.
 - ``ip_delisted``: A monitored IP has been removed from a blocklist.
+- ``validation_job``: A bulk email verification job has completed.
+- ``validation_preview``: A bulk email verification preview job has completed.
 
 
 Add Alert
@@ -328,5 +330,80 @@ IP Delisted
         "ip": "49.0.2.000",
         "blocklist": "Barracuda",
         "message": "IP 49.0.2.000 was removed by Barracuda"
+      }
+    }
+
+Validation Preview Complete
+
+.. code-block:: javascript
+
+    {
+      "signature": {
+        "timestamp": 1667592054,
+        "token": "7582ab415b3542100d55388a085cc54f677e9acc4f1f944333"
+      },
+      "event_data": {
+        "id": "fa2613d9-a795-4e40-8f7c-bdb6bafbfc76",
+        "bulk_validation_job": {
+          "created_at": 1667592049,
+          "list_id": "LIST 34",
+          "quantity": 100,
+          "status": "uploaded",
+          "summary": {
+            "result": {
+              "deliverable": 77,
+              "undeliverable": 1,
+              "catch_all": 15,
+              "unknown": 6
+            },
+            "risk": {
+              "high": 1,
+              "low": 77,
+              "medium": 15,
+              "unknown": 6
+            }
+          }
+        },
+        "message": "Preview job fa2613d9-a795-4e40-8f7c-bdb6bafbfc76 is complete"
+      }
+    }
+
+Validation Job Complete
+
+.. code-block:: javascript
+
+    {
+      "signature": {
+        "timestamp": 1667592181,
+        "token": "6212180f809f15a8b4a4bc46ca64f7778619683455679c0035"
+       },
+      "event_data": {
+        "id": "fa2613d9-a795-4e40-8f7c-bdb6bafbfc76",
+        "bulk_validation_job": {
+          "created_at": 1667592117,
+          "download_urls": {
+            "csv": "https://storage.googleapis.com/...csv.zip",
+            "json": "https://storage.googleapis.com/...json.zip"
+          },
+          "list_id": "LIST 62",
+          "quantity": 100,
+          "processed": 100,
+          "status": "uploaded",
+          "summary": {
+            "result": {
+              "deliverable": 82,
+              "undeliverable": 1,
+              "catch_all": 13,
+              "unknown": 4
+            },
+            "risk": {
+              "high": 1,
+              "low": 82,
+              "medium": 13,
+              "unknown": 4
+            }
+          }
+        },
+        "message": "Validation job fa2613d9-a795-4e40-8f7c-bdb6bafbfc76 is complete"
       }
     }
