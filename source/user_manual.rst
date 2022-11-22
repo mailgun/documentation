@@ -2045,6 +2045,46 @@ Creating and running an Inbox Placement test is simple and only requires minimal
 
 Once configured, a test can be performed. Please wait for results to come in.
 
+Test Results
+============
+
+When an Inbox Placement test is performed, we attempt to match (or "group") emails sent to our various seed mailboxes together to generate a
+test `Result <https://documentation.mailgun.com/en/latest/api-inbox-placement.html#results>`_. To do this, we use email criteria such as
+sender, timeframe, headers, and subject.
+
+To ensure accurate test results and reduce missing email rates, we recommend setting a unique "matching" header per test. See the example below using the Mailgun API:
+
+.. code-block:: url
+
+  curl -s --user 'api:API_KEY' \
+    https://api.mailgun.net/v3/YOUR_DOMAIN/messages \
+    -F to='<SEEDLIST>' \
+    -F subject='<SUBJECT>' \
+    -F html='<HTML>' \
+    -F h:X-Campaign-Id='51302fd2-8d88-4e90-baa8-c25622f57009'
+
+Below is a list of supported (case insensitive) email headers that will be used to match emails when generating Inbox Placement test results:
+
+- X-IBP-DebugHeader
+- X-Mailjet-Campaign
+- X-job
+- X-cid
+- X-NSS
+- X-250ok-CID
+- X-rpcampaign
+- rpcampaign
+- X-PVIQ
+- X-Campaign-ID
+- X-CampaignID
+- X-10pl8ID
+- X-Campaign_ID
+- X-eC-messenger-mid
+- X-EMarSys-Identify
+- X-jobid
+- X-Listid
+- X-MailingID
+
+
 .. _smtp:
 
 SMTP Protocol
