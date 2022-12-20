@@ -27,5 +27,4 @@ If your domain does get disabled, `contact support`_ after you have made the rec
 .. _Mailgun Control Panel: https://app.mailgun.com/app/dashboard
 .. _confirmed opt-in: http://en.wikipedia.org/wiki/Opt-in_email
 .. _Email Validation API: http://documentation.mailgun.com/api-email-validation.html
-.. _contact support: https://app.mailgun.com/app/support
-
+.. _contact support: https://app.mailgun.com/support
