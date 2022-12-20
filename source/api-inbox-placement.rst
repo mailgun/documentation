@@ -521,9 +521,10 @@ List all results for your account.
  ====================== ========================================================
  Field                  Description
  ====================== ========================================================
- rid                    Update the sending domains of the seed list. You can specify this multiple times.
- name                   Update the name of the seed list.
- seed_filter            Update the regular expression that will be applied to addresses in the mailing list.
+ sender                 Filter results by sender address
+ provider               Filter which results show up in seed_results by provider
+ subject                Filter results by a subject
+ target_email           Filter results by a target_email address
  ====================== ========================================================
 
 .. include:: samples/get-results.rst
@@ -558,7 +559,7 @@ List all results for your account.
       ]
     }
   ]
-  }
+ }
 
 .. include:: samples/fields-ibp-results.rst
 
