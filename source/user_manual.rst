@@ -30,7 +30,7 @@ If you are anxious to get started right away, feel free to check
 out the :ref:`quickstart` or :ref:`api-reference`.  There are
 also :ref:`faqs` and :ref:`best-practices` that you can reference.
 
-Finally, always feel free to `contact our Support Team <https://app.mailgun.com/app/support>`_.
+Finally, always feel free to `contact our Support Team <https://app.mailgun.com/support>`_.
 
 Getting Started
 ***************
@@ -1149,7 +1149,7 @@ recipient activity, etc.
 
 .. note:: By default, each account is allowed a maximum of 4,000 tags. Any tags created
           after the 4,000 tag limit are dropped. If more tags are needed, please contact
-          our support team by creating a support ticket `here <https://app.mailgun.com/app/support/list>`_.
+          our support team by creating a support ticket `here <https://app.mailgun.com/support/list>`_.
 
 **Tagging Code Samples**
 

@@ -7,7 +7,7 @@ Razor is Mailgun's reputation system for detecting spammers and phishers as well
 
 If you believe Razor has deactivated your account in error, please contact `Mailgun Support`_ and reference the Razor error code you received to speed up account reactivation.
 
-.. _Mailgun Support: https://app.mailgun.com/app/support
+.. _Mailgun Support: https://app.mailgun.com/support
 
 ========= ===========================================================
 Code      Reason
@@ -17,7 +17,7 @@ rzr01     Your domain has been disabled in order to protect your
           labeled as spam or a large amount of incorrect email
           addresses and/or spam complaints. These issues will cause
           poor deliverability of your emails and need to be resolved
-          before we can enable your account. 
+          before we can enable your account.
 rzr02     No longer in use.
 rzr03     Suspicious activity has been detected on your account.
           Business verification is required.

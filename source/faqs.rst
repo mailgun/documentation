@@ -58,7 +58,7 @@ If you opt to enter your credit card during sign-up, you’ll enter a one-month 
 Can I get multiple Domains and IP Addresses?
 **************************************************************************************************************
 
-By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Add Dedicated IP" button in the **IP Management** section of the Control Panel. You will need to add a credit card to your account first, though, if you have not already done so. If you want multiple IPs, you can `contact our Support Team <https://app.mailgun.com/app/support>`_.
+By default we give you one shared IP address. If you would like a dedicated IP address, simply click on the "Add Dedicated IP" button in the **IP Management** section of the Control Panel. You will need to add a credit card to your account first, though, if you have not already done so. If you want multiple IPs, you can `contact our Support Team <https://app.mailgun.com/support>`_.
 
 You can create up to 1,000 domains on a paid plan in the Control Panel or through the :ref:`Domains API <api-domains>`(Free accounts do not include the ability to create a custom domain).
 
@@ -111,7 +111,7 @@ order to keep the reputations separate.
 Finally, if you want multiple addresses and you want to direct certain emails
 to certain IP addresses, you will need to have a unique domain or subdomain for
 each IP address.  In this situation, it's best to
-`contact our Support Team <https://app.mailgun.com/app/support>`_ to discuss your
+`contact our Support Team <https://app.mailgun.com/support>`_ to discuss your
 infrastructure.
 
 Can I use the same domain name for Mailgun and for Google Apps (or another email server)?
@@ -180,7 +180,7 @@ Check the following:
 * You've setup the DKIM DNS record (provided in the Control Panel, ``Domains`` tab).
 * You're authenticating (SMTP) or posting (API) against the custom domain. (e.g. https://api.mailgun.net/v3/youcustomdomain.com/messages)
 
-If you're still seeing "via mailgun.org", please `contact our Support Team <https://app.mailgun.com/app/support>`_ and we'll investigate.
+If you're still seeing "via mailgun.org", please `contact our Support Team <https://app.mailgun.com/support>`_ and we'll investigate.
 
 What is the difference between the "From" and "Sender"
 **************************************************************************************************************
@@ -304,7 +304,7 @@ Why does the amount of email I send matter?
 
 Rate limiting allows ESPs proper time to process and filter spam and ensure that transactional email doesn't get backed up. Without rate limiting in place, ESPs would be even more overwhelmed than they already are. The ESPs all have different sending limits on a per hour, per day basis. Once you hit thresholds with the rate limits, send too much spam, or have any number of other issues, the ISP may start returning error messages. Some ESPs will want you to slow down the sending, stop sending for a period of time, or change your habits (due to bad engagement, bad reputation, etc). We automatically adjust your sending rates according to the feedback from these ESPs to keep you in their good graces.
 
-Generally, these rate limits are on a per IP address basis.  `Contact our Support Team <https://app.mailgun.com/app/support>`_ if you wish to purchase additional dedicated
+Generally, these rate limits are on a per IP address basis.  `Contact our Support Team <https://app.mailgun.com/support>`_ if you wish to purchase additional dedicated
 IP addresses for your account.
 
 Does the amount of email I send from my IP affect my deliverability?

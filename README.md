@@ -27,11 +27,11 @@ If you find an issue, please submit the issue in Github directly.
 [Documentation Issues](https://github.com/mailgun/documentation/issues)
 
 As always, if you need additional assistance, drop us a note through your Control Panel at
-[https://app.mailgun.com/app/support](https://app.mailgun.com/app/support).
+[https://app.mailgun.com/support](https://app.mailgun.com/support).
 
 Building Documentation Locally
 ------------------------------
 
 Install [Sphinx](https://www.sphinx-doc.org/en/master/usage/installation.html) and then run
-the command `sphinx-build source build`. The built html files can then be found in the 
+the command `sphinx-build source build`. The built html files can then be found in the
 `build` directory.
