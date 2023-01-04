@@ -731,7 +731,6 @@ Use this endpoint to delete a result.
 
 This does not return any value.
 
-
 Create a test
 -------------
 
@@ -740,7 +739,6 @@ Use this endpoint to create an Inbox Placement test.
 .. code-block:: url
 
    POST /v4/inbox/tests
-
 
 Field Explanation:
 
@@ -776,7 +774,6 @@ Use this endpoint to retrieve a list of providers available for Inbox Placement 
 .. code-block:: url
 
    GET /v4/inbox/providers
-
 
 Below is an example of the returned response body.
 
