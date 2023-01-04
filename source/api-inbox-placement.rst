@@ -278,8 +278,6 @@ You can select a single seed list with this endpoint.
 
    GET /v4/inbox/seedlists/ibp-seedlist-address@domain.net
 
-.. include:: samples/create-inbox-placement-test.rst
-
 Example response of getting a single seed list.
 
 .. code-block:: javascript
@@ -757,7 +755,7 @@ provider_filter          list         Optional. A list of provider domains for w
 seedlist                 string       Optional. The identifier for the seedlist you wish to use.
 =====================    =========    ======================================================================================================================
 
-.. include:: samples/delete-results.rst
+.. include:: samples/create-inbox-placement-test.rst
 
 Below is an example of the returned response body.
 
