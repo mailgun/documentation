@@ -732,3 +732,40 @@ Use this endpoint to delete a result.
 .. include:: samples/delete-results.rst
 
 This does not return any value.
+
+
+Create a test
+-------------
+
+Use this endpoint to create an Inbox Placement test.
+
+.. code-block:: url
+
+   POST /v4/inbox/tests
+
+
+Field Explanation:
+
+=====================    =========    ======================================================================================================================
+Name                     Type         Description
+=====================    =========    ======================================================================================================================
+sending_domain           string       Required. The domain from which the email should be sent. Note, the provided domain must be verified within your Mailgun account.
+from                     string       Required. The email address from which the email should be sent.
+subject                  string       Required. The subject of the email.
+html                     string       Required. The body of the email represented in HTML.
+provider_filter          list         Optional. A list of provider domains for which you wish to test inbox placement.
+seedlist                 string       Optional. The identifier for the seedlist you wish to use.
+=====================    =========    ======================================================================================================================
+
+.. include:: samples/delete-results.rst
+
+Below is an example of the returned response body.
+
+.. code-block:: javascript
+
+ {
+    "result_id": "1a066d4a-2207-4240-9e89-9e1a55511f0e",
+    "links": {
+      "results": "https://api.mailgun.net/v4/inbox/results/1a066d4a-2207-4240-9e89-9e1a55511f0e"
+    }
+ }
