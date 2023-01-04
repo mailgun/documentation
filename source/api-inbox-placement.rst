@@ -751,7 +751,7 @@ sending_domain           string       Required. The domain from which the email 
 from                     string       Required. The email address from which the email should be sent.
 subject                  string       Required. The subject of the email.
 html                     string       Required. The body of the email represented in HTML.
-provider_filter          list         Optional. A list of provider domains for which you wish to test inbox placement.
+provider_filter          list         Optional. A list of provider domains. This field can be used to test inbox placement against a subset of provider(s). See the List Providers section for available providers.
 seedlist                 string       Optional. The identifier for the seedlist you wish to use.
 =====================    =========    ======================================================================================================================
 
@@ -767,3 +767,33 @@ Below is an example of the returned response body.
       "results": "https://api.mailgun.net/v4/inbox/results/1a066d4a-2207-4240-9e89-9e1a55511f0e"
     }
  }
+
+List Providers
+--------------
+
+Use this endpoint to retrieve a list of providers available for Inbox Placement testing.
+
+.. code-block:: url
+
+   GET /v4/inbox/providers
+
+
+Below is an example of the returned response body.
+
+.. code-block:: javascript
+
+  {
+    "items": [
+      {
+        "domain": "hotmail.com",
+        "display_name": "Hotmail",
+        "region": "Global",
+      },
+      {
+        "domain": "gmail.com",
+        "display_name": "Gmail",
+        "region": "Global",
+      },
+      ...
+    ]
+  }
