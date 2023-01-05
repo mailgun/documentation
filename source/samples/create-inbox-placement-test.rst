@@ -1,11 +1,12 @@
 .. code-block:: bash
 
-  curl -X POST https://api.mailgun.net/v3/inbox/tests \
-    -F 'domain=domain.com' \
+  curl -X POST https://api.mailgun.net/v4/inbox/tests \
+    -F 'sending_domain=domain.com' \
     -F 'subject=testSubject' \
-    -F 'from=user@sending_domain.com' \
+    -F 'from=user@domain.com' \
     --form-string html='<html>HTML version of the body</html>' \
     --user 'api:<YOUR_API_KEY'>'
+
 .. code-block:: java
 
  import com.mashape.unirest.http.HttpResponse;
@@ -17,13 +18,13 @@
 
      // ...
 
-     public static JsonNode validateMailingList() throws UnirestException {
+     public static JsonNode createInboxPlacementTest() throws UnirestException {
 
-         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v3/inbox/tests")
+         HttpResponse <JsonNode> request = Unirest.post("https://api.mailgun.net/v4/inbox/tests")
              .basicAuth("api", API_KEY)
-             .field("domain", "domain.com")
+             .field("sending_domain", "domain.com")
              .field("subject", "testSubject")
-             .field("from", "user@sending_domain.com")
+             .field("from", "Sample User <user@domain.com>")
              .field("html", "<html>HTML version of the body</html>")
              .asJson();
 
@@ -43,10 +44,10 @@
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v3/inbox/tests');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/inbox/tests');
     curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-        'domain'=> 'domain.com',
-        'from'=> 'user@sending_domain.com',
+        'sending_domain'=> 'domain.com',
+        'from'=> 'Sample User <user@domain.com>',
         'subject'=>'testSubject',
         'html'=>'<html>HTML version of the body</html>',
         )
@@ -61,24 +62,24 @@
 .. code-block:: py
 
  def create_inbox_placement_test():
-     data = {'domain': 'domain.com',
-             'from': 'user@sending_domain.com',
+     data = {'sending_domain': 'domain.com',
+             'from': 'Sample User <user@domain.com>',
              'subject': 'testSubject',
              'html': '<html>HTML version of the body</html>' }
      return requests.post(
-         "https://api.mailgun.net/v3/inbox/tests",
+         "https://api.mailgun.net/v4/inbox/tests",
          data=json.dumps(data),
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
- def validate_mailing_list
-   data = {'domain'=> 'domain.com',
-           'from'=> 'user@sending_domain.com',
+ def create_inbox_placement_test
+   data = {'sending_domain'=> 'domain.com',
+           'from'=> 'Sample User <user@domain.com>',
            'subject'=> 'testSubject',
            'html'=> '<html>HTML version of the body</html>' }
    RestClient.post("https://api:YOUR_API_KEY" \
-                   "@api.mailgun.net/v3/inbox/tests",
+                   "@api.mailgun.net/v4/inbox/tests",
                    fields_hash.merge(data))
  end
 
@@ -100,14 +101,14 @@
      public static IRestResponse StartInboxPlacementTest ()
      {
          RestClient client = new RestClient ();
-         client.BaseUrl = new Uri ("https://api.mailgun.net/v3");
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v4");
          client.Authenticator =
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.AddParameter ("domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
+         request.AddParameter ("sending_domain", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
          request.Resource = "inbox/tests";
-         request.AddParameter ("from", "user@sending_domain.com'");
+         request.AddParameter ("from", "Sample User <user@domain.com>");
          request.AddParameter ("domain", "domain.com");
          request.AddParameter ("subject", "testSubject");
          request.AddParameter ("html", "<html>HTML version of the body</html>");

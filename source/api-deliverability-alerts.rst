@@ -24,6 +24,8 @@ The current list of events that you can chose to receive alerts for are:
 - ``ip_delisted``: A monitored IP has been removed from a blocklist.
 - ``validation_job``: A bulk email verification job has completed.
 - ``validation_preview``: A bulk email verification preview job has completed.
+- ``domain_listed``: A monitored domain has been added to a blocklist.
+- ``domain_delisted``: A monitored domain has been removed from a blocklist.
 
 
 Add Alert
