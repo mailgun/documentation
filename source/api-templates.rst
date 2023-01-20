@@ -41,7 +41,8 @@ If the template content is provided, a new version is automatically created and 
  template        (Optional) Content of the template
  tag             (Optional) Initial tag of the created version. If the `template` parameter is provided and the `tag` is missing, the default value `initial` is used. The tag can contain alpha-numeric characters and next symbols, such as .-_~
  engine          (Optional) The template engine used to render the template. This is valid only if the `template` parameter is provided. Currently, the Templates API supports only the **handlebars** engine.
- comment         (Optional) Version comment. This is valid only if a new version is being created. (`template` parameter is provided.) 
+ comment         (Optional) Version comment. This is valid only if a new version is being created. (`template` parameter is provided.)
+ headers         (Optional) Key Value json dictionary of headers to be stored with the template. The headers currently supported are `From`, `Subject`, and `Reply-To`.
  =============== ==================================================================
 
 Example of storing only the template metadata:
@@ -78,7 +79,12 @@ Sample response:
             "createdAt": "Wed, 29 Aug 2018 23:31:14 UTC",
             "engine": "handlebars",
             "tag": "initial",
-            "comment": "version comment"
+            "comment": "version comment",
+            "headers": {
+                "From": "{{from}}",
+                "Reply-To": "{{reply_to}}",
+                "subject": "{{subject}}"
+            }
         }
     },
     "message": "template has been stored"
@@ -294,6 +300,7 @@ Create a new version of a template. If the template doesn't contain any other ve
  engine          (Optional) Template engine. The only engine currently supported is ``handlebars``.
  comment         (Optional) Comments relating to the stored version
  active          (Optional) If this flag is set to ``yes``, this version becomes active
+ headers          (Optional) Key Value json dictionary of headers to be stored with the template. The headers currently supported are `From`, `Subject`, and `Reply-To`.
  =============== ================================================================================
 
 Example:
@@ -346,7 +353,10 @@ Sample response:
             "engine": "handlebars",
             "tag": "v1.1.0",
             "comment": "version comment",
-            "template": "{{fname}} {{lname}}"
+            "template": "{{fname}} {{lname}}",
+            "headers": {
+                "subject": "{{subject}}"
+            }
         }
     }
   }
@@ -368,6 +378,7 @@ Update information or content of the specific version of the template.
  template        (Optional) The new content of the version
  comment         (Optional) New comment for the provided version
  active          (Optional) If this flag is set to ``yes`` this version becomes active
+headers          (Optional) Key Value json dictionary of headers to be stored with the template. The headers currently supported are `From`, `Subject`, and `Reply-To`.
  =============== ================================================================================
 
 Example:
