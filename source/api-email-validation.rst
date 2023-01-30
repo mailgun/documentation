@@ -225,7 +225,10 @@ Check the current status of a bulk verification job.
 
     DELETE /v4/address/validate/bulk/<list_id>
 
-Cancel current running bulk verification job.
+This endpoint can be used to cancel an in-progress bulk verification job or
+delete results for a completed bulk verification job. When this endpoint is
+called for an "uploaded" job, associated result files will be deleted and the
+job's status will be set to "deleted".
 
 
 Bulk Verification Examples
