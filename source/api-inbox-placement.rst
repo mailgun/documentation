@@ -41,6 +41,7 @@ Example response for creating a seed list.
     "updated_at": "2021-08-04T16:15:28.08Z",
     "last_result_at": "0001-01-01T00:00:00Z",
     "target_email": "ibp-12345678-1234-1234-1234-123456789012@domain.com",
+    "sending_domains": [],
     "has_results": false,
     "name": "My campaign inbox test",
     "seed_filter": ".*",
