@@ -1,7 +1,7 @@
 .. code-block:: bash
 
   curl -X POST https://api.mailgun.net/v4/inbox/seedlists \
-    -F 'sending_domains=domain.com' \
+    -F 'name=list' \
     --user 'api:<YOUR_API_KEY>'
 
 .. code-block:: java
@@ -21,7 +21,6 @@
         SeedListRequest request = SeedListRequest.builder()
                 .seedFilter(SEED_FILTER)
                 .name(SEED_LIST_NAME)
-                .sendingDomains(List.of(TEST_DOMAIN_1, TEST_DOMAIN_2))
                 .build();
 
         return mailgunSeedListApi.generateSeedList(request);
@@ -41,10 +40,6 @@
 
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
     curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/inbox/seedlists');
-    curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-        'sending_domains'=> 'domain.com',
-        )
-    );
 
     $result = curl_exec($ch);
     curl_close($ch);
@@ -55,7 +50,7 @@
 .. code-block:: py
 
  def create_seed_list():
-     data = {'sending_domains': 'domain.com'}
+     data = {'name': 'list'}
      return requests.post(
          "https://api.mailgun.net/v4/inbox/seedlists", data=data
          auth=('api', 'YOUR_API_KEY'))
@@ -63,7 +58,7 @@
 .. code-block:: rb
 
  def create_seed_list
-   data = {'sending_domains'=> 'domain.com' }
+   data = {'name'=> 'list' }
    RestClient.post("https://api:YOUR_API_KEY" \
                    "@api.mailgun.net/v4/inbox/seedlists",
                    fields_hash.merge(data))
@@ -91,7 +86,6 @@
          client.Authenticator =
              new HttpBasicAuthenticator ("api", "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.AddParameter ("sending_domains", "YOUR_DOMAIN_NAME", ParameterType.UrlSegment);
          request.Resource = "inbox/seedlists";
          request.Method = Method.POST;
          return client.Execute (request);
