@@ -25,7 +25,6 @@ Generate a seed list. The available form fields are as follows:
  ====================== ========================================================
  Field                  Description
  ====================== ========================================================
- sending_domains        The sending domains that messages will come from. You may specify this multiple times. At least one is required.
  name                   The name that you would like to use for this seed list.
  seed_filter            A regular expression that will be applied to addresses in the mailing list.
  ====================== ========================================================
@@ -42,9 +41,6 @@ Example response for creating a seed list.
     "updated_at": "2021-08-04T16:15:28.08Z",
     "last_result_at": "0001-01-01T00:00:00Z",
     "target_email": "ibp-12345678-1234-1234-1234-123456789012@domain.com",
-    "sending_domains": [
-      "yourdomain.com"
-    ],
     "has_results": false,
     "name": "My campaign inbox test",
     "seed_filter": ".*",
