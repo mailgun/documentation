@@ -1,7 +1,6 @@
 .. code-block:: bash
 
   curl -X POST https://api.mailgun.net/v4/inbox/tests \
-    -F 'sending_domain=domain.com' \
     -F 'subject=testSubject' \
     -F 'from=user@domain.com' \
     --form-string html='<html>HTML version of the body</html>' \
