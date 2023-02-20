@@ -742,8 +742,7 @@ Field Explanation:
 =====================    =========    ======================================================================================================================
 Name                     Type         Description
 =====================    =========    ======================================================================================================================
-sending_domain           string       Required. The domain from which the email should be sent. Note, the provided domain must be verified within your Mailgun account.
-from                     string       Required. The email address from which the email should be sent.
+from                     string       Required. The email address from which the email should be sent. Note, the provided domain must be verified within your Mailgun account.
 subject                  string       Required. The subject of the email.
 html                     string       Required. The body of the email represented in HTML.
 provider_filter          list         Optional. A list of provider domains. This field can be used to test inbox placement against a subset of provider(s). See the List Providers section for available providers.
