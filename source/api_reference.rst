@@ -1,7 +1,7 @@
 .. _api-reference:
 
 API Reference
-##############
+#############
 
 .. toctree::
 
@@ -19,9 +19,3 @@ API Reference
    api-mailinglists
    api-templates
    api-email-validation
-   api-inbox-placement
-   api-email-preview
-   api-spam-trap-monitoring
-   api-blocklist-monitoring
-   api-deliverability-alerts
-

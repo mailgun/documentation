@@ -10,6 +10,7 @@ Learn how to send email from your app, SMTP vs API, verifying your domain, email
    user_manual
    libraries
    api_reference
+   inboxready_api_reference
    faqs
    best_practices
 

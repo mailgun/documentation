@@ -1,7 +1,7 @@
-.. _api-deliverability-alerts:
+.. _api-deliverability-al
 
-Deliverability Alerts
-=====================
+Alerts
+======
 
 This section describes our RESTful API for alert configuration for InboxReady
 products.

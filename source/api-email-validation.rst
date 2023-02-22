@@ -1,7 +1,7 @@
 .. _api-email-validation:
 
-Email Validation/Verification
-================
+Email Verifications
+===================
 
 .. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
