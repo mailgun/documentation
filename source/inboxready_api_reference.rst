@@ -6,6 +6,7 @@ InboxReady API Reference
 .. toctree::
 
    api-inboxready-intro
+   api-inboxready-domains
    api-email-validation
    api-inbox-placement
    api-email-preview
