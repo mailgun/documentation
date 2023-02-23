@@ -1,7 +1,7 @@
 .. _api-reference:
 
-API Reference
-#############
+Mailgun API Reference
+#####################
 
 .. toctree::
 
