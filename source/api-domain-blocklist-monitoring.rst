@@ -72,4 +72,4 @@ Alerts
 ------
 
 Use our alerting platform to be notified when your monitored domains are blocklisted. To
-learn more, see the `alerting documentation <https://documentation.mailgun.com/en/latest/api-inboxready-alerts.html>`_.
+learn more, see the `alerting documentation <https://documentation.mailgun.com/en/latest/api-deliverability-alerts.html>`_.

@@ -13,4 +13,4 @@ InboxReady API Reference
    api-spam-trap-monitoring
    api-blocklist-monitoring
    api-domain-blocklist-monitoring
-   api-inboxready-alerts
+   api-deliverability-alerts
