@@ -1,4 +1,4 @@
-.. _api-deliverability-al
+.. _api-inboxready-alerts:
 
 Alerts
 ======

@@ -1,3 +1,5 @@
+.. _api-inboxready-intro:
+
 Introduction
 ############
 
