@@ -67,3 +67,9 @@ See below for an explanation of the health details returned in the response body
  ``state``              This field describes the domain's current state of health. Possible values include "healthy" and "listed". If the domain exists on any monitored blocklists, state will be "listed".
  ``listed``             This field contains a list of blocklists where your domain is currently listed. 
  ====================== ========================================================
+
+Alerts
+------
+
+Use our alerting platform to be notified when your monitored domains are blocklisted. To
+learn more, see the `alerting documentation <https://documentation.mailgun.com/en/latest/api-inboxready-alerts.html>`_.
