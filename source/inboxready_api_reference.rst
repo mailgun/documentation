@@ -12,4 +12,5 @@ InboxReady API Reference
    api-email-preview
    api-spam-trap-monitoring
    api-blocklist-monitoring
+   api-domain-blocklist-monitoring
    api-inboxready-alerts

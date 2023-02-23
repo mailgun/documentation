@@ -6,7 +6,7 @@ Spam Trap Monitoring
 Our `spam trap monitoring <https://help.mailgun.com/hc/en-us/articles/4413151071515-What-are-Spam-Traps>`_ service
 surfaces how much of your email is being sent to known spam traps.
 
-To add and remove domains from our Spam Trap Monitoring service, see the `domain management`_ API docs.
+To add and remove domains from our spam trap monitoring service, see the `domain management`_ API docs.
 
 .. _domain management: https://documentation.mailgun.com/en/latest/api-inboxready-domains.html
 
