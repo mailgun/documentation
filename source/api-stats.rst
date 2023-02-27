@@ -11,13 +11,8 @@ This data is also available via our stats API endpoint. The stats endpoint is av
 
       v3/<domain>/stats
 
+
 The statistics are calculated in hourly, daily and monthly resolution in UTC timezone.
-
-The following retention policy is applied to the statistics:
-
-- Hourly stats are preserved for a month.
-- Daily stats are preserved for a year.
-- Monthly stats are stored throughout the lifespan of the domain.
 
 .. code-block:: url
 
@@ -40,6 +35,15 @@ Returns total stats for a given domain.
  duration          Period of time with resoluton encoded. See `Duration`_ for
                    more info. If provided, overwrites the start date.
  ================= ============================================================
+
+Data Retention
+--------------
+
+The following retention policy is applied to the statistics:
+
+- Hourly stats are preserved for two months.
+- Daily stats are preserved for a year.
+- Monthly stats are stored throughout the lifespan of the domain.
 
 Duration
 --------
