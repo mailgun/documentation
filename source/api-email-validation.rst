@@ -1,7 +1,7 @@
 .. _api-email-validation:
 
-Email Validation/Verification
-================
+Email Verifications
+###################
 
 .. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
 
@@ -37,7 +37,7 @@ Mailgun's email verification service is intended to verify email addresses submi
 .. note::  A previous version of the API is described here :ref:`api-email-validation`
 
 Single Verification
-~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 .. note:: The verifications feature is rate limited to a set number of active requests at a time. If you receive a 429 error, please wait and try again.
 
 .. code-block:: url
@@ -69,7 +69,7 @@ Given an arbitrary address, verifies address based off defined checks.
  ====================== ========================================================
 
 Request Examples
-_______
+________________
 
 Verify a single email address using the GET method.
 
@@ -135,7 +135,7 @@ The provider_lookup query parameter provides users with the control to allow or 
 
 
 Field Explanation
-_______
+_________________
 
 =====================    =========    ======================================================================================================================
 Parameter                Type         Description
@@ -151,7 +151,7 @@ root_address             string       (Optional) If the address is an alias; thi
 =====================    =========    ======================================================================================================================
 
 Reason Explanation
-_______
+__________________
 
 =============================    ==========================================================================================================================================================================================
 Reason                           Description
@@ -171,7 +171,7 @@ failed custom grammar check      The mailbox failed our custom ESP local-part gr
 =============================    ==========================================================================================================================================================================================
 
 Result Types
-_______
+____________
 
 =============================    ==========================================================================================================================================================================================
 Reason                           Description
@@ -185,7 +185,7 @@ unknown                          The validity of the recipient address cannot be
 
 
 Bulk Verification
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 .. note::
     Bulk Verification allows for the verification of a list of email addresses. Given a list name and an uploaded file of email addresses,
@@ -232,7 +232,7 @@ job's status will be set to "deleted".
 
 
 Bulk Verification Examples
-------------------------
+--------------------------
 
 Get the status of a bulk verification job:
 
@@ -463,7 +463,7 @@ Delete a bulk verification preview.
 Promote a bulk verification preview to a bulk verification job.
 
 Bulk Verification Preview Examples
-------------------------
+----------------------------------
 
 Get the results of a bulk verification preview:
 

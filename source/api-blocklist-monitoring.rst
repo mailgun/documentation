@@ -1,7 +1,7 @@
 .. _api-blocklist-monitoring:
 
-Blocklist Monitoring
-====================
+IP Blocklist Monitoring
+=======================
 
 `Blocklist Monitoring <https://www.mailgun.com/products/inbox/deliverability/blocklist-monitoring-service/>`_
 enables you to keep an eye on your reputation. Monitor every IP address you have
