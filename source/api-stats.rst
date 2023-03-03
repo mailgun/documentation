@@ -130,7 +130,8 @@ Sample response:
              "total": 10                 // failed permanently and dropped
            },
            "temporary": {
-             "espblock": 1   // failed temporary due to ESP block, will be retried
+             "espblock": 1,   // failed temporary due to ESP block, will be retried
+             "total": 1
            }
          },
        }
