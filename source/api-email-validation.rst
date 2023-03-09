@@ -196,7 +196,7 @@ Bulk Verification
 .. note::
     It's important to upload as `multi-part/form-data` where the file is defined by `file`.
 
-    Currently only raw `csv` and `gzip` are supported.
+    Currently only raw `csv` and `gzip` are supported. While there is no limit on the number of email addresses that can be provided, the file size cannot exceed 25MB.
 
     The column header for emails needs to be either `email` or `email_address`
 
@@ -213,7 +213,9 @@ Get list of all bulk verification jobs.
 
     POST /v4/address/validate/bulk/<list_id>
 
-Create a bulk verification job.
+Create a bulk verification job. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
+
+Please note that the max number of verification jobs that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
 
 .. code-block:: url
 
@@ -425,7 +427,7 @@ Bulk Verification Preview
 .. note::
     It's important to upload as `multi-part/form-data` where the file is defined by `file`.
 
-    Currently only raw `csv` and `gzip` are supported.
+    Currently only raw `csv` and `gzip` are supported. While there is no limit on the number of email addresses that can be provided, the file size cannot exceed 25MB.
 
     The column header for emails needs to be either `email` or `email_address`
 
@@ -442,7 +444,9 @@ Get list of all bulk verification previews.
 
     POST /v4/address/validate/preview/<list_id>
 
-Create a bulk verification preview.
+Create a bulk verification preview. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
+
+Please note that the max number of verification previews that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
 
 .. code-block:: url
 
