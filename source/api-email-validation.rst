@@ -215,6 +215,8 @@ Get list of all bulk verification jobs.
 
 Create a bulk verification job. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
 
+Please note that the max number of verification jobs that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
+
 .. code-block:: url
 
     GET /v4/address/validate/bulk/<list_id>
@@ -443,6 +445,8 @@ Get list of all bulk verification previews.
     POST /v4/address/validate/preview/<list_id>
 
 Create a bulk verification preview. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
+
+Please note that the max number of verification previews that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
 
 .. code-block:: url
 
