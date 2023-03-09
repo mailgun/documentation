@@ -196,7 +196,7 @@ Bulk Verification
 .. note::
     It's important to upload as `multi-part/form-data` where the file is defined by `file`.
 
-    Currently only raw `csv` and `gzip` are supported.
+    Currently only raw `csv` and `gzip` are supported. While there is no limit on the number of email addresses that can be provided, the file size cannot exceed 25MB.
 
     The column header for emails needs to be either `email` or `email_address`
 
@@ -425,7 +425,7 @@ Bulk Verification Preview
 .. note::
     It's important to upload as `multi-part/form-data` where the file is defined by `file`.
 
-    Currently only raw `csv` and `gzip` are supported.
+    Currently only raw `csv` and `gzip` are supported. While there is no limit on the number of email addresses that can be provided, the file size cannot exceed 25MB.
 
     The column header for emails needs to be either `email` or `email_address`
 
