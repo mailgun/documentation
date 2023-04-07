@@ -105,6 +105,18 @@ Create a new domain. See examples below.
 
 .. code-block:: url
 
+     PUT /domains/<domain>
+ ================= ==========================================================
+ Parameter         Description
+ ================= ==========================================================
+ web_scheme             The user name, for example ``bob.bar``
+ wildcard          A password for the SMTP credentials. (Length Min 5, Max 32)
+ ================= ==========================================================
+     
+
+
+.. code-block:: url
+
      DELETE /domains/<domain>
 
 Delete a domain from your account.
