@@ -106,15 +106,26 @@ Create a new domain. See examples below.
 .. code-block:: url
 
      PUT /domains/<domain>
+ 
+Update domain parameters. See examples below.
+
      
 .. container:: ptable
  
- ================= ==========================================================
- Parameter         Description
- ================= ==========================================================
- web_scheme             The user name, for example ``bob.bar``
- wildcard          A password for the SMTP credentials. (Length Min 5, Max 32)
- ================= ==========================================================
+ ================= ================= ==========================================================
+ Parameter         		     Description
+ ================= ================= ==========================================================
+ web_scheme        String	     ``http`` or ``https``
+
+                        	     Set your open, click and unsubscribe URLs to use http or https
+
+                       		     The default is ``http``
+ wildcard          String	     ``true`` or ``false``
+
+                                     Determines whether the domain will accept email for sub-domains when sending messages.
+
+                                     The default is ``false``.
+ ================= ================= ==========================================================
      
 
 
