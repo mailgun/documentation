@@ -105,6 +105,42 @@ Create a new domain. See examples below.
 
 .. code-block:: url
 
+     PUT /domains/<domain>
+ 
+Update domain parameters. See examples below.
+
+     
+.. container:: ptable
+ 
+ ================= ================= ==========================================================
+ Parameter         Type		     Description
+ ================= ================= ==========================================================
+ spam_action	   String	     ``disabled``, ``block``, or ``tag``
+
+                       		     If ``disabled``, no spam filtering will occur for inbound messages.
+
+                       		     If ``block``, inbound spam messages will not be delivered.
+
+                       		     If ``tag``, inbound messages will be tagged with a spam header.
+                       		     See :ref:`um-spam-filter`.
+
+                       		     The default is ``disabled``.
+ web_scheme        String	     ``http`` or ``https``
+
+                        	     Set your open, click and unsubscribe URLs to use http or https
+
+                       		     The default is ``http``
+ wildcard          Boolean	     ``true`` or ``false``
+
+                                     Determines whether the domain will accept email for sub-domains when sending messages.
+
+                                     The default is ``false``.
+ ================= ================= ==========================================================
+     
+
+
+.. code-block:: url
+
      DELETE /domains/<domain>
 
 Delete a domain from your account.
