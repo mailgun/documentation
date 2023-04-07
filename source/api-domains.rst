@@ -107,7 +107,7 @@ Create a new domain. See examples below.
 
      PUT /domains/<domain>
      
- .. container:: ptable
+.. container:: ptable
  
  ================= ==========================================================
  Parameter         Description
