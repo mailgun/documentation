@@ -106,6 +106,9 @@ Create a new domain. See examples below.
 .. code-block:: url
 
      PUT /domains/<domain>
+     
+ .. container:: ptable
+ 
  ================= ==========================================================
  Parameter         Description
  ================= ==========================================================
