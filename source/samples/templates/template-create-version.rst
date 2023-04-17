@@ -140,8 +140,9 @@
 
   const DOMAIN = 'YOUR_DOMAIN_NAME';
   const TEMPLATE_NAME = 'template.name';
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
+
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
 
   const mailgun = new Mailgun(formData);
 

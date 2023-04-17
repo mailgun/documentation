@@ -1066,7 +1066,7 @@ And here's a sample in Node.js
 
 .. code-block:: javascript
 
-    const crypto = require('crypto')
+    import crypto from 'node:crypto';
 
     const verify = ({ signingKey, timestamp, token, signature }) => {
         const encodedToken = crypto

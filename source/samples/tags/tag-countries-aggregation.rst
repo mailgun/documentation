@@ -5,22 +5,22 @@
 
 .. code-block:: js
 
-    const DOMAIN = 'YOUR_DOMAIN_NAME';
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
-    const formData = require('form-data');
-    const Mailgun = require('mailgun.js');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
 
-    const mailgun = new Mailgun(formData);
+  const mailgun = new Mailgun(formData);
 
-    const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
-    (async () => {
-        try {
+  const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
+   (async () => {
+      try {
         const countriesAggregation = await client.domains.domainTags.countries(
             DOMAIN,
             'YOUR_TAG_NAME'
         );
         console.log('countriesAggregation', countriesAggregation);
-        } catch (error) {
+      } catch (error) {
         console.error(error);
-        }
-    })();
+      }
+   })();

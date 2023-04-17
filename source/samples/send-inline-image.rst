@@ -156,14 +156,14 @@
 .. code-block:: js
 
   const DOMAIN = 'YOUR_DOMAIN_NAME';
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
 
-  const fsPromises = require('fs').promises;
-  const path = require('path');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
+  import path from 'node:path';
+  import fs from 'node:fs/promises';
 
   const mailgun = new Mailgun(formData);
-  const filepath = path.resolve(__dirname, './test.jpg');
+  const filepath = path.resolve('./test.jpg');
 
   const messageData = {
     from: 'Excited User <me@samples.mailgun.org>',
@@ -173,7 +173,7 @@
   };
 
   const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
-  fsPromises.readFile(filepath)
+  fs.readFile(filepath)
     .then((data) => {
       const file = {
         filename: 'test.jpg',

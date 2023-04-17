@@ -26,5 +26,5 @@ Official Mailgun Libraries
 * `mailgun-php <https://github.com/mailgun/mailgun-php>`_
 * `mailgun-ruby <https://github.com/mailgun/mailgun-ruby>`_
 * `mailgun-go <https://github.com/mailgun/mailgun-go>`_
-* `mailgun-js <https://github.com/mailgun/mailgun-js>`_
+* `mailgun-js <https://github.com/mailgun/mailgun.js>`_
 * `mailgun-java <https://github.com/mailgun/mailgun-java>`_

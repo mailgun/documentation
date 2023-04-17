@@ -113,10 +113,4 @@
 
 .. code-block:: js
 
-  // This feature is deprecated
-  var DOMAIN = 'YOUR_DOMAIN_NAME';
-  var mailgun = require('mailgun-js')({ apiKey: "PUBLIC_API_KEY", domain: DOMAIN });
-
-  mailgun.parse([ 'alice@example.com', 'bob@example.com', 'fake@email.com' ], function (error, body) {
-    console.log(body);
-  });
+  // This feature is deprecated and not supported in the js library

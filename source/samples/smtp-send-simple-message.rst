@@ -194,7 +194,7 @@
 .. code-block:: js
 
 // Using Nodemailer https://nodemailer.com/
-const nodemailer = require("nodemailer");
+import nodemailer from 'nodemailer';
 
 async function main() {
   // create reusable transporter object using the default SMTP transport
@@ -203,16 +203,16 @@ async function main() {
     port: 587,
     auth: {
       user: "postmaster@YOUR_DOMAIN_NAME",
-      pass: "YOUR_SMTP_PASSWORD", 
+      pass: "YOUR_SMTP_PASSWORD",
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: 'foo@YOUR_DOMAIN_NAME', 
-    to: "bar@example.com", 
+    from: 'foo@YOUR_DOMAIN_NAME',
+    to: "bar@example.com",
     subject: "Hello",
-    text: "Testing some Mailgun awesomness" 
+    text: "Testing some Mailgun awesomness"
   });
 
   console.log("Message sent: %s", info.messageId);
