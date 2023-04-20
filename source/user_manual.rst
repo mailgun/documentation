@@ -1114,7 +1114,7 @@ data will be attached to these payloads via the ``user-variables`` field as a JS
         "event": "delivered",
         "user-variables": {
             "first_name": "John",
-            "last_name:" "Smith",
+            "last_name": "Smith",
             "my_message_id": "123"
         }
     }
