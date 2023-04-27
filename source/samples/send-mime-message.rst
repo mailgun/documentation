@@ -133,9 +133,9 @@
 
   const DOMAIN = 'YOUR_DOMAIN_NAME';
   const API_KEY = 'YOUR_API_KEY';
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
-  const MailComposer = require('nodemailer/lib/mail-composer');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
+  import MailComposer from 'nodemailer/lib/mail-composer';
 
   const mailgun = new Mailgun(formData);
   const mg = mailgun.client({ username: 'api', key: API_KEY });

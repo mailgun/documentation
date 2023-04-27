@@ -80,7 +80,7 @@
 
   // npm install quoted-printable
   // npm install utf8
-  const quotedPrintable = require('quoted-printable');
+  import quotedPrintable from 'quoted-printable';
 
   const res = utf8.decode(quotedPrintable.decode('foo=3Dbar'));
   console.log('result:', res);

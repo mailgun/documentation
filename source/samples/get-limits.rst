@@ -111,9 +111,4 @@
 
 .. code-block:: js
 
- var DOMAIN = 'YOUR_DOMAIN_NAME';
- var mailgun = require('mailgun-js')({ apiKey: "YOUR_API_KEY", domain: DOMAIN });
-
- mailgun.get(`/domains/${DOMAIN}/limits/tag`, function (error, body) {
-   console.log(body);
- });
+ // This feature is deprecated and not supported in the js library

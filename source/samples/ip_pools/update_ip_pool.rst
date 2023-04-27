@@ -8,8 +8,8 @@
 
 .. code-block:: js
 
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
 
   const mailgun = new Mailgun(formData);
 
