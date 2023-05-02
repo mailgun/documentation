@@ -257,13 +257,11 @@ Updates the click tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- active            ``yes``, ``no``, or ``htmlonly``
+ active            ``yes``or ``no``
 
                    If set to *yes*, links will be overwritten and pointed to our
                    servers so we can track clicks.
 
-                   If set to *htmlonly*, links will only be rewritten in the HTML
-                   part of a message.
  ================= =============================================================
 
 .. code-block:: url
