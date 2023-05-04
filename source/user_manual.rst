@@ -298,8 +298,7 @@ custom  MIME_ headers listed in the table below.
                                               :ref:`tracking-messages` for details.
                                               Pass ``yes`` or ``no``.
     X-Mailgun-Track-Clicks                    Toggles clicks tracking on a per-message basis. Has higher
-                                              priority than domain-level setting. Pass ``yes``, ``no``
-                                              or ``htmlonly``.
+                                              priority than domain-level setting. Pass ``yes`` or ``no``.
     X-Mailgun-Track-Opens                     Toggles opens tracking on a per-message basis. Has higher
                                               priority than domain-level setting. Pass ``yes`` or ``no``.
     X-Mailgun-Sending-Ip                      Used to specify an IP Address to send the email with that is
@@ -1195,7 +1194,7 @@ Tracking Clicks
 
 Mailgun can keep track of every time a recipient clicks on links in your messages. You can see when clicks happen in the ``Logs`` tab or see counters of clicks aggregated by tags in the ``Analytics`` tab of the Control Panel.  In addition, you can be notified through a webhook or get the data programmatically through the :ref:`Events API <api-events>`.
 
-You can enable click tracking in the **Tracking Settings** section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-clicks`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the **Domain Verification & DNS** section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel. If you enable Click tracking, links will be overwritten and pointed to our servers so we can track clicks. You can specify that you only want links rewritten in the HTML part of a message with the parameter ``o:tracking-clicks`` and passing ``htmlonly``.
+You can enable click tracking in the **Tracking Settings** section of your domain's settings page in the ``Domains`` tab of your Control Panel or by using the ``o:tracking`` or ``o:tracking-clicks`` parameters when sending a message. You will also have to add the appropriate CNAME records to your DNS as specified in the **Domain Verification & DNS** section, which is also located in your domain's settings page in the ``Domains`` tab of your Control Panel. If you enable Click tracking, links will be overwritten and pointed to our servers so we can track clicks.
 
 **Clicks Webhook**
 
