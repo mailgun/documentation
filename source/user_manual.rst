@@ -1422,6 +1422,20 @@ to be notified every time a message is delivered.
 If the message is successfully delivered to the intended recipient,
 we will POST the following `webhooks payload`_ to your ``delivered`` URLs
 
+Secure Tracking
+===================
+
+Mailgun supports enabling the HTTPS protocol on open, click and unsubscribe tracking URLs with the :ref:`Secure Tracking API <secure-tracking>`. Mailgun utilizes Let’s Encrypt with HTTP-01 challenges via your existing tracking CNAME record to issue a TLS certificate. This configuration also supports HTTP Strict Transport Security (HSTS).
+
+.. note:: one-click HTTPS tracking links are available on all subscription plans. The Flex plan, which is a pay-as-you-grow usage-based plan, does not include this feature.  If your account is using the Flex plan, please see the CDN Alternative help article <https://help.mailgun.com/hc/en-us/articles/360011566033-How-to-Enable-HTTPS-Tracking-Links>.
+
+**Setup**
+***Tracking CNAME***
+
+You must first ensure that you have a tracking CNAME in place pointing to mailgun.org or eu.mailgun.org if your domain is in our EU infrastructure. By default, the DNS record is "email.<domain.com>", however, the tracking hostname is configurable via the Mailgun application, so just be sure the hostname in your CNAME record matches the tracking hostname set.
+
+Once your CNAME record is in place, head to Sending > Domain settings (ensure you've selected the domain you wish to change) and then navigate to the Tracking section and click on the Edit button next to Tracking protocol and change the radio button from HTTP to HTTPS and hit Save. This will kick off a 2 step process; first, Mailgun will generate a Let's Encrypt TLS certificate for your tracking domain, and then Mailgun will switch the protocol for your URLs from HTTP to HTTPS. Give it a few moments to complete and then you're all set!
+
 .. _stats:
 
 Stats
