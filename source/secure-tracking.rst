@@ -1,7 +1,12 @@
 .. _secure-tracking:
 
+#Secure Tracking
+
+Mailgun supports enabling the HTTPS protocol on open, click and unsubscribe tracking URLs. Mailgun utilizes Let’s Encrypt with HTTP-01 challenges via your existing tracking CNAME record to issue a TLS certificate. This configuration also supports HTTP Strict Transport Security (HSTS).
+
 Initiate generation of an x509 keypair
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This call generates a TLS certificate for the Tracking domain and returns a status URL.
 
 ::
 
