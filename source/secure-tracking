@@ -1,3 +1,4 @@
+.. _secure-tracking:
 #### Initiate generation of an x509 keypair
 ```
 POST /v2/x509/{domain}
