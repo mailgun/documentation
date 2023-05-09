@@ -8,6 +8,7 @@ Mailgun API Reference
    api-intro
    api-sending
    api-domains
+   secure-tracking
    api-ips
    api-ip-pools
    api-events
