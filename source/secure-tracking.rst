@@ -1,3 +1,5 @@
+.. _secure-tracking:
+
 Initiate generation of an x509 keypair
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
