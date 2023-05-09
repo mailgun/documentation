@@ -1427,10 +1427,9 @@ Secure Tracking
 
 Mailgun supports enabling the HTTPS protocol on open, click and unsubscribe tracking URLs with the :ref:`Secure Tracking API <secure-tracking>`. Mailgun utilizes Let’s Encrypt with HTTP-01 challenges via your existing tracking CNAME record to issue a TLS certificate. This configuration also supports HTTP Strict Transport Security (HSTS).
 
-.. note:: one-click HTTPS tracking links are available on all subscription plans. The Flex plan, which is a pay-as-you-grow usage-based plan, does not include this feature.  If your account is using the Flex plan, please see the CDN Alternative help article <https://help.mailgun.com/hc/en-us/articles/360011566033-How-to-Enable-HTTPS-Tracking-Links>.
+.. note:: one-click HTTPS tracking links are available on all subscription plans. The Flex plan, which is a pay-as-you-grow usage-based plan, does not include this feature.  If your account is using the Flex plan, please see the CDN Alternative help article [https://help.mailgun.com/hc/en-us/articles/360011566033-How-to-Enable-HTTPS-Tracking-Links].
 
-**Setup**
-***Tracking CNAME***
+**Tracking CNAME**
 
 You must first ensure that you have a tracking CNAME in place pointing to mailgun.org or eu.mailgun.org if your domain is in our EU infrastructure. By default, the DNS record is "email.<domain.com>", however, the tracking hostname is configurable via the Mailgun application, so just be sure the hostname in your CNAME record matches the tracking hostname set.
 
