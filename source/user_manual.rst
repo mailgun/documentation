@@ -8,7 +8,7 @@ Introduction
 
 This document is meant to be an overview of all of the capabilities of
 Mailgun and how you can best leverage those capabilities.  It is
-organized around the four major features that Mailgun provides:
+organized around these major features that Mailgun provides:
 
 - `Sending Messages`_
 - `Tracking Messages`_
