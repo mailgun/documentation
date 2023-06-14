@@ -40,7 +40,6 @@ If the template content is provided, a new version is automatically created and 
  description     Description of the template being stored
  template        (Optional) Content of the template
  tag             (Optional) Initial tag of the created version. If the `template` parameter is provided and the `tag` is missing, the default value `initial` is used. The tag can contain alpha-numeric characters and next symbols, such as .-_~
- engine          (Optional) The template engine used to render the template. This is valid only if the `template` parameter is provided. Currently, the Templates API supports only the **handlebars** engine.
  comment         (Optional) Version comment. This is valid only if a new version is being created. (`template` parameter is provided.)
  headers         (Optional) Key Value json dictionary of headers to be stored with the template. The headers currently supported are `From`, `Subject`, and `Reply-To`.
  =============== ==================================================================
@@ -302,7 +301,6 @@ Create a new version of a template. If the template doesn't contain any other ve
  =============== ================================================================================
  template        Content of the template
  tag             Tag of the version is being created
- engine          (Optional) Template engine. The only engine currently supported is ``handlebars``.
  comment         (Optional) Comments relating to the stored version
  active          (Optional) If this flag is set to ``yes``, this version becomes active
  headers          (Optional) Key Value json dictionary of headers to be stored with the template. The headers currently supported are `From`, `Subject`, and `Reply-To`.
