@@ -5,8 +5,9 @@
     -F name='template.name' \
     -F description='template description' \
     -F template='{{fname}} {{lname}}' \
-    -F engine='handlebars'
-    -F comment='version comment'
+    -F engine='handlebars' \
+    -F comment='version comment' \
+    -F headers='{"Subject": "{{subject}}"}
 
 .. code-block:: java
 
@@ -41,7 +42,8 @@
       'description' => 'template description',
       'template' => '{{fname}} {{lname}}',
       'engine' => 'handlebars',
-      'comment' => 'version comment'
+      'comment' => 'version comment',
+      'headers' => '{"Subject": "{{subject}}"}'
     );
 
     $ch = curl_init();
@@ -70,7 +72,8 @@
                'description': 'template description',
                'template': '{{fname}} {{lname}}',
                'engine': 'handlebars',
-               'comment': 'version comment'})
+               'comment': 'version comment'},
+               'headers': '{"Subject": "{{subject}}"}')
 
 .. code-block:: rb
 
@@ -81,7 +84,8 @@
    :description => 'template description',
    :template => '{{fname}} {{lname}}',
    :engine => 'handlebars',
-   :comment => 'version comment'
+   :comment => 'version comment',
+   :headers => '{"Subject": "{{subject}}"}'
  end
 
 .. code-block:: csharp
@@ -114,6 +118,7 @@
          request.AddParameter ("template", "{{fname}} {{lname}}")
          request.AddParameter ("engine", "handlebars")
          request.AddParameter ("comment", "version comment")
+         request.AddParameter ("headers", "{\"Subject\": \"{{subject}}\"}")
          request.Method = Method.POST;
          return client.Execute (request);
      }
