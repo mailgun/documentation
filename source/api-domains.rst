@@ -341,6 +341,38 @@ Parameter         Description
 web_prefix        change the tracking CNAME for a domain.
 ================= =============================================================
 
+Activate a domain key for a specified authority and selector. Note: dns records must be valid for a domain key to be activated
+
+.. code-block:: url
+
+     PUT /v4/domains/{authority_name}/keys/{selector}/activate
+
+.. container:: ptable
+
+======================== ===============================================================================
+Parameter                Description
+======================== ===============================================================================
+authority_name (string)  The domain authority name you want to activate. Must be a valid domain
+
+selector (string)        The selector you want to activate for the domain key. Must be a valid dot atom
+======================== ===============================================================================
+
+Deactivate a domain key for a specified authority and selector
+
+.. code-block:: url
+
+     PUT /v4/domains/{authority_name}/keys/{selector}/deactivate
+
+.. container:: ptable
+
+======================== ================================================================================
+Parameter                Description
+======================== ================================================================================
+authority_name (string)  The domain authority name you want to deactivate. Must be a valid domain
+
+selector (string)        The selector you want to deactivate for the domain key. Must be a valid dot atom
+======================== ================================================================================
+
 
 Example
 ~~~~~~~
@@ -636,3 +668,29 @@ Sample response:
    }
   }
  }
+
+Activate a domain key
+
+Sample response 200:
+
+.. code-block:: javascript
+
+{
+   "active": true,
+   "authority": "authority.domain.tld",
+   "message": "domain key activated",
+   "selector": "selector"
+}
+
+Deactivate a domain key
+
+Sample response 200:
+
+.. code-block:: javascript
+
+{
+   "active": true,
+   "authority": "authority.domain.tld",
+   "message": "domain key deactivated",
+   "selector": "selector"
+}
