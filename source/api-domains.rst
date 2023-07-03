@@ -387,9 +387,11 @@ authority_name (string)  The domain authority name you want to deactivate. Must 
 selector (string)        The selector you want to deactivate for the domain key. Must be a valid dot atom
 ======================== ================================================================================
 
-Create a domain key
 
-Create a domain key. Note that once private keys are created or imported they are never exported. Alternatively, you can import an existing PEM file containing a RSA private key in PKCS #1, ASn.1 DER format. Note, When importing an existing key it must match the public key available via DNS.
+Create a domain key. Note that once private keys are created or imported they are never exported. Alternatively, you
+can import an existing PEM file containing a RSA private key in PKCS #1, ASn.1 DER format. Note, When importing
+an existing key it must match the public key available via DNS at the time the api call to create the domain key is
+made. Additionally, an authority is allowed a maximum of 3 domain keys.
 
 .. code-block:: url
 
@@ -406,7 +408,7 @@ selector (string) (required)       Selector to be used for the new domain key
 
 bits (int)                         Key size, can be 1024 or 2048
 
-pem (string)                       Private key PEM file
+pem (file)                       Private key PEM file
 ================================== ================================================================
 
 List domain keys. Optionally filter by signing domain or selector.
@@ -741,13 +743,17 @@ Sample response:
   }
  }
 
+
+
 Lists the domain keys for a specified signing domain / authority
+
+.. include:: samples/list-domain-keys.rst
 
 Sample response 200:
 
 .. code-block:: javascript
 
-{
+ {
    "items": [
       {
          "dns_record": {
@@ -778,7 +784,7 @@ Sample response 200:
          "signing_domain": "authority.domain.tld"
       }
    ]
-}
+ }
 
 Activate a domain key
 
