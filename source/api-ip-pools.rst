@@ -158,8 +158,8 @@ Sample response:
         name: 'test_pool2',
         pool_id: 'some_pool_id_2'
       },
-     'message':'success'
     ]
+   'message': 'success'
   }
 
 Updating an IP Pool:
