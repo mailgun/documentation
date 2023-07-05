@@ -6,8 +6,8 @@
 
 .. code-block:: java
 
-import com.mailgun.api.v3.MailgunDomainsApi;
-import com.mailgun.model.ResponseWithMessage;
+ import com.mailgun.api.v3.MailgunDomainsApi;
+ import com.mailgun.model.ResponseWithMessage;
 
     // ...
 
