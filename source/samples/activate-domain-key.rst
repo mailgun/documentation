@@ -1,8 +1,8 @@
 
 .. code-block:: bash
 
- curl -s --user `api:YOUR_API_KEY' -G \
-     https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys
+ curl -s --user `api:YOUR_API_KEY' -X PUT \
+     https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys/SELECTOR/activate
 
 .. code-block:: java
 
@@ -15,9 +15,9 @@
 
      // ...
 
-     public static JsonNode listDomainKeys() throws UnirestException {
+     public static JsonNode activateDomainKey() throws UnirestException {
 
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys")
+         HttpResponse<JsonNode> request = Unirest.put("https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys/SELECTOR/activate")
              .basicAuth("api", API_KEY)
              .asJson();
 
@@ -28,15 +28,15 @@
 
 .. code-block:: php
 
- function list_domain_keys() {
+ function activate_domain_key() {
      $ch = curl_init();
 
      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
      curl_setopt($ch, CURLOPT_USERPWD, 'api:PRIVATE_API_KEY');
      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-     curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys');
+     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+     curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys/SELECTOR/activate');
      $result = curl_exec($ch);
      curl_close($ch);
 
@@ -45,16 +45,16 @@
 
 .. code-block:: py
 
- def list_domain_keys():
-     return requests.get(
-         "https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys",
+ def activate_domain_key():
+     return requests.put(
+         "https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys/SELECTOR/activate",
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
- def get_domain_keys
-    RestClient.get("https://api:YOUR_API_KEY"\
-                   "@api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys")
+ def activate_domain_key
+    RestClient.put("https://api:YOUR_API_KEY"\
+                   "@api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys/SELECTOR/activate")
  end
 
 .. code-block:: csharp
@@ -69,10 +69,10 @@
 
      public static void Main (string[] args)
      {
-         Console.WriteLine (ListDomainKeys ().Content.ToString ());
+         Console.WriteLine (ActivateDomainKey ().Content.ToString ());
      }
 
-     public static IRestResponse ListDomainKeys ()
+     public static IRestResponse ActivateDomainKey ()
      {
          RestClient client = new RestClient ();
          client.BaseUrl = new Uri ("https://api.mailgun.net/v4");
@@ -81,7 +81,7 @@
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
          request.Resource = "domains/AUTHORITY_DOMAIN_NAME/keys";
-         request.Method = Method.GET;
+         request.Method = Method.PUT;
          return client.Execute (request);
      }
 
@@ -91,34 +91,23 @@
 
  import (
 	"encoding/json"
+    "fmt"
 	"net/http"
  )
 
- type ListDomainKeyResp struct {
-	Items []DomainKey `json:"items"`
+ type ActivateDomainKeyResp struct {
+	Msg       string `json:"message"`
+	Authority string `json:"authority"`
+	Selector  string `json:"selector"`
+	Active    bool   `json:"active"`
  }
 
- type DomainKey struct {
-	SigningDomain string `json:"signing_domain"`
-	Selector      string `json:"selector"`
-	Record        Record `json:"dns_record"`
- }
-
- type Record struct {
-	Active bool     `json:"is_active"`
-	Cached []string `json:"cached"`
-	Name   string   `json:"name"`
-	Type   string   `json:"record_type"`
-	Valid  string   `json:"valid"`
-	Value  string   `json:"value"`
- }
-
- func ListDomainKeys() (listDomainKeyResp LitDomainKeyResp, err error) {
-
-	// creating HTTP request and returning response
+ func ActivateDomainKey() (activateDomainKeyResp ActivateDomainKeyResp, err error) {
+    authority := "AUTHORITY_DOMAIN_NAME"
+    selector := "SELECTOR"
 
 	client := &http.Client{}
-	req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys", nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("https://api.mailgun.net/v4/domains/%s/keys/%s/activate", authority, selector), nil)
  	req.SetBasicAuth("api", apiKey)
 	response, err := client.Do(req)
 	if err != nil {
@@ -127,6 +116,6 @@
 	defer response.Body.Close()
 
 	// Decode response.
-	err = json.NewDecoder(response.Body).Decode(&listDomainKeyResp)
+	err = json.NewDecoder(response.Body).Decode(&activateDomainKeyResp)
 	return
   }

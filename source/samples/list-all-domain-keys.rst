@@ -2,7 +2,7 @@
 .. code-block:: bash
 
  curl -s --user `api:YOUR_API_KEY' -G \
-     https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys
+     https://api.mailgun.net/v1/dkim/keys
 
 .. code-block:: java
 
@@ -17,7 +17,7 @@
 
      public static JsonNode listDomainKeys() throws UnirestException {
 
-         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys")
+         HttpResponse<JsonNode> request = Unirest.get("https://api.mailgun.net/v1/dkim/keys")
              .basicAuth("api", API_KEY)
              .asJson();
 
@@ -36,7 +36,7 @@
      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-     curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys');
+     curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v1/dkim/keys');
      $result = curl_exec($ch);
      curl_close($ch);
 
@@ -47,14 +47,14 @@
 
  def list_domain_keys():
      return requests.get(
-         "https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys",
+         "https://api.mailgun.net/v1/dkim/keys",
          auth=('api', 'YOUR_API_KEY'))
 
 .. code-block:: rb
 
  def get_domain_keys
     RestClient.get("https://api:YOUR_API_KEY"\
-                   "@api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys")
+                   "@api.mailgun.net/v1/dkim/keys")
  end
 
 .. code-block:: csharp
@@ -75,12 +75,12 @@
      public static IRestResponse ListDomainKeys ()
      {
          RestClient client = new RestClient ();
-         client.BaseUrl = new Uri ("https://api.mailgun.net/v4");
+         client.BaseUrl = new Uri ("https://api.mailgun.net/v1");
          client.Authenticator =
              new HttpBasicAuthenticator ("api",
                                          "YOUR_API_KEY");
          RestRequest request = new RestRequest ();
-         request.Resource = "domains/AUTHORITY_DOMAIN_NAME/keys";
+         request.Resource = "dkim/keeys";
          request.Method = Method.GET;
          return client.Execute (request);
      }
@@ -95,13 +95,15 @@
  )
 
  type ListDomainKeyResp struct {
-	Items []DomainKey `json:"items"`
+	Items []DomainKey    `json:"items"`
+    Page  PagingResponse `json:"paging"`
  }
 
  type DomainKey struct {
 	SigningDomain string `json:"signing_domain"`
 	Selector      string `json:"selector"`
 	Record        Record `json:"dns_record"`
+    Page          PagingResponse `json:"paging"`
  }
 
  type Record struct {
@@ -113,12 +115,19 @@
 	Value  string   `json:"value"`
  }
 
+ type PagingResponse struct {
+	Previous string `json:"previous"`
+	First    string `json:"first"`
+	Next     string `json:"next"`
+	Last     string `json:"last"`
+ }
+
  func ListDomainKeys() (listDomainKeyResp LitDomainKeyResp, err error) {
 
 	// creating HTTP request and returning response
 
 	client := &http.Client{}
-	req, _ := http.NewRequest("GET", "https://api.mailgun.net/v4/domains/AUTHORITY_DOMAIN_NAME/keys", nil)
+	req, _ := http.NewRequest("GET", "https://api.mailgun.net/v1/dkim/keys", nil)
  	req.SetBasicAuth("api", apiKey)
 	response, err := client.Do(req)
 	if err != nil {

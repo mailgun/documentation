@@ -788,37 +788,42 @@ Sample response 200:
 
 Activate a domain key
 
+.. include:: samples/activate-domain-key.rst
+
 Sample response 200:
 
 .. code-block:: javascript
 
-{
+ {
    "active": true,
    "authority": "authority.domain.tld",
    "message": "domain key activated",
    "selector": "selector"
-}
-
+ }
 Deactivate a domain key
+
+.. include:: samples/deactivate-domain-key.rst
 
 Sample response 200:
 
 .. code-block:: javascript
 
-{
+ {
    "active": true,
    "authority": "authority.domain.tld",
    "message": "domain key deactivated",
    "selector": "selector"
-}
+ }
 
-List domain keys
+List all domain keys associated to account
+
+.. include:: samples/list-all-domain-keys.rst
 
 Sample response 200:
 
 .. code-block:: javascript
 
-{
+ {
    "items": [
       {
          "selector": "s1",
@@ -835,41 +840,43 @@ Sample response 200:
       "next": "https://....",
       "previous": "https://...."
    }
-}
-
+ }
 Delete a domain key
 
+.. include:: samples/list-all-domain-keys.rst
+
 Sample response 200:
 
 .. code-block:: javascript
 
-{
+ {
    "message": "success"
-}
-
+ }
 Create a domain key
 
+.. include:: samples/create-domain-keys.rst
+
 Sample response 200:
 
 .. code-block:: javascript
 
-{
+ {
    "dns_record": {
       "cached": [],
       "is_active": false,
       "name": "s1._domainkey.example.com",
       "record_type": "TXT",
       "valid": "unknown",
-      "value": "k=rsa; p=\u003cpublic_key\u003e"
+      "value": "k=rsa; p=public_key"
    },
    "selector": "s1",
    "signing_domain": "example.com"
-}
+ }
 
 Sample response 401:
 
 .. code-block:: javascript
 
-{
+ {
    "message": "Invalid private key"
-}
+ }
