@@ -251,7 +251,7 @@ Retrieve all providers of a domain with corresponding event types:
 .. code-block:: javascript
 
   {
-    "providers": {
+    "provider": {
         "gmail.com": {
             "accepted": 23,
             "clicked": 15,
