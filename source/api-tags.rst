@@ -223,7 +223,7 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "countries": {
+    "country": {
         "ad": {
             "clicked": 7,
             "complained": 4,
