@@ -283,7 +283,7 @@ Retrieve all devices that have triggered an event type in a domain:
 .. code-block:: javascript
 
   {
-    "devices": {
+    "device": {
         "desktop": {
             "clicked": 8,
             "complained": 1,
