@@ -21,26 +21,26 @@ sort              array                    "asc" or "desc"
 enabled           boolean                  Defaults to all if omitted
 ================= ========== ============= =================================
 
-### Get my subaccounts
+Get my subaccounts
 
 .. code-block:: url
 
   GET /v5/accounts/subaccounts
 
 
-### Create a subaccount
+Create a subaccount
 
 .. code-block:: url
 
   POST /v5/accounts/subaccounts
 
-### Disable a subaccount
+Disable a subaccount
 
 .. code-block:: url
 
   POST /v5/accounts/subaccounts/{subaccount-id}/disable
 
-### Enable a subaccount
+Enable a subaccount
 
 .. code-block:: url
 
