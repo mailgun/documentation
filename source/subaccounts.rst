@@ -16,22 +16,22 @@ Sub-accounts gives an account admin the ability to create a new account (Sub-acc
 ### Get my subaccounts
 
 .. code-block:: url
-GET /v5/accounts/subaccounts
+  GET /v5/accounts/subaccounts
 
 
 ### Create a subaccount
 
 .. code-block:: url
-POST /v5/accounts/subaccounts
+  POST /v5/accounts/subaccounts
 
 ### Disable a subaccount
 
 .. code-block:: url
-POST /v5/accounts/subaccounts/{subaccount-id}/disable
+  POST /v5/accounts/subaccounts/{subaccount-id}/disable
 
 ### Enable a subaccount
 
 .. code-block:: url
-POST /v5/accounts/subaccounts/{subaccount-id}/enable
+  POST /v5/accounts/subaccounts/{subaccount-id}/enable
 
 
