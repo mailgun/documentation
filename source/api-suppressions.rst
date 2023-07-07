@@ -809,7 +809,7 @@ Expected responses:
       200
       {
         "value": "alice@example.com",
-        "reason": "why the record was created"
+        "reason": "why the record was created",
         "type": "address",
         "createdAt": "Fri, 21 Oct 2011 11:02:55 GMT"
       }
