@@ -27,7 +27,7 @@ This endpoint allows IP addresses to be registered for blocklist monitoring.
 
     POST /v1/inboxready/ip_addresses
 
-The available request fields are as follows:
+The available JSON request fields are as follows:
 
 .. container:: ptable
 
@@ -160,7 +160,7 @@ Use this endpoint to update IP address attributes.
 
     PUT /v1/inboxready/ip_addresses/{ip}
 
-The available request fields are as follows:
+The available JSON request fields are as follows:
 
 .. container:: ptable
 

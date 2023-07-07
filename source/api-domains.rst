@@ -257,13 +257,11 @@ Updates the click tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- active            ``yes``, ``no``, or ``htmlonly``
+ active            ``yes``or ``no``
 
                    If set to *yes*, links will be overwritten and pointed to our
                    servers so we can track clicks.
 
-                   If set to *htmlonly*, links will only be rewritten in the HTML
-                   part of a message.
  ================= =============================================================
 
 .. code-block:: url
@@ -343,8 +341,114 @@ Parameter         Description
 web_prefix        change the tracking CNAME for a domain.
 ================= =============================================================
 
+Lists the domain keys for a specified signing domain / authority
 
-Example
+.. code-block:: url
+
+     GET /v4/domains/{authority_name}/keys
+
+.. container:: ptable
+
+======================== ===============================================================================
+Parameter                Description
+======================== ===============================================================================
+authority_name (string)  The domain authority name you want to list the domain keys for. Must be a valid domain
+======================== ===============================================================================
+
+Activate a domain key for a specified authority and selector. Note: dns records must be valid for a domain key to be activated
+
+.. code-block:: url
+
+     PUT /v4/domains/{authority_name}/keys/{selector}/activate
+
+.. container:: ptable
+
+======================== ===============================================================================
+Parameter                Description
+======================== ===============================================================================
+authority_name (string)  The domain authority name you want to activate. Must be a valid domain
+
+selector (string)        The selector you want to activate for the domain key. Must be a valid dot atom
+======================== ===============================================================================
+
+Deactivate a domain key for a specified authority and selector
+
+.. code-block:: url
+
+     PUT /v4/domains/{authority_name}/keys/{selector}/deactivate
+
+.. container:: ptable
+
+======================== ================================================================================
+Parameter                Description
+======================== ================================================================================
+authority_name (string)  The domain authority name you want to deactivate. Must be a valid domain
+
+selector (string)        The selector you want to deactivate for the domain key. Must be a valid dot atom
+======================== ================================================================================
+
+
+Create a domain key. Note that once private keys are created or imported they are never exported. Alternatively, you
+can import an existing PEM file containing a RSA private key in PKCS #1, ASn.1 DER format. Note, When importing
+an existing key it must match the public key available via DNS at the time the api call to create the domain key is
+made. Additionally, an authority is allowed a maximum of 3 domain keys.
+
+.. code-block:: url
+
+	POST /v1/dkim/keys
+
+.. container:: ptable
+
+================================== ================================================================
+Parameter                          Description
+================================== ================================================================
+signing_domain (string) (required) Signing domain to be used for the new domain key
+
+selector (string) (required)       Selector to be used for the new domain key
+
+bits (int)                         Key size, can be 1024 or 2048
+
+pem (file)                       Private key PEM file
+================================== ================================================================
+
+List domain keys. Optionally filter by signing domain or selector.
+
+.. code-block:: url
+
+	GET /v1/dkim/keys
+
+.. container:: ptable
+
+======================== ================================================================================
+Parameter                Description
+======================== ================================================================================
+page (string) (required) Encoded paging information, provided via 'next', 'previous' links
+
+limit (int) (required)   Limits the number of items returned in a request
+
+signing_domain (string)  Filter by signing domain
+
+selector (string)        Filter by selector
+======================== ================================================================================
+
+Delete a domain key. Domain keys are not recoverable after deletion so use with care!
+
+.. code-block:: url
+
+	DELETE /v1/dkim/keys
+
+.. container:: ptable
+
+================================== ==========================================
+Parameter                          Description
+================================== ==========================================
+signing_domain (string) (required) Signing domain
+
+selector (string) (required)       Selector
+================================== ==========================================
+
+
+Examples
 ~~~~~~~
 
 Get a list of all domains.
@@ -637,4 +741,142 @@ Sample response:
      "text_footer": "\n\nTo unsubscribe click: <%unsubscribe_url%>\n\n"
    }
   }
+ }
+
+
+
+Lists the domain keys for a specified signing domain / authority
+
+.. include:: samples/list-domain-keys.rst
+
+Sample response 200:
+
+.. code-block:: javascript
+
+ {
+   "items": [
+      {
+         "dns_record": {
+            "cached": [
+               "cached dns value"
+            ],
+            "is_active": true,
+            "name": "s1._domainkey.authority.domain.tld",
+            "record_type": "TXT",
+            "valid": "VALID",
+            "value": "expected dns value"
+         },
+         "selector": "s1",
+         "signing_domain": "authority.domain.tld"
+      },
+      {
+         "dns_record": {
+            "cached": [
+               "cached dns value"
+            ],
+            "is_active": false,
+            "name": "s2._domainkey.authority.domain.tld",
+            "record_type": "TXT",
+            "valid": "UNKNOWN",
+            "value": "expected dns value"
+         },
+         "selector": "s2",
+         "signing_domain": "authority.domain.tld"
+      }
+   ]
+ }
+
+Activate a domain key
+
+.. include:: samples/activate-domain-key.rst
+
+Sample response 200:
+
+.. code-block:: javascript
+
+ {
+   "active": true,
+   "authority": "authority.domain.tld",
+   "message": "domain key activated",
+   "selector": "selector"
+ }
+Deactivate a domain key
+
+.. include:: samples/deactivate-domain-key.rst
+
+Sample response 200:
+
+.. code-block:: javascript
+
+ {
+   "active": true,
+   "authority": "authority.domain.tld",
+   "message": "domain key deactivated",
+   "selector": "selector"
+ }
+
+List all domain keys associated to account
+
+.. include:: samples/list-all-domain-keys.rst
+
+Sample response 200:
+
+.. code-block:: javascript
+
+ {
+   "items": [
+      {
+         "selector": "s1",
+         "signing_domain": "example.com"
+      },
+      {
+         "selector": "s2",
+         "signing_domain": "example.com"
+      }
+   ],
+   "paging": {
+      "first": "https://....",
+      "last": "https://....",
+      "next": "https://....",
+      "previous": "https://...."
+   }
+ }
+Delete a domain key
+
+.. include:: samples/list-all-domain-keys.rst
+
+Sample response 200:
+
+.. code-block:: javascript
+
+ {
+   "message": "success"
+ }
+Create a domain key
+
+.. include:: samples/create-domain-keys.rst
+
+Sample response 200:
+
+.. code-block:: javascript
+
+ {
+   "dns_record": {
+      "cached": [],
+      "is_active": false,
+      "name": "s1._domainkey.example.com",
+      "record_type": "TXT",
+      "valid": "unknown",
+      "value": "k=rsa; p=public_key"
+   },
+   "selector": "s1",
+   "signing_domain": "example.com"
+ }
+
+Sample response 401:
+
+.. code-block:: javascript
+
+ {
+   "message": "Invalid private key"
  }

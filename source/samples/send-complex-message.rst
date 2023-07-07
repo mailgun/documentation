@@ -174,24 +174,24 @@
 
 .. code-block:: js
 
-  const path = require('path');
-  const fsPromises = require('fs').promises;
+  import path from 'node:path';
+  import fs from 'node:fs/promises';
 
   const API_KEY = 'YOUR_API_KEY';
   const DOMAIN = 'YOUR_DOMAIN_NAME';
 
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
 
   const mailgun = new Mailgun(formData);
   const client = mailgun.client({ username: 'api', key: API_KEY });
 
   (async () => {
-    const filepath = path.join(__dirname, 'sample.jpg');
+    const filepath = path.resolve('sample.jpg');
     try {
       const file = {
         filename: 'sample.jpg',
-        data: await fsPromises.readFile(filepath)
+        data: await fs.readFile(filepath)
       };
       const attachment = [file];
 

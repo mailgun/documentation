@@ -83,7 +83,7 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
                                    ``true`` or ``false``
  o\:tracking-clicks                Toggles clicks tracking on a per-message basis. Has higher
                                    priority than domain-level setting. Pass ``yes``, ``no``,
-                                   ``true``, ``false`` or ``htmlonly``.
+                                   ``true``or ``false``.
  o\:tracking-opens                 Toggles opens tracking on a per-message basis. Has higher
                                    priority than domain-level setting. Pass ``yes`` or ``no``,
                                    ``true`` or ``false``
@@ -154,8 +154,7 @@ to do this. Pass the resulting MIME string as ``message`` parameter.
  o\:tracking        Toggles tracking on a per-message basis, see
                     :ref:`tracking-messages` for details. Pass ``yes`` or ``no``.
  o\:tracking-clicks Toggles clicks tracking on a per-message basis. Has higher
-                    priority than domain-level setting. Pass ``yes``, ``no``
-                    or ``htmlonly``.
+                    priority than domain-level setting. Pass ``yes`` or ``no``.
  o\:tracking-opens  Toggles opens tracking on a per-message basis. Has higher
                     priority than domain-level setting. Pass ``yes`` or ``no``.
  h\:X-My-Header     ``h:`` prefix followed by an arbitrary value allows to append

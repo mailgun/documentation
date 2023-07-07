@@ -109,11 +109,11 @@
 
 .. code-block:: js
 
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
 
-  var api_key = 'YOUR_API_KEY';
-  var DOMAIN = 'YOUR_DOMAIN_NAME';
+  const api_key = 'YOUR_API_KEY';
+  const DOMAIN = 'YOUR_DOMAIN_NAME';
 
   const data = {
     to: 'bar@example.com, alice@example.com'

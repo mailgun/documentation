@@ -101,20 +101,20 @@
 
   const DOMAIN = 'YOUR_DOMAIN_NAME';
 
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
+  import formData from 'form-data';
+  import Mailgun from 'mailgun.js';
+  import path from 'node:path';
+  import fs from 'node:fs/promises';
 
   const mailgun = new Mailgun(formData);
-  const path = require('path');
-  const fsPromises = require('fs').promises;
-  const filepath = path.resolve(__dirname, '../emailsValidationList.csv');
+  const filepath = path.resolve('../emailsValidationList.csv');
 
   const client = mailgun.client({ username: 'api', key: 'YOUR_API_KEY' || '' });
   (async () => {
     try {
       const file = {
         filename: 'emailsValidationList.csv',
-        data: await fsPromises.readFile(filepath)
+        data: await fs.readFile(filepath)
       };
 
       const validationRes = await client.validate.multipleValidation.create('validationList', {file: file});
