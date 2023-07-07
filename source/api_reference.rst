@@ -19,4 +19,5 @@ Mailgun API Reference
    api-webhooks
    api-mailinglists
    api-templates
+   subaccounts
    api-email-validation
