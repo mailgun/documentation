@@ -193,10 +193,10 @@
 
 .. code-block:: js
 
-// Using Nodemailer https://nodemailer.com/
-import nodemailer from 'nodemailer';
+ // Using Nodemailer https://nodemailer.com/
+ import nodemailer from 'nodemailer';
 
-async function main() {
+ async function main() {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.mailgun.org",
@@ -216,6 +216,6 @@ async function main() {
   });
 
   console.log("Message sent: %s", info.messageId);
-}
+ }
 
-main().catch(console.error);
+ main().catch(console.error);
