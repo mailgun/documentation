@@ -5,7 +5,7 @@ Sub-accounts gives an account admin the ability to create a new account (Sub-acc
 
 ### Parameters
 
-| **Parameter** | **Type** | **Default** | **Description** | 
+**Parameter** | **Type** | **Default** | **Description** | 
 | --- | --- | --- | --- | 
 | name| string |  | Name of the sub-account
 | limit | int | 10 | Maximum number of records to return.|
@@ -16,22 +16,26 @@ Sub-accounts gives an account admin the ability to create a new account (Sub-acc
 ### Get my subaccounts
 
 .. code-block:: url
+
   GET /v5/accounts/subaccounts
 
 
 ### Create a subaccount
 
 .. code-block:: url
+
   POST /v5/accounts/subaccounts
 
 ### Disable a subaccount
 
 .. code-block:: url
+
   POST /v5/accounts/subaccounts/{subaccount-id}/disable
 
 ### Enable a subaccount
 
 .. code-block:: url
+
   POST /v5/accounts/subaccounts/{subaccount-id}/enable
 
 
