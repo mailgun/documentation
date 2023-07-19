@@ -1514,7 +1514,7 @@ and passes it as a ``mailbox`` parameter to an application URL::
     route action : forward("http://myhost.com/post/?mailbox=\1")
 
 
-You can use named captures as well (Note: capture groups cannot be used in the hostname):
+You can use named captures as well (Note: capture groups cannot be used in the hostname)::
 
     route filter : match_recipient("(?P<user>.*?)@(?P<domain>.*)")
     route action : forward("http://mycallback.com/domains/\g<domain>/users/\g<user>")
