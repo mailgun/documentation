@@ -87,6 +87,7 @@ This makes sense for parameters like ``cc``, ``to`` or ``attachment``.
  o\:tracking-opens                 Toggles opens tracking on a per-message basis. Has higher
                                    priority than domain-level setting. Pass ``yes`` or ``no``,
                                    ``true`` or ``false``
+ o\:tracking-pixel-location-top    By default, Mailgun places open tracking pixel at bottom of message. Pass ``yes`` or ``true`` to place at top.  
  o\:require-tls                    If set to ``True`` or ``yes`` this requires the message only be
                                    sent over a TLS connection. If a TLS connection can not be established,
                                    Mailgun will not deliver the message.
