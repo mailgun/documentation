@@ -1175,7 +1175,7 @@ an HTML component to the email (i.e., text only emails will not track opens). Yo
 note that many email service providers disable images by default, so this data will only
 show up if the recipient clicks on display images button in his/her email.
 
-By default, Mailgun places the open tracking pixel after your HTML content. You can elect to move the pixel to the top of your email via the **Tracking Settings** section of you domain’s settings page in the ``Domains`` tab, or using the ``o:tracking-pixel-location-top`` parameter when sending a message. If you send large emails (over 120KB in file size), you may be experiencing rendering issues at various inbox providers that can impact tracking of open events. Placing the tracking pixel at the top of your HTML content can mitigate these impacts to open rates.
+By default, Mailgun places the open tracking pixel after your HTML content. You can elect to move the pixel to the top of your email via the **Tracking Settings** section of you domain’s settings page in the ``Domains`` tab, or using the ``o:tracking-pixel-location-top`` parameter when sending a message. If you send large emails, you may be experiencing email message clipping at various inbox providers (over 102KB in file size at Gmail, for example) that can impact tracking of open events. Placing the tracking pixel at the top of your HTML content can mitigate these impacts to open rates.
 
 **Opens Webhook**
 
