@@ -244,7 +244,15 @@ Updates the open tracking settings for a domain.
  Parameter         Description
  ================= =============================================================
  active            ``yes`` or ``no``
- ================= =============================================================
+
+		   If set to *yes*, a tracking pixel will be inserted below
+  		   your HTML content.
+
+place_at_the_top   ``yes`` or ``no``
+
+		  If set to *yes*, tracking pixel will be moved to top of 
+                  your HTML content.
+================= =============================================================
 
 .. code-block:: url
 
@@ -257,7 +265,7 @@ Updates the click tracking settings for a domain.
  ================= =============================================================
  Parameter         Description
  ================= =============================================================
- active            ``yes``or ``no``
+ active            ``yes`` or ``no``
 
                    If set to *yes*, links will be overwritten and pointed to our
                    servers so we can track clicks.
