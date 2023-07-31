@@ -16,6 +16,7 @@ Supported webhooks, and their documentation, are listed below:
 ================= ========================================================
 Webhook Name      Documentation
 ================= ========================================================
+accepted          :ref:`um-tracking-accepted`
 clicked           :ref:`um-tracking-clicks`
 complained        :ref:`um-tracking-spam-complaints`
 delivered         :ref:`um-tracking-deliveries`

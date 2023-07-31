@@ -1161,6 +1161,21 @@ Supply one or more ``o:tag`` parameters to tag the message.
 .. note:: Tags are case insensitive and should be ascii only. Maximum tag length is 128 characters.
 
 
+.. _um-tracking-accepted:
+
+Tracking Accepted
+==============
+
+Mailgun can keep track of every time your message send request is accepted and placed in our queue for processing.
+
+You can see when accepted events happen in the ``Logs`` tab.  In addition, you can be notified through a webhook when a message is accepted or get the data programmatically through the :ref:`Events API <api-events>`.
+
+**Accepted Webhook**
+
+You can specify a webhook URL programmatically using the :ref:`api-webhooks` API
+to be notified every time a message is accepted for processing by Mailgun.
+When Mailgun acceptes the message for processing, we will POST the following `webhooks payload`_ to your ``accepted`` URLs
+
 .. _um-tracking-opens:
 
 Tracking Opens
