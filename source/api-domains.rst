@@ -240,15 +240,15 @@ Updates the open tracking settings for a domain.
 
 .. container:: ptable
 
- ================= =============================================================
+================= =============================================================
  Parameter         Description
- ================= =============================================================
+================= =============================================================
  active            ``yes`` or ``no``
 
 		   If set to *yes*, a tracking pixel will be inserted below
   		   your HTML content.
 
-place_at_the_top   ``yes`` or ``no``
+ place_at_the_top ``yes`` or ``no``
 
 		  If set to *yes*, tracking pixel will be moved to top of 
                   your HTML content.
