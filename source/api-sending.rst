@@ -289,7 +289,7 @@ An example of how to tag a message with the ``o:tag`` option:
 
 .. include:: samples/send-tagged-message.rst
 
-An example of how to resend a message:
+An example of how to resend a message: You can do this from the time the original email was provided to Mailgun up to the email expiration time from our system. By default, emails are stored for 72 hours. Note: The full URL to the POST request is the exact url found in storage.url of your accepted or delivered events/logs
 
 .. include:: samples/resend-simple-message.rst
 
