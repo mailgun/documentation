@@ -4,6 +4,11 @@
       https://storage-{{MESSAGE_STORAGE_REGION}}.api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/messages/STORAGE_KEY \
       -F to='bob@example.com'
 
+  #On your dashboard navigate to Sending -> logs. Accepted and Delivered events will have a storage property.
+  curl -s --user 'api:YOUR_API_KEY' \
+      {{STORAGE.URL}} \
+      -F to='bob@example.com'
+
 .. code-block:: java
 
     import com.mailgun.api.v3.MailgunStoreMessagesApi;
