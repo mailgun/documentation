@@ -1,13 +1,17 @@
 .. code-block:: bash
+  
+  # Note: On your dashboard navigate to Sending -> logs
+  # Accepted and Delivered events will have a storage.url property
+  # This is the full URL to POST to
+ 
+  # Provide a form parameter “to” with a string of comma separated email addresses 
+  # you want to deliver the message to
+  curl -s --user 'api:YOUR_API_KEY' {{STORAGE.URL}} \
+      -F to='bob@example.com, john@example.com'
 
   curl -s --user 'api:YOUR_API_KEY' \
-      https://storage-{{MESSAGE_STORAGE_REGION}}.api.mailgun.net/v3/domains/YOUR_DOMAIN_NAME/messages/STORAGE_KEY \
-      -F to='bob@example.com'
-
-  #On your dashboard navigate to Sending -> logs. Accepted and Delivered events will have a storage property.
-  curl -s --user 'api:YOUR_API_KEY' \
-      {{STORAGE.URL}} \
-      -F to='bob@example.com'
+      https://storage-{{REGION}}.api.mailgun.net/v3/domains/DOMAIN/messages/STORAGE_KEY \
+      -F to='bob@example.com, john@example.com'
 
 .. code-block:: java
 
