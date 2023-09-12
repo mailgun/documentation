@@ -3,7 +3,7 @@
 Subaccounts
 ################
 
-Subaccounts gives an account admin the ability to create a new account (Subaccount) that’s linked to the master account, but separates users and assets from the master account. Subaccounts are child accounts that share the same plan and usage allocations as the parent, but have their own assets (sending domains, unique users, API key, SMTP credentials, settings, statistics and site login). All you need is the name of the subaccount.
+Subaccounts gives an account admin the ability to create a new account (Subaccount) that’s linked to the primary account, but separates users and assets from the primary account. Subaccounts are child accounts that share the same plan and usage allocations as the primary, but have their own assets (sending domains, unique users, API key, SMTP credentials, settings, statistics and site login). All you need is the name of the subaccount.
 
 
 Get my subaccounts
@@ -35,7 +35,7 @@ Create a subaccount
 ================= ========== ============= =================================
 **Parameter**     **Type**   **Default**   **Description**
 ================= ========== ============= =================================
-name              string                   Name of the sub-account being created
+name              string                   Name of the subaccount being created
 ================= ========== ============= =================================
 
 Disable a subaccount
@@ -43,7 +43,7 @@ Disable a subaccount
 
 .. code-block:: url
 
-  POST /v5/accounts/subaccounts/{subaccount-id}/disable
+  POST /v5/accounts/s/{-id}/disable
 
 Enable a subaccount
 --------------
