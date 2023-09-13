@@ -771,7 +771,7 @@ using the ``o:deliverytime`` parameter if sending via the API, or
 While messages are not guaranteed to arrive at exactly the requested time due to
 the dynamic nature of the queue, Mailgun will do its best.
 
-.. note:: Messages can be scheduled for a maximum of 3 days in the future.
+.. note:: If your billing plan supports 7 or more days of storage capability, you can now schedule emails out up to 7 days.
 
 **Scheduling Delivery API Example**
 
