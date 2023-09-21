@@ -223,7 +223,7 @@ Sample response:
 .. code-block:: javascript
 
   {
-    "countries": {
+    "country": {
         "ad": {
             "clicked": 7,
             "complained": 4,
@@ -251,7 +251,7 @@ Retrieve all providers of a domain with corresponding event types:
 .. code-block:: javascript
 
   {
-    "providers": {
+    "provider": {
         "gmail.com": {
             "accepted": 23,
             "clicked": 15,
@@ -283,7 +283,7 @@ Retrieve all devices that have triggered an event type in a domain:
 .. code-block:: javascript
 
   {
-    "devices": {
+    "device": {
         "desktop": {
             "clicked": 8,
             "complained": 1,
