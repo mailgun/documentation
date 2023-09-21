@@ -132,7 +132,7 @@ Sample response:
 
 .. code-block:: javascript
 
-  { message: 'success', pool_id: 'some_pool_id' }
+  { "message": "success", "pool_id": "some_pool_id" }
 
 Getting IP Pools list:
 
@@ -143,23 +143,23 @@ Sample response:
 .. code-block:: javascript
 
   {
-    'ip_pools': [
+    "ip_pools": [
       {
-        description: 'Test description 1',
-        ips: ['127.0.0.1'],
-        is_linked: false,
-        name: 'test_pool1',
-        pool_id: 'some_pool_id'
+        "description": "Test description 1",
+        "ips": ["127.0.0.1"],
+        "is_linked": false,
+        "name": "test_pool1",
+        "pool_id": "some_pool_id"
         },
         {
-        description: 'Test description 2',
-        ips: ['127.0.0.1'],
-        is_linked: true,
-        name: 'test_pool2',
-        pool_id: 'some_pool_id_2'
+        "description": "Test description 2",
+        "ips": ["127.0.0.1"],
+        "is_linked": true,
+        "name": "test_pool2",
+        "pool_id": "some_pool_id_2"
       },
-     'message':'success'
     ]
+   "message": "success"
   }
 
 Updating an IP Pool:
@@ -170,7 +170,7 @@ Sample response:
 
 .. code-block:: javascript
 
-  { message: 'success' }
+  { "message": "success" }
 
 Deleting an IP Pool:
 
@@ -180,7 +180,7 @@ Sample response:
 
 .. code-block:: javascript
 
-  { message: 'started' }
+  { "message": "started" }
 
 Linking an IP Pool:
 
@@ -190,7 +190,7 @@ Sample response:
 
 .. code-block:: javascript
 
-  { body: { message: 'success' }, status: 200 }
+  { "body": { "message": "success" }, "status": 200 }
 
 Unlink an IP Pool:
 
@@ -200,4 +200,4 @@ Sample response:
 
 .. code-block:: javascript
 
-  { body: { message: 'success' }, status: 200 }
+  { "body": { "message": "success" }, "status": 200 }
