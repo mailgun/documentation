@@ -23,6 +23,13 @@ sort              array                                    "asc" or "desc"
 enabled           boolean    Defaults to all if omitted    Returns all enabled/disabled subaccounts
 ================= ========== ============================ ===================================
 
+Get subaccount details
+--------------
+
+.. code-block:: url
+
+  GET /v5/accounts/subaccounts/{-id}
+
 Create a subaccount
 --------------
 
