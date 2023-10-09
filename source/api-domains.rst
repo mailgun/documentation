@@ -416,7 +416,7 @@ selector (string) (required)       Selector to be used for the new domain key
 
 bits (int)                         Key size, can be 1024 or 2048
 
-pem (file)                       Private key PEM file
+pem (file/string)                  Private key PEM file
 ================================== ================================================================
 
 List domain keys. Optionally filter by signing domain or selector.
