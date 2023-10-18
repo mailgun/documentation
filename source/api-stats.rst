@@ -97,7 +97,6 @@ Group
 
 Allows for grouping metrics by group type.
 
-.. container:: ptable
 
  =================
  Group Type        
