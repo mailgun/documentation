@@ -112,7 +112,6 @@ Allows for grouping metrics by group type.
  country               
  subaccount            
  ip_pool
- ================= 
 
 
 Examples
