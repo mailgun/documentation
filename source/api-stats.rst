@@ -91,6 +91,7 @@ listed the events that you can retrieve using this API.
                    be received by Mailgun.
  stored            Mailgun has stored an incoming message
  ================= ============================================================
+
 Group
 --------
 
