@@ -109,6 +109,27 @@ Allows for grouping metrics by group type.
 - subaccount            
 - ip_pool
 
+.. code-block:: url
+
+     GET /v3/stats/filter?event=delivered&group=provider
+
+Filter by Subaccount
+--------
+
+Use the subaccount ID to filter stats to a specific subaccount
+
+.. code-block:: url
+
+     GET /v3/stats/filter?event=delivered&group=subaccount&filter=subaccount:<Subaccount ID>
+
+Filter by IP Pool
+--------
+
+Use the IP Pool ID to filter stats to a specific IP Pool
+
+.. code-block:: url
+
+     GET /v3/stats/filter?event=delivered&group=ip_pool&filter=ip_pool:<IP Pool ID>
 
 Examples
 --------
