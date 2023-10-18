@@ -98,7 +98,6 @@ Group
 Allows for grouping metrics by group type.
 
 
-
  Group Type        
 
  total             
