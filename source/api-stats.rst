@@ -91,6 +91,27 @@ listed the events that you can retrieve using this API.
                    be received by Mailgun.
  stored            Mailgun has stored an incoming message
  ================= ============================================================
+Group
+--------
+
+Allows for grouping metrics by group type.
+
+
+ =================
+ Group Type        
+ ================= 
+ total             
+ time              
+ day               
+ month             
+ domain            
+ ip                
+ provider          
+ tag               
+ country               
+ subaccount            
+ ip_pool
+ ================= 
 
 
 Examples
