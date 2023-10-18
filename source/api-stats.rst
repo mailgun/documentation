@@ -97,18 +97,17 @@ Group
 
 Allows for grouping metrics by group type.
        
-
-       - total             
-       - time              
-       - day               
-       - month             
-       - domain            
-       - ip                
-       - provider          
-       - tag               
-       - country               
-       - subaccount            
-       - ip_pool
+- total             
+- time              
+- day               
+- month             
+- domain            
+- ip                
+- provider          
+- tag               
+- country               
+- subaccount            
+- ip_pool
 
 
 Examples
