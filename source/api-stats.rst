@@ -92,6 +92,45 @@ listed the events that you can retrieve using this API.
  stored            Mailgun has stored an incoming message
  ================= ============================================================
 
+Group
+--------
+
+Allows for grouping metrics by group type.
+       
+- total             
+- time              
+- day               
+- month             
+- domain            
+- ip                
+- provider          
+- tag               
+- country               
+- subaccount            
+- ip_pool
+
+.. code-block:: url
+
+     GET /v3/stats/filter?event=delivered&group=provider
+
+Filter by Subaccount
+--------
+
+Use the subaccount ID to filter stats to a specific subaccount
+
+.. code-block:: url
+
+     GET /v3/stats/filter?event=delivered&filter=subaccount:<Subaccount ID>
+
+Filter by IP Pool
+--------
+
+Use the IP Pool ID to filter stats to a specific IP Pool
+
+.. code-block:: url
+
+     GET /v3/stats/filter?event=delivered&filter=ip_pool:<IP Pool ID>
+
 Examples
 --------
 
