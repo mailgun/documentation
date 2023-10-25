@@ -3,7 +3,7 @@
 Alerts
 ======
 
-This section describes our RESTful API for alert configuration for InboxReady
+This section describes our RESTful API for alert configuration for Optimize (formerly InboxReady)
 products.
 
 
@@ -227,7 +227,7 @@ Use this endpoint to delete an alert settings record. A 200 response is returned
 Webhooks
 --------
 
-This section covers details around consuming InboxReady deliverability alerts via webhooks.
+This section covers details around consuming Optimize deliverability alerts via webhooks.
 If you are familiar with Mailgun webhooks, there is a lot of overlapping similarity, however,
 there are also a few minor nuances to account for.
 
@@ -254,8 +254,8 @@ Below is a Ruby code example for verifying a webhook signature:
 
 
 *NOTE: If you're comsuming Mailgun webhooks, please note that your Mailgun webhook signing key
-differs from your InboxReady alerts webhook signing key. Your InboxReady alerts webhook signing key
-is available within the InboxReady UI.*
+differs from your Optimize alerts webhook signing key. Your Optimize alerts webhook signing key
+is available within the Optimize UI.*
 
 .. _HMAC: https://en.wikipedia.org/wiki/HMAC
 

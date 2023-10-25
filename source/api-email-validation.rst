@@ -1,13 +1,11 @@
 .. _api-email-validation:
 
-Email Verifications
+Email Validation
 ###################
 
-.. note:: Our Email Validation service has been renamed to Email Verification service. While the names are different, nothing within our codebase has changed to cause a disruption in service.
+.. note:: Our Single and Bulk Email Validation service is available via the EU API.
 
-.. note:: Our Single and Bulk Email Verification service is available via the EU API.
-
-This API endpoint is an email address verification service.
+This API endpoint is an email address validation service.
 
 We will verify the given address based on:
 
@@ -21,30 +19,30 @@ We will verify the given address based on:
 
 - Email Service Provider (ESP) specific local-part grammar (if available).
 
-The Email Validation/Verification API endpoint is available at:
+The Email Validation API endpoint is available at:
 
 .. code-block:: url
 
       v4/address/validate
 
-Pricing details for Mailgun's email verification service can be found on our `pricing page`_.
+Pricing details for Mailgun's email validation service can be found on our `pricing page`_.
 
-Mailgun's email verification service is intended to verify email addresses submitted through forms like newsletters, online registrations and shopping carts.  Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to use the service appropriately.
+Mailgun's email validation service is intended to validate email addresses submitted through forms like newsletters, online registrations and shopping carts.  Refer to our `Acceptable Use Policy (AUP)`_ for more information about how to use the service appropriately.
 
 .. _pricing page: https://www.mailgun.com/pricing
 .. _Acceptable Use Policy (AUP): http://mailgun.com/aup
 
 .. note::  A previous version of the API is described here :ref:`api-email-validation`
 
-Single Verification
+Single Validation
 ~~~~~~~~~~~~~~~~~~~
-.. note:: The verifications feature is rate limited to a set number of active requests at a time. If you receive a 429 error, please wait and try again.
+.. note:: The validation feature is rate limited to a set number of active requests at a time. If you receive a 429 error, please wait and try again.
 
 .. code-block:: url
 
      GET /v4/address/validate
 
-Given an arbitrary address, verifies address based off defined checks.
+Given an arbitrary address, validates address based off defined checks.
 
 .. container:: ptable
 
@@ -58,24 +56,24 @@ Given an arbitrary address, verifies address based off defined checks.
 
      POST /v4/address/validate
 
-Given an arbitrary address, verifies address based off defined checks.
+Given an arbitrary address, validates address based off defined checks.
 
 .. container:: ptable
 
  ====================== ========================================================
  Form-Data         	    Description
  ====================== ========================================================
- address           	    An email address to verify. (Maximum: 512 characters)
+ address           	    An email address to validate. (Maximum: 512 characters)
  ====================== ========================================================
 
 Request Examples
 ________________
 
-Verify a single email address using the GET method.
+Validate a single email address using the GET method.
 
 .. include:: samples/get-validate.rst
 
-Verify a single email address using the POST method.
+Validate a single email address using the POST method.
 
 .. include:: samples/post-validate.rst
 
@@ -93,7 +91,7 @@ Example of a failed mailbox verification result.
     }
 
 
-Example of successful mailbox verification result.
+Example of successful mailbox validation result.
 
 .. code-block:: javascript
 
@@ -144,7 +142,7 @@ address                  string       Email address being verified
 did_you_mean             string       (Optional) Null if nothing, however if a potential typo is made to the domain, the closest suggestion is provided
 is_disposable_address    boolean      If the domain is in a list of disposable email addresses, this will be appropriately categorized
 is_role_address          boolean      Checks the mailbox portion of the email if it matches a specific role type ('admin', 'sales', 'webmaster')
-reason                   array        List of potential reasons why a specific verification may be unsuccessful.
+reason                   array        List of potential reasons why a specific validation may be unsuccessful.
 result                   string       Either ``deliverable``, ``undeliverable``, ``do_not_send``, ``catch_all`` or ``unknown``. Please see the Result Types section below for details on each result type.
 risk                     string       ``high``, ``medium``, ``low``, or ``unknown`` Depending on the evaluation of all aspects of the given email.
 root_address             string       (Optional) If the address is an alias; this will contain the root email address with alias parts removed.
@@ -184,12 +182,12 @@ unknown                          The validity of the recipient address cannot be
 =============================    ==========================================================================================================================================================================================
 
 
-Bulk Verification
+Bulk Validation
 ~~~~~~~~~~~~~~~~~
 
 .. note::
-    Bulk Verification allows for the verification of a list of email addresses. Given a list name and an uploaded file of email addresses,
-    a backend processing job will be run to verify the list. Once the verifications have all been completed, the
+    Bulk Validation allows for the validation of a list of email addresses. Given a list name and an uploaded file of email addresses,
+    a backend processing job will be run to verify the list. Once the validations have all been completed, the
     results will be provided with download links.
 
 
@@ -207,36 +205,36 @@ Bulk Verification
 
     GET /v4/address/validate/bulk
 
-Get list of all bulk verification jobs.
+Get list of all bulk validation jobs.
 
 .. code-block:: url
 
     POST /v4/address/validate/bulk/<list_id>
 
-Create a bulk verification job. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
+Create a bulk validation job. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
 
-Please note that the max number of verification jobs that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
+Please note that the max number of validation jobs that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
 
 .. code-block:: url
 
     GET /v4/address/validate/bulk/<list_id>
 
-Check the current status of a bulk verification job.
+Check the current status of a bulk validation job.
 
 .. code-block:: url
 
     DELETE /v4/address/validate/bulk/<list_id>
 
-This endpoint can be used to cancel an in-progress bulk verification job or
-delete results for a completed bulk verification job. When this endpoint is
+This endpoint can be used to cancel an in-progress bulk validation job or
+delete results for a completed bulk validation job. When this endpoint is
 called for an "uploaded" job, associated result files will be deleted and the
 job's status will be set to "deleted".
 
 
-Bulk Verification Examples
+Bulk Validation Examples
 --------------------------
 
-Get the status of a bulk verification job:
+Get the status of a bulk validation job:
 
 .. include:: samples/get-bulk-validation.rst
 
@@ -277,21 +275,21 @@ Field Explanation:
 Parameter                Type           Description
 =====================    ===========    ============================================================================================================
 created_at               string         Date/Time that the request was initiated
-download_url             array          `csv` and `json` representation of the download link for the results of the bulk verifications
+download_url             array          `csv` and `json` representation of the download link for the results of the bulk validation
 id                       string         list_id name given when the list was initially created
 quantity                 integer        number of total items in the list to be verified
 records_processed        integer        de-duplicated total of verified email addresses
-status                   string         current state of the list verification request. (``created``, ``processing``, ``completed``, ``uploading``, ``uploaded``, and ``failed``)
-summary                  collection     summary of the verifications in the list provided
+status                   string         current state of the list validation request. (``created``, ``processing``, ``completed``, ``uploading``, ``uploaded``, and ``failed``)
+summary                  collection     summary of the validations in the list provided
 result                   array          nested results count. (``catch_all``, ``deliverable``, ``do_not_send``, ``undeliverable``, and ``unknown``)
 risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
 =====================    ===========    ============================================================================================================
 
 
 
-Get a list of bulk verification jobs:
+Get a list of bulk validation jobs:
 
-This request will return a list of verification jobs in descending order by time created.
+This request will return a list of validation jobs in descending order by time created.
 
 
 .. include:: samples/get-bulk-validations.rst
@@ -379,14 +377,14 @@ Results Fields Explanation:
     =====================       ======================================================================================================================
     Field                       Description
     =====================       ======================================================================================================================
-    Deliverable                 The collection of verification jobs requested for.
-    Undeliverable               The total number of verification jobs.
-    Do Not Send                 A collection of pagination links for traversing the verification jobs.
+    Deliverable                 The collection of validation jobs requested for.
+    Undeliverable               The total number of validation jobs.
+    Do Not Send                 A collection of pagination links for traversing the validation jobs.
     Catch All                   The total number of domain associated with result is considered a catch_all domain
     =====================       ======================================================================================================================
 
 
-Create a bulk verification job:
+Create a bulk validation job:
 
 .. include:: samples/create-bulk-validation.rst
 
@@ -400,7 +398,7 @@ Sample Response:
     }
 
 
-Cancel a bulk verification job:
+Cancel a bulk validation job:
 
 .. include:: samples/delete-bulk-validation.rst
 
@@ -413,13 +411,13 @@ Sample Response:
     }
 
 
-Bulk Verification Preview
+Bulk Validation Preview
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
-    Bulk verification preview performs a free analysis of a list of email addresses allowing
-    you to make an informed decision to run a complete bulk verification or not. Given a preview name
-    and an uploaded file of email addresses, a preliminary verification run will be preformed. The results of the preview
+    Bulk validation preview performs a free analysis of a list of email addresses allowing
+    you to make an informed decision to run a complete bulk validation or not. Given a preview name
+    and an uploaded file of email addresses, a preliminary validation run will be preformed. The results of the preview
     will be, on average, an estimate of the deliverability and risk of the emails provide. This evaluation is based
     on a statistical sampling of the list provided.
 
@@ -438,38 +436,38 @@ Bulk Verification Preview
 
     GET /v4/address/validate/preview
 
-Get list of all bulk verification previews.
+Get list of all bulk validation previews.
 
 .. code-block:: url
 
     POST /v4/address/validate/preview/<list_id>
 
-Create a bulk verification preview. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
+Create a bulk validation preview. The ``list_id`` is an arbitrary unique identifier provided by the API caller.
 
-Please note that the max number of verification previews that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
+Please note that the max number of validation previews that can be processed in parallel is 10. If this number is exceeded, a 400 response will be returned.
 
 .. code-block:: url
 
     GET /v4/address/validate/preview/<list_id>
 
-Check the current status of a bulk verification preview.
+Check the current status of a bulk validation preview.
 
 .. code-block:: url
 
     DELETE /v4/address/validate/preview/<list_id>
 
-Delete a bulk verification preview.
+Delete a bulk validation preview.
 
 .. code-block:: url
 
     PUT /v4/address/validate/preview/<list_id>
 
-Promote a bulk verification preview to a bulk verification job.
+Promote a bulk validation preview to a bulk validation job.
 
-Bulk Verification Preview Examples
+Bulk Validation Preview Examples
 ----------------------------------
 
-Get the results of a bulk verification preview:
+Get the results of a bulk validation preview:
 
 .. include:: samples/get-bulk-preview.rst
 
@@ -509,17 +507,17 @@ Field                    Type           Description
 id                       string         list_id name given when the list was initially created
 created_at               string         Date/Time that the request was initiated
 quantity                 integer        number of total items in the list to be previewed
-status                   string         current state of the list verification request. (``preview_processing``, ``preview_complete``)
+status                   string         current state of the list validation request. (``preview_processing``, ``preview_complete``)
 valid                    bool           a boolean to represent if the list is valid
-summary                  collection     summary of the verifications in the list provided
+summary                  collection     summary of the validations in the list provided
 result                   array          nested results averaged. (``deliverable``, ``undeliverable``, ``catch_all`` and ``unknown``)
 risk                     array          nested risk assessment count (``high``, ``low``, ``medium`` or ``unknown``)
 =====================    ===========    ============================================================================================================
 
 
-Get a list of bulk verification previews:
+Get a list of bulk validation previews:
 
-This request will return a list of bulk verification previews.
+This request will return a list of bulk validation previews.
 
 .. include:: samples/get-bulk-previews.rst
 
@@ -583,11 +581,11 @@ Response Fields Explanation:
     =====================    ==========    ======================================================================================================================
     Field                    Type          Description
     =====================    ==========    ======================================================================================================================
-    previews                 collection    A collection of bulk verification previews.
+    previews                 collection    A collection of bulk validation previews.
     =====================    ==========    ======================================================================================================================
 
 
-Create a bulk verification preview:
+Create a bulk validation preview:
 
 .. include:: samples/create-bulk-preview.rst
 
@@ -600,7 +598,7 @@ Sample Response:
       "message": "The bulk preview was submitted."
     }
 
-Delete a bulk verification preview:
+Delete a bulk validation preview:
 
 .. include:: samples/delete-bulk-preview.rst
 
@@ -611,5 +609,5 @@ Sample Response:
 Alerts
 ~~~~~~
 
-Use our alerting platform to be notified when your bulk email verification jobs complete. To
+Use our alerting platform to be notified when your bulk email validation jobs complete. To
 learn more, see the `alerting documentation <https://documentation.mailgun.com/en/latest/api-deliverability-alerts.html>`_.

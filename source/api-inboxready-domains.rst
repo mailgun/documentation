@@ -3,7 +3,7 @@
 Domains
 =======
 
-This section describes domain management for InboxReady products. Use these APIs 
+This section describes domain management for Optimize (formerly InboxReady) products. Use these APIs 
 to register domains for domain-based reputation monitoring tools such as `Spam Trap
 Monitoring`_ and `Domain Blocklist Monitoring`_.
 

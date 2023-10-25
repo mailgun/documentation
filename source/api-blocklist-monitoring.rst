@@ -251,7 +251,7 @@ Example 200 response:
 Monitored Blocklists
 --------------------
 
-This endpoint returns the blocklists monitored by InboxReady.
+This endpoint returns the blocklists monitored by Optimize.
 
 .. code-block:: url
 
