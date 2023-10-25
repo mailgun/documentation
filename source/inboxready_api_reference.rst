@@ -1,6 +1,6 @@
 .. _inboxready-api-reference:
 
-InboxReady API Reference
+Optimize API Reference
 ########################
 
 .. toctree::
