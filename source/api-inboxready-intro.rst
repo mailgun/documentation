@@ -10,5 +10,5 @@ sending platform. As such, Mailgun and Optimize share the same underlying API in
 such as authentification, REST conformity, etc. To understand the basics of the API or to get
 started, see this `introduction`_.
 
-.. _InboxReady: https://www.mailgun.com/products/inbox/inboxready
+.. _InboxReady: https://www.mailgun.com/products/optimize/
 .. _introduction: https://documentation.mailgun.com/en/latest/api-intro.html
