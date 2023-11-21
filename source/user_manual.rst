@@ -1640,7 +1640,7 @@ Parsed Messages Parameters
                                     from ``From`` MIME header.
  from                  string       sender of the message as reported by ``From`` message header, for example "Bob <bob@example.com>".
  subject               string       subject string.
- body-plain            string       The text version of the email. This field is always present. When only sending attachements, the plain-body field will not be visisble.
+ body-plain            string       The text version of the email. This field is always present. When only sending attachments, the plain-body field will not be visible.
                                     If the incoming message only has HTML body, Mailgun will create a text representation for you.
  stripped-text         string       text version of the message without quoted parts and signature block (if found).
  stripped-signature    string       the signature block stripped from the plain text message (if found).
